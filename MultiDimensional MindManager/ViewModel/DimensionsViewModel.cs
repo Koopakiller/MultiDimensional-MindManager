@@ -3,9 +3,12 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using PostSharp.Patterns.Model;
 
 namespace Koopakiller.Apps.MultiDimensionalMindManager.ViewModel
 {
+
+    [NotifyPropertyChanged]
     public class DimensionsViewModel : ViewModelBase
     {
         public DimensionsViewModel()
@@ -39,11 +42,16 @@ namespace Koopakiller.Apps.MultiDimensionalMindManager.ViewModel
 
         private void AddTree()
         {
-            var tree = new TreeViewModel();
+            var tree = new TreeViewModel
+            {
+                Name = "New Dimension Tree"
+            };
             this.Trees.Add(tree);
         }
     }
 
+
+    [NotifyPropertyChanged]
     public class TreeViewModel
     {
         public TreeViewModel()
@@ -56,6 +64,8 @@ namespace Koopakiller.Apps.MultiDimensionalMindManager.ViewModel
         public IList<SubTreeViewModel> SubTrees { get; }
 
     }
+
+    [NotifyPropertyChanged]
     public class SubTreeViewModel
     {
         public string Name { get; set; }

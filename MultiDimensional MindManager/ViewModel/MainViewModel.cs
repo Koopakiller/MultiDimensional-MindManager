@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
+using PostSharp.Patterns.Model;
 
 namespace Koopakiller.Apps.MultiDimensionalMindManager.ViewModel
 {
+    [NotifyPropertyChanged]
     public class MainViewModel : ViewModelBase
     {
         public MainViewModel()
