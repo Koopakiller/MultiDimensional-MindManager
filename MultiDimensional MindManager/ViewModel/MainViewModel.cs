@@ -4,27 +4,33 @@ using GalaSoft.MvvmLight;
 
 namespace Koopakiller.Apps.MultiDimensionalMindManager.ViewModel
 {
-   public class MainViewModel:ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
-       public MainViewModel()
-       {
-           this.HamburgerMenuItems = new ObservableCollection<HamburgerMenuItemViewModel>()
-           {
+        public MainViewModel()
+        {
+            this.HamburgerMenuItems = new ObservableCollection<HamburgerMenuItemViewModel>()
+            {
                 new HamburgerMenuItemViewModel()
                 {
                     Header = "Home",
-                    Glyph ="\uE10F",
+                    Glyph = "\uE10F",
                     ViewModel = new HomeViewModel(),
                 },
                 new HamburgerMenuItemViewModel()
                 {
+                    Header = "Dimensions",
+                    Glyph = "\uEC0A",
+                    ViewModel = new DimensionsViewModel(),
+                },
+                new HamburgerMenuItemViewModel()
+                {
                     Header = "About",
-                    Glyph ="\uE946",
+                    Glyph = "\uE946",
                     ViewModel = new AboutViewModel(),
                 },
-           };
-       }
+            };
+        }
 
-       public IList<HamburgerMenuItemViewModel> HamburgerMenuItems { get; } 
+        public IList<HamburgerMenuItemViewModel> HamburgerMenuItems { get; }
     }
 }

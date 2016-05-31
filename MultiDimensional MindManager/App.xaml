@@ -6,7 +6,24 @@
     RequestedTheme="Light">
     <Application.Resources>
         
-        <ui:AutoTypeTemplateSelector x:Key="AutoTypeTemplateSelector"/>
+        <ResourceDictionary>
+        
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <SolidColorBrush x:Key="LightAccent" Color="#F0AEA5"/>
+                    <SolidColorBrush x:Key="DarkAccent" Color="#D61C00"/>
+                    <SolidColorBrush x:Key="NeutralDarkColor" Color="#202020"/>
+                    <SolidColorBrush x:Key="NeutralLightColor" Color="#E0E0E0"/>
+                    <SolidColorBrush x:Key="NeutralDarkColor2" Color="#303030"/>
+                    <SolidColorBrush x:Key="NeutralLightColor2" Color="#D0D0D0"/>
+                    
+                </ResourceDictionary>
+
+            </ResourceDictionary.ThemeDictionaries>
+            
+            <ui:AutoTypeTemplateSelector x:Key="AutoTypeTemplateSelector"/>
+            
+        </ResourceDictionary>
         
     </Application.Resources>
 </Application>
