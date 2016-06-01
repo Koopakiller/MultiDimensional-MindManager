@@ -30,5 +30,4 @@ using PostSharp.Patterns.Model;
 
 
 //PostSharp
-
 [assembly: NotifyPropertyChanged(AttributeTargetTypes = "*ViewModel")]
