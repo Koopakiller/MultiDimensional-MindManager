@@ -20,7 +20,14 @@
                 </ResourceDictionary>
 
             </ResourceDictionary.ThemeDictionaries>
-            
+
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{ThemeResource NeutralLightColor}"/>
+            </Style>
+            <Style TargetType="Grid">
+                <Setter Property="Background" Value="{ThemeResource NeutralDarkColor}"/>
+            </Style>
+
             <ui:AutoTypeTemplateSelector x:Key="AutoTypeTemplateSelector"/>
             
         </ResourceDictionary>

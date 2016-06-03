@@ -8,7 +8,7 @@
     xmlns:view="using:Koopakiller.Apps.MultiDimensionalMindManager.View"
     mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModel:DimensionsViewModel}">
 
-    <Grid Background="{ThemeResource NeutralDarkColor}">
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
