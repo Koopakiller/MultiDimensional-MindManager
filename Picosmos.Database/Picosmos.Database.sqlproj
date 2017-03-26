@@ -76,10 +76,10 @@
     <Build Include="dbo\Tables\Resumes.sql" />
     <Build Include="dbo\Tables\HumanGroups.sql" />
     <Build Include="dbo\Tables\HumanGroupEntries.sql" />
-    <Build Include="dbo\Stored Procedures\DbExplorer_GetAssociatedDataSets.sql">
+    <Build Include="dbo\Stored Procedures\Explorer_GetAssociatedDataSets.sql">
       <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
-    <Build Include="dbo\Stored Procedures\DbExplorer_GetTablesAndColumns.sql">
+    <Build Include="dbo\Stored Procedures\Explorer_GetTablesAndColumns.sql">
       <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
   </ItemGroup>

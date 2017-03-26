@@ -1,0 +1,841 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Koopakiller.Apps.Picosmos.Model.Database.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Currencies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurrencyIdentifier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrencyId" Type="int" Nullable="false" />
+          <Property Name="Identifier" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HumanGroupEntries">
+          <Key>
+            <PropertyRef Name="GroupId" />
+            <PropertyRef Name="HumanId" />
+          </Key>
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="HumanId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HumanGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsComplete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HumanRelationKinds">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HumanRelations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RelationKind" Type="int" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="RelatedPersonId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Humans">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BirthPlaceId" Type="int" />
+          <Property Name="BirthDateTime" Type="datetime" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="ResumeId" Type="int" />
+        </EntityType>
+        <EntityType Name="Persons">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Places">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Geography" Type="geography" />
+        </EntityType>
+        <EntityType Name="ResumeEntries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDateTime" Type="datetime" />
+          <Property Name="EndDateTime" Type="datetime" />
+          <Property Name="ResumeEntryKindId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ParentEntryId" Type="int" />
+        </EntityType>
+        <EntityType Name="ResumeEntryKinds">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Resumes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TopLevelEntryId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CurrencyIdentifier_Currencies">
+          <End Role="Currencies" Type="Self.Currencies" Multiplicity="1" />
+          <End Role="CurrencyIdentifier" Type="Self.CurrencyIdentifier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrencyIdentifier">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HumanGroupEntries_HumanGroups">
+          <End Role="HumanGroups" Type="Self.HumanGroups" Multiplicity="1" />
+          <End Role="HumanGroupEntries" Type="Self.HumanGroupEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HumanGroups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HumanGroupEntries">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HumanGroupEntries_Humans">
+          <End Role="Humans" Type="Self.Humans" Multiplicity="1" />
+          <End Role="HumanGroupEntries" Type="Self.HumanGroupEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Humans">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HumanGroupEntries">
+              <PropertyRef Name="HumanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HumanRelations_HumanRelationKinds">
+          <End Role="HumanRelationKinds" Type="Self.HumanRelationKinds" Multiplicity="1" />
+          <End Role="HumanRelations" Type="Self.HumanRelations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HumanRelationKinds">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HumanRelations">
+              <PropertyRef Name="RelationKind" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HumanRelations_Persons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="HumanRelations" Type="Self.HumanRelations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HumanRelations">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HumanRelations_Persons_Related">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="HumanRelations" Type="Self.HumanRelations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HumanRelations">
+              <PropertyRef Name="RelatedPersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Humans_Persons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="Humans" Type="Self.Humans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Humans">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Humans_Places_BirthPlace">
+          <End Role="Places" Type="Self.Places" Multiplicity="0..1" />
+          <End Role="Humans" Type="Self.Humans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Humans">
+              <PropertyRef Name="BirthPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Humans_Resume">
+          <End Role="Resumes" Type="Self.Resumes" Multiplicity="0..1" />
+          <End Role="Humans" Type="Self.Humans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resumes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Humans">
+              <PropertyRef Name="ResumeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResumeEntries_ResumeEntries_Parent">
+          <End Role="ResumeEntries" Type="Self.ResumeEntries" Multiplicity="0..1" />
+          <End Role="ResumeEntries1" Type="Self.ResumeEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResumeEntries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResumeEntries1">
+              <PropertyRef Name="ParentEntryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResumeEntries_ResumeEntryKinds">
+          <End Role="ResumeEntryKinds" Type="Self.ResumeEntryKinds" Multiplicity="1" />
+          <End Role="ResumeEntries" Type="Self.ResumeEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResumeEntryKinds">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResumeEntries">
+              <PropertyRef Name="ResumeEntryKindId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Resumes_ResumeEntries">
+          <End Role="ResumeEntries" Type="Self.ResumeEntries" Multiplicity="1" />
+          <End Role="Resumes" Type="Self.Resumes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResumeEntries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Resumes">
+              <PropertyRef Name="TopLevelEntryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Persons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Explorer_GetAssociatedDataSets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tableName" Type="nvarchar" Mode="In" />
+          <Parameter Name="columnName" Type="nvarchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Explorer_GetTablesAndColumns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="KoopakillerAppsPicosmosModelDatabaseStoreContainer">
+          <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurrencyIdentifier" EntityType="Self.CurrencyIdentifier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HumanGroupEntries" EntityType="Self.HumanGroupEntries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HumanGroups" EntityType="Self.HumanGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HumanRelationKinds" EntityType="Self.HumanRelationKinds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HumanRelations" EntityType="Self.HumanRelations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Humans" EntityType="Self.Humans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Places" EntityType="Self.Places" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResumeEntries" EntityType="Self.ResumeEntries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResumeEntryKinds" EntityType="Self.ResumeEntryKinds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resumes" EntityType="Self.Resumes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CurrencyIdentifier_Currencies" Association="Self.FK_CurrencyIdentifier_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="CurrencyIdentifier" EntitySet="CurrencyIdentifier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HumanGroupEntries_HumanGroups" Association="Self.FK_HumanGroupEntries_HumanGroups">
+            <End Role="HumanGroups" EntitySet="HumanGroups" />
+            <End Role="HumanGroupEntries" EntitySet="HumanGroupEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HumanGroupEntries_Humans" Association="Self.FK_HumanGroupEntries_Humans">
+            <End Role="Humans" EntitySet="Humans" />
+            <End Role="HumanGroupEntries" EntitySet="HumanGroupEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HumanRelations_HumanRelationKinds" Association="Self.FK_HumanRelations_HumanRelationKinds">
+            <End Role="HumanRelationKinds" EntitySet="HumanRelationKinds" />
+            <End Role="HumanRelations" EntitySet="HumanRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HumanRelations_Persons" Association="Self.FK_HumanRelations_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="HumanRelations" EntitySet="HumanRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HumanRelations_Persons_Related" Association="Self.FK_HumanRelations_Persons_Related">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="HumanRelations" EntitySet="HumanRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Humans_Persons" Association="Self.FK_Humans_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Humans" EntitySet="Humans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Humans_Places_BirthPlace" Association="Self.FK_Humans_Places_BirthPlace">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Humans" EntitySet="Humans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Humans_Resume" Association="Self.FK_Humans_Resume">
+            <End Role="Resumes" EntitySet="Resumes" />
+            <End Role="Humans" EntitySet="Humans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResumeEntries_ResumeEntries_Parent" Association="Self.FK_ResumeEntries_ResumeEntries_Parent">
+            <End Role="ResumeEntries" EntitySet="ResumeEntries" />
+            <End Role="ResumeEntries1" EntitySet="ResumeEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResumeEntries_ResumeEntryKinds" Association="Self.FK_ResumeEntries_ResumeEntryKinds">
+            <End Role="ResumeEntryKinds" EntitySet="ResumeEntryKinds" />
+            <End Role="ResumeEntries" EntitySet="ResumeEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Resumes_ResumeEntries" Association="Self.FK_Resumes_ResumeEntries">
+            <End Role="ResumeEntries" EntitySet="ResumeEntries" />
+            <End Role="Resumes" EntitySet="Resumes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Persons" Association="Self.FK_Users_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Koopakiller.Apps.Picosmos.Model.Database" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="CurrencyIdentifiers" Relationship="Self.FK_CurrencyIdentifier_Currencies" FromRole="Currencies" ToRole="CurrencyIdentifier" />
+        </EntityType>
+        <EntityType Name="CurrencyIdentifier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="Identifier" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK_CurrencyIdentifier_Currencies" FromRole="CurrencyIdentifier" ToRole="Currencies" />
+        </EntityType>
+        <EntityType Name="HumanGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsComplete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Humans" Relationship="Self.HumanGroupEntries" FromRole="HumanGroups" ToRole="Humans" />
+        </EntityType>
+        <EntityType Name="HumanRelationKind">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="HumanRelations" Relationship="Self.FK_HumanRelations_HumanRelationKinds" FromRole="HumanRelationKinds" ToRole="HumanRelations" />
+        </EntityType>
+        <EntityType Name="HumanRelation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RelationKind" Type="Int32" Nullable="false" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="RelatedPersonId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HumanRelationKind" Relationship="Self.FK_HumanRelations_HumanRelationKinds" FromRole="HumanRelations" ToRole="HumanRelationKinds" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_HumanRelations_Persons" FromRole="HumanRelations" ToRole="Persons" />
+          <NavigationProperty Name="Person1" Relationship="Self.FK_HumanRelations_Persons_Related" FromRole="HumanRelations" ToRole="Persons" />
+        </EntityType>
+        <EntityType Name="Human">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BirthPlaceId" Type="Int32" />
+          <Property Name="BirthDateTime" Type="DateTime" Precision="3" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="ResumeId" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Humans_Persons" FromRole="Humans" ToRole="Persons" />
+          <NavigationProperty Name="Place" Relationship="Self.FK_Humans_Places_BirthPlace" FromRole="Humans" ToRole="Places" />
+          <NavigationProperty Name="Resume" Relationship="Self.FK_Humans_Resume" FromRole="Humans" ToRole="Resumes" />
+          <NavigationProperty Name="HumanGroups" Relationship="Self.HumanGroupEntries" FromRole="Humans" ToRole="HumanGroups" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="HumanRelations" Relationship="Self.FK_HumanRelations_Persons" FromRole="Persons" ToRole="HumanRelations" />
+          <NavigationProperty Name="HumanRelations1" Relationship="Self.FK_HumanRelations_Persons_Related" FromRole="Persons" ToRole="HumanRelations" />
+          <NavigationProperty Name="Humans" Relationship="Self.FK_Humans_Persons" FromRole="Persons" ToRole="Humans" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Persons" FromRole="Persons" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Geography" Type="Geography" />
+          <NavigationProperty Name="Humans" Relationship="Self.FK_Humans_Places_BirthPlace" FromRole="Places" ToRole="Humans" />
+        </EntityType>
+        <EntityType Name="ResumeEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDateTime" Type="DateTime" Precision="3" />
+          <Property Name="EndDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ResumeEntryKindId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ParentEntryId" Type="Int32" />
+          <NavigationProperty Name="ResumeEntries1" Relationship="Self.FK_ResumeEntries_ResumeEntries_Parent" FromRole="ResumeEntries" ToRole="ResumeEntries1" />
+          <NavigationProperty Name="ResumeEntry1" Relationship="Self.FK_ResumeEntries_ResumeEntries_Parent" FromRole="ResumeEntries1" ToRole="ResumeEntries" />
+          <NavigationProperty Name="ResumeEntryKind" Relationship="Self.FK_ResumeEntries_ResumeEntryKinds" FromRole="ResumeEntries" ToRole="ResumeEntryKinds" />
+          <NavigationProperty Name="Resumes" Relationship="Self.FK_Resumes_ResumeEntries" FromRole="ResumeEntries" ToRole="Resumes" />
+        </EntityType>
+        <EntityType Name="ResumeEntryKind">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ResumeEntries" Relationship="Self.FK_ResumeEntries_ResumeEntryKinds" FromRole="ResumeEntryKinds" ToRole="ResumeEntries" />
+        </EntityType>
+        <EntityType Name="Resume">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TopLevelEntryId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Humans" Relationship="Self.FK_Humans_Resume" FromRole="Resumes" ToRole="Humans" />
+          <NavigationProperty Name="ResumeEntry" Relationship="Self.FK_Resumes_ResumeEntries" FromRole="Resumes" ToRole="ResumeEntries" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Users_Persons" FromRole="Users" ToRole="Persons" />
+        </EntityType>
+        <Association Name="FK_CurrencyIdentifier_Currencies">
+          <End Role="Currencies" Type="Self.Currency" Multiplicity="1" />
+          <End Role="CurrencyIdentifier" Type="Self.CurrencyIdentifier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrencyIdentifier">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HumanRelations_HumanRelationKinds">
+          <End Role="HumanRelationKinds" Type="Self.HumanRelationKind" Multiplicity="1" />
+          <End Role="HumanRelations" Type="Self.HumanRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HumanRelationKinds">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HumanRelations">
+              <PropertyRef Name="RelationKind" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HumanRelations_Persons">
+          <End Role="Persons" Type="Self.Person" Multiplicity="1" />
+          <End Role="HumanRelations" Type="Self.HumanRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HumanRelations">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HumanRelations_Persons_Related">
+          <End Role="Persons" Type="Self.Person" Multiplicity="1" />
+          <End Role="HumanRelations" Type="Self.HumanRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HumanRelations">
+              <PropertyRef Name="RelatedPersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Humans_Persons">
+          <End Role="Persons" Type="Self.Person" Multiplicity="1" />
+          <End Role="Humans" Type="Self.Human" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Humans">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Humans_Places_BirthPlace">
+          <End Role="Places" Type="Self.Place" Multiplicity="0..1" />
+          <End Role="Humans" Type="Self.Human" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Humans">
+              <PropertyRef Name="BirthPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Humans_Resume">
+          <End Role="Resumes" Type="Self.Resume" Multiplicity="0..1" />
+          <End Role="Humans" Type="Self.Human" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resumes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Humans">
+              <PropertyRef Name="ResumeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Persons">
+          <End Role="Persons" Type="Self.Person" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResumeEntries_ResumeEntries_Parent">
+          <End Role="ResumeEntries" Type="Self.ResumeEntry" Multiplicity="0..1" />
+          <End Role="ResumeEntries1" Type="Self.ResumeEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResumeEntries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResumeEntries1">
+              <PropertyRef Name="ParentEntryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResumeEntries_ResumeEntryKinds">
+          <End Role="ResumeEntryKinds" Type="Self.ResumeEntryKind" Multiplicity="1" />
+          <End Role="ResumeEntries" Type="Self.ResumeEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResumeEntryKinds">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResumeEntries">
+              <PropertyRef Name="ResumeEntryKindId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Resumes_ResumeEntries">
+          <End Role="ResumeEntries" Type="Self.ResumeEntry" Multiplicity="1" />
+          <End Role="Resumes" Type="Self.Resume" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResumeEntries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Resumes">
+              <PropertyRef Name="TopLevelEntryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HumanGroupEntries">
+          <End Role="HumanGroups" Type="Self.HumanGroup" Multiplicity="*" />
+          <End Role="Humans" Type="Self.Human" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Currencies" EntityType="Self.Currency" />
+          <EntitySet Name="CurrencyIdentifiers" EntityType="Self.CurrencyIdentifier" />
+          <EntitySet Name="HumanGroups" EntityType="Self.HumanGroup" />
+          <EntitySet Name="HumanRelationKinds" EntityType="Self.HumanRelationKind" />
+          <EntitySet Name="HumanRelations" EntityType="Self.HumanRelation" />
+          <EntitySet Name="Humans" EntityType="Self.Human" />
+          <EntitySet Name="Persons" EntityType="Self.Person" />
+          <EntitySet Name="Places" EntityType="Self.Place" />
+          <EntitySet Name="ResumeEntries" EntityType="Self.ResumeEntry" />
+          <EntitySet Name="ResumeEntryKinds" EntityType="Self.ResumeEntryKind" />
+          <EntitySet Name="Resumes" EntityType="Self.Resume" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_CurrencyIdentifier_Currencies" Association="Self.FK_CurrencyIdentifier_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="CurrencyIdentifier" EntitySet="CurrencyIdentifiers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HumanRelations_HumanRelationKinds" Association="Self.FK_HumanRelations_HumanRelationKinds">
+            <End Role="HumanRelationKinds" EntitySet="HumanRelationKinds" />
+            <End Role="HumanRelations" EntitySet="HumanRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HumanRelations_Persons" Association="Self.FK_HumanRelations_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="HumanRelations" EntitySet="HumanRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HumanRelations_Persons_Related" Association="Self.FK_HumanRelations_Persons_Related">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="HumanRelations" EntitySet="HumanRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Humans_Persons" Association="Self.FK_Humans_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Humans" EntitySet="Humans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Humans_Places_BirthPlace" Association="Self.FK_Humans_Places_BirthPlace">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Humans" EntitySet="Humans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Humans_Resume" Association="Self.FK_Humans_Resume">
+            <End Role="Resumes" EntitySet="Resumes" />
+            <End Role="Humans" EntitySet="Humans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Persons" Association="Self.FK_Users_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResumeEntries_ResumeEntries_Parent" Association="Self.FK_ResumeEntries_ResumeEntries_Parent">
+            <End Role="ResumeEntries" EntitySet="ResumeEntries" />
+            <End Role="ResumeEntries1" EntitySet="ResumeEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResumeEntries_ResumeEntryKinds" Association="Self.FK_ResumeEntries_ResumeEntryKinds">
+            <End Role="ResumeEntryKinds" EntitySet="ResumeEntryKinds" />
+            <End Role="ResumeEntries" EntitySet="ResumeEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Resumes_ResumeEntries" Association="Self.FK_Resumes_ResumeEntries">
+            <End Role="ResumeEntries" EntitySet="ResumeEntries" />
+            <End Role="Resumes" EntitySet="Resumes" />
+          </AssociationSet>
+          <AssociationSet Name="HumanGroupEntries" Association="Self.HumanGroupEntries">
+            <End Role="HumanGroups" EntitySet="HumanGroups" />
+            <End Role="Humans" EntitySet="Humans" />
+          </AssociationSet>
+          <FunctionImport Name="Explorer_GetAssociatedDataSets" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetAssociatedDataSets_Result)">
+            <Parameter Name="tableName" Mode="In" Type="String" />
+            <Parameter Name="columnName" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Explorer_GetTablesAndColumns" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetTablesAndColumns_Result)" />
+        </EntityContainer>
+        <ComplexType Name="Explorer_GetAssociatedDataSets_Result">
+          <Property Type="String" Name="TargetTableName" Nullable="true" />
+          <Property Type="String" Name="TargetTableColumn" Nullable="true" />
+          <Property Type="Int32" Name="ColumnValue" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Explorer_GetTablesAndColumns_Result">
+          <Property Type="String" Name="TableName" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="ColumnName" Nullable="true" MaxLength="128" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KoopakillerAppsPicosmosModelDatabaseStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Currency">
+              <MappingFragment StoreEntitySet="Currencies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrencyIdentifiers">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.CurrencyIdentifier">
+              <MappingFragment StoreEntitySet="CurrencyIdentifier">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HumanGroups">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.HumanGroup">
+              <MappingFragment StoreEntitySet="HumanGroups">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsComplete" ColumnName="IsComplete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HumanRelationKinds">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.HumanRelationKind">
+              <MappingFragment StoreEntitySet="HumanRelationKinds">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HumanRelations">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation">
+              <MappingFragment StoreEntitySet="HumanRelations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RelationKind" ColumnName="RelationKind" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="RelatedPersonId" ColumnName="RelatedPersonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Humans">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Human">
+              <MappingFragment StoreEntitySet="Humans">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BirthPlaceId" ColumnName="BirthPlaceId" />
+                <ScalarProperty Name="BirthDateTime" ColumnName="BirthDateTime" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="ResumeId" ColumnName="ResumeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persons">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Person">
+              <MappingFragment StoreEntitySet="Persons">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Places">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Place">
+              <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Geography" ColumnName="Geography" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResumeEntries">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.ResumeEntry">
+              <MappingFragment StoreEntitySet="ResumeEntries">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="ResumeEntryKindId" ColumnName="ResumeEntryKindId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ParentEntryId" ColumnName="ParentEntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResumeEntryKinds">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.ResumeEntryKind">
+              <MappingFragment StoreEntitySet="ResumeEntryKinds">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resumes">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Resume">
+              <MappingFragment StoreEntitySet="Resumes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TopLevelEntryId" ColumnName="TopLevelEntryId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="HumanGroupEntries" TypeName="Koopakiller.Apps.Picosmos.Model.Database.HumanGroupEntries" StoreEntitySet="HumanGroupEntries">
+            <EndProperty Name="HumanGroups">
+              <ScalarProperty Name="Id" ColumnName="GroupId" />
+            </EndProperty>
+            <EndProperty Name="Humans">
+              <ScalarProperty Name="Id" ColumnName="HumanId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="Explorer_GetAssociatedDataSets" FunctionName="Koopakiller.Apps.Picosmos.Model.Database.Store.Explorer_GetAssociatedDataSets">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetAssociatedDataSets_Result">
+                <ScalarProperty Name="TargetTableName" ColumnName="TargetTableName" />
+                <ScalarProperty Name="TargetTableColumn" ColumnName="TargetTableColumn" />
+                <ScalarProperty Name="ColumnValue" ColumnName="ColumnValue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Explorer_GetTablesAndColumns" FunctionName="Koopakiller.Apps.Picosmos.Model.Database.Store.Explorer_GetTablesAndColumns">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetTablesAndColumns_Result">
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
