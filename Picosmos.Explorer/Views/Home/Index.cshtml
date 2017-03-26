@@ -17,21 +17,3 @@
 <div>
     
 </div>
-
-<script>
-    $("#submitButton").click(function() {
-        //http://localhost:54583
-        var selected = $("#select").find(":selected");
-        var url = "/Home/GetAssociated?table=" +
-            selected.data("table") +
-            "&column=" +
-            selected.data("column") +
-            "&value=" +
-            $("#numberBox").val();
-        $.getJSON(url,
-            null,
-            function(data) {
-
-            });
-    });
-</script>
