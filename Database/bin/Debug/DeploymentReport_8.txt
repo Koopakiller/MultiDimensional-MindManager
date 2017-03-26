@@ -1,0 +1,21 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[ResumeEntries] (Table)
+       [dbo].[ResumeEntryKinds] (Table)
+       [dbo].[Resumes] (Table)
+       [dbo].[FK_ResumeEntries_ResumeEntryKinds] (Foreign Key)
+       [dbo].[FK_ResumeEntries_ResumeEntries_Parent] (Foreign Key)
+       [dbo].[FK_Resumes_Humans] (Foreign Key)
+       [dbo].[FK_Resumes_ResumeEntries] (Foreign Key)
+
+** Supporting actions

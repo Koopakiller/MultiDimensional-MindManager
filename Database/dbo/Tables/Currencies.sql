@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[Currencies]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY 
+)

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebDatabaseExplorerDatabaseModelStoreContainer" CdmEntityContainer="Entities">
+    <FunctionImportMapping FunctionImportName="DbExplorer_GetTablesAndColumns" FunctionName="Web.DatabaseExplorer.DatabaseModel.Store.DbExplorer_GetTablesAndColumns">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Web.DatabaseExplorer.DatabaseModel.DbExplorer_GetTablesAndColumns_Result">
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DbExplorer_GetAssociatedDataSets" FunctionName="Web.DatabaseExplorer.DatabaseModel.Store.DbExplorer_GetAssociatedDataSets">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Web.DatabaseExplorer.DatabaseModel.DbExplorer_GetAssociatedDataSets_Result">
+          <ScalarProperty Name="TargetTableName" ColumnName="TargetTableName" />
+          <ScalarProperty Name="TargetTableColumn" ColumnName="TargetTableColumn" />
+          <ScalarProperty Name="ColumnValue" ColumnName="ColumnValue" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

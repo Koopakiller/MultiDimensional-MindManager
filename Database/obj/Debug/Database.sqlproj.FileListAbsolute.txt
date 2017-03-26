@@ -1,0 +1,9 @@
+C:\Version Control\GitHub\Koopakiller\Web\Database\Database\bin\Debug\Database.dacpac
+C:\Version Control\GitHub\Koopakiller\Web\Database\Database\bin\Debug\Database.dll
+C:\Version Control\GitHub\Koopakiller\Web\Database\Database\bin\Debug\Database.pdb
+C:\Version Control\GitHub\Koopakiller\Web\Database\Database\obj\Debug\Model.xml
+C:\Version Control\GitHub\Koopakiller\Web\Database\Database\obj\Debug\refactor.xml
+C:\Version Control\GitHub\Koopakiller\Web\Database\Database\obj\Debug\postdeploy.sql
+C:\Version Control\GitHub\Koopakiller\Web\Database\Database\obj\Debug\predeploy.sql
+C:\Version Control\GitHub\Koopakiller\Web\Database\Database\obj\Debug\Database.dll
+C:\Version Control\GitHub\Koopakiller\Web\Database\Database\obj\Debug\Database.pdb

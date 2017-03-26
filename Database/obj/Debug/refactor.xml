@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0">
+  <Operation Name="Rename Refactor" Key="7e709500-aaf4-4602-ac75-8c90705fd71c" ChangeDateTime="03/23/2017 23:44:07" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Humans].[Birthdate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Humans]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BirthDateTime" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="38f7e30a-0a5f-4f88-80a6-57a9ebd525ee" ChangeDateTime="03/23/2017 23:44:09" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Humans].[Birthplace]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Humans]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BirthPlace" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="42de4af8-79b5-4f30-aee4-c2582c8d206a" ChangeDateTime="03/24/2017 00:22:20" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Humans].[BirthPlace]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Humans]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BirthPlaceId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="51ed9d02-63c9-4070-9843-9c59b5772e27" ChangeDateTime="03/24/2017 00:37:32" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[ResumeEntries].[ParentEntry]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ResumeEntries]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ParentEntryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3002f7ec-bb66-4efb-93c0-5d7e9aa0d614" ChangeDateTime="03/24/2017 01:13:40" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[HumanGroupEntries].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HumanGroupEntries]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HumanId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="67ccefe2-c3f3-4900-a496-a3611c17ea9d" ChangeDateTime="03/24/2017 01:13:43" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[HumanGroupEntries].[HumanId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HumanGroupEntries]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="GroupId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2c6ae579-c74e-45cf-b999-d9ffe7b1a9a3" ChangeDateTime="03/24/2017 01:13:48" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[HumanGroupEntries].[manId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HumanGroupEntries]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HumanId" />
+  </Operation>
+</Operations>

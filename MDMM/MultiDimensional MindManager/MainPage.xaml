@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="Koopakiller.Apps.MultiDimensionalMindManager.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:Koopakiller.Apps.MultiDimensionalMindManager.ViewModel"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <viewModel:MainViewModel />
+    </Page.DataContext>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <SplitView IsPaneOpen="{Binding IsChecked, ElementName=HamburgerMenuButton, Mode=TwoWay}" CompactPaneLength="44" DisplayMode="CompactInline">
+            <SplitView.Pane>
+                <ScrollViewer>
+                    <StackPanel>
+                        <ToggleButton Name="HamburgerMenuButton" Background="Transparent" IsChecked="false" BorderThickness="0">
+                            <FontIcon Glyph="&#xE700;" Width="24" Margin="2"/>
+                        </ToggleButton>
+                        <ListBox ItemsSource="{Binding HamburgerMenuItems}" Name="HamburgerMenuListBox" SelectedValuePath="ViewModel">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="24"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Grid.Column="0" Glyph="{Binding Glyph}" HorizontalAlignment="Left"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Header}" Margin="10 1 0 1"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <ContentControl Content="{Binding SelectedValue, ElementName=HamburgerMenuListBox}"
+                                ContentTemplateSelector="{StaticResource AutoTypeTemplateSelector}"
+                                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+            </SplitView.Content>
+        </SplitView>
+    </Grid>
+</Page>
