@@ -265,6 +265,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Explorer_GetLinkedCells" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tableName" Type="nvarchar" Mode="In" />
+          <Parameter Name="columnName" Type="nvarchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="Explorer_GetTableColumns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tableName" Type="nvarchar" Mode="In" />
         </Function>
@@ -659,7 +664,12 @@
           </AssociationSet>
           <FunctionImport Name="Explorer_GetTablesAndColumns" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetTablesAndColumns_Result)" />
           <FunctionImport Name="Explorer_GetTableColumns" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetTableColumns_Result)">
+          <Parameter Name="tableName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Explorer_GetLinkedCells" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetLinkedCells_Result)">
             <Parameter Name="tableName" Mode="In" Type="String" />
+            <Parameter Name="columnName" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Explorer_GetTablesAndColumns_Result">
@@ -672,6 +682,11 @@
           <Property Type="Boolean" Name="IsParent" Nullable="true" />
           <Property Type="Boolean" Name="IsChild" Nullable="true" />
           <Property Type="Int32" Name="OrdinalPosition" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Explorer_GetLinkedCells_Result">
+          <Property Type="String" Name="TargetTableName" Nullable="true" />
+          <Property Type="String" Name="TargetTableColumn" Nullable="true" />
+          <Property Type="Int32" Name="ColumnValue" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -811,6 +826,15 @@
                 <ScalarProperty Name="IsParent" ColumnName="IsParent" />
                 <ScalarProperty Name="IsChild" ColumnName="IsChild" />
                 <ScalarProperty Name="OrdinalPosition" ColumnName="OrdinalPosition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Explorer_GetLinkedCells" FunctionName="Koopakiller.Apps.Picosmos.Model.Database.Store.Explorer_GetLinkedCells">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetLinkedCells_Result">
+                <ScalarProperty Name="TargetTableName" ColumnName="TargetTableName" />
+                <ScalarProperty Name="TargetTableColumn" ColumnName="TargetTableColumn" />
+                <ScalarProperty Name="ColumnValue" ColumnName="ColumnValue" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -6,60 +6,82 @@ $(document).ready(() => {
     $("#submitButton").click(() => {
         //http://localhost:54583
         var selected = $("#select").find(":selected");
-        expandNewTable(selected.data("table"), selected.data("column"), $("#numberBox").val(), $("#box"));
+        expandInitialTable(selected.data("table"), selected.data("column"), $("#numberBox").val(), $("#box"));
     });
 
 
 });
 
-function expandNewTable(table, column, id, parent) {
-    var url = `/Home/GetAssociatedData?table=${table}&column=${column}&value=${id}`;
-    $.getJSON(url, null, (data) => addTable(data, parent));
+function expandInitialTable(table, column, id, parent) {
+    var url = `/Home/GetInitialTable?table=${table}&column=${column}&value=${id}`;
+    $.getJSON(url, null, (data) => addTable(data, parent, table, column, id));
 }
 
-function addTable(tables: TablesResultModel, parent) {
+function expandNewTable(table, column, id, parent) {
+    var url = `/Home/GetAssociatedData?table2=${table}&column2=${column}&value2=${id}`;
+    $.getJSON(url, null, (data) => addTables(data, parent, table, column, id));
+}
+
+function addTable(table: TableResultModel, parent, sourceTable, sourceColumn, sourceId) {
     var html = "";
+    html += `<h2>${sourceTable}.${sourceColumn}=${sourceId} references...</h2>`;
+
+    html += appendTable(table, parent, sourceTable, sourceColumn, sourceId);
+
+    parent.html(html);
+}
+
+
+function addTables(tables: TablesResultModel, parent, sourceTable, sourceColumn, sourceId) {
+    var html = "";
+    html += `<h2>${sourceTable}.${sourceColumn}=${sourceId} references...</h2>`;
 
     for (var table of tables.Tables) {
-        html += `<b>${table.Name}</b>`
-        html += "<table>";
-
-        html += "<tr>";
-        for (let col of table.Columns) {
-            html += `<th data-ischild="${col.IsChild}" data-isparent="${col.IsParent}">${col.ColumnName}</th>`;
-        }
-        html += "</tr>";
-
-        for (let row of table.Rows) {
-            html += "<tr>";
-            for (let cell of row.Cells) {
-
-                var mCol;
-                for (let col of table.Columns) {
-                    if (col.OrdinalPosition === cell.OrdinalPosition) {
-                        mCol = col;
-                        break;
-                    }
-                }
-                if (mCol) {
-                    html += `<td>`;
-                    html += `<input type="button" onclick="expand(${counter}, '${mCol.ColumnName}', ${table}, ${cell
-                        .Content}, this);" value="+"/>`;
-                    html += `${cell.Content}`;
-                    html += `</td>`;
-                } else {
-                    throw "Column not found";
-                }
-            }
-            html += "</tr>";
-            html += `<tr data-target="${counter}"><td colspan="${row.Cells.length}" style="display:none;"></td></tr>`;
-
-            ++counter;
-        }
-        html += "</table>";
+        html += appendTable(table, parent, sourceTable, sourceColumn, sourceId);
     }
 
     parent.html(html);
+}
+
+function appendTable(table: TableResultModel, parent, sourceTable, sourceColumn, sourceId) {
+    var html = "";
+    html += `<h3>${table.Name}</h3>`;
+    html += "<table>";
+
+    html += "<tr>";
+    for (let col of table.Columns) {
+        html += `<th data-ischild="${col.IsChild}" data-isparent="${col.IsParent}">${col.ColumnName}</th>`;
+    }
+    html += "</tr>";
+
+    for (let row of table.Rows) {
+        html += "<tr>";
+        for (let cell of row.Cells) {
+
+            var mCol;
+            for (let col of table.Columns) {
+                if (col.OrdinalPosition === cell.OrdinalPosition) {
+                    mCol = col;
+                    break;
+                }
+            }
+            if (mCol) {
+                html += `<td>`;
+                html += `<input type="button" onclick="expand(${counter}, '${mCol.ColumnName}', '${table.Name}', '${cell.Content}', this);" value="+"/>`;
+                html += `${cell.Content}`;
+                html += `</td>`;
+            } else {
+                throw "Column not found";
+            }
+        }
+        html += "</tr>";
+        html += `<tr data-target="${counter}"><td colspan="${row.Cells.length}" style="display:none;"></td></tr>`;
+
+        ++counter;
+    }
+    html += "</table>";
+
+    return html;
 }
 
 function expand(num, colName, table, content, button) {
@@ -76,7 +98,7 @@ interface TablesResultModel {
 }
 
 interface TableResultModel {
-    Name:string;
+    Name: string;
     Columns: TableColumn[];
     Rows: TableRow[];
 }

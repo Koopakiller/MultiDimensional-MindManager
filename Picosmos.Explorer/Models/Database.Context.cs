@@ -53,5 +53,22 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Explorer_GetTableColumns_Result>("Explorer_GetTableColumns", tableNameParameter);
         }
+    
+        public virtual ObjectResult<Explorer_GetLinkedCells_Result> Explorer_GetLinkedCells(string tableName, string columnName, Nullable<int> id)
+        {
+            var tableNameParameter = tableName != null ?
+                new ObjectParameter("tableName", tableName) :
+                new ObjectParameter("tableName", typeof(string));
+    
+            var columnNameParameter = columnName != null ?
+                new ObjectParameter("columnName", columnName) :
+                new ObjectParameter("columnName", typeof(string));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Explorer_GetLinkedCells_Result>("Explorer_GetLinkedCells", tableNameParameter, columnNameParameter, idParameter);
+        }
     }
 }

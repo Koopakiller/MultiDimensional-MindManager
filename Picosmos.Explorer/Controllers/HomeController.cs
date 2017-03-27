@@ -27,9 +27,9 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
             }
         }
 
-        public JsonResult GetAssociatedData(String table, String column, Int32 value)
+        public JsonResult GetInitialTable(String table, String column, Int32 value)
         {
-            var result = new TablesResultModel();
+            var res = new TableResultModel();
             using (var entities = new Entities())
             {
                 var cols = entities.Explorer_GetTableColumns(table).ToList();
@@ -40,7 +40,9 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
                 try
                 {
                     if (initialState != ConnectionState.Open)
-                        conn.Open(); // open connection if not already open
+                    {
+                        conn.Open(); // open connection if not already open 
+                    }
                     using (var cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = sql;
@@ -51,16 +53,17 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
 
                         using (var reader = cmd.ExecuteReader())
                         {
-                            result.Columns = cols.Select(x => new TableColumn
-                            {
-                                ColumnName = x.ColumnName,
-                                ColumnType = x.ColumnType,
-                                IsParent = x.IsParent == true,
-                                IsChild = x.IsChild == true,
-                                OrdinalPosition = x.OrdinalPosition,
-                            })
+                            res.Name = table;
+                            res.Columns = cols.Select(x => new TableColumn
+                                {
+                                    ColumnName = x.ColumnName,
+                                    ColumnType = x.ColumnType,
+                                    IsParent = x.IsParent == true,
+                                    IsChild = x.IsChild == true,
+                                    OrdinalPosition = x.OrdinalPosition,
+                                })
                                 .ToList();
-                            result.Rows = new List<TableRow>();
+                            res.Rows = new List<TableRow>();
                             var i = 1;
                             while (reader.Read())
                             {
@@ -77,7 +80,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
                                         Content = reader.GetValue(reader.GetOrdinal(col.ColumnName)),
                                     });
                                 }
-                                result.Rows.Add(item);
+                                res.Rows.Add(item);
                             }
                         }
                     }
@@ -91,6 +94,91 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
                     if (initialState != ConnectionState.Open)
                     {
                         conn.Close(); // only close connection if not initially open
+                    }
+                }
+            }
+
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetAssociatedData(String table2, String column2, Int32 value2)
+        {
+            var result = new TablesResultModel();
+            result.Tables = new List<TableResultModel>();
+            using (var entities = new Entities())
+            {
+                foreach (var entry in entities.Explorer_GetLinkedCells(table2, column2, value2).ToList())
+                {
+                    var table = entry.TargetTableName;
+                    var column = entry.TargetTableColumn;
+                    var value = entry.ColumnValue;
+
+
+                    var cols = entities.Explorer_GetTableColumns(table).ToList();
+                    var sql = "[dbo].[Explorer_GetAssociatedDataSets]";
+
+                    var conn = entities.Database.Connection;
+                    var initialState = conn.State;
+                    try
+                    {
+                        if (initialState != ConnectionState.Open)
+                        {
+                            conn.Open(); // open connection if not already open 
+                        }
+                        using (var cmd = conn.CreateCommand())
+                        {
+                            cmd.CommandText = sql;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.Add(new SqlParameter("@tableName", table));
+                            cmd.Parameters.Add(new SqlParameter("@columnName", column));
+                            cmd.Parameters.Add(new SqlParameter("@id", value));
+
+                            using (var reader = cmd.ExecuteReader())
+                            {
+                                var res = new TableResultModel();
+                                res.Name = table;
+                                result.Tables.Add(res);
+                                res.Columns = cols.Select(x => new TableColumn
+                                {
+                                    ColumnName = x.ColumnName,
+                                    ColumnType = x.ColumnType,
+                                    IsParent = x.IsParent == true,
+                                    IsChild = x.IsChild == true,
+                                    OrdinalPosition = x.OrdinalPosition,
+                                })
+                                    .ToList();
+                                res.Rows = new List<TableRow>();
+                                var i = 1;
+                                while (reader.Read())
+                                {
+                                    var item = new TableRow
+                                    {
+                                        RowNumber = i++,
+                                        Cells = new List<TableCell>(),
+                                    };
+                                    foreach (var col in cols)
+                                    {
+                                        item.Cells.Add(new TableCell()
+                                        {
+                                            OrdinalPosition = col.OrdinalPosition,
+                                            Content = reader.GetValue(reader.GetOrdinal(col.ColumnName)),
+                                        });
+                                    }
+                                    res.Rows.Add(item);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw;
+                    }
+                    finally
+                    {
+                        if (initialState != ConnectionState.Open)
+                        {
+                            conn.Close(); // only close connection if not initially open
+                        }
                     }
                 }
             }
