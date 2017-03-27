@@ -66,7 +66,7 @@ function appendTable(table: TableResultModel, parent, sourceTable, sourceColumn,
                 }
             }
             if (mCol) {
-                html += `<td>`;
+                html += `<td data-ischild="${mCol.IsChild}" data-isparent="${mCol.IsParent}">`;
                 if ((mCol.IsChild || mCol.IsParent) && cell.Content !== ""){
                     html += `<input type="button" onclick="expand(${counter}, '${mCol.ColumnName}', '${table.Name}', '${
                         cell.Content}', this);" value="+"/>`;
@@ -78,7 +78,7 @@ function appendTable(table: TableResultModel, parent, sourceTable, sourceColumn,
             }
         }
         html += "</tr>";
-        html += `<tr data-target="${counter}"><td colspan="${row.Cells.length}" style="display:none;"></td></tr>`;
+        html += `<tr data-target="${counter}"><td colspan="${row.Cells.length}" class="extend-data-cell" style="display:none;"></td></tr>`;
 
         ++counter;
     }

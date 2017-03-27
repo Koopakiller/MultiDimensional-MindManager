@@ -1,0 +1,39 @@
+﻿body {
+  font-family: Courier New, Courier, monospace, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+body table {
+  border-collapse: collapse;
+}
+body table,
+body th,
+body td {
+  border: 1px solid black;
+}
+body th,
+body td {
+  padding: 3px 5px 3px 5px;
+}
+body th {
+  background-color: #f5d10e;
+}
+body th[data-ischild=true] {
+  background-color: #26a7e8;
+}
+body th[data-isparent=true] {
+  background-color: #e87a29;
+}
+body td {
+  background-color: #f7da3f;
+}
+body td[data-ischild=true] {
+  background-color: #54baed;
+}
+body td[data-isparent=true] {
+  background-color: #ed9757;
+}
+body td.extend-data-cell {
+  background-color: #d4d4d4;
+  padding: 10px;
+}

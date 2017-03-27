@@ -1,0 +1,57 @@
+﻿@base-color: #d4d4d4;
+
+@common-color-header: #f5d10e;
+@common-color: lighten(@common-color-header, 10%);
+
+@child-color-header: #26a7e8;
+@child-color: lighten(@child-color-header, 10%);
+
+@parent-color-header: #e87a29;
+@parent-color: lighten(@parent-color-header, 10%);
+
+body {
+    font-family: Courier New, Courier, monospace, sans-serif;
+    margin: 0;
+    padding: 0;
+
+    table {
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    th, td {
+        padding: 3px 5px 3px 5px;
+    }
+
+    th {
+        background-color: @common-color-header;
+
+        &[data-ischild=true] {
+            background-color: @child-color-header;
+        }
+
+        &[data-isparent=true] {
+            background-color: @parent-color-header;
+        }
+    }
+
+    td {
+        background-color: @common-color;
+
+        &[data-ischild=true] {
+            background-color: @child-color;
+        }
+
+        &[data-isparent=true] {
+            background-color: @parent-color;
+        }
+
+        &.extend-data-cell {
+            background-color: @base-color;
+            padding: 10px;
+        }
+    }
+}
