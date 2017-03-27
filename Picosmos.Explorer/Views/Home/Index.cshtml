@@ -3,17 +3,18 @@
     ViewBag.Title = "Index";
 }
 
-
-<label>Database field=</label>
-<select id="select">
-    @foreach (var item in Model.TableColumns)
-    {
-        <option data-table="@item.Item1" data-column="@item.Item2">@item.Item3</option>
-    }
-</select>
-<label>Value=</label>
-<input type="number" id="numberBox"/>
-<input type="button" id="submitButton" value="Go" />
+<div id="init">
+    <label>Database field =</label>
+    <select id="select">
+        @foreach (var item in Model.TableColumns)
+        {
+            <option data-table="@item.Item1" data-column="@item.Item2">@item.Item3</option>
+        }
+    </select>
+    <label>Value =</label>
+    <input type="number" id="numberBox" />
+    <input type="button" id="submitButton" value="Go" />
+</div>
 
 <div id="box">
 

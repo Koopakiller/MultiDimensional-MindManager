@@ -1,47 +1,77 @@
 ﻿body {
   font-family: Courier New, Courier, monospace, sans-serif;
   margin: 0;
-  padding: 0;
+  padding: 25px;
 }
-body table {
+body #init {
+  border-bottom: 1px solid #202020;
+}
+body #box {
+  background: #d4d4d4;
+  padding: 10px;
+}
+body #box h2 {
+  font-size: 14pt;
+}
+body #box h3 {
+  font-size: 12pt;
+}
+body #box table {
   border-collapse: collapse;
 }
-body table,
-body th,
-body td {
+body #box table,
+body #box th,
+body #box td {
   border: 1px solid black;
 }
-body th,
-body td {
+body #box th,
+body #box td {
   padding: 3px 5px 3px 5px;
 }
-body th {
+body #box th {
   background-color: #f5d10e;
 }
-body th[data-ischild=true] {
+body #box th[data-ischild=true] {
   background-color: #26a7e8;
 }
-body th[data-isparent=true] {
+body #box th[data-isparent=true] {
   background-color: #e87a29;
 }
-body td {
+body #box td {
   background-color: #f7da3f;
 }
-body td[data-ischild=true] {
+body #box td[data-ischild=true] {
   background-color: #54baed;
 }
-body td[data-isparent=true] {
+body #box td[data-isparent=true] {
   background-color: #ed9757;
 }
-body td.extend-data-cell {
+body #box td.extend-data-cell {
   background-color: #d4d4d4;
   padding: 10px;
+}
+body #box a.expand-link {
+  background-color: white;
+  border: none;
+  text-align: center;
+  padding: 3px 5px 3px 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: black;
+  margin-left: 4px;
+  font-size: 9pt;
+  vertical-align: central;
+}
+body #box a.expand-link:hover {
+  background-color: #D0D0D0;
+  text-decoration: none;
 }
 body #legend {
   position: fixed;
   width: 200px;
-  right: 15px;
-  top: 15px;
+  right: 25px;
+  top: 25px;
+  background: #d4d4d4;
 }
 body #legend ul,
 body #legend li {

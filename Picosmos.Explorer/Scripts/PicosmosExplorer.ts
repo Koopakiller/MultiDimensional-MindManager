@@ -67,11 +67,11 @@ function appendTable(table: TableResultModel, parent, sourceTable, sourceColumn,
             }
             if (mCol) {
                 html += `<td data-ischild="${mCol.IsChild}" data-isparent="${mCol.IsParent}">`;
-                if ((mCol.IsChild || mCol.IsParent) && cell.Content !== ""){
-                    html += `<input type="button" onclick="expand(${counter}, '${mCol.ColumnName}', '${table.Name}', '${
-                        cell.Content}', this);" value="+"/>`;
+                html += `<span>${cell.Content}</span>`;
+                if ((mCol.IsChild || mCol.IsParent) && cell.Content !== "") {
+                    html += `<a href="#" class="expand-link" onclick="expand(${counter}, '${mCol.ColumnName}', '${table.Name}', '${
+                        cell.Content}', this);" >Expand</a>`;
                 }
-                html += `${cell.Content}`;
                 html += `</td>`;
             } else {
                 throw "Column not found";

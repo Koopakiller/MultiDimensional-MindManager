@@ -12,59 +12,95 @@
 body {
     font-family: Courier New, Courier, monospace, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 25px;
 
-    table {
-        border-collapse: collapse;
+    #init {
+        border-bottom: 1px solid #202020;
     }
 
-    table, th, td {
-        border: 1px solid black;
-    }
+    #box {
+        background: @base-color;
+        padding: 10px;
 
-    th, td {
-        padding: 3px 5px 3px 5px;
-    }
-
-    th {
-        background-color: @common-color-header;
-
-        &[data-ischild=true] {
-            background-color: @child-color-header;
+        h2 {
+            font-size: 14pt;
         }
 
-        &[data-isparent=true] {
-            background-color: @parent-color-header;
-        }
-    }
-
-    td {
-        background-color: @common-color;
-
-        &[data-ischild=true] {
-            background-color: @child-color;
+        h3 {
+            font-size: 12pt;
         }
 
-        &[data-isparent=true] {
-            background-color: @parent-color;
+        table {
+            border-collapse: collapse;
         }
 
-        &.extend-data-cell {
-            background-color: @base-color;
-            padding: 10px;
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 3px 5px 3px 5px;
+        }
+
+        th {
+            background-color: @common-color-header;
+
+            &[data-ischild=true] {
+                background-color: @child-color-header;
+            }
+
+            &[data-isparent=true] {
+                background-color: @parent-color-header;
+            }
+        }
+
+        td {
+            background-color: @common-color;
+
+            &[data-ischild=true] {
+                background-color: @child-color;
+            }
+
+            &[data-isparent=true] {
+                background-color: @parent-color;
+            }
+
+            &.extend-data-cell {
+                background-color: @base-color;
+                padding: 10px;
+            }
+        }
+
+        a.expand-link {
+            background-color: white;
+            border: none;
+            text-align: center;
+            padding: 3px 5px 3px 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            color:black;
+            margin-left:4px;
+            font-size:9pt;
+            vertical-align:central;
+
+            &:hover {
+                background-color: #D0D0D0;
+                text-decoration: none;
+            }
         }
     }
 
     #legend {
         position: fixed;
         width: 200px;
-        right: 15px;
-        top: 15px;
-        
-        ul,li{
-            list-style:none;
-            padding:0;
-            margin:0;
+        right: 25px;
+        top: 25px;
+        background: @base-color;
+
+        ul, li {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
         .parent-column {
