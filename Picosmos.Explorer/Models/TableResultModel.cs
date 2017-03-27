@@ -3,10 +3,15 @@ using System.Collections.Generic;
 
 namespace Koopakiller.Apps.Picosmos.Explorer.Models
 {
+    public class TablesResultModel
+    {
+        public List<TableResultModel> Tables { get; set; }
+    }
+
     public class TableResultModel
     {
+        public string Name { get; set; }
         public List<TableColumn> Columns { get; set; }
-
         public List<TableRow> Rows { get; set; }
     }
 

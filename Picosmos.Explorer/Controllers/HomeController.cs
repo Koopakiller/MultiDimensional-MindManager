@@ -29,7 +29,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
 
         public JsonResult GetAssociatedData(String table, String column, Int32 value)
         {
-            var result = new TableResultModel();
+            var result = new TablesResultModel();
             using (var entities = new Entities())
             {
                 var cols = entities.Explorer_GetTableColumns(table).ToList();

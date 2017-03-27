@@ -6,27 +6,36 @@ $(document).ready(() => {
     $("#submitButton").click(() => {
         //http://localhost:54583
         var selected = $("#select").find(":selected");
-        var url = `/Home/GetAssociatedData?table=${selected.data("table")}&column=${selected.data("column")}&value=${$("#numberBox").val()}`;
-        $.getJSON(url, null, addTable);
+        expandNewTable(selected.data("table"), selected.data("column"), $("#numberBox").val(), $("#box"));
     });
 
-    function addTable(data: TableResultModel) {
-        var html = "";
 
+});
+
+function expandNewTable(table, column, id, parent) {
+    var url = `/Home/GetAssociatedData?table=${table}&column=${column}&value=${id}`;
+    $.getJSON(url, null, (data) => addTable(data, parent));
+}
+
+function addTable(tables: TablesResultModel, parent) {
+    var html = "";
+
+    for (var table of tables.Tables) {
+        html += `<b>${table.Name}</b>`
         html += "<table>";
 
         html += "<tr>";
-        for (let col of data.Columns) {
+        for (let col of table.Columns) {
             html += `<th data-ischild="${col.IsChild}" data-isparent="${col.IsParent}">${col.ColumnName}</th>`;
         }
         html += "</tr>";
 
-        for (let row of data.Rows) {
+        for (let row of table.Rows) {
             html += "<tr>";
             for (let cell of row.Cells) {
 
                 var mCol;
-                for (let col of data.Columns) {
+                for (let col of table.Columns) {
                     if (col.OrdinalPosition === cell.OrdinalPosition) {
                         mCol = col;
                         break;
@@ -34,7 +43,8 @@ $(document).ready(() => {
                 }
                 if (mCol) {
                     html += `<td>`;
-                    html += `<input type="button" onclick="expand(${counter}, '${mCol.ColumnName}', this);" value="+"/>`;
+                    html += `<input type="button" onclick="expand(${counter}, '${mCol.ColumnName}', ${table}, ${cell
+                        .Content}, this);" value="+"/>`;
                     html += `${cell.Content}`;
                     html += `</td>`;
                 } else {
@@ -47,23 +57,27 @@ $(document).ready(() => {
             ++counter;
         }
         html += "</table>";
-
-        $("#box").html(html);
-
     }
 
-});
+    parent.html(html);
+}
 
-function expand(num, colName, button) {
+function expand(num, colName, table, content, button) {
     $(button).remove();
     var row = $(`tr[data-target=${num}] > td`);
     row.show();
-    row.html(row.html() + `<br/>Column: ${colName}`);
+    row.html(`<div id="table_${num}_${colName}"></div>` + row.html());
+
+    expandNewTable(table, colName, content, $(`#table_${num}_${colName}`));
+}
+
+interface TablesResultModel {
+    Tables: TableResultModel[];
 }
 
 interface TableResultModel {
+    Name:string;
     Columns: TableColumn[];
-
     Rows: TableRow[];
 }
 
