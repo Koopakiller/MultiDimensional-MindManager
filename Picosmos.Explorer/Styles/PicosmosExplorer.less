@@ -54,4 +54,40 @@ body {
             padding: 10px;
         }
     }
+
+    #legend {
+        position: fixed;
+        width: 200px;
+        right: 15px;
+        top: 15px;
+        
+        ul,li{
+            list-style:none;
+            padding:0;
+            margin:0;
+        }
+
+        .parent-column {
+            background-color: @parent-color;
+        }
+
+        .child-column {
+            background-color: @child-color;
+        }
+
+        .other-column {
+            background-color: @common-color;
+        }
+    }
+
+    .dialog {
+        border: 1px solid #202020;
+        padding: 5px;
+
+        h1 {
+            font-size: 16pt;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+        }
+    }
 }

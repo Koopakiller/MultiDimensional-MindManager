@@ -37,3 +37,33 @@ body td.extend-data-cell {
   background-color: #d4d4d4;
   padding: 10px;
 }
+body #legend {
+  position: fixed;
+  width: 200px;
+  right: 15px;
+  top: 15px;
+}
+body #legend ul,
+body #legend li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+body #legend .parent-column {
+  background-color: #ed9757;
+}
+body #legend .child-column {
+  background-color: #54baed;
+}
+body #legend .other-column {
+  background-color: #f7da3f;
+}
+body .dialog {
+  border: 1px solid #202020;
+  padding: 5px;
+}
+body .dialog h1 {
+  font-size: 16pt;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+}
