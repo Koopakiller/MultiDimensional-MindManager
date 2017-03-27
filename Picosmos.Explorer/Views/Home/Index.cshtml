@@ -3,6 +3,29 @@
     ViewBag.Title = "Index";
 }
 
+<style>
+
+    table {
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    th, td {
+        padding: 3px 5px 3px 5px;
+    }
+
+    th[data-ischild=true] {
+        background-color: #80d4ff;
+    }
+    th[data-isparent=true] {
+        background-color: #ffb680;
+    }
+
+</style>
+
 <label>Database field=</label>
 <select id="select">
     @foreach (var item in Model.TableColumns)
@@ -14,6 +37,6 @@
 <input type="number" id="numberBox"/>
 <input type="button" id="submitButton" value="Go" />
 
-<div>
-    
+<div id="box">
+
 </div>

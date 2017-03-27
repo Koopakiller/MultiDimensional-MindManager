@@ -11,10 +11,12 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
 {
     using System;
     
-    public partial class Explorer_GetAssociatedDataSets_Result
+    public partial class Explorer_GetTableColumns_Result
     {
-        public string TargetTableName { get; set; }
-        public string TargetTableColumn { get; set; }
-        public Nullable<int> ColumnValue { get; set; }
+        public string ColumnName { get; set; }
+        public string ColumnType { get; set; }
+        public Nullable<bool> IsParent { get; set; }
+        public Nullable<bool> IsChild { get; set; }
+        public int OrdinalPosition { get; set; }
     }
 }

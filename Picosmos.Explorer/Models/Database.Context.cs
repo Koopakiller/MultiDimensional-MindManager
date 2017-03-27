@@ -40,26 +40,18 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
         public virtual DbSet<Resume> Resumes { get; set; }
         public virtual DbSet<User> Users { get; set; }
     
-        public virtual ObjectResult<Explorer_GetAssociatedDataSets_Result> Explorer_GetAssociatedDataSets(string tableName, string columnName, Nullable<int> id)
+        public virtual ObjectResult<Explorer_GetTablesAndColumns_Result> Explorer_GetTablesAndColumns()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Explorer_GetTablesAndColumns_Result>("Explorer_GetTablesAndColumns");
+        }
+    
+        public virtual ObjectResult<Explorer_GetTableColumns_Result> Explorer_GetTableColumns(string tableName)
         {
             var tableNameParameter = tableName != null ?
                 new ObjectParameter("tableName", tableName) :
                 new ObjectParameter("tableName", typeof(string));
     
-            var columnNameParameter = columnName != null ?
-                new ObjectParameter("columnName", columnName) :
-                new ObjectParameter("columnName", typeof(string));
-    
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Explorer_GetAssociatedDataSets_Result>("Explorer_GetAssociatedDataSets", tableNameParameter, columnNameParameter, idParameter);
-        }
-    
-        public virtual ObjectResult<Explorer_GetTablesAndColumns_Result> Explorer_GetTablesAndColumns()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Explorer_GetTablesAndColumns_Result>("Explorer_GetTablesAndColumns");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Explorer_GetTableColumns_Result>("Explorer_GetTableColumns", tableNameParameter);
         }
     }
 }
