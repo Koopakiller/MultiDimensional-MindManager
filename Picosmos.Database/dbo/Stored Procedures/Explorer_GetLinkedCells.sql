@@ -12,7 +12,7 @@ BEGIN
 		 , colFK.[name]              AS [SourceTableColumn]
 		 , [reftable].[name]         AS [TargetTableName]
 		 , colPK.[name]              AS [TargetTableColumn]
-		 , CAST((CASE WHEN [table].[name] LIKE @tableName AND [reftable].[name] NOT LIKE @tableName THEN 0 ELSE 1 END) AS BIT) 
+		 , CAST((CASE WHEN [table].[name] = @tableName AND colFK.[name] = @columnName THEN 0 ELSE 1 END) AS BIT) 
 									 AS [HasMultipleMatchingValues]
 		 , CAST('' AS NVARCHAR(MAX)) AS [Query]
 	INTO #data
@@ -24,7 +24,7 @@ BEGIN
 	INNER JOIN sys.columns              AS colPK        ON  fkc.[referenced_object_id] = colPK.[object_id]
 													   AND  fkc.[referenced_column_id] = colPK.[column_id]
 	INNER JOIN sys.tables               AS [reftable]   ON   fk.[referenced_object_id] = [reftable].[object_id]
-	WHERE [table].[name] LIKE @tableName OR [reftable].[name] LIKE @tableName
+	WHERE [table].[name] = @tableName OR [reftable].[name] = @tableName
 
 	UPDATE #data
 	SET SourceTableName = TargetTableName
@@ -34,12 +34,14 @@ BEGIN
 	WHERE [HasMultipleMatchingValues] = 1
 
     DELETE FROM #data
-    WHERE SourceTableName <> @tableName OR SourceTableColumn <> @columnName
+    WHERE (SourceTableName <> @tableName OR SourceTableColumn <> @columnName)
+      AND (TargetTableName <> @tableName OR TargetTableColumn <> @columnName)
     
 	UPDATE #data
-	SET Query = 'SELECT s.' + QUOTENAME(SourceTableColumn)
-			  + ' FROM ' + QUOTENAME(SourceTableName) + ' AS s' 
-			  + ' WHERE s.' + QUOTENAME(@columnName) + ' = ' + CAST(@id AS NVARCHAR(16))
+	--SET Query = 'SELECT s.' + QUOTENAME(SourceTableColumn)
+	--		  + ' FROM ' + QUOTENAME(SourceTableName) + ' AS s' 
+	--		  + ' WHERE s.' + QUOTENAME(@columnName) + ' = ' + CAST(@id AS NVARCHAR(16))
+	SET Query = 'SELECT ' + CAST(@id AS NVARCHAR(16))
 
 
 	CREATE TABLE #result (TargetTableName NVARCHAR(MAX), TargetTableColumn NVARCHAR(MAX), ColumnValue INT)
@@ -76,8 +78,10 @@ BEGIN
 	DEALLOCATE myCursor;  
 
 	DROP TABLE #data
-
-	SELECT * FROM #result
+	
+	SELECT * 
+    FROM #result
+    WHERE ColumnValue IS NOT NULL
 
 	DROP TABLE #result
 		
