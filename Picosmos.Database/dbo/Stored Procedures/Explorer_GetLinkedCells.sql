@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[Explorer_GetLinkedCells]
-	@tableName NVARCHAR(128)='Humans',
-	@columnName NVARCHAR(128)='Id',
-	@id INT=1
+	@tableName NVARCHAR(128),
+	@columnName NVARCHAR(128),
+	@id INT
 AS
 BEGIN
 
@@ -32,6 +32,9 @@ BEGIN
 	  , SourceTableColumn = [TargetTableColumn] 
 	  , [TargetTableColumn] = SourceTableColumn
 	WHERE [HasMultipleMatchingValues] = 1
+
+    DELETE FROM #data
+    WHERE SourceTableName <> @tableName OR SourceTableColumn <> @columnName
     
 	UPDATE #data
 	SET Query = 'SELECT s.' + QUOTENAME(SourceTableColumn)
