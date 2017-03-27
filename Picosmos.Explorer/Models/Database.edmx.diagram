@@ -13,14 +13,10 @@
         <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.User" Width="1.5" PointX="4.125" PointY="4" IsExpanded="true" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_CurrencyIdentifier_Currencies" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.ComplexRelation" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation" Width="1.5" PointX="13" PointY="5.875" />
         <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Human" Width="1.5" PointX="10" PointY="3.875" />
         <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Person" Width="1.5" PointX="6.875" PointY="3.875" />
         <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.ResumeKind" Width="1.5" PointX="13.25" PointY="10.625" />
         <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Resume" Width="1.5" PointX="10" PointY="9.75" />
-        <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_HumanRelationKinds" />
-        <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans" />
-        <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans_Related" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Humans_Persons" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Humans_Places_BirthPlace" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Humans_Resume" />
@@ -28,6 +24,10 @@
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_ResumeEntries_ResumeEntryKinds" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_ResumeEntries_ResumeEntries_Parent" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.HumanGroupEntries" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation" Width="1.5" PointX="19.125" PointY="4.875" />
+        <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_HumanRelationKinds" />
+        <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans" />
+        <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans_Related" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

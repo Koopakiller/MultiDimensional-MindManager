@@ -17,9 +17,9 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Human()
         {
+            this.HumanGroups = new HashSet<HumanGroup>();
             this.HumanRelations = new HashSet<HumanRelation>();
             this.HumanRelations1 = new HashSet<HumanRelation>();
-            this.HumanGroups = new HashSet<HumanGroup>();
         }
     
         public int Id { get; set; }
@@ -28,14 +28,14 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
         public int PersonId { get; set; }
         public Nullable<int> ResumeId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HumanRelation> HumanRelations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HumanRelation> HumanRelations1 { get; set; }
         public virtual Person Person { get; set; }
         public virtual Place Place { get; set; }
         public virtual Resume Resume { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HumanGroup> HumanGroups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HumanRelation> HumanRelations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HumanRelation> HumanRelations1 { get; set; }
     }
 }

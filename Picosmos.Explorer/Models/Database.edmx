@@ -58,7 +58,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RelationKind" Type="int" Nullable="false" />
-          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="HumanId" Type="int" Nullable="false" />
           <Property Name="RelatedHumanId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Humans">
@@ -167,7 +167,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="HumanRelations">
-              <PropertyRef Name="PersonId" />
+              <PropertyRef Name="HumanId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -414,23 +414,10 @@
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="ComplexRelations" EntityType="Koopakiller.Apps.Picosmos.Model.Database.ComplexRelation" />
-          <EntitySet Name="HumanRelations" EntityType="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation" />
           <EntitySet Name="Humans" EntityType="Koopakiller.Apps.Picosmos.Model.Database.Human" />
           <EntitySet Name="Persons" EntityType="Koopakiller.Apps.Picosmos.Model.Database.Person" />
           <EntitySet Name="ResumeKinds" EntityType="Koopakiller.Apps.Picosmos.Model.Database.ResumeKind" />
           <EntitySet Name="Resumes" EntityType="Koopakiller.Apps.Picosmos.Model.Database.Resume" />
-          <AssociationSet Name="FK_HumanRelations_HumanRelationKinds" Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_HumanRelationKinds">
-            <End Role="HumanRelationKind" EntitySet="HumanRelationKinds" />
-            <End Role="HumanRelation" EntitySet="HumanRelations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HumanRelations_Humans" Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans">
-            <End Role="Human" EntitySet="Humans" />
-            <End Role="HumanRelation" EntitySet="HumanRelations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HumanRelations_Humans_Related" Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans_Related">
-            <End Role="Human" EntitySet="Humans" />
-            <End Role="HumanRelation" EntitySet="HumanRelations" />
-          </AssociationSet>
           <AssociationSet Name="FK_Humans_Persons" Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Humans_Persons">
             <End Role="Person" EntitySet="Persons" />
             <End Role="Human" EntitySet="Humans" />
@@ -459,6 +446,19 @@
             <End Role="HumanGroup" EntitySet="HumanGroups" />
             <End Role="Human" EntitySet="Humans" />
           </AssociationSet>
+          <EntitySet Name="HumanRelations" EntityType="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation" />
+          <AssociationSet Name="FK_HumanRelations_HumanRelationKinds" Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_HumanRelationKinds">
+            <End Role="HumanRelationKind" EntitySet="HumanRelationKinds" />
+            <End Role="HumanRelation" EntitySet="HumanRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HumanRelations_Humans" Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans">
+            <End Role="Human" EntitySet="Humans" />
+            <End Role="HumanRelation" EntitySet="HumanRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HumanRelations_Humans_Related" Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans_Related">
+            <End Role="Human" EntitySet="Humans" />
+            <End Role="HumanRelation" EntitySet="HumanRelations" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="Explorer_GetTablesAndColumns_Result">
           <Property Type="String" Name="TableName" Nullable="false" MaxLength="128" />
@@ -486,18 +486,6 @@
           <Property Name="TargetTableName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="RelationDescriptor" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="HumanRelation">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RelationKind" Type="Int32" Nullable="false" />
-          <Property Name="PersonId" Type="Int32" Nullable="false" />
-          <Property Name="RelatedHumanId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="HumanRelationKind" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_HumanRelationKinds" FromRole="HumanRelation" ToRole="HumanRelationKind" />
-          <NavigationProperty Name="Human" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans" FromRole="HumanRelation" ToRole="Human" />
-          <NavigationProperty Name="Human1" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans_Related" FromRole="HumanRelation" ToRole="Human" />
-        </EntityType>
         <EntityType Name="Human">
           <Key>
             <PropertyRef Name="Id" />
@@ -507,12 +495,12 @@
           <Property Name="BirthDateTime" Type="DateTime" Precision="3" />
           <Property Name="PersonId" Type="Int32" Nullable="false" />
           <Property Name="ResumeId" Type="Int32" />
-          <NavigationProperty Name="HumanRelations" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans" FromRole="Human" ToRole="HumanRelation" />
-          <NavigationProperty Name="HumanRelations1" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans_Related" FromRole="Human" ToRole="HumanRelation" />
           <NavigationProperty Name="Person" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_Humans_Persons" FromRole="Human" ToRole="Person" />
           <NavigationProperty Name="Place" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_Humans_Places_BirthPlace" FromRole="Human" ToRole="Place" />
           <NavigationProperty Name="Resume" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_Humans_Resume" FromRole="Human" ToRole="Resume" />
           <NavigationProperty Name="HumanGroups" Relationship="Koopakiller.Apps.Picosmos.Model.Database.HumanGroupEntries" FromRole="Human" ToRole="HumanGroup" />
+          <NavigationProperty Name="HumanRelations" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans" FromRole="Human" ToRole="HumanRelation" />
+          <NavigationProperty Name="HumanRelations1" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans_Related" FromRole="Human" ToRole="HumanRelation" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -546,42 +534,6 @@
           <NavigationProperty Name="Resumes1" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_ResumeEntries_ResumeEntries_Parent" FromRole="Resume" ToRole="Resume1" />
           <NavigationProperty Name="Resume1" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_ResumeEntries_ResumeEntries_Parent" FromRole="Resume1" ToRole="Resume" />
         </EntityType>
-        <Association Name="FK_HumanRelations_HumanRelationKinds">
-          <End Type="Koopakiller.Apps.Picosmos.Model.Database.HumanRelationKind" Role="HumanRelationKind" Multiplicity="1" />
-          <End Type="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation" Role="HumanRelation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HumanRelationKind">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HumanRelation">
-              <PropertyRef Name="RelationKind" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HumanRelations_Humans">
-          <End Type="Koopakiller.Apps.Picosmos.Model.Database.Human" Role="Human" Multiplicity="1" />
-          <End Type="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation" Role="HumanRelation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Human">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HumanRelation">
-              <PropertyRef Name="PersonId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HumanRelations_Humans_Related">
-          <End Type="Koopakiller.Apps.Picosmos.Model.Database.Human" Role="Human" Multiplicity="1" />
-          <End Type="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation" Role="HumanRelation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Human">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HumanRelation">
-              <PropertyRef Name="RelatedHumanId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Humans_Persons">
           <End Type="Koopakiller.Apps.Picosmos.Model.Database.Person" Role="Person" Multiplicity="1" />
           <End Type="Koopakiller.Apps.Picosmos.Model.Database.Human" Role="Human" Multiplicity="*" />
@@ -657,6 +609,54 @@
         <Association Name="HumanGroupEntries">
           <End Type="Koopakiller.Apps.Picosmos.Model.Database.HumanGroup" Role="HumanGroup" Multiplicity="*" />
           <End Type="Koopakiller.Apps.Picosmos.Model.Database.Human" Role="Human" Multiplicity="*" />
+        </Association>
+        <EntityType Name="HumanRelation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RelationKind" Type="Int32" Nullable="false" />
+          <Property Name="HumanId" Type="Int32" Nullable="false" />
+          <Property Name="RelatedHumanId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HumanRelationKind" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_HumanRelationKinds" FromRole="HumanRelation" ToRole="HumanRelationKind" />
+          <NavigationProperty Name="Human" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans" FromRole="HumanRelation" ToRole="Human" />
+          <NavigationProperty Name="Human1" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans_Related" FromRole="HumanRelation" ToRole="Human" />
+        </EntityType>
+        <Association Name="FK_HumanRelations_HumanRelationKinds">
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.HumanRelationKind" Role="HumanRelationKind" Multiplicity="1" />
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation" Role="HumanRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HumanRelationKind">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HumanRelation">
+              <PropertyRef Name="RelationKind" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HumanRelations_Humans">
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.Human" Role="Human" Multiplicity="1" />
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation" Role="HumanRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Human">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HumanRelation">
+              <PropertyRef Name="HumanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HumanRelations_Humans_Related">
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.Human" Role="Human" Multiplicity="1" />
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation" Role="HumanRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Human">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HumanRelation">
+              <PropertyRef Name="RelatedHumanId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -753,16 +753,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HumanRelations">
-            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation">
-              <MappingFragment StoreEntitySet="HumanRelations">
-                <ScalarProperty Name="RelatedHumanId" ColumnName="RelatedHumanId" />
-                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-                <ScalarProperty Name="RelationKind" ColumnName="RelationKind" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Humans">
             <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Human">
               <MappingFragment StoreEntitySet="Humans">
@@ -810,6 +800,16 @@
               <ScalarProperty Name="Id" ColumnName="GroupId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="HumanRelations">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation">
+              <MappingFragment StoreEntitySet="HumanRelations">
+                <ScalarProperty Name="RelatedHumanId" ColumnName="RelatedHumanId" />
+                <ScalarProperty Name="HumanId" ColumnName="HumanId" />
+                <ScalarProperty Name="RelationKind" ColumnName="RelationKind" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
