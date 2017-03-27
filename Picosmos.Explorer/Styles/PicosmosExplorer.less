@@ -40,6 +40,7 @@ body {
 
         th, td {
             padding: 3px 5px 3px 5px;
+            text-align: center;
         }
 
         th {
@@ -68,7 +69,13 @@ body {
             &.extend-data-cell {
                 background-color: @base-color;
                 padding: 10px;
+                text-align: left;
             }
+        }
+
+        .dynamic-table-div {
+            margin: -10px;
+            padding: 10px;
         }
 
         a.expand-link {
@@ -78,10 +85,9 @@ body {
             padding: 3px 5px 3px 5px;
             border-radius: 5px;
             text-decoration: none;
-            color:black;
-            margin-left:4px;
-            font-size:9pt;
-            vertical-align:central;
+            color: black;
+            margin-left: 4px;
+            font-size: 9pt;
 
             &:hover {
                 background-color: #D0D0D0;

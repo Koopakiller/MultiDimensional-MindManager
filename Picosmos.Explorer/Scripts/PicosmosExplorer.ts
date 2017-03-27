@@ -1,4 +1,5 @@
 ﻿/// <reference path="typings/jquery/jquery.d.ts" />
+/// <reference path="typings/jqueryui/jqueryui.d.ts"/>
 
 var counter = 0;
 $(document).ready(() => {
@@ -41,6 +42,7 @@ function addTables(tables: TablesResultModel, parent, sourceTable, sourceColumn,
     }
 
     parent.html(html);
+    parent.effect("highlight", "slow");
 }
 
 function appendTable(table: TableResultModel, parent, sourceTable, sourceColumn, sourceId) {
@@ -69,7 +71,7 @@ function appendTable(table: TableResultModel, parent, sourceTable, sourceColumn,
                 html += `<td data-ischild="${mCol.IsChild}" data-isparent="${mCol.IsParent}">`;
                 html += `<span>${cell.Content}</span>`;
                 if ((mCol.IsChild || mCol.IsParent) && cell.Content !== "") {
-                    html += `<a href="#" class="expand-link" onclick="expand(${counter}, '${mCol.ColumnName}', '${table.Name}', '${
+                    html += `<a href="#table_${counter}_${mCol.ColumnName}" class="expand-link" onclick="expand(${counter}, '${mCol.ColumnName}', '${table.Name}', '${
                         cell.Content}', this);" >Expand</a>`;
                 }
                 html += `</td>`;
@@ -91,8 +93,8 @@ function expand(num, colName, table, content, button) {
     $(button).remove();
     var row = $(`tr[data-target=${num}] > td`);
     row.show();
-    row.html(`<div id="table_${num}_${colName}"></div>` + row.html());
-
+    row.html(`<div id="table_${num}_${colName}" class="dynamic-table-div" style="display:none;"></div>` + row.html());
+    
     expandNewTable(table, colName, content, $(`#table_${num}_${colName}`));
 }
 

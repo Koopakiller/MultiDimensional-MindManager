@@ -27,6 +27,7 @@ body #box td {
 body #box th,
 body #box td {
   padding: 3px 5px 3px 5px;
+  text-align: center;
 }
 body #box th {
   background-color: #f5d10e;
@@ -49,6 +50,11 @@ body #box td[data-isparent=true] {
 body #box td.extend-data-cell {
   background-color: #d4d4d4;
   padding: 10px;
+  text-align: left;
+}
+body #box .dynamic-table-div {
+  margin: -10px;
+  padding: 10px;
 }
 body #box a.expand-link {
   background-color: white;
@@ -60,7 +66,6 @@ body #box a.expand-link {
   color: black;
   margin-left: 4px;
   font-size: 9pt;
-  vertical-align: central;
 }
 body #box a.expand-link:hover {
   background-color: #D0D0D0;
