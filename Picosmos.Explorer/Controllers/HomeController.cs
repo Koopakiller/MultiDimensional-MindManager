@@ -144,11 +144,16 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
                 item.Cells.Add(new TableCell()
                 {
                     OrdinalPosition = col.OrdinalPosition,
-                    Content = reader.GetValue(reader.GetOrdinal(col.ColumnName)),
+                    Content = DbDataReaderObjectToString(reader.GetValue(reader.GetOrdinal(col.ColumnName))),
                 });
             }
 
             return item;
+        }
+
+        static String DbDataReaderObjectToString(Object obj)
+        {
+            return obj?.ToString();
         }
 
         private static List<TableColumn> GetTableColumns(IEnumerable<Explorer_GetTableColumns_Result> cols)

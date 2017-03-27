@@ -33,6 +33,6 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
     public class TableCell
     {
         public Int32 OrdinalPosition { get; set; }
-        public Object Content { get; set; }
+        public String Content { get; set; }
     }
 }

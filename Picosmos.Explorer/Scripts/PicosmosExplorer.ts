@@ -67,7 +67,7 @@ function appendTable(table: TableResultModel, parent, sourceTable, sourceColumn,
             }
             if (mCol) {
                 html += `<td>`;
-                if (mCol.IsChild || mCol.IsParent) {
+                if ((mCol.IsChild || mCol.IsParent) && cell.Content !== ""){
                     html += `<input type="button" onclick="expand(${counter}, '${mCol.ColumnName}', '${table.Name}', '${
                         cell.Content}', this);" value="+"/>`;
                 }
@@ -121,5 +121,5 @@ interface TableRow {
 
 interface TableCell {
     OrdinalPosition: number;
-    Content: any;
+    Content: string;
 }

@@ -55,7 +55,7 @@ function appendTable(table, parent, sourceTable, sourceColumn, sourceId) {
             }
             if (mCol) {
                 html += "<td>";
-                if (mCol.IsChild || mCol.IsParent) {
+                if ((mCol.IsChild || mCol.IsParent) && cell.Content !== "") {
                     html += "<input type=\"button\" onclick=\"expand(" + counter + ", '" + mCol.ColumnName + "', '" + table.Name + "', '" + cell.Content + "', this);\" value=\"+\"/>";
                 }
                 html += "" + cell.Content;
