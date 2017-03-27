@@ -55,13 +55,13 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
                         {
                             res.Name = table;
                             res.Columns = cols.Select(x => new TableColumn
-                                {
-                                    ColumnName = x.ColumnName,
-                                    ColumnType = x.ColumnType,
-                                    IsParent = x.IsParent == true,
-                                    IsChild = x.IsChild == true,
-                                    OrdinalPosition = x.OrdinalPosition,
-                                })
+                            {
+                                ColumnName = x.ColumnName,
+                                ColumnType = x.ColumnType,
+                                IsParent = x.IsParent == true,
+                                IsChild = x.IsChild == true,
+                                OrdinalPosition = x.OrdinalPosition,
+                            })
                                 .ToList();
                             res.Rows = new List<TableRow>();
                             var i = 1;
@@ -107,77 +107,83 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
             result.Tables = new List<TableResultModel>();
             using (var entities = new Entities())
             {
-                foreach (var entry in entities.Explorer_GetLinkedCells(table2, column2, value2).ToList())
+                foreach (var entry in entities.Explorer_GetLinkedCells(table2, column2, value2)
+                    .GroupBy(x => x.TargetTableName)
+                    .ToList())
                 {
-                    var table = entry.TargetTableName;
-                    var column = entry.TargetTableColumn;
-                    var value = entry.ColumnValue;
-
+                    var table = entry.Key; //.TargetTableName;
+                    var res = new TableResultModel();
+                    res.Name = table;
+                    result.Tables.Add(res);
 
                     var cols = entities.Explorer_GetTableColumns(table).ToList();
-                    var sql = "[dbo].[Explorer_GetAssociatedDataSets]";
+                    res.Columns = cols.Select(x => new TableColumn
+                        {
+                            ColumnName = x.ColumnName,
+                            ColumnType = x.ColumnType,
+                            IsParent = x.IsParent == true,
+                            IsChild = x.IsChild == true,
+                            OrdinalPosition = x.OrdinalPosition,
+                        }).ToList();
 
-                    var conn = entities.Database.Connection;
-                    var initialState = conn.State;
-                    try
+                    res.Rows = new List<TableRow>();
+
+                    foreach (var itm in entry)
                     {
-                        if (initialState != ConnectionState.Open)
-                        {
-                            conn.Open(); // open connection if not already open 
-                        }
-                        using (var cmd = conn.CreateCommand())
-                        {
-                            cmd.CommandText = sql;
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.Add(new SqlParameter("@tableName", table));
-                            cmd.Parameters.Add(new SqlParameter("@columnName", column));
-                            cmd.Parameters.Add(new SqlParameter("@id", value));
+                        var column = itm.TargetTableColumn;
+                        var value = itm.ColumnValue;
 
-                            using (var reader = cmd.ExecuteReader())
+                        var sql = "[dbo].[Explorer_GetAssociatedDataSets]";
+
+                        var conn = entities.Database.Connection;
+                        var initialState = conn.State;
+                        try
+                        {
+                            if (initialState != ConnectionState.Open)
                             {
-                                var res = new TableResultModel();
-                                res.Name = table;
-                                result.Tables.Add(res);
-                                res.Columns = cols.Select(x => new TableColumn
+                                conn.Open(); // open connection if not already open 
+                            }
+                            using (var cmd = conn.CreateCommand())
+                            {
+                                cmd.CommandText = sql;
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.Add(new SqlParameter("@tableName", table));
+                                cmd.Parameters.Add(new SqlParameter("@columnName", column));
+                                cmd.Parameters.Add(new SqlParameter("@id", value));
+
+                                using (var reader = cmd.ExecuteReader())
                                 {
-                                    ColumnName = x.ColumnName,
-                                    ColumnType = x.ColumnType,
-                                    IsParent = x.IsParent == true,
-                                    IsChild = x.IsChild == true,
-                                    OrdinalPosition = x.OrdinalPosition,
-                                })
-                                    .ToList();
-                                res.Rows = new List<TableRow>();
-                                var i = 1;
-                                while (reader.Read())
-                                {
-                                    var item = new TableRow
+                                    var i = 1;
+                                    while (reader.Read())
                                     {
-                                        RowNumber = i++,
-                                        Cells = new List<TableCell>(),
-                                    };
-                                    foreach (var col in cols)
-                                    {
-                                        item.Cells.Add(new TableCell()
+                                        var item = new TableRow
                                         {
-                                            OrdinalPosition = col.OrdinalPosition,
-                                            Content = reader.GetValue(reader.GetOrdinal(col.ColumnName)),
-                                        });
+                                            RowNumber = i++,
+                                            Cells = new List<TableCell>(),
+                                        };
+                                        foreach (var col in cols)
+                                        {
+                                            item.Cells.Add(new TableCell()
+                                            {
+                                                OrdinalPosition = col.OrdinalPosition,
+                                                Content = reader.GetValue(reader.GetOrdinal(col.ColumnName)),
+                                            });
+                                        }
+                                        res.Rows.Add(item);
                                     }
-                                    res.Rows.Add(item);
                                 }
                             }
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        throw;
-                    }
-                    finally
-                    {
-                        if (initialState != ConnectionState.Open)
+                        catch (Exception ex)
                         {
-                            conn.Close(); // only close connection if not initially open
+                            throw;
+                        }
+                        finally
+                        {
+                            if (initialState != ConnectionState.Open)
+                            {
+                                conn.Close(); // only close connection if not initially open
+                            }
                         }
                     }
                 }
