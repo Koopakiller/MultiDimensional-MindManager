@@ -85,6 +85,9 @@
     <Build Include="dbo\Stored Procedures\Explorer_GetTableColumns.sql">
       <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
+    <Build Include="dbo\Stored Procedures\Explorer_GetLinkedCells.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />
