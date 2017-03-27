@@ -87,6 +87,7 @@
     <Build Include="dbo\Stored Procedures\Explorer_GetLinkedCells.sql">
       <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
+    <Build Include="dbo\Tables\ComplexRelations.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />
