@@ -71,8 +71,7 @@
     <Build Include="dbo\Tables\Currencies.sql" />
     <Build Include="dbo\Tables\CurrencyIdentifier.sql" />
     <Build Include="dbo\Tables\Places.sql" />
-    <Build Include="dbo\Tables\ResumeEntries.sql" />
-    <Build Include="dbo\Tables\ResumeEntryKinds.sql" />
+    <Build Include="dbo\Tables\ResumeKinds.sql" />
     <Build Include="dbo\Tables\Resumes.sql" />
     <Build Include="dbo\Tables\HumanGroups.sql" />
     <Build Include="dbo\Tables\HumanGroupEntries.sql" />
