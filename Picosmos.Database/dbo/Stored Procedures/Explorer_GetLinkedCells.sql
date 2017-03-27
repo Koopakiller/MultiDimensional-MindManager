@@ -12,7 +12,7 @@ BEGIN
 		 , colFK.[name]              AS [SourceTableColumn]
 		 , [reftable].[name]         AS [TargetTableName]
 		 , colPK.[name]              AS [TargetTableColumn]
-		 , CAST((CASE WHEN [table].[name] LIKE @tableName THEN 0 ELSE 1 END) AS BIT) 
+		 , CAST((CASE WHEN [table].[name] LIKE @tableName AND [reftable].[name] NOT LIKE @tableName THEN 0 ELSE 1 END) AS BIT) 
 									 AS [HasMultipleMatchingValues]
 		 , CAST('' AS NVARCHAR(MAX)) AS [Query]
 	INTO #data
