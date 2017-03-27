@@ -155,6 +155,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ComplexRelation.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Currency.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
@@ -207,10 +210,7 @@
     <Compile Include="Models\Resume.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ResumeEntry.cs">
-      <DependentUpon>Database.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ResumeEntryKind.cs">
+    <Compile Include="Models\ResumeKind.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TableResultModel.cs" />

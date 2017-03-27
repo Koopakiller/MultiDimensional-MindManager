@@ -17,8 +17,6 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Person()
         {
-            this.HumanRelations = new HashSet<HumanRelation>();
-            this.HumanRelations1 = new HashSet<HumanRelation>();
             this.Humans = new HashSet<Human>();
             this.Users = new HashSet<User>();
         }
@@ -26,10 +24,6 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
         public int Id { get; set; }
         public string Name { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HumanRelation> HumanRelations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HumanRelation> HumanRelations1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Human> Humans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

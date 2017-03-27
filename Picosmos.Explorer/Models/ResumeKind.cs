@@ -12,26 +12,17 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ResumeEntry
+    public partial class ResumeKind
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ResumeEntry()
+        public ResumeKind()
         {
-            this.ResumeEntries1 = new HashSet<ResumeEntry>();
             this.Resumes = new HashSet<Resume>();
         }
     
         public int Id { get; set; }
-        public Nullable<System.DateTime> StartDateTime { get; set; }
-        public Nullable<System.DateTime> EndDateTime { get; set; }
-        public int ResumeEntryKindId { get; set; }
         public string Description { get; set; }
-        public Nullable<int> ParentEntryId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ResumeEntry> ResumeEntries1 { get; set; }
-        public virtual ResumeEntry ResumeEntry1 { get; set; }
-        public virtual ResumeEntryKind ResumeEntryKind { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Resume> Resumes { get; set; }
     }

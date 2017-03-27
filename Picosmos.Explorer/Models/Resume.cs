@@ -18,14 +18,21 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
         public Resume()
         {
             this.Humans = new HashSet<Human>();
+            this.Resumes1 = new HashSet<Resume>();
         }
     
         public int Id { get; set; }
-        public int TopLevelEntryId { get; set; }
         public string Description { get; set; }
+        public Nullable<System.DateTime> StartDateTime { get; set; }
+        public Nullable<System.DateTime> EndDateTime { get; set; }
+        public int ResumeKindId { get; set; }
+        public Nullable<int> ParentId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Human> Humans { get; set; }
-        public virtual ResumeEntry ResumeEntry { get; set; }
+        public virtual ResumeKind ResumeKind { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Resume> Resumes1 { get; set; }
+        public virtual Resume Resume1 { get; set; }
     }
 }

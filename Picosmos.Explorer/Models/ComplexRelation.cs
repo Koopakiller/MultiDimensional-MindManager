@@ -12,18 +12,12 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ResumeEntryKind
+    public partial class ComplexRelation
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ResumeEntryKind()
-        {
-            this.ResumeEntries = new HashSet<ResumeEntry>();
-        }
-    
         public int Id { get; set; }
-        public string Description { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ResumeEntry> ResumeEntries { get; set; }
+        public string Name { get; set; }
+        public string SourceTableName { get; set; }
+        public string TargetTableName { get; set; }
+        public string RelationDescriptor { get; set; }
     }
 }

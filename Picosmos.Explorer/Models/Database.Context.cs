@@ -31,14 +31,14 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
         public virtual DbSet<CurrencyIdentifier> CurrencyIdentifiers { get; set; }
         public virtual DbSet<HumanGroup> HumanGroups { get; set; }
         public virtual DbSet<HumanRelationKind> HumanRelationKinds { get; set; }
+        public virtual DbSet<Place> Places { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<ComplexRelation> ComplexRelations { get; set; }
         public virtual DbSet<HumanRelation> HumanRelations { get; set; }
         public virtual DbSet<Human> Humans { get; set; }
         public virtual DbSet<Person> Persons { get; set; }
-        public virtual DbSet<Place> Places { get; set; }
-        public virtual DbSet<ResumeEntry> ResumeEntries { get; set; }
-        public virtual DbSet<ResumeEntryKind> ResumeEntryKinds { get; set; }
+        public virtual DbSet<ResumeKind> ResumeKinds { get; set; }
         public virtual DbSet<Resume> Resumes { get; set; }
-        public virtual DbSet<User> Users { get; set; }
     
         public virtual ObjectResult<Explorer_GetTablesAndColumns_Result> Explorer_GetTablesAndColumns()
         {
