@@ -55,7 +55,9 @@ function appendTable(table, parent, sourceTable, sourceColumn, sourceId) {
             }
             if (mCol) {
                 html += "<td>";
-                html += "<input type=\"button\" onclick=\"expand(" + counter + ", '" + mCol.ColumnName + "', '" + table.Name + "', '" + cell.Content + "', this);\" value=\"+\"/>";
+                if (mCol.IsChild || mCol.IsParent) {
+                    html += "<input type=\"button\" onclick=\"expand(" + counter + ", '" + mCol.ColumnName + "', '" + table.Name + "', '" + cell.Content + "', this);\" value=\"+\"/>";
+                }
                 html += "" + cell.Content;
                 html += "</td>";
             }
