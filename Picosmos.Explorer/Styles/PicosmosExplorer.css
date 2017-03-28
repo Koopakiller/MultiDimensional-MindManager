@@ -12,9 +12,13 @@ body #box {
 }
 body #box h2 {
   font-size: 14pt;
+  margin: 0;
+  margin-bottom: 8px;
 }
 body #box h3 {
   font-size: 12pt;
+  margin: 0;
+  margin-bottom: 5px;
 }
 body #box table {
   border-collapse: collapse;
@@ -52,9 +56,14 @@ body #box td.extend-data-cell {
   padding: 10px;
   text-align: left;
 }
-body #box .dynamic-table-div {
+body #box .dynamic-table-div-group {
   margin: -10px;
   padding: 10px;
+}
+body #box .dynamic-table-div-group .dynamic-table-div {
+  background-color: #eeeeee;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 5px;
 }
 body #box a.expand-link {
   background-color: white;

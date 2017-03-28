@@ -24,10 +24,14 @@ body {
 
         h2 {
             font-size: 14pt;
+            margin: 0;
+            margin-bottom: 8px;
         }
 
         h3 {
             font-size: 12pt;
+            margin: 0;
+            margin-bottom: 5px;
         }
 
         table {
@@ -73,9 +77,16 @@ body {
             }
         }
 
-        .dynamic-table-div {
+
+        .dynamic-table-div-group {
             margin: -10px;
             padding: 10px;
+
+            .dynamic-table-div {
+                background-color: lighten(@base-color, 10%);
+                padding: 10px 10px 10px 10px;
+                margin-bottom: 5px;
+            }
         }
 
         a.expand-link {

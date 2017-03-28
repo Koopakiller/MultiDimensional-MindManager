@@ -34,6 +34,7 @@ function addTables(tables, parent, sourceTable, sourceColumn, sourceId) {
 }
 function appendTable(table, parent, sourceTable, sourceColumn, sourceId) {
     var html = "";
+    html += "<div class='dynamic-table-div'>";
     html += "<h3>" + table.Name + "</h3>";
     html += "<table>";
     html += "<tr>";
@@ -72,13 +73,14 @@ function appendTable(table, parent, sourceTable, sourceColumn, sourceId) {
         ++counter;
     }
     html += "</table>";
+    html += "</div>";
     return html;
 }
 function expand(num, colName, table, content, button) {
     $(button).remove();
     var row = $("tr[data-target=" + num + "] > td");
     row.show();
-    row.html("<div id=\"table_" + num + "_" + colName + "\" class=\"dynamic-table-div\" style=\"display:none;\"></div>" + row.html());
+    row.html("<div id=\"table_" + num + "_" + colName + "\" class=\"dynamic-table-div-group\" style=\"display:none;\"></div>" + row.html());
     expandNewTable(table, colName, content, $("#table_" + num + "_" + colName));
 }
 //# sourceMappingURL=PicosmosExplorer.js.map
