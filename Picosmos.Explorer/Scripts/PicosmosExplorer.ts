@@ -1,5 +1,4 @@
-﻿/// <reference path="typings/jquery/jquery.d.ts" />
-/// <reference path="typings/jqueryui/jqueryui.d.ts"/>
+﻿/// <reference path="typings/jqueryui/jqueryui.d.ts"/>
 
 var counter = 0;
 $(document).ready(() => {
@@ -14,39 +13,39 @@ $(document).ready(() => {
 });
 
 function expandInitialTable(table, column, id, parent) {
-    var url = `/Home/GetInitialTable?table=${table}&column=${column}&value=${id}`;
+    const url = `/Home/GetInitialTable?table=${table}&column=${column}&value=${id}`;
     $.getJSON(url, null, (data) => addTable(data, parent, table, column, id));
 }
 
 function expandNewTable(table, column, id, parent) {
-    var url = `/Home/GetAssociatedData?table2=${table}&column2=${column}&value2=${id}`;
+    const url = `/Home/GetAssociatedData?table2=${table}&column2=${column}&value2=${id}`;
     $.getJSON(url, null, (data) => addTables(data, parent, table, column, id));
 }
 
 function addTable(table: TableResultModel, parent, sourceTable, sourceColumn, sourceId) {
-    var html = "";
+    let html = "";
     html += `<h2>${sourceTable}.${sourceColumn}=${sourceId} references...</h2>`;
 
-    html += appendTable(table, parent, sourceTable, sourceColumn, sourceId);
+    html += appendTable(table);
 
     parent.html(html);
 }
 
 
 function addTables(tables: TablesResultModel, parent, sourceTable, sourceColumn, sourceId) {
-    var html = "";
+    let html = "";
     html += `<h2>${sourceTable}.${sourceColumn}=${sourceId} references...</h2>`;
 
-    for (var table of tables.Tables) {
-        html += appendTable(table, parent, sourceTable, sourceColumn, sourceId);
+    for (let table of tables.Tables) {
+        html += appendTable(table);
     }
 
     parent.html(html);
     parent.effect("highlight", "slow");
 }
 
-function appendTable(table: TableResultModel, parent, sourceTable, sourceColumn, sourceId) {
-    var html = "";
+function appendTable(table: TableResultModel) {
+    let html = "";
     html += "<div class='dynamic-table-div'>";
     html += `<h3>${table.Name}</h3>`;
 
@@ -62,7 +61,7 @@ function appendTable(table: TableResultModel, parent, sourceTable, sourceColumn,
         html += "<tr>";
         for (let cell of row.Cells) {
 
-            var mCol;
+            let mCol;
             for (let col of table.Columns) {
                 if (col.OrdinalPosition === cell.OrdinalPosition) {
                     mCol = col;
@@ -95,7 +94,7 @@ function appendTable(table: TableResultModel, parent, sourceTable, sourceColumn,
 
 function expand(num, colName, table, content, button) {
     $(button).remove();
-    var row = $(`tr[data-target=${num}] > td`);
+    const row = $(`tr[data-target=${num}] > td`);
     row.show();
     row.html(`<div id="table_${num}_${colName}" class="dynamic-table-div-group" style="display:none;"></div>` + row.html());
     

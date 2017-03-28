@@ -1,4 +1,3 @@
-/// <reference path="typings/jquery/jquery.d.ts" />
 /// <reference path="typings/jqueryui/jqueryui.d.ts"/>
 var counter = 0;
 $(document).ready(function () {
@@ -19,7 +18,7 @@ function expandNewTable(table, column, id, parent) {
 function addTable(table, parent, sourceTable, sourceColumn, sourceId) {
     var html = "";
     html += "<h2>" + sourceTable + "." + sourceColumn + "=" + sourceId + " references...</h2>";
-    html += appendTable(table, parent, sourceTable, sourceColumn, sourceId);
+    html += appendTable(table);
     parent.html(html);
 }
 function addTables(tables, parent, sourceTable, sourceColumn, sourceId) {
@@ -27,12 +26,12 @@ function addTables(tables, parent, sourceTable, sourceColumn, sourceId) {
     html += "<h2>" + sourceTable + "." + sourceColumn + "=" + sourceId + " references...</h2>";
     for (var _i = 0, _a = tables.Tables; _i < _a.length; _i++) {
         var table = _a[_i];
-        html += appendTable(table, parent, sourceTable, sourceColumn, sourceId);
+        html += appendTable(table);
     }
     parent.html(html);
     parent.effect("highlight", "slow");
 }
-function appendTable(table, parent, sourceTable, sourceColumn, sourceId) {
+function appendTable(table) {
     var html = "";
     html += "<div class='dynamic-table-div'>";
     html += "<h3>" + table.Name + "</h3>";
@@ -48,7 +47,7 @@ function appendTable(table, parent, sourceTable, sourceColumn, sourceId) {
         html += "<tr>";
         for (var _d = 0, _e = row.Cells; _d < _e.length; _d++) {
             var cell = _e[_d];
-            var mCol;
+            var mCol = void 0;
             for (var _f = 0, _g = table.Columns; _f < _g.length; _f++) {
                 var col = _g[_f];
                 if (col.OrdinalPosition === cell.OrdinalPosition) {
