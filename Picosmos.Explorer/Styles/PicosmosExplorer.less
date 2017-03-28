@@ -69,8 +69,14 @@ body {
             &[data-isparent=true] {
                 background-color: @parent-color;
             }
-
+             
             &.extend-data-cell {
+                background-color: @base-color;
+                padding: 10px;
+                text-align: left;
+            }
+
+            &.common-control-cell {
                 background-color: @base-color;
                 padding: 10px;
                 text-align: left;
@@ -81,15 +87,15 @@ body {
         .dynamic-table-div-group {
             margin: -10px;
             padding: 10px;
-
-            .dynamic-table-div {
-                background-color: lighten(@base-color, 10%);
-                padding: 10px 10px 10px 10px;
-                margin-bottom: 5px;
-            }
         }
 
-        a.expand-link {
+        .dynamic-table-div {
+            background-color: lighten(@base-color, 10%);
+            padding: 10px 10px 10px 10px;
+            margin-bottom: 5px;
+        }
+
+        a.button {
             background-color: white;
             border: none;
             text-align: center;

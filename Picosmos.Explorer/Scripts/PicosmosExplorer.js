@@ -1,5 +1,6 @@
 /// <reference path="typings/jqueryui/jqueryui.d.ts"/>
 var counter = 0;
+var addNewButtonCounter = 0;
 $(document).ready(function () {
     $("#submitButton").click(function () {
         //http://localhost:54583
@@ -34,7 +35,7 @@ function addTables(tables, parent, sourceTable, sourceColumn, sourceId) {
 function appendTable(table) {
     var html = "";
     html += "<div class='dynamic-table-div'>";
-    html += "<h3>" + table.Name + "</h3>";
+    html += "<h3>" + table.Name + " <a href=\"#\" class=\"add-dataset-link button\" id=\"addButton" + addNewButtonCounter + "\" onclick=\"$('#editRow" + addNewButtonCounter + "').show();$(this).hide();\">Add New</a></h3>";
     html += "<table>";
     html += "<tr>";
     for (var _i = 0, _a = table.Columns; _i < _a.length; _i++) {
@@ -59,7 +60,7 @@ function appendTable(table) {
                 html += "<td data-ischild=\"" + mCol.IsChild + "\" data-isparent=\"" + mCol.IsParent + "\">";
                 html += "<span>" + cell.Content + "</span>";
                 if ((mCol.IsChild || mCol.IsParent) && cell.Content !== "") {
-                    html += "<a href=\"#table_" + counter + "_" + mCol.ColumnName + "\" class=\"expand-link\" onclick=\"expand(" + counter + ", '" + mCol.ColumnName + "', '" + table.Name + "', '" + cell.Content + "', this);\" >Expand</a>";
+                    html += "<a href=\"#table_" + counter + "_" + mCol.ColumnName + "\" class=\"expand-link button\" onclick=\"expand(" + counter + ", '" + mCol.ColumnName + "', '" + table.Name + "', '" + cell.Content + "', this);\" >Expand</a>";
                 }
                 html += "</td>";
             }
@@ -71,15 +72,41 @@ function appendTable(table) {
         html += "<tr data-target=\"" + counter + "\"><td colspan=\"" + row.Cells.length + "\" class=\"extend-data-cell\" style=\"display:none;\"></td></tr>";
         ++counter;
     }
+    html += "<tr style=\"display:none;\" id=\"editRow" + addNewButtonCounter + "\">";
+    for (var _h = 0, _j = table.Columns; _h < _j.length; _h++) {
+        var col = _j[_h];
+        html += "<td data-ischild=\"" + col.IsChild + "\" data-isparent=\"" + col.IsParent + "\" title=\"" + col.ColumnName + "\">";
+        html += "<input type=\"text\" value=\"\" data-column=\"" + col.ColumnName + "\"/>";
+        html += "</td>";
+    }
+    html += "<td class=\"common-control-cell\">";
+    html += "<a href=\"#\" class=\"button\" onclick=\"sentNewDataSet(" + addNewButtonCounter + ", \"" + table.Name + "\");\">Sent</a>";
+    html += "</td>";
+    html += "</tr>";
+    ++addNewButtonCounter;
     html += "</table>";
     html += "</div>";
     return html;
+}
+function sentNewDataSet(rowId, tableName) {
+    var data = {
+        Table: tableName,
+        Cols: {}
+    };
+    $("#editRow" + rowId + " > td > input").each(function (index, elem) {
+        data[$(elem).data("column")] = $(elem).val();
+    });
+    var url = "/Home/InsertNewDataSet";
+    $.getJSON(url, data, function () {
+    });
+    $("#addButton" + rowId).show();
+    $("#editRow" + rowId + " > td > input").val("");
 }
 function expand(num, colName, table, content, button) {
     $(button).remove();
     var row = $("tr[data-target=" + num + "] > td");
     row.show();
-    row.html("<div id=\"table_" + num + "_" + colName + "\" class=\"dynamic-table-div-group\" style=\"display:none;\"></div>" + row.html());
+    row.html("<div id=\"table_" + num + "_" + colName + "\" class=\"dynamic-table-div-group\" >Loading...</div>" + row.html());
     expandNewTable(table, colName, content, $("#table_" + num + "_" + colName));
 }
 //# sourceMappingURL=PicosmosExplorer.js.map

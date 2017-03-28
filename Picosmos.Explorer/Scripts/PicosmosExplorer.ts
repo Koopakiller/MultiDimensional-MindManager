@@ -1,6 +1,7 @@
 ﻿/// <reference path="typings/jqueryui/jqueryui.d.ts"/>
 
 var counter = 0;
+var addNewButtonCounter = 0;
 $(document).ready(() => {
 
     $("#submitButton").click(() => {
@@ -31,7 +32,6 @@ function addTable(table: TableResultModel, parent, sourceTable, sourceColumn, so
     parent.html(html);
 }
 
-
 function addTables(tables: TablesResultModel, parent, sourceTable, sourceColumn, sourceId) {
     let html = "";
     html += `<h2>${sourceTable}.${sourceColumn}=${sourceId} references...</h2>`;
@@ -47,7 +47,7 @@ function addTables(tables: TablesResultModel, parent, sourceTable, sourceColumn,
 function appendTable(table: TableResultModel) {
     let html = "";
     html += "<div class='dynamic-table-div'>";
-    html += `<h3>${table.Name}</h3>`;
+    html += `<h3>${table.Name} <a href="#" class="add-dataset-link button" id="addButton${addNewButtonCounter}" onclick="$('#editRow${addNewButtonCounter}').show();$(this).hide();">Add New</a></h3>`;
 
     html += "<table>";
 
@@ -72,7 +72,7 @@ function appendTable(table: TableResultModel) {
                 html += `<td data-ischild="${mCol.IsChild}" data-isparent="${mCol.IsParent}">`;
                 html += `<span>${cell.Content}</span>`;
                 if ((mCol.IsChild || mCol.IsParent) && cell.Content !== "") {
-                    html += `<a href="#table_${counter}_${mCol.ColumnName}" class="expand-link" onclick="expand(${counter}, '${mCol.ColumnName}', '${table.Name}', '${
+                    html += `<a href="#table_${counter}_${mCol.ColumnName}" class="expand-link button" onclick="expand(${counter}, '${mCol.ColumnName}', '${table.Name}', '${
                         cell.Content}', this);" >Expand</a>`;
                 }
                 html += `</td>`;
@@ -85,6 +85,19 @@ function appendTable(table: TableResultModel) {
 
         ++counter;
     }
+
+    html += `<tr style="display:none;" id="editRow${addNewButtonCounter}">`;
+    for (let col of table.Columns) {
+        html += `<td data-ischild="${col.IsChild}" data-isparent="${col.IsParent}" title="${col.ColumnName}">`;
+        html += `<input type="text" value="" data-column="${col.ColumnName}"/>`;
+        html += `</td>`;
+    }
+    html += `<td class="common-control-cell">`;
+    html += `<a href="#" class="button" onclick="sentNewDataSet(${addNewButtonCounter}, "${table.Name}");">Sent</a>`;
+    html += `</td>`;
+    html += "</tr>";
+    ++addNewButtonCounter;
+
     html += "</table>";
 
     html += "</div>";
@@ -92,12 +105,32 @@ function appendTable(table: TableResultModel) {
     return html;
 }
 
+function sentNewDataSet(rowId: number, tableName) {
+
+    var data = {
+        Table: tableName,
+        Cols: {}
+    };
+    $(`#editRow${rowId} > td > input`).each((index, elem) => {
+        data[$(elem).data("column")] = $(elem).val();
+    });
+     
+    let url = "/Home/InsertNewDataSet";
+    $.getJSON(url, data,
+        () => {
+
+        });
+
+    $(`#addButton${rowId}`).show();
+    $(`#editRow${rowId} > td > input`).val("");
+}
+
 function expand(num, colName, table, content, button) {
     $(button).remove();
     const row = $(`tr[data-target=${num}] > td`);
     row.show();
-    row.html(`<div id="table_${num}_${colName}" class="dynamic-table-div-group" style="display:none;"></div>` + row.html());
-    
+    row.html(`<div id="table_${num}_${colName}" class="dynamic-table-div-group" >Loading...</div>` + row.html());
+
     expandNewTable(table, colName, content, $(`#table_${num}_${colName}`));
 }
 

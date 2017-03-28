@@ -56,16 +56,21 @@ body #box td.extend-data-cell {
   padding: 10px;
   text-align: left;
 }
+body #box td.common-control-cell {
+  background-color: #d4d4d4;
+  padding: 10px;
+  text-align: left;
+}
 body #box .dynamic-table-div-group {
   margin: -10px;
   padding: 10px;
 }
-body #box .dynamic-table-div-group .dynamic-table-div {
+body #box .dynamic-table-div {
   background-color: #eeeeee;
   padding: 10px 10px 10px 10px;
   margin-bottom: 5px;
 }
-body #box a.expand-link {
+body #box a.button {
   background-color: white;
   border: none;
   text-align: center;
@@ -76,7 +81,7 @@ body #box a.expand-link {
   margin-left: 4px;
   font-size: 9pt;
 }
-body #box a.expand-link:hover {
+body #box a.button:hover {
   background-color: #D0D0D0;
   text-decoration: none;
 }
