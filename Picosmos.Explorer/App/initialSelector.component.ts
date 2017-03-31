@@ -1,19 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { Http, Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-interface InitialSelectorTable {
-    tableName: string;
-    columns: InitialSelectorColumn[];
-}
-
-interface InitialSelectorColumn {
-    tableName: string;
-    columnName: string;
-}
+import "/App/DatabaseObjects.js";
 
 
 @Component({
@@ -21,6 +13,8 @@ interface InitialSelectorColumn {
     templateUrl: "/Templates/InitialSelector"
 })
 export class InitialSelectorComponent {
+    @Output() onLoadData = new EventEmitter<DatasetIdentifier>();
+
     private heroesUrl = '/Data/GetTablesAndColumns';  // URL to web API
 
     constructor(private http: Http) { }
@@ -42,7 +36,12 @@ export class InitialSelectorComponent {
     }
 
     public loadData() {
-        
+        var obj = {
+            tableName: this.selectedTableAndColumn.tableName,
+            columnName: this.selectedTableAndColumn.columnName,
+            columnValue: this.searchValue
+        };
+        this.onLoadData.emit(obj);
     }
 
     getTablesAndColumns(): Observable<InitialSelectorTable[]> {

@@ -13,9 +13,11 @@ var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/map");
+require("/App/DatabaseObjects.js");
 var InitialSelectorComponent = (function () {
     function InitialSelectorComponent(http) {
         this.http = http;
+        this.onLoadData = new core_1.EventEmitter();
         this.heroesUrl = '/Data/GetTablesAndColumns'; // URL to web API
     }
     InitialSelectorComponent.prototype.ngOnInit = function () {
@@ -29,6 +31,12 @@ var InitialSelectorComponent = (function () {
         });
     };
     InitialSelectorComponent.prototype.loadData = function () {
+        var obj = {
+            tableName: this.selectedTableAndColumn.tableName,
+            columnName: this.selectedTableAndColumn.columnName,
+            columnValue: this.searchValue
+        };
+        this.onLoadData.emit(obj);
     };
     InitialSelectorComponent.prototype.getTablesAndColumns = function () {
         return this.http.get(this.heroesUrl)
@@ -44,6 +52,10 @@ var InitialSelectorComponent = (function () {
     };
     return InitialSelectorComponent;
 }());
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], InitialSelectorComponent.prototype, "onLoadData", void 0);
 InitialSelectorComponent = __decorate([
     core_1.Component({
         selector: "initial-selector",

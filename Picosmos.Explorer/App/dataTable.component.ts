@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
     selector: "data-table",
     templateUrl: "/Templates/DataTable"
 })
-export class InitialSelectorComponent {
+export class DataTableComponent {
     @Input() tableName: string;
     @Input() tableColumn: string;
     @Input() tableColumnValue: string;
