@@ -11,7 +11,5 @@ import 'rxjs/add/operator/map';
     templateUrl: "/Templates/DataTable"
 })
 export class DataTableComponent {
-    @Input() tableName: string;
-    @Input() tableColumn: string;
-    @Input() tableColumnValue: string;
+    @Input() dataset: DatasetIdentifier;
 }

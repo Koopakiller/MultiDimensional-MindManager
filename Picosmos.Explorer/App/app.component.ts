@@ -7,9 +7,9 @@ import "/App/DatabaseObjects.js";
     templateUrl: "/Templates/App"
 })
 export class AppComponent {
-    name = "Angular";
+    dataset: DatasetIdentifier;
 
     public onLoadData(col: DatasetIdentifier) {
-        alert(col.tableName + "." + col.columnName + "=" + col.columnValue);
+        this.dataset = col;
     }
 }

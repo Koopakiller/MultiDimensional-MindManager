@@ -19,16 +19,8 @@ var DataTableComponent = (function () {
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", String)
-], DataTableComponent.prototype, "tableName", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DataTableComponent.prototype, "tableColumn", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DataTableComponent.prototype, "tableColumnValue", void 0);
+    __metadata("design:type", Object)
+], DataTableComponent.prototype, "dataset", void 0);
 DataTableComponent = __decorate([
     core_1.Component({
         selector: "data-table",
