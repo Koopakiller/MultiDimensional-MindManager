@@ -4,10 +4,10 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
 {
     public class TemplatesController : Controller
     {
-        // GET: Templates
-        public ActionResult DataTable()
-        {
-            return this.View();
-        }
+        public ActionResult App() => this.View();
+
+        public ActionResult DataTable() => this.View();
+
+        public ActionResult InitialSelector() => this.View();
     }
 }

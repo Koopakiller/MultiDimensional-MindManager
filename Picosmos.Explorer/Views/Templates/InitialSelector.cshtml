@@ -1,0 +1,21 @@
+﻿<div>
+    <label for="initialSelector_tableColumnInput">Table/Column:</label>
+    <select [(ngModel)]="selectedTableAndColumn" id="initialSelector_tableColumnInput">
+        <optgroup label="{{table.tableName}}" *ngFor="let table of tables">
+            <option *ngFor="let column of table.columns" [ngValue]="column">{{column.columnName}}</option>
+        </optgroup>
+    </select>
+</div>
+
+<div>
+    <label for="initialSelector_searchValueInput">Search value:</label>
+    <input [(ngModel)]="searchValue" type="text" id="initialSelector_searchValueInput" />
+</div>
+
+<div>
+    <span *ngIf="selectedTableAndColumn">
+        Selected: {{selectedTableAndColumn.tableName}}.{{selectedTableAndColumn.columnName}} = {{searchValue}}
+        <br/>
+        <input *ngIf="searchValue && searchValue.length > 0" type="button" (click)="loadData()" value="Load Data" />
+    </span>
+</div>

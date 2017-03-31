@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'my-app',
-  templateUrl: "/Templates/DataTable"
+  selector: "app",
+  templateUrl: "/Templates/App"
 })
-export class AppComponent { name = 'Angular'; }
+export class AppComponent {
+    name = "Angular"; 
+    
+}

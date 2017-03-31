@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,7 +196,7 @@
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\TemplatesController.cs" />
+    <Compile Include="Controllers\TemplatesController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -294,18 +295,23 @@
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
     <Content Include="Views\Templates\DataTable.cshtml" />
+    <Content Include="Views\Templates\App.cshtml" />
+    <Content Include="Views\Templates\InitialSelector.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <TypeScriptCompile Include="App\initialSelector.component.ts" />
     <TypeScriptCompile Include="App\app.component.ts" />
     <TypeScriptCompile Include="App\app.module.ts" />
     <TypeScriptCompile Include="App\main.ts" />
     <TypeScriptCompile Include="Scripts\PicosmosExplorer.ts" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
