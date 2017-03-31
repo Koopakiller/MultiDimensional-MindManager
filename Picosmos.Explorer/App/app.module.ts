@@ -4,6 +4,7 @@ import { HttpModule, JsonpModule }     from '@angular/http';
 import { FormsModule }                 from '@angular/forms';
 import { AppComponent }                from "./app.component.js";
 import { InitialSelectorComponent }    from "./initialSelector.component.js";
+import { DataTableComponent }          from "./dataTable.component.js";
 
 @NgModule({
     imports: [
@@ -14,7 +15,8 @@ import { InitialSelectorComponent }    from "./initialSelector.component.js";
     ],
   declarations: [
       AppComponent,
-      InitialSelectorComponent
+      InitialSelectorComponent,
+      DataTableComponent
   ],
   bootstrap:    [ AppComponent ]
 })
