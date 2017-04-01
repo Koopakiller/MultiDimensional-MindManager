@@ -1,8 +1,0 @@
-# CSS files will be compiled from LESS files
-
-/Styles/*.css
-
-# JS and .JS.MAP files will be compiled from TS files 
-
-/App/*.js
-/App/*.js.map

@@ -1,0 +1,22 @@
+﻿.data-table .identifier-message {
+  font-size: large;
+}
+.data-table .table {
+  margin: 10px;
+}
+.data-table .table .header {
+  font-size: large;
+}
+.data-table .table table {
+  border-collapse: collapse;
+}
+.data-table .table table,
+.data-table .table th,
+.data-table .table td {
+  border: 1px solid black;
+}
+.data-table .table th,
+.data-table .table td {
+  padding: 3px 5px 3px 5px;
+  text-align: center;
+}
