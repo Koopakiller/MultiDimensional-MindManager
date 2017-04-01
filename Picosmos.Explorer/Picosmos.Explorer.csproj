@@ -281,7 +281,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="packages.config" />
-    <Content Include="Styles\DataTable.css">
+    <!--<Content Include="Styles\DataTable.css">
       <DependentUpon>DataTable.less</DependentUpon>
     </Content>
     <Content Include="Styles\DataTable.min.css">
@@ -293,8 +293,12 @@
     <Content Include="Styles\Main.min.css">
       <DependentUpon>Main.css</DependentUpon>
     </Content>
-    <Content Include="Styles\PicosmosExplorer.css" />
-    <Content Include="Styles\PicosmosExplorer.min.css" />
+    <Content Include="Styles\PicosmosExplorer.css">
+      <DependentUpon>PicosmosExplorer.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\PicosmosExplorer.min.css">
+      <DependentUpon>PicosmosExplorer.css</DependentUpon>
+    </Content>-->
     <Content Include="systemjs-angular-loader.js" />
     <Content Include="systemjs.config.js" />
     <Content Include="Web.config" />
