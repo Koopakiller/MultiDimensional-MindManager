@@ -8,17 +8,27 @@
             <span class="header">{{table.name}}</span>
             <table>
                 <tr>
-                    <th *ngFor="let col of table.columns" 
+                    <th *ngFor="let col of table.columns"
                         class="{{col.isParent?'parent':''}} {{col.isChild?'child':''}}">
                         {{col.columnName}} ({{col.columnType}})
                     </th>
                 </tr>
-                <tr *ngFor="let row of table.rows">
-                    <td *ngFor="let cell of row.cells"
-                        class="{{cell.isParent?'parent':''}} {{cell.isChild?'child':''}}">
-                        {{cell.content}}
-                    </td>
-                </tr>
+                <tbody *ngFor="let row of table.rows">
+                    <tr>
+                        <td *ngFor="let cell of row.cells"
+                            class="{{cell.isParent?'parent':''}} {{cell.isChild?'child':''}}">
+                            {{cell.content}}
+                            <a *ngIf="cell.canExpand" href="#" class="expand-link button" (click)="expand(row, table, cell.ordinalPosition, cell.content)">Expand</a>
+                        </td>
+                    </tr>
+                    <tr *ngIf="row.expandedDatasets.length > 0">
+                        <td colSpan="{{table.columns.length}}" class="expand">
+                            <div *ngFor="let dataset of row.expandedDatasets">
+                                <data-table [dataset]="dataset">Loading Table...</data-table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>

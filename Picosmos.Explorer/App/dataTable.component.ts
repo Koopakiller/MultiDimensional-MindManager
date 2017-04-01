@@ -15,7 +15,9 @@ export class DataTableComponent {
     @Input()
     set dataset(value: DatasetIdentifier) {
         this._dataset = value;
-        this.updateFromServer();
+        if(value){
+            this.updateFromServer();
+        }
     }
     get dataset(): DatasetIdentifier {
         return this._dataset;
@@ -29,6 +31,7 @@ export class DataTableComponent {
                 .catch(this.handleError);
         }
     }
+
     private extractData(res: Response) {
         let body = res.json();
         return body.data || {};
@@ -49,14 +52,18 @@ export class DataTableComponent {
 
                     for (let table of this.tables) {
                         for (let row of table.rows) {
-                            for (let col of table.columns) {
-                               for (let cell of row.cells) {
-                                   if (col.ordinalPosition === cell.ordinalPosition) {
-                                       cell.isParent = col.isParent;
-                                       cell.isChild = col.isChild;
-                                   }
-                               }
+                            for (let cell of row.cells) {
+                                for (let col of table.columns) {
+                                    if (col.ordinalPosition === cell.ordinalPosition) {
+                                        cell.isParent = col.isParent;
+                                        cell.isChild = col.isChild;
+                                    }
+                                }
+                                if ((cell.isChild || cell.isParent) && cell.content !== "") {
+                                    cell.canExpand = true;
+                                }
                             }
+                            row.expandedDatasets = [];
                         }
                     }
                 },
@@ -68,16 +75,35 @@ export class DataTableComponent {
     }
 
     public tables: TableResultModel[];
+
+    public expand(row: TableRow, table: TableResultModel, columnOrdinalPosition: number, columnValue: string) {
+        let colName: string;
+        for (let col of table.columns) {
+            if (col.ordinalPosition === columnOrdinalPosition) {
+                colName = col.columnName;
+                break;
+            }
+        }
+
+        if (colName) {
+            let item = {
+                tableName: table.name,
+                columnName: colName,
+                columnValue: columnValue
+            }
+            row.expandedDatasets.push(item);
+        }
+    }
 }
 
 
-interface TableResultModel {
+class TableResultModel {
     name: string;
     columns: TableColumn[];
     rows: TableRow[];
 }
 
-interface TableColumn {
+class TableColumn {
     isChild: boolean;
     isParent: boolean;
     columnName: string;
@@ -85,14 +111,17 @@ interface TableColumn {
     ordinalPosition: number;
 }
 
-interface TableRow {
+class TableRow {
     rowNumber: number;
     cells: TableCell[];
+
+    expandedDatasets: DatasetIdentifier[];
 }
 
-interface TableCell {
+class TableCell {
     ordinalPosition: number;
     content: string;
     isChild: boolean;
     isParent: boolean;
+    canExpand: boolean;
 }
