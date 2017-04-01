@@ -9,5 +9,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
         public ActionResult DataTable() => this.View();
 
         public ActionResult InitialSelector() => this.View();
+
+        public ActionResult CommonLegend() => this.View();
     }
 }

@@ -5,6 +5,7 @@ import { FormsModule }                 from "@angular/forms";
 import { AppComponent }                from "./app.component.js";
 import { InitialSelectorComponent }    from "./initialSelector.component.js";
 import { DataTableComponent }          from "./dataTable.component.js";
+import { CommonLegendComponent }       from "./commonLegend.component.js";
 
 @NgModule({
     imports: [
@@ -16,8 +17,11 @@ import { DataTableComponent }          from "./dataTable.component.js";
   declarations: [
       AppComponent,
       InitialSelectorComponent,
-      DataTableComponent
+      DataTableComponent,
+      CommonLegendComponent
   ],
-  bootstrap:    [ AppComponent ]
+  bootstrap: [
+      AppComponent
+  ]
 })
 export class AppModule { }

@@ -13,6 +13,7 @@ var forms_1 = require("@angular/forms");
 var app_component_js_1 = require("./app.component.js");
 var initialSelector_component_js_1 = require("./initialSelector.component.js");
 var dataTable_component_js_1 = require("./dataTable.component.js");
+var commonLegend_component_js_1 = require("./commonLegend.component.js");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -29,9 +30,12 @@ AppModule = __decorate([
         declarations: [
             app_component_js_1.AppComponent,
             initialSelector_component_js_1.InitialSelectorComponent,
-            dataTable_component_js_1.DataTableComponent
+            dataTable_component_js_1.DataTableComponent,
+            commonLegend_component_js_1.CommonLegendComponent
         ],
-        bootstrap: [app_component_js_1.AppComponent]
+        bootstrap: [
+            app_component_js_1.AppComponent
+        ]
     })
 ], AppModule);
 exports.AppModule = AppModule;

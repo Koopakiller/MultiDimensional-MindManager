@@ -9,7 +9,7 @@
 @parent-color-header: darken(@color-accent-2, 10%);
 @parent-color: @color-accent-2;
 
-.data-table {
+data-table {
     background-color: @color-neutral-2;
 
     .identifier-message {
@@ -67,5 +67,21 @@
                 }
             }
         }
+    }
+}
+
+
+common-legend {
+
+    .child-column {
+        background-color: @child-color;
+    }
+
+    .parent-column {
+        background-color: @parent-color;
+    }
+
+    .other-column {
+        background-color: @common-color;
     }
 }

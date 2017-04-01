@@ -287,6 +287,12 @@
     <Content Include="Styles\Common.min.css">
       <DependentUpon>Common.css</DependentUpon>
     </Content>
+    <Content Include="Styles\CommonLegend.css">
+      <DependentUpon>CommonLegend.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\CommonLegend.min.css">
+      <DependentUpon>CommonLegend.css</DependentUpon>
+    </Content>
     <Content Include="Styles\DataTable.css">
       <DependentUpon>DataTable.less</DependentUpon>
     </Content>
@@ -340,6 +346,8 @@
     <Content Include="Styles\DataTable.less" />
     <Content Include="Styles\Main.less" />
     <Content Include="Styles\Common.less" />
+    <Content Include="Views\Templates\CommonLegend.cshtml" />
+    <Content Include="Styles\CommonLegend.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -347,6 +355,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <TypeScriptCompile Include="App\DatabaseObjects.ts" />
+    <TypeScriptCompile Include="App\commonLegend.component.ts" />
     <TypeScriptCompile Include="App\dataTable.component.ts" />
     <TypeScriptCompile Include="App\initialSelector.component.ts" />
     <TypeScriptCompile Include="App\app.component.ts" />

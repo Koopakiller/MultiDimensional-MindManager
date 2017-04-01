@@ -1,0 +1,7 @@
+﻿<a class="title" href="#" title="show/hide" (click)="toggleExpand()">Legend</a>
+
+<ul *ngIf="isExpanded">
+    <li><span class="child-column">Blue</span><br />This column is a parent of 0 or more data sets (The 1 in an <b>1</b>:m relation)</li>
+    <li><span class="parent-column">Orange</span><br />This column is a child of 0 or 1 data sets (The m in an 1:<b>m</b> relation)</li>
+    <li><span class="other-column">Yellow</span><br />Other Data</li>
+</ul>

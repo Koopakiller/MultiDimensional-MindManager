@@ -18,5 +18,13 @@
   {
     "outputFile": "Styles/Common.css",
     "inputFile": "Styles/Common.less"
+  },
+  {
+    "outputFile": "Styles/Legend.css",
+    "inputFile": "Styles/Legend.less"
+  },
+  {
+    "outputFile": "Styles/CommonLegend.css",
+    "inputFile": "Styles/CommonLegend.less"
   }
 ]
