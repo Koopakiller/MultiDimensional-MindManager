@@ -1,5 +1,24 @@
-﻿body {
+﻿@import (less) "Common.less";
+
+body {
     font-family: Courier New, Courier, monospace, sans-serif;
     margin: 0;
     padding: 25px;
+}
+
+.button {
+    background-color: white;
+    border: none;
+    text-align: center;
+    padding: 3px 5px 3px 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    margin-left: 4px;
+    font-size: 9pt;
+
+    &:hover {
+        background-color: #D0D0D0;
+        text-decoration: none;
+    }
 }

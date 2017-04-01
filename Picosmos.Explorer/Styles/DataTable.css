@@ -1,4 +1,7 @@
-﻿.data-table .identifier-message {
+﻿.data-table {
+  background-color: #d4d4d4;
+}
+.data-table .identifier-message {
   font-size: large;
 }
 .data-table .table {
@@ -40,4 +43,5 @@
 }
 .data-table .table td.expand {
   background-color: #d4d4d4;
+  text-align: left;
 }
