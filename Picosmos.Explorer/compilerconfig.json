@@ -6,5 +6,13 @@
   {
     "outputFile": "Styles/PicosmosExplorer.css",
     "inputFile": "Styles/PicosmosExplorer.less"
+  },
+  {
+    "outputFile": "Styles/DataTable.css",
+    "inputFile": "Styles/DataTable.less"
+  },
+  {
+    "outputFile": "Styles/Main.css",
+    "inputFile": "Styles/Main.less"
   }
 ]

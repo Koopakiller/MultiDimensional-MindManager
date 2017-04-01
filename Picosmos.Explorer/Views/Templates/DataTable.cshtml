@@ -1,21 +1,23 @@
 ﻿
-DataTable:
-<span *ngIf="dataset">{{dataset.tableName}}.{{dataset.columnName}}={{dataset.columnValue}}!</span>
+<div class="data-table">
 
-<div *ngIf="tables">
-    <div *ngFor="let table of tables">
-        <span>{{table.name}}</span>
-        <table>
-            <tr>
-                <th *ngFor="let col of table.columns">
-                    {{col.columnName}} ({{col.columnType}})
-                </th>
-            </tr>
-            <tr *ngFor="let row of table.rows">
-                <td *ngFor="let cell of row.cells">
-                    {{cell.content}}
-                </td>
-            </tr>
-        </table>
+    <span class="identifier-message" *ngIf="dataset">DataTable: {{dataset.tableName}}.{{dataset.columnName}} = {{dataset.columnValue}} references...</span>
+
+    <div *ngIf="tables">
+        <div *ngFor="let table of tables" class="table">
+            <span class="header">{{table.name}}</span>
+            <table>
+                <tr>
+                    <th *ngFor="let col of table.columns">
+                        {{col.columnName}} ({{col.columnType}})
+                    </th>
+                </tr>
+                <tr *ngFor="let row of table.rows">
+                    <td *ngFor="let cell of row.cells">
+                        {{cell.content}}
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>

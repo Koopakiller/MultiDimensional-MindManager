@@ -5,13 +5,10 @@
     <meta charset="utf-8" />
     <title>Database Explorer</title>
 
-    @*<script src="~/Scripts/jquery-3.1.1.js"></script>
-    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
-    <script src="~/Scripts/PicosmosExplorer.js"></script>
-    <link href="~/Styles/PicosmosExplorer.css" rel="stylesheet" />*@
+    <link href="~/Styles/Main.css" rel="stylesheet" />
+    <link href="~/Styles/DataTable.css" rel="stylesheet" />
     
     <!-- Polyfill(s) for older browsers -->
-    <!-- Polyfills -->
     <script src="/node_modules/core-js/client/shim.min.js"></script>
 
     <script src="/node_modules/zone.js/dist/zone.js"></script>
@@ -25,30 +22,3 @@
     <app>Loading...</app>
 </body>
 </html>
-
-
-@*<div id="init">
-    <label>Database field =</label>
-    <select id="select">
-        @foreach (var item in Model.TableColumns)
-        {
-            <option data-table="@item.Item1" data-column="@item.Item2">@item.Item3</option>
-        }
-    </select>
-    <label>Value =</label>
-    <input type="number" id="numberBox" />
-    <input type="button" id="submitButton" value="Go" />
-</div>
-
-<div id="box">
-
-</div>
-
-<div id="legend" class="dialog">
-    <h1>Legend</h1>
-    <ul>
-        <li><span class="child-column">Blue</span><br />This column is a parent of 0 or more data sets (The 1 in an <b>1</b>:m relation)</li>
-        <li><span class="parent-column">Orange</span><br/>This column is a child of 0 or 1 data sets (The m in an 1:<b>m</b> relation)</li>
-        <li><span class="other-column">Yellow</span><br/>Other Data</li>
-    </ul>
-</div>*@

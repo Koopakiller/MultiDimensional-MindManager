@@ -281,6 +281,18 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="packages.config" />
+    <Content Include="Styles\DataTable.css">
+      <DependentUpon>DataTable.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\DataTable.min.css">
+      <DependentUpon>DataTable.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Main.css">
+      <DependentUpon>Main.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\Main.min.css">
+      <DependentUpon>Main.css</DependentUpon>
+    </Content>
     <Content Include="Styles\PicosmosExplorer.css" />
     <Content Include="Styles\PicosmosExplorer.min.css" />
     <Content Include="systemjs-angular-loader.js" />
@@ -297,6 +309,8 @@
     <Content Include="Views\Templates\DataTable.cshtml" />
     <Content Include="Views\Templates\App.cshtml" />
     <Content Include="Views\Templates\InitialSelector.cshtml" />
+    <Content Include="Styles\DataTable.less" />
+    <Content Include="Styles\Main.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
