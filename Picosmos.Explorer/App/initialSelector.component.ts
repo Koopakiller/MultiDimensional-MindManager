@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Output } from "@angular/core";
-import { Http, Response } from '@angular/http';
+import { Http, Response } from "@angular/http";
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/catch";
+import "rxjs/add/operator/map";
 
 import "/App/DatabaseObjects.js";
 
@@ -15,7 +15,7 @@ import "/App/DatabaseObjects.js";
 export class InitialSelectorComponent {
     @Output() onLoadData = new EventEmitter<DatasetIdentifier>();
 
-    private heroesUrl = '/Data/GetTablesAndColumns';  // URL to web API
+    private heroesUrl = "/Data/GetTablesAndColumns";  // URL to web API
 
     constructor(private http: Http) { }
 
