@@ -68,6 +68,7 @@ var DataTableComponent = (function () {
                             if ((cell.isChild || cell.isParent) && cell.content !== "") {
                                 cell.canExpand = true;
                             }
+                            cell.wasAlreadyExpanded = false;
                         }
                         row.expandedDatasets = [];
                     }
@@ -78,11 +79,11 @@ var DataTableComponent = (function () {
             });
         }
     };
-    DataTableComponent.prototype.expand = function (row, table, columnOrdinalPosition, columnValue) {
+    DataTableComponent.prototype.expand = function (table, row, cell) {
         var colName;
         for (var _i = 0, _a = table.columns; _i < _a.length; _i++) {
             var col = _a[_i];
-            if (col.ordinalPosition === columnOrdinalPosition) {
+            if (col.ordinalPosition === cell.ordinalPosition) {
                 colName = col.columnName;
                 break;
             }
@@ -91,10 +92,11 @@ var DataTableComponent = (function () {
             var item = {
                 tableName: table.name,
                 columnName: colName,
-                columnValue: columnValue
+                columnValue: cell.content
             };
             row.expandedDatasets.push(item);
         }
+        cell.wasAlreadyExpanded = true;
     };
     return DataTableComponent;
 }());

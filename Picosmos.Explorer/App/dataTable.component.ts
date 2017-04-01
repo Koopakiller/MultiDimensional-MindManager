@@ -15,7 +15,7 @@ export class DataTableComponent {
     @Input()
     set dataset(value: DatasetIdentifier) {
         this._dataset = value;
-        if(value){
+        if (value) {
             this.updateFromServer();
         }
     }
@@ -62,6 +62,7 @@ export class DataTableComponent {
                                 if ((cell.isChild || cell.isParent) && cell.content !== "") {
                                     cell.canExpand = true;
                                 }
+                                cell.wasAlreadyExpanded = false;
                             }
                             row.expandedDatasets = [];
                         }
@@ -76,10 +77,10 @@ export class DataTableComponent {
 
     public tables: TableResultModel[];
 
-    public expand(row: TableRow, table: TableResultModel, columnOrdinalPosition: number, columnValue: string) {
+    public expand(table: TableResultModel, row: TableRow, cell: TableCell) {
         let colName: string;
         for (let col of table.columns) {
-            if (col.ordinalPosition === columnOrdinalPosition) {
+            if (col.ordinalPosition === cell.ordinalPosition) {
                 colName = col.columnName;
                 break;
             }
@@ -89,10 +90,12 @@ export class DataTableComponent {
             let item = {
                 tableName: table.name,
                 columnName: colName,
-                columnValue: columnValue
+                columnValue: cell.content
             }
             row.expandedDatasets.push(item);
         }
+
+        cell.wasAlreadyExpanded = true;
     }
 }
 
@@ -123,5 +126,7 @@ class TableCell {
     content: string;
     isChild: boolean;
     isParent: boolean;
+
     canExpand: boolean;
+    wasAlreadyExpanded: boolean;
 }

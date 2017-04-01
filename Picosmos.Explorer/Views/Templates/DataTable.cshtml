@@ -18,7 +18,7 @@
                         <td *ngFor="let cell of row.cells"
                             class="{{cell.isParent?'parent':''}} {{cell.isChild?'child':''}}">
                             {{cell.content}}
-                            <a *ngIf="cell.canExpand" href="#" class="button" (click)="expand(row, table, cell.ordinalPosition, cell.content)">Expand</a>
+                            <a *ngIf="cell.canExpand && !cell.wasAlreadyExpanded" href="#" class="button" (click)="expand(table, row, cell)">Expand</a>
                         </td>
                     </tr>
                     <tr *ngIf="row.expandedDatasets.length > 0">
