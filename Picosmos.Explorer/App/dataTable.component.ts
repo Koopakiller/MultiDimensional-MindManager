@@ -92,7 +92,7 @@ export class DataTableComponent {
                 columnName: colName,
                 columnValue: cell.content
             }
-            row.expandedDatasets.push(item);
+            row.expandedDatasets.unshift(item);
         }
 
         cell.wasAlreadyExpanded = true;
