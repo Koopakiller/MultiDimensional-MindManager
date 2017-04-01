@@ -1,47 +1,45 @@
 ﻿.data-table {
-  background-color: #d4d4d4;
+  background-color: #d5d5d5;
 }
 .data-table .identifier-message {
   font-size: large;
 }
-.data-table .table {
-  margin: 10px;
+.data-table .tables .table {
+  padding: 10px;
+  background-color: #f2f2f2;
 }
-.data-table .table .header {
+.data-table .tables .table .header {
   font-size: large;
 }
-.data-table .table table {
+.data-table .tables .table table {
   border-collapse: collapse;
 }
-.data-table .table table,
-.data-table .table th,
-.data-table .table td {
+.data-table .tables .table table th,
+.data-table .tables .table table td {
   border: 1px solid black;
-}
-.data-table .table th,
-.data-table .table td {
   padding: 3px 5px 3px 5px;
   text-align: center;
 }
-.data-table .table th {
-  background-color: #f5d10e;
+.data-table .tables .table table th {
+  background-color: #fff543;
 }
-.data-table .table th.child {
-  background-color: #26a7e8;
+.data-table .tables .table table th.child {
+  background-color: #4383ff;
 }
-.data-table .table th.parent {
-  background-color: #e87a29;
+.data-table .tables .table table th.parent {
+  background-color: #ffa743;
 }
-.data-table .table td {
-  background-color: #f7da3f;
+.data-table .tables .table table td {
+  background-color: #fff876;
 }
-.data-table .table td.child {
-  background-color: #54baed;
+.data-table .tables .table table td.child {
+  background-color: #76a5ff;
 }
-.data-table .table td.parent {
-  background-color: #ed9757;
+.data-table .tables .table table td.parent {
+  background-color: #ffbf76;
 }
-.data-table .table td.expand {
-  background-color: #d4d4d4;
+.data-table .tables .table table td.expand {
+  background-color: #d5d5d5;
   text-align: left;
+  padding: 10px;
 }

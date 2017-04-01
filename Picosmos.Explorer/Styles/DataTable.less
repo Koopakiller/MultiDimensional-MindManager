@@ -1,62 +1,70 @@
 ﻿@import (less) "Common.less";
 
+@common-color-header: darken(@color-accent-3, 10%);
+@common-color: @color-accent-3;
+
+@child-color-header: darken(@color-accent-1, 10%);
+@child-color: @color-accent-1;
+
+@parent-color-header: darken(@color-accent-2, 10%);
+@parent-color: @color-accent-2;
+
 .data-table {
-    background-color: @base-color;
+    background-color: @color-neutral-2;
 
     .identifier-message {
         font-size: large;
     }
 
-    .table {
-        margin: 10px;
+    .tables {
 
-        .header {
-            font-size: large;
-        }
+        .table {
+            padding: @padding-big;
+            background-color: @color-neutral-1;
 
-        table {
-            border-collapse: collapse;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid black;
-        }
-
-        th,
-        td {
-            padding: 3px 5px 3px 5px;
-            text-align: center;
-        }
-
-
-        th {
-            background-color: @common-color-header;
-
-            &.child {
-                background-color: @child-color-header;
+            .header {
+                font-size: large;
             }
 
-            &.parent {
-                background-color: @parent-color-header;
-            }
-        }
+            table {
+                border-collapse: collapse;
 
-        td {
-            background-color: @common-color;
+                th,
+                td {
+                    border: @border;
+                    padding: 3px 5px 3px 5px;
+                    text-align: center;
+                }
 
-            &.child {
-                background-color: @child-color;
-            }
+                th {
+                    background-color: @common-color-header;
 
-            &.parent {
-                background-color: @parent-color;
-            }
+                    &.child {
+                        background-color: @child-color-header;
+                    }
 
-            &.expand {
-                background-color: @base-color;
-                text-align: left;
+                    &.parent {
+                        background-color: @parent-color-header;
+                    }
+                }
+
+                td {
+                    background-color: @common-color;
+
+                    &.child {
+                        background-color: @child-color;
+                    }
+
+                    &.parent {
+                        background-color: @parent-color;
+                    }
+
+                    &.expand {
+                        background-color: @color-neutral-2;
+                        text-align: left;
+                        padding: @padding-big;
+                    }
+                }
             }
         }
     }

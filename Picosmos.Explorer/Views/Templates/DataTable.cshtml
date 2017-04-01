@@ -1,9 +1,9 @@
 ﻿
 <div class="data-table">
 
-    <span class="identifier-message" *ngIf="dataset">DataTable: {{dataset.tableName}}.{{dataset.columnName}} = {{dataset.columnValue}} references...</span>
+    <span class="identifier-message" *ngIf="dataset">{{dataset.tableName}}.{{dataset.columnName}} = {{dataset.columnValue}} references...</span>
 
-    <div *ngIf="tables">
+    <div *ngIf="tables" class="tables">
         <div *ngFor="let table of tables" class="table">
             <span class="header">{{table.name}}</span>
             <table>
@@ -18,7 +18,7 @@
                         <td *ngFor="let cell of row.cells"
                             class="{{cell.isParent?'parent':''}} {{cell.isChild?'child':''}}">
                             {{cell.content}}
-                            <a *ngIf="cell.canExpand" href="#" class="expand-link button" (click)="expand(row, table, cell.ordinalPosition, cell.content)">Expand</a>
+                            <a *ngIf="cell.canExpand" href="#" class="button" (click)="expand(row, table, cell.ordinalPosition, cell.content)">Expand</a>
                         </td>
                     </tr>
                     <tr *ngIf="row.expandedDatasets.length > 0">
