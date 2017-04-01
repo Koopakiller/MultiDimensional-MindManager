@@ -25,6 +25,7 @@ body {
   color: black;
   margin-left: 4px;
   font-size: 9pt;
+  cursor: pointer;
 }
 .button:hover {
   background-color: #D0D0D0;
