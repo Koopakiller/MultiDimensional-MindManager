@@ -14,5 +14,9 @@
   {
     "outputFile": "Styles/Main.css",
     "inputFile": "Styles/Main.less"
+  },
+  {
+    "outputFile": "Styles/Common.css",
+    "inputFile": "Styles/Common.less"
   }
 ]

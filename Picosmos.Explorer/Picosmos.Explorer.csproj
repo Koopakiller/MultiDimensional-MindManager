@@ -281,6 +281,12 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="packages.config" />
+    <Content Include="Styles\Common.css">
+      <DependentUpon>Common.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\Common.min.css">
+      <DependentUpon>Common.css</DependentUpon>
+    </Content>
     <Content Include="Styles\DataTable.css">
       <DependentUpon>DataTable.less</DependentUpon>
     </Content>
@@ -333,6 +339,7 @@
     <Content Include="Views\Templates\InitialSelector.cshtml" />
     <Content Include="Styles\DataTable.less" />
     <Content Include="Styles\Main.less" />
+    <Content Include="Styles\Common.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -46,6 +46,19 @@ export class DataTableComponent {
             res.subscribe(
                 data => {
                     this.tables = data;
+
+                    for (let table of this.tables) {
+                        for (let row of table.rows) {
+                            for (let col of table.columns) {
+                               for (let cell of row.cells) {
+                                   if (col.ordinalPosition === cell.ordinalPosition) {
+                                       cell.isParent = col.isParent;
+                                       cell.isChild = col.isChild;
+                                   }
+                               }
+                            }
+                        }
+                    }
                 },
                 error => {
                     console.error(error);
@@ -80,4 +93,6 @@ interface TableRow {
 interface TableCell {
     ordinalPosition: number;
     content: string;
+    isChild: boolean;
+    isParent: boolean;
 }

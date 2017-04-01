@@ -1,4 +1,6 @@
-﻿.data-table {
+﻿@import (less) "Common.less";
+
+.data-table {
     .identifier-message {
         font-size: large;
     }
@@ -8,7 +10,7 @@
 
         .header {
             font-size: large;
-        } 
+        }
 
         table {
             border-collapse: collapse;
@@ -24,6 +26,31 @@
         td {
             padding: 3px 5px 3px 5px;
             text-align: center;
+        }
+
+
+        th {
+            background-color: @common-color-header;
+            
+            &.child {
+                background-color: @child-color-header;
+            }
+
+            &.parent {
+                background-color: @parent-color-header;
+            }
+        }
+
+        td {
+            background-color: @common-color;
+
+            &.child {
+                background-color: @child-color;
+            }
+
+            &.parent {
+                background-color: @parent-color;
+            }
         }
     }
 }

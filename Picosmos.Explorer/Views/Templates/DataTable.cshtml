@@ -8,12 +8,14 @@
             <span class="header">{{table.name}}</span>
             <table>
                 <tr>
-                    <th *ngFor="let col of table.columns">
+                    <th *ngFor="let col of table.columns" 
+                        class="{{col.isParent?'parent':''}} {{col.isChild?'child':''}}">
                         {{col.columnName}} ({{col.columnType}})
                     </th>
                 </tr>
                 <tr *ngFor="let row of table.rows">
-                    <td *ngFor="let cell of row.cells">
+                    <td *ngFor="let cell of row.cells"
+                        class="{{cell.isParent?'parent':''}} {{cell.isChild?'child':''}}">
                         {{cell.content}}
                     </td>
                 </tr>
