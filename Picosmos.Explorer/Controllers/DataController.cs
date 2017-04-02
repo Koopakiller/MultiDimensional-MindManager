@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using Koopakiller.Apps.Picosmos.Explorer.Models;
@@ -14,26 +10,42 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
 {
     public class DataController : Controller
     {
+        private readonly Entities entities = new Entities();
+        
         public ActionResult GetTablesAndColumns()
         {
-            using (var entities = new Entities())
-            {
-                var data = entities.Explorer_GetTablesAndColumns()
-                    .GroupBy(x => x.TableName)
-                    .Select(x => new { TableName = x.Key, Columns = x.Select(y => new { TableName = x.Key, ColumnName = y.ColumnName }) });
+            var data = this.entities.Explorer_GetTablesAndColumns()
+                .GroupBy(x => x.TableName)
+                .Select(x => new { TableName = x.Key, Columns = x.Select(y => new { TableName = x.Key, ColumnName = y.ColumnName }) });
 
-                return this.Json(data);
-            }
+            return this.Json(data);
         }
 
-        public ActionResult GetDataFromTableColumnValue(string table, string column, int value)
+        public ActionResult GetDataFromTableColumnValue(String tableName, String columnName, Int32 columnValue)
         {
-            using (var entities = new Entities())
-            {
-                entities.Explorer_GetDataFromTableColumnValue
-            }
+            var result = this.entities.Explorer_GetReferencedTableColumnValues_sql(tableName, columnName, columnValue)
+                .GroupBy(x => x.TableName)
+                .Select(tcv => new TableResultModel
+                {
+                    Name = tcv.Key,
+                    Columns = this.GetTableColumns(tcv.Key),
+                    Rows = tcv.SelectMany(itm => this.entities.Explorer_GetDataFromTableColumnValue(tcv.Key, itm.ColumnName, itm.ColumnValue)
+                                                              .GroupBy(x => x.EntityId)
+                                                              .Select(x => new TableRow()
+                                                               {
+                                                                   RowNumber = x.Key ?? throw new NotSupportedException(),
+                                                                   Cells = x.Select(y => new TableCell()
+                                                                             {
+                                                                                 ColumnName = y.ColumnName,
+                                                                                 Content = y.ColumnValue,
+                                                                             })
+                                                                            .ToList(),
+                                                               }))
+                              .ToList()
+                })
+                .ToList();
 
-            throw new NotImplementedException();
+            return this.Json(result);
         }
 
         protected ActionResult Json<T>(T data, Formatting formatting = Formatting.None)
@@ -49,126 +61,24 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
             return this.Content(json, "application/json");
         }
 
-        public ActionResult GetAssociatedData(String table2, String column2, Int32 value2)
+        protected override void Dispose(Boolean disposing)
         {
-            var result = new List<TableResultModel>() ;
-            using (var entities = new Entities())
-            {
-                foreach (var entry in entities.Explorer_GetLinkedCells(table2, column2, value2)
-                    .GroupBy(x => x.TargetTableName)
-                    .ToList())
-                {
-                    var table = entry.Key;
-                    var res = GetTableResultModel(entities, table, entry);
-                    result.Add(res);
-                }
-            }
-
-            return this.Json(result);
+            this.entities?.Dispose();
+            base.Dispose(disposing);
         }
 
-        private static TableResultModel GetTableResultModel(Entities entities, String table, IEnumerable<Explorer_GetLinkedCells_Result> entry)
+        private List<TableColumn> GetTableColumns(String tableName)
         {
-            var res = new TableResultModel { Name = table };
-            var cols = entities.Explorer_GetTableColumns(table).ToList();
-            res.Columns = GetTableColumns(cols);
-
-            res.Rows = new List<TableRow>();
-
-            foreach (var itm in entry)
-            {
-                var column = itm.TargetTableColumn;
-                var value = itm.ColumnValue;
-
-                res.Rows.AddRange(ExecuteGetAssociatedDataSets(entities, table, cols, column, value));
-            }
-            return res;
-        }
-
-        private static IEnumerable<TableRow> ExecuteGetAssociatedDataSets(Entities entities, String table, List<Explorer_GetTableColumns_Result> cols, String column, Int32? value)
-        {
-            var resultList = new List<TableRow>();
-            var conn = entities.Database.Connection;
-            var initialState = conn.State;
-            try
-            {
-                if (initialState != ConnectionState.Open)
-                {
-                    conn.Open(); // open connection if not already open 
-                }
-                using (var cmd = CreateGetAssociatedDataSetsCommand(conn, table, column, value))
-                {
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        for (var i = 1; reader.Read(); ++i)
+            return this.entities.Explorer_GetTableColumns(tableName)
+                       .Select(x => new TableColumn
                         {
-                            var item = GetTableRowFromReader(cols, reader, i);
-                            resultList.Add(item);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-                throw;
-            }
-            finally
-            {
-                if (initialState != ConnectionState.Open)
-                {
-                    conn.Close(); // only close connection if not initially open
-                }
-            }
-
-            return resultList;
-        }
-
-        static DbCommand CreateGetAssociatedDataSetsCommand(DbConnection conn, String table, String column, Int32? value)
-        {
-            var cmd = conn.CreateCommand();
-            cmd.CommandText = "[dbo].[Explorer_GetAssociatedDataSets]";
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add(new SqlParameter("@tableName", table));
-            cmd.Parameters.Add(new SqlParameter("@columnName", column));
-            cmd.Parameters.Add(new SqlParameter("@id", value));
-            return cmd;
-        }
-
-        private static TableRow GetTableRowFromReader(List<Explorer_GetTableColumns_Result> cols, DbDataReader reader, Int32 i)
-        {
-            var item = new TableRow
-            {
-                RowNumber = i,
-                Cells = new List<TableCell>(),
-            };
-            foreach (var col in cols)
-            {
-                item.Cells.Add(new TableCell()
-                {
-                    OrdinalPosition = col.OrdinalPosition,
-                    Content = DbDataReaderObjectToString(reader.GetValue(reader.GetOrdinal(col.ColumnName))),
-                });
-            }
-
-            return item;
-        }
-
-        static String DbDataReaderObjectToString(Object obj)
-        {
-            return obj?.ToString();
-        }
-
-        private static List<TableColumn> GetTableColumns(IEnumerable<Explorer_GetTableColumns_Result> cols)
-        {
-            return cols.Select(x => new TableColumn
-            {
-                ColumnName = x.ColumnName,
-                ColumnType = x.ColumnType,
-                IsParent = x.IsParent == true,
-                IsChild = x.IsChild == true,
-                OrdinalPosition = x.OrdinalPosition,
-            }).ToList();
+                            ColumnName = x.ColumnName,
+                            ColumnType = x.ColumnType,
+                            IsParent = x.IsParent == true,
+                            IsChild = x.IsChild == true,
+                            OrdinalPosition = x.OrdinalPosition,
+                        })
+                       .ToList();
         }
     }
 }

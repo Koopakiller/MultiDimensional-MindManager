@@ -33,7 +33,7 @@ var DataTableComponent = (function () {
     });
     DataTableComponent.prototype.getData = function () {
         if (this.dataset) {
-            var url = "/Data/GetAssociatedData?table2=" + this.dataset.tableName + "&column2=" + this.dataset.columnName + "&value2=" + this.dataset.columnValue;
+            var url = "/Data/GetDataFromTableColumnValue?tableName=" + this.dataset.tableName + "&columnName=" + this.dataset.columnName + "&columnValue=" + this.dataset.columnValue;
             return this.http.get(url)
                 .map(this.extractData)
                 .catch(this.handleError);
@@ -60,7 +60,7 @@ var DataTableComponent = (function () {
                             var cell = _e[_d];
                             for (var _f = 0, _g = table.columns; _f < _g.length; _f++) {
                                 var col = _g[_f];
-                                if (col.ordinalPosition === cell.ordinalPosition) {
+                                if (col.columnName === cell.columnName) {
                                     cell.isParent = col.isParent;
                                     cell.isChild = col.isChild;
                                 }
@@ -83,7 +83,7 @@ var DataTableComponent = (function () {
         var colName;
         for (var _i = 0, _a = table.columns; _i < _a.length; _i++) {
             var col = _a[_i];
-            if (col.ordinalPosition === cell.ordinalPosition) {
+            if (col.columnName === cell.columnName) {
                 colName = col.columnName;
                 break;
             }

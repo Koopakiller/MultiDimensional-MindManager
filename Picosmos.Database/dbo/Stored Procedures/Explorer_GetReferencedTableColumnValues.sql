@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[Explorer_GetLinkedCells]
+﻿CREATE PROCEDURE [dbo].[Explorer_GetReferencedTableColumnValues.sql]
 	@tableName NVARCHAR(128),
 	@columnName NVARCHAR(128),
 	@id INT
@@ -32,8 +32,8 @@ BEGIN
 	  , [TargetTableColumn] = SourceTableColumn
 	WHERE [HasMultipleMatchingValues] = 1
     
-    SELECT d.TargetTableName AS [TargetTableName]
-         , d.TargetTableColumn AS [TargetTableColumn]
+    SELECT d.TargetTableName AS [TableName]
+         , d.TargetTableColumn AS [ColumnName]
          , @id AS [ColumnValue]
     FROM #data AS d
     WHERE NOT ((SourceTableName <> @tableName OR SourceTableColumn <> @columnName)

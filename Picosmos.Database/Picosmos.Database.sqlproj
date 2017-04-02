@@ -85,7 +85,7 @@
     <Build Include="dbo\Stored Procedures\Explorer_GetTableColumns.sql">
       <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
-    <Build Include="dbo\Stored Procedures\Explorer_GetLinkedCells.sql">
+    <Build Include="dbo\Stored Procedures\Explorer_GetReferencedTableColumnValues.sql">
       <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
     <Build Include="dbo\Tables\ComplexRelations.sql" />

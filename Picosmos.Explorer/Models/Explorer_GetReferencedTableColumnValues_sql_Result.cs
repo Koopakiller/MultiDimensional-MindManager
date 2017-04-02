@@ -11,10 +11,10 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
 {
     using System;
     
-    public partial class Explorer_GetLinkedCells_Result
+    public partial class Explorer_GetReferencedTableColumnValues_sql_Result
     {
-        public string TargetTableName { get; set; }
-        public string TargetTableColumn { get; set; }
+        public string TableName { get; set; }
+        public string ColumnName { get; set; }
         public Nullable<int> ColumnValue { get; set; }
     }
 }

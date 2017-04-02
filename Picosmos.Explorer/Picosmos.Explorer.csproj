@@ -160,7 +160,7 @@
     <Compile Include="Models\Explorer_GetDataFromTableColumnValue_Result.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Explorer_GetLinkedCells_Result.cs">
+    <Compile Include="Models\Explorer_GetReferencedTableColumnValues_sql_Result.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Explorer_GetTableColumns_Result.cs">

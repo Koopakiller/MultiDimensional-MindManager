@@ -25,7 +25,7 @@ export class DataTableComponent {
 
     getData(): Observable<TableResultModel[]> {
         if (this.dataset) {
-            const url = `/Data/GetAssociatedData?table2=${this.dataset.tableName}&column2=${this.dataset.columnName}&value2=${this.dataset.columnValue}`;
+            const url = `/Data/GetDataFromTableColumnValue?tableName=${this.dataset.tableName}&columnName=${this.dataset.columnName}&columnValue=${this.dataset.columnValue}`;
             return this.http.get(url)
                 .map(this.extractData)
                 .catch(this.handleError);
@@ -54,7 +54,7 @@ export class DataTableComponent {
                         for (let row of table.rows) {
                             for (let cell of row.cells) {
                                 for (let col of table.columns) {
-                                    if (col.ordinalPosition === cell.ordinalPosition) {
+                                    if (col.columnName === cell.columnName) {
                                         cell.isParent = col.isParent;
                                         cell.isChild = col.isChild;
                                     }
@@ -80,7 +80,7 @@ export class DataTableComponent {
     public expand(table: TableResultModel, row: TableRow, cell: TableCell) {
         let colName: string;
         for (let col of table.columns) {
-            if (col.ordinalPosition === cell.ordinalPosition) {
+            if (col.columnName === cell.columnName) {
                 colName = col.columnName;
                 break;
             }
@@ -122,7 +122,7 @@ class TableRow {
 }
 
 class TableCell {
-    ordinalPosition: number;
+    columnName: string;
     content: string;
     isChild: boolean;
     isParent: boolean;

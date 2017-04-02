@@ -260,7 +260,7 @@
           <Parameter Name="columnName" Type="nvarchar" Mode="In" />
           <Parameter Name="columnValue" Type="int" Mode="In" />
         </Function>
-        <Function Name="Explorer_GetLinkedCells" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Explorer_GetReferencedTableColumnValues_sql" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Explorer_GetReferencedTableColumnValues.sql">
           <Parameter Name="tableName" Type="nvarchar" Mode="In" />
           <Parameter Name="columnName" Type="nvarchar" Mode="In" />
           <Parameter Name="id" Type="int" Mode="In" />
@@ -413,11 +413,6 @@
           <FunctionImport Name="Explorer_GetTableColumns" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetTableColumns_Result)">
           <Parameter Name="tableName" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="Explorer_GetLinkedCells" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetLinkedCells_Result)">
-            <Parameter Name="tableName" Mode="In" Type="String" />
-            <Parameter Name="columnName" Mode="In" Type="String" />
-            <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="ComplexRelations" EntityType="Koopakiller.Apps.Picosmos.Model.Database.ComplexRelation" />
           <EntitySet Name="Humans" EntityType="Koopakiller.Apps.Picosmos.Model.Database.Human" />
           <EntitySet Name="Persons" EntityType="Koopakiller.Apps.Picosmos.Model.Database.Person" />
@@ -469,6 +464,11 @@
             <Parameter Name="columnName" Mode="In" Type="String" />
             <Parameter Name="columnValue" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="Explorer_GetReferencedTableColumnValues_sql" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetReferencedTableColumnValues_sql_Result)">
+            <Parameter Name="tableName" Mode="In" Type="String" />
+            <Parameter Name="columnName" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="Explorer_GetTablesAndColumns_Result">
           <Property Type="String" Name="TableName" Nullable="false" MaxLength="128" />
@@ -480,11 +480,6 @@
           <Property Type="Boolean" Name="IsParent" Nullable="true" />
           <Property Type="Boolean" Name="IsChild" Nullable="true" />
           <Property Type="Int32" Name="OrdinalPosition" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="Explorer_GetLinkedCells_Result">
-          <Property Type="String" Name="TargetTableName" Nullable="true" />
-          <Property Type="String" Name="TargetTableColumn" Nullable="true" />
-          <Property Type="Int32" Name="ColumnValue" Nullable="true" />
         </ComplexType>
         <EntityType Name="ComplexRelation">
           <Key>
@@ -673,6 +668,11 @@
           <Property Type="String" Name="ColumnName" Nullable="true" MaxLength="128" />
           <Property Type="String" Name="ColumnValue" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="Explorer_GetReferencedTableColumnValues_sql_Result">
+          <Property Type="String" Name="TableName" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="ColumnName" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ColumnValue" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -748,15 +748,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Explorer_GetLinkedCells" FunctionName="Koopakiller.Apps.Picosmos.Model.Database.Store.Explorer_GetLinkedCells">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetLinkedCells_Result">
-                <ScalarProperty Name="TargetTableName" ColumnName="TargetTableName" />
-                <ScalarProperty Name="TargetTableColumn" ColumnName="TargetTableColumn" />
-                <ScalarProperty Name="ColumnValue" ColumnName="ColumnValue" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="ComplexRelations">
             <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.ComplexRelation">
               <MappingFragment StoreEntitySet="ComplexRelations">
@@ -829,6 +820,15 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetDataFromTableColumnValue_Result">
                 <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+                <ScalarProperty Name="ColumnValue" ColumnName="ColumnValue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Explorer_GetReferencedTableColumnValues_sql" FunctionName="Koopakiller.Apps.Picosmos.Model.Database.Store.Explorer_GetReferencedTableColumnValues_sql">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetReferencedTableColumnValues_sql_Result">
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
                 <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
                 <ScalarProperty Name="ColumnValue" ColumnName="ColumnValue" />
               </ComplexTypeMapping>
