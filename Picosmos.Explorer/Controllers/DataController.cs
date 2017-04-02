@@ -11,7 +11,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
     public class DataController : Controller
     {
         private readonly Entities entities = new Entities();
-        
+
         public ActionResult GetTablesAndColumns()
         {
             var data = this.entities.Explorer_GetTablesAndColumns()
@@ -25,27 +25,40 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
         {
             var result = this.entities.Explorer_GetReferencedTableColumnValues_sql(tableName, columnName, columnValue)
                 .GroupBy(x => x.TableName)
-                .Select(tcv => new TableResultModel
-                {
-                    Name = tcv.Key,
-                    Columns = this.GetTableColumns(tcv.Key),
-                    Rows = tcv.SelectMany(itm => this.entities.Explorer_GetDataFromTableColumnValue(tcv.Key, itm.ColumnName, itm.ColumnValue)
-                                                              .GroupBy(x => x.EntityId)
-                                                              .Select(x => new TableRow()
-                                                               {
-                                                                   RowNumber = x.Key ?? throw new NotSupportedException(),
-                                                                   Cells = x.Select(y => new TableCell()
-                                                                             {
-                                                                                 ColumnName = y.ColumnName,
-                                                                                 Content = y.ColumnValue,
-                                                                             })
-                                                                            .ToList(),
-                                                               }))
-                              .ToList()
-                })
+                .Select(this.GetTableResultModel)
                 .ToList();
 
             return this.Json(result);
+        }
+
+        private TableResultModel GetTableResultModel(IGrouping<String, Explorer_GetReferencedTableColumnValues_sql_Result> tcv)
+        {
+            var cols = this.GetTableColumns(tcv.Key);
+            return new TableResultModel
+            {
+                Name = tcv.Key,
+                Columns = cols,
+                Rows = tcv.SelectMany(itm => this.entities.Explorer_GetDataFromTableColumnValue(tcv.Key, itm.ColumnName, itm.ColumnValue)
+                        .GroupBy(x => x.EntityId)
+                        .Select(x => new TableRow()
+                        {
+                            RowNumber = x.Key ?? throw new NotSupportedException(),
+                            Cells = x.Select(y => new TableCell()
+                            {
+                                ColumnName = y.ColumnName,
+                                Content = y.ColumnValue,
+                            })
+                                     .Concat(cols.Where(col => x.All(y => y.ColumnName != col.ColumnName))
+                                                 .Select(y => new TableCell()
+                                                 {
+                                                     ColumnName = y.ColumnName,
+                                                     Content = null,
+                                                 }))
+                                     .OrderBy(y => y.ColumnName)
+                                     .ToList(),
+                        }))
+                    .ToList()
+            };
         }
 
         protected ActionResult Json<T>(T data, Formatting formatting = Formatting.None)
@@ -71,13 +84,14 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
         {
             return this.entities.Explorer_GetTableColumns(tableName)
                        .Select(x => new TableColumn
-                        {
-                            ColumnName = x.ColumnName,
-                            ColumnType = x.ColumnType,
-                            IsParent = x.IsParent == true,
-                            IsChild = x.IsChild == true,
-                            OrdinalPosition = x.OrdinalPosition,
-                        })
+                       {
+                           ColumnName = x.ColumnName,
+                           ColumnType = x.ColumnType,
+                           IsParent = x.IsParent == true,
+                           IsChild = x.IsChild == true,
+                           OrdinalPosition = x.OrdinalPosition,
+                       })
+                       .OrderBy(x => x.ColumnName)
                        .ToList();
         }
     }
