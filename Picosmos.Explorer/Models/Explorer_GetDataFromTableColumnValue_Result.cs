@@ -13,7 +13,8 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
     
     public partial class Explorer_GetDataFromTableColumnValue_Result
     {
-        public Nullable<int> RowNumber { get; set; }
+        public Nullable<int> EntityId { get; set; }
         public string ColumnName { get; set; }
+        public string ColumnValue { get; set; }
     }
 }

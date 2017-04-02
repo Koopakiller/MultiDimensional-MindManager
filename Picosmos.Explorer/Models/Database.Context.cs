@@ -71,7 +71,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Explorer_GetLinkedCells_Result>("Explorer_GetLinkedCells", tableNameParameter, columnNameParameter, idParameter);
         }
     
-        public virtual ObjectResult<Explorer_GetDataFromTableColumnValue_Result> Explorer_GetDataFromTableColumnValue(string tableName, string columnName, string columnValue)
+        public virtual ObjectResult<Explorer_GetDataFromTableColumnValue_Result> Explorer_GetDataFromTableColumnValue(string tableName, string columnName, Nullable<int> columnValue)
         {
             var tableNameParameter = tableName != null ?
                 new ObjectParameter("tableName", tableName) :
@@ -81,9 +81,9 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
                 new ObjectParameter("columnName", columnName) :
                 new ObjectParameter("columnName", typeof(string));
     
-            var columnValueParameter = columnValue != null ?
+            var columnValueParameter = columnValue.HasValue ?
                 new ObjectParameter("columnValue", columnValue) :
-                new ObjectParameter("columnValue", typeof(string));
+                new ObjectParameter("columnValue", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Explorer_GetDataFromTableColumnValue_Result>("Explorer_GetDataFromTableColumnValue", tableNameParameter, columnNameParameter, columnValueParameter);
         }

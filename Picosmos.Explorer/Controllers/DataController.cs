@@ -26,6 +26,16 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
             }
         }
 
+        public ActionResult GetDataFromTableColumnValue(string table, string column, int value)
+        {
+            using (var entities = new Entities())
+            {
+                entities.Explorer_GetDataFromTableColumnValue
+            }
+
+            throw new NotImplementedException();
+        }
+
         protected ActionResult Json<T>(T data, Formatting formatting = Formatting.None)
         {
             var boxed = new { Data = data };
