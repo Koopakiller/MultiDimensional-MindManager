@@ -88,6 +88,9 @@
       <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
     <Build Include="dbo\Tables\ComplexRelations.sql" />
+    <Build Include="dbo\Stored Procedures\Explorer_GetDataFromTableColumnValue.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />

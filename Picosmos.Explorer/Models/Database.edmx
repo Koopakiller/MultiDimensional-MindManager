@@ -255,6 +255,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Explorer_GetDataFromTableColumnValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tableName" Type="nvarchar" Mode="In" />
+          <Parameter Name="columnName" Type="nvarchar" Mode="In" />
+          <Parameter Name="columnValue" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="Explorer_GetLinkedCells" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tableName" Type="nvarchar" Mode="In" />
           <Parameter Name="columnName" Type="nvarchar" Mode="In" />
@@ -459,6 +464,11 @@
             <End Role="Human" EntitySet="Humans" />
             <End Role="HumanRelation" EntitySet="HumanRelations" />
           </AssociationSet>
+          <FunctionImport Name="Explorer_GetDataFromTableColumnValue" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetDataFromTableColumnValue_Result)">
+            <Parameter Name="tableName" Mode="In" Type="String" />
+            <Parameter Name="columnName" Mode="In" Type="String" />
+            <Parameter Name="columnValue" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="Explorer_GetTablesAndColumns_Result">
           <Property Type="String" Name="TableName" Nullable="false" MaxLength="128" />
@@ -658,6 +668,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="Explorer_GetDataFromTableColumnValue_Result">
+          <Property Type="Int32" Name="RowNumber" Nullable="true" />
+          <Property Type="String" Name="ColumnName" Nullable="true" MaxLength="128" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -810,6 +824,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Explorer_GetDataFromTableColumnValue" FunctionName="Koopakiller.Apps.Picosmos.Model.Database.Store.Explorer_GetDataFromTableColumnValue">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetDataFromTableColumnValue_Result">
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
