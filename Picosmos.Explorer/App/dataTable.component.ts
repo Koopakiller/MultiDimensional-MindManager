@@ -59,7 +59,7 @@ export class DataTableComponent {
                                         cell.isChild = col.isChild;
                                     }
                                 }
-                                if ((cell.isChild || cell.isParent) && cell.content !== "") {
+                                if ((cell.isChild || cell.isParent) && cell.content !== "" && cell.content !== null) {
                                     cell.canExpand = true;
                                 }
                                 cell.wasAlreadyExpanded = false;
