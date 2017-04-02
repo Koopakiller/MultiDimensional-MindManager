@@ -255,6 +255,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Explorer_GetDatabaseRelations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Explorer_GetDataFromTableColumnValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tableName" Type="nvarchar" Mode="In" />
           <Parameter Name="columnName" Type="nvarchar" Mode="In" />
@@ -469,6 +470,7 @@
             <Parameter Name="columnName" Mode="In" Type="String" />
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="Explorer_GetDatabaseRelations" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetDatabaseRelations_Result)" />
           </EntityContainer>
         <ComplexType Name="Explorer_GetTablesAndColumns_Result">
           <Property Type="String" Name="TableName" Nullable="false" MaxLength="128" />
@@ -673,6 +675,12 @@
           <Property Type="String" Name="ColumnName" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="ColumnValue" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="Explorer_GetDatabaseRelations_Result">
+          <Property Type="String" Name="TargetTableName" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="TargetColumnName" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="SourceTableName" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="SourceColumnName" Nullable="true" MaxLength="128" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -831,6 +839,16 @@
                 <ScalarProperty Name="TableName" ColumnName="TableName" />
                 <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
                 <ScalarProperty Name="ColumnValue" ColumnName="ColumnValue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Explorer_GetDatabaseRelations" FunctionName="Koopakiller.Apps.Picosmos.Model.Database.Store.Explorer_GetDatabaseRelations">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetDatabaseRelations_Result">
+                <ScalarProperty Name="TargetTableName" ColumnName="TargetTableName" />
+                <ScalarProperty Name="TargetColumnName" ColumnName="TargetColumnName" />
+                <ScalarProperty Name="SourceTableName" ColumnName="SourceTableName" />
+                <ScalarProperty Name="SourceColumnName" ColumnName="SourceColumnName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

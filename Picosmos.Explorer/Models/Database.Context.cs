@@ -87,5 +87,10 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Explorer_GetReferencedTableColumnValues_sql_Result>("Explorer_GetReferencedTableColumnValues_sql", tableNameParameter, columnNameParameter, idParameter);
         }
+    
+        public virtual ObjectResult<Explorer_GetDatabaseRelations_Result> Explorer_GetDatabaseRelations()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Explorer_GetDatabaseRelations_Result>("Explorer_GetDatabaseRelations");
+        }
     }
 }
