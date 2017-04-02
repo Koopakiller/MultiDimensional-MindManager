@@ -158,6 +158,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Database.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Explorer_CircularReferences.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Explorer_GetDatabaseRelations_Result.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>

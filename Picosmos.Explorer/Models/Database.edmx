@@ -29,6 +29,16 @@
           <Property Name="CurrencyId" Type="int" Nullable="false" />
           <Property Name="Identifier" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
+        <EntityType Name="Explorer_CircularReferences">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChainId" Type="int" Nullable="false" />
+          <Property Name="ChainPosition" Type="int" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ColumnName" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
         <EntityType Name="HumanGroupEntries">
           <Key>
             <PropertyRef Name="GroupId" />
@@ -274,6 +284,7 @@
           <EntitySet Name="ComplexRelations" EntityType="Self.ComplexRelations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CurrencyIdentifier" EntityType="Self.CurrencyIdentifier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Explorer_CircularReferences" EntityType="Self.Explorer_CircularReferences" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HumanGroupEntries" EntityType="Self.HumanGroupEntries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HumanGroups" EntityType="Self.HumanGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HumanRelationKinds" EntityType="Self.HumanRelationKinds" Schema="dbo" store:Type="Tables" />
@@ -471,6 +482,7 @@
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Explorer_GetDatabaseRelations" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetDatabaseRelations_Result)" />
+          <EntitySet Name="Explorer_CircularReferences" EntityType="Koopakiller.Apps.Picosmos.Model.Database.Explorer_CircularReferences" />
           </EntityContainer>
         <ComplexType Name="Explorer_GetTablesAndColumns_Result">
           <Property Type="String" Name="TableName" Nullable="false" MaxLength="128" />
@@ -681,6 +693,16 @@
           <Property Type="String" Name="SourceTableName" Nullable="false" MaxLength="128" />
           <Property Type="String" Name="SourceColumnName" Nullable="true" MaxLength="128" />
         </ComplexType>
+        <EntityType Name="Explorer_CircularReferences">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChainId" Type="Int32" Nullable="false" />
+          <Property Name="ChainPosition" Type="Int32" Nullable="false" />
+          <Property Name="TableName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ColumnName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -852,6 +874,17 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Explorer_CircularReferences">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Explorer_CircularReferences">
+              <MappingFragment StoreEntitySet="Explorer_CircularReferences">
+                <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="ChainPosition" ColumnName="ChainPosition" />
+                <ScalarProperty Name="ChainId" ColumnName="ChainId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
