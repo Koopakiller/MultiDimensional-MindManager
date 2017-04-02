@@ -48,12 +48,6 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
                                 ColumnName = y.ColumnName,
                                 Content = y.ColumnValue,
                             })
-                                     .Concat(cols.Where(col => x.All(y => y.ColumnName != col.ColumnName))
-                                                 .Select(y => new TableCell()
-                                                 {
-                                                     ColumnName = y.ColumnName,
-                                                     Content = null,
-                                                 }))
                                      .OrderBy(y => y.ColumnName)
                                      .ToList(),
                         }))
