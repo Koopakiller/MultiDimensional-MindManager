@@ -10,7 +10,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
 
     public class TableResultModel
     {
-        public string Name { get; set; }
+        public String Name { get; set; }
         public List<TableColumn> Columns { get; set; }
         public List<TableRow> Rows { get; set; }
     }
