@@ -18,6 +18,7 @@
                         class="{{col.isParent?'parent':''}} {{col.isChild?'child':''}}">
                         {{col.columnName}} ({{col.columnType}})
                     </th>
+                    <th *ngIf="table.circularReferences.length > 0" class="cr">Circular References</th>
                 </tr>
                 <tbody *ngFor="let row of table.rows">
                     <tr>
@@ -28,9 +29,13 @@
                                class="button"
                                (click)="expand(table, row, cell)">Expand</a>
                         </td>
+                        <td *ngIf="table.circularReferences.length > 0" class="cr">
+                            <a *ngFor="let cr of table.circularReferences;let i=index" class="button" (click)="expandCircularReference(table, row, cr)">{{(i+1)}}</a>
+                        </td> 
                     </tr>
                     <tr *ngIf="row.expandedDatasets.length > 0">
-                        <td colSpan="{{table.columns.length}}" class="expand">
+                        <td colSpan="{{table.columns.length + (table.circularReferences.length > 0 ? 1 : 0)}}"
+                            class="expand">
                             <div *ngFor="let dataset of row.expandedDatasets">
                                 <data-table [dataset]="dataset">Loading Table...</data-table>
                             </div>

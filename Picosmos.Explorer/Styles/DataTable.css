@@ -41,6 +41,9 @@ data-table .tables .table table th.child {
 data-table .tables .table table th.parent {
   background-color: #ffa743;
 }
+data-table .tables .table table th.cr {
+  background-color: #71fa2a;
+}
 data-table .tables .table table td {
   background-color: #fff876;
 }
@@ -49,6 +52,9 @@ data-table .tables .table table td.child {
 }
 data-table .tables .table table td.parent {
   background-color: #ffbf76;
+}
+data-table .tables .table table td.cr {
+  background-color: #92fb5c;
 }
 data-table .tables .table table td.expand {
   background-color: #d5d5d5;
@@ -62,7 +68,7 @@ data-table .cr-container ul.cr-list {
 }
 data-table .cr-number {
   font-size: 9pt;
-  background: #76ff7a;
+  background: #92fb5c;
   border-radius: 10px;
   display: inline-block;
   min-width: 10pt;
@@ -79,5 +85,5 @@ common-legend .other-column {
   background-color: #fff876;
 }
 common-legend .cr {
-  background-color: #76ff7a;
+  background-color: #92fb5c;
 }

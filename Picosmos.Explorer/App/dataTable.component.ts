@@ -104,6 +104,10 @@ export class DataTableComponent {
 
         cell.wasAlreadyExpanded = true;
     }
+
+    public expandCircularReference(table: TableResultModel, row: TableRow, cr: CircularReferenceModel) {
+        alert("Not implemented so far.");
+    }
 }
 
 

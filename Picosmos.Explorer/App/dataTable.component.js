@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
@@ -103,6 +102,9 @@ var DataTableComponent = (function () {
             row.expandedDatasets.unshift(item);
         }
         cell.wasAlreadyExpanded = true;
+    };
+    DataTableComponent.prototype.expandCircularReference = function (table, row, cr) {
+        alert("Not implemented so far.");
     };
     return DataTableComponent;
 }());
