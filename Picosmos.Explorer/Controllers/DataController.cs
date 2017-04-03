@@ -68,8 +68,22 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
                                      .OrderBy(y => y.ColumnName)
                                      .ToList(),
                         }))
-                    .ToList()
+                    .ToList(),
+                CircularReferences = this.GetCircularReferences(tcv.Key).ToList(),
             };
+        }
+
+        private IEnumerable<CircularReferenceModel> GetCircularReferences(String tableName)
+        {
+            return this.entities.Explorer_CircularReferences.GroupBy(x => x.ChainId)
+                .Where(x => x.Any(y => y.ChainPosition == 1 && y.SourceTableName == tableName))
+                .ToList() //fetch data from db
+                .Select(x => new CircularReferenceModel()
+                {
+                    ChainId = x.Key,
+                    Description = String.Join(" -> ", x.OrderBy(y => y.ChainPosition)
+                                                       .Select(y => $"{y.SourceTableName}.{y.SourceColumnName} -> {y.TargetTableName}.{y.TargetColumnName}")),
+                });
         }
 
         protected ActionResult Json<T>(T data, Formatting formatting = Formatting.None)

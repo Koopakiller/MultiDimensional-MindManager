@@ -13,6 +13,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
         public String Name { get; set; }
         public List<TableColumn> Columns { get; set; }
         public List<TableRow> Rows { get; set; }
+        public List<CircularReferenceModel> CircularReferences { get; set; }
     }
 
     public class TableColumn
@@ -34,5 +35,11 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
     {
         public String ColumnName { get; set; }
         public String Content { get; set; }
+    }
+
+    public class CircularReferenceModel
+    {
+        public Int32 ChainId { get; set; }
+        public String Description { get; set; }
     }
 }
