@@ -15,6 +15,9 @@ body {
   padding: 25px;
   background-color: #d5d5d5;
 }
+a {
+  cursor: pointer;
+}
 .button {
   background-color: white;
   border: none;
