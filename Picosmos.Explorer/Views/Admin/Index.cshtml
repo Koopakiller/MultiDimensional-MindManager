@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model String
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,6 +20,10 @@
     </script>
 </head>
 <body>
+    @if (!String.IsNullOrEmpty(Model))
+    {
+        <div>Result: @Model</div>
+    }
     <a href="/Admin/Update_Explorer_CircularReferences">Update Explorer_CircularReferences table</a>
 </body>
 </html>

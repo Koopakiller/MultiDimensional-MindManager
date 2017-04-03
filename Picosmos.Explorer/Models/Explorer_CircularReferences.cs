@@ -17,7 +17,9 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
         public int Id { get; set; }
         public int ChainId { get; set; }
         public int ChainPosition { get; set; }
-        public string TableName { get; set; }
-        public string ColumnName { get; set; }
+        public string SourceTableName { get; set; }
+        public string SourceColumnName { get; set; }
+        public string TargetTableName { get; set; }
+        public string TargetColumnName { get; set; }
     }
 }

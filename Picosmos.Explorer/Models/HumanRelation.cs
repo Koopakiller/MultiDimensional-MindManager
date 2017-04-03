@@ -15,7 +15,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
     public partial class HumanRelation
     {
         public int Id { get; set; }
-        public int RelationKind { get; set; }
+        public int RelationKindId { get; set; }
         public int HumanId { get; set; }
         public int RelatedHumanId { get; set; }
     

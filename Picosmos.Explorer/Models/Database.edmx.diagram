@@ -24,11 +24,11 @@
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_ResumeEntries_ResumeEntryKinds" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_ResumeEntries_ResumeEntries_Parent" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.HumanGroupEntries" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Explorer_CircularReferences" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation" Width="1.5" PointX="19.125" PointY="4.875" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_HumanRelationKinds" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans_Related" />
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Explorer_CircularReferences" Width="1.5" PointX="3.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

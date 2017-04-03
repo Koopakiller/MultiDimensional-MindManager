@@ -38,8 +38,8 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
         public virtual DbSet<Person> Persons { get; set; }
         public virtual DbSet<ResumeKind> ResumeKinds { get; set; }
         public virtual DbSet<Resume> Resumes { get; set; }
-        public virtual DbSet<HumanRelation> HumanRelations { get; set; }
         public virtual DbSet<Explorer_CircularReferences> Explorer_CircularReferences { get; set; }
+        public virtual DbSet<HumanRelation> HumanRelations { get; set; }
     
         public virtual ObjectResult<Explorer_GetTablesAndColumns_Result> Explorer_GetTablesAndColumns()
         {

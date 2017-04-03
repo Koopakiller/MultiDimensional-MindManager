@@ -161,9 +161,11 @@
     <Compile Include="Models\Explorer_CircularReferences.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Explorer_CircularReferences_Extension.cs" />
     <Compile Include="Models\Explorer_GetDatabaseRelations_Result.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Explorer_GetDatabaseRelations_Result_Extensions.cs" />
     <Compile Include="Models\Explorer_GetDataFromTableColumnValue_Result.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>

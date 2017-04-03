@@ -36,8 +36,10 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ChainId" Type="int" Nullable="false" />
           <Property Name="ChainPosition" Type="int" Nullable="false" />
-          <Property Name="TableName" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ColumnName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SourceTableName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SourceColumnName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="TargetTableName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="TargetColumnName" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="HumanGroupEntries">
           <Key>
@@ -67,7 +69,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RelationKind" Type="int" Nullable="false" />
+          <Property Name="RelationKindId" Type="int" Nullable="false" />
           <Property Name="HumanId" Type="int" Nullable="false" />
           <Property Name="RelatedHumanId" Type="int" Nullable="false" />
         </EntityType>
@@ -165,7 +167,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="HumanRelations">
-              <PropertyRef Name="RelationKind" />
+              <PropertyRef Name="RelationKindId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -380,7 +382,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="HumanRelations" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_HumanRelationKinds" FromRole="HumanRelationKind" ToRole="HumanRelation" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Place">
           <Key>
             <PropertyRef Name="Id" />
@@ -458,6 +460,18 @@
             <End Role="HumanGroup" EntitySet="HumanGroups" />
             <End Role="Human" EntitySet="Humans" />
           </AssociationSet>
+          <FunctionImport Name="Explorer_GetDataFromTableColumnValue" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetDataFromTableColumnValue_Result)">
+            <Parameter Name="tableName" Mode="In" Type="String" />
+            <Parameter Name="columnName" Mode="In" Type="String" />
+            <Parameter Name="columnValue" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Explorer_GetReferencedTableColumnValues_sql" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetReferencedTableColumnValues_sql_Result)">
+            <Parameter Name="tableName" Mode="In" Type="String" />
+            <Parameter Name="columnName" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Explorer_GetDatabaseRelations" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetDatabaseRelations_Result)" />
+          <EntitySet Name="Explorer_CircularReferences" EntityType="Koopakiller.Apps.Picosmos.Model.Database.Explorer_CircularReferences" />
           <EntitySet Name="HumanRelations" EntityType="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation" />
           <AssociationSet Name="FK_HumanRelations_HumanRelationKinds" Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_HumanRelationKinds">
             <End Role="HumanRelationKind" EntitySet="HumanRelationKinds" />
@@ -471,18 +485,6 @@
             <End Role="Human" EntitySet="Humans" />
             <End Role="HumanRelation" EntitySet="HumanRelations" />
           </AssociationSet>
-          <FunctionImport Name="Explorer_GetDataFromTableColumnValue" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetDataFromTableColumnValue_Result)">
-            <Parameter Name="tableName" Mode="In" Type="String" />
-            <Parameter Name="columnName" Mode="In" Type="String" />
-            <Parameter Name="columnValue" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Explorer_GetReferencedTableColumnValues_sql" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetReferencedTableColumnValues_sql_Result)">
-            <Parameter Name="tableName" Mode="In" Type="String" />
-            <Parameter Name="columnName" Mode="In" Type="String" />
-            <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Explorer_GetDatabaseRelations" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetDatabaseRelations_Result)" />
-          <EntitySet Name="Explorer_CircularReferences" EntityType="Koopakiller.Apps.Picosmos.Model.Database.Explorer_CircularReferences" />
           </EntityContainer>
         <ComplexType Name="Explorer_GetTablesAndColumns_Result">
           <Property Type="String" Name="TableName" Nullable="false" MaxLength="128" />
@@ -520,7 +522,7 @@
           <NavigationProperty Name="HumanGroups" Relationship="Koopakiller.Apps.Picosmos.Model.Database.HumanGroupEntries" FromRole="Human" ToRole="HumanGroup" />
           <NavigationProperty Name="HumanRelations" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans" FromRole="Human" ToRole="HumanRelation" />
           <NavigationProperty Name="HumanRelations1" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans_Related" FromRole="Human" ToRole="HumanRelation" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Person">
           <Key>
             <PropertyRef Name="Id" />
@@ -629,12 +631,40 @@
           <End Type="Koopakiller.Apps.Picosmos.Model.Database.HumanGroup" Role="HumanGroup" Multiplicity="*" />
           <End Type="Koopakiller.Apps.Picosmos.Model.Database.Human" Role="Human" Multiplicity="*" />
         </Association>
+        <ComplexType Name="Explorer_GetDataFromTableColumnValue_Result">
+          <Property Type="Int32" Name="EntityId" Nullable="true" />
+          <Property Type="String" Name="ColumnName" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="ColumnValue" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Explorer_GetReferencedTableColumnValues_sql_Result">
+          <Property Type="String" Name="TableName" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="ColumnName" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ColumnValue" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Explorer_GetDatabaseRelations_Result">
+          <Property Type="String" Name="TargetTableName" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="TargetColumnName" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="SourceTableName" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="SourceColumnName" Nullable="true" MaxLength="128" />
+        </ComplexType>
+        <EntityType Name="Explorer_CircularReferences">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChainId" Type="Int32" Nullable="false" />
+          <Property Name="ChainPosition" Type="Int32" Nullable="false" />
+          <Property Name="SourceTableName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SourceColumnName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TargetTableName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TargetColumnName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="HumanRelation">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RelationKind" Type="Int32" Nullable="false" />
+          <Property Name="RelationKindId" Type="Int32" Nullable="false" />
           <Property Name="HumanId" Type="Int32" Nullable="false" />
           <Property Name="RelatedHumanId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HumanRelationKind" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_HumanRelationKinds" FromRole="HumanRelation" ToRole="HumanRelationKind" />
@@ -649,7 +679,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="HumanRelation">
-              <PropertyRef Name="RelationKind" />
+              <PropertyRef Name="RelationKindId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -677,32 +707,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="Explorer_GetDataFromTableColumnValue_Result">
-          <Property Type="Int32" Name="EntityId" Nullable="true" />
-          <Property Type="String" Name="ColumnName" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="ColumnValue" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="Explorer_GetReferencedTableColumnValues_sql_Result">
-          <Property Type="String" Name="TableName" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="ColumnName" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="ColumnValue" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="Explorer_GetDatabaseRelations_Result">
-          <Property Type="String" Name="TargetTableName" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="TargetColumnName" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="SourceTableName" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="SourceColumnName" Nullable="true" MaxLength="128" />
-        </ComplexType>
-        <EntityType Name="Explorer_CircularReferences">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChainId" Type="Int32" Nullable="false" />
-          <Property Name="ChainPosition" Type="Int32" Nullable="false" />
-          <Property Name="TableName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ColumnName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -836,16 +840,6 @@
               <ScalarProperty Name="Id" ColumnName="GroupId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="HumanRelations">
-            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation">
-              <MappingFragment StoreEntitySet="HumanRelations">
-                <ScalarProperty Name="RelatedHumanId" ColumnName="RelatedHumanId" />
-                <ScalarProperty Name="HumanId" ColumnName="HumanId" />
-                <ScalarProperty Name="RelationKind" ColumnName="RelationKind" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="Explorer_GetDataFromTableColumnValue" FunctionName="Koopakiller.Apps.Picosmos.Model.Database.Store.Explorer_GetDataFromTableColumnValue">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetDataFromTableColumnValue_Result">
@@ -877,10 +871,22 @@
           <EntitySetMapping Name="Explorer_CircularReferences">
             <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Explorer_CircularReferences">
               <MappingFragment StoreEntitySet="Explorer_CircularReferences">
-                <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="TargetColumnName" ColumnName="TargetColumnName" />
+                <ScalarProperty Name="TargetTableName" ColumnName="TargetTableName" />
+                <ScalarProperty Name="SourceColumnName" ColumnName="SourceColumnName" />
+                <ScalarProperty Name="SourceTableName" ColumnName="SourceTableName" />
                 <ScalarProperty Name="ChainPosition" ColumnName="ChainPosition" />
                 <ScalarProperty Name="ChainId" ColumnName="ChainId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HumanRelations">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation">
+              <MappingFragment StoreEntitySet="HumanRelations">
+                <ScalarProperty Name="RelatedHumanId" ColumnName="RelatedHumanId" />
+                <ScalarProperty Name="HumanId" ColumnName="HumanId" />
+                <ScalarProperty Name="RelationKindId" ColumnName="RelationKindId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
