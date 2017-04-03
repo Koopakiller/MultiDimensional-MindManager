@@ -44,18 +44,17 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
                     throw new ArgumentOutOfRangeException(nameof(kind), kind, null);
             }
 
-            var result = abc.GroupBy(x => x.TableName).Select(this.GetTableResultModel).ToList();
+            var result = abc.GroupBy(x => x.TableName).Select(x => this.GetTableResultModel(x.Key, x)).ToList();
             return this.Json(result);
         }
 
-        private TableResultModel GetTableResultModel(IGrouping<String, Explorer_GetReferencedTableColumnValues_sql_Result> tcv)
+        private TableResultModel GetTableResultModel(String tableName, IEnumerable<Explorer_GetReferencedTableColumnValues_sql_Result> tcv)
         {
-            var cols = this.GetTableColumns(tcv.Key);
             return new TableResultModel
             {
-                Name = tcv.Key,
-                Columns = cols,
-                Rows = tcv.SelectMany(itm => this.entities.Explorer_GetDataFromTableColumnValue(tcv.Key, itm.ColumnName, itm.ColumnValue)
+                Name = tableName,
+                Columns = this.GetTableColumns(tableName),
+                Rows = tcv.SelectMany(itm => this.entities.Explorer_GetDataFromTableColumnValue(tableName, itm.ColumnName, itm.ColumnValue)
                         .GroupBy(x => x.EntityId)
                         .Select(x => new TableRow()
                         {
@@ -69,7 +68,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
                                      .ToList(),
                         }))
                     .ToList(),
-                CircularReferences = this.GetCircularReferences(tcv.Key).ToList(),
+                CircularReferences = this.GetCircularReferences(tableName).ToList(),
             };
         }
 
