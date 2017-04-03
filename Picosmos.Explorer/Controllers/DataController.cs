@@ -21,12 +21,6 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
             return this.Json(data);
         }
 
-        public enum DataTableKinds
-        {
-            Self,
-            Referenced,
-        }
-
         public ActionResult GetDataFromTableColumnValue(String tableName, String columnName, Int32 columnValue, DataTableKinds kind)
         {
             IEnumerable<Explorer_GetReferencedTableColumnValues_sql_Result> abc;
