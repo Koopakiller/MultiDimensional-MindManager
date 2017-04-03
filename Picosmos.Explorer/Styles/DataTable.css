@@ -13,7 +13,7 @@ data-table {
   background-color: #d5d5d5;
 }
 data-table .identifier-message {
-  font-size: 14pt;
+  font-size: 16pt;
 }
 data-table .tables .table {
   padding: 10px;
@@ -21,7 +21,7 @@ data-table .tables .table {
   animation: 1.5s appear-neutral;
 }
 data-table .tables .table .header {
-  font-size: 14pt;
+  font-size: 16pt;
 }
 data-table .tables .table table {
   border-collapse: collapse;
@@ -61,7 +61,7 @@ data-table .cr-container ul.cr-list {
   margin: 0;
 }
 data-table .cr-number {
-  font-size: 8pt;
+  font-size: 9pt;
   background: #76ff7a;
   border-radius: 10px;
   display: inline-block;
