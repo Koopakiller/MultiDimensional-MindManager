@@ -1,4 +1,15 @@
-﻿common-legend {
+﻿@keyframes appear-neutral {
+  0% {
+    background-color: #f2f2f2;
+  }
+  80% {
+    background-color: #feee79;
+  }
+  100% {
+    background-color: #f2f2f2;
+  }
+}
+common-legend {
   position: fixed;
   top: 25px;
   right: 25px;

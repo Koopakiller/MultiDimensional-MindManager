@@ -6,6 +6,12 @@
     <div *ngIf="tables" class="tables">
         <div *ngFor="let table of tables" class="table">
             <span class="header">{{table.name}}</span>
+            <div *ngIf="table.circularReferences.length > 0" class="cr-container">
+                This table has circular references:
+                <ul class="cr-list">
+                    <li *ngFor="let cr of table.circularReferences;let i=index"><span class="cr-number">{{(i+1)}}</span>&nbsp;{{cr.description}}</li>
+                </ul>
+            </div> 
             <table>
                 <tr>
                     <th *ngFor="let col of table.columns"

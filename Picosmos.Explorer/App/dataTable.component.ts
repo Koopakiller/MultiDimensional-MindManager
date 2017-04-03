@@ -111,6 +111,12 @@ class TableResultModel {
     public name: string;
     public columns: TableColumn[];
     public rows: TableRow[];
+    public circularReferences: CircularReferenceModel[];
+}
+
+class CircularReferenceModel {
+    public chainId: number;
+    public description: string;
 }
 
 class TableColumn {

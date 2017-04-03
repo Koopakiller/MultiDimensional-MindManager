@@ -9,6 +9,9 @@
 @parent-color-header: darken(@color-accent-2, 10%);
 @parent-color: @color-accent-2;
 
+@cr-color-header: darken(@color-accent-2, 10%);
+@cr-color: @color-accent-4;
+
 
 data-table {
     background-color: @color-neutral-2;
@@ -69,6 +72,24 @@ data-table {
                 }
             }
         }
+    }
+
+    .cr-container {
+        ul.cr-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    .cr-number {
+        font-size: small;
+        background: @cr-color;
+        border-radius: 10px;
+        display: inline-block;
+        min-width: @font-size;
+        height: @font-size;
+        text-align: center;
     }
 }
 

@@ -128,6 +128,11 @@ var TableResultModel = (function () {
     }
     return TableResultModel;
 }());
+var CircularReferenceModel = (function () {
+    function CircularReferenceModel() {
+    }
+    return CircularReferenceModel;
+}());
 var TableColumn = (function () {
     function TableColumn() {
     }

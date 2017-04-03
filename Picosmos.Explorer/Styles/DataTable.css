@@ -55,6 +55,20 @@ data-table .tables .table table td.expand {
   text-align: left;
   padding: 10px;
 }
+data-table .cr-container ul.cr-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+data-table .cr-number {
+  font-size: small;
+  background: #76ff7a;
+  border-radius: 10px;
+  display: inline-block;
+  min-width: 10pt;
+  height: 10pt;
+  text-align: center;
+}
 common-legend .child-column {
   background-color: #76a5ff;
 }
