@@ -21,13 +21,36 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
             return this.Json(data);
         }
 
-        public ActionResult GetDataFromTableColumnValue(String tableName, String columnName, Int32 columnValue)
+        public enum DataTableKinds
         {
-            var result = this.entities.Explorer_GetReferencedTableColumnValues_sql(tableName, columnName, columnValue)
-                .GroupBy(x => x.TableName)
-                .Select(this.GetTableResultModel)
-                .ToList();
+            Self,
+            Referenced,
+        }
 
+        public ActionResult GetDataFromTableColumnValue(String tableName, String columnName, Int32 columnValue, DataTableKinds kind)
+        {
+            IEnumerable<Explorer_GetReferencedTableColumnValues_sql_Result> abc;
+            switch (kind)
+            {
+                case DataTableKinds.Self:
+                    abc = new[]
+                    {
+                        new Explorer_GetReferencedTableColumnValues_sql_Result()
+                        {
+                            TableName = tableName,
+                            ColumnName = columnName,
+                            ColumnValue = columnValue,
+                        },
+                    };
+                    break;
+                case DataTableKinds.Referenced:
+                    abc = this.entities.Explorer_GetReferencedTableColumnValues_sql(tableName, columnName, columnValue);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(kind), kind, null);
+            }
+
+            var result = abc.GroupBy(x => x.TableName).Select(this.GetTableResultModel).ToList();
             return this.Json(result);
         }
 

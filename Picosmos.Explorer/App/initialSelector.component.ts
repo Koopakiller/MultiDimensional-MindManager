@@ -13,17 +13,18 @@ import "/App/DatabaseObjects.js";
     templateUrl: "/Templates/InitialSelector"
 })
 export class InitialSelectorComponent {
-    @Output() onLoadData = new EventEmitter<DatasetIdentifier>();
+    @Output()
+    public onLoadData = new EventEmitter<DatasetIdentifier>();
 
     private heroesUrl = "/Data/GetTablesAndColumns";  // URL to web API
 
     constructor(private http: Http) { }
 
-    tables: InitialSelectorTable[];
-    selectedTableAndColumn: InitialSelectorColumn;
-    searchValue: string;
+    public tables: InitialSelectorTable[];
+    public selectedTableAndColumn: InitialSelectorColumn;
+    public searchValue: string;
 
-    ngOnInit() {
+    public ngOnInit() {
         this.getTablesAndColumns().subscribe(
             data => {
                 this.selectedTableAndColumn = data[0].columns[0];
@@ -44,7 +45,7 @@ export class InitialSelectorComponent {
         this.onLoadData.emit(obj);
     }
 
-    getTablesAndColumns(): Observable<InitialSelectorTable[]> {
+    public getTablesAndColumns(): Observable<InitialSelectorTable[]> {
         return this.http.get(this.heroesUrl)
             .map(this.extractData)
             .catch(this.handleError);

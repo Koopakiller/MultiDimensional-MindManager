@@ -1,7 +1,7 @@
 ﻿
 <div class="data-table">
 
-    <span class="identifier-message" *ngIf="dataset">{{dataset.tableName}}.{{dataset.columnName}} = {{dataset.columnValue}} references...</span>
+    <span class="identifier-message" *ngIf="dataset">{{dataset.tableName}}.{{dataset.columnName}} = {{dataset.columnValue}} {{kind===0?'is defined in...':'is referenced in...'}}</span>
 
     <div *ngIf="tables" class="tables">
         <div *ngFor="let table of tables" class="table">

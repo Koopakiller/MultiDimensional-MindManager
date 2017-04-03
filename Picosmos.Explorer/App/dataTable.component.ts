@@ -5,6 +5,10 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
 
+export enum DataTableKinds {
+    self,
+    referenced,
+}
 
 @Component({
     selector: "data-table",
@@ -13,19 +17,22 @@ import "rxjs/add/operator/map";
 export class DataTableComponent {
     private _dataset: DatasetIdentifier;
     @Input()
-    set dataset(value: DatasetIdentifier) {
+    public set dataset(value: DatasetIdentifier) {
         this._dataset = value;
         if (value) {
             this.updateFromServer();
         }
     }
-    get dataset(): DatasetIdentifier {
+    public get dataset(): DatasetIdentifier {
         return this._dataset;
     }
 
-    getData(): Observable<TableResultModel[]> {
+    @Input()
+    public kind: DataTableKinds = DataTableKinds.referenced;
+
+    public getData(): Observable<TableResultModel[]> {
         if (this.dataset) {
-            const url = `/Data/GetDataFromTableColumnValue?tableName=${this.dataset.tableName}&columnName=${this.dataset.columnName}&columnValue=${this.dataset.columnValue}`;
+            const url = `/Data/GetDataFromTableColumnValue?tableName=${this.dataset.tableName}&columnName=${this.dataset.columnName}&columnValue=${this.dataset.columnValue}&kind=${DataTableKinds[this.kind]}`;
             return this.http.get(url)
                 .map(this.extractData)
                 .catch(this.handleError);
@@ -43,7 +50,7 @@ export class DataTableComponent {
 
     constructor(private http: Http) { }
 
-    updateFromServer() {
+    public updateFromServer() {
         const res = this.getData();
         if (res) {
             res.subscribe(
@@ -101,32 +108,32 @@ export class DataTableComponent {
 
 
 class TableResultModel {
-    name: string;
-    columns: TableColumn[];
-    rows: TableRow[];
+    public name: string;
+    public columns: TableColumn[];
+    public rows: TableRow[];
 }
 
 class TableColumn {
-    isChild: boolean;
-    isParent: boolean;
-    columnName: string;
-    columnType: string;
-    ordinalPosition: number;
+    public isChild: boolean;
+    public isParent: boolean;
+    public columnName: string;
+    public columnType: string;
+    public ordinalPosition: number;
 }
 
 class TableRow {
-    rowNumber: number;
-    cells: TableCell[];
+    public rowNumber: number;
+    public cells: TableCell[];
 
-    expandedDatasets: DatasetIdentifier[];
+    public expandedDatasets: DatasetIdentifier[];
 }
 
 class TableCell {
-    columnName: string;
-    content: string;
-    isChild: boolean;
-    isParent: boolean;
+    public columnName: string;
+    public content: string;
+    public isChild: boolean;
+    public isParent: boolean;
 
-    canExpand: boolean;
-    wasAlreadyExpanded: boolean;
+    public canExpand: boolean;
+    public wasAlreadyExpanded: boolean;
 }

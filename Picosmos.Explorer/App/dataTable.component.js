@@ -8,15 +8,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/map");
+var DataTableKinds;
+(function (DataTableKinds) {
+    DataTableKinds[DataTableKinds["self"] = 0] = "self";
+    DataTableKinds[DataTableKinds["referenced"] = 1] = "referenced";
+})(DataTableKinds = exports.DataTableKinds || (exports.DataTableKinds = {}));
 var DataTableComponent = (function () {
     function DataTableComponent(http) {
         this.http = http;
+        this.kind = DataTableKinds.referenced;
     }
     Object.defineProperty(DataTableComponent.prototype, "dataset", {
         get: function () {
@@ -33,7 +38,7 @@ var DataTableComponent = (function () {
     });
     DataTableComponent.prototype.getData = function () {
         if (this.dataset) {
-            var url = "/Data/GetDataFromTableColumnValue?tableName=" + this.dataset.tableName + "&columnName=" + this.dataset.columnName + "&columnValue=" + this.dataset.columnValue;
+            var url = "/Data/GetDataFromTableColumnValue?tableName=" + this.dataset.tableName + "&columnName=" + this.dataset.columnName + "&columnValue=" + this.dataset.columnValue + "&kind=" + DataTableKinds[this.kind];
             return this.http.get(url)
                 .map(this.extractData)
                 .catch(this.handleError);
@@ -105,6 +110,10 @@ __decorate([
     __metadata("design:type", Object),
     __metadata("design:paramtypes", [Object])
 ], DataTableComponent.prototype, "dataset", null);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], DataTableComponent.prototype, "kind", void 0);
 DataTableComponent = __decorate([
     core_1.Component({
         selector: "data-table",
