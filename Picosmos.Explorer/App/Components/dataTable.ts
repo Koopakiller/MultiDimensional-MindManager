@@ -29,16 +29,7 @@ export class DataTableComponent {
 
     @Input()
     public kind: DataTableKinds = DataTableKinds.referenced;
-
-    public getData(): Observable<TableResultModel[]> {
-        if (this.dataset) {
-            const url = `/Data/GetDataFromTableColumnValue?tableName=${this.dataset.tableName}&columnName=${this.dataset.columnName}&columnValue=${this.dataset.columnValue}&kind=${DataTableKinds[this.kind]}`;
-            return this.http.get(url)
-                .map(this.extractData)
-                .catch(this.handleError);
-        }
-    }
-
+    
     private extractData(res: Response) {
         let body = res.json();
         return body.data || {};
@@ -51,7 +42,11 @@ export class DataTableComponent {
     constructor(private http: Http) { }
 
     public updateFromServer() {
-        const res = this.getData();
+        const url = `/Data/GetDataFromTableColumnValue?tableName=${this.dataset.tableName}&columnName=${this.dataset.columnName}&columnValue=${this.dataset.columnValue}&kind=${DataTableKinds[this.kind]}`;
+        const res = this.http.get(url)
+            .map(this.extractData)
+            .catch(this.handleError);
+
         if (res) {
             res.subscribe(
                 data => {
@@ -127,45 +122,4 @@ export class DataTableComponent {
                 });
         }
     }
-}
-
-
-class TableResultModel {
-    public name: string;
-    public columns: TableColumn[];
-    public rows: TableRow[];
-    public circularReferences: CircularReferenceModel[];
-}
-
-class CircularReferenceModel {
-    public chainId: number;
-    public description: string;
-    public firstColumnName: string;
-}
-
-class TableColumn {
-    public isChild: boolean;
-    public isParent: boolean;
-    public columnName: string;
-    public columnType: string;
-    public ordinalPosition: number;
-}
-
-class TableRow {
-    public rowNumber: number;
-    public cells: TableCell[];
-
-    public expandedDatasets: DatasetIdentifier[];
-
-    public expandedCircularReferences: TableResultModel[];
-}
-
-class TableCell {
-    public columnName: string;
-    public content: any;
-    public isChild: boolean;
-    public isParent: boolean;
-
-    public canExpand: boolean;
-    public wasAlreadyExpanded: boolean;
 }

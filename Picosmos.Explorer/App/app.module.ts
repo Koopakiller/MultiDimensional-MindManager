@@ -2,10 +2,10 @@ import { NgModule }                    from "@angular/core";
 import { BrowserModule }               from "@angular/platform-browser";
 import { HttpModule, JsonpModule }     from "@angular/http";
 import { FormsModule }                 from "@angular/forms";
-import { AppComponent }                from "./app.component.js";
-import { InitialSelectorComponent }    from "./initialSelector.component.js";
-import { DataTableComponent }          from "./dataTable.component.js";
-import { CommonLegendComponent }       from "./commonLegend.component.js";
+import { AppComponent }                from "./Components/app.js";
+import { InitialSelectorComponent }    from "./Components/initialSelector.js";
+import { DataTableComponent }          from "./Components/dataTable.js";
+import { CommonLegendComponent }       from "./Components/commonLegend.js";
 
 @NgModule({
     imports: [

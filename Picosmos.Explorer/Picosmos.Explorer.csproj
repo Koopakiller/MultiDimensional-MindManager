@@ -305,11 +305,11 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <TypeScriptCompile Include="App\DatabaseObjects.ts" />
-    <TypeScriptCompile Include="App\commonLegend.component.ts" />
-    <TypeScriptCompile Include="App\dataTable.component.ts" />
-    <TypeScriptCompile Include="App\initialSelector.component.ts" />
-    <TypeScriptCompile Include="App\app.component.ts" />
+    <TypeScriptCompile Include="App\Model\DatabaseObjects.ts" />
+    <TypeScriptCompile Include="App\Components\commonLegend.ts" />
+    <TypeScriptCompile Include="App\Components\dataTable.ts" />
+    <TypeScriptCompile Include="App\Components\initialSelector.ts" />
+    <TypeScriptCompile Include="App\Components\app.ts" />
     <TypeScriptCompile Include="App\app.module.ts" />
     <TypeScriptCompile Include="App\main.ts" />
   </ItemGroup>

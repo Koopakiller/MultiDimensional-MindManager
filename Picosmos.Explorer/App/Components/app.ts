@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 
-import "/App/DatabaseObjects.js";
-import DataTableComponent = require("./dataTable.component.js");
+import "/App/Model/DatabaseObjects.js";
+import DataTableComponent = require("./dataTable.js");
 
 @Component({
     selector: "app",
