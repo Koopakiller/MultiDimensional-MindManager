@@ -1,17 +1,17 @@
-﻿interface InitialSelectorTable {
-    tableName: string;
-    columns: InitialSelectorColumn[];
+﻿class InitialSelectorTable {
+    public tableName: string;
+    public columns: InitialSelectorColumn[];
 }
 
-interface InitialSelectorColumn {
-    tableName: string;
-    columnName: string;
+class InitialSelectorColumn {
+    public tableName: string;
+    public columnName: string;
 }
 
-interface DatasetIdentifier {
-    tableName: string;
-    columnName: string;
-    columnValue: string;
+class DatasetIdentifier {
+    public tableName: string;
+    public columnName: string;
+    public columnValue: string;
 }
 
 

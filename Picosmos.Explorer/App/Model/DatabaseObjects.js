@@ -1,3 +1,18 @@
+var InitialSelectorTable = (function () {
+    function InitialSelectorTable() {
+    }
+    return InitialSelectorTable;
+}());
+var InitialSelectorColumn = (function () {
+    function InitialSelectorColumn() {
+    }
+    return InitialSelectorColumn;
+}());
+var DatasetIdentifier = (function () {
+    function DatasetIdentifier() {
+    }
+    return DatasetIdentifier;
+}());
 var TableResultModel = (function () {
     function TableResultModel() {
     }
