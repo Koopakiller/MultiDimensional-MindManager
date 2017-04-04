@@ -13,11 +13,6 @@ var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/map");
-var DataTableKinds;
-(function (DataTableKinds) {
-    DataTableKinds[DataTableKinds["self"] = 0] = "self";
-    DataTableKinds[DataTableKinds["referenced"] = 1] = "referenced";
-})(DataTableKinds = exports.DataTableKinds || (exports.DataTableKinds = {}));
 var CircularReferenceComponent = (function () {
     function CircularReferenceComponent(http) {
         this.http = http;

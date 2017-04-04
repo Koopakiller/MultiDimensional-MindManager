@@ -5,11 +5,6 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
 
-export enum DataTableKinds {
-    self,
-    referenced,
-}
-
 @Component({
     selector: "circular-reference",
     templateUrl: "/Templates/CircularReference"
