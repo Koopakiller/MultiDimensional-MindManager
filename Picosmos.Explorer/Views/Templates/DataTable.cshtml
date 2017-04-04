@@ -35,13 +35,9 @@
                     </tr>
                     <tr *ngIf="row.expandedCircularReferences.length > 0">
                         <td colSpan="{{table.columns.length + (table.circularReferences.length > 0 ? 1 : 0)}}"
-                            class="expand">
+                            class="expand-cr">
                             <div *ngFor="let cr of row.expandedCircularReferences">
-                                <!--cr is a TableResultModel-->
-                                {{cr.name}}
-                                <div *ngFor="let crRow of cr.rows">
-                                    This is a row
-                                </div>
+                                <circular-reference [data]="cr"></circular-reference>
                             </div>
                         </td>
                     </tr>

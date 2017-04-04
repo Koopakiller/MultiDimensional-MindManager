@@ -6,6 +6,7 @@ import { AppComponent }                from "./Components/app.js";
 import { InitialSelectorComponent }    from "./Components/initialSelector.js";
 import { DataTableComponent }          from "./Components/dataTable.js";
 import { CommonLegendComponent }       from "./Components/commonLegend.js";
+import { CircularReferenceComponent }  from "./Components/circularReference.js";
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import { CommonLegendComponent }       from "./Components/commonLegend.js";
       AppComponent,
       InitialSelectorComponent,
       DataTableComponent,
-      CommonLegendComponent
+      CommonLegendComponent,
+      CircularReferenceComponent
   ],
   bootstrap: [
       AppComponent

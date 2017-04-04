@@ -299,12 +299,14 @@
     <Content Include="Views\Templates\CommonLegend.cshtml" />
     <Content Include="Styles\CommonLegend.less" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Templates\CircularReference.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <TypeScriptCompile Include="App\Components\circularReference.ts" />
     <TypeScriptCompile Include="App\Model\DatabaseObjects.ts" />
     <TypeScriptCompile Include="App\Components\commonLegend.ts" />
     <TypeScriptCompile Include="App\Components\dataTable.ts" />

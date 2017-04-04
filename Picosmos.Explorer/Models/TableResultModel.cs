@@ -29,6 +29,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
     {
         public Int32 RowNumber { get; set; }
         public List<TableCell> Cells { get; set; }
+        public String PossibleHeader { get; set; }
     }
 
     public class TableCell

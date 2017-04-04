@@ -64,13 +64,32 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
             };
             foreach (var chainLink in chain)
             {
-                var vals = lst.Where(x => x.ColumnName == chainLink.SourceColumnName).Select(x => Int32.Parse(x.ColumnValue));
+                var vals = lst.Where(x => x.ColumnName == chainLink.SourceColumnName && x.ColumnValue != null && Int32.TryParse(x.ColumnValue, out _)).Select(x => Int32.Parse(x.ColumnValue));
 
-                lst = vals.SelectMany(y => this.entities.Explorer_GetDataFromTableColumnValue(chainLink.TargetTableName, chainLink.TargetColumnName, y)).ToList();
+                lst = SelectMany(vals.Select(y => this.entities.Explorer_GetDataFromTableColumnValue(chainLink.TargetTableName, chainLink.TargetColumnName, y))).ToList();
             }
             var result = this.GetTableResultModelScaffold(chain.Last().TargetTableName);
             result.Rows = lst.GroupBy(x => x.EntityId).Select(this.GetTableRow).ToList();
             return this.Json(result);
+        }
+
+        private static IEnumerable<Explorer_GetDataFromTableColumnValue_Result> SelectMany(IEnumerable<IEnumerable<Explorer_GetDataFromTableColumnValue_Result>> source)
+        {
+            var eId = 1;
+            foreach (var list in source)
+            {
+                Int32? lastId = null;
+                foreach (var item in list)
+                {
+                    if (item.EntityId != lastId)
+                    {
+                        lastId = item.EntityId;
+                        ++eId;
+                    }
+                    item.EntityId = eId;
+                    yield return item;
+                }
+            }
         }
 
         private TableResultModel GetTableResultModelScaffold(String tableName)
@@ -96,7 +115,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
 
         private TableRow GetTableRow(IGrouping<Int32?, Explorer_GetDataFromTableColumnValue_Result> x)
         {
-            return new TableRow()
+            var tr = new TableRow()
             {
                 RowNumber = x.Key ?? throw new NotSupportedException(),
                 Cells = x.Select(y => new TableCell()
@@ -107,6 +126,23 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
                     .OrderBy(y => y.ColumnName)
                     .ToList(),
             };
+
+            tr.PossibleHeader = this.GetPossibleHeader(tr.Cells);
+
+            return tr;
+        }
+
+        private String GetPossibleHeader(List<TableCell> cells)
+        {
+            foreach (var name in new[] { "Header", "Name", "Title", "Description", "Id" })
+            {
+                var val = cells.FirstOrDefault(x => String.Equals(x.ColumnName, name, StringComparison.CurrentCultureIgnoreCase));
+                if (val != null)
+                {
+                    return val.Content;
+                }
+            }
+            return null;
         }
 
         private IEnumerable<CircularReferenceModel> GetCircularReferences(String tableName)
@@ -119,7 +155,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
                     ChainId = x.Key,
                     Description = String.Join(" -> ", x.OrderBy(y => y.ChainPosition)
                                                        .Select(y => $"{y.SourceTableName}.{y.SourceColumnName} -> {y.TargetTableName}.{y.TargetColumnName}")),
-                    FirstColumnName= x.OrderBy(y => y.ChainPosition).FirstOrDefault()?.SourceColumnName,
+                    FirstColumnName = x.OrderBy(y => y.ChainPosition).FirstOrDefault()?.SourceColumnName,
                 });
         }
 

@@ -61,6 +61,11 @@ data-table .tables .table table td.expand {
   text-align: left;
   padding: 10px;
 }
+data-table .tables .table table td.expand-cr {
+  background-color: #92fb5c;
+  text-align: left;
+  padding: 10px;
+}
 data-table .cr-container ul.cr-list {
   list-style: none;
   padding: 0;

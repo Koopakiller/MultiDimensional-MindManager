@@ -1,0 +1,11 @@
+﻿<div>
+    <span>Chart for circular reference: {{data.chainDescription}}</span>
+</div>
+<div *ngIf="!tableModel">
+    Loading...
+</div>
+<div *ngIf="tableModel">
+    <div *ngFor="let row of tableModel.rows">
+        {{ row.possibleHeader ? row.possibleHeader : "a data entry" }}
+    </div>
+</div>

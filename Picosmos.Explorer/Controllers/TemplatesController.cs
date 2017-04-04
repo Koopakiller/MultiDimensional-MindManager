@@ -11,5 +11,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
         public ActionResult InitialSelector() => this.View();
 
         public ActionResult CommonLegend() => this.View();
+
+        public ActionResult CircularReference() => this.View();
     }
 }

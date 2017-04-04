@@ -23,4 +23,9 @@ var TableCell = (function () {
     }
     return TableCell;
 }());
+var CircularReferenceDataModel = (function () {
+    function CircularReferenceDataModel() {
+    }
+    return CircularReferenceDataModel;
+}());
 //# sourceMappingURL=DatabaseObjects.js.map

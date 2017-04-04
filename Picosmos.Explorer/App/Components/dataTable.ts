@@ -29,7 +29,7 @@ export class DataTableComponent {
 
     @Input()
     public kind: DataTableKinds = DataTableKinds.referenced;
-    
+
     private extractData(res: Response) {
         let body = res.json();
         return body.data || {};
@@ -102,24 +102,16 @@ export class DataTableComponent {
     }
 
     public expandCircularReference(table: TableResultModel, row: TableRow, cr: CircularReferenceModel) {
-        let value: any;
+        let value: any = null;
         for (let cell of row.cells) {
             if (cell.columnName === cr.firstColumnName) {
                 value = cell.content;
             }
         }
-        if (value) {
-            const url = `/Data/GetCircularReferencedData?chainId=${cr.chainId}&columnValue=${value}`;
-            this.http.get(url)
-                .map(this.extractData)
-                .catch(this.handleError)
-                .subscribe(data => {
-                    row.expandedCircularReferences.unshift(data);
-                },
-                error => {
-                    console.error(error);
-                    return error;
-                });
-        }
+        let abc = new CircularReferenceDataModel();
+        abc.chainId = cr.chainId;
+        abc.columnValue = value;
+        abc.chainDescription = cr.description;
+        row.expandedCircularReferences.unshift(abc);
     }
 }

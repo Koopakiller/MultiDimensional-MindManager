@@ -39,10 +39,11 @@ class TableColumn {
 class TableRow {
     public rowNumber: number;
     public cells: TableCell[];
+    public possibleHeader: string;
 
     public expandedDatasets: DatasetIdentifier[];
 
-    public expandedCircularReferences: TableResultModel[];
+    public expandedCircularReferences: CircularReferenceDataModel[];
 }
 
 class TableCell {
@@ -53,4 +54,10 @@ class TableCell {
 
     public canExpand: boolean;
     public wasAlreadyExpanded: boolean;
+}
+
+class CircularReferenceDataModel {
+    public chainId: number;
+    public columnValue: any;
+    public chainDescription: string;
 }
