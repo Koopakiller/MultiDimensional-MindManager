@@ -48,8 +48,13 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
             return this.Json(result);
         }
 
-        public ActionResult GetCircularReferencedData(Int32 chainId, Int32 columnValue)
+        public ActionResult GetCircularReferencedData(Int32? chainId, Int32? columnValue)
         {
+            if (chainId == null || columnValue == null)
+            {
+                return this.EmptyJson();
+            }
+
             var chain = this.entities.Explorer_CircularReferences.Where(x => x.ChainId == chainId)
                 .OrderBy(x => x.ChainPosition)
                 .ToList();
@@ -159,9 +164,18 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
                 });
         }
 
-        protected ActionResult Json<T>(T data, Formatting formatting = Formatting.None)
+        protected ActionResult EmptyJson(Boolean succeeded = true)
         {
-            var boxed = new { Data = data };
+            return this.Json<Object>(null, succeeded: false);
+        }
+
+        protected ActionResult Json<T>(T data, Boolean succeeded = true, Formatting formatting = Formatting.None)
+        {
+            var boxed = new
+            {
+                Data = data,
+                Succeeded = succeeded,
+            };
             var json =
                 JsonConvert.SerializeObject(
                     boxed,
