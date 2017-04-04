@@ -30,7 +30,8 @@
                                (click)="expand(table, row, cell)">Expand</a>
                         </td>
                         <td *ngIf="table.circularReferences.length > 0" class="cr">
-                            <a *ngFor="let cr of table.circularReferences;let i=index" class="button" (click)="expandCircularReference(table, row, cr)">{{(i+1)}}</a>
+                            <a *ngFor="let cr of row.circularReferences;let i=index" class="button" (click)="expandCircularReference(table, row, cr)">{{(i+1)}}</a>
+                            <span *ngIf="row.circularReferences.length === 0">All CR's were expanded</span>
                         </td>
                     </tr>
                     <tr *ngIf="row.expandedCircularReferences.length > 0">

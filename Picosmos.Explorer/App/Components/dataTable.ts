@@ -67,7 +67,21 @@ export class DataTableComponent {
                                 cell.wasAlreadyExpanded = false;
                             }
                             row.expandedDatasets = [];
+                            row.circularReferences = [];
                             row.expandedCircularReferences = [];
+                            for (let cr of table.circularReferences) {
+                                let value: any = null;
+                                for (let cell of row.cells) {
+                                    if (cell.columnName === cr.firstColumnName) {
+                                        value = cell.content;
+                                    }
+                                }
+                                let abc = new CircularReferenceDataModel();
+                                abc.chainId = cr.chainId;
+                                abc.columnValue = value;
+                                abc.chainDescription = cr.description;
+                                row.circularReferences.push(abc);
+                            }
                         }
                     }
                 },
@@ -101,17 +115,8 @@ export class DataTableComponent {
         cell.wasAlreadyExpanded = true;
     }
 
-    public expandCircularReference(table: TableResultModel, row: TableRow, cr: CircularReferenceModel) {
-        let value: any = null;
-        for (let cell of row.cells) {
-            if (cell.columnName === cr.firstColumnName) {
-                value = cell.content;
-            }
-        }
-        let abc = new CircularReferenceDataModel();
-        abc.chainId = cr.chainId;
-        abc.columnValue = value;
-        abc.chainDescription = cr.description;
-        row.expandedCircularReferences.unshift(abc);
+    public expandCircularReference(table: TableResultModel, row: TableRow, cr: CircularReferenceDataModel) {
+        row.circularReferences.splice(row.circularReferences.indexOf(cr), 1);
+        row.expandedCircularReferences.unshift(cr);
     }
 }

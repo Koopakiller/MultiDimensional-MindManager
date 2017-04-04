@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
@@ -72,7 +71,23 @@ var DataTableComponent = (function () {
                             cell.wasAlreadyExpanded = false;
                         }
                         row.expandedDatasets = [];
+                        row.circularReferences = [];
                         row.expandedCircularReferences = [];
+                        for (var _h = 0, _j = table.circularReferences; _h < _j.length; _h++) {
+                            var cr = _j[_h];
+                            var value = null;
+                            for (var _k = 0, _l = row.cells; _k < _l.length; _k++) {
+                                var cell = _l[_k];
+                                if (cell.columnName === cr.firstColumnName) {
+                                    value = cell.content;
+                                }
+                            }
+                            var abc = new CircularReferenceDataModel();
+                            abc.chainId = cr.chainId;
+                            abc.columnValue = value;
+                            abc.chainDescription = cr.description;
+                            row.circularReferences.push(abc);
+                        }
                     }
                 }
             }, function (error) {
@@ -101,18 +116,8 @@ var DataTableComponent = (function () {
         cell.wasAlreadyExpanded = true;
     };
     DataTableComponent.prototype.expandCircularReference = function (table, row, cr) {
-        var value = null;
-        for (var _i = 0, _a = row.cells; _i < _a.length; _i++) {
-            var cell = _a[_i];
-            if (cell.columnName === cr.firstColumnName) {
-                value = cell.content;
-            }
-        }
-        var abc = new CircularReferenceDataModel();
-        abc.chainId = cr.chainId;
-        abc.columnValue = value;
-        abc.chainDescription = cr.description;
-        row.expandedCircularReferences.unshift(abc);
+        row.circularReferences.splice(row.circularReferences.indexOf(cr), 1);
+        row.expandedCircularReferences.unshift(cr);
     };
     return DataTableComponent;
 }());

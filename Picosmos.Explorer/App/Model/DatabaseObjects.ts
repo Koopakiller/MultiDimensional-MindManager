@@ -43,6 +43,7 @@ class TableRow {
 
     public expandedDatasets: DatasetIdentifier[];
 
+    public circularReferences: CircularReferenceDataModel[];
     public expandedCircularReferences: CircularReferenceDataModel[];
 }
 
