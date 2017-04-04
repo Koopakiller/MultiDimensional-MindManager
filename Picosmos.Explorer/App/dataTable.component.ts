@@ -72,6 +72,7 @@ export class DataTableComponent {
                                 cell.wasAlreadyExpanded = false;
                             }
                             row.expandedDatasets = [];
+                            row.expandedCircularReferences = [];
                         }
                     }
                 },
@@ -106,7 +107,25 @@ export class DataTableComponent {
     }
 
     public expandCircularReference(table: TableResultModel, row: TableRow, cr: CircularReferenceModel) {
-        alert("Not implemented so far.");
+        let value: any;
+        for (let cell of row.cells) {
+            if (cell.columnName === cr.firstColumnName) {
+                value = cell.content;
+            }
+        }
+        if (value) {
+            const url = `/Data/GetCircularReferencedData?chainId=${cr.chainId}&columnValue=${value}`;
+            this.http.get(url)
+                .map(this.extractData)
+                .catch(this.handleError)
+                .subscribe(data => {
+                    row.expandedCircularReferences.unshift(data);
+                },
+                error => {
+                    console.error(error);
+                    return error;
+                });
+        }
     }
 }
 
@@ -121,6 +140,7 @@ class TableResultModel {
 class CircularReferenceModel {
     public chainId: number;
     public description: string;
+    public firstColumnName: string;
 }
 
 class TableColumn {
@@ -136,11 +156,13 @@ class TableRow {
     public cells: TableCell[];
 
     public expandedDatasets: DatasetIdentifier[];
+
+    public expandedCircularReferences: TableResultModel[];
 }
 
 class TableCell {
     public columnName: string;
-    public content: string;
+    public content: any;
     public isChild: boolean;
     public isParent: boolean;
 

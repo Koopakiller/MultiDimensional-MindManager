@@ -41,5 +41,6 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
     {
         public Int32 ChainId { get; set; }
         public String Description { get; set; }
+        public String FirstColumnName { get; set; }
     }
 }

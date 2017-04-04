@@ -48,27 +48,64 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
             return this.Json(result);
         }
 
-        private TableResultModel GetTableResultModel(String tableName, IEnumerable<Explorer_GetReferencedTableColumnValues_sql_Result> tcv)
+        public ActionResult GetCircularReferencedData(Int32 chainId, Int32 columnValue)
+        {
+            var chain = this.entities.Explorer_CircularReferences.Where(x => x.ChainId == chainId)
+                .OrderBy(x => x.ChainPosition)
+                .ToList();
+            var lst = new List<Explorer_GetDataFromTableColumnValue_Result>
+            {
+                new Explorer_GetDataFromTableColumnValue_Result()
+                {
+                    EntityId = 1,
+                    ColumnName = chain[0].SourceColumnName,
+                    ColumnValue = columnValue.ToString(),
+                }
+            };
+            foreach (var chainLink in chain)
+            {
+                var vals = lst.Where(x => x.ColumnName == chainLink.SourceColumnName).Select(x => Int32.Parse(x.ColumnValue));
+
+                lst = vals.SelectMany(y => this.entities.Explorer_GetDataFromTableColumnValue(chainLink.TargetTableName, chainLink.TargetColumnName, y)).ToList();
+            }
+            var result = this.GetTableResultModelScaffold(chain.Last().TargetTableName);
+            result.Rows = lst.GroupBy(x => x.EntityId).Select(this.GetTableRow).ToList();
+            return this.Json(result);
+        }
+
+        private TableResultModel GetTableResultModelScaffold(String tableName)
         {
             return new TableResultModel
             {
                 Name = tableName,
                 Columns = this.GetTableColumns(tableName),
-                Rows = tcv.SelectMany(itm => this.entities.Explorer_GetDataFromTableColumnValue(tableName, itm.ColumnName, itm.ColumnValue)
-                        .GroupBy(x => x.EntityId)
-                        .Select(x => new TableRow()
-                        {
-                            RowNumber = x.Key ?? throw new NotSupportedException(),
-                            Cells = x.Select(y => new TableCell()
-                            {
-                                ColumnName = y.ColumnName,
-                                Content = y.ColumnValue,
-                            })
-                                     .OrderBy(y => y.ColumnName)
-                                     .ToList(),
-                        }))
-                    .ToList(),
                 CircularReferences = this.GetCircularReferences(tableName).ToList(),
+            };
+        }
+
+        private TableResultModel GetTableResultModel(String tableName, IEnumerable<Explorer_GetReferencedTableColumnValues_sql_Result> tcv)
+        {
+            var result = this.GetTableResultModelScaffold(tableName);
+            result.Rows = tcv.SelectMany(itm => this.entities
+                    .Explorer_GetDataFromTableColumnValue(tableName, itm.ColumnName, itm.ColumnValue)
+                    .GroupBy(x => x.EntityId)
+                    .Select(this.GetTableRow))
+                .ToList();
+            return result;
+        }
+
+        private TableRow GetTableRow(IGrouping<Int32?, Explorer_GetDataFromTableColumnValue_Result> x)
+        {
+            return new TableRow()
+            {
+                RowNumber = x.Key ?? throw new NotSupportedException(),
+                Cells = x.Select(y => new TableCell()
+                {
+                    ColumnName = y.ColumnName,
+                    Content = y.ColumnValue,
+                })
+                    .OrderBy(y => y.ColumnName)
+                    .ToList(),
             };
         }
 
@@ -82,6 +119,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Controllers
                     ChainId = x.Key,
                     Description = String.Join(" -> ", x.OrderBy(y => y.ChainPosition)
                                                        .Select(y => $"{y.SourceTableName}.{y.SourceColumnName} -> {y.TargetTableName}.{y.TargetColumnName}")),
+                    FirstColumnName= x.OrderBy(y => y.ChainPosition).FirstOrDefault()?.SourceColumnName,
                 });
         }
 
