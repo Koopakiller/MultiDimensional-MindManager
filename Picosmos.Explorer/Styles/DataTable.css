@@ -11,60 +11,65 @@
 }
 data-table {
   background-color: #d5d5d5;
+  padding: 10px;
+  display: block;
 }
-data-table .identifier-message {
+data-table > .identifier-message {
   font-size: 16pt;
 }
-data-table .tables .table {
+data-table > .table {
   padding: 10px;
   background-color: #f2f2f2;
   animation: 1.5s appear-neutral;
 }
-data-table .tables .table .header {
+data-table > .table > .header {
   font-size: 16pt;
 }
-data-table .tables .table table {
+data-table > .table > table {
   border-collapse: collapse;
 }
-data-table .tables .table table th,
-data-table .tables .table table td {
+data-table > .table > table th,
+data-table > .table > table td {
   border: 1px solid black;
   padding: 3px 5px 3px 5px;
   text-align: center;
 }
-data-table .tables .table table th {
+data-table > .table > table th {
   background-color: #fff543;
 }
-data-table .tables .table table th.child {
+data-table > .table > table th.child {
   background-color: #4383ff;
 }
-data-table .tables .table table th.parent {
+data-table > .table > table th.parent {
   background-color: #ffa743;
 }
-data-table .tables .table table th.cr {
+data-table > .table > table th.cr {
   background-color: #71fa2a;
 }
-data-table .tables .table table td {
+data-table > .table > table td {
   background-color: #fff876;
 }
-data-table .tables .table table td.child {
+data-table > .table > table td.child {
   background-color: #76a5ff;
 }
-data-table .tables .table table td.parent {
+data-table > .table > table td.parent {
   background-color: #ffbf76;
 }
-data-table .tables .table table td.cr {
+data-table > .table > table td.cr {
   background-color: #92fb5c;
 }
-data-table .tables .table table td.expand {
+data-table > .table > table td.expand {
+  text-align: left;
+  padding: 0;
   background-color: #d5d5d5;
-  text-align: left;
-  padding: 10px;
 }
-data-table .tables .table table td.expand-cr {
-  background-color: #92fb5c;
-  text-align: left;
-  padding: 10px;
+data-table > .table > table td.expand > .header {
+  margin: 10px;
+  margin-bottom: 5px;
+}
+data-table .cr-container {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 data-table .cr-container ul.cr-list {
   list-style: none;
@@ -74,7 +79,7 @@ data-table .cr-container ul.cr-list {
 data-table .cr-number {
   font-size: 9pt;
   background: #92fb5c;
-  border-radius: 10px;
+  border-radius: 5px;
   display: inline-block;
   min-width: 10pt;
   height: 10pt;

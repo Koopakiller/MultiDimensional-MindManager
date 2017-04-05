@@ -17,6 +17,7 @@ common-legend {
   background-color: #f2f2f2;
   border: 1px solid black;
   padding: 10px;
+  display: block;
 }
 common-legend ul,
 common-legend li {

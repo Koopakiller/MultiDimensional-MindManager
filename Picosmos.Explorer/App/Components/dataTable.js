@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
@@ -81,12 +80,14 @@ var DataTableComponent = (function () {
                                 var cell = _l[_k];
                                 if (cell.columnName === cr.firstColumnName) {
                                     value = cell.content;
+                                    break;
                                 }
                             }
                             var abc = new CircularReferenceDataModel();
                             abc.chainId = cr.chainId;
                             abc.columnValue = value;
                             abc.chainDescription = cr.description;
+                            abc.firstColumnName = cr.firstColumnName;
                             row.circularReferences.push(abc);
                         }
                     }

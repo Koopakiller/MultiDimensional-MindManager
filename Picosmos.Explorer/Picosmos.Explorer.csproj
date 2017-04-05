@@ -239,6 +239,12 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="packages.config" />
+    <Content Include="Styles\CircularReference.css">
+      <DependentUpon>CircularReference.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\CircularReference.min.css">
+      <DependentUpon>CircularReference.css</DependentUpon>
+    </Content>
     <Content Include="Styles\Common.css">
       <DependentUpon>Common.less</DependentUpon>
     </Content>
@@ -300,6 +306,7 @@
     <Content Include="Styles\CommonLegend.less" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Templates\CircularReference.cshtml" />
+    <Content Include="Styles\CircularReference.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

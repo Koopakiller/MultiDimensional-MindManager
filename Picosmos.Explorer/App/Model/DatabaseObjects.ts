@@ -22,12 +22,6 @@ class TableResultModel {
     public circularReferences: CircularReferenceModel[];
 }
 
-class CircularReferenceModel {
-    public chainId: number;
-    public description: string;
-    public firstColumnName: string;
-}
-
 class TableColumn {
     public isChild: boolean;
     public isParent: boolean;
@@ -57,8 +51,30 @@ class TableCell {
     public wasAlreadyExpanded: boolean;
 }
 
+
+class CircularReferenceModel {
+    public chainId: number;
+    public description: string;
+    public firstColumnName: string;
+}
+
 class CircularReferenceDataModel {
     public chainId: number;
     public columnValue: any;
     public chainDescription: string;
+    public firstColumnName: string;
+}
+
+class CircularReferenceEntryClientModel {
+    public header: string;
+    public expandCommands: boolean;
+    public showNextLevel: boolean;
+    public showNextLevelAsDataTable: boolean;
+
+    public nextModel: CircularReferenceDataModel;
+    public nextDataTableModel: DatasetIdentifier;
+
+    public toggleCommands() {
+        this.expandCommands = !this.expandCommands;
+    }
 }

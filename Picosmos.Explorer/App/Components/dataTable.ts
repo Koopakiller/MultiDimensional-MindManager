@@ -74,12 +74,14 @@ export class DataTableComponent {
                                 for (let cell of row.cells) {
                                     if (cell.columnName === cr.firstColumnName) {
                                         value = cell.content;
+                                        break;
                                     }
                                 }
                                 let abc = new CircularReferenceDataModel();
                                 abc.chainId = cr.chainId;
                                 abc.columnValue = value;
                                 abc.chainDescription = cr.description;
+                                abc.firstColumnName = cr.firstColumnName;
                                 row.circularReferences.push(abc);
                             }
                         }

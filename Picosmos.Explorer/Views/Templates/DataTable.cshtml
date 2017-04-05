@@ -1,57 +1,48 @@
-﻿
-<div>
+﻿<span class="identifier-message" *ngIf="dataset">{{dataset.tableName}}.{{dataset.columnName}} = {{dataset.columnValue}} {{kind===0?'is defined in...':'is referenced in...'}}</span>
 
-    <span class="identifier-message" *ngIf="dataset">{{dataset.tableName}}.{{dataset.columnName}} = {{dataset.columnValue}} {{kind===0?'is defined in...':'is referenced in...'}}</span>
-
-    <div *ngIf="tables" class="tables">
-        <div *ngFor="let table of tables" class="table">
-            <span class="header">{{table.name}}</span>
-            <div *ngIf="table.circularReferences.length > 0" class="cr-container">
-                This table has circular references:
-                <ul class="cr-list">
-                    <li *ngFor="let cr of table.circularReferences;let i=index"><span class="cr-number">{{(i+1)}}</span>&nbsp;{{cr.description}}</li>
-                </ul>
-            </div>
-            <table>
-                <tr>
-                    <th *ngFor="let col of table.columns"
-                        class="{{col.isParent?'parent':''}} {{col.isChild?'child':''}}">
-                        {{col.columnName}} ({{col.columnType}})
-                    </th>
-                    <th *ngIf="table.circularReferences.length > 0" class="cr">Circular References</th>
-                </tr>
-                <tbody *ngFor="let row of table.rows">
-                    <tr>
-                        <td *ngFor="let cell of row.cells"
-                            class="{{cell.isParent?'parent':''}} {{cell.isChild?'child':''}}">
-                            {{cell.content}}
-                            <a *ngIf="cell.canExpand && !cell.wasAlreadyExpanded"
-                               class="button"
-                               (click)="expand(table, row, cell)">Expand</a>
-                        </td>
-                        <td *ngIf="table.circularReferences.length > 0" class="cr">
-                            <a *ngFor="let cr of row.circularReferences;let i=index" class="button" (click)="expandCircularReference(table, row, cr)">{{(i+1)}}</a>
-                            <span *ngIf="row.circularReferences.length === 0">All CR's were expanded</span>
-                        </td>
-                    </tr>
-                    <tr *ngIf="row.expandedCircularReferences.length > 0">
-                        <td colSpan="{{table.columns.length + (table.circularReferences.length > 0 ? 1 : 0)}}"
-                            class="expand-cr">
-                            <div *ngFor="let cr of row.expandedCircularReferences">
-                                <circular-reference [data]="cr"></circular-reference>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr *ngIf="row.expandedDatasets.length > 0">
-                        <td colSpan="{{table.columns.length + (table.circularReferences.length > 0 ? 1 : 0)}}"
-                            class="expand">
-                            <div *ngFor="let dataset of row.expandedDatasets">
-                                <data-table [dataset]="dataset">Loading Table...</data-table>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<div *ngFor="let table of tables" class="table">
+    <span class="header">{{table.name}}</span>
+    <div *ngIf="table.circularReferences.length > 0" class="cr-container">
+        This table has circular references:
+        <ul class="cr-list">
+            <li *ngFor="let cr of table.circularReferences;let i=index"><span class="cr-number">{{(i+1)}}</span>&nbsp;{{cr.description}}</li>
+        </ul>
     </div>
+    <table>
+        <tr>
+            <th *ngFor="let col of table.columns"
+                class="{{col.isParent?'parent':''}} {{col.isChild?'child':''}}">
+                {{col.columnName}} ({{col.columnType}})
+            </th>
+            <th *ngIf="table.circularReferences.length > 0" class="cr">Circular References</th>
+        </tr>
+        <tbody *ngFor="let row of table.rows">
+            <tr>
+                <td *ngFor="let cell of row.cells"
+                    class="{{cell.isParent?'parent':''}} {{cell.isChild?'child':''}}">
+                    {{cell.content}}
+                    <a *ngIf="cell.canExpand && !cell.wasAlreadyExpanded"
+                       class="button"
+                       (click)="expand(table, row, cell)">Expand</a>
+                </td>
+                <td *ngIf="table.circularReferences.length > 0" class="cr">
+                    <a *ngFor="let cr of row.circularReferences;let i=index" class="button" (click)="expandCircularReference(table, row, cr)">{{(i+1)}}</a>
+                    <span *ngIf="row.circularReferences.length === 0">All CR's were expanded</span>
+                </td>
+            </tr>
+            <tr *ngFor="let cr of row.expandedCircularReferences">
+                <td colSpan="{{table.columns.length + (table.circularReferences.length > 0 ? 1 : 0)}}"
+                    class="expand">
+                    <div class="header">Chart for circular reference: {{cr.chainDescription}}</div>
+                    <circular-reference [data]="cr"></circular-reference>
+                </td>
+            </tr>
+            <tr *ngFor="let dataset of row.expandedDatasets">
+                <td colSpan="{{table.columns.length + (table.circularReferences.length > 0 ? 1 : 0)}}"
+                    class="expand">
+                    <data-table [dataset]="dataset">Loading Table...</data-table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

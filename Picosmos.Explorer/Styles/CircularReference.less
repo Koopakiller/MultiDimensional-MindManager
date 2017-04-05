@@ -1,0 +1,46 @@
+﻿@import (less) "Common.less";
+
+@cr-color-header: darken(@color-accent-4, 10%);
+@cr-color: @color-accent-4;
+
+circular-reference {
+    display: block;
+    padding: @padding-big;
+
+    & > .entry {
+        display: inline-block;
+        vertical-align: top;
+        padding-left: @padding-space;
+        padding-right: @padding-space;
+
+        & > .cell {
+            background-color: @color-neutral-1;
+            padding: @padding-big;
+            margin-bottom: @padding-space;
+        }
+
+        & > .header {
+            background-color: @cr-color-header;
+            text-align: center;
+
+            & > .commands {
+                font-size: @font-size-smaller;
+            }
+        }
+
+        border-left: @border;
+        border-left-style: dashed;
+        border-right: @border;
+        border-right-style: dashed;
+
+        &:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        &:first-child {
+            border-left: none;
+            padding-left: 0;
+        }
+    }
+}

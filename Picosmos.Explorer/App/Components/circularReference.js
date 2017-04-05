@@ -8,12 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/map");
+var DataTable = require("./dataTable.js");
 var CircularReferenceComponent = (function () {
     function CircularReferenceComponent(http) {
         this.http = http;
@@ -27,6 +27,13 @@ var CircularReferenceComponent = (function () {
             if (value) {
                 this.update();
             }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CircularReferenceComponent.prototype, "expandedDataTableKind", {
+        get: function () {
+            return DataTable.DataTableKinds.self;
         },
         enumerable: true,
         configurable: true
@@ -47,6 +54,28 @@ var CircularReferenceComponent = (function () {
                 .catch(this.handleError)
                 .subscribe(function (data) {
                 _this.tableModel = data;
+                _this.entries = [];
+                for (var _i = 0, _a = _this.tableModel.rows; _i < _a.length; _i++) {
+                    var row = _a[_i];
+                    var entry = new CircularReferenceEntryClientModel();
+                    entry.header = row.possibleHeader;
+                    entry.expandCommands = false;
+                    entry.nextModel = new CircularReferenceDataModel();
+                    entry.nextModel.chainId = _this.data.chainId;
+                    entry.nextModel.chainDescription = _this.data.chainDescription;
+                    for (var _b = 0, _c = row.cells; _b < _c.length; _b++) {
+                        var cell = _c[_b];
+                        if (cell.columnName === _this.data.firstColumnName) {
+                            entry.nextModel.columnValue = cell.content;
+                            break;
+                        }
+                    }
+                    entry.nextDataTableModel = new DatasetIdentifier();
+                    entry.nextDataTableModel.tableName = _this.tableModel.name;
+                    entry.nextDataTableModel.columnName = _this.data.firstColumnName;
+                    entry.nextDataTableModel.columnValue = entry.nextModel.columnValue;
+                    _this.entries.push(entry);
+                }
             }, function (error) {
                 console.error(error);
                 return error;

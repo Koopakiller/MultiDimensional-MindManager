@@ -26,5 +26,9 @@
   {
     "outputFile": "Styles/CommonLegend.css",
     "inputFile": "Styles/CommonLegend.less"
+  },
+  {
+    "outputFile": "Styles/CircularReference.css",
+    "inputFile": "Styles/CircularReference.less"
   }
 ]

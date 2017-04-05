@@ -18,11 +18,6 @@ var TableResultModel = (function () {
     }
     return TableResultModel;
 }());
-var CircularReferenceModel = (function () {
-    function CircularReferenceModel() {
-    }
-    return CircularReferenceModel;
-}());
 var TableColumn = (function () {
     function TableColumn() {
     }
@@ -38,9 +33,22 @@ var TableCell = (function () {
     }
     return TableCell;
 }());
+var CircularReferenceModel = (function () {
+    function CircularReferenceModel() {
+    }
+    return CircularReferenceModel;
+}());
 var CircularReferenceDataModel = (function () {
     function CircularReferenceDataModel() {
     }
     return CircularReferenceDataModel;
+}());
+var CircularReferenceEntryClientModel = (function () {
+    function CircularReferenceEntryClientModel() {
+    }
+    CircularReferenceEntryClientModel.prototype.toggleCommands = function () {
+        this.expandCommands = !this.expandCommands;
+    };
+    return CircularReferenceEntryClientModel;
 }());
 //# sourceMappingURL=DatabaseObjects.js.map
