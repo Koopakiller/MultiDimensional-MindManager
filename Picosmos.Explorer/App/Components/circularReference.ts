@@ -56,6 +56,7 @@ export class CircularReferenceComponent {
                         entry.nextModel = new CircularReferenceDataModel();
                         entry.nextModel.chainId = this.data.chainId;
                         entry.nextModel.chainDescription = this.data.chainDescription;
+                        entry.nextModel.firstColumnName = this.data.firstColumnName;
                         for (let cell of row.cells) {
                             if (cell.columnName === this.data.firstColumnName) {
                                 entry.nextModel.columnValue = cell.content;

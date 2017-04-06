@@ -63,6 +63,7 @@ var CircularReferenceComponent = (function () {
                     entry.nextModel = new CircularReferenceDataModel();
                     entry.nextModel.chainId = _this.data.chainId;
                     entry.nextModel.chainDescription = _this.data.chainDescription;
+                    entry.nextModel.firstColumnName = _this.data.firstColumnName;
                     for (var _b = 0, _c = row.cells; _b < _c.length; _b++) {
                         var cell = _c[_b];
                         if (cell.columnName === _this.data.firstColumnName) {
