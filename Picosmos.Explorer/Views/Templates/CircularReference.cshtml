@@ -5,13 +5,17 @@
     <div class="header cell">
         <a (click)="entry.toggleCommands()">{{ entry.header ? entry.header : "a data entry" }}</a><br />
         <div *ngIf="entry.expandCommands" class="commands">
-            <a *ngIf="!entry.showNextLevelAsDataTable" (click)="entry.showNextLevelAsDataTable = true">Show data table</a><span *ngIf="!entry.showNextLevel && !entry.showNextLevelAsDataTable"> | </span><a *ngIf="!entry.showNextLevel" (click)="entry.showNextLevel = true">Show next level</a>
+            <a *ngIf="!entry.showNextLevelAsDataTable" (click)="entry.showNextLevelAsDataTable = true">Show data table</a>
+            <a *ngIf="entry.showNextLevelAsDataTable" (click)="entry.showNextLevelAsDataTable = false">Hide data table</a>
+            <span> | </span>
+            <a *ngIf="!entry.showNextLevel" (click)="entry.showNextLevel = true">Show next level</a>
+            <a *ngIf="entry.showNextLevel" (click)="entry.showNextLevel = false">Hide next level</a>
         </div>
     </div>
-    <div class="cell" *ngIf="entry.showNextLevelAsDataTable">
+    <div class="cell" *ngIf="entry.nextDataTableModel" [hidden]="!entry.showNextLevelAsDataTable">
         <data-table [dataset]="entry.nextDataTableModel" [kind]="expandedDataTableKind"></data-table>
     </div>
-    <div *ngIf="entry.showNextLevel">
+    <div *ngIf="entry.nextModel" [hidden]="!entry.showNextLevel">
         <circular-reference [data]="entry.nextModel"></circular-reference>
     </div>
 </div>
