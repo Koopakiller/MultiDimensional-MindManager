@@ -69,8 +69,8 @@
     <Build Include="dbo\Tables\Humans.sql" />
     <Build Include="dbo\Tables\HumanRelations.sql" />
     <Build Include="dbo\Tables\HumanRelationKinds.sql" />
-    <Build Include="dbo\Tables\Currencies.sql" />
-    <Build Include="dbo\Tables\CurrencyIdentifier.sql" />
+    <Build Include="dbo\Tables\Finances.Currencies.sql" />
+    <Build Include="dbo\Tables\Finances.CurrencyIdentifier.sql" />
     <Build Include="dbo\Tables\Places.sql" />
     <Build Include="dbo\Tables\ResumeKinds.sql" />
     <Build Include="dbo\Tables\Resumes.sql" />
