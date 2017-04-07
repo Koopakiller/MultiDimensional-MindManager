@@ -19,6 +19,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
         {
             this.Humans = new HashSet<Human>();
             this.Users = new HashSet<User>();
+            this.Finances_Items = new HashSet<Finances_Items>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,7 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
         public virtual ICollection<Human> Humans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Finances_Items> Finances_Items { get; set; }
     }
 }

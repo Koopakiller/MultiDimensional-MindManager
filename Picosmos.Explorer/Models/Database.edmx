@@ -15,20 +15,6 @@
           <Property Name="TargetTableName" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="RelationDescriptor" Type="nvarchar" MaxLength="1024" Nullable="false" />
         </EntityType>
-        <EntityType Name="Currencies">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CurrencyIdentifier">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CurrencyId" Type="int" Nullable="false" />
-          <Property Name="Identifier" Type="nvarchar" MaxLength="128" Nullable="false" />
-        </EntityType>
         <EntityType Name="Explorer_CircularReferences">
           <Key>
             <PropertyRef Name="Id" />
@@ -40,6 +26,48 @@
           <Property Name="SourceColumnName" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="TargetTableName" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="TargetColumnName" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Finances_Currencies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Finances_CurrencyIdentifier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrencyId" Type="int" Nullable="false" />
+          <Property Name="Identifier" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Finances_Groups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Finances_ItemGroups">
+          <Key>
+            <PropertyRef Name="GroupId" />
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Finances_Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="CurrencyId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsDebt" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="HumanGroupEntries">
           <Key>
@@ -123,15 +151,75 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PersonId" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_CurrencyIdentifier_Currencies">
-          <End Role="Currencies" Type="Self.Currencies" Multiplicity="1" />
-          <End Role="CurrencyIdentifier" Type="Self.CurrencyIdentifier" Multiplicity="*" />
+        <Association Name="FK_Finances_CurrencyIdentifier_Finances_Currencies">
+          <End Role="Finances_Currencies" Type="Self.Finances_Currencies" Multiplicity="1" />
+          <End Role="Finances_CurrencyIdentifier" Type="Self.Finances_CurrencyIdentifier" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Currencies">
+            <Principal Role="Finances_Currencies">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="CurrencyIdentifier">
+            <Dependent Role="Finances_CurrencyIdentifier">
               <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Finances_ItemGroups_Groups">
+          <End Role="Finances_Groups" Type="Self.Finances_Groups" Multiplicity="1" />
+          <End Role="Finances_ItemGroups" Type="Self.Finances_ItemGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Finances_Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Finances_ItemGroups">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Finances_ItemGroups_Items">
+          <End Role="Finances_Items" Type="Self.Finances_Items" Multiplicity="1" />
+          <End Role="Finances_ItemGroups" Type="Self.Finances_ItemGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Finances_Items">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Finances_ItemGroups">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Finances_Items_Finances_Currencies">
+          <End Role="Finances_Currencies" Type="Self.Finances_Currencies" Multiplicity="1" />
+          <End Role="Finances_Items" Type="Self.Finances_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Finances_Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Finances_Items">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Finances_Items_Persons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="Finances_Items" Type="Self.Finances_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Finances_Items">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Finances_Items_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Finances_Items" Type="Self.Finances_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Finances_Items">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -284,9 +372,12 @@
         <Function Name="Explorer_GetTablesAndColumns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="KoopakillerAppsPicosmosModelDatabaseStoreContainer">
           <EntitySet Name="ComplexRelations" EntityType="Self.ComplexRelations" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CurrencyIdentifier" EntityType="Self.CurrencyIdentifier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Explorer_CircularReferences" EntityType="Self.Explorer_CircularReferences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Finances_Currencies" EntityType="Self.Finances_Currencies" Schema="dbo" Table="Finances.Currencies" store:Type="Tables" />
+          <EntitySet Name="Finances_CurrencyIdentifier" EntityType="Self.Finances_CurrencyIdentifier" Schema="dbo" Table="Finances.CurrencyIdentifier" store:Type="Tables" />
+          <EntitySet Name="Finances_Groups" EntityType="Self.Finances_Groups" Schema="dbo" Table="Finances.Groups" store:Type="Tables" />
+          <EntitySet Name="Finances_ItemGroups" EntityType="Self.Finances_ItemGroups" Schema="dbo" Table="Finances.ItemGroups" store:Type="Tables" />
+          <EntitySet Name="Finances_Items" EntityType="Self.Finances_Items" Schema="dbo" Table="Finances.Items" store:Type="Tables" />
           <EntitySet Name="HumanGroupEntries" EntityType="Self.HumanGroupEntries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HumanGroups" EntityType="Self.HumanGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HumanRelationKinds" EntityType="Self.HumanRelationKinds" Schema="dbo" store:Type="Tables" />
@@ -297,9 +388,29 @@
           <EntitySet Name="ResumeKinds" EntityType="Self.ResumeKinds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Resumes" EntityType="Self.Resumes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CurrencyIdentifier_Currencies" Association="Self.FK_CurrencyIdentifier_Currencies">
-            <End Role="Currencies" EntitySet="Currencies" />
-            <End Role="CurrencyIdentifier" EntitySet="CurrencyIdentifier" />
+          <AssociationSet Name="FK_Finances_CurrencyIdentifier_Finances_Currencies" Association="Self.FK_Finances_CurrencyIdentifier_Finances_Currencies">
+            <End Role="Finances_Currencies" EntitySet="Finances_Currencies" />
+            <End Role="Finances_CurrencyIdentifier" EntitySet="Finances_CurrencyIdentifier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Finances_ItemGroups_Groups" Association="Self.FK_Finances_ItemGroups_Groups">
+            <End Role="Finances_Groups" EntitySet="Finances_Groups" />
+            <End Role="Finances_ItemGroups" EntitySet="Finances_ItemGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Finances_ItemGroups_Items" Association="Self.FK_Finances_ItemGroups_Items">
+            <End Role="Finances_Items" EntitySet="Finances_Items" />
+            <End Role="Finances_ItemGroups" EntitySet="Finances_ItemGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Finances_Items_Finances_Currencies" Association="Self.FK_Finances_Items_Finances_Currencies">
+            <End Role="Finances_Currencies" EntitySet="Finances_Currencies" />
+            <End Role="Finances_Items" EntitySet="Finances_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Finances_Items_Persons" Association="Self.FK_Finances_Items_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Finances_Items" EntitySet="Finances_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Finances_Items_Users" Association="Self.FK_Finances_Items_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Finances_Items" EntitySet="Finances_Items" />
           </AssociationSet>
           <AssociationSet Name="FK_HumanGroupEntries_HumanGroups" Association="Self.FK_HumanGroupEntries_HumanGroups">
             <End Role="HumanGroups" EntitySet="HumanGroups" />
@@ -350,22 +461,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Koopakiller.Apps.Picosmos.Model.Database" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Currency">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="CurrencyIdentifiers" Relationship="Self.FK_CurrencyIdentifier_Currencies" FromRole="Currencies" ToRole="CurrencyIdentifier" />
-        </EntityType>
-        <EntityType Name="CurrencyIdentifier">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
-          <Property Name="Identifier" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Currency" Relationship="Self.FK_CurrencyIdentifier_Currencies" FromRole="CurrencyIdentifier" ToRole="Currencies" />
-        </EntityType>
         <EntityType Name="HumanGroup">
           <Key>
             <PropertyRef Name="Id" />
@@ -399,30 +494,13 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PersonId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Person" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_Users_Persons" FromRole="User" ToRole="Person" />
+          <NavigationProperty Name="Finances_Items" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_Items_Users" FromRole="User" ToRole="Finances_Items" />
         </EntityType>
-        <Association Name="FK_CurrencyIdentifier_Currencies">
-          <End Role="Currencies" Type="Self.Currency" Multiplicity="1" />
-          <End Role="CurrencyIdentifier" Type="Self.CurrencyIdentifier" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Currencies">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CurrencyIdentifier">
-              <PropertyRef Name="CurrencyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Currencies" EntityType="Self.Currency" />
-          <EntitySet Name="CurrencyIdentifiers" EntityType="Self.CurrencyIdentifier" />
           <EntitySet Name="HumanGroups" EntityType="Self.HumanGroup" />
           <EntitySet Name="HumanRelationKinds" EntityType="Self.HumanRelationKind" />
           <EntitySet Name="Places" EntityType="Self.Place" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_CurrencyIdentifier_Currencies" Association="Self.FK_CurrencyIdentifier_Currencies">
-            <End Role="Currencies" EntitySet="Currencies" />
-            <End Role="CurrencyIdentifier" EntitySet="CurrencyIdentifiers" />
-          </AssociationSet>
           <FunctionImport Name="Explorer_GetTablesAndColumns" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetTablesAndColumns_Result)" />
           <FunctionImport Name="Explorer_GetTableColumns" ReturnType="Collection(Koopakiller.Apps.Picosmos.Model.Database.Explorer_GetTableColumns_Result)">
           <Parameter Name="tableName" Mode="In" Type="String" />
@@ -485,6 +563,30 @@
             <End Role="Human" EntitySet="Humans" />
             <End Role="HumanRelation" EntitySet="HumanRelations" />
           </AssociationSet>
+          <EntitySet Name="Finances_Currencies" EntityType="Koopakiller.Apps.Picosmos.Model.Database.Finances_Currencies" />
+          <EntitySet Name="Finances_CurrencyIdentifier" EntityType="Koopakiller.Apps.Picosmos.Model.Database.Finances_CurrencyIdentifier" />
+          <EntitySet Name="Finances_Groups" EntityType="Koopakiller.Apps.Picosmos.Model.Database.Finances_Groups" />
+          <EntitySet Name="Finances_Items" EntityType="Koopakiller.Apps.Picosmos.Model.Database.Finances_Items" />
+          <AssociationSet Name="FK_Finances_CurrencyIdentifier_Finances_Currencies" Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_CurrencyIdentifier_Finances_Currencies">
+            <End Role="Finances_Currencies" EntitySet="Finances_Currencies" />
+            <End Role="Finances_CurrencyIdentifier" EntitySet="Finances_CurrencyIdentifier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Finances_Items_Finances_Currencies" Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_Items_Finances_Currencies">
+            <End Role="Finances_Currencies" EntitySet="Finances_Currencies" />
+            <End Role="Finances_Items" EntitySet="Finances_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Finances_Items_Persons" Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_Items_Persons">
+            <End Role="Person" EntitySet="Persons" />
+            <End Role="Finances_Items" EntitySet="Finances_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Finances_Items_Users" Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_Items_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Finances_Items" EntitySet="Finances_Items" />
+          </AssociationSet>
+          <AssociationSet Name="Finances_ItemGroups" Association="Koopakiller.Apps.Picosmos.Model.Database.Finances_ItemGroups">
+            <End Role="Finances_Groups" EntitySet="Finances_Groups" />
+            <End Role="Finances_Items" EntitySet="Finances_Items" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="Explorer_GetTablesAndColumns_Result">
           <Property Type="String" Name="TableName" Nullable="false" MaxLength="128" />
@@ -531,6 +633,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Humans" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_Humans_Persons" FromRole="Person" ToRole="Human" />
           <NavigationProperty Name="Users" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_Users_Persons" FromRole="Person" ToRole="User" />
+          <NavigationProperty Name="Finances_Items" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_Items_Persons" FromRole="Person" ToRole="Finances_Items" />
         </EntityType>
         <EntityType Name="ResumeKind">
           <Key>
@@ -707,28 +810,106 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Finances_Currencies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Finances_CurrencyIdentifier" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_CurrencyIdentifier_Finances_Currencies" FromRole="Finances_Currencies" ToRole="Finances_CurrencyIdentifier" />
+          <NavigationProperty Name="Finances_Items" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_Items_Finances_Currencies" FromRole="Finances_Currencies" ToRole="Finances_Items" />
+        </EntityType>
+        <EntityType Name="Finances_CurrencyIdentifier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="Identifier" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Finances_Currencies" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_CurrencyIdentifier_Finances_Currencies" FromRole="Finances_CurrencyIdentifier" ToRole="Finances_Currencies" />
+        </EntityType>
+        <EntityType Name="Finances_Groups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Finances_Items" Relationship="Koopakiller.Apps.Picosmos.Model.Database.Finances_ItemGroups" FromRole="Finances_Groups" ToRole="Finances_Items" />
+        </EntityType>
+        <EntityType Name="Finances_Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Note" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDebt" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Finances_Currencies" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_Items_Finances_Currencies" FromRole="Finances_Items" ToRole="Finances_Currencies" />
+          <NavigationProperty Name="Person" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_Items_Persons" FromRole="Finances_Items" ToRole="Person" />
+          <NavigationProperty Name="User" Relationship="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_Items_Users" FromRole="Finances_Items" ToRole="User" />
+          <NavigationProperty Name="Finances_Groups" Relationship="Koopakiller.Apps.Picosmos.Model.Database.Finances_ItemGroups" FromRole="Finances_Items" ToRole="Finances_Groups" />
+        </EntityType>
+        <Association Name="FK_Finances_CurrencyIdentifier_Finances_Currencies">
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.Finances_Currencies" Role="Finances_Currencies" Multiplicity="1" />
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.Finances_CurrencyIdentifier" Role="Finances_CurrencyIdentifier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Finances_Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Finances_CurrencyIdentifier">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Finances_Items_Finances_Currencies">
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.Finances_Currencies" Role="Finances_Currencies" Multiplicity="1" />
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.Finances_Items" Role="Finances_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Finances_Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Finances_Items">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Finances_Items_Persons">
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.Person" Role="Person" Multiplicity="1" />
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.Finances_Items" Role="Finances_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Finances_Items">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Finances_Items_Users">
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.User" Role="User" Multiplicity="1" />
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.Finances_Items" Role="Finances_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Finances_Items">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Finances_ItemGroups">
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.Finances_Groups" Role="Finances_Groups" Multiplicity="*" />
+          <End Type="Koopakiller.Apps.Picosmos.Model.Database.Finances_Items" Role="Finances_Items" Multiplicity="*" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="KoopakillerAppsPicosmosModelDatabaseStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="Currencies">
-            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Currency">
-              <MappingFragment StoreEntitySet="Currencies">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CurrencyIdentifiers">
-            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.CurrencyIdentifier">
-              <MappingFragment StoreEntitySet="CurrencyIdentifier">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
-                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="HumanGroups">
             <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.HumanGroup">
               <MappingFragment StoreEntitySet="HumanGroups">
@@ -891,6 +1072,52 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Finances_Currencies">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Finances_Currencies">
+              <MappingFragment StoreEntitySet="Finances_Currencies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Finances_CurrencyIdentifier">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Finances_CurrencyIdentifier">
+              <MappingFragment StoreEntitySet="Finances_CurrencyIdentifier">
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Finances_Groups">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Finances_Groups">
+              <MappingFragment StoreEntitySet="Finances_Groups">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Finances_Items">
+            <EntityTypeMapping TypeName="Koopakiller.Apps.Picosmos.Model.Database.Finances_Items">
+              <MappingFragment StoreEntitySet="Finances_Items">
+                <ScalarProperty Name="IsDebt" ColumnName="IsDebt" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Finances_ItemGroups" TypeName="Koopakiller.Apps.Picosmos.Model.Database.Finances_ItemGroups" StoreEntitySet="Finances_ItemGroups">
+            <EndProperty Name="Finances_Items">
+              <ScalarProperty Name="Id" ColumnName="ItemId" />
+            </EndProperty>
+            <EndProperty Name="Finances_Groups">
+              <ScalarProperty Name="Id" ColumnName="GroupId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

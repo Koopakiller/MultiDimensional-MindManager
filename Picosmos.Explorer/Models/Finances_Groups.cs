@@ -12,18 +12,17 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Finances_Groups
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Finances_Groups()
         {
             this.Finances_Items = new HashSet<Finances_Items>();
         }
     
         public int Id { get; set; }
-        public int PersonId { get; set; }
+        public string Note { get; set; }
     
-        public virtual Person Person { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Finances_Items> Finances_Items { get; set; }
     }

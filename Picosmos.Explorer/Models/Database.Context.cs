@@ -27,8 +27,6 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Currency> Currencies { get; set; }
-        public virtual DbSet<CurrencyIdentifier> CurrencyIdentifiers { get; set; }
         public virtual DbSet<HumanGroup> HumanGroups { get; set; }
         public virtual DbSet<HumanRelationKind> HumanRelationKinds { get; set; }
         public virtual DbSet<Place> Places { get; set; }
@@ -40,6 +38,10 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
         public virtual DbSet<Resume> Resumes { get; set; }
         public virtual DbSet<Explorer_CircularReferences> Explorer_CircularReferences { get; set; }
         public virtual DbSet<HumanRelation> HumanRelations { get; set; }
+        public virtual DbSet<Finances_Currencies> Finances_Currencies { get; set; }
+        public virtual DbSet<Finances_CurrencyIdentifier> Finances_CurrencyIdentifier { get; set; }
+        public virtual DbSet<Finances_Groups> Finances_Groups { get; set; }
+        public virtual DbSet<Finances_Items> Finances_Items { get; set; }
     
         public virtual ObjectResult<Explorer_GetTablesAndColumns_Result> Explorer_GetTablesAndColumns()
         {

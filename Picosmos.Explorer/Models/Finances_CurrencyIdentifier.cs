@@ -12,12 +12,12 @@ namespace Koopakiller.Apps.Picosmos.Explorer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CurrencyIdentifier
+    public partial class Finances_CurrencyIdentifier
     {
         public int Id { get; set; }
         public int CurrencyId { get; set; }
         public string Identifier { get; set; }
     
-        public virtual Currency Currency { get; set; }
+        public virtual Finances_Currencies Finances_Currencies { get; set; }
     }
 }

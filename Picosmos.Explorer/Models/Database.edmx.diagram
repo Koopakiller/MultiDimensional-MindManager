@@ -5,18 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="055bf152ae7947d398ec707c8788fcd4" Name="Diagram1" ZoomLevel="64">
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Currency" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.CurrencyIdentifier" Width="1.5" PointX="12" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.HumanGroup" Width="1.5" PointX="16" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.HumanRelationKind" Width="1.5" PointX="15.875" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Place" Width="1.5" PointX="4.75" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.User" Width="1.5" PointX="4.125" PointY="4" IsExpanded="true" />
-        <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_CurrencyIdentifier_Currencies" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.ComplexRelation" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Human" Width="1.5" PointX="10" PointY="3.875" />
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Person" Width="1.5" PointX="6.875" PointY="3.875" />
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.ResumeKind" Width="1.5" PointX="13.25" PointY="10.625" />
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Resume" Width="1.5" PointX="10" PointY="9.75" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.HumanGroup" Width="1.5" PointX="17.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.HumanRelationKind" Width="1.5" PointX="22.375" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Place" Width="1.5" PointX="14" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.User" Width="1.5" PointX="7.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.ComplexRelation" Width="1.5" PointX="0.5" PointY="0.75" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Human" Width="1.5" PointX="14" PointY="8" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Person" Width="1.5" PointX="10.875" PointY="8.125" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.ResumeKind" Width="1.5" PointX="8.5" PointY="11.75" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Resume" Width="1.5" PointX="11.25" PointY="10.5" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Humans_Persons" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Humans_Places_BirthPlace" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Humans_Resume" />
@@ -24,11 +21,21 @@
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_ResumeEntries_ResumeEntryKinds" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_ResumeEntries_ResumeEntries_Parent" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.HumanGroupEntries" />
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Explorer_CircularReferences" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation" Width="1.5" PointX="19.125" PointY="4.875" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Explorer_CircularReferences" Width="1.5" PointX="0.5" PointY="3" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.HumanRelation" Width="1.5" PointX="19.625" PointY="8.25" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_HumanRelationKinds" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans" />
         <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_HumanRelations_Humans_Related" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Finances_Currencies" Width="1.5" PointX="5.875" PointY="4.375" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Finances_CurrencyIdentifier" Width="1.5" PointX="3.625" PointY="4.375" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Finances_Groups" Width="1.5" PointX="13.5" PointY="4.5" />
+        <EntityTypeShape EntityType="Koopakiller.Apps.Picosmos.Model.Database.Finances_Items" Width="1.5" PointX="8.875" PointY="4" />
+        <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_CurrencyIdentifier_Finances_Currencies" />
+        <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_Items_Finances_Currencies" />
+        <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_Items_Persons" />
+        <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.FK_Finances_Items_Users" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="Koopakiller.Apps.Picosmos.Model.Database.Finances_ItemGroups" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
