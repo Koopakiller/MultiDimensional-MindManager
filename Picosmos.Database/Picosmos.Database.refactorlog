@@ -49,4 +49,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="HumanId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="f8d34869-d386-4802-9d6b-191ced35b00e" ChangeDateTime="04/07/2017 13:26:36">
+    <Property Name="ElementName" Value="[dbo].[Finances.TransactionItems].[DateTimr]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Finances.TransactionItems]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DateTime" />
+  </Operation>
 </Operations>

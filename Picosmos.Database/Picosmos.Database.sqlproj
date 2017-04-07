@@ -97,6 +97,7 @@
       <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
     <Build Include="dbo\Tables\Explorer_CircularReferences.sql" />
+    <Build Include="dbo\Tables\Finances.TransactionItems.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />
