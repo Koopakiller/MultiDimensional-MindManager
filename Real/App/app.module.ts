@@ -4,7 +4,7 @@ import { AppComponent } from "./Components/app.js";
 
 @NgModule({
   imports: [
-        BrowserModule
+    BrowserModule
   ],
   declarations: [
     AppComponent
