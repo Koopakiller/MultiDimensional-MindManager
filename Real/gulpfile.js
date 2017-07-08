@@ -1,24 +1,12 @@
 // Less configuration
 var gulp = require("gulp");
 var less = require("gulp-less");
-var ts = require("gulp-typescript");
+var typescript = require("gulp-typescript");
+const typescriptProject = typescript.createProject('tsconfig.json');
 
-gulp.task("ts", function(){
+gulp.task("typescript", function(){
     gulp.src("./App/**/*.ts")
-        .pipe(ts({
-            "target": "es5",
-            "module": "commonjs",
-            "moduleResolution": "node",
-            "sourceMap": true,
-            "emitDecoratorMetadata": true,
-            "experimentalDecorators": true,
-            "lib": [ "es2015", "dom" ],
-            "noImplicitAny": true,
-            "suppressImplicitAnyIndexErrors": true,
-            "typeRoots": [
-                "../node_modules/@types/"
-            ]
-        }))
+        .pipe(typescript(typescriptProject))
         .pipe(gulp.dest(function(file) {
             return file.base;
         }))
@@ -32,7 +20,7 @@ gulp.task("less", function() {
         }))
 });
 
-gulp.task("default", ["less", "ts"], function() {
+gulp.task("default", ["less", "typescript"], function() {
     gulp.watch("Styles/*.less", ["less"]);
-    gulp.watch("./**/*.ts", ["ts"]);
+    gulp.watch("./**/*.ts", ["typescript"]);
 })
