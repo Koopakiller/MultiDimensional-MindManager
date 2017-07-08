@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Real.Controllers
 {
-    public class HomeController : Controller
+    public class TemplatesController : Controller
     {
-        public IActionResult Index()
+        public IActionResult App()
         {
             return View();
         }

@@ -1,0 +1,34 @@
+﻿[
+  {
+    "outputFile": "Styles/PicosmosExplorer.css",
+    "inputFile": "Styles/PicosmosExplorer.scss"
+  },
+  {
+    "outputFile": "Styles/PicosmosExplorer.css",
+    "inputFile": "Styles/PicosmosExplorer.less"
+  },
+  {
+    "outputFile": "Styles/DataTable.css",
+    "inputFile": "Styles/DataTable.less"
+  },
+  {
+    "outputFile": "Styles/Main.css",
+    "inputFile": "Styles/Main.less"
+  },
+  {
+    "outputFile": "Styles/Common.css",
+    "inputFile": "Styles/Common.less"
+  },
+  {
+    "outputFile": "Styles/Legend.css",
+    "inputFile": "Styles/Legend.less"
+  },
+  {
+    "outputFile": "Styles/CommonLegend.css",
+    "inputFile": "Styles/CommonLegend.less"
+  },
+  {
+    "outputFile": "Styles/CircularReference.css",
+    "inputFile": "Styles/CircularReference.less"
+  }
+]
