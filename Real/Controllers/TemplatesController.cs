@@ -8,9 +8,9 @@ namespace Real.Controllers
 {
     public class TemplatesController : Controller
     {
-        public IActionResult App()
+        public IActionResult Default(String actionName)
         {
-            return View();
+            return View(actionName);
         }
     }
 }

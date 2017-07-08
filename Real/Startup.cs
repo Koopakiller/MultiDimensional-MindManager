@@ -70,6 +70,10 @@ namespace Real
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "AngularTemplates",
+                    template: "Templates/{*actionName}",
+                    defaults: new { controller = "Templates", action = "Default" });
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
