@@ -6,7 +6,7 @@ const typescriptProject = typescript.createProject('tsconfig.json');
 
 gulp.task("typescript", function(){
     gulp.src("./App/**/*.ts")
-        .pipe(typescript(typescriptProject))
+        .pipe(typescriptProject())
         .pipe(gulp.dest(function(file) {
             return file.base;
         }))
