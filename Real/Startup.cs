@@ -51,21 +51,10 @@ namespace Real
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"node_modules")),
-                RequestPath = new PathString("/node_modules")
-            });
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"App")),
-                RequestPath = new PathString("/App")
-            });
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"")),
-                RequestPath = new PathString("")
-            });
+            app.UseStaticFilesFromFolder("node_modules");
+            app.UseStaticFilesFromFolder("App");
+            app.UseStaticFilesFromFolder("Styles");
+            app.UseStaticFilesFromFolder("wwwroot");
 
             app.UseMvc(routes =>
             {
@@ -76,6 +65,19 @@ namespace Real
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+    }
+
+    static class Extensions
+    {
+        public static void UseStaticFilesFromFolder(this IApplicationBuilder app, String relativeDirectory)
+        {
+            relativeDirectory = relativeDirectory.TrimStart('/');
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), relativeDirectory)),
+                RequestPath = new PathString("/" + relativeDirectory)
             });
         }
     }
