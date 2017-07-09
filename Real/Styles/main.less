@@ -38,6 +38,12 @@ body{
     &:hover{
       text-decoration: underline;
     }
+
+    svg.text-image{
+      .fill-path{
+        color:red;
+      }
+    }
   }
 
   #padding-content{
@@ -83,6 +89,17 @@ body{
     list-style: none;
       padding: 0;
       margin:0;
+      &>li{
+        &>a>img, img{
+          width:16px;
+          height:16px;
+          margin:0 5px 0 0;
+          vertical-align: -2px;
+          .fill-path{
+            fill: @accent-light;
+          }
+        }
+      }
   }
 } 
 

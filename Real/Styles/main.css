@@ -22,6 +22,9 @@ body a {
 body a:hover {
   text-decoration: underline;
 }
+body a svg.text-image .fill-path {
+  color: red;
+}
 body #padding-content {
   margin: 0 auto;
   padding: 10px;
@@ -57,6 +60,17 @@ body ul.text-list {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+body ul.text-list > li > a > img,
+body ul.text-list > li img {
+  width: 16px;
+  height: 16px;
+  margin: 0 5px 0 0;
+  vertical-align: -2px;
+}
+body ul.text-list > li > a > img .fill-path,
+body ul.text-list > li img .fill-path {
+  fill: #D8F0F0;
 }
 ::selection {
   text-shadow: none;
