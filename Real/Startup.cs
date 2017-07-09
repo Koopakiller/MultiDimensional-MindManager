@@ -54,6 +54,7 @@ namespace Real
             app.UseStaticFilesFromFolder("node_modules");
             app.UseStaticFilesFromFolder("App");
             app.UseStaticFilesFromFolder("Styles");
+            app.UseStaticFilesFromFolder("Images");
             app.UseStaticFilesFromFolder("wwwroot");
 
             app.UseMvc(routes =>

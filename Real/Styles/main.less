@@ -1,10 +1,42 @@
-@dark-1: #202020;
-@dark-2: #303030;
-@light-1: #F0F0F0;
-@light-2: #E0E0E0;
+@dark: #202020;
+@light: #F0F0F0;
+@accent-dark: #102020;
+@accent-light: #D8F0F0;
+
+@font-family-text: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+@font-family-mono: 'Courier New', monospace;
+
+@font-size-title: 48pt;
+@font-size-text: 12pt;
 
 body{
-  background-color: @dark-1;
-  color: @light-1;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+  background-color: @accent-dark;
+  color: @light;
+  font-family: @font-family-text;
+  font-size: @font-size-text;
+
+  #head{
+    font-family: @font-family-mono;
+    font-size: @font-size-title;
+    color: @light;
+    text-align: center;
+  }
+
+  #menu{
+    font-family: @font-family-mono;
+    text-align: center;
+  }
+
+  a{
+    text-decoration: none;
+    color: @accent-light;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
 } 
+
+// format selected text
+::selection { 
+  text-shadow: none;
+}

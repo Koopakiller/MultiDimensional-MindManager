@@ -1,5 +1,26 @@
 body {
-  background-color: #202020;
+  background-color: #102020;
   color: #F0F0F0;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 12pt;
+}
+body #head {
+  font-family: 'Courier New', monospace;
+  font-size: 48pt;
+  color: #F0F0F0;
+  text-align: center;
+}
+body #menu {
+  font-family: 'Courier New', monospace;
+  text-align: center;
+}
+body a {
+  text-decoration: none;
+  color: #D8F0F0;
+}
+body a:hover {
+  text-decoration: underline;
+}
+::selection {
+  text-shadow: none;
 }
