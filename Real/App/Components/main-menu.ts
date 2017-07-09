@@ -26,13 +26,17 @@ export class MainMenuComponent {
     }
 
     public menuItemClick(item: MenuItem) {
-        if(!item.showItems){
+        if(item.showItems){
+            item.showItems = false;
+            this.lastShownItem = undefined;
+        }
+        else{
+            if(this.lastShownItem){
+                this.lastShownItem.showItems = false;
+            }
             item.showItems = true;
+            this.lastShownItem = item;
         }
-        if(this.lastShownItem){
-            this.lastShownItem.showItems = false;
-        }
-        this.lastShownItem = item;
     }
 
     lastShownItem : MenuItem;
