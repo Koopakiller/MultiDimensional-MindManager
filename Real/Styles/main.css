@@ -21,6 +21,18 @@ body a {
 body a:hover {
   text-decoration: underline;
 }
+body #content {
+  background-color: #D8F0F0;
+  margin: 10px auto;
+  color: #202020;
+  padding: 10px;
+}
+body #content p:first-child {
+  margin-top: 0;
+}
+body #content p:last-child {
+  margin-bottom: 0;
+}
 ::selection {
   text-shadow: none;
 }
