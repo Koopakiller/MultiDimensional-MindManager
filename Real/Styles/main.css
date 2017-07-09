@@ -30,6 +30,12 @@ body #padding-content {
   padding: 10px;
   max-width: 1000px;
 }
+@media screen and (max-width: 500px) {
+  body #padding-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 body #padding-content #content {
   background-color: #D8F0F0;
   color: #202020;
@@ -71,6 +77,53 @@ body ul.text-list > li img {
 body ul.text-list > li > a > img .fill-path,
 body ul.text-list > li img .fill-path {
   fill: #D8F0F0;
+}
+body form .form-group {
+  display: table-row;
+}
+@media screen and (max-width: 500px) {
+  body form .form-group {
+    display: block;
+  }
+}
+body form .form-group > * {
+  display: table-cell;
+  padding-right: 5px;
+}
+@media screen and (max-width: 500px) {
+  body form .form-group > * {
+    padding-right: 0;
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+body form .form-group > *:last-child {
+  padding-right: 0;
+}
+body form .control-container {
+  min-width: 250px;
+  padding: 0;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+@media screen and (max-width: 500px) {
+  body form .control-container {
+    min-width: auto;
+  }
+}
+body form .control-container input,
+body form .control-container select,
+body form .control-container button {
+  display: inline-block;
+  padding: 2px 5px;
+  background: #F0F0F0;
+  border: 1px #202020 solid;
+  width: 100%;
+  box-sizing: border-box;
+}
+body form .control-container button[type=submit] {
+  min-width: 120px;
 }
 ::selection {
   text-shadow: none;

@@ -10,7 +10,11 @@
 @font-size-text: 12pt;
 
 @padding: 10px;
+@padding-small: 5px;
+@padding-tiny: 2px;
 @page-width: 1000px;
+
+@mobile-selector: ~"screen and (max-width: 500px)";
 
 body{
   background-color: @accent-dark;
@@ -51,6 +55,13 @@ body{
     padding: @padding;
     max-width: @page-width;
 
+    @media @mobile-selector{
+      &{
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+    
     #content{
       background-color: @accent-light;
       color:@dark;
@@ -100,6 +111,55 @@ body{
           }
         }
       }
+  }
+  form{
+    .form-group{
+      display:table-row;
+      @media @mobile-selector{
+        &{
+          display:block;
+        }
+      }
+      &>*{
+        display:table-cell;
+        padding-right: @padding-small; 
+        @media @mobile-selector{
+          &{
+            padding-right: 0; 
+            display:block;
+            margin-left:0;
+            margin-right:0;
+          }
+        }
+        &:last-child{
+          padding-right: 0; 
+        }
+      }
+    }
+
+    .control-container{
+      min-width: 250px;
+      padding: 0;
+      padding-top: @padding-tiny;
+      padding-bottom: @padding-tiny;
+      @media @mobile-selector{
+        &{
+          min-width:auto;
+        }
+      }
+      input, select, button{
+        display: inline-block;
+        padding: @padding-tiny @padding-small;
+        background:@light;
+        border:1px @dark solid;
+        width:100%;
+        box-sizing: border-box;
+      }
+
+      button[type=submit]{       
+        min-width: 120px;
+      }
+    }
   }
 } 
 
