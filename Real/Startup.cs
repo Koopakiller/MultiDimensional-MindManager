@@ -61,6 +61,9 @@ namespace Real
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "areaRoute",
+                    template: "{area:exists}/{controller=Home}/{action=Index}");
+                routes.MapRoute(
                     name: "AngularTemplates",
                     template: "Templates/{*actionName}",
                     defaults: new { controller = "Templates", action = "Default" });
