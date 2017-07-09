@@ -26,6 +26,7 @@ body #content {
   margin: 10px auto;
   color: #202020;
   padding: 10px;
+  max-width: 1060px;
 }
 body #content p:first-child {
   margin-top: 0;
