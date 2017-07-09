@@ -1,0 +1,8 @@
+<div class="main-menu">
+    <span *ngFor="let mainItem of menuItems" (click)="menuItemClick(mainItem)">/ <a href="#">{{mainItem.header}}</a> /</span>
+    <div *ngFor="let mainItem of menuItems">
+        <div *ngIf="mainItem.showItems">
+            <span *ngFor="let subItem of mainItem.items">/ <a href="#">{{subItem.header}}</a> /</span>
+        </div>
+    </div>
+</div>

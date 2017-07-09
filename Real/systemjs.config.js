@@ -27,7 +27,8 @@
 
       // other libraries
       'rxjs':                      '/node_modules/rxjs',
-      'angular-in-memory-web-api': '/node_modules/angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
+      'angular-in-memory-web-api': '/node_modules/angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
+      'lodash':                    '/node_modules/lodash/lodash.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
