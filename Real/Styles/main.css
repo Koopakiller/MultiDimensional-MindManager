@@ -34,6 +34,9 @@ body #content p:first-child {
 body #content p:last-child {
   margin-bottom: 0;
 }
+body footer {
+  text-align: center;
+}
 ::selection {
   text-shadow: none;
 }
