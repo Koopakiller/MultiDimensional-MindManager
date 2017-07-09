@@ -55,6 +55,7 @@ namespace Real
             app.UseStaticFilesFromFolder("App");
             app.UseStaticFilesFromFolder("Styles");
             app.UseStaticFilesFromFolder("Images");
+            app.UseStaticFilesFromFolder("");
             app.UseStaticFilesFromFolder("wwwroot");
 
             app.UseMvc(routes =>
@@ -78,7 +79,7 @@ namespace Real
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), relativeDirectory)),
-                RequestPath = new PathString("/" + relativeDirectory)
+                RequestPath = new PathString(relativeDirectory == "" ? "" : "/" + relativeDirectory)
             });
         }
     }
