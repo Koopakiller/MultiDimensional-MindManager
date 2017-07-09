@@ -9,11 +9,15 @@
 @font-size-title: 48pt;
 @font-size-text: 12pt;
 
+@padding: 10px;
+@page-width: 1000px;
+
 body{
   background-color: @accent-dark;
   color: @light;
   font-family: @font-family-text;
   font-size: @font-size-text;
+  margin: 0;
 
 
   #head{
@@ -36,23 +40,49 @@ body{
     }
   }
 
-  #content{
-    background-color: @accent-light;
-    margin: 10px auto;
-    color:@dark;
-    padding:10px;
-    max-width: 1060px;
+  #padding-content{
+    margin: 0 auto;
+    padding: @padding;
+    max-width: @page-width;
 
-    p:first-child{
-      margin-top:0;
+    #content{
+      background-color: @accent-light;
+      color:@dark;
+      padding: @padding;
+
+      p{
+        margin-top:0;
+        margin-bottom: @padding;
+      }
+
+      p:last-child{
+        margin-bottom:0;
+      }
     }
-    p:last-child{
-      margin-bottom:0;
-    }
+
   }
 
   footer{
     text-align: center;
+    background-color:@dark;
+    padding: @padding;
+
+    .columns{
+      display:block;
+
+      .column{
+        display:inline-block;    
+        vertical-align: top;
+        text-align: left;
+        min-width: @page-width / 4;
+      }
+    }
+  }
+
+  ul.text-list{
+    list-style: none;
+      padding: 0;
+      margin:0;
   }
 } 
 

@@ -3,6 +3,7 @@ body {
   color: #F0F0F0;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 12pt;
+  margin: 0;
 }
 body #head {
   font-family: 'Courier New', monospace;
@@ -21,21 +22,41 @@ body a {
 body a:hover {
   text-decoration: underline;
 }
-body #content {
+body #padding-content {
+  margin: 0 auto;
+  padding: 10px;
+  max-width: 1000px;
+}
+body #padding-content #content {
   background-color: #D8F0F0;
-  margin: 10px auto;
   color: #202020;
   padding: 10px;
-  max-width: 1060px;
 }
-body #content p:first-child {
+body #padding-content #content p {
   margin-top: 0;
+  margin-bottom: 10px;
 }
-body #content p:last-child {
+body #padding-content #content p:last-child {
   margin-bottom: 0;
 }
 body footer {
   text-align: center;
+  background-color: #202020;
+  padding: 10px;
+}
+body footer .columns {
+  display: block;
+}
+body footer .columns .column {
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  min-width: 250px;
+}
+body ul.text-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 ::selection {
   text-shadow: none;
