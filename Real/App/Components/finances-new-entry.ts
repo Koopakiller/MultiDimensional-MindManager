@@ -1,30 +1,39 @@
-import { Component } from "@angular/core";
-import * as _ from "lodash";
+import { Component, OnInit } from "@angular/core";
+import { FinancesService } from "../Services/FinancesService.js";
+import { LocationService } from "../Services/LocationService.js";
+import { PersonViewModel, CurrencyViewModel, UserViewModel } from "../ViewModels/FinancesViewModels.js";
+import { FinanceEntry } from "../ServerModels/FinancesServerModels.js";
 
 @Component({
     selector: "finances-new-entry",
     templateUrl: "/Templates/FinancesNewEntry"
 })
-export class FinancesNewEntryComponent {
-    public ngOnInit() {
-        navigator.geolocation.getCurrentPosition(location => this.location = location);
+export class FinancesNewEntryComponent implements OnInit {
+    constructor(
+        private financesService: FinancesService,
+        private locationService: LocationService      
+    ) { }
+
+    ngOnInit(): void {
+        this.financesService.persons.subscribe(x => this.persons = x);
+        this.financesService.currencies.subscribe(x => this.currencies = x);
+        this.financesService.users.subscribe(x => this.users = x);
+        this.locationService.location.subscribe(x => this.location = x);
     }
+
+    persons: PersonViewModel[];
+    currencies: CurrencyViewModel[];
+    users: UserViewModel[];
 
     location: Position;
+
     value: number = 0;
-    currency: string = "Euro";
-    person: string;
+    person: number = 0;
+    currency: number = 0;
+    user: number = 0;
+    name: string;
 
-    currencies = [
-        { id: "Euro", header: "Euro (€)" }, 
-        { id: "USDollar", header: "US Dollar ($)" }
-    ]
-
-    public submitNew() {
-        alert(this.currency + "\n" + this.value)
-    }
-
-    public submit(){
+    public submit(): void{
         let data = new FinanceEntry();
         data.currencyId = 0;
         data.existingPersonId = 0;

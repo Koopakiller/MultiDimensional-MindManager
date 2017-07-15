@@ -1,8 +1,8 @@
 <form (ngSubmit)="submit()">
     <div class="form-group">
-        <label for="person">Person</label>
+        <label for="name">Name</label>
         <div class="control-container">
-            <input type="text" class="form-control" id="person" [(ngModel)]="person" name="person" required>
+            <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name" required>
         </div>
     </div>
     <div class="form-group">
@@ -16,6 +16,22 @@
         <div class="control-container">  
             <select [(ngModel)]="currency" name="currency">
                 <option *ngFor="let currency of currencies" [ngValue]="currency.id">{{currency.header}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="user">User</label>
+        <div class="control-container">  
+            <select [(ngModel)]="user" name="user">
+                <option *ngFor="let user of users" [ngValue]="user.id">{{user.header}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="person">Person</label>
+        <div class="control-container">  
+            <select [(ngModel)]="person" name="person">
+                <option *ngFor="let person of persons" [ngValue]="person.id">{{person.header}}</option>
             </select>
         </div>
     </div>

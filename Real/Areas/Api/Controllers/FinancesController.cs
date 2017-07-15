@@ -20,16 +20,24 @@ namespace Real.Areas.Api.Controllers
             return this.Ok();
         }
 
-        public IActionResult GetDataForNewEntry()
+        public IActionResult GetUsers()
         {
             var data = new 
             {
-                Users = new dynamic[]
+                Data = new dynamic[]
                 {
                     new { Id = 0, Name = "Schmul Goldberg" },
                     new { Id = 1, Name = "Tom Lambert" },
                 },
-                Persons = new dynamic[]
+            };
+            return this.Json(data);
+        }
+
+        public IActionResult GetPersons()
+        {
+            var data = new 
+            {
+                Data = new dynamic[]
                 {
                     new { Id = 1, Name = "Edeka" },
                     new { Id = 2, Name = "Rewe" },
@@ -38,7 +46,15 @@ namespace Real.Areas.Api.Controllers
                     new { Id = 4, Name = "Netto" },
                     new { Id = 4, Name = "Hundenetto" },
                 },
-                Currencies = new dynamic[]
+            };
+            return this.Json(data);
+        }
+
+        public IActionResult GetCurrencies()
+        {
+            var data = new 
+            {
+                Data = new dynamic[]
                 {
                     new { Id = 1, Names = new string[] { "Euro", "€" } },
                     new { Id = 1, Names = new string[] { "US Dollar", "$" } },

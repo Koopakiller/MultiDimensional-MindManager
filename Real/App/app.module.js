@@ -7,12 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_js_1 = require("./Components/app.js");
 var main_menu_js_1 = require("./Components/main-menu.js");
 var finances_js_1 = require("./Components/finances.js");
 var finances_new_entry_js_1 = require("./Components/finances-new-entry.js");
+var FinancesService_js_1 = require("./Services/FinancesService.js");
+var LocationService_js_1 = require("./Services/LocationService.js");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -21,6 +24,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [
+            http_1.HttpModule,
             platform_browser_1.BrowserModule,
             forms_1.FormsModule
         ],
@@ -32,6 +36,10 @@ AppModule = __decorate([
         ],
         bootstrap: [
             app_js_1.AppComponent
+        ],
+        providers: [
+            FinancesService_js_1.FinancesService,
+            LocationService_js_1.LocationService
         ]
     })
 ], AppModule);
