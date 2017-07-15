@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Real.Areas.Api.ViewModels;
 
 namespace Real.Areas.Api.Controllers
 {
@@ -11,7 +12,12 @@ namespace Real.Areas.Api.Controllers
     {
         public IActionResult Index()
         {
-            return Json(new {test="Test",Number=12.34});
+            return Json(new { test = "Test", Number = 12.34 });
+        }
+
+        public IActionResult Add(FinanceEntry data)
+        {
+            return this.Ok();
         }
     }
 }
