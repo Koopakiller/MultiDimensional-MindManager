@@ -4,6 +4,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AppComponent } from "./Components/app.js";
 import { MainMenuComponent } from "./Components/main-menu.js";
 import { FinancesComponent } from "./Components/finances.js";
+import { FinancesNewEntryComponent } from "./Components/finances-new-entry.js";
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { FinancesComponent } from "./Components/finances.js";
   declarations: [
     AppComponent,
     MainMenuComponent,
+    FinancesNewEntryComponent,
     FinancesComponent
   ],
   bootstrap: [

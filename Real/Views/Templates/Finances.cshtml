@@ -1,32 +1,14 @@
 <h1>Finances</h1>
 
-<form (ngSubmit)="submitNew()">
-    <div class="form-group">
-        <label for="person">Person</label>
-        <div class="control-container">
-            <input type="text" class="form-control" id="person" [(ngModel)]="person" name="person" required>
+<a href="#" (click)="addSubmitNewForm()">Submit new entry</a>
+
+<div>
+    <div *ngFor="let form of forms">
+        <div [ngSwitch]="form">
+            <finances-new-entry *ngSwitchCase="'new-entry'"></finances-new-entry>
+
         </div>
-    </div>
-    <div class="form-group">
-        <label for="value">Value</label>
-        <div class="control-container">  
-            <input type="number" class="form-control" id="value" [(ngModel)]="value" name="value" required>
-        </div> 
-    </div>
-    <div class="form-group">
-        <label for="currency">Currency</label>
-        <div class="control-container">  
-            <select [(ngModel)]="currency" name="currency">
-                <option *ngFor="let currency of currencies" [ngValue]="currency.id">{{currency.header}}</option>
-            </select>
-        </div>
+
     </div>
 
-    <div class="form-group">
-        <span></span>
-        <div class="control-container">  
-            <button type="submit" class="btn btn-success">Submit</button>
-        </div>  
-    </div>
-
-</form>
+</div>

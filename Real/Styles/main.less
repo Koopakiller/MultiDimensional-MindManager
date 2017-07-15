@@ -23,30 +23,31 @@ body{
   font-size: @font-size-text;
   margin: 0;
 
+  a{
+    text-decoration: none;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
 
   #head{
     font-family: @font-family-mono;
     font-size: @font-size-title;
     color: @light;
     text-align: center;
+
+    a{
+      color: @accent-light;
+    }
   }
 
   #menu{
     font-family: @font-family-mono;
     text-align: center;
-  }
 
-  a{
-    text-decoration: none;
-    color: @accent-light;
-    &:hover{
-      text-decoration: underline;
-    }
-
-    svg.text-image{
-      .fill-path{
-        color:red;
-      }
+    a{
+      color: @accent-light;
     }
   }
 
@@ -54,6 +55,10 @@ body{
     margin: 0 auto;
     padding: @padding;
     max-width: @page-width;
+
+    a{
+      color: @accent-dark;
+    }
 
     @media @mobile-selector{
       &{
@@ -93,6 +98,9 @@ body{
         text-align: left;
         min-width: @page-width / 4;
       }
+    }
+    a{
+      color: @accent-light;
     }
   }
 

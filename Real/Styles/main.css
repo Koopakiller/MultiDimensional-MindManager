@@ -5,30 +5,35 @@ body {
   font-size: 12pt;
   margin: 0;
 }
+body a {
+  text-decoration: none;
+}
+body a:hover {
+  text-decoration: underline;
+}
 body #head {
   font-family: 'Courier New', monospace;
   font-size: 48pt;
   color: #F0F0F0;
   text-align: center;
 }
+body #head a {
+  color: #D8F0F0;
+}
 body #menu {
   font-family: 'Courier New', monospace;
   text-align: center;
 }
-body a {
-  text-decoration: none;
+body #menu a {
   color: #D8F0F0;
-}
-body a:hover {
-  text-decoration: underline;
-}
-body a svg.text-image .fill-path {
-  color: red;
 }
 body #padding-content {
   margin: 0 auto;
   padding: 10px;
   max-width: 1000px;
+}
+body #padding-content a {
+  color: #102020;
 }
 @media screen and (max-width: 500px) {
   body #padding-content {
@@ -61,6 +66,9 @@ body footer .columns .column {
   vertical-align: top;
   text-align: left;
   min-width: 250px;
+}
+body footer a {
+  color: #D8F0F0;
 }
 body ul.text-list {
   list-style: none;

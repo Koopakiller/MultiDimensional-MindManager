@@ -9,19 +9,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var FinancesComponent = (function () {
     function FinancesComponent() {
-        this.value = 0;
-        this.currency = "Euro";
-        this.currencies = [
-            { id: "Euro", header: "Euro (€)" },
-            { id: "USDollar", header: "US Dollar ($)" }
-        ];
+        this._forms = [];
     }
-    FinancesComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        navigator.geolocation.getCurrentPosition(function (location) { return _this.location = location; });
-    };
-    FinancesComponent.prototype.submitNew = function () {
-        alert(this.currency + "\n" + this.value);
+    Object.defineProperty(FinancesComponent.prototype, "forms", {
+        get: function () {
+            return this._forms;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    FinancesComponent.prototype.addSubmitNewForm = function () {
+        this._forms.push("new-entry");
     };
     return FinancesComponent;
 }());
@@ -32,13 +30,3 @@ FinancesComponent = __decorate([
     })
 ], FinancesComponent);
 exports.FinancesComponent = FinancesComponent;
-var FinanceEntry = (function () {
-    function FinanceEntry(value, currency, person, location) {
-        this.value = value;
-        this.currency = currency;
-        this.person = person;
-        this.location = location;
-    }
-    return FinanceEntry;
-}());
-exports.FinanceEntry = FinanceEntry;
