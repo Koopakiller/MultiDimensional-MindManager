@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var FinancesViewModels_js_1 = require("../ViewModels/FinancesViewModels.js");
-var FinanceEntry = (function () {
-    function FinanceEntry() {
+var FinanceEntryServerModel = (function () {
+    function FinanceEntryServerModel() {
     }
-    return FinanceEntry;
+    return FinanceEntryServerModel;
 }());
-exports.FinanceEntry = FinanceEntry;
+exports.FinanceEntryServerModel = FinanceEntryServerModel;
 var PersonServerModel = (function () {
     function PersonServerModel() {
     }

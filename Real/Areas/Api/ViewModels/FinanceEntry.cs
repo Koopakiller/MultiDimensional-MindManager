@@ -8,14 +8,14 @@ namespace Real.Areas.Api.ViewModels
 
         public decimal Value { get; set; }
 
-        public string Person { get; set; }
-
-        public int? ExistingPersonId { get; set; }
+        public int PersonId { get; set; }
 
         public int UserId { get; set; }
 
         public int CurrencyId { get; set; }
 
         public DateTime TimeStamp { get; set; }
+
+        public dynamic Coordinates { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PersonServerModel, UserServerModel, CurrencyServerModel } from "../ServerModels/FinancesServerModels.js";
+import { PersonServerModel, UserServerModel, CurrencyServerModel, FinanceEntryServerModel } from "../ServerModels/FinancesServerModels.js";
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -33,5 +33,17 @@ export class FinancesService {
     public get currencies(): Observable<CurrencyViewModel[]> {
         return this.http.get(`/api/Finances/GetCurrencies`)
             .map(response => this.map(response, (sm: CurrencyServerModel) => { var obj = new CurrencyServerModel(); Object.assign(obj, sm); return obj.toViewModel(); }));
+    }
+
+    public addEntry(currencyId: number, personId: number, userId: number, timeStamp: Date, name: string, value: number, coordinates: Coordinates) {
+        let data = new FinanceEntryServerModel();
+        data.currencyId = currencyId;
+        data.personId = personId;
+        data.userId = userId;
+        data.timeStamp = timeStamp;
+        data.name = name;
+        data.value = value;
+        data.coordinates = coordinates;
+        this.http.post("/api/Finances/AddEntry", data);
     }
 }

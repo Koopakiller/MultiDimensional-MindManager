@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../Services/FinancesService.js";
 import { LocationService } from "../Services/LocationService.js";
 import { PersonViewModel, CurrencyViewModel, UserViewModel } from "../ViewModels/FinancesViewModels.js";
-import { FinanceEntry } from "../ServerModels/FinancesServerModels.js";
+import { FinanceEntryServerModel } from "../ServerModels/FinancesServerModels.js";
 
 @Component({
     selector: "finances-new-entry",
@@ -41,13 +41,6 @@ export class FinancesNewEntryComponent implements OnInit {
     }
 
     public submit(): void {
-        let data = new FinanceEntry();
-        data.currencyId = this.currency;
-        data.personId = this.person;
-        data.userId = this.user;
-        data.timeStamp = new Date();
-        data.name = this.name;
-        data.value = this.value;
-        data.coordinates = this.coordinates;
+        this.financesService.addEntry(this.currency, this.person, this.user, this.timeStamp, this.name, this.value, this.coordinates);
     }
 }     

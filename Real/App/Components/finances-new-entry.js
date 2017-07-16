@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var FinancesService_js_1 = require("../Services/FinancesService.js");
 var LocationService_js_1 = require("../Services/LocationService.js");
-var FinancesServerModels_js_1 = require("../ServerModels/FinancesServerModels.js");
 var FinancesNewEntryComponent = (function () {
     function FinancesNewEntryComponent(financesService, locationService) {
         this.financesService = financesService;
@@ -31,14 +30,7 @@ var FinancesNewEntryComponent = (function () {
         this.timeStamp = new Date();
     };
     FinancesNewEntryComponent.prototype.submit = function () {
-        var data = new FinancesServerModels_js_1.FinanceEntry();
-        data.currencyId = this.currency;
-        data.personId = this.person;
-        data.userId = this.user;
-        data.timeStamp = new Date();
-        data.name = this.name;
-        data.value = this.value;
-        data.coordinates = this.coordinates;
+        this.financesService.addEntry(this.currency, this.person, this.user, this.timeStamp, this.name, this.value, this.coordinates);
     };
     return FinancesNewEntryComponent;
 }());

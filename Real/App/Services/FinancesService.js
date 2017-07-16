@@ -50,6 +50,17 @@ var FinancesService = (function () {
         enumerable: true,
         configurable: true
     });
+    FinancesService.prototype.addEntry = function (currencyId, personId, userId, timeStamp, name, value, coordinates) {
+        var data = new FinancesServerModels_js_1.FinanceEntryServerModel();
+        data.currencyId = currencyId;
+        data.personId = personId;
+        data.userId = userId;
+        data.timeStamp = timeStamp;
+        data.name = name;
+        data.value = value;
+        data.coordinates = coordinates;
+        this.http.post("/api/Finances/AddEntry", data);
+    };
     return FinancesService;
 }());
 FinancesService = __decorate([

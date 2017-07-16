@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Real.Areas.Api.ViewModels;
+using System.Diagnostics;
 
 namespace Real.Areas.Api.Controllers
 {
@@ -13,11 +14,6 @@ namespace Real.Areas.Api.Controllers
         public IActionResult Index()
         {
             return Json(new { test = "Test", Number = 12.34 });
-        }
-
-        public IActionResult Add(FinanceEntry data)
-        {
-            return this.Ok();
         }
 
         public IActionResult GetUsers()
@@ -61,6 +57,13 @@ namespace Real.Areas.Api.Controllers
                 },
             };
             return this.Json(data);
+        }
+
+        [HttpPost]
+        public IActionResult AddEntry(FinanceEntry data)
+        {
+            Debug.WriteLine(data.Value);
+            return this.Ok();
         }
     }
 }

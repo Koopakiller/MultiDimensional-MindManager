@@ -1,6 +1,6 @@
 import { PersonViewModel, UserViewModel, CurrencyViewModel } from "../ViewModels/FinancesViewModels.js";
 
-export class FinanceEntry {
+export class FinanceEntryServerModel {
     public name: string;
     public value: number;
     public personId: number;
