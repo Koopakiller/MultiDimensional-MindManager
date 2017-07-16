@@ -2,13 +2,13 @@
     <div class="form-group">
         <label for="name">Name</label>
         <div class="control-container">
-            <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name" required>
+            <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name" required />
         </div>
     </div>
     <div class="form-group">
         <label for="value">Value</label>
         <div class="control-container">  
-            <input type="number" class="form-control" id="value" [(ngModel)]="value" name="value" required>
+            <input type="number" class="form-control" id="value" [(ngModel)]="value" name="value" required />
         </div> 
     </div>
     <div class="form-group">
@@ -34,6 +34,15 @@
                 <option *ngFor="let person of persons" [ngValue]="person.id">{{person.header}}</option>
             </select>
         </div>
+    </div>
+    <div class="form-group">
+        <label for="timeStamp">Time Stamp</label>
+        <div class="control-container">  
+            <input type="datetime" class="form-control" id="timeStamp" [(ngModel)]="timeStamp" name="timeStamp" required />
+        </div> 
+        <div class="control-container">  
+            <input type="button" class="form-control" (click)="setTimeToNow()" value="Now"/>
+        </div> 
     </div>
 
     <div class="form-group">

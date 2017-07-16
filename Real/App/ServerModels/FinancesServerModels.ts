@@ -3,17 +3,11 @@ import { PersonViewModel, UserViewModel, CurrencyViewModel } from "../ViewModels
 export class FinanceEntry {
     public name: string;
     public value: number;
-    public person: string;
-    public existingPersonId: number; //nullable
+    public personId: number;
     public userId: number;
     public currencyId: number;
     public timeStamp: Date;
-}
-
-export class StaticFinanceData{
-    public persons: PersonServerModel[];
-    public users: UserServerModel[];
-    public currencies: CurrencyServerModel[];
+    public coordinates: Coordinates;
 }
 
 export class PersonServerModel implements IViewModelConvert<PersonViewModel>{

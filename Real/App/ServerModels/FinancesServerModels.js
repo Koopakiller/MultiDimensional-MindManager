@@ -7,12 +7,6 @@ var FinanceEntry = (function () {
     return FinanceEntry;
 }());
 exports.FinanceEntry = FinanceEntry;
-var StaticFinanceData = (function () {
-    function StaticFinanceData() {
-    }
-    return StaticFinanceData;
-}());
-exports.StaticFinanceData = StaticFinanceData;
 var PersonServerModel = (function () {
     function PersonServerModel() {
     }

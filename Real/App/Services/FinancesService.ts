@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StaticFinanceData, PersonServerModel, UserServerModel, CurrencyServerModel } from "../ServerModels/FinancesServerModels.js";
+import { PersonServerModel, UserServerModel, CurrencyServerModel } from "../ServerModels/FinancesServerModels.js";
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';

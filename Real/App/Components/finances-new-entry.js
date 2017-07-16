@@ -17,27 +17,28 @@ var FinancesNewEntryComponent = (function () {
     function FinancesNewEntryComponent(financesService, locationService) {
         this.financesService = financesService;
         this.locationService = locationService;
-        this.value = 0;
-        this.person = 0;
-        this.currency = 0;
-        this.user = 0;
     }
     FinancesNewEntryComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.financesService.persons.subscribe(function (x) { return _this.persons = x; });
-        this.financesService.currencies.subscribe(function (x) { return _this.currencies = x; });
-        this.financesService.users.subscribe(function (x) { return _this.users = x; });
-        this.locationService.location.subscribe(function (x) { return _this.location = x; });
+        this.financesService.persons.subscribe(function (x) { _this.persons = x; _this.person = 0; });
+        this.financesService.currencies.subscribe(function (x) { _this.currencies = x; _this.currency = 0; });
+        this.financesService.users.subscribe(function (x) { _this.users = x; _this.user = 0; });
+        this.locationService.location.subscribe(function (x) { return _this.coordinates = x ? x.coords : null; });
+        this.timeStamp = new Date();
+        this.value = 0;
+    };
+    FinancesNewEntryComponent.prototype.setTimeToNow = function () {
+        this.timeStamp = new Date();
     };
     FinancesNewEntryComponent.prototype.submit = function () {
         var data = new FinancesServerModels_js_1.FinanceEntry();
-        data.currencyId = 0;
-        data.existingPersonId = 0;
-        data.name = "";
-        data.person = "";
+        data.currencyId = this.currency;
+        data.personId = this.person;
+        data.userId = this.user;
         data.timeStamp = new Date();
-        data.userId = 0;
-        data.value = 0;
+        data.name = this.name;
+        data.value = this.value;
+        data.coordinates = this.coordinates;
     };
     return FinancesNewEntryComponent;
 }());
