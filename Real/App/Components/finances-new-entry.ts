@@ -30,10 +30,10 @@ export class FinancesNewEntryComponent implements OnInit {
     coordinates: Coordinates;
 
     name: string;
-    value: number ;
-    person: number ;
-    currency: number ;
-    user: number ;
+    value: number;
+    person: number;
+    currency: number;
+    user: number;
     timeStamp: Date;
 
     public setTimeToNow(){

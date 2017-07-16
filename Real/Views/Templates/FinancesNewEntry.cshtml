@@ -44,6 +44,28 @@
             <input type="button" class="form-control" (click)="setTimeToNow()" value="Now"/>
         </div> 
     </div>
+    <div>
+        <div *ngIf="coordinates">
+            <table>
+                <tbody>
+                    <tr><td>Latitude:</td><td>{{coordinates.latitude}}</td></tr>
+                    <tr><td>Longitude:</td><td>{{coordinates.longitude}}</td></tr> 
+                    <tr><td>Accuracy:</td><td>{{coordinates.accuracy}}</td></tr>     
+                </tbody>
+                <tbody>
+                    <tr><td>Altitude:</td><td>{{coordinates.altitude}}</td></tr>        
+                    <tr><td>Altitude Accuracy:</td><td>{{coordinates.altitudeAccuracy}}</td></tr>
+                </tbody>
+                <tbody>
+                    <tr><td>Heading:</td><td>{{coordinates.heading}}</td></tr>       
+                    <tr><td>Speed:</td><td>{{coordinates.speed}}</td></tr>       
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="!coordinates">
+            Unable to get coordinates from your browser.
+        </div>
+    </div>
 
     <div class="form-group">
         <span></span>
