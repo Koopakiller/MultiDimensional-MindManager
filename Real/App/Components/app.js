@@ -9,18 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var AppComponent = (function () {
     function AppComponent() {
-        this._text = "Test";
     }
-    Object.defineProperty(AppComponent.prototype, "text", {
-        get: function () {
-            return this._text;
-        },
-        set: function (value) {
-            this._text = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
     return AppComponent;
 }());
 AppComponent = __decorate([
@@ -30,4 +19,3 @@ AppComponent = __decorate([
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.js.map

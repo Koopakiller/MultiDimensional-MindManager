@@ -7,26 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var FinancesComponent = (function () {
-    function FinancesComponent() {
-        this._forms = [];
+var AppTestComponent = (function () {
+    function AppTestComponent() {
     }
-    Object.defineProperty(FinancesComponent.prototype, "forms", {
-        get: function () {
-            return this._forms;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    FinancesComponent.prototype.addSubmitNewForm = function () {
-        this._forms.push("new-entry");
-    };
-    return FinancesComponent;
+    return AppTestComponent;
 }());
-FinancesComponent = __decorate([
+AppTestComponent = __decorate([
     core_1.Component({
-        selector: "finances",
-        templateUrl: "/Templates/Finances"
+        selector: "app-test",
+        templateUrl: "/Templates/AppTest"
     })
-], FinancesComponent);
-exports.FinancesComponent = FinancesComponent;
+], AppTestComponent);
+exports.AppTestComponent = AppTestComponent;

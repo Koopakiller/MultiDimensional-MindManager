@@ -57,7 +57,6 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
         [HttpPost]
         public IActionResult AddEntry(FinanceEntry data)
         {
-            Debug.WriteLine(data.Value);
             return this.Ok();
         }
     }

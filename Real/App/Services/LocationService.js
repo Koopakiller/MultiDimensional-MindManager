@@ -30,4 +30,3 @@ LocationService = __decorate([
     core_1.Injectable()
 ], LocationService);
 exports.LocationService = LocationService;
-//# sourceMappingURL=LocationService.js.map

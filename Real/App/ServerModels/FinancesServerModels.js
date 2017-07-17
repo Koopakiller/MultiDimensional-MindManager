@@ -34,4 +34,3 @@ var CurrencyServerModel = (function () {
     return CurrencyServerModel;
 }());
 exports.CurrencyServerModel = CurrencyServerModel;
-//# sourceMappingURL=FinancesServerModels.js.map
