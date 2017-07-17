@@ -248,15 +248,24 @@ body form .control-container input,
 body form .control-container select,
 body form .control-container button {
   display: inline-block;
-  padding: 2px 5px;
-  background: #F0F0F0;
-  border: 1px #202020 solid;
+  padding: 10px;
+  background: #202020;
+  color: white;
+  border-radius: 5px;
+  border: 2px transparent solid;
   width: 100%;
   box-sizing: border-box;
+}
+body form .control-container input:focus,
+body form .control-container select:focus,
+body form .control-container button:focus {
+  background: #D8F0F0;
+  color: black;
 }
 body form .control-container button[type=submit] {
   min-width: 120px;
 }
 ::selection {
   text-shadow: none;
+  background: #D8F0F0;
 }

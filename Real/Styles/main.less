@@ -260,11 +260,18 @@ body{
       }
       input, select, button{
         display: inline-block;
-        padding: @padding-tiny @padding-small;
-        background:@light;
-        border:1px @dark solid;
+        padding: @padding;
+        background: #202020;
+        color:white;
+        border-radius: 5px;
+        border: 2px transparent solid;
         width:100%;
         box-sizing: border-box;
+
+        &:focus{
+          background: @accent-light;
+          color: black;
+        }
       }
 
       button[type=submit]{       
@@ -277,4 +284,5 @@ body{
 // format selected text
 ::selection { 
   text-shadow: none;
-}
+  background: @accent-light;
+} 
