@@ -8,9 +8,25 @@ import { FinancesComponent } from "./Components/finances.js";
 import { FinancesNewEntryComponent } from "./Components/finances-new-entry.js";
 import { FinancesService } from "./Services/FinancesService.js";
 import { LocationService } from "./Services/LocationService.js";
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: 'finance', component: FinancesComponent },
+  { path: 'finance-new-entry',      component: FinancesNewEntryComponent },
+  //{ path: 'test',      component: TestComponent },
+  { path: '',
+    redirectTo: '/finance',
+    pathMatch: 'full'
+  },
+  //{ path: '**', component: PageNotFoundComponent }
+];
 
 @NgModule({
   imports: [
+     RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    ),
     HttpModule,
     BrowserModule,
     FormsModule

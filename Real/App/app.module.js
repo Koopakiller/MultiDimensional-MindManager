@@ -16,6 +16,16 @@ var finances_js_1 = require("./Components/finances.js");
 var finances_new_entry_js_1 = require("./Components/finances-new-entry.js");
 var FinancesService_js_1 = require("./Services/FinancesService.js");
 var LocationService_js_1 = require("./Services/LocationService.js");
+var router_1 = require("@angular/router");
+var appRoutes = [
+    { path: 'finance', component: finances_js_1.FinancesComponent },
+    { path: 'finance-new-entry', component: finances_new_entry_js_1.FinancesNewEntryComponent },
+    //{ path: 'test',      component: TestComponent },
+    { path: '',
+        redirectTo: '/finance',
+        pathMatch: 'full'
+    },
+];
 var AppModule = (function () {
     function AppModule() {
     }
@@ -24,6 +34,8 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [
+            router_1.RouterModule.forRoot(appRoutes, { enableTracing: true } // <-- debugging purposes only
+            ),
             http_1.HttpModule,
             platform_browser_1.BrowserModule,
             forms_1.FormsModule
