@@ -16,45 +16,58 @@ body{
     }
   }
 
-  #head{
-    .font-code;
-    font-size: @font-size-title;
-    color: @light;
-    text-align: center;
 
-    a{
-      color: @accent-light;
-    }
-  }
-
-  #menu{
-    .font-code;
-    text-align: center;
-
-    a{
-      color: @accent-light;
-    }
-  }
-
-  #padding-content{
+  .padding{
     margin: 0 auto;
-    padding: @padding;
+    padding: 0 @padding @padding @padding;
     max-width: @page-width;
-
+    display:block;
+  
     @media @mobile-selector{
       &{
         padding-left: 0;
         padding-right: 0;
       }
     }
-    
-    #content{
-      background-color: @transparent;
-      color:@dark;
-      padding: @padding;
-    }
-
   }
+
+  header{
+    color: @light;
+    display: block;
+    text-align:center;
+    .font-code;
+    font-size: 44pt;
+    @media @mobile-selector{
+      &{
+        font-size: 24pt;
+      }
+    }
+  }
+  nav{
+    background-color: @transparent;
+    list-style: none;
+    padding:0;
+    li{
+      display:inline-block;
+      a{
+        display:inline-block;
+        padding: @padding;
+        color:black;
+        &:hover{
+          background-color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  
+  #content{
+    padding: @padding;
+    background-color: @transparent;
+    color:@dark;    
+  }
+
+  
 
   footer{
     text-align: center;

@@ -1,8 +1,14 @@
-﻿<div id="head">Picosmos.Real</div>
-
-<main-menu id="menu"></main-menu>
-
-<div id="padding-content">
+﻿
+<header>
+    <span id="page-header">Picosmos.Real</span>
+</header>
+<div class="padding">
+    <nav>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/">Finances</a></li>
+    </nav>
+</div>
+<div class="padding">
     <div id="content" class="text">
         <router-outlet></router-outlet>
     </div>

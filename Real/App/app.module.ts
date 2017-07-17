@@ -3,7 +3,6 @@ import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppComponent } from "./Components/app.js";
-import { MainMenuComponent } from "./Components/main-menu.js";
 import { FinancesComponent } from "./Components/finances.js";
 import { FinancesNewEntryComponent } from "./Components/finances-new-entry.js";
 import { FinancesService } from "./Services/FinancesService.js";
@@ -35,7 +34,6 @@ const appRoutes: Routes = [
   ],
   declarations: [
     AppComponent,
-    MainMenuComponent,
     FinancesNewEntryComponent,
     FinancesComponent,
     StyleTestComponent

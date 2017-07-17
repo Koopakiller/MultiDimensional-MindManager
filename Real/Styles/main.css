@@ -40,39 +40,52 @@ body a {
 body a:hover {
   text-decoration: underline;
 }
-body #head {
-  font-family: 'Courier New', monospace;
-  font-size: 11pt;
-  font-size: 48pt;
-  color: #F0F0F0;
-  text-align: center;
-}
-body #head a {
-  color: #D8F0F0;
-}
-body #menu {
-  font-family: 'Courier New', monospace;
-  font-size: 11pt;
-  text-align: center;
-}
-body #menu a {
-  color: #D8F0F0;
-}
-body #padding-content {
+body .padding {
   margin: 0 auto;
-  padding: 10px;
+  padding: 0 10px 10px 10px;
   max-width: 1000px;
+  display: block;
 }
 @media screen and (max-width: 500px) {
-  body #padding-content {
+  body .padding {
     padding-left: 0;
     padding-right: 0;
   }
 }
-body #padding-content #content {
+body header {
+  color: #F0F0F0;
+  display: block;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  font-size: 11pt;
+  font-size: 44pt;
+}
+@media screen and (max-width: 500px) {
+  body header {
+    font-size: 24pt;
+  }
+}
+body nav {
+  background-color: rgba(255, 255, 255, 0.8);
+  list-style: none;
+  padding: 0;
+}
+body nav li {
+  display: inline-block;
+}
+body nav li a {
+  display: inline-block;
+  padding: 10px;
+  color: black;
+}
+body nav li a:hover {
+  background-color: white;
+  text-decoration: none;
+}
+body #content {
+  padding: 10px;
   background-color: rgba(255, 255, 255, 0.8);
   color: #202020;
-  padding: 10px;
 }
 body footer {
   text-align: center;

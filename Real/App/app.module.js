@@ -11,7 +11,6 @@ var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_js_1 = require("./Components/app.js");
-var main_menu_js_1 = require("./Components/main-menu.js");
 var finances_js_1 = require("./Components/finances.js");
 var finances_new_entry_js_1 = require("./Components/finances-new-entry.js");
 var FinancesService_js_1 = require("./Services/FinancesService.js");
@@ -44,7 +43,6 @@ AppModule = __decorate([
         ],
         declarations: [
             app_js_1.AppComponent,
-            main_menu_js_1.MainMenuComponent,
             finances_new_entry_js_1.FinancesNewEntryComponent,
             finances_js_1.FinancesComponent,
             style_test_js_1.StyleTestComponent
