@@ -9,10 +9,12 @@ import { FinancesNewEntryComponent } from "./Components/finances-new-entry.js";
 import { FinancesService } from "./Services/FinancesService.js";
 import { LocationService } from "./Services/LocationService.js";
 import { RouterModule, Routes } from '@angular/router';
+import { StyleTestComponent } from "./Components/style-test.js";
 
 const appRoutes: Routes = [
   { path: 'finance', component: FinancesComponent },
   { path: 'finance-new-entry',      component: FinancesNewEntryComponent },
+  { path: 'style-test',      component: StyleTestComponent },
   //{ path: 'test',      component: TestComponent },
   { path: '',
     redirectTo: '/finance',
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     AppComponent,
     MainMenuComponent,
     FinancesNewEntryComponent,
-    FinancesComponent
+    FinancesComponent,
+    StyleTestComponent
   ],
   bootstrap: [
     AppComponent
