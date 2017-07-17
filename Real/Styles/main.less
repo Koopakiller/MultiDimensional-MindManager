@@ -8,15 +8,6 @@ body{
   .font-text;
   margin: 0;
 
-  a{
-    text-decoration: none;
-
-    &:hover{
-      text-decoration: underline;
-    }
-  }
-
-
   .padding{
     margin: 0 auto;
     padding: 0 @padding @padding @padding;
@@ -31,6 +22,11 @@ body{
     }
   }
 
+  .tile{
+    background-color: @transparent;
+    padding: @padding;
+  }
+
   header{
     color: @light;
     display: block;
@@ -43,8 +39,9 @@ body{
       }
     }
   }
+
   nav{
-    background-color: @transparent;
+    .tile;
     list-style: none;
     padding:0;
     li{
@@ -53,6 +50,7 @@ body{
         display:inline-block;
         padding: @padding;
         color:black;
+        text-decoration: none;
         &:hover{
           background-color: white;
           text-decoration: none;
@@ -62,8 +60,6 @@ body{
   }
   
   #content{
-    padding: @padding;
-    background-color: @transparent;
     color:@dark;    
   }
 
@@ -94,16 +90,47 @@ body{
       padding: 0;
       margin:0;
       &>li{
-        &>a>img, img{
-          width:16px;
-          height:16px;
-          margin:0 5px 0 0;
-          vertical-align: -2px;
-          .fill-path{
-            fill: @accent-light;
+        &>a{
+          text-decoration: none;
+          &>img, img{
+            width:16px;
+            height:16px;
+            margin:0 5px 0 0;
+            vertical-align: -2px;
+            .fill-path{
+              fill: @accent-light;
+            }
           }
         }
       }
+  }
+
+  .link-tile{
+    .tile;
+    margin-top:@padding;
+    width: @page-width / 4;
+    display:inline-block;
+    color:black;
+    text-decoration: none;
+    text-align: left;
+    &:hover{
+      text-decoration: none;
+      background-color: white;
+    }
+    @media @mobile-selector{
+      &{
+        width: 100%;
+      }
+    }
+    .tile-image{
+      float:left;
+      width:64px;
+      height:64px;
+      margin-right:@padding;
+    }
+    .tile-header{
+      .font-bold;
+    }
   }
   
 } 

@@ -1,14 +1,17 @@
-<h1>Finances</h1>
 
-<a (click)="addSubmitNewForm()">Submit new entry</a>
+<div class="tile text">
+    <h1>Finances</h1>
 
-<div>
-    <div *ngFor="let form of forms">
-        <div [ngSwitch]="form">
-            <finances-new-entry *ngSwitchCase="'new-entry'"></finances-new-entry>
+    <a (click)="addSubmitNewForm()">Submit new entry</a>
+
+    <div>
+        <div *ngFor="let form of forms">
+            <div [ngSwitch]="form">
+                <finances-new-entry *ngSwitchCase="'new-entry'"></finances-new-entry>
+
+            </div>
 
         </div>
 
     </div>
-
 </div>
