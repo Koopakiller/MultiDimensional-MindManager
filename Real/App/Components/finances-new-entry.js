@@ -19,9 +19,9 @@ var FinancesNewEntryComponent = (function () {
     }
     FinancesNewEntryComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.financesService.persons.subscribe(function (x) { _this.persons = x; _this.person = 0; });
-        this.financesService.currencies.subscribe(function (x) { _this.currencies = x; _this.currency = 0; });
-        this.financesService.users.subscribe(function (x) { _this.users = x; _this.user = 0; });
+        this.financesService.persons.subscribe(function (x) { _this.persons = x; _this.person = x.length > 0 ? x[0].id : null; });
+        this.financesService.currencies.subscribe(function (x) { _this.currencies = x; _this.currency = x.length > 0 ? x[0].id : null; });
+        this.financesService.users.subscribe(function (x) { _this.users = x; _this.user = x.length > 0 ? x[0].id : null; });
         this.locationService.location.subscribe(function (x) { return _this.coordinates = x ? x.coords : null; });
         this.timeStamp = new Date();
         this.value = 0;

@@ -15,9 +15,9 @@ export class FinancesNewEntryComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.financesService.persons.subscribe(x => { this.persons = x; this.person = 0; });
-        this.financesService.currencies.subscribe(x => { this.currencies = x; this.currency = 0; });
-        this.financesService.users.subscribe(x => { this.users = x; this.user = 0; });
+        this.financesService.persons.subscribe(x => { this.persons = x; this.person = x.length > 0 ? x[0].id : null; });
+        this.financesService.currencies.subscribe(x => { this.currencies = x; this.currency = x.length > 0 ? x[0].id : null; });
+        this.financesService.users.subscribe(x => { this.users = x; this.user = x.length > 0 ? x[0].id : null; });
         this.locationService.location.subscribe(x => this.coordinates = x ? x.coords : null);
         this.timeStamp = new Date();
         this.value = 0;
