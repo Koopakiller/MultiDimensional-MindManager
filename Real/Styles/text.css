@@ -51,15 +51,15 @@
   }
 }
 .text h1 {
-  font-size: 72pt;
+  font-size: 48pt;
 }
 @media screen and (max-width: 500px) {
   .text h1 {
-    font-size: 24pt;
+    font-size: 28pt;
   }
 }
 .text h2 {
-  font-size: 44pt;
+  font-size: 33pt;
 }
 @media screen and (max-width: 500px) {
   .text h2 {
