@@ -9,6 +9,7 @@
         "node_modules/": true,
         "Styles/**/*.css": true,
         "App/**/*.js": true,
+        "**/*.js.map": true,
         "obj": true,
         "bin": true
     }
