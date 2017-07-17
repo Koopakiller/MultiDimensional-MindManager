@@ -1,25 +1,35 @@
 @dark: #202020;
 @light: #F0F0F0;
-@accent-dark: #102020;
+@accent-dark: #306060;
 @accent-light: #D8F0F0;
 @transparent: rgba(255, 255, 255, 0.8);
 
-@font-family-text: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-@font-family-mono: 'Courier New', monospace;
-
 .font-header{
   font-family: 'Quicksand', sans-serif;
+  font-size: 16pt;
   font-weight: 300;
+  @media @mobile-selector{
+    &{
+      font-size:14pt; 
+      font-weight: 400;
+    }
+  }
 }
 
 .font-text{
   font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
   font-weight: 500;
 }
 
 .font-bold{
-  font-family: 'Quicksand', sans-serif;
+  .font-text;
   font-weight: 700;
+}
+
+.font-code{
+  font-family: 'Courier New', monospace;
+  font-size: 11pt;
 }
 
 @font-size-title: 48pt;
@@ -49,7 +59,7 @@ body{
   }
 
   #head{
-    font-family: @font-family-mono;
+    .font-code;
     font-size: @font-size-title;
     color: @light;
     text-align: center;
@@ -60,7 +70,7 @@ body{
   }
 
   #menu{
-    font-family: @font-family-mono;
+    .font-code;
     text-align: center;
 
     a{
@@ -85,25 +95,93 @@ body{
       color:@dark;
       padding: @padding;
 
-      h1, h2, h3, h4, h5, h6{
-        .font-header;
+      section{
+        margin-bottom: @padding;
       }
 
-      h1{ font-size:72pt; }
-      h2{ font-size:44pt; }
-      h3{ font-size:24pt; }
+      h1, h2, h3, h4, h5, h6{
+        .font-header;
+        margin-top: 0;
+        margin-bottom: @padding;
+      }
+
+      h1{ 
+        font-size:72pt; 
+        @media @mobile-selector{
+          &{
+            font-size:24pt; 
+          }
+        }
+      }
+      h2{ 
+        font-size:44pt; 
+        @media @mobile-selector{
+          &{
+            font-size:20pt; 
+          }
+        }
+      }
+      h3{ 
+        font-size:24pt; 
+        @media @mobile-selector{
+          &{
+            font-size:16pt; 
+          }
+        }
+      }
 
       p{
         margin-top:0;
         margin-bottom: @padding;
+        &.justify{
+          text-align: justify;
+          text-justify: inter-word;
+        }
+        &:last-of-type{
+          margin-bottom: 2* @padding;
+        }
+        &:last-child{
+          margin-bottom:0;
+        }
       }
 
       a{
         color: @accent-dark;
+
+        &[href^=http]{  
+          background-image: url('http://placehold.it/16x16');
+          background-position: left center;
+          background-repeat: no-repeat;
+          padding-left: 20px; /* Adjust according to image size to push text across. */
+        }
       }
 
-      p:last-child{
-        margin-bottom:0;
+      b, strong{
+        .font-bold;
+      }
+
+      i, em{
+        font-style: italic;
+      }
+
+      u, ins{
+        text-decoration-style: underline;
+      }
+
+      s, del{
+        text-decoration-style: line-through;
+      }
+
+      code{
+        .font-code;
+      }
+
+      ul{
+        list-style: circle;
+      }
+
+      ol{
+        list-style-position: inside; 
       }
     }
 

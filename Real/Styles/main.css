@@ -1,14 +1,28 @@
 .font-header {
   font-family: 'Quicksand', sans-serif;
+  font-size: 16pt;
   font-weight: 300;
+}
+@media screen and (max-width: 500px) {
+  .font-header {
+    font-size: 14pt;
+    font-weight: 400;
+  }
 }
 .font-text {
   font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
   font-weight: 500;
 }
 .font-bold {
   font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 500;
   font-weight: 700;
+}
+.font-code {
+  font-family: 'Courier New', monospace;
+  font-size: 11pt;
 }
 body {
   background: url('/Images/background.png');
@@ -16,6 +30,7 @@ body {
   background-position-x: 50%;
   color: #F0F0F0;
   font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
   font-weight: 500;
   margin: 0;
 }
@@ -27,6 +42,7 @@ body a:hover {
 }
 body #head {
   font-family: 'Courier New', monospace;
+  font-size: 11pt;
   font-size: 48pt;
   color: #F0F0F0;
   text-align: center;
@@ -36,6 +52,7 @@ body #head a {
 }
 body #menu {
   font-family: 'Courier New', monospace;
+  font-size: 11pt;
   text-align: center;
 }
 body #menu a {
@@ -57,6 +74,9 @@ body #padding-content #content {
   color: #202020;
   padding: 10px;
 }
+body #padding-content #content section {
+  margin-bottom: 10px;
+}
 body #padding-content #content h1,
 body #padding-content #content h2,
 body #padding-content #content h3,
@@ -64,26 +84,98 @@ body #padding-content #content h4,
 body #padding-content #content h5,
 body #padding-content #content h6 {
   font-family: 'Quicksand', sans-serif;
+  font-size: 16pt;
   font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 500px) {
+  body #padding-content #content h1,
+  body #padding-content #content h2,
+  body #padding-content #content h3,
+  body #padding-content #content h4,
+  body #padding-content #content h5,
+  body #padding-content #content h6 {
+    font-size: 14pt;
+    font-weight: 400;
+  }
 }
 body #padding-content #content h1 {
   font-size: 72pt;
 }
+@media screen and (max-width: 500px) {
+  body #padding-content #content h1 {
+    font-size: 24pt;
+  }
+}
 body #padding-content #content h2 {
   font-size: 44pt;
 }
+@media screen and (max-width: 500px) {
+  body #padding-content #content h2 {
+    font-size: 20pt;
+  }
+}
 body #padding-content #content h3 {
   font-size: 24pt;
+}
+@media screen and (max-width: 500px) {
+  body #padding-content #content h3 {
+    font-size: 16pt;
+  }
 }
 body #padding-content #content p {
   margin-top: 0;
   margin-bottom: 10px;
 }
-body #padding-content #content a {
-  color: #102020;
+body #padding-content #content p.justify {
+  text-align: justify;
+  text-justify: inter-word;
+}
+body #padding-content #content p:last-of-type {
+  margin-bottom: 20px;
 }
 body #padding-content #content p:last-child {
   margin-bottom: 0;
+}
+body #padding-content #content a {
+  color: #306060;
+}
+body #padding-content #content a[href^=http] {
+  background-image: url('http://placehold.it/16x16');
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  /* Adjust according to image size to push text across. */
+}
+body #padding-content #content b,
+body #padding-content #content strong {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 500;
+  font-weight: 700;
+}
+body #padding-content #content i,
+body #padding-content #content em {
+  font-style: italic;
+}
+body #padding-content #content u,
+body #padding-content #content ins {
+  text-decoration-style: underline;
+}
+body #padding-content #content s,
+body #padding-content #content del {
+  text-decoration-style: line-through;
+}
+body #padding-content #content code {
+  font-family: 'Courier New', monospace;
+  font-size: 11pt;
+}
+body #padding-content #content ul {
+  list-style: circle;
+}
+body #padding-content #content ol {
+  list-style-position: inside;
 }
 body footer {
   text-align: center;
