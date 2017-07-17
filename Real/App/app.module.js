@@ -17,13 +17,13 @@ var FinancesService_js_1 = require("./Services/FinancesService.js");
 var LocationService_js_1 = require("./Services/LocationService.js");
 var router_1 = require("@angular/router");
 var style_test_js_1 = require("./Components/style-test.js");
+var home_js_1 = require("./Components/home.js");
 var appRoutes = [
-    { path: 'finance', component: finances_js_1.FinancesComponent },
-    { path: 'finance-new-entry', component: finances_new_entry_js_1.FinancesNewEntryComponent },
-    { path: 'style-test', component: style_test_js_1.StyleTestComponent },
-    //{ path: 'test',      component: TestComponent },
+    { path: 'Home', component: home_js_1.HomeComponent },
+    { path: 'Finances', component: finances_js_1.FinancesComponent },
+    { path: 'StyleTest', component: style_test_js_1.StyleTestComponent },
     { path: '',
-        redirectTo: '/finance',
+        redirectTo: '/Home',
         pathMatch: 'full'
     },
 ];
@@ -45,6 +45,7 @@ AppModule = __decorate([
             app_js_1.AppComponent,
             finances_new_entry_js_1.FinancesNewEntryComponent,
             finances_js_1.FinancesComponent,
+            home_js_1.HomeComponent,
             style_test_js_1.StyleTestComponent
         ],
         bootstrap: [
