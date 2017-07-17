@@ -1,4 +1,4 @@
-namespace Real.Areas.Api.ViewModels
+namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.ViewModels
 {
     using System;
 

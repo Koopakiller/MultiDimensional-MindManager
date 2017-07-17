@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Real.Controllers
+﻿namespace Koopakiller.Apps.Picosmos.Real.Controllers
 {
+    using System;
+    using Microsoft.AspNetCore.Mvc;
+
     public class TemplatesController : Controller
     {
         public IActionResult Default(String actionName)

@@ -66,3 +66,4 @@ var CurrencyViewModel = (function () {
     return CurrencyViewModel;
 }());
 exports.CurrencyViewModel = CurrencyViewModel;
+//# sourceMappingURL=FinancesViewModels.js.map
