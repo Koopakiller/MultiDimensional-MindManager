@@ -1,0 +1,81 @@
+.font-header {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16pt;
+  font-weight: 300;
+}
+@media screen and (max-width: 500px) {
+  .font-header {
+    font-size: 14pt;
+    font-weight: 400;
+  }
+}
+.font-text {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 500;
+}
+.font-bold {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 500;
+  font-weight: 700;
+}
+.font-code {
+  font-family: 'Courier New', monospace;
+  font-size: 11pt;
+}
+form .form-group {
+  display: table-row;
+}
+@media screen and (max-width: 500px) {
+  form .form-group {
+    display: block;
+  }
+}
+form .form-group > * {
+  display: table-cell;
+  padding-right: 5px;
+}
+@media screen and (max-width: 500px) {
+  form .form-group > * {
+    padding-right: 0;
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+form .form-group > *:last-child {
+  padding-right: 0;
+}
+form .control-container {
+  min-width: 250px;
+  padding: 0;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+@media screen and (max-width: 500px) {
+  form .control-container {
+    min-width: auto;
+  }
+}
+form .control-container input,
+form .control-container select,
+form .control-container button {
+  display: inline-block;
+  padding: 10px;
+  background: #202020;
+  color: white;
+  border-radius: 5px;
+  border: 2px transparent solid;
+  width: 100%;
+  box-sizing: border-box;
+}
+form .control-container input:focus,
+form .control-container select:focus,
+form .control-container button:focus {
+  background: #D8F0F0;
+  color: black;
+}
+form .control-container button[type=submit] {
+  min-width: 120px;
+}

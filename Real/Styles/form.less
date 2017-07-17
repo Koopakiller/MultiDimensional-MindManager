@@ -1,0 +1,58 @@
+@import "common.less";
+
+form{
+    .form-group{
+      display:table-row;
+      @media @mobile-selector{
+        &{
+          display:block;
+        }
+      }
+      &>*{
+        display:table-cell;
+        padding-right: @padding-small; 
+        @media @mobile-selector{
+          &{
+            padding-right: 0; 
+            display:block;
+            margin-left:0;
+            margin-right:0;
+          }
+        }
+        &:last-child{
+          padding-right: 0; 
+        }
+      }
+    }
+
+    .control-container{
+      min-width: 250px;
+      padding: 0;
+      padding-top: @padding-tiny;
+      padding-bottom: @padding-tiny;
+      @media @mobile-selector{
+        &{
+          min-width:auto;
+        }
+      }
+      input, select, button{
+        display: inline-block;
+        padding: @padding;
+        background: #202020;
+        color:white;
+        border-radius: 5px;
+        border: 2px transparent solid;
+        width:100%;
+        box-sizing: border-box;
+
+        &:focus{
+          background: @accent-light;
+          color: black;
+        }
+      }
+
+      button[type=submit]{       
+        min-width: 120px;
+      }
+    }
+  }

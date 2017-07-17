@@ -1,0 +1,129 @@
+.font-header {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16pt;
+  font-weight: 300;
+}
+@media screen and (max-width: 500px) {
+  .font-header {
+    font-size: 14pt;
+    font-weight: 400;
+  }
+}
+.font-text {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 500;
+}
+.font-bold {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 500;
+  font-weight: 700;
+}
+.font-code {
+  font-family: 'Courier New', monospace;
+  font-size: 11pt;
+}
+.text section {
+  margin-bottom: 10px;
+}
+.text h1,
+.text h2,
+.text h3,
+.text h4,
+.text h5,
+.text h6 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16pt;
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 500px) {
+  .text h1,
+  .text h2,
+  .text h3,
+  .text h4,
+  .text h5,
+  .text h6 {
+    font-size: 14pt;
+    font-weight: 400;
+  }
+}
+.text h1 {
+  font-size: 72pt;
+}
+@media screen and (max-width: 500px) {
+  .text h1 {
+    font-size: 24pt;
+  }
+}
+.text h2 {
+  font-size: 44pt;
+}
+@media screen and (max-width: 500px) {
+  .text h2 {
+    font-size: 20pt;
+  }
+}
+.text h3 {
+  font-size: 24pt;
+}
+@media screen and (max-width: 500px) {
+  .text h3 {
+    font-size: 16pt;
+  }
+}
+.text p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.text p.justify {
+  text-align: justify;
+  text-justify: inter-word;
+}
+.text p:last-of-type {
+  margin-bottom: 20px;
+}
+.text p:last-child {
+  margin-bottom: 0;
+}
+.text a {
+  color: #306060;
+}
+.text a[href^=http] {
+  background-image: url('http://placehold.it/16x16');
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  /* Adjust according to image size to push text across. */
+}
+.text b,
+.text strong {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 500;
+  font-weight: 700;
+}
+.text i,
+.text em {
+  font-style: italic;
+}
+.text u,
+.text ins {
+  text-decoration-style: underline;
+}
+.text s,
+.text del {
+  text-decoration-style: line-through;
+}
+.text code {
+  font-family: 'Courier New', monospace;
+  font-size: 11pt;
+}
+.text ul {
+  list-style: circle;
+}
+.text ol {
+  list-style-position: inside;
+}

@@ -1,0 +1,43 @@
+@dark: #202020;
+@light: #F0F0F0;
+@accent-dark: #306060;
+@accent-light: #D8F0F0;
+@transparent: rgba(255, 255, 255, 0.8);
+
+.font-header{
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16pt;
+  font-weight: 300;
+  @media @mobile-selector{
+    &{
+      font-size:14pt; 
+      font-weight: 400;
+    }
+  }
+}
+
+.font-text{
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 500;
+}
+
+.font-bold{
+  .font-text;
+  font-weight: 700;
+}
+
+.font-code{
+  font-family: 'Courier New', monospace;
+  font-size: 11pt;
+}
+
+@font-size-title: 48pt;
+@font-size-text: 12pt;
+
+@padding: 10px;
+@padding-small: 5px;
+@padding-tiny: 2px;
+@page-width: 1000px;
+
+@mobile-selector: ~"screen and (max-width: 500px)";
