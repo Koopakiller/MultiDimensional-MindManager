@@ -124,12 +124,14 @@ body ul.text-list > li > a img .fill-path {
 body .link-tile {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 10px;
+  vertical-align: top;
   margin-top: 10px;
-  width: 250px;
+  width: 333.33333333px;
   display: inline-block;
   color: black;
   text-decoration: none;
   text-align: left;
+  margin-right: 10px;
 }
 body .link-tile:hover {
   text-decoration: none;

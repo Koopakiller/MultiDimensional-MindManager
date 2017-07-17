@@ -18,10 +18,12 @@ var LocationService_js_1 = require("./Services/LocationService.js");
 var router_1 = require("@angular/router");
 var style_test_js_1 = require("./Components/style-test.js");
 var home_js_1 = require("./Components/home.js");
+var music_js_1 = require("./Components/music.js");
 var appRoutes = [
     { path: 'Home', component: home_js_1.HomeComponent },
     { path: 'Finances', component: finances_js_1.FinancesComponent },
     { path: 'StyleTest', component: style_test_js_1.StyleTestComponent },
+    { path: 'Music', component: music_js_1.MusicComponent },
     { path: '',
         redirectTo: '/Home',
         pathMatch: 'full'
@@ -46,6 +48,7 @@ AppModule = __decorate([
             finances_new_entry_js_1.FinancesNewEntryComponent,
             finances_js_1.FinancesComponent,
             home_js_1.HomeComponent,
+            music_js_1.MusicComponent,
             style_test_js_1.StyleTestComponent
         ],
         bootstrap: [

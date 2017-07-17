@@ -10,11 +10,13 @@ import { LocationService } from "./Services/LocationService.js";
 import { RouterModule, Routes } from '@angular/router';
 import { StyleTestComponent } from "./Components/style-test.js";
 import { HomeComponent } from "./Components/home.js";
+import { MusicComponent } from "./Components/music.js";
 
 const appRoutes: Routes = [
   { path: 'Home',           component: HomeComponent },
   { path: 'Finances',       component: FinancesComponent },
   { path: 'StyleTest',      component: StyleTestComponent },
+  { path: 'Music',          component: MusicComponent },
   { path: '',
     redirectTo: '/Home',
     pathMatch: 'full'
@@ -37,6 +39,7 @@ const appRoutes: Routes = [
     FinancesNewEntryComponent,
     FinancesComponent,
     HomeComponent,
+    MusicComponent,
     StyleTestComponent
   ],
   bootstrap: [
