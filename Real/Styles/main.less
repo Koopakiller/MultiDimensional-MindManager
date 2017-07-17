@@ -2,9 +2,25 @@
 @light: #F0F0F0;
 @accent-dark: #102020;
 @accent-light: #D8F0F0;
+@transparent: rgba(255, 255, 255, 0.8);
 
 @font-family-text: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 @font-family-mono: 'Courier New', monospace;
+
+.font-header{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
+}
+
+.font-text{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+}
+
+.font-bold{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
 
 @font-size-title: 48pt;
 @font-size-text: 12pt;
@@ -17,10 +33,11 @@
 @mobile-selector: ~"screen and (max-width: 500px)";
 
 body{
-  background-color: @accent-dark;
+  background: url('/Images/background.png');
+  background-repeat: repeat;
+  background-position-x: 50%;
   color: @light;
-  font-family: @font-family-text;
-  font-size: @font-size-text;
+  .font-text;
   margin: 0;
 
   a{
@@ -56,10 +73,6 @@ body{
     padding: @padding;
     max-width: @page-width;
 
-    a{
-      color: @accent-dark;
-    }
-
     @media @mobile-selector{
       &{
         padding-left: 0;
@@ -68,13 +81,25 @@ body{
     }
     
     #content{
-      background-color: @accent-light;
+      background-color: @transparent;
       color:@dark;
       padding: @padding;
+
+      h1, h2, h3, h4, h5, h6{
+        .font-header;
+      }
+
+      h1{ font-size:72pt; }
+      h2{ font-size:44pt; }
+      h3{ font-size:24pt; }
 
       p{
         margin-top:0;
         margin-bottom: @padding;
+      }
+
+      a{
+        color: @accent-dark;
       }
 
       p:last-child{

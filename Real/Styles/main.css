@@ -1,8 +1,22 @@
+.font-header {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
+}
+.font-text {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+}
+.font-bold {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
 body {
-  background-color: #102020;
+  background: url('/Images/background.png');
+  background-repeat: repeat;
+  background-position-x: 50%;
   color: #F0F0F0;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 12pt;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
   margin: 0;
 }
 body a {
@@ -32,9 +46,6 @@ body #padding-content {
   padding: 10px;
   max-width: 1000px;
 }
-body #padding-content a {
-  color: #102020;
-}
 @media screen and (max-width: 500px) {
   body #padding-content {
     padding-left: 0;
@@ -42,13 +53,34 @@ body #padding-content a {
   }
 }
 body #padding-content #content {
-  background-color: #D8F0F0;
+  background-color: rgba(255, 255, 255, 0.8);
   color: #202020;
   padding: 10px;
+}
+body #padding-content #content h1,
+body #padding-content #content h2,
+body #padding-content #content h3,
+body #padding-content #content h4,
+body #padding-content #content h5,
+body #padding-content #content h6 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
+}
+body #padding-content #content h1 {
+  font-size: 72pt;
+}
+body #padding-content #content h2 {
+  font-size: 44pt;
+}
+body #padding-content #content h3 {
+  font-size: 24pt;
 }
 body #padding-content #content p {
   margin-top: 0;
   margin-bottom: 10px;
+}
+body #padding-content #content a {
+  color: #102020;
 }
 body #padding-content #content p:last-child {
   margin-bottom: 0;
