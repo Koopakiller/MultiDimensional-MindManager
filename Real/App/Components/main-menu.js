@@ -70,3 +70,4 @@ var MenuItemViewModel = (function () {
     return MenuItemViewModel;
 }());
 exports.MenuItemViewModel = MenuItemViewModel;
+//# sourceMappingURL=main-menu.js.map

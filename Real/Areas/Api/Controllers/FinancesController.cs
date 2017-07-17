@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Real.Areas.Api.ViewModels;
-using System.Diagnostics;
-
-namespace Real.Areas.Api.Controllers
+namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Koopakiller.Apps.Picosmos.Real.Areas.Api.ViewModels;
+
     [Area("Api")]
     public class FinancesController : Controller
     {
@@ -18,7 +13,7 @@ namespace Real.Areas.Api.Controllers
 
         public IActionResult GetUsers()
         {
-            var data = new 
+            var data = new
             {
                 Data = new dynamic[]
                 {
@@ -31,7 +26,7 @@ namespace Real.Areas.Api.Controllers
 
         public IActionResult GetPersons()
         {
-            var data = new 
+            var data = new
             {
                 Data = new dynamic[]
                 {
@@ -48,7 +43,7 @@ namespace Real.Areas.Api.Controllers
 
         public IActionResult GetCurrencies()
         {
-            var data = new 
+            var data = new
             {
                 Data = new dynamic[]
                 {
