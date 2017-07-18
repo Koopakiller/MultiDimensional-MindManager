@@ -29,7 +29,7 @@
     }
     h3{ 
         font-size:24pt; 
-        @media @mobile-selector{
+        @media @mobile-selector{ 
             &{
             font-size:16pt; 
             }
@@ -52,8 +52,12 @@
     }
 
     a{
-        color: @accent-dark;
-
+        color: @color-accent-dark;
+        text-decoration: none;
+        &:hover{
+            text-decoration: underline;
+            cursor: pointer;
+        }
         &[href^=http]{  
             background-image: url('http://placehold.it/16x16');
             background-position: left center;

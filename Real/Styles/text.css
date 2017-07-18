@@ -89,7 +89,12 @@
   margin-bottom: 0;
 }
 .text a {
-  color: #306060;
+  color: #209030;
+  text-decoration: none;
+}
+.text a:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 .text a[href^=http] {
   background-image: url('http://placehold.it/16x16');

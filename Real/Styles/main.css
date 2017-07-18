@@ -28,7 +28,6 @@ body {
   background: url('/Images/background.png');
   background-repeat: repeat;
   background-position-x: 50%;
-  color: #F0F0F0;
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
   font-weight: 500;
@@ -88,20 +87,17 @@ body nav li {
 body nav li a {
   display: inline-block;
   padding: 10px;
-  color: black;
+  color: #101010;
   text-decoration: none;
 }
 body nav li a:hover {
-  background-color: white;
+  background-color: #ffffff;
   text-decoration: none;
-}
-body #content {
-  color: #202020;
 }
 body footer {
   text-align: center;
-  background-color: #202020;
   padding: 10px;
+  color: #F0F0F0;
 }
 body footer .columns {
   display: block;
@@ -112,27 +108,28 @@ body footer .columns .column {
   text-align: left;
   min-width: 250px;
 }
-body footer a {
-  color: #D8F0F0;
-}
-body ul.text-list {
+body footer ul.text-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-body ul.text-list > li > a {
+body footer ul.text-list li a {
   text-decoration: none;
+  color: #50D080;
 }
-body ul.text-list > li > a > img,
-body ul.text-list > li > a img {
+body footer ul.text-list li a:hover {
+  text-decoration: underline;
+}
+body footer ul.text-list li a img,
+body footer ul.text-list li a svg {
   width: 16px;
   height: 16px;
   margin: 0 5px 0 0;
   vertical-align: -2px;
 }
-body ul.text-list > li > a > img .fill-path,
-body ul.text-list > li > a img .fill-path {
-  fill: #D8F0F0;
+body footer ul.text-list li a img .fill-path,
+body footer ul.text-list li a svg .fill-path {
+  fill: #50D080;
 }
 body .link-tile {
   background-color: rgba(255, 255, 255, 0.8);
@@ -148,7 +145,7 @@ body .link-tile {
 }
 body .link-tile:hover {
   text-decoration: none;
-  background-color: white;
+  background-color: #ffffff;
 }
 @media screen and (max-width: 500px) {
   body .link-tile {
@@ -169,5 +166,6 @@ body .link-tile .tile-header {
 }
 ::selection {
   text-shadow: none;
-  background: #D8F0F0;
+  background: #209030;
+  color: #F0F0F0;
 }

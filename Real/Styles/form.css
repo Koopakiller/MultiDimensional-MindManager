@@ -73,7 +73,7 @@ form .control-container button {
 form .control-container input:focus,
 form .control-container select:focus,
 form .control-container button:focus {
-  background: #D8F0F0;
+  background: #50D080;
   color: black;
 }
 form .control-container button[type=submit] {
