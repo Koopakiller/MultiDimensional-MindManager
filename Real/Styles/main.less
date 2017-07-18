@@ -117,12 +117,16 @@ body{
     .tile;
     vertical-align: top;
     margin-top:@padding;
-    width: @page-width / 3;
+    width: @column-width-3;
     display:inline-block;
     color:black;
     text-decoration: none;
     text-align: left;
     margin-right: @padding;
+    box-sizing: border-box;
+    &:nth-child(3n + 1){
+      margin-right:0;
+    }
     &:hover{
       text-decoration: none;
       background-color: @color-tile-light-hover;

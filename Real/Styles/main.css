@@ -136,12 +136,16 @@ body .link-tile {
   padding: 10px;
   vertical-align: top;
   margin-top: 10px;
-  width: 333.33333333px;
+  width: 326.66666667px;
   display: inline-block;
   color: black;
   text-decoration: none;
   text-align: left;
   margin-right: 10px;
+  box-sizing: border-box;
+}
+body .link-tile:nth-child(3n + 1) {
+  margin-right: 0;
 }
 body .link-tile:hover {
   text-decoration: none;
