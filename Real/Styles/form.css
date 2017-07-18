@@ -80,6 +80,7 @@ form .form-group input[type=submit] {
   cursor: pointer;
   padding: 2.5px 5px;
   background-color: #404040;
+  min-width: 50px;
 }
 form .form-group button:hover,
 form .form-group input[type=button]:hover,
@@ -92,7 +93,7 @@ form .form-group label {
 }
 form .form-group .control-container {
   padding-right: 5px;
-  min-width: 326.66666667px;
+  min-width: 242.5px;
 }
 form .inner-form {
   display: table-row-group;
