@@ -1,6 +1,10 @@
 @import "common.less";
 
 form{
+    .form-header{
+        .font-header;
+    }
+
     .form-group{
       display: table-row;
       padding-bottom: @padding-small;
@@ -55,8 +59,19 @@ form{
       }
     }
 
+    .inner-form{
+      display:table-row-group;
+      padding:@padding;
+      button, input[type=button], input[type=submit]{
+        padding: @padding-tiny @padding-small;
+      }
+    }
+
     .form-control-group{
       margin-top: @padding;
+      &:not(:last-child){
+        margin-bottom: @padding;
+      }
       input[type=button], input[type=submit], button{
         padding: @padding-small @padding;
         background-color: @color-dark;
@@ -74,5 +89,15 @@ form{
           }
         }
       }
+    }
+
+    .form-overlay{
+      background: rgba(255,255,255,0.5);
+      position: absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      right:0;
+      z-index: 1000;
     }
   }

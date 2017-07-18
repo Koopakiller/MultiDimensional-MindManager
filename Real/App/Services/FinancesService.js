@@ -61,6 +61,12 @@ var FinancesService = (function () {
         data.coordinates = coordinates;
         this.http.post("/api/Finances/AddEntry", data);
     };
+    FinancesService.prototype.addPerson = function (name) {
+        var data = {
+            name: name
+        };
+        this.http.post("/api/Finances/AddPerson", data);
+    };
     return FinancesService;
 }());
 FinancesService = __decorate([

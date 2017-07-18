@@ -46,4 +46,10 @@ export class FinancesService {
         data.coordinates = coordinates;
         this.http.post("/api/Finances/AddEntry", data);
     }
+    public addPerson(name: string) {
+        let data = {
+            name: name
+        };
+        this.http.post("/api/Finances/AddPerson", data);
+    }
 }

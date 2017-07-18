@@ -50,4 +50,14 @@ export class FinancesNewEntryComponent implements OnInit {
     public cancel(): void{
         this.router.navigateByUrl("/Finances");
     }
+
+    showAddPersonForm: boolean = false;
+    addNewPersonName: string;
+
+    public submitNewPerson(): void{
+        this.financesService.addPerson(this.addNewPersonName);
+        this.addNewPersonName = "";
+        this.showAddPersonForm = false;
+        this.financesService.persons.subscribe(x => { this.persons = x; this.person = x.length > 0 ? x[0].id : null; });       
+    }
 }

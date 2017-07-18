@@ -24,6 +24,17 @@
   font-family: 'Courier New', monospace;
   font-size: 11pt;
 }
+form .form-header {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16pt;
+  font-weight: 300;
+}
+@media screen and (max-width: 500px) {
+  form .form-header {
+    font-size: 14pt;
+    font-weight: 400;
+  }
+}
 form .form-group {
   display: table-row;
   padding-bottom: 5px;
@@ -83,8 +94,20 @@ form .form-group .control-container {
   padding-right: 5px;
   min-width: 326.66666667px;
 }
+form .inner-form {
+  display: table-row-group;
+  padding: 10px;
+}
+form .inner-form button,
+form .inner-form input[type=button],
+form .inner-form input[type=submit] {
+  padding: 2.5px 5px;
+}
 form .form-control-group {
   margin-top: 10px;
+}
+form .form-control-group:not(:last-child) {
+  margin-bottom: 10px;
 }
 form .form-control-group input[type=button],
 form .form-control-group input[type=submit],
@@ -110,4 +133,13 @@ form .form-control-group input[type=button][type=submit]:hover,
 form .form-control-group input[type=submit][type=submit]:hover,
 form .form-control-group button[type=submit]:hover {
   background-color: #40A04C;
+}
+form .form-overlay {
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
 }

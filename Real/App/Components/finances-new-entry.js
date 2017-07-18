@@ -18,6 +18,7 @@ var FinancesNewEntryComponent = (function () {
         this.financesService = financesService;
         this.locationService = locationService;
         this.router = router;
+        this.showAddPersonForm = false;
     }
     FinancesNewEntryComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -37,6 +38,13 @@ var FinancesNewEntryComponent = (function () {
     };
     FinancesNewEntryComponent.prototype.cancel = function () {
         this.router.navigateByUrl("/Finances");
+    };
+    FinancesNewEntryComponent.prototype.submitNewPerson = function () {
+        var _this = this;
+        this.financesService.addPerson(this.addNewPersonName);
+        this.addNewPersonName = "";
+        this.showAddPersonForm = false;
+        this.financesService.persons.subscribe(function (x) { _this.persons = x; _this.person = x.length > 0 ? x[0].id : null; });
     };
     return FinancesNewEntryComponent;
 }());

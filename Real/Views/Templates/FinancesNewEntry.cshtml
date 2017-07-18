@@ -1,7 +1,29 @@
 
 <div class="tile text">
-    <h1>Finances: Add Entry</h1>
+    <h1>Finances</h1>
+
+    <div *ngIf="showAddPersonForm" class="inner-form">
+        <form>
+            <div class="form-header">
+                Add new person
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <div class="control-container">
+                    <input type="text" class="form-control" id="new-person-name" [(ngModel)]="addNewPersonName" name="newPersonName" />
+                </div>
+            </div>
+            <div class="form-control-group">
+                <input type="button" class="btn btn-cancel" (click)="showAddPersonForm=false" value="Cancel"/>
+                <button type="submit" class="btn btn-success" (click)="submitNewPerson()">Submit</button>
+            </div>
+        </form>
+    </div>
+
     <form (ngSubmit)="submit()">
+        <div class="form-header">
+            Add Finance Entry
+        </div>
         <div class="form-group">
             <label for="name">Name:</label>
             <div class="control-container">
@@ -33,10 +55,13 @@
         <div class="form-group">
             <label for="person">Person:</label>
             <div class="control-container">  
-                <select [(ngModel)]="person" name="person">
+                <select [(ngModel)]="person" name="person" [disabled]="showAddPersonForm">
                     <option *ngFor="let person of persons" [ngValue]="person.id">{{person.header}}</option>
                 </select>
             </div>
+            <div class="additional-controls">  
+                <input type="button" class="form-control" (click)="showAddPersonForm=true" value="Add" *ngIf="!showAddPersonForm"/>
+            </div> 
         </div>
         <div class="form-group">
             <label for="timeStamp">Time Stamp:</label>
@@ -70,10 +95,9 @@
             </div>
         </div>
 
-        <div class="form-control-group">
+        <div class="form-control-group" *ngIf="!showAddPersonForm">
             <input type="button" class="btn btn-cancel" (click)="cancel()" value="Cancel"/>
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success" >Submit</button>
         </div>
-
     </form>
 </div>
