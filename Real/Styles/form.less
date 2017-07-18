@@ -2,57 +2,80 @@
 
 form{
     .form-group{
-      display:table-row;
+      display: table-row;
+      padding-bottom: @padding-small;
       @media @mobile-selector{
         &{
-          display:block;
+          display: block;
+          margin-bottom: @padding-small;
         }
       }
       &>*{
         display:table-cell;
-        padding-right: @padding-small; 
+        vertical-align: middle;
         @media @mobile-selector{
           &{
-            padding-right: 0; 
-            display:block;
-            margin-left:0;
-            margin-right:0;
+            display: block;
           }
         }
-        &:last-child{
-          padding-right: 0; 
+      }
+      label{
+        padding-right: @padding-small;
+        vertical-align: top;
+      }
+      .control-container{
+        padding-right: @padding-small;
+        min-width: 200px;
+      }
+      .additional-controls{
+        input, select, button{
+          border: 1px solid @color-dark-decent;
         }
       }
-    }
 
-    .control-container{
-      min-width: 250px;
-      padding: 0;
-      padding-top: @padding-tiny;
-      padding-bottom: @padding-tiny;
-      @media @mobile-selector{
-        &{
-          min-width:auto;
-        }
-      }
       input, select, button{
-        display: inline-block;
-        padding: @padding;
-        background: #202020;
-        color:white;
-        border-radius: 5px;
-        border: 2px transparent solid;
-        width:100%;
+        display:inline-block;
+        padding: @padding-tiny @padding-small;
+        background-color: @color-light;
+        border: 1px solid @color-dark;
         box-sizing: border-box;
-
-        &:focus{
-          background: @color-accent-light;
-          color: black;
+        &:active{
+          border: 1px solid @color-accent-dark;
         }
       }
-
-      button[type=submit]{       
-        min-width: 120px;
+      input:not([type=button]), select{
+        width:100%;
       }
     }
+
+    // .control-container{
+    //   min-width: 250px;
+    //   padding: 0;
+    //   padding-top: @padding-tiny;
+    //   padding-bottom: @padding-tiny;
+    //   @media @mobile-selector{
+    //     &{
+    //       min-width: auto;
+    //     }
+    //   }
+    //   input, select, button{
+    //     display: inline-block;
+    //     padding: @padding;
+    //     background: #202020;
+    //     color: white;
+    //     border-radius: 5px;
+    //     border: 2px transparent solid;
+    //     width: 100%;
+    //     box-sizing: border-box;
+
+    //     &:focus{
+    //       background: @color-accent-light;
+    //       color: black;
+    //     }
+    //   }
+
+    //   button, input[type=button]{       
+    //     min-width: 120px;
+    //   }
+    // }
   }

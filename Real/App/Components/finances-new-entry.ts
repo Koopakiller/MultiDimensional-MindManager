@@ -3,6 +3,7 @@ import { FinancesService } from "../Services/FinancesService.js";
 import { LocationService } from "../Services/LocationService.js";
 import { PersonViewModel, CurrencyViewModel, UserViewModel } from "../ViewModels/FinancesViewModels.js";
 import { FinanceEntryServerModel } from "../ServerModels/FinancesServerModels.js";
+import {Router} from '@angular/router';
 
 @Component({
     selector: "finances-new-entry",
@@ -11,7 +12,8 @@ import { FinanceEntryServerModel } from "../ServerModels/FinancesServerModels.js
 export class FinancesNewEntryComponent implements OnInit {
     constructor(
         private financesService: FinancesService,
-        private locationService: LocationService
+        private locationService: LocationService,
+        private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -42,5 +44,10 @@ export class FinancesNewEntryComponent implements OnInit {
 
     public submit(): void {
         this.financesService.addEntry(this.currency, this.person, this.user, this.timeStamp, this.name, this.value, this.coordinates);
+        this.router.navigateByUrl("/Finances");
+    }
+
+    public cancel(): void{
+        this.router.navigateByUrl("/Finances");
     }
 }     

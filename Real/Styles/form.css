@@ -26,56 +26,51 @@
 }
 form .form-group {
   display: table-row;
+  padding-bottom: 5px;
 }
 @media screen and (max-width: 500px) {
   form .form-group {
     display: block;
+    margin-bottom: 5px;
   }
 }
 form .form-group > * {
   display: table-cell;
-  padding-right: 5px;
+  vertical-align: middle;
 }
 @media screen and (max-width: 500px) {
   form .form-group > * {
-    padding-right: 0;
     display: block;
-    margin-left: 0;
-    margin-right: 0;
   }
 }
-form .form-group > *:last-child {
-  padding-right: 0;
+form .form-group label {
+  padding-right: 5px;
+  vertical-align: top;
 }
-form .control-container {
-  min-width: 250px;
-  padding: 0;
-  padding-top: 2px;
-  padding-bottom: 2px;
+form .form-group .control-container {
+  padding-right: 5px;
+  min-width: 200px;
 }
-@media screen and (max-width: 500px) {
-  form .control-container {
-    min-width: auto;
-  }
+form .form-group .additional-controls input,
+form .form-group .additional-controls select,
+form .form-group .additional-controls button {
+  border: 1px solid #505050;
 }
-form .control-container input,
-form .control-container select,
-form .control-container button {
+form .form-group input,
+form .form-group select,
+form .form-group button {
   display: inline-block;
-  padding: 10px;
-  background: #202020;
-  color: white;
-  border-radius: 5px;
-  border: 2px transparent solid;
-  width: 100%;
+  padding: 2.5px 5px;
+  background-color: #F0F0F0;
+  border: 1px solid #101010;
   box-sizing: border-box;
 }
-form .control-container input:focus,
-form .control-container select:focus,
-form .control-container button:focus {
-  background: #50D080;
-  color: black;
+form .form-group input:active,
+form .form-group select:active,
+form .form-group button:active {
+  border: 1px solid #209030;
 }
-form .control-container button[type=submit] {
-  min-width: 120px;
+form .form-group input:not([type=button]),
+form .form-group select {
+  width: 100%;
 }

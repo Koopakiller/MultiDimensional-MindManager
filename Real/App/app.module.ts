@@ -13,11 +13,12 @@ import { HomeComponent } from "./Components/home.js";
 import { MediaAppletComponent } from "./Components/MediaApplet.js";
 
 const appRoutes: Routes = [
-  { path: 'Home',           component: HomeComponent },
-  { path: 'Finances',       component: FinancesComponent },
-  { path: 'StyleTest',      component: StyleTestComponent },
-  { path: 'Media',          component: MediaAppletComponent },
-  { path: '',               redirectTo: '/Home', pathMatch: 'full' },
+  { path: 'Home',               component: HomeComponent },
+  { path: 'Finances',           component: FinancesComponent },
+  { path: 'Finances/AddEntry',  component: FinancesNewEntryComponent },
+  { path: 'StyleTest',          component: StyleTestComponent },
+  { path: 'Media',              component: MediaAppletComponent },
+  { path: '', redirectTo: '/Home', pathMatch: 'full' },
   //{ path: '**', component: PageNotFoundComponent }
 ];
 

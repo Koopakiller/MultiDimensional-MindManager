@@ -22,6 +22,7 @@ var MediaApplet_js_1 = require("./Components/MediaApplet.js");
 var appRoutes = [
     { path: 'Home', component: home_js_1.HomeComponent },
     { path: 'Finances', component: finances_js_1.FinancesComponent },
+    { path: 'Finances/AddEntry', component: finances_new_entry_js_1.FinancesNewEntryComponent },
     { path: 'StyleTest', component: style_test_js_1.StyleTestComponent },
     { path: 'Media', component: MediaApplet_js_1.MediaAppletComponent },
     { path: '', redirectTo: '/Home', pathMatch: 'full' },

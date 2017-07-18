@@ -12,10 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var FinancesService_js_1 = require("../Services/FinancesService.js");
 var LocationService_js_1 = require("../Services/LocationService.js");
+var router_1 = require("@angular/router");
 var FinancesNewEntryComponent = (function () {
-    function FinancesNewEntryComponent(financesService, locationService) {
+    function FinancesNewEntryComponent(financesService, locationService, router) {
         this.financesService = financesService;
         this.locationService = locationService;
+        this.router = router;
     }
     FinancesNewEntryComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -31,6 +33,10 @@ var FinancesNewEntryComponent = (function () {
     };
     FinancesNewEntryComponent.prototype.submit = function () {
         this.financesService.addEntry(this.currency, this.person, this.user, this.timeStamp, this.name, this.value, this.coordinates);
+        this.router.navigateByUrl("/Finances");
+    };
+    FinancesNewEntryComponent.prototype.cancel = function () {
+        this.router.navigateByUrl("/Finances");
     };
     return FinancesNewEntryComponent;
 }());
@@ -40,6 +46,7 @@ FinancesNewEntryComponent = __decorate([
         templateUrl: "/Templates/FinancesNewEntry"
     }),
     __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
-        LocationService_js_1.LocationService])
+        LocationService_js_1.LocationService,
+        router_1.Router])
 ], FinancesNewEntryComponent);
 exports.FinancesNewEntryComponent = FinancesNewEntryComponent;
