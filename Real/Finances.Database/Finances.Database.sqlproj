@@ -68,4 +68,7 @@
     <Build Include="dbo\Tables\Transactions.sql" />
     <Build Include="dbo\Tables\Accounts.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="publish.localdbv13.publish.xml" />
+  </ItemGroup>
 </Project>
