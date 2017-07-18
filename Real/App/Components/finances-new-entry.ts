@@ -50,4 +50,4 @@ export class FinancesNewEntryComponent implements OnInit {
     public cancel(): void{
         this.router.navigateByUrl("/Finances");
     }
-}     
+}

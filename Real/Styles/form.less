@@ -19,6 +19,32 @@ form{
           }
         }
       }
+
+      input, select, button{
+        display:inline-block;
+        box-sizing: border-box;
+        &:active{
+          border: 1px solid @color-accent-dark;
+        }
+      }
+      input:not([type=button]), select{
+        width:100%;
+        border: 1px solid @color-dark;
+        padding: @padding-tiny @padding-small;
+        background-color: @color-light;
+      }
+
+      button, input[type=button], input[type=submit]{
+        border: none;
+        color:@color-light;
+        cursor: pointer;
+        padding: @padding-tiny @padding-small;
+        background-color: @color-dark-1;
+        &:hover{
+          background-color: @color-dark-2;
+        }
+      }
+
       label{
         padding-right: @padding-small;
         vertical-align: top;
@@ -27,55 +53,26 @@ form{
         padding-right: @padding-small;
         min-width: 200px;
       }
-      .additional-controls{
-        input, select, button{
-          border: 1px solid @color-dark-decent;
-        }
-      }
-
-      input, select, button{
-        display:inline-block;
-        padding: @padding-tiny @padding-small;
-        background-color: @color-light;
-        border: 1px solid @color-dark;
-        box-sizing: border-box;
-        &:active{
-          border: 1px solid @color-accent-dark;
-        }
-      }
-      input:not([type=button]), select{
-        width:100%;
-      }
     }
 
-    // .control-container{
-    //   min-width: 250px;
-    //   padding: 0;
-    //   padding-top: @padding-tiny;
-    //   padding-bottom: @padding-tiny;
-    //   @media @mobile-selector{
-    //     &{
-    //       min-width: auto;
-    //     }
-    //   }
-    //   input, select, button{
-    //     display: inline-block;
-    //     padding: @padding;
-    //     background: #202020;
-    //     color: white;
-    //     border-radius: 5px;
-    //     border: 2px transparent solid;
-    //     width: 100%;
-    //     box-sizing: border-box;
-
-    //     &:focus{
-    //       background: @color-accent-light;
-    //       color: black;
-    //     }
-    //   }
-
-    //   button, input[type=button]{       
-    //     min-width: 120px;
-    //   }
-    // }
+    .form-control-group{
+      margin-top: @padding;
+      input[type=button], input[type=submit], button{
+        padding: @padding-small @padding;
+        background-color: @color-dark;
+        color: @color-light;
+        border: none;
+        min-width: 120px;
+        cursor: pointer;
+        &:hover{
+          background-color: @color-dark-1;
+        }
+        &[type=submit]{
+          background-color: @color-accent-dark;
+          &:hover{
+            background-color: @color-accent-dark-1;
+          }
+        }
+      }
+    }
   }
