@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Picosmos.Database", "Picosmos.Database\Picosmos.Database.sqlproj", "{74A16237-5971-4005-BFA5-A1BB0940D84D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Picosmos.Explorer", "Picosmos.Explorer\Picosmos.Explorer.csproj", "{A18B5102-9D40-4FC6-BE80-14BC2AFE23AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schm", "Schm", "{C5A5806B-9BCD-435F-AC44-7C50D1906397}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Real", "Real", "{041DC293-0CF2-4C5F-B873-663AC9193FDA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Real", "Real\Real.csproj", "{95BBE422-BF7D-4DBB-9B33-AC18B4FB26EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,8 +29,17 @@ Global
 		{A18B5102-9D40-4FC6-BE80-14BC2AFE23AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A18B5102-9D40-4FC6-BE80-14BC2AFE23AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A18B5102-9D40-4FC6-BE80-14BC2AFE23AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95BBE422-BF7D-4DBB-9B33-AC18B4FB26EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95BBE422-BF7D-4DBB-9B33-AC18B4FB26EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95BBE422-BF7D-4DBB-9B33-AC18B4FB26EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95BBE422-BF7D-4DBB-9B33-AC18B4FB26EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{74A16237-5971-4005-BFA5-A1BB0940D84D} = {C5A5806B-9BCD-435F-AC44-7C50D1906397}
+		{A18B5102-9D40-4FC6-BE80-14BC2AFE23AE} = {C5A5806B-9BCD-435F-AC44-7C50D1906397}
+		{95BBE422-BF7D-4DBB-9B33-AC18B4FB26EB} = {041DC293-0CF2-4C5F-B873-663AC9193FDA}
 	EndGlobalSection
 EndGlobal
