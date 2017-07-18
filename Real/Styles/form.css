@@ -65,7 +65,7 @@ form .form-group select:active,
 form .form-group button:active {
   border: 1px solid #209030;
 }
-form .form-group input:not([type=button]),
+form .form-group input:not([type=button]):not([type=submit]),
 form .form-group select {
   width: 100%;
   border: 1px solid #101010;
