@@ -1,6 +1,11 @@
 @import "common.less";
 
 form{
+    position:relative;
+    margin-bottom: @padding;
+    &:last-of-type{
+      margin-bottom: 0;
+    }
     .form-header{
         .font-header;
     }
@@ -27,26 +32,34 @@ form{
       input, select, button{
         display:inline-block;
         box-sizing: border-box;
+        .font-input;
+        outline:none;
         &:active{
           border: 1px solid @color-accent-dark;
         }
       }
       input:not([type=button]):not([type=submit]), select{
         width:100%;
-        border: 1px solid @color-dark;
         padding: @padding-tiny @padding-small;
+        border: 2px solid @color-light-1;
         background-color: @color-light;
+        margin-bottom: @padding-tiny;
+        &:active, &:focus{
+          border-color: @color-accent-light;
+        }
       }
 
       button, input[type=button], input[type=submit]{
         border: none;
-        color:@color-light;
+        color:@color-dark;
         cursor: pointer;
         padding: @padding-tiny @padding-small;
-        background-color: @color-dark-1;
+        background-color: @color-light;
+        border: 2px solid @color-light-1;
         min-width:50px;
+        vertical-align: middle;
         &:hover{
-          background-color: @color-dark-2;
+          background-color: @color-light-1;
         }
       }
 
@@ -70,8 +83,9 @@ form{
 
     .form-control-group{
       margin-top: @padding;
-      &:not(:last-child){
-        margin-bottom: @padding;
+      margin-bottom: @padding;
+      &:last-child{
+        margin-bottom: 0;
       }
       input[type=button], input[type=submit], button{
         padding: @padding-small @padding;
@@ -80,6 +94,7 @@ form{
         border: none;
         min-width: 120px;
         cursor: pointer;
+        .font-input;
         &:hover{
           background-color: @color-dark-1;
         }
@@ -93,12 +108,13 @@ form{
     }
 
     .form-overlay{
-      background: rgba(255,255,255,0.5);
+      opacity: @opacity;
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg=="); 
+      background-repeat: repeat;
       position: absolute;
-      left:0;
       top:0;
-      bottom:0;
-      right:0;
-      z-index: 1000;
+      left:0;
+      width:100%;
+      height:100%;
     }
   }

@@ -2,23 +2,21 @@
 <div class="tile text">
     <h1>Finances</h1>
 
-    <div *ngIf="showAddPersonForm" class="inner-form">
-        <form (ngSubmit)="submitNewPerson()">
-            <div class="form-header">
-                Add new person
+    <form (ngSubmit)="submitNewPerson()" *ngIf="showAddPersonForm" class="inner-form">
+        <div class="form-header">
+            Add new person
+        </div>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <div class="control-container">
+                <input type="text" class="form-control" id="new-person-name" [(ngModel)]="addNewPersonName" name="newPersonName" />
             </div>
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <div class="control-container">
-                    <input type="text" class="form-control" id="new-person-name" [(ngModel)]="addNewPersonName" name="newPersonName" />
-                </div>
-            </div>
-            <div class="form-control-group">
-                <input type="button" class="btn btn-cancel" (click)="showAddPersonForm=false" value="Cancel"/>
-                <button type="submit" class="btn btn-success">Submit</button>
-            </div>
-        </form>
-    </div>
+        </div>
+        <div class="form-control-group">
+            <input type="button" class="btn btn-cancel" (click)="showAddPersonForm=false" value="Cancel"/>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </form>
 
     <form (ngSubmit)="submit()">
         <div class="form-header">
@@ -30,7 +28,7 @@
                 <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name" required />
             </div>
             <div class="additional-controls">  
-                <input type="button" class="form-control" (click)="name=''" value="Erase"/>
+                <input type="button" class="form-control" (click)="name=''" value="Clear" *ngIf="name!=''&&name!=null"/>
             </div> 
         </div>
         <div class="form-group">
@@ -98,9 +96,11 @@
             </div>
         </div>
 
-        <div class="form-control-group" *ngIf="!showAddPersonForm">
+        <div class="form-control-group" >
             <input type="button" class="btn btn-cancel" (click)="cancel()" value="Cancel"/>
             <button type="submit" class="btn btn-success" >Submit</button>
         </div>
+
+        <div class="form-overlay" *ngIf="showAddPersonForm"></div>
     </form>
 </div>

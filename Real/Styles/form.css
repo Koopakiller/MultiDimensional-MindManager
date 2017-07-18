@@ -24,6 +24,18 @@
   font-family: 'Courier New', monospace;
   font-size: 11pt;
 }
+.font-input {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 500;
+}
+form {
+  position: relative;
+  margin-bottom: 10px;
+}
+form:last-of-type {
+  margin-bottom: 0;
+}
 form .form-header {
   font-family: 'Quicksand', sans-serif;
   font-size: 16pt;
@@ -59,6 +71,10 @@ form .form-group select,
 form .form-group button {
   display: inline-block;
   box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 500;
+  outline: none;
 }
 form .form-group input:active,
 form .form-group select:active,
@@ -68,24 +84,33 @@ form .form-group button:active {
 form .form-group input:not([type=button]):not([type=submit]),
 form .form-group select {
   width: 100%;
-  border: 1px solid #101010;
   padding: 2.5px 5px;
+  border: 2px solid #C0C0C0;
   background-color: #F0F0F0;
+  margin-bottom: 2.5px;
+}
+form .form-group input:not([type=button]):not([type=submit]):active,
+form .form-group select:active,
+form .form-group input:not([type=button]):not([type=submit]):focus,
+form .form-group select:focus {
+  border-color: #50D080;
 }
 form .form-group button,
 form .form-group input[type=button],
 form .form-group input[type=submit] {
   border: none;
-  color: #F0F0F0;
+  color: #101010;
   cursor: pointer;
   padding: 2.5px 5px;
-  background-color: #404040;
+  background-color: #F0F0F0;
+  border: 2px solid #C0C0C0;
   min-width: 50px;
+  vertical-align: middle;
 }
 form .form-group button:hover,
 form .form-group input[type=button]:hover,
 form .form-group input[type=submit]:hover {
-  background-color: #707070;
+  background-color: #C0C0C0;
 }
 form .form-group label {
   padding-right: 5px;
@@ -106,9 +131,10 @@ form .inner-form input[type=submit] {
 }
 form .form-control-group {
   margin-top: 10px;
-}
-form .form-control-group:not(:last-child) {
   margin-bottom: 10px;
+}
+form .form-control-group:last-child {
+  margin-bottom: 0;
 }
 form .form-control-group input[type=button],
 form .form-control-group input[type=submit],
@@ -119,6 +145,9 @@ form .form-control-group button {
   border: none;
   min-width: 120px;
   cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 500;
 }
 form .form-control-group input[type=button]:hover,
 form .form-control-group input[type=submit]:hover,
@@ -136,11 +165,12 @@ form .form-control-group button[type=submit]:hover {
   background-color: #40A04C;
 }
 form .form-overlay {
-  background: rgba(255, 255, 255, 0.5);
+  opacity: 0.8;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg==");
+  background-repeat: repeat;
   position: absolute;
-  left: 0;
   top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1000;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
