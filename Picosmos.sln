@@ -15,6 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Real", "Real\Real.csproj", 
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Finances.Database", "Real\Finances.Database\Finances.Database.sqlproj", "{B7679D27-3155-40DE-BD49-E50493ABA327}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Finances.PowerBi", "Finances.PowerBi", "{115318F9-F582-4B3E-8F61-1C91A6244B3D}"
+	ProjectSection(SolutionItems) = preProject
+		Real\Finances.PowerBi\Stats.pbix = Real\Finances.PowerBi\Stats.pbix
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,5 +55,6 @@ Global
 		{A18B5102-9D40-4FC6-BE80-14BC2AFE23AE} = {C5A5806B-9BCD-435F-AC44-7C50D1906397}
 		{95BBE422-BF7D-4DBB-9B33-AC18B4FB26EB} = {041DC293-0CF2-4C5F-B873-663AC9193FDA}
 		{B7679D27-3155-40DE-BD49-E50493ABA327} = {041DC293-0CF2-4C5F-B873-663AC9193FDA}
+		{115318F9-F582-4B3E-8F61-1C91A6244B3D} = {041DC293-0CF2-4C5F-B873-663AC9193FDA}
 	EndGlobalSection
 EndGlobal
