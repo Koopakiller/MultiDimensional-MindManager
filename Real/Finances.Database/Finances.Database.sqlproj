@@ -59,6 +59,9 @@
     <Folder Include="Properties" />
     <Folder Include="dbo" />
     <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\Functions" />
+    <Folder Include="dbo\Functions\Scalar-valued" />
+    <Folder Include="dbo\Functions\Table-valued" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Persons.sql" />
@@ -69,6 +72,8 @@
     <Build Include="dbo\Tables\Accounts.sql" />
     <Build Include="dbo\Tables\FixedValues.sql" />
     <Build Include="dbo\Tables\CurrencyAccounts.sql" />
+    <Build Include="dbo\Functions\Scalar-valued\GetValueForDate.sql" />
+    <Build Include="dbo\Functions\Table-valued\GetCurrencyAccountHistoryDataPoints.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="publish.localdbv13.publish.xml" />
