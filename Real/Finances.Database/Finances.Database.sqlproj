@@ -75,6 +75,7 @@
     <Build Include="dbo\Functions\Scalar-valued\GetValueForDate.sql" />
     <Build Include="dbo\Functions\Table-valued\GetCurrencyAccountHistoryDataPoints.sql" />
     <Build Include="dbo\Tables\_Log.sql" />
+    <Build Include="dbo\Functions\Table-valued\GetCurrencyAccountHistoryDataPointsForUserAndCurrency.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="publish.localdbv13.publish.xml" />

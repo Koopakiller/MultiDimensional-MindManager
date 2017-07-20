@@ -10,21 +10,10 @@ RETURNS @result TABLE
 AS
 BEGIN
 	INSERT INTO @result
-	SELECT ts.[Timestamp]
-		 , [dbo].[GetValueForDate](ts.[Timestamp], a.Id)
-		 , (SELECT TOP 1 cs.Symbol FROM CurrencySymbols cs WHERE cs.CurrencyId = c.Id) AS CurrencyName
-		 , a.[Name] AS AccountName
-		 , up.[Name] AS UserName
-	FROM (SELECT DISTINCT t.[Timestamp], t.CurrencyAccountId
-		  FROM Transactions t	  
-		  UNION	  
-		  SElECT DISTINCT fv.[Timestamp], fv.CurrencyAccountId
-		  FROM FixedValues fv) ts
-	INNER JOIN CurrencyAccounts ca ON ca.Id = ts.CurrencyAccountId
-	INNER JOIN Currencies c ON c.Id = ca.CurrencyId
-	INNER JOIN Accounts a ON a.Id = ca.AccountId
-	INNER JOIN Users u ON u.Id = a.UserId
-	INNER JOIN Persons up ON up.Id = u.PersonId
+	SELECT tbl.*
+	FROM Users u
+	CROSS JOIN (SELECT * FROM Currencies) c
+	CROSS APPLY [dbo].[GetCurrencyAccountHistoryDataPointsForUserAndCurrency](u.Id, c.Id) tbl
 
 	RETURN
 END
