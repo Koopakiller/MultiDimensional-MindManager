@@ -38,6 +38,9 @@ body {
   font-weight: 500;
   margin: 0;
 }
+body div {
+  margin: 0;
+}
 body .init-loading-message {
   position: relative;
   opacity: 0.8;

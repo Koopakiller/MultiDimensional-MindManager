@@ -1,1 +1,25 @@
-<input type="file" (change)="processFileInputChange($event)" value="Choose file" />
+<div class="tile text">
+    <h1>Finances: Import</h1> 
+</div>   
+<div [ngSwitch]="currentStep">
+    <div *ngSwitchCase="'fileSelect'">
+        <div class="tile text">
+            <form>
+                <input type="file" (change)="processFileInputChange($event)" value="Choose file" />
+            </form>
+        </div>
+    </div>
+    <div *ngSwitchCase="'fileTypeSelect'">
+        <div class="tile text">
+            <p>Please choose the file type:</p>
+        </div>         
+        <a *ngFor="let type of possibleFileTypes" class="text link-tile" (click)="type.method()">
+            <img class="tile-image" src="http://placehold.it/64x64/000000/ffffff" alt="$"/>
+            <span class="tile-header">{{type.provider}}</span><br/>
+            <span class="tile-description">{{type.description}}</span>
+        </a>
+    </div>
+    <div *ngSwitchCase="'showAndFitData">
+
+    </div>
+</div>

@@ -16,17 +16,41 @@ var FinancesImportComponent = (function () {
     function FinancesImportComponent(financesService, router) {
         this.financesService = financesService;
         this.router = router;
+        this.possibleFileTypes = [
+            { extension: "csv", provider: "Commerzbank", description: "Commerzbank CSV Export", mode: "recommended", method: this.importCommerzbank },
+            { extension: "csv", provider: "Commerzbank", description: "Commerzbank Credit Card CSV Export", mode: "not-implemented", method: function () { } },
+            { extension: "csv", provider: "PayPal", description: "Paypal CSV Export", mode: "not-implemented", method: function () { } },
+            { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: function () { } },
+        ];
+        this.steps = [
+            "fileSelect",
+            "fileTypeSelect",
+            "showAndFitData"
+        ];
     }
     FinancesImportComponent.prototype.ngOnInit = function () {
+        this.initCurrentStep();
     };
     FinancesImportComponent.prototype.processFileInputChange = function ($event) {
         var inputValue = $event.target;
-        var file = inputValue.files[0];
-        var myReader = new FileReader();
-        myReader.onloadend = function (e) {
-            console.log(myReader.result);
-        };
-        myReader.readAsText(file);
+        if ($event.target.files.length > 0) {
+            this.nextStep();
+            var file = inputValue.files[0];
+            var myReader = new FileReader();
+            myReader.onloadend = function (e) {
+                console.log(myReader.result);
+            };
+            myReader.readAsText(file);
+        }
+    };
+    FinancesImportComponent.prototype.importCommerzbank = function () {
+        this.nextStep();
+    };
+    FinancesImportComponent.prototype.initCurrentStep = function () {
+        this.currentStep = this.steps[0];
+    };
+    FinancesImportComponent.prototype.nextStep = function () {
+        this.currentStep = this.steps[this.steps.indexOf(this.currentStep) + 1];
     };
     return FinancesImportComponent;
 }());
