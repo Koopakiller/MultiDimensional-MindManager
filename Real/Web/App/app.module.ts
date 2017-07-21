@@ -11,11 +11,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { StyleTestComponent } from "./Components/style-test.js";
 import { HomeComponent } from "./Components/home.js";
 import { MediaAppletComponent } from "./Components/MediaApplet.js";
+import { FinancesImportComponent } from "./Components/finances-import.js";
 
 const appRoutes: Routes = [
   { path: 'Home',               component: HomeComponent },
   { path: 'Finances',           component: FinancesComponent },
   { path: 'Finances/AddEntry',  component: FinancesNewEntryComponent },
+  { path: 'Finances/Import',    component: FinancesImportComponent },
   { path: 'StyleTest',          component: StyleTestComponent },
   { path: 'Media',              component: MediaAppletComponent },
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
@@ -35,6 +37,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     FinancesNewEntryComponent,
+    FinancesImportComponent,
     FinancesComponent,
     HomeComponent,
     MediaAppletComponent,
