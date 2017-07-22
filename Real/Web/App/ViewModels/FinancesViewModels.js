@@ -66,3 +66,9 @@ var CurrencyViewModel = (function () {
     return CurrencyViewModel;
 }());
 exports.CurrencyViewModel = CurrencyViewModel;
+var TransactionViewModel = (function () {
+    function TransactionViewModel() {
+    }
+    return TransactionViewModel;
+}());
+exports.TransactionViewModel = TransactionViewModel;

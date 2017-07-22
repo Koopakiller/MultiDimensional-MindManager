@@ -13,13 +13,26 @@
         <div class="tile text">
             <p>Please choose the file type:</p>
         </div>         
-        <a *ngFor="let type of possibleFileTypes" class="text link-tile" (click)="type.method()">
+        <a *ngFor="let type of possibleFileTypes; let i = index" class="text link-tile" (click)="import(i)">
             <img class="tile-image" src="http://placehold.it/64x64/000000/ffffff" alt="$"/>
             <span class="tile-header">{{type.provider}}</span><br/>
             <span class="tile-description">{{type.description}}</span>
         </a>
     </div>
-    <div *ngSwitchCase="'showAndFitData">
-
+    <div *ngSwitchCase="'showAndFitData'">
+        <div class="tile text">
+            <table>
+                <tr>
+                    <th>Time Stamp</th>
+                    <th>Note</th>
+                    <th>Value</th>
+                </tr>
+                <tr *ngFor="let transaction of transactions">
+                    <td>{{transaction.timeStamp}}</td>
+                    <td>{{transaction.note}}</td>
+                    <td>{{transaction.value}}</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>

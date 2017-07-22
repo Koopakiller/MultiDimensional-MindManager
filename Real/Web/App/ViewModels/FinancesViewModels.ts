@@ -17,7 +17,7 @@ export class PersonViewModel{
     constructor(
         private _id?: number,
         private _header?: string
-    ) { }
+    ) { } 
 
     get id(){
         return this._id;        
@@ -41,4 +41,14 @@ export class CurrencyViewModel{
     get header(){
         return this._header;        
     }
+}
+
+export class TransactionViewModel{
+    id: number;
+    note: string;
+    timeStamp: Date;
+    userId: number;
+    personId: number;
+    currencyAccountId: number;
+    value: number;
 }
