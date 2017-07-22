@@ -48,12 +48,12 @@ export class FinancesImportComponent implements OnInit {
     importCommerzbank(): void {
         let result = Papa.parse(this.selectedFile, {
             delimiter: ";",
-            header: true, 
+            header: true,
             complete: (result) => {
                 // it is a german localized file format:
                 // Date format: dd.mm.yyyy
                 // Number format: xxx,xx
-                for (let row of result.data) { 
+                for (let row of result.data) {
                     var tvm = new TransactionViewModel();
                     tvm.timeStamp = this.parseGermanTimeStamp(row["Wertstellung"]);
                     tvm.note = row["Buchungstext"];
@@ -65,15 +65,15 @@ export class FinancesImportComponent implements OnInit {
     }
 
     parseGermanTimeStamp(str: string) {
-        if(!str){
+        if (!str) {
             return null;
         }
         var parts = str.split(".");
         return new Date(+parts[2], +parts[1], +parts[0]);
     }
 
-    parseGermanNumber(str: string){
-        if(!str){
+    parseGermanNumber(str: string) {
+        if (!str) {
             return null;
         }
         return Number(str.replace(/,/g, "."));
