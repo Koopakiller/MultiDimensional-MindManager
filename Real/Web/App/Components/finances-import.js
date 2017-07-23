@@ -50,6 +50,7 @@ var FinancesImportComponent = (function () {
         var result = Papa.parse(this.selectedFile, {
             delimiter: ";",
             header: true,
+            skipEmptyLines: true,
             complete: function (result) {
                 // it is a german localized file format:
                 // Date format: dd.mm.yyyy
@@ -71,6 +72,7 @@ var FinancesImportComponent = (function () {
         var result = Papa.parse(this.selectedFile, {
             delimiter: ";",
             header: true,
+            skipEmptyLines: true,
             complete: function (result) {
                 // it is a german localized file format:
                 // Date format: dd.mm.yyyy
@@ -90,7 +92,9 @@ var FinancesImportComponent = (function () {
     FinancesImportComponent.prototype.addRawData = function (tvm, row, keys) {
         for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
             var key = keys_1[_i];
-            tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair(key, row[key]));
+            if (key && row[key] && row[key] != "") {
+                tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair(key, row[key]));
+            }
         }
     };
     FinancesImportComponent.prototype.parseGermanTimeStamp = function (str) {

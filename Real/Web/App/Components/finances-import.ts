@@ -49,6 +49,7 @@ export class FinancesImportComponent implements OnInit {
         let result = Papa.parse(this.selectedFile, {
             delimiter: ";",
             header: true,
+            skipEmptyLines: true,
             complete: (result) => {
                 // it is a german localized file format:
                 // Date format: dd.mm.yyyy
@@ -69,6 +70,7 @@ export class FinancesImportComponent implements OnInit {
         let result = Papa.parse(this.selectedFile, {
             delimiter: ";",
             header: true,
+            skipEmptyLines: true,
             complete: (result) => {
                 // it is a german localized file format:
                 // Date format: dd.mm.yyyy
@@ -87,7 +89,9 @@ export class FinancesImportComponent implements OnInit {
 
     addRawData(tvm: TransactionViewModel, row: any, keys: string[]){
         for(let key of keys){
-            tvm.rawData.push(new KeyValuePair<string, string>(key, row[key]));
+            if(key && row[key] && row[key] != ""){
+                tvm.rawData.push(new KeyValuePair<string, string>(key, row[key]));
+            }
         }
     }
 
