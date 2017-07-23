@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../Services/FinancesService.js";
 import { LocationService } from "../Services/LocationService.js";
-import { PersonViewModel, CurrencyViewModel, UserViewModel, TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
+import { PersonViewModel, CurrencyViewModel, UserViewModel, TransactionViewModel, KeyValuePair } from "../ViewModels/FinancesViewModels.js";
 import { FinanceEntryServerModel } from "../ServerModels/FinancesServerModels.js";
 import { Router } from '@angular/router';
 import * as Papa from "papaparse";
@@ -58,6 +58,15 @@ export class FinancesImportComponent implements OnInit {
                     tvm.timeStamp = this.parseGermanTimeStamp(row["Wertstellung"]);
                     tvm.note = row["Buchungstext"];
                     tvm.value = this.parseGermanNumber(row["Betrag"]);
+                    tvm.rawData.push(new KeyValuePair<string, string>("Buchungstag", row["Buchungstag"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("Wertstellung", row["Wertstellung"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("Umsatzart", row["Umsatzart"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("Buchungstext", row["Buchungstext"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("Betrag", row["Betrag"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("Währung", row["Währung"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("Auftraggeberkonto", row["Auftraggeberkonto"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("Bankleitzahl Auftraggeberkonto", row["Bankleitzahl Auftraggeberkonto"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("IBAN Auftraggeberkonto", row["IBAN Auftraggeberkonto"]));
                     this.transactions.push(tvm);
                 }
             }

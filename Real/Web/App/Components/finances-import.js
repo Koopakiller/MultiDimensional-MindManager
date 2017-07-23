@@ -60,6 +60,15 @@ var FinancesImportComponent = (function () {
                     tvm.timeStamp = _this.parseGermanTimeStamp(row["Wertstellung"]);
                     tvm.note = row["Buchungstext"];
                     tvm.value = _this.parseGermanNumber(row["Betrag"]);
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Buchungstag", row["Buchungstag"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Wertstellung", row["Wertstellung"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Umsatzart", row["Umsatzart"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Buchungstext", row["Buchungstext"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Betrag", row["Betrag"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Währung", row["Währung"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Auftraggeberkonto", row["Auftraggeberkonto"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Bankleitzahl Auftraggeberkonto", row["Bankleitzahl Auftraggeberkonto"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("IBAN Auftraggeberkonto", row["IBAN Auftraggeberkonto"]));
                     _this.transactions.push(tvm);
                 }
             }

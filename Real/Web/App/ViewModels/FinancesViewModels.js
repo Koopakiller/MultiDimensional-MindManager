@@ -68,7 +68,30 @@ var CurrencyViewModel = (function () {
 exports.CurrencyViewModel = CurrencyViewModel;
 var TransactionViewModel = (function () {
     function TransactionViewModel() {
+        this.rawData = [];
     }
     return TransactionViewModel;
 }());
 exports.TransactionViewModel = TransactionViewModel;
+var KeyValuePair = (function () {
+    function KeyValuePair(_key, _value) {
+        this._key = _key;
+        this._value = _value;
+    }
+    Object.defineProperty(KeyValuePair.prototype, "key", {
+        get: function () {
+            return this._key;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(KeyValuePair.prototype, "value", {
+        get: function () {
+            return this._value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return KeyValuePair;
+}());
+exports.KeyValuePair = KeyValuePair;

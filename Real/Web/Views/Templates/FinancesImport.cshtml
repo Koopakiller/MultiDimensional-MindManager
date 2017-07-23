@@ -27,11 +27,27 @@
                     <th>Note</th>
                     <th>Value</th>
                 </tr>
-                <tr *ngFor="let transaction of transactions">
-                    <td>{{transaction.timeStamp}}</td>
-                    <td>{{transaction.note}}</td>
-                    <td>{{transaction.value}}</td>
-                </tr>
+                <tbody *ngFor="let transaction of transactions">
+                    <tr>
+                        <td>{{transaction.timeStamp}}</td>
+                        <td>{{transaction.note}}</td>
+                        <td>{{transaction.value}}</td>
+                    </tr>
+                    <tr class="details-row">
+                        <td colspan="3">
+                            <table *ngIf="transaction.rawData.length > 0">
+                                <tr>
+                                    <th>Key</th>
+                                    <th>Value</th>
+                                </tr>
+                                <tr *ngFor="let data of transaction.rawData">
+                                    <td>{{data.key}}</td>
+                                    <td>{{data.value}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
