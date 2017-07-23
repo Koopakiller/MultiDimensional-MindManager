@@ -19,8 +19,8 @@ export class FinancesImportComponent implements OnInit {
     ngOnInit(): void {
         this.initCurrentStep();
         this.possibleFileTypes = [
-            { extension: "csv", provider: "Commerzbank", description: "Commerzbank CSV Export", mode: "recommended", method: "importCommerzbank" },
-            { extension: "csv", provider: "Commerzbank", description: "Commerzbank Credit Card CSV Export", mode: "not-implemented", method: "" },
+            { extension: "csv", provider: "Commerzbank", description: "Commerzbank Giro Account Statement CSV Export", mode: "recommended", method: "importCommerzbankGiroAccountStatement" },
+            { extension: "csv", provider: "Commerzbank", description: "Commerzbank Credit Card Statement CSV Export", mode: "not-implemented", method: "importCommerzbankCreditCardStatement" },
             { extension: "csv", provider: "PayPal", description: "Paypal CSV Export", mode: "not-implemented", method: "" },
             { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: "" },
         ];
@@ -45,7 +45,7 @@ export class FinancesImportComponent implements OnInit {
         this[this.possibleFileTypes[index].method]();
     }
 
-    importCommerzbank(): void {
+    importCommerzbankGiroAccountStatement(): void {
         let result = Papa.parse(this.selectedFile, {
             delimiter: ";",
             header: true,
@@ -67,6 +67,33 @@ export class FinancesImportComponent implements OnInit {
                     tvm.rawData.push(new KeyValuePair<string, string>("Auftraggeberkonto", row["Auftraggeberkonto"]));
                     tvm.rawData.push(new KeyValuePair<string, string>("Bankleitzahl Auftraggeberkonto", row["Bankleitzahl Auftraggeberkonto"]));
                     tvm.rawData.push(new KeyValuePair<string, string>("IBAN Auftraggeberkonto", row["IBAN Auftraggeberkonto"]));
+                    this.transactions.push(tvm);
+                }
+            }
+        });
+    }
+
+    importCommerzbankCreditCardStatement(): void{
+        let result = Papa.parse(this.selectedFile, {
+            delimiter: ";",
+            header: true,
+            complete: (result) => {
+                // it is a german localized file format:
+                // Date format: dd.mm.yyyy
+                // Number format: xxx,xx
+                for (let row of result.data) {
+                    var tvm = new TransactionViewModel();
+                    tvm.timeStamp = this.parseGermanTimeStamp(row["Buchungstag"]);
+                    tvm.note = row["Unternehmen"];
+                    tvm.value = this.parseGermanNumber(row["Betrag"]);
+                    tvm.rawData.push(new KeyValuePair<string, string>("Buchungstag", row["Buchungstag"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("Beleg", row["Beleg"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("Unternehmen", row["Unternehmen"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("Betrag", row["Betrag"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("Währung", row["Währung"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("Betrag Ursprung", row["Betrag Ursprung"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("Währung Ursprung", row["Währung Ursprung"]));
+                    tvm.rawData.push(new KeyValuePair<string, string>("Belastete Kreditkarte", row["Belastete Kreditkarte"]));
                     this.transactions.push(tvm);
                 }
             }

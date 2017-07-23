@@ -28,8 +28,8 @@ var FinancesImportComponent = (function () {
     FinancesImportComponent.prototype.ngOnInit = function () {
         this.initCurrentStep();
         this.possibleFileTypes = [
-            { extension: "csv", provider: "Commerzbank", description: "Commerzbank CSV Export", mode: "recommended", method: "importCommerzbank" },
-            { extension: "csv", provider: "Commerzbank", description: "Commerzbank Credit Card CSV Export", mode: "not-implemented", method: "" },
+            { extension: "csv", provider: "Commerzbank", description: "Commerzbank Giro Account Statement CSV Export", mode: "recommended", method: "importCommerzbankGiroAccountStatement" },
+            { extension: "csv", provider: "Commerzbank", description: "Commerzbank Credit Card Statement CSV Export", mode: "not-implemented", method: "importCommerzbankCreditCardStatement" },
             { extension: "csv", provider: "PayPal", description: "Paypal CSV Export", mode: "not-implemented", method: "" },
             { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: "" },
         ];
@@ -45,7 +45,7 @@ var FinancesImportComponent = (function () {
         this.nextStep();
         this[this.possibleFileTypes[index].method]();
     };
-    FinancesImportComponent.prototype.importCommerzbank = function () {
+    FinancesImportComponent.prototype.importCommerzbankGiroAccountStatement = function () {
         var _this = this;
         var result = Papa.parse(this.selectedFile, {
             delimiter: ";",
@@ -69,6 +69,34 @@ var FinancesImportComponent = (function () {
                     tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Auftraggeberkonto", row["Auftraggeberkonto"]));
                     tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Bankleitzahl Auftraggeberkonto", row["Bankleitzahl Auftraggeberkonto"]));
                     tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("IBAN Auftraggeberkonto", row["IBAN Auftraggeberkonto"]));
+                    _this.transactions.push(tvm);
+                }
+            }
+        });
+    };
+    FinancesImportComponent.prototype.importCommerzbankCreditCardStatement = function () {
+        var _this = this;
+        var result = Papa.parse(this.selectedFile, {
+            delimiter: ";",
+            header: true,
+            complete: function (result) {
+                // it is a german localized file format:
+                // Date format: dd.mm.yyyy
+                // Number format: xxx,xx
+                for (var _i = 0, _a = result.data; _i < _a.length; _i++) {
+                    var row = _a[_i];
+                    var tvm = new FinancesViewModels_js_1.TransactionViewModel();
+                    tvm.timeStamp = _this.parseGermanTimeStamp(row["Buchungstag"]);
+                    tvm.note = row["Unternehmen"];
+                    tvm.value = _this.parseGermanNumber(row["Betrag"]);
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Buchungstag", row["Buchungstag"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Beleg", row["Beleg"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Unternehmen", row["Unternehmen"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Betrag", row["Betrag"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Währung", row["Währung"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Betrag Ursprung", row["Betrag Ursprung"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Währung Ursprung", row["Währung Ursprung"]));
+                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Belastete Kreditkarte", row["Belastete Kreditkarte"]));
                     _this.transactions.push(tvm);
                 }
             }
