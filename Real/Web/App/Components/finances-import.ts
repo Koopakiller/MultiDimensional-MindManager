@@ -58,20 +58,12 @@ export class FinancesImportComponent implements OnInit {
                     tvm.timeStamp = this.parseGermanTimeStamp(row["Wertstellung"]);
                     tvm.note = row["Buchungstext"];
                     tvm.value = this.parseGermanNumber(row["Betrag"]);
-                    tvm.rawData.push(new KeyValuePair<string, string>("Buchungstag", row["Buchungstag"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("Wertstellung", row["Wertstellung"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("Umsatzart", row["Umsatzart"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("Buchungstext", row["Buchungstext"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("Betrag", row["Betrag"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("Währung", row["Währung"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("Auftraggeberkonto", row["Auftraggeberkonto"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("Bankleitzahl Auftraggeberkonto", row["Bankleitzahl Auftraggeberkonto"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("IBAN Auftraggeberkonto", row["IBAN Auftraggeberkonto"]));
+                    this.addRawData(tvm, row, ["Buchungstag", "Wertstellung", "Umsatzart", "Buchungstext", "Betrag", "Währung", "Auftraggeberkonto", "Bankleitzahl Auftraggeberkonto", "IBAN Auftraggeberkonto"])
                     this.transactions.push(tvm);
                 }
             }
         });
-    }
+    } 
 
     importCommerzbankCreditCardStatement(): void{
         let result = Papa.parse(this.selectedFile, {
@@ -86,18 +78,17 @@ export class FinancesImportComponent implements OnInit {
                     tvm.timeStamp = this.parseGermanTimeStamp(row["Buchungstag"]);
                     tvm.note = row["Unternehmen"];
                     tvm.value = this.parseGermanNumber(row["Betrag"]);
-                    tvm.rawData.push(new KeyValuePair<string, string>("Buchungstag", row["Buchungstag"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("Beleg", row["Beleg"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("Unternehmen", row["Unternehmen"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("Betrag", row["Betrag"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("Währung", row["Währung"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("Betrag Ursprung", row["Betrag Ursprung"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("Währung Ursprung", row["Währung Ursprung"]));
-                    tvm.rawData.push(new KeyValuePair<string, string>("Belastete Kreditkarte", row["Belastete Kreditkarte"]));
+                    this.addRawData(tvm, row, ["Buchungstag", "Beleg", "Unternehmen", "Betrag", "Währung", "Betrag Ursprung", "Währung Ursprung", "Belastete Kreditkarte"])
                     this.transactions.push(tvm);
                 }
             }
         });
+    }
+
+    addRawData(tvm: TransactionViewModel, row: any, keys: string[]){
+        for(let key of keys){
+            tvm.rawData.push(new KeyValuePair<string, string>(key, row[key]));
+        }
     }
 
     parseGermanTimeStamp(str: string) {

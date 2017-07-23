@@ -60,15 +60,7 @@ var FinancesImportComponent = (function () {
                     tvm.timeStamp = _this.parseGermanTimeStamp(row["Wertstellung"]);
                     tvm.note = row["Buchungstext"];
                     tvm.value = _this.parseGermanNumber(row["Betrag"]);
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Buchungstag", row["Buchungstag"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Wertstellung", row["Wertstellung"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Umsatzart", row["Umsatzart"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Buchungstext", row["Buchungstext"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Betrag", row["Betrag"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Währung", row["Währung"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Auftraggeberkonto", row["Auftraggeberkonto"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Bankleitzahl Auftraggeberkonto", row["Bankleitzahl Auftraggeberkonto"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("IBAN Auftraggeberkonto", row["IBAN Auftraggeberkonto"]));
+                    _this.addRawData(tvm, row, ["Buchungstag", "Wertstellung", "Umsatzart", "Buchungstext", "Betrag", "Währung", "Auftraggeberkonto", "Bankleitzahl Auftraggeberkonto", "IBAN Auftraggeberkonto"]);
                     _this.transactions.push(tvm);
                 }
             }
@@ -89,18 +81,17 @@ var FinancesImportComponent = (function () {
                     tvm.timeStamp = _this.parseGermanTimeStamp(row["Buchungstag"]);
                     tvm.note = row["Unternehmen"];
                     tvm.value = _this.parseGermanNumber(row["Betrag"]);
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Buchungstag", row["Buchungstag"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Beleg", row["Beleg"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Unternehmen", row["Unternehmen"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Betrag", row["Betrag"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Währung", row["Währung"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Betrag Ursprung", row["Betrag Ursprung"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Währung Ursprung", row["Währung Ursprung"]));
-                    tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair("Belastete Kreditkarte", row["Belastete Kreditkarte"]));
+                    _this.addRawData(tvm, row, ["Buchungstag", "Beleg", "Unternehmen", "Betrag", "Währung", "Betrag Ursprung", "Währung Ursprung", "Belastete Kreditkarte"]);
                     _this.transactions.push(tvm);
                 }
             }
         });
+    };
+    FinancesImportComponent.prototype.addRawData = function (tvm, row, keys) {
+        for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
+            var key = keys_1[_i];
+            tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair(key, row[key]));
+        }
     };
     FinancesImportComponent.prototype.parseGermanTimeStamp = function (str) {
         if (!str) {
