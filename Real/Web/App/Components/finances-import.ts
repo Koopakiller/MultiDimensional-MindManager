@@ -21,7 +21,7 @@ export class FinancesImportComponent implements OnInit {
         this.possibleFileTypes = [
             { extension: "csv", provider: "Commerzbank", description: "Commerzbank Giro Account Statement CSV Export", mode: "recommended", method: "importCommerzbankGiroAccountStatement" },
             { extension: "csv", provider: "Commerzbank", description: "Commerzbank Credit Card Statement CSV Export", mode: "not-implemented", method: "importCommerzbankCreditCardStatement" },
-            { extension: "csv", provider: "PayPal", description: "Paypal CSV Export", mode: "not-implemented", method: "" },
+            { extension: "csv", provider: "PayPal", description: "Paypal (German) \"Alle Aktivitäten (CSV, Komma getrennt)\" Export", mode: "not-implemented", method: "importPayPalAccountStatement" },
             { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: "" },
         ];
     }
@@ -50,6 +50,7 @@ export class FinancesImportComponent implements OnInit {
             delimiter: ";",
             header: true,
             skipEmptyLines: true,
+            encoding: "utf-8",
             complete: (result) => {
                 // it is a german localized file format:
                 // Date format: dd.mm.yyyy
@@ -59,7 +60,7 @@ export class FinancesImportComponent implements OnInit {
                     tvm.timeStamp = this.parseGermanTimeStamp(row["Wertstellung"]);
                     tvm.note = row["Buchungstext"];
                     tvm.value = this.parseGermanNumber(row["Betrag"]);
-                    this.addRawData(tvm, row, ["Buchungstag", "Wertstellung", "Umsatzart", "Buchungstext", "Betrag", "Währung", "Auftraggeberkonto", "Bankleitzahl Auftraggeberkonto", "IBAN Auftraggeberkonto"])
+                    this.addRawData(tvm, row, result.meta.fields)
                     this.transactions.push(tvm);
                 }
             }
@@ -71,6 +72,7 @@ export class FinancesImportComponent implements OnInit {
             delimiter: ";",
             header: true,
             skipEmptyLines: true,
+            encoding: "utf-8",
             complete: (result) => {
                 // it is a german localized file format:
                 // Date format: dd.mm.yyyy
@@ -80,7 +82,31 @@ export class FinancesImportComponent implements OnInit {
                     tvm.timeStamp = this.parseGermanTimeStamp(row["Buchungstag"]);
                     tvm.note = row["Unternehmen"];
                     tvm.value = this.parseGermanNumber(row["Betrag"]);
-                    this.addRawData(tvm, row, ["Buchungstag", "Beleg", "Unternehmen", "Betrag", "Währung", "Betrag Ursprung", "Währung Ursprung", "Belastete Kreditkarte"])
+                    this.addRawData(tvm, row, result.meta.fields)
+                    this.transactions.push(tvm);
+                }
+            }
+        });
+    }
+
+    importPayPalAccountStatement(): void{
+        let result = Papa.parse(this.selectedFile, {
+            delimiter: ",",
+            header: true,
+            skipEmptyLines: true,
+            encoding: "ISO-8859-15",
+            complete: (result) => {
+                // it is a german localized file format:
+                // Date format: dd.mm.yyyy
+                // Time format: hh:mm:ss
+                // Number format: xxx,xx
+                // Attention: PayPals CSV contains spaces before the header-names
+                for (let row of result.data) {
+                    var tvm = new TransactionViewModel();
+                    tvm.timeStamp = this.parseGermanTimeStamp(row["Datum"], row[" Zeit"], row[" Zeitzone"]);
+                    tvm.note = row[" Name"] + " " + row[" Typ"];
+                    tvm.value = this.parseGermanNumber(row[" Netto"]);                    
+                    this.addRawData(tvm, row, result.meta.fields)
                     this.transactions.push(tvm);
                 }
             }
@@ -95,12 +121,14 @@ export class FinancesImportComponent implements OnInit {
         }
     }
 
-    parseGermanTimeStamp(str: string) {
-        if (!str) {
+    // TODO: respect timeZone parameter 
+    parseGermanTimeStamp(date: string, time: string = "00:00:00", timeZone: string = "") {
+        if (!date) {
             return null;
         }
-        var parts = str.split(".");
-        return new Date(+parts[2], +parts[1], +parts[0]);
+        var dateParts = date.split(".");
+        var timeParts = time.split(":");
+        return new Date(+dateParts[2], +dateParts[1], +dateParts[0], +timeParts[0], +timeParts[1], +timeParts[2]);
     }
 
     parseGermanNumber(str: string) {
