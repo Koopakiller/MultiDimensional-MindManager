@@ -39,7 +39,7 @@
     "@types/jasmine": "2.5.36",
     "@types/lodash": "^4.14.68",
     "@types/node": "^6.0.45",
-    "@types/papaparse":"4.1.30",  
+    "@types/papaparse": "4.1.30",
     "gulp": "3.9.1",
     "gulp-less": "3.3.2",
     "gulp-typescript": "3.2.0",
