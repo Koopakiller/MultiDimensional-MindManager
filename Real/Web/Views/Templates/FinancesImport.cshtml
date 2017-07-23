@@ -26,16 +26,21 @@
                     <th>Time Stamp</th>
                     <th>Note</th>
                     <th>Value</th>
+                    <th class="action-column"></th>
                 </tr>
                 <tbody *ngFor="let transaction of transactions">
                     <tr>
                         <td>{{transaction.timeStamp}}</td>
                         <td>{{transaction.note}}</td>
                         <td>{{transaction.value}}</td>
+                        <td class="action-column">
+                            <a (click)="transaction.showDetails=!transaction.showDetails" 
+                               *ngIf="transaction.rawData.length > 0">Details</a>
+                        </td>
                     </tr>
-                    <tr class="details-row">
-                        <td colspan="3">
-                            <table *ngIf="transaction.rawData.length > 0">
+                    <tr class="details-row" *ngIf="transaction.rawData.length > 0 && transaction.showDetails">
+                        <td colspan="4">
+                            <table>
                                 <tr>
                                     <th>Key</th>
                                     <th>Value</th>

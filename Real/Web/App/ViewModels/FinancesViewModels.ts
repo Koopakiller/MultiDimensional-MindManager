@@ -53,6 +53,8 @@ export class TransactionViewModel{
     value: number;
 
     rawData: KeyValuePair<string, string>[] = [];
+
+    showDetails: boolean;
 }
 
 export class KeyValuePair<TKey, TValue>{
