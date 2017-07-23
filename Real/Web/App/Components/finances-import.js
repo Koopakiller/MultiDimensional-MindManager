@@ -30,7 +30,7 @@ var FinancesImportComponent = (function () {
         this.possibleFileTypes = [
             { extension: "csv", provider: "Commerzbank", description: "Commerzbank Giro Account Statement CSV Export", mode: "recommended", method: "importCommerzbankGiroAccountStatement" },
             { extension: "csv", provider: "Commerzbank", description: "Commerzbank Credit Card Statement CSV Export", mode: "not-implemented", method: "importCommerzbankCreditCardStatement" },
-            { extension: "csv", provider: "PayPal", description: "Paypal (German) \"Alle Aktivitäten (CSV, Komma getrennt)\" Export", mode: "not-implemented", method: "importPayPalAccountStatement" },
+            { extension: "csv", provider: "PayPal", description: "Paypal (German) \"Guthaben-relevante Zahlungen (CSV, Komma getrennt)\" Export", mode: "not-implemented", method: "importPayPalAccountStatement" },
             { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: "" },
         ];
     };
@@ -106,9 +106,12 @@ var FinancesImportComponent = (function () {
                 // Attention: PayPals CSV contains spaces before the header-names
                 for (var _i = 0, _a = result.data; _i < _a.length; _i++) {
                     var row = _a[_i];
+                    if (!row[" Netto"] || row[" Netto"] == "") {
+                        continue;
+                    }
                     var tvm = new FinancesViewModels_js_1.TransactionViewModel();
                     tvm.timeStamp = _this.parseGermanTimeStamp(row["Datum"], row[" Zeit"], row[" Zeitzone"]);
-                    tvm.note = row[" Name"] + " " + row[" Typ"];
+                    tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"] : "");
                     tvm.value = _this.parseGermanNumber(row[" Netto"]);
                     _this.addRawData(tvm, row, result.meta.fields);
                     _this.transactions.push(tvm);

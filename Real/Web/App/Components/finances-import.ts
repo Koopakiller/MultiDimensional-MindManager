@@ -21,7 +21,7 @@ export class FinancesImportComponent implements OnInit {
         this.possibleFileTypes = [
             { extension: "csv", provider: "Commerzbank", description: "Commerzbank Giro Account Statement CSV Export", mode: "recommended", method: "importCommerzbankGiroAccountStatement" },
             { extension: "csv", provider: "Commerzbank", description: "Commerzbank Credit Card Statement CSV Export", mode: "not-implemented", method: "importCommerzbankCreditCardStatement" },
-            { extension: "csv", provider: "PayPal", description: "Paypal (German) \"Alle Aktivitäten (CSV, Komma getrennt)\" Export", mode: "not-implemented", method: "importPayPalAccountStatement" },
+            { extension: "csv", provider: "PayPal", description: "Paypal (German) \"Guthaben-relevante Zahlungen (CSV, Komma getrennt)\" Export", mode: "not-implemented", method: "importPayPalAccountStatement" },
             { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: "" },
         ];
     }
@@ -60,7 +60,7 @@ export class FinancesImportComponent implements OnInit {
                     tvm.timeStamp = this.parseGermanTimeStamp(row["Wertstellung"]);
                     tvm.note = row["Buchungstext"];
                     tvm.value = this.parseGermanNumber(row["Betrag"]);
-                    this.addRawData(tvm, row, result.meta.fields)
+                    this.addRawData(tvm, row, result.meta.fields);
                     this.transactions.push(tvm);
                 }
             }
@@ -82,7 +82,7 @@ export class FinancesImportComponent implements OnInit {
                     tvm.timeStamp = this.parseGermanTimeStamp(row["Buchungstag"]);
                     tvm.note = row["Unternehmen"];
                     tvm.value = this.parseGermanNumber(row["Betrag"]);
-                    this.addRawData(tvm, row, result.meta.fields)
+                    this.addRawData(tvm, row, result.meta.fields);
                     this.transactions.push(tvm);
                 }
             }
@@ -102,11 +102,14 @@ export class FinancesImportComponent implements OnInit {
                 // Number format: xxx,xx
                 // Attention: PayPals CSV contains spaces before the header-names
                 for (let row of result.data) {
+                    if(!row[" Netto"] || row[" Netto"] == ""){
+                        continue;
+                    }
                     var tvm = new TransactionViewModel();
                     tvm.timeStamp = this.parseGermanTimeStamp(row["Datum"], row[" Zeit"], row[" Zeitzone"]);
-                    tvm.note = row[" Name"] + " " + row[" Typ"];
+                    tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"]: "" );
                     tvm.value = this.parseGermanNumber(row[" Netto"]);                    
-                    this.addRawData(tvm, row, result.meta.fields)
+                    this.addRawData(tvm, row, result.meta.fields);
                     this.transactions.push(tvm);
                 }
             }
