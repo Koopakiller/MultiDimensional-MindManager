@@ -28,7 +28,7 @@
                     <th>Value</th>
                     <th class="action-column"></th>
                 </tr>
-                <tbody *ngFor="let transaction of transactions">
+                <template ngFor [ngForOf]="transactions" let-transaction>
                     <tr>
                         <td>{{transaction.timeStamp}}</td>
                         <td>{{transaction.note}}</td>
@@ -52,7 +52,7 @@
                             </table>
                         </td>
                     </tr>
-                </tbody>
+                </template>
             </table>
         </div>
     </div>

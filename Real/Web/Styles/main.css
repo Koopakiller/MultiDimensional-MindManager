@@ -136,6 +136,7 @@ body .link-tile {
   text-align: left;
   margin-right: 10px;
   box-sizing: border-box;
+  cursor: pointer;
 }
 body .link-tile:nth-child(3n + 1) {
   margin-right: 0;
