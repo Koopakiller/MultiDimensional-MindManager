@@ -167,3 +167,12 @@ form .form-overlay {
   width: 100%;
   height: 100%;
 }
+.form-table .error-cell {
+  background: rgba(200, 50, 50, 0.8);
+}
+.form-table .danger-cell {
+  background: rgba(200, 150, 50, 0.8);
+}
+.form-table .good-cell {
+  background: rgba(50, 200, 50, 0.8);
+}

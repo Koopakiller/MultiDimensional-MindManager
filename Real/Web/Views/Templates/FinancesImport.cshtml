@@ -21,11 +21,12 @@
     </div>
     <div *ngSwitchCase="'showAndFitData'">
         <div class="tile text">
-            <table>
+            <table class="form-table">
                 <tr>
                     <th>Time Stamp</th>
                     <th>Note</th>
                     <th>Value</th>
+                    <th>Person</th>
                     <th class="action-column"></th>
                 </tr>
                 <template ngFor [ngForOf]="transactions" let-transaction>
@@ -33,6 +34,11 @@
                         <td>{{transaction.timeStamp}}</td>
                         <td>{{transaction.note}}</td>
                         <td>{{transaction.value}}</td>
+                        <td class="{{transaction.personId ? '' : 'error-cell'}}">
+                            <select [(ngModel)]="transaction.personId" >
+                                <option *ngFor="let person of persons" [ngValue]="person.id">{{person.header}}</option>
+                            </select>
+                        </td>
                         <td class="action-column">
                             <a (click)="transaction.showDetails=!transaction.showDetails" 
                                *ngIf="transaction.rawData.length > 0">Details</a>

@@ -24,7 +24,12 @@ export class FinancesImportComponent implements OnInit {
             { extension: "csv", provider: "PayPal", description: "Paypal (German) \"Guthaben-relevante Zahlungen (CSV, Komma getrennt)\" Export", mode: "not-implemented", method: "importPayPalAccountStatement" },
             { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: "" },
         ];
+        this.financesService.persons.subscribe(x => { this.persons = x; });
+        this.financesService.users.subscribe(x => { this.users = x; });
     }
+
+    persons: PersonViewModel[];
+    users: UserViewModel[];
 
     possibleFileTypes: any[];
 
@@ -45,6 +50,15 @@ export class FinancesImportComponent implements OnInit {
         this[this.possibleFileTypes[index].method]();
     }
 
+    getPersonIdFromName(name: string){
+        for(let person of this.persons){
+            if(person.header == name){
+                return person.id;
+            }
+        }
+        return null;
+    }
+
     importCommerzbankGiroAccountStatement(): void {
         let result = Papa.parse(this.selectedFile, {
             delimiter: ";",
@@ -60,6 +74,7 @@ export class FinancesImportComponent implements OnInit {
                     tvm.timeStamp = this.parseGermanTimeStamp(row["Wertstellung"]);
                     tvm.note = row["Buchungstext"];
                     tvm.value = this.parseGermanNumber(row["Betrag"]);
+                    //tvm.personId = this.getPersonIdFromName(row[...]);
                     this.addRawData(tvm, row, result.meta.fields);
                     this.transactions.push(tvm);
                 }
@@ -82,6 +97,7 @@ export class FinancesImportComponent implements OnInit {
                     tvm.timeStamp = this.parseGermanTimeStamp(row["Buchungstag"]);
                     tvm.note = row["Unternehmen"];
                     tvm.value = this.parseGermanNumber(row["Betrag"]);
+                    tvm.personId = this.getPersonIdFromName(row["Unternehmen"]);
                     this.addRawData(tvm, row, result.meta.fields);
                     this.transactions.push(tvm);
                 }
@@ -108,7 +124,8 @@ export class FinancesImportComponent implements OnInit {
                     var tvm = new TransactionViewModel();
                     tvm.timeStamp = this.parseGermanTimeStamp(row["Datum"], row[" Zeit"], row[" Zeitzone"]);
                     tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"]: "" );
-                    tvm.value = this.parseGermanNumber(row[" Netto"]);                    
+                    tvm.value = this.parseGermanNumber(row[" Netto"]);
+                    tvm.personId = this.getPersonIdFromName(row[" Name"]);                    
                     this.addRawData(tvm, row, result.meta.fields);
                     this.transactions.push(tvm);
                 }

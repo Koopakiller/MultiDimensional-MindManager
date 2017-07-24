@@ -26,6 +26,7 @@ var FinancesImportComponent = (function () {
         ];
     }
     FinancesImportComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.initCurrentStep();
         this.possibleFileTypes = [
             { extension: "csv", provider: "Commerzbank", description: "Commerzbank Giro Account Statement CSV Export", mode: "recommended", method: "importCommerzbankGiroAccountStatement" },
@@ -33,6 +34,8 @@ var FinancesImportComponent = (function () {
             { extension: "csv", provider: "PayPal", description: "Paypal (German) \"Guthaben-relevante Zahlungen (CSV, Komma getrennt)\" Export", mode: "not-implemented", method: "importPayPalAccountStatement" },
             { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: "" },
         ];
+        this.financesService.persons.subscribe(function (x) { _this.persons = x; });
+        this.financesService.users.subscribe(function (x) { _this.users = x; });
     };
     FinancesImportComponent.prototype.processFileInputChange = function ($event) {
         var inputValue = $event.target;
@@ -44,6 +47,15 @@ var FinancesImportComponent = (function () {
     FinancesImportComponent.prototype.import = function (index) {
         this.nextStep();
         this[this.possibleFileTypes[index].method]();
+    };
+    FinancesImportComponent.prototype.getPersonIdFromName = function (name) {
+        for (var _i = 0, _a = this.persons; _i < _a.length; _i++) {
+            var person = _a[_i];
+            if (person.header == name) {
+                return person.id;
+            }
+        }
+        return null;
     };
     FinancesImportComponent.prototype.importCommerzbankGiroAccountStatement = function () {
         var _this = this;
@@ -62,6 +74,7 @@ var FinancesImportComponent = (function () {
                     tvm.timeStamp = _this.parseGermanTimeStamp(row["Wertstellung"]);
                     tvm.note = row["Buchungstext"];
                     tvm.value = _this.parseGermanNumber(row["Betrag"]);
+                    //tvm.personId = this.getPersonIdFromName(row[...]);
                     _this.addRawData(tvm, row, result.meta.fields);
                     _this.transactions.push(tvm);
                 }
@@ -85,6 +98,7 @@ var FinancesImportComponent = (function () {
                     tvm.timeStamp = _this.parseGermanTimeStamp(row["Buchungstag"]);
                     tvm.note = row["Unternehmen"];
                     tvm.value = _this.parseGermanNumber(row["Betrag"]);
+                    tvm.personId = _this.getPersonIdFromName(row["Unternehmen"]);
                     _this.addRawData(tvm, row, result.meta.fields);
                     _this.transactions.push(tvm);
                 }
@@ -113,6 +127,7 @@ var FinancesImportComponent = (function () {
                     tvm.timeStamp = _this.parseGermanTimeStamp(row["Datum"], row[" Zeit"], row[" Zeitzone"]);
                     tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"] : "");
                     tvm.value = _this.parseGermanNumber(row[" Netto"]);
+                    tvm.personId = _this.getPersonIdFromName(row[" Name"]);
                     _this.addRawData(tvm, row, result.meta.fields);
                     _this.transactions.push(tvm);
                 }

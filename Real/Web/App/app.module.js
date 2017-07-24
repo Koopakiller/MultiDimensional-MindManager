@@ -37,7 +37,8 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [
-            router_1.RouterModule.forRoot(appRoutes, { enableTracing: true } // <-- debugging purposes only
+            router_1.RouterModule.forRoot(appRoutes
+            //,{ enableTracing: true } // <-- debugging purposes only
             ),
             http_1.HttpModule,
             platform_browser_1.BrowserModule,
