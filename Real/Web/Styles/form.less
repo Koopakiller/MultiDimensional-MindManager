@@ -29,40 +29,6 @@ form{
       }
     }
 
-    input, select, button{
-      display:inline-block;
-      box-sizing: border-box;
-      .font-input;
-      outline:none;
-      &:active{
-        border: 1px solid @color-accent-dark;
-      }
-    }
-    input:not([type=button]):not([type=submit]), select{
-      width:100%;
-      padding: @padding-tiny @padding-small;
-      border: 2px solid @color-light-1;
-      background-color: @color-light;
-      margin-bottom: @padding-tiny;
-      &:active, &:focus{
-        border-color: @color-accent-light;
-      }
-    }
-
-    button, input[type=button], input[type=submit]{
-      border: none;
-      color:@color-dark;
-      cursor: pointer;
-      padding: @padding-tiny @padding-small;
-      background-color: @color-light;
-      border: 2px solid @color-light-1;
-      min-width:50px;
-      vertical-align: middle;
-      &:hover{
-        background-color: @color-light-1;
-      }
-    }
-
     label{
       padding-right: @padding-small;
       vertical-align: top;
@@ -78,32 +44,6 @@ form{
     padding:@padding;
     button, input[type=button], input[type=submit]{
       padding: @padding-tiny @padding-small;
-    }
-  }
-
-  .form-control-group{
-    margin-top: @padding;
-    margin-bottom: @padding;
-    &:last-child{
-      margin-bottom: 0;
-    }
-    input[type=button], input[type=submit], button{
-      padding: @padding-small @padding;
-      background-color: @color-dark;
-      color: @color-light;
-      border: none;
-      min-width: 120px;
-      cursor: pointer;
-      .font-input;
-      &:hover{
-        background-color: @color-dark-1;
-      }
-      &[type=submit]{
-        background-color: @color-accent-dark;
-        &:hover{
-          background-color: @color-accent-dark-1;
-        }
-      }
     }
   }
 
@@ -127,5 +67,63 @@ form{
   }
   .good-cell{
     background: @color-transparent-good;
+  }
+}
+
+input, select, button{
+  display:inline-block;
+  box-sizing: border-box;
+  .font-input;
+  outline:none;
+  &:active{
+    border: 1px solid @color-accent-dark;
+  }
+}
+input:not([type=button]):not([type=submit]), select{
+  width:100%;
+  padding: @padding-tiny @padding-small;
+  border: 2px solid @color-light-1;
+  background-color: @color-light;
+  margin-bottom: @padding-tiny;
+  &:active, &:focus{
+    border-color: @color-accent-light;
+  }
+}
+button, input[type=button], input[type=submit]{
+  border: none;
+  color:@color-dark;
+  cursor: pointer;
+  padding: @padding-tiny @padding-small;
+  background-color: @color-light;
+  border: 2px solid @color-light-1;
+  min-width:50px;
+  vertical-align: middle;
+  &:hover{
+    background-color: @color-light-1;
+  }
+}
+.button-bar{
+  margin-top: @padding;
+  margin-bottom: @padding;
+  &:last-child{
+    margin-bottom: 0;
+  }
+  input[type=button], input[type=submit], button{
+    padding: @padding-small @padding;
+    background-color: @color-dark;
+    color: @color-light;
+    border: none;
+    min-width: 120px;
+    cursor: pointer;
+    .font-input;
+    &:hover{
+      background-color: @color-dark-1;
+    }
+    &[type=submit]{
+      background-color: @color-accent-dark;
+      &:hover{
+        background-color: @color-accent-dark-1;
+      }
+    }
   }
 }

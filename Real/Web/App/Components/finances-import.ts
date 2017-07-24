@@ -160,8 +160,26 @@ export class FinancesImportComponent implements OnInit {
 
     transactions: TransactionViewModel[] = [];
 
+    // Show Details (additional/raw data) of a Transaction ###########################################
+    shownRawData: KeyValuePair<string, string>[];
+    lastIndexShownDetails: number = -1;
+    toggleDetails(i: number): void{
+        if(this.transactions[i].showDetails){
+            this.transactions[i].showDetails = false;   
+            this.shownRawData = null;  
+            this.lastIndexShownDetails = -1;       
+        }
+        else{
+            if(this.lastIndexShownDetails >= 0){
+                this.transactions[this.lastIndexShownDetails].showDetails = false;
+            }
+            this.transactions[i].showDetails = true;
+            this.shownRawData = this.transactions[i].rawData;
+            this.lastIndexShownDetails = i;
+        }
+    }
 
-
+    // Navigation ####################################################################################
     currentStep: string;
     steps = [
         "fileSelect",

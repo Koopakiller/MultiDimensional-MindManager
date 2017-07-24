@@ -29,7 +29,7 @@
                     <th>Person</th>
                     <th class="action-column"></th>
                 </tr>
-                <template ngFor [ngForOf]="transactions" let-transaction>
+                <ng-template ngFor [ngForOf]="transactions" let-transaction let-i="index">
                     <tr>
                         <td>{{transaction.timeStamp}}</td>
                         <td>{{transaction.note}}</td>
@@ -40,26 +40,31 @@
                             </select>
                         </td>
                         <td class="action-column">
-                            <a (click)="transaction.showDetails=!transaction.showDetails" 
-                               *ngIf="transaction.rawData.length > 0">Details</a>
+                            <a (click)="toggleDetails(i)" 
+                               *ngIf="transaction.rawData.length > 0"><span *ngIf="transaction.showDetails">Hide</span><span *ngIf="!transaction.showDetails">Show</span> Details</a>
                         </td>
                     </tr>
-                    <tr class="details-row" *ngIf="transaction.rawData.length > 0 && transaction.showDetails">
-                        <td colspan="4">
-                            <table>
-                                <tr>
-                                    <th>Key</th>
-                                    <th>Value</th>
-                                </tr>
-                                <tr *ngFor="let data of transaction.rawData">
-                                    <td>{{data.key}}</td>
-                                    <td>{{data.value}}</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </template>
+                </ng-template>
             </table>
+        </div>
+        <div class="popup" *ngIf="shownRawData && shownRawData.length > 0">
+            <div class="popup-content text">
+                <span class="header">Details</span>
+                
+                <table>
+                    <tr>
+                        <th>Key</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr *ngFor="let data of shownRawData">
+                        <td>{{data.key}}</td>
+                        <td>{{data.value}}</td>
+                    </tr>
+                </table>
+                <div class="button-bar">
+                    <input type="submit" value="Close" (click)="toggleDetails(lastIndexShownDetails)" />
+                </div>
+            </div>
         </div>
     </div>
 </div>

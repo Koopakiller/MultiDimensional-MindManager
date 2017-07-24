@@ -19,6 +19,7 @@ var FinancesImportComponent = (function () {
         this.financesService = financesService;
         this.router = router;
         this.transactions = [];
+        this.lastIndexShownDetails = -1;
         this.steps = [
             "fileSelect",
             "fileTypeSelect",
@@ -158,6 +159,21 @@ var FinancesImportComponent = (function () {
             return null;
         }
         return Number(str.replace(/,/g, "."));
+    };
+    FinancesImportComponent.prototype.toggleDetails = function (i) {
+        if (this.transactions[i].showDetails) {
+            this.transactions[i].showDetails = false;
+            this.shownRawData = null;
+            this.lastIndexShownDetails = -1;
+        }
+        else {
+            if (this.lastIndexShownDetails >= 0) {
+                this.transactions[this.lastIndexShownDetails].showDetails = false;
+            }
+            this.transactions[i].showDetails = true;
+            this.shownRawData = this.transactions[i].rawData;
+            this.lastIndexShownDetails = i;
+        }
     };
     FinancesImportComponent.prototype.initCurrentStep = function () {
         this.currentStep = this.steps[0];
