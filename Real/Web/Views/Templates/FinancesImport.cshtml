@@ -26,7 +26,7 @@
                     <th>Time Stamp</th>
                     <th>Note</th>
                     <th>Value</th>
-                    <th>Person</th>
+                    <th>Person <a (click)="addPerson()">Add</a></th>
                     <th class="action-column"></th>
                 </tr>
                 <ng-template ngFor [ngForOf]="transactions" let-transaction let-i="index">
@@ -38,10 +38,13 @@
                             <select [(ngModel)]="transaction.personId" >
                                 <option *ngFor="let person of persons" [ngValue]="person.id">{{person.header}}</option>
                             </select>
+                            <a *ngIf="!transaction.personId" (click)="addPerson(transaction.suggestedPersonName)">Add {{transaction.suggestedPersonName}}</a>
                         </td>
                         <td class="action-column">
                             <a (click)="toggleDetails(i)" 
-                               *ngIf="transaction.rawData.length > 0"><span *ngIf="transaction.showDetails">Hide</span><span *ngIf="!transaction.showDetails">Show</span> Details</a>
+                               *ngIf="transaction.rawData.length > 0">
+                               <span *ngIf="transaction.showDetails">Hide</span><span *ngIf="!transaction.showDetails">Show</span> Details
+                            </a>
                         </td>
                     </tr>
                 </ng-template>
@@ -65,6 +68,15 @@
                     <div class="button-bar">
                         <input type="submit" value="Close" (click)="toggleDetails(lastIndexShownDetails)" />
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="popup" *ngIf="showAddPersonPopup">
+            <div class="popup-container">
+                <div class="popup-content text">
+                    <span class="header">Add Person</span>
+                    
+                    <finances-new-person [personName]="suggestedNewPersonName" (close)="closeAddPersonPopup($event)"></finances-new-person>
                 </div>
             </div>
         </div>

@@ -1,0 +1,13 @@
+
+<form (ngSubmit)="submit()">
+    <div class="form-group">
+        <label for="personName">Name:</label>
+        <div class="control-container">
+            <input type="text" class="form-control" id="personName" [(ngModel)]="personName" name="personName" />
+        </div>
+    </div>
+    <div class="button-bar">
+        <input type="button" class="btn btn-cancel" (click)="cancel()" value="Cancel"/>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+</form>

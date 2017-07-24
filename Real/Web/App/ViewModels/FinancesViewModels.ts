@@ -55,6 +55,7 @@ export class TransactionViewModel{
     rawData: KeyValuePair<string, string>[] = [];
 
     showDetails: boolean;
+    suggestedPersonName: string;
 }
 
 export class KeyValuePair<TKey, TValue>{

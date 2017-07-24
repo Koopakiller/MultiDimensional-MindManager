@@ -25,6 +25,8 @@ var FinancesImportComponent = (function () {
             "fileTypeSelect",
             "showAndFitData"
         ];
+        this.showAddPersonPopup = false;
+        this.suggestedNewPersonName = "";
     }
     FinancesImportComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -100,6 +102,7 @@ var FinancesImportComponent = (function () {
                     tvm.note = row["Unternehmen"];
                     tvm.value = _this.parseGermanNumber(row["Betrag"]);
                     tvm.personId = _this.getPersonIdFromName(row["Unternehmen"]);
+                    tvm.suggestedPersonName = row["Unternehmen"];
                     _this.addRawData(tvm, row, result.meta.fields);
                     _this.transactions.push(tvm);
                 }
@@ -129,6 +132,7 @@ var FinancesImportComponent = (function () {
                     tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"] : "");
                     tvm.value = _this.parseGermanNumber(row[" Netto"]);
                     tvm.personId = _this.getPersonIdFromName(row[" Name"]);
+                    tvm.suggestedPersonName = row[" Name"];
                     _this.addRawData(tvm, row, result.meta.fields);
                     _this.transactions.push(tvm);
                 }
@@ -180,6 +184,25 @@ var FinancesImportComponent = (function () {
     };
     FinancesImportComponent.prototype.nextStep = function () {
         this.currentStep = this.steps[this.steps.indexOf(this.currentStep) + 1];
+    };
+    // Add Person ####################################################################################
+    FinancesImportComponent.prototype.addPerson = function (name) {
+        if (name === void 0) { name = ""; }
+        this.showAddPersonPopup = true;
+        this.suggestedNewPersonName = name;
+    };
+    FinancesImportComponent.prototype.closeAddPersonPopup = function (pvm) {
+        this.showAddPersonPopup = false;
+        this.suggestedNewPersonName = "";
+        if (pvm) {
+            this.persons.push(pvm);
+            for (var _i = 0, _a = this.transactions; _i < _a.length; _i++) {
+                var transaction = _a[_i];
+                if (transaction.suggestedPersonName === pvm.header && !transaction.personId) {
+                    transaction.personId = pvm.id;
+                }
+            }
+        }
     };
     return FinancesImportComponent;
 }());

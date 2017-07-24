@@ -98,6 +98,7 @@ export class FinancesImportComponent implements OnInit {
                     tvm.note = row["Unternehmen"];
                     tvm.value = this.parseGermanNumber(row["Betrag"]);
                     tvm.personId = this.getPersonIdFromName(row["Unternehmen"]);
+                    tvm.suggestedPersonName = row["Unternehmen"];
                     this.addRawData(tvm, row, result.meta.fields);
                     this.transactions.push(tvm);
                 }
@@ -125,7 +126,8 @@ export class FinancesImportComponent implements OnInit {
                     tvm.timeStamp = this.parseGermanTimeStamp(row["Datum"], row[" Zeit"], row[" Zeitzone"]);
                     tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"]: "" );
                     tvm.value = this.parseGermanNumber(row[" Netto"]);
-                    tvm.personId = this.getPersonIdFromName(row[" Name"]);                    
+                    tvm.personId = this.getPersonIdFromName(row[" Name"]);  
+                    tvm.suggestedPersonName = row[" Name"];                  
                     this.addRawData(tvm, row, result.meta.fields);
                     this.transactions.push(tvm);
                 }
@@ -192,4 +194,24 @@ export class FinancesImportComponent implements OnInit {
     nextStep() {
         this.currentStep = this.steps[this.steps.indexOf(this.currentStep) + 1];
     }
+
+    // Add Person ####################################################################################
+    addPerson(name: string = ""): void{
+        this.showAddPersonPopup = true;
+        this.suggestedNewPersonName = name;
+    }
+    closeAddPersonPopup(pvm: PersonViewModel){
+        this.showAddPersonPopup = false;
+        this.suggestedNewPersonName = "";
+        if(pvm){
+            this.persons.push(pvm);
+            for(let transaction of this.transactions){
+                if(transaction.suggestedPersonName === pvm.header && !transaction.personId){
+                    transaction.personId = pvm.id
+                }
+            }
+        }
+    }
+    showAddPersonPopup: boolean = false;
+    suggestedNewPersonName: string = "";
 }

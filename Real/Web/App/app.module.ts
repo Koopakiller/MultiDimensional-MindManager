@@ -12,6 +12,7 @@ import { StyleTestComponent } from "./Components/style-test.js";
 import { HomeComponent } from "./Components/home.js";
 import { MediaAppletComponent } from "./Components/MediaApplet.js";
 import { FinancesImportComponent } from "./Components/finances-import.js";
+import { FinancesNewPersonComponent } from "./Components/finances-new-person.js";
 
 const appRoutes: Routes = [
   { path: 'Home',               component: HomeComponent },
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
     AppComponent,
     FinancesNewEntryComponent,
     FinancesImportComponent,
+    FinancesNewPersonComponent,
     FinancesComponent,
     HomeComponent,
     MediaAppletComponent,
