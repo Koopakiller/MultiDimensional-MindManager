@@ -183,23 +183,25 @@ body .popup {
   bottom: 0;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.8);
+}
+body .popup .popup-container {
   margin: 0 auto;
   padding: 10px;
   max-width: 1000px;
   display: block;
 }
 @media screen and (max-width: 500px) {
-  body .popup {
+  body .popup .popup-container {
     padding-left: 0;
     padding-right: 0;
   }
 }
-body .popup .popup-content {
+body .popup .popup-container .popup-content {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 10px;
   border: 2px solid #F0F0F0;
 }
-body .popup .button-bar {
+body .popup .popup-container .button-bar {
   text-align: right;
 }
 ::selection {

@@ -48,21 +48,23 @@
             </table>
         </div>
         <div class="popup" *ngIf="shownRawData && shownRawData.length > 0">
-            <div class="popup-content text">
-                <span class="header">Details</span>
-                
-                <table>
-                    <tr>
-                        <th>Key</th>
-                        <th>Value</th>
-                    </tr>
-                    <tr *ngFor="let data of shownRawData">
-                        <td>{{data.key}}</td>
-                        <td>{{data.value}}</td>
-                    </tr>
-                </table>
-                <div class="button-bar">
-                    <input type="submit" value="Close" (click)="toggleDetails(lastIndexShownDetails)" />
+            <div class="popup-container">
+                <div class="popup-content text">
+                    <span class="header">Details</span>
+                    
+                    <table>
+                        <tr>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr *ngFor="let data of shownRawData">
+                            <td>{{data.key}}</td>
+                            <td>{{data.value}}</td>
+                        </tr>
+                    </table>
+                    <div class="button-bar">
+                        <input type="submit" value="Close" (click)="toggleDetails(lastIndexShownDetails)" />
+                    </div>
                 </div>
             </div>
         </div>
