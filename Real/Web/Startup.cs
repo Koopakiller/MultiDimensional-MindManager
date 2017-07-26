@@ -19,6 +19,7 @@
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("appsettings.database.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -32,8 +33,8 @@
             // Add framework servcices.
             services.AddMvc();
             
-            var connection = @"Server=(localdb)\ProjectsV13;Database=Finances.Database;Trusted_Connection=True;";
-            services.AddDbContext<FinancesDbContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<FinancesDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("FinancesDbContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -16,7 +16,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
 
         public IActionResult GetUsers()
         {
-            return this.Json(this._context.GetUsers());
+            return this.Json(new { Data = this._context.GetUsers() } );
         }
 
         public IActionResult GetPersons()
