@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[AddRawDataEntry]
 (
 	@transactionId INT,
-	@key NVARCHAR(MAX) NOT NULL,
-	@value NVARCHAR(MAX) NOT NULL
+	@key NVARCHAR(MAX),
+	@value NVARCHAR(MAX)
 )
 AS
 BEGIN

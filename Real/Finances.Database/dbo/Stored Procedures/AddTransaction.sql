@@ -1,10 +1,10 @@
 ﻿CREATE PROCEDURE [dbo].[AddTransaction]
 (
-	@personId [int] NOT NULL,
-	@value [decimal](18, 2) NOT NULL,
-	@timeStamp [datetime] NOT NULL,
-	@currencyAccountId [int] NOT NULL,
-	@note NVARCHAR(MAX) NOT NULL
+	@personId [int],
+	@value [decimal](18, 2),
+	@timeStamp [datetime],
+	@currencyAccountId [int],
+	@note NVARCHAR(MAX)
 )
 AS
 BEGIN
