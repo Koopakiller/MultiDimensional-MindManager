@@ -41,7 +41,7 @@ var FinancesService = (function () {
         enumerable: true,
         configurable: true
     });
-    FinancesService.prototype.getCurrencies = function (userId) {
+    FinancesService.prototype.getCurrencyAccounts = function (userId) {
         var _this = this;
         return this.http.get("/api/Finances/GetCurrencyAccountsForUser?userId=" + userId)
             .map(function (response) { return _this.map(response, function (sm) { var obj = new FinancesServerModels_js_1.CurrencyAccountServerModel(); Object.assign(obj, sm); return obj.toViewModel(); }); });

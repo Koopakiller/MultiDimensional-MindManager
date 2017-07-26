@@ -30,7 +30,7 @@ export class FinancesService {
             .map(response => this.map(response, (sm: UserServerModel) => { var obj = new UserServerModel(); Object.assign(obj, sm); return obj.toViewModel(); }));
     }
 
-    public getCurrencies(userId: number): Observable<CurrencyAccountViewModel[]> {
+    public getCurrencyAccounts(userId: number): Observable<CurrencyAccountViewModel[]> {
         return this.http.get(`/api/Finances/GetCurrencyAccountsForUser?userId=${userId}`)
             .map(response => this.map(response, (sm: CurrencyAccountServerModel) => { var obj = new CurrencyAccountServerModel(); Object.assign(obj, sm); return obj.toViewModel(); }));
     }

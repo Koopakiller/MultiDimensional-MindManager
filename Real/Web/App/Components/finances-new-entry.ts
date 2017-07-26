@@ -25,7 +25,7 @@ export class FinancesNewEntryComponent implements OnInit {
     }
 
     persons: PersonViewModel[];
-    currencies: CurrencyAccountViewModel[];
+    currencyAccounts: CurrencyAccountViewModel[];
     users: UserViewModel[];
 
     coordinates: Coordinates;
@@ -33,17 +33,17 @@ export class FinancesNewEntryComponent implements OnInit {
     name: string;
     value: number; 
     person: number;
-    currency: number;
+    currencyAccount: number;
     _user: number;
     timeStamp: Date;
 
-    get user(){
+    get user(){ 
         return this._user;
     }
 
     set user(value: number){
         this._user = value;
-        this.financesService.getCurrencies(value).subscribe(x => { this.currencies = x; this.currency = x.length > 0 ? x[0].id : null; });
+        this.financesService.getCurrencyAccounts(value).subscribe(x => { this.currencyAccounts = x; this.currencyAccount = x.length > 0 ? x[0].id : null; });
     }
 
     public setTimeToNow(){
@@ -51,7 +51,7 @@ export class FinancesNewEntryComponent implements OnInit {
     }
 
     public submit(): void {
-        this.financesService.addEntry(this.currency, this.person, this.user, this.timeStamp, this.name, this.value, this.coordinates);
+        this.financesService.addEntry(this.currencyAccount, this.person, this.user, this.timeStamp, this.name, this.value, this.coordinates);
         this.router.navigateByUrl("/Finances");
     }
 

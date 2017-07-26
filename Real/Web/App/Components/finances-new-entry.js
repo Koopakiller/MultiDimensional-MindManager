@@ -35,7 +35,7 @@ var FinancesNewEntryComponent = (function () {
         set: function (value) {
             var _this = this;
             this._user = value;
-            this.financesService.getCurrencies(value).subscribe(function (x) { _this.currencies = x; _this.currency = x.length > 0 ? x[0].id : null; });
+            this.financesService.getCurrencyAccounts(value).subscribe(function (x) { _this.currencyAccounts = x; _this.currencyAccount = x.length > 0 ? x[0].id : null; });
         },
         enumerable: true,
         configurable: true
@@ -44,7 +44,7 @@ var FinancesNewEntryComponent = (function () {
         this.timeStamp = new Date();
     };
     FinancesNewEntryComponent.prototype.submit = function () {
-        this.financesService.addEntry(this.currency, this.person, this.user, this.timeStamp, this.name, this.value, this.coordinates);
+        this.financesService.addEntry(this.currencyAccount, this.person, this.user, this.timeStamp, this.name, this.value, this.coordinates);
         this.router.navigateByUrl("/Finances");
     };
     FinancesNewEntryComponent.prototype.cancel = function () {
