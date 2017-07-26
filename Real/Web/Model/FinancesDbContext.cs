@@ -9,6 +9,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
 
         private DbSet<User> Users { get; set; }
         private DbSet<Person> Persons { get; set; }
+        private DbSet<CurrencyAccount> CurrencyAccounts { get; set; }
 
         public IEnumerable<User> GetUsers()
         {
@@ -18,6 +19,11 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         public IEnumerable<Person> GetPersons()
         {
             return this.Persons.FromSql("EXEC GetPersons");
+        }
+
+        public IEnumerable<CurrencyAccount> GetCurrencyAccountForUser(int userId)
+        {
+            return this.CurrencyAccounts.FromSql("EXEC GetCurrencyAccountForUser {0}", userId);
         }
     }
 
@@ -31,5 +37,13 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
+    }
+
+    public class CurrencyAccount
+    {
+        public int AccountId { get; set; }
+        public string AccountName { get; set; }
+        public int CurrencyAccountId { get; set; }
+        public string CurrencyName { get; set; }
     }
 }
