@@ -80,6 +80,7 @@
     <Build Include="dbo\Tables\RawData.sql" />
     <Build Include="dbo\Tables\RawDataEntries.sql" />
     <Build Include="dbo\Stored Procedures\GetUsers.sql" />
+    <Build Include="dbo\Stored Procedures\GetPersons.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="publish.localdbv13.publish.xml" />
