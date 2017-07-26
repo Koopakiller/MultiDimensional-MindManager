@@ -32,6 +32,11 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         {
             return this.Transactions.FromSql("EXEC AddTransaction {0}, {1}, {2}, {3}, {4}", personId, value, timeStamp, currencyAccountId, note);
         }
+
+        public void AddTransaction(int transactionId, string key, string value)
+        {
+            this.Database.ExecuteSqlCommand("EXEC AddRawDataEntry {0}, {1}, {2}", transactionId, key, value);
+        }
     }
 
     public class User

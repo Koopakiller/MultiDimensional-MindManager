@@ -9,7 +9,6 @@
 AS
 BEGIN
 	INSERT INTO Transactions (PersonId, [Value], [TimeStamp], CurrencyAccountId, Note)
-	OUTPUT inserted.Id
 	VALUES (@personId, @value, @timestamp, @currencyAccountId, @note)
 
 	SELECT * 
