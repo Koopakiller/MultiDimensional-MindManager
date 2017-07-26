@@ -33,6 +33,7 @@ export class FinancesImportComponent implements OnInit {
 
     possibleFileTypes: any[];
 
+    selectedUser: number;
     selectedFile: File;
 
     processFileInputChange($event: any): void {
@@ -184,6 +185,7 @@ export class FinancesImportComponent implements OnInit {
     // Navigation ####################################################################################
     currentStep: string;
     steps = [
+        "userSelect",
         "fileSelect",
         "fileTypeSelect",
         "showAndFitData"

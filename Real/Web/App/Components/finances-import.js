@@ -21,6 +21,7 @@ var FinancesImportComponent = (function () {
         this.transactions = [];
         this.lastIndexShownDetails = -1;
         this.steps = [
+            "userSelect",
             "fileSelect",
             "fileTypeSelect",
             "showAndFitData"

@@ -2,6 +2,23 @@
     <h1>Finances: Import</h1> 
 </div>   
 <div [ngSwitch]="currentStep">
+    <div *ngSwitchCase="'userSelect'">
+        <div class="tile text">
+            <form (ngSubmit)="nextStep()">
+                <div class="form-group">
+                    <label for="user">User:</label>
+                    <div class="control-container">  
+                        <select [(ngModel)]="selectedUser" name="user">
+                            <option *ngFor="let user of users" [ngValue]="user.id">{{user.header}}</option>
+                        </select>
+                    </div>
+                    <div class="button-bar" >
+                        <button type="submit" class="btn btn-success" *ngIf="selectedUser">Next</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div *ngSwitchCase="'fileSelect'">
         <div class="tile text">
             <form>
