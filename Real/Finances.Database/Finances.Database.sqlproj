@@ -82,6 +82,7 @@
     <Build Include="dbo\Stored Procedures\GetUsers.sql" />
     <Build Include="dbo\Stored Procedures\GetPersons.sql" />
     <Build Include="dbo\Stored Procedures\GetCurrencyAccountsForUser.sql" />
+    <Build Include="dbo\Stored Procedures\AddTransaction.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="publish.localdbv13.publish.xml" />
