@@ -50,3 +50,4 @@ FinancesNewPersonComponent = __decorate([
         router_1.Router])
 ], FinancesNewPersonComponent);
 exports.FinancesNewPersonComponent = FinancesNewPersonComponent;
+//# sourceMappingURL=finances-new-person.js.map

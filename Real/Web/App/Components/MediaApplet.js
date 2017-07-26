@@ -19,3 +19,4 @@ MediaAppletComponent = __decorate([
     })
 ], MediaAppletComponent);
 exports.MediaAppletComponent = MediaAppletComponent;
+//# sourceMappingURL=MediaApplet.js.map

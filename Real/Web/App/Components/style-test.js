@@ -19,3 +19,4 @@ StyleTestComponent = __decorate([
     })
 ], StyleTestComponent);
 exports.StyleTestComponent = StyleTestComponent;
+//# sourceMappingURL=style-test.js.map

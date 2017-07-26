@@ -2,26 +2,21 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
     using Koopakiller.Apps.Picosmos.Real.Areas.Api.ViewModels;
+    using Koopakiller.Apps.Picosmos.Real.Model;
 
     [Area("Api")]
     public class FinancesController : Controller
     {
-        public IActionResult Index()
+        FinancesDbContext _context;
+
+        public FinancesController(FinancesDbContext context)
         {
-            return Json(new { test = "Test", Number = 12.34 });
+            this._context = context;
         }
 
         public IActionResult GetUsers()
         {
-            var data = new
-            {
-                Data = new dynamic[]
-                {
-                    new { Id = 0, Name = "Schmul Goldberg" },
-                    new { Id = 1, Name = "Tom Lambert" },
-                },
-            };
-            return this.Json(data);
+            return this.Json(this._context.GetUsers());
         }
 
         public IActionResult GetPersons()

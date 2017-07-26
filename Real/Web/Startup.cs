@@ -9,6 +9,8 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.FileProviders;
     using Microsoft.Extensions.Logging;
+    using Koopakiller.Apps.Picosmos.Real.Model;
+    using Microsoft.EntityFrameworkCore;
 
     public class Startup
     {
@@ -27,8 +29,11 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
+            // Add framework servcices.
             services.AddMvc();
+            
+            var connection = @"Server=(localdb)\ProjectsV13;Database=Finances.Database;Trusted_Connection=True;";
+            services.AddDbContext<FinancesDbContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
