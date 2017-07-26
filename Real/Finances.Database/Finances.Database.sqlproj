@@ -76,6 +76,8 @@
     <Build Include="dbo\Functions\Table-valued\GetCurrencyAccountHistoryDataPoints.sql" />
     <Build Include="dbo\Tables\_Log.sql" />
     <Build Include="dbo\Functions\Table-valued\GetCurrencyAccountHistoryDataPointsForUserAndCurrency.sql" />
+    <Build Include="dbo\Tables\RawData.sql" />
+    <Build Include="dbo\Tables\RawDataEntries.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="publish.localdbv13.publish.xml" />
