@@ -28,7 +28,7 @@ export class PersonViewModel{
     }
 }
 
-export class CurrencyViewModel{
+export class CurrencyAccountViewModel{
     constructor(
         private _id?: number,
         private _header?: string

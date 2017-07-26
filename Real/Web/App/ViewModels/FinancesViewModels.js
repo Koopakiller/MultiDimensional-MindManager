@@ -44,28 +44,28 @@ var PersonViewModel = (function () {
     return PersonViewModel;
 }());
 exports.PersonViewModel = PersonViewModel;
-var CurrencyViewModel = (function () {
-    function CurrencyViewModel(_id, _header) {
+var CurrencyAccountViewModel = (function () {
+    function CurrencyAccountViewModel(_id, _header) {
         this._id = _id;
         this._header = _header;
     }
-    Object.defineProperty(CurrencyViewModel.prototype, "id", {
+    Object.defineProperty(CurrencyAccountViewModel.prototype, "id", {
         get: function () {
             return this._id;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(CurrencyViewModel.prototype, "header", {
+    Object.defineProperty(CurrencyAccountViewModel.prototype, "header", {
         get: function () {
             return this._header;
         },
         enumerable: true,
         configurable: true
     });
-    return CurrencyViewModel;
+    return CurrencyAccountViewModel;
 }());
-exports.CurrencyViewModel = CurrencyViewModel;
+exports.CurrencyAccountViewModel = CurrencyAccountViewModel;
 var TransactionViewModel = (function () {
     function TransactionViewModel() {
         this.rawData = [];
@@ -95,4 +95,3 @@ var KeyValuePair = (function () {
     return KeyValuePair;
 }());
 exports.KeyValuePair = KeyValuePair;
-//# sourceMappingURL=FinancesViewModels.js.map

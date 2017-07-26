@@ -21,32 +21,12 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
 
         public IActionResult GetPersons()
         {
-            var data = new
-            {
-                Data = new dynamic[]
-                {
-                    new { Id = 1, Name = "Edeka" },
-                    new { Id = 2, Name = "Rewe" },
-                    new { Id = 3, Name = "Aldi" },
-                    new { Id = 4, Name = "Lidl" },
-                    new { Id = 4, Name = "Netto" },
-                    new { Id = 4, Name = "Hundenetto" },
-                },
-            };
-            return this.Json(data);
+            return this.Json(new { Data = this._context.GetPersons() } );
         }
 
-        public IActionResult GetCurrencies()
+        public IActionResult GetCurrencyAccountsForUser(int userId)
         {
-            var data = new
-            {
-                Data = new dynamic[]
-                {
-                    new { Id = 1, Names = new string[] { "Euro", "€" } },
-                    new { Id = 1, Names = new string[] { "US Dollar", "$" } },
-                },
-            };
-            return this.Json(data);
+            return this.Json(new { Data = this._context.GetCurrencyAccountsForUser(userId) } );
         }
 
         [HttpPost]

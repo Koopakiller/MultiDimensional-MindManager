@@ -25,13 +25,12 @@ var UserServerModel = (function () {
     return UserServerModel;
 }());
 exports.UserServerModel = UserServerModel;
-var CurrencyServerModel = (function () {
-    function CurrencyServerModel() {
+var CurrencyAccountServerModel = (function () {
+    function CurrencyAccountServerModel() {
     }
-    CurrencyServerModel.prototype.toViewModel = function () {
-        return new FinancesViewModels_js_1.CurrencyViewModel(this.id, this.names.join(", "));
+    CurrencyAccountServerModel.prototype.toViewModel = function () {
+        return new FinancesViewModels_js_1.CurrencyAccountViewModel(this.currencyAccountId, this.accountName + " (" + this.currencyName + ")");
     };
-    return CurrencyServerModel;
+    return CurrencyAccountServerModel;
 }());
-exports.CurrencyServerModel = CurrencyServerModel;
-//# sourceMappingURL=FinancesServerModels.js.map
+exports.CurrencyAccountServerModel = CurrencyAccountServerModel;

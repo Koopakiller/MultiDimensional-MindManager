@@ -23,12 +23,23 @@ var FinancesNewEntryComponent = (function () {
     FinancesNewEntryComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.financesService.persons.subscribe(function (x) { _this.persons = x; _this.person = x.length > 0 ? x[0].id : null; });
-        this.financesService.currencies.subscribe(function (x) { _this.currencies = x; _this.currency = x.length > 0 ? x[0].id : null; });
         this.financesService.users.subscribe(function (x) { _this.users = x; _this.user = x.length > 0 ? x[0].id : null; });
         this.locationService.location.subscribe(function (x) { return _this.coordinates = x ? x.coords : null; });
         this.timeStamp = new Date();
         this.value = 0;
     };
+    Object.defineProperty(FinancesNewEntryComponent.prototype, "user", {
+        get: function () {
+            return this._user;
+        },
+        set: function (value) {
+            var _this = this;
+            this._user = value;
+            this.financesService.getCurrencies(value).subscribe(function (x) { _this.currencies = x; _this.currency = x.length > 0 ? x[0].id : null; });
+        },
+        enumerable: true,
+        configurable: true
+    });
     FinancesNewEntryComponent.prototype.setTimeToNow = function () {
         this.timeStamp = new Date();
     };
@@ -58,4 +69,3 @@ FinancesNewEntryComponent = __decorate([
         router_1.Router])
 ], FinancesNewEntryComponent);
 exports.FinancesNewEntryComponent = FinancesNewEntryComponent;
-//# sourceMappingURL=finances-new-entry.js.map

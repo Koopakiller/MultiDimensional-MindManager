@@ -30,4 +30,3 @@ FinancesComponent = __decorate([
     })
 ], FinancesComponent);
 exports.FinancesComponent = FinancesComponent;
-//# sourceMappingURL=finances.js.map

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../Services/FinancesService.js";
 import { LocationService } from "../Services/LocationService.js";
-import { PersonViewModel, CurrencyViewModel, UserViewModel } from "../ViewModels/FinancesViewModels.js";
+import { PersonViewModel, CurrencyAccountViewModel, UserViewModel } from "../ViewModels/FinancesViewModels.js";
 import { FinanceEntryServerModel } from "../ServerModels/FinancesServerModels.js";
 import {Router} from '@angular/router';
 
@@ -18,7 +18,6 @@ export class FinancesNewEntryComponent implements OnInit {
 
     ngOnInit(): void {
         this.financesService.persons.subscribe(x => { this.persons = x; this.person = x.length > 0 ? x[0].id : null; });
-        this.financesService.currencies.subscribe(x => { this.currencies = x; this.currency = x.length > 0 ? x[0].id : null; });
         this.financesService.users.subscribe(x => { this.users = x; this.user = x.length > 0 ? x[0].id : null; });
         this.locationService.location.subscribe(x => this.coordinates = x ? x.coords : null);
         this.timeStamp = new Date();
@@ -26,17 +25,26 @@ export class FinancesNewEntryComponent implements OnInit {
     }
 
     persons: PersonViewModel[];
-    currencies: CurrencyViewModel[];
+    currencies: CurrencyAccountViewModel[];
     users: UserViewModel[];
 
     coordinates: Coordinates;
 
     name: string;
-    value: number;
+    value: number; 
     person: number;
     currency: number;
-    user: number;
+    _user: number;
     timeStamp: Date;
+
+    get user(){
+        return this._user;
+    }
+
+    set user(value: number){
+        this._user = value;
+        this.financesService.getCurrencies(value).subscribe(x => { this.currencies = x; this.currency = x.length > 0 ? x[0].id : null; });
+    }
 
     public setTimeToNow(){
         this.timeStamp = new Date();
