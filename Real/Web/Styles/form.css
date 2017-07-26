@@ -1,14 +1,3 @@
-.font-header {
-  font-family: 'Quicksand', sans-serif;
-  font-size: 16pt;
-  font-weight: 300;
-}
-@media screen and (max-width: 500px) {
-  .font-header {
-    font-size: 14pt;
-    font-weight: 400;
-  }
-}
 .font-text {
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
@@ -19,10 +8,6 @@
   font-size: 12pt;
   font-weight: 500;
   font-weight: 700;
-}
-.font-code {
-  font-family: 'Courier New', monospace;
-  font-size: 11pt;
 }
 .font-input {
   font-family: 'Quicksand', sans-serif;
@@ -38,13 +23,21 @@ form:last-of-type {
 }
 form .form-header {
   font-family: 'Quicksand', sans-serif;
-  font-size: 16pt;
+  font-size: 18pt;
   font-weight: 300;
+}
+form .form-header code {
+  font-family: 'Courier New', monospace;
+  font-size: 16.5pt;
 }
 @media screen and (max-width: 500px) {
   form .form-header {
-    font-size: 14pt;
+    font-size: 13pt;
     font-weight: 400;
+  }
+  form .form-header code {
+    font-family: 'Courier New', monospace;
+    font-size: 11.91666667pt;
   }
 }
 form .form-group {
@@ -66,52 +59,6 @@ form .form-group > * {
     display: block;
   }
 }
-form .form-group input,
-form .form-group select,
-form .form-group button {
-  display: inline-block;
-  box-sizing: border-box;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 12pt;
-  font-weight: 500;
-  outline: none;
-}
-form .form-group input:active,
-form .form-group select:active,
-form .form-group button:active {
-  border: 1px solid #209030;
-}
-form .form-group input:not([type=button]):not([type=submit]),
-form .form-group select {
-  width: 100%;
-  padding: 2.5px 5px;
-  border: 2px solid #C0C0C0;
-  background-color: #F0F0F0;
-  margin-bottom: 2.5px;
-}
-form .form-group input:not([type=button]):not([type=submit]):active,
-form .form-group select:active,
-form .form-group input:not([type=button]):not([type=submit]):focus,
-form .form-group select:focus {
-  border-color: #50D080;
-}
-form .form-group button,
-form .form-group input[type=button],
-form .form-group input[type=submit] {
-  border: none;
-  color: #101010;
-  cursor: pointer;
-  padding: 2.5px 5px;
-  background-color: #F0F0F0;
-  border: 2px solid #C0C0C0;
-  min-width: 50px;
-  vertical-align: middle;
-}
-form .form-group button:hover,
-form .form-group input[type=button]:hover,
-form .form-group input[type=submit]:hover {
-  background-color: #C0C0C0;
-}
 form .form-group label {
   padding-right: 5px;
   vertical-align: top;
@@ -129,16 +76,81 @@ form .inner-form input[type=button],
 form .inner-form input[type=submit] {
   padding: 2.5px 5px;
 }
-form .form-control-group {
+form .form-overlay {
+  opacity: 0.8;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg==");
+  background-repeat: repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.form-table .error-cell {
+  background: rgba(200, 50, 50, 0.8);
+}
+.form-table .danger-cell {
+  background: rgba(200, 150, 50, 0.8);
+}
+.form-table .good-cell {
+  background: rgba(50, 200, 50, 0.8);
+}
+input,
+select,
+button {
+  display: inline-block;
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 500;
+  outline: none;
+}
+input:active,
+select:active,
+button:active {
+  border: 1px solid #209030;
+}
+input:not([type=button]):not([type=submit]),
+select {
+  width: 100%;
+  padding: 2.5px 5px;
+  border: 2px solid #C0C0C0;
+  background-color: #F0F0F0;
+  margin-bottom: 2.5px;
+}
+input:not([type=button]):not([type=submit]):active,
+select:active,
+input:not([type=button]):not([type=submit]):focus,
+select:focus {
+  border-color: #50D080;
+}
+button,
+input[type=button],
+input[type=submit] {
+  border: none;
+  color: #101010;
+  cursor: pointer;
+  padding: 2.5px 5px;
+  background-color: #F0F0F0;
+  border: 2px solid #C0C0C0;
+  min-width: 50px;
+  vertical-align: middle;
+}
+button:hover,
+input[type=button]:hover,
+input[type=submit]:hover {
+  background-color: #C0C0C0;
+}
+.button-bar {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-form .form-control-group:last-child {
+.button-bar:last-child {
   margin-bottom: 0;
 }
-form .form-control-group input[type=button],
-form .form-control-group input[type=submit],
-form .form-control-group button {
+.button-bar input[type=button],
+.button-bar input[type=submit],
+.button-bar button {
   padding: 5px 10px;
   background-color: #101010;
   color: #F0F0F0;
@@ -149,28 +161,18 @@ form .form-control-group button {
   font-size: 12pt;
   font-weight: 500;
 }
-form .form-control-group input[type=button]:hover,
-form .form-control-group input[type=submit]:hover,
-form .form-control-group button:hover {
+.button-bar input[type=button]:hover,
+.button-bar input[type=submit]:hover,
+.button-bar button:hover {
   background-color: #404040;
 }
-form .form-control-group input[type=button][type=submit],
-form .form-control-group input[type=submit][type=submit],
-form .form-control-group button[type=submit] {
+.button-bar input[type=button][type=submit],
+.button-bar input[type=submit][type=submit],
+.button-bar button[type=submit] {
   background-color: #209030;
 }
-form .form-control-group input[type=button][type=submit]:hover,
-form .form-control-group input[type=submit][type=submit]:hover,
-form .form-control-group button[type=submit]:hover {
+.button-bar input[type=button][type=submit]:hover,
+.button-bar input[type=submit][type=submit]:hover,
+.button-bar button[type=submit]:hover {
   background-color: #40A04C;
-}
-form .form-overlay {
-  opacity: 0.8;
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg==");
-  background-repeat: repeat;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }

@@ -7,6 +7,10 @@ body{
   .font-text;
   margin: 0;
 
+  div{
+    margin: 0;
+  }
+
   .init-loading-message {
     position: relative;
     opacity: @opacity;
@@ -23,7 +27,7 @@ body{
 
   .padding{
     margin: 0 auto;
-    padding: 0 @padding @padding @padding;
+    padding: @padding;
     max-width: @page-width;
     display:block;
   
@@ -53,25 +57,29 @@ body{
     }
   }
 
-  nav{
-    .tile;
-    list-style: none;
-    padding:0;
-    li{
-      display:inline-block;
-      a{
+  .menu{
+    .padding;
+    padding-bottom: 0;
+    nav{
+      .tile;
+      list-style: none;
+      padding:0;
+      li{
         display:inline-block;
-        padding: @padding;
-        color: @color-dark;
-        text-decoration: none;
-        &:hover{
-          background-color: @color-tile-light-hover;
+        a{
+          display:inline-block;
+          padding: @padding;
+          color: @color-dark;
           text-decoration: none;
+          &:hover{
+            background-color: @color-tile-light-hover;
+            text-decoration: none;
+          }
         }
       }
     }
   }
-  
+
   footer{
     text-align: center;
     padding: @padding;
@@ -124,6 +132,7 @@ body{
     text-align: left;
     margin-right: @padding;
     box-sizing: border-box;
+    cursor: pointer;
     &:nth-child(3n + 1){
       margin-right:0;
     }
@@ -144,6 +153,26 @@ body{
     }
     .tile-header{
       .font-bold;
+    }
+  }
+
+  .popup{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    background-color: @color-tile-dark;
+    .popup-container{
+      .padding;
+      .popup-content{
+        .tile;
+        border: 2px solid @color-light;
+      }
+      .button-bar{
+        text-align: right;
+      }
     }
   }
   

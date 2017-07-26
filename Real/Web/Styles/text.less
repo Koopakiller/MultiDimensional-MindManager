@@ -5,35 +5,23 @@
         margin-bottom: @padding;
     }
 
-    h1, h2, h3, h4, h5, h6{
+    h1, h2, h3, h4, h5, h6, .header{
         .font-header;
         margin-top: 0;
         margin-bottom: @padding;
     }
 
     h1{ 
-        font-size:48pt; 
-        @media @mobile-selector{
-            &{
-            font-size:28pt; 
-            }
-        }
+        .font-header(48pt);
     }
     h2{ 
-        font-size:33pt; 
-        @media @mobile-selector{
-            &{
-            font-size:20pt; 
-            }
-        }
+        .font-header(33pt);
     }
     h3{ 
-        font-size:24pt; 
-        @media @mobile-selector{ 
-            &{
-            font-size:16pt; 
-            }
-        }
+        .font-header(24pt);
+    }
+    .header{
+        .font-header(18pt);
     }
 
     p{
@@ -92,5 +80,49 @@
 
     ol{
         list-style-position: inside; 
+    }
+
+    // Special Styles:
+    //  .details-row    - A style for a full-col-span-row with 1 td-child containing details for the row above
+    //  .action-column  - A style for cells containing action links/controls for the row or the header for this kind of column
+    table{
+        width:100%;
+        border-collapse: collapse;
+        margin-bottom: @padding;
+        &:last-of-type{
+            margin-bottom: 2* @padding;
+        }
+        &:last-child{
+            margin-bottom:0;
+        }
+        tr{
+            th, td{
+                border-bottom: 1px  solid @color-dark;
+                border-right: 1px dotted @color-dark;
+                padding: @padding-tiny @padding-small;
+                &:last-child{
+                    border-right:none;
+                }
+            }
+            th{
+                .font-bold;
+                text-align: left;
+                vertical-align: bottom;
+            }
+            td{
+                vertical-align: top;
+            }
+            &.details-row > td {
+                padding: @padding;
+            }
+            &:last-child{
+                &>td{
+                    border-bottom: none;
+                } 
+                &.details-row{
+                    border-bottom: 1px  solid @color-dark;
+                }
+            }
+        }
     }
 }

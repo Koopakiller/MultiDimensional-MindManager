@@ -11,11 +11,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { StyleTestComponent } from "./Components/style-test.js";
 import { HomeComponent } from "./Components/home.js";
 import { MediaAppletComponent } from "./Components/MediaApplet.js";
+import { FinancesImportComponent } from "./Components/finances-import.js";
+import { FinancesNewPersonComponent } from "./Components/finances-new-person.js";
 
 const appRoutes: Routes = [
   { path: 'Home',               component: HomeComponent },
   { path: 'Finances',           component: FinancesComponent },
   { path: 'Finances/AddEntry',  component: FinancesNewEntryComponent },
+  { path: 'Finances/Import',    component: FinancesImportComponent },
   { path: 'StyleTest',          component: StyleTestComponent },
   { path: 'Media',              component: MediaAppletComponent },
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
@@ -25,8 +28,8 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
      RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      appRoutes
+      //,{ enableTracing: true } // <-- debugging purposes only
     ),
     HttpModule,
     BrowserModule,
@@ -35,6 +38,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     FinancesNewEntryComponent,
+    FinancesImportComponent,
+    FinancesNewPersonComponent,
     FinancesComponent,
     HomeComponent,
     MediaAppletComponent,
