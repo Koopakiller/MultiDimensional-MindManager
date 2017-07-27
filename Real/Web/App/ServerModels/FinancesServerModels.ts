@@ -33,11 +33,21 @@ export class UserServerModel implements IViewModelConvert<UserViewModel>{
 export class CurrencyAccountServerModel implements IViewModelConvert<CurrencyAccountViewModel>{
 
     toViewModel(): CurrencyAccountViewModel {
-        return new CurrencyAccountViewModel(this.currencyAccountId, this.accountName + " (" + this.currencyName + ")");
+        let currencyNames = this.currencyNames.map(x => x.symbol).join(", ");
+        let cavm = new CurrencyAccountViewModel(this.currencyAccountId, this.accountName + " (" + currencyNames + ")");
+        cavm.currencySymbols = this.currencyNames.map(x => x.symbol);
+        cavm.accountName = this.accountName;    
+        return cavm;
     }
 
     public accountId: number;
     public accountName: string;
     public currencyAccountId: number;
-    public currencyName: string;
+    public currencyId: number;
+    public currencyNames: CurrencySymbolServerModel[];
+}
+
+export class CurrencySymbolServerModel{
+    public id: number;
+    public symbol: string;
 }

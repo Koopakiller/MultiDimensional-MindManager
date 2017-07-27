@@ -29,8 +29,18 @@ var CurrencyAccountServerModel = (function () {
     function CurrencyAccountServerModel() {
     }
     CurrencyAccountServerModel.prototype.toViewModel = function () {
-        return new FinancesViewModels_js_1.CurrencyAccountViewModel(this.currencyAccountId, this.accountName + " (" + this.currencyName + ")");
+        var currencyNames = this.currencyNames.map(function (x) { return x.symbol; }).join(", ");
+        var cavm = new FinancesViewModels_js_1.CurrencyAccountViewModel(this.currencyAccountId, this.accountName + " (" + currencyNames + ")");
+        cavm.currencySymbols = this.currencyNames.map(function (x) { return x.symbol; });
+        cavm.accountName = this.accountName;
+        return cavm;
     };
     return CurrencyAccountServerModel;
 }());
 exports.CurrencyAccountServerModel = CurrencyAccountServerModel;
+var CurrencySymbolServerModel = (function () {
+    function CurrencySymbolServerModel() {
+    }
+    return CurrencySymbolServerModel;
+}());
+exports.CurrencySymbolServerModel = CurrencySymbolServerModel;

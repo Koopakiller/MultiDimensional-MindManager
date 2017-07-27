@@ -39,9 +39,9 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
             this.Database.ExecuteSqlCommand("EXEC AddRawDataEntry {0}, {1}, {2}", transactionId, key, value);
         }
 
-        public void GetCurrencySymbolsForCurrency(int currencyId)
+        public IEnumerable<CurrencySymbol> GetCurrencySymbolsForCurrency(int currencyId)
         {
-            this.Database.ExecuteSqlCommand("EXEC GetCurrencySymbolsForCurrency {0}", currencyId);
+            return this.CurrencySymbols.FromSql("EXEC GetCurrencySymbolsForCurrency {0}", currencyId);
         }
     }
 
@@ -62,7 +62,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         public int AccountId { get; set; }
         public string AccountName { get; set; }
         public int CurrencyAccountId { get; set; }
-        public string CurrencyName { get; set; }
+        public int CurrencyId { get; set; }
     }
 
     public class Transaction
