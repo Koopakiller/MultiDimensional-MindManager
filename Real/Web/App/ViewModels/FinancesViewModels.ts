@@ -41,6 +41,9 @@ export class CurrencyAccountViewModel{
     get header(){
         return this._header;        
     }
+
+    currencySymbols: string[];
+    accountName: string;
 }
 
 export class TransactionViewModel{

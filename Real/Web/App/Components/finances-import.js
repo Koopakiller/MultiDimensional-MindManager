@@ -41,6 +41,18 @@ var FinancesImportComponent = (function () {
         this.financesService.persons.subscribe(function (x) { _this.persons = x; });
         this.financesService.users.subscribe(function (x) { _this.users = x; });
     };
+    Object.defineProperty(FinancesImportComponent.prototype, "selectedUser", {
+        get: function () {
+            return this._selectedUser;
+        },
+        set: function (value) {
+            var _this = this;
+            this._selectedUser = value;
+            this.financesService.getCurrencyAccounts(value).subscribe(function (x) { _this.currencyAccounts = x; });
+        },
+        enumerable: true,
+        configurable: true
+    });
     FinancesImportComponent.prototype.processFileInputChange = function ($event) {
         var inputValue = $event.target;
         if ($event.target.files.length > 0) {

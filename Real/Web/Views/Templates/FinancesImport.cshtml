@@ -44,6 +44,7 @@
                     <th>Note</th>
                     <th>Value</th>
                     <th>Person <a (click)="addPerson()">Add</a></th>
+                    <th>Currency Account</th>
                     <th class="action-column"></th>
                 </tr>
                 <ng-template ngFor [ngForOf]="transactions" let-transaction let-i="index">
@@ -56,6 +57,11 @@
                                 <option *ngFor="let person of persons" [ngValue]="person.id">{{person.header}}</option>
                             </select>
                             <a *ngIf="!transaction.personId" (click)="addPerson(transaction.suggestedPersonName)">Add {{transaction.suggestedPersonName}}</a>
+                        </td>
+                        <td class="{{transaction.currencyAccountId ? '' : 'error-cell'}}">
+                            <select [(ngModel)]="transaction.currencyAccountId" >
+                                <option *ngFor="let currencyAccount of currencyAccounts" [ngValue]="currencyAccount.id">{{currencyAccount.header}}</option>
+                            </select>
                         </td>
                         <td class="action-column">
                             <a (click)="toggleDetails(i)" 

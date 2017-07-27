@@ -30,10 +30,19 @@ export class FinancesImportComponent implements OnInit {
 
     persons: PersonViewModel[];
     users: UserViewModel[];
+    currencyAccounts: CurrencyAccountViewModel[];
 
     possibleFileTypes: any[];
 
-    selectedUser: number;
+    _selectedUser: number;
+    get selectedUser(){
+        return this._selectedUser;
+    }
+    set selectedUser(value: number){
+        this._selectedUser = value;  
+        this.financesService.getCurrencyAccounts(value).subscribe(x => { this.currencyAccounts = x; });
+    }
+
     selectedFile: File;
 
     processFileInputChange($event: any): void {
