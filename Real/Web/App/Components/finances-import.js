@@ -73,6 +73,15 @@ var FinancesImportComponent = (function () {
         }
         return null;
     };
+    FinancesImportComponent.prototype.getCurrencyAccountId = function (name, currency) {
+        for (var _i = 0, _a = this.currencyAccounts; _i < _a.length; _i++) {
+            var ca = _a[_i];
+            if (ca.accountName.toUpperCase() == name.toUpperCase()
+                && ca.currencySymbols.indexOf(currency) >= 0) {
+                return ca.id;
+            }
+        }
+    };
     FinancesImportComponent.prototype.importCommerzbankGiroAccountStatement = function () {
         var _this = this;
         var result = Papa.parse(this.selectedFile, {
@@ -146,6 +155,7 @@ var FinancesImportComponent = (function () {
                     tvm.value = _this.parseGermanNumber(row[" Netto"]);
                     tvm.personId = _this.getPersonIdFromName(row[" Name"]);
                     tvm.suggestedPersonName = row[" Name"];
+                    tvm.currencyAccountId = _this.getCurrencyAccountId("PayPal", row[" Währung"]);
                     _this.addRawData(tvm, row, result.meta.fields);
                     _this.transactions.push(tvm);
                 }

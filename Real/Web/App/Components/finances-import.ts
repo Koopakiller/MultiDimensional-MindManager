@@ -69,6 +69,15 @@ export class FinancesImportComponent implements OnInit {
         return null;
     }
 
+    getCurrencyAccountId(name: string, currency: string){
+        for(let ca of this.currencyAccounts){
+            if(ca.accountName.toUpperCase() == name.toUpperCase()
+            && ca.currencySymbols.indexOf(currency) >= 0){
+                return ca.id;
+            }
+        }
+    }
+
     importCommerzbankGiroAccountStatement(): void {
         let result = Papa.parse(this.selectedFile, {
             delimiter: ";",
@@ -137,7 +146,8 @@ export class FinancesImportComponent implements OnInit {
                     tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"]: "" );
                     tvm.value = this.parseGermanNumber(row[" Netto"]);
                     tvm.personId = this.getPersonIdFromName(row[" Name"]);  
-                    tvm.suggestedPersonName = row[" Name"];                  
+                    tvm.suggestedPersonName = row[" Name"];          
+                    tvm.currencyAccountId = this.getCurrencyAccountId("PayPal", row[" Währung"]);        
                     this.addRawData(tvm, row, result.meta.fields);
                     this.transactions.push(tvm);
                 }
