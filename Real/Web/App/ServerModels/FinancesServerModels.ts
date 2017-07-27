@@ -1,4 +1,4 @@
-import { PersonViewModel, UserViewModel, CurrencyViewModel } from "../ViewModels/FinancesViewModels.js";
+import { PersonViewModel, UserViewModel, CurrencyAccountViewModel } from "../ViewModels/FinancesViewModels.js";
 
 export class FinanceEntryServerModel {
     public name: string;
@@ -30,12 +30,14 @@ export class UserServerModel implements IViewModelConvert<UserViewModel>{
     public name: string;
 }
 
-export class CurrencyServerModel implements IViewModelConvert<CurrencyViewModel>{
+export class CurrencyAccountServerModel implements IViewModelConvert<CurrencyAccountViewModel>{
 
-    toViewModel(): CurrencyViewModel {
-        return new CurrencyViewModel(this.id, this.names.join(", "));
+    toViewModel(): CurrencyAccountViewModel {
+        return new CurrencyAccountViewModel(this.currencyAccountId, this.accountName + " (" + this.currencyName + ")");
     }
 
-    public id: number;
-    public names: string[];
+    public accountId: number;
+    public accountName: string;
+    public currencyAccountId: number;
+    public currencyName: string;
 }

@@ -24,9 +24,9 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
             return this.Persons.FromSql("EXEC GetPersons");
         }
 
-        public IEnumerable<CurrencyAccount> GetCurrencyAccountForUser(int userId)
+        public IEnumerable<CurrencyAccount> GetCurrencyAccountsForUser(int userId)
         {
-            return this.CurrencyAccounts.FromSql("EXEC GetCurrencyAccountForUser {0}", userId);
+            return this.CurrencyAccounts.FromSql("EXEC GetCurrencyAccountsForUser {0}", userId);
         }
 
         public IEnumerable<Transaction> AddTransaction(int personId, decimal value, DateTime timeStamp, int currencyAccountId, string note)

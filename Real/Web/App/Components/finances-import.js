@@ -41,6 +41,18 @@ var FinancesImportComponent = (function () {
         this.financesService.persons.subscribe(function (x) { _this.persons = x; });
         this.financesService.users.subscribe(function (x) { _this.users = x; });
     };
+    Object.defineProperty(FinancesImportComponent.prototype, "selectedUser", {
+        get: function () {
+            return this._selectedUser;
+        },
+        set: function (value) {
+            var _this = this;
+            this._selectedUser = value;
+            this.financesService.getCurrencyAccounts(value).subscribe(function (x) { _this.currencyAccounts = x; });
+        },
+        enumerable: true,
+        configurable: true
+    });
     FinancesImportComponent.prototype.processFileInputChange = function ($event) {
         var inputValue = $event.target;
         if ($event.target.files.length > 0) {
@@ -60,6 +72,15 @@ var FinancesImportComponent = (function () {
             }
         }
         return null;
+    };
+    FinancesImportComponent.prototype.getCurrencyAccountId = function (name, currency) {
+        for (var _i = 0, _a = this.currencyAccounts; _i < _a.length; _i++) {
+            var ca = _a[_i];
+            if (ca.accountName.toUpperCase() == name.toUpperCase()
+                && ca.currencySymbols.indexOf(currency) >= 0) {
+                return ca.id;
+            }
+        }
     };
     FinancesImportComponent.prototype.importCommerzbankGiroAccountStatement = function () {
         var _this = this;
@@ -134,6 +155,7 @@ var FinancesImportComponent = (function () {
                     tvm.value = _this.parseGermanNumber(row[" Netto"]);
                     tvm.personId = _this.getPersonIdFromName(row[" Name"]);
                     tvm.suggestedPersonName = row[" Name"];
+                    tvm.currencyAccountId = _this.getCurrencyAccountId("PayPal", row[" Währung"]);
                     _this.addRawData(tvm, row, result.meta.fields);
                     _this.transactions.push(tvm);
                 }
@@ -216,4 +238,3 @@ FinancesImportComponent = __decorate([
         router_1.Router])
 ], FinancesImportComponent);
 exports.FinancesImportComponent = FinancesImportComponent;
-//# sourceMappingURL=finances-import.js.map

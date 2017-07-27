@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../Services/FinancesService.js";
 import { LocationService } from "../Services/LocationService.js";
-import { PersonViewModel, CurrencyViewModel, UserViewModel, TransactionViewModel, KeyValuePair } from "../ViewModels/FinancesViewModels.js";
+import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel, KeyValuePair } from "../ViewModels/FinancesViewModels.js";
 import { FinanceEntryServerModel } from "../ServerModels/FinancesServerModels.js";
 import { Router } from '@angular/router';
 import * as Papa from "papaparse";
@@ -30,10 +30,19 @@ export class FinancesImportComponent implements OnInit {
 
     persons: PersonViewModel[];
     users: UserViewModel[];
+    currencyAccounts: CurrencyAccountViewModel[];
 
     possibleFileTypes: any[];
 
-    selectedUser: number;
+    _selectedUser: number;
+    get selectedUser(){
+        return this._selectedUser;
+    }
+    set selectedUser(value: number){
+        this._selectedUser = value;  
+        this.financesService.getCurrencyAccounts(value).subscribe(x => { this.currencyAccounts = x; });
+    }
+
     selectedFile: File;
 
     processFileInputChange($event: any): void {
@@ -58,6 +67,15 @@ export class FinancesImportComponent implements OnInit {
             }
         }
         return null;
+    }
+
+    getCurrencyAccountId(name: string, currency: string){
+        for(let ca of this.currencyAccounts){
+            if(ca.accountName.toUpperCase() == name.toUpperCase()
+            && ca.currencySymbols.indexOf(currency) >= 0){
+                return ca.id;
+            }
+        }
     }
 
     importCommerzbankGiroAccountStatement(): void {
@@ -128,7 +146,8 @@ export class FinancesImportComponent implements OnInit {
                     tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"]: "" );
                     tvm.value = this.parseGermanNumber(row[" Netto"]);
                     tvm.personId = this.getPersonIdFromName(row[" Name"]);  
-                    tvm.suggestedPersonName = row[" Name"];                  
+                    tvm.suggestedPersonName = row[" Name"];          
+                    tvm.currencyAccountId = this.getCurrencyAccountId("PayPal", row[" Währung"]);        
                     this.addRawData(tvm, row, result.meta.fields);
                     this.transactions.push(tvm);
                 }

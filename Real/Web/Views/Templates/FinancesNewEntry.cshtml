@@ -38,10 +38,10 @@
             </div> 
         </div>
         <div class="form-group">
-            <label for="currency">Currency:</label>
+            <label for="currencyAccount">Currency Account:</label>
             <div class="control-container">  
-                <select [(ngModel)]="currency" name="currency">
-                    <option *ngFor="let currency of currencies" [ngValue]="currency.id">{{currency.header}}</option>
+                <select [(ngModel)]="currencyAccount" name="currencyAccount">
+                    <option *ngFor="let currencyAccount of currencyAccounts" [ngValue]="currencyAccount.id">{{currencyAccount.header}}</option>
                 </select>
             </div>
         </div>
