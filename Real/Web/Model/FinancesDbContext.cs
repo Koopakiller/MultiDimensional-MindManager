@@ -12,6 +12,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         private DbSet<Person> Persons { get; set; }
         private DbSet<CurrencyAccount> CurrencyAccounts { get; set; }
         private DbSet<Transaction> Transactions { get; set; }
+        private DbSet<CurrencySymbol> CurrencySymbols { get; set; }
 
         public IEnumerable<User> GetUsers()
         {
@@ -36,6 +37,11 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         public void AddTransaction(int transactionId, string key, string value)
         {
             this.Database.ExecuteSqlCommand("EXEC AddRawDataEntry {0}, {1}, {2}", transactionId, key, value);
+        }
+
+        public void GetCurrencySymbolsForCurrency(int currencyId)
+        {
+            this.Database.ExecuteSqlCommand("EXEC GetCurrencySymbolsForCurrency {0}", currencyId);
         }
     }
 
@@ -68,5 +74,11 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         public int CurrencyAccountId { get; set; }
         public string Note { get; set; }
         public int RawDataId { get; set; }
+    }
+
+    public class CurrencySymbol
+    {
+        public int Id { get; set; }
+        public string Symbol { get; set; }
     }
 }
