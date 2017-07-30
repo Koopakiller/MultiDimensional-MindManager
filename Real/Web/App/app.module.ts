@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppComponent } from "./Components/app.js";
 import { FinancesComponent } from "./Components/finances.js";
-import { FinancesNewEntryComponent } from "./Components/finances-new-entry.js";
+import { FinancesNewTransactionComponent } from "./Components/finances-new-transaction.js";
 import { FinancesService } from "./Services/FinancesService.js";
 import { LocationService } from "./Services/LocationService.js";
 import { RouterModule, Routes } from '@angular/router';
@@ -17,7 +17,7 @@ import { FinancesNewPersonComponent } from "./Components/finances-new-person.js"
 const appRoutes: Routes = [
   { path: 'Home',               component: HomeComponent },
   { path: 'Finances',           component: FinancesComponent },
-  { path: 'Finances/AddEntry',  component: FinancesNewEntryComponent },
+  { path: 'Finances/AddTransaction',  component: FinancesNewTransactionComponent },
   { path: 'Finances/Import',    component: FinancesImportComponent },
   { path: 'StyleTest',          component: StyleTestComponent },
   { path: 'Media',              component: MediaAppletComponent },
@@ -37,7 +37,7 @@ const appRoutes: Routes = [
   ],
   declarations: [
     AppComponent,
-    FinancesNewEntryComponent,
+    FinancesNewTransactionComponent,
     FinancesImportComponent,
     FinancesNewPersonComponent,
     FinancesComponent,

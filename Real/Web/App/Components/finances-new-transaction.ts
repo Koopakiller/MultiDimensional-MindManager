@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
     selector: "finances-new-entry",
     templateUrl: "/Templates/FinancesNewEntry"
 })
-export class FinancesNewEntryComponent implements OnInit {
+export class FinancesNewTransactionComponent implements OnInit {
     constructor(
         private financesService: FinancesService,
         private locationService: LocationService,

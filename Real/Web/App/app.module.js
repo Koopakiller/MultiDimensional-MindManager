@@ -12,7 +12,7 @@ var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_js_1 = require("./Components/app.js");
 var finances_js_1 = require("./Components/finances.js");
-var finances_new_entry_js_1 = require("./Components/finances-new-entry.js");
+var finances_new_transaction_js_1 = require("./Components/finances-new-transaction.js");
 var FinancesService_js_1 = require("./Services/FinancesService.js");
 var LocationService_js_1 = require("./Services/LocationService.js");
 var router_1 = require("@angular/router");
@@ -24,7 +24,7 @@ var finances_new_person_js_1 = require("./Components/finances-new-person.js");
 var appRoutes = [
     { path: 'Home', component: home_js_1.HomeComponent },
     { path: 'Finances', component: finances_js_1.FinancesComponent },
-    { path: 'Finances/AddEntry', component: finances_new_entry_js_1.FinancesNewEntryComponent },
+    { path: 'Finances/AddTransaction', component: finances_new_transaction_js_1.FinancesNewTransactionComponent },
     { path: 'Finances/Import', component: finances_import_js_1.FinancesImportComponent },
     { path: 'StyleTest', component: style_test_js_1.StyleTestComponent },
     { path: 'Media', component: MediaApplet_js_1.MediaAppletComponent },
@@ -47,7 +47,7 @@ AppModule = __decorate([
         ],
         declarations: [
             app_js_1.AppComponent,
-            finances_new_entry_js_1.FinancesNewEntryComponent,
+            finances_new_transaction_js_1.FinancesNewTransactionComponent,
             finances_import_js_1.FinancesImportComponent,
             finances_new_person_js_1.FinancesNewPersonComponent,
             finances_js_1.FinancesComponent,
