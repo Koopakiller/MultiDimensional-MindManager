@@ -3,10 +3,11 @@ import { FinancesService } from "../Services/FinancesService.js";
 import { LocationService } from "../Services/LocationService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
 import {Router} from '@angular/router';
+import { KeyValuePair } from "../Common/KeyValuePair.js";
 
 @Component({
-    selector: "finances-new-entry",
-    templateUrl: "/Templates/FinancesNewEntry"
+    selector: "finances-new-transaction",
+    templateUrl: "/Templates/FinancesNewTransaction"
 })
 export class FinancesNewTransactionComponent implements OnInit {
     constructor(
@@ -57,6 +58,11 @@ export class FinancesNewTransactionComponent implements OnInit {
         tvm.timeStamp = this.timeStamp;
         tvm.note = this.name;
         tvm.value = this.value;
+        if(this.coordinates){
+            tvm.rawData = [ 
+                new KeyValuePair<string, string>("Coordinates", JSON.stringify(this.coordinates)) 
+            ];
+        }
         this.financesService.addTransaction([tvm]).subscribe(()=>{
             this.router.navigateByUrl("/Finances");
         },
