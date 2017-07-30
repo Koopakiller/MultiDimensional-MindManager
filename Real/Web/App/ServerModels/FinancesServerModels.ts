@@ -1,14 +1,5 @@
-import { PersonViewModel, UserViewModel, CurrencyAccountViewModel } from "../ViewModels/FinancesViewModels.js";
-
-export class FinanceEntryServerModel {
-    public name: string;
-    public value: number;
-    public personId: number;
-    public userId: number;
-    public currencyId: number;
-    public timeStamp: Date;
-    public coordinates: Coordinates;
-}
+import { PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
+import { KeyValuePair } from "../Common/KeyValuePair.js";
 
 export class PersonServerModel implements IViewModelConvert<PersonViewModel>{
 
@@ -50,4 +41,29 @@ export class CurrencyAccountServerModel implements IViewModelConvert<CurrencyAcc
 export class CurrencySymbolServerModel{
     public id: number;
     public symbol: string;
+}
+
+export class TransactionServerModel implements IViewModelConvert<TransactionViewModel>{
+    toViewModel(): TransactionViewModel {
+        let tvm = new TransactionViewModel();
+        tvm.currencyAccountId = this.currencyAccountId;
+        tvm.id = this.id;
+        tvm.note = this.note;
+        tvm.personId = this.personId;
+        tvm.rawData = this.rawData;
+        tvm.timeStamp = this.timeStamp;
+        tvm.userId = this.userId;
+        tvm.value = this.value;
+        return tvm;
+    }
+    
+    id: number;
+    note: string;
+    timeStamp: Date;
+    userId: number;
+    personId: number;
+    currencyAccountId: number;
+    value: number;
+
+    rawData: KeyValuePair<string, string>[] = [];
 }

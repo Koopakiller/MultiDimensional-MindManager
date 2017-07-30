@@ -14,6 +14,7 @@ var FinancesService_js_1 = require("../Services/FinancesService.js");
 var FinancesViewModels_js_1 = require("../ViewModels/FinancesViewModels.js");
 var router_1 = require("@angular/router");
 var Papa = require("papaparse");
+var KeyValuePair_js_1 = require("../Common/KeyValuePair.js");
 var FinancesImportComponent = (function () {
     function FinancesImportComponent(financesService, router) {
         this.financesService = financesService;
@@ -166,7 +167,7 @@ var FinancesImportComponent = (function () {
         for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
             var key = keys_1[_i];
             if (key && row[key] && row[key] != "") {
-                tvm.rawData.push(new FinancesViewModels_js_1.KeyValuePair(key, row[key]));
+                tvm.rawData.push(new KeyValuePair_js_1.KeyValuePair(key, row[key]));
             }
         }
     };

@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var FinancesService_js_1 = require("../Services/FinancesService.js");
 var LocationService_js_1 = require("../Services/LocationService.js");
+var FinancesViewModels_js_1 = require("../ViewModels/FinancesViewModels.js");
 var router_1 = require("@angular/router");
 var FinancesNewEntryComponent = (function () {
     function FinancesNewEntryComponent(financesService, locationService, router) {
@@ -44,8 +45,19 @@ var FinancesNewEntryComponent = (function () {
         this.timeStamp = new Date();
     };
     FinancesNewEntryComponent.prototype.submit = function () {
-        this.financesService.addEntry(this.currencyAccount, this.person, this.user, this.timeStamp, this.name, this.value, this.coordinates);
-        this.router.navigateByUrl("/Finances");
+        var _this = this;
+        var tvm = new FinancesViewModels_js_1.TransactionViewModel();
+        tvm.currencyAccountId = this.currencyAccount;
+        tvm.personId = this.person;
+        tvm.userId = this.user;
+        tvm.timeStamp = this.timeStamp;
+        tvm.note = this.name;
+        tvm.value = this.value;
+        this.financesService.addTransaction([tvm]).subscribe(function () {
+            _this.router.navigateByUrl("/Finances");
+        }, function (error) {
+            alert(error);
+        });
     };
     FinancesNewEntryComponent.prototype.cancel = function () {
         this.router.navigateByUrl("/Finances");

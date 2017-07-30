@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../Services/FinancesService.js";
 import { LocationService } from "../Services/LocationService.js";
-import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel, KeyValuePair } from "../ViewModels/FinancesViewModels.js";
-import { FinanceEntryServerModel } from "../ServerModels/FinancesServerModels.js";
+import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
 import { Router } from '@angular/router';
 import * as Papa from "papaparse";
+import { KeyValuePair } from "../Common/KeyValuePair.js";
 
 @Component({
     selector: "finances-import",

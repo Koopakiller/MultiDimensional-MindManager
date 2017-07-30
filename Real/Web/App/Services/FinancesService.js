@@ -12,56 +12,68 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var FinancesServerModels_js_1 = require("../ServerModels/FinancesServerModels.js");
 var http_1 = require("@angular/http");
+var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/operator/map");
 var FinancesService = (function () {
     function FinancesService(http) {
         this.http = http;
     }
-    FinancesService.prototype.map = function (response, mapFx) {
-        var lst = response.json().data;
-        return lst.map(mapFx);
+    FinancesService.prototype.getListFromResponse = function (response, serverModelFactory) {
+        var object = response.json();
+        var lst = object.data;
+        return lst.map(function (smo) {
+            // Object.assign is neccessary because assigning does not "transfer" methods too.
+            // see: https://stackoverflow.com/a/40063179/1623754
+            var sm = serverModelFactory();
+            Object.assign(sm, smo);
+            return sm.toViewModel();
+        });
+    };
+    FinancesService.prototype.getList = function (url, serverModelFactory) {
+        var _this = this;
+        return this.http.get(url).map(function (response) { return _this.getListFromResponse(response, serverModelFactory); });
     };
     Object.defineProperty(FinancesService.prototype, "persons", {
-        // Object.assign is neccessary because assigning does not "transfer" methods too.
-        // see: https://stackoverflow.com/a/40063179/1623754
         get: function () {
-            var _this = this;
-            return this.http.get("/api/Finances/GetPersons")
-                .map(function (response) { return _this.map(response, function (sm) { var obj = new FinancesServerModels_js_1.PersonServerModel(); Object.assign(obj, sm); return obj.toViewModel(); }); });
+            return this.getList("/api/Finances/GetPersons", function () { return new FinancesServerModels_js_1.PersonServerModel(); });
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(FinancesService.prototype, "users", {
         get: function () {
-            var _this = this;
-            return this.http.get("/api/Finances/GetUsers")
-                .map(function (response) { return _this.map(response, function (sm) { var obj = new FinancesServerModels_js_1.UserServerModel(); Object.assign(obj, sm); return obj.toViewModel(); }); });
+            return this.getList("/api/Finances/GetUsers", function () { return new FinancesServerModels_js_1.UserServerModel(); });
         },
         enumerable: true,
         configurable: true
     });
     FinancesService.prototype.getCurrencyAccounts = function (userId) {
-        var _this = this;
-        return this.http.get("/api/Finances/GetCurrencyAccountsForUser?userId=" + userId)
-            .map(function (response) { return _this.map(response, function (sm) { var obj = new FinancesServerModels_js_1.CurrencyAccountServerModel(); Object.assign(obj, sm); return obj.toViewModel(); }); });
+        return this.getList("/api/Finances/GetCurrencyAccountsForUser?userId=" + userId, function () { return new FinancesServerModels_js_1.CurrencyAccountServerModel(); });
     };
-    FinancesService.prototype.addEntry = function (currencyId, personId, userId, timeStamp, name, value, coordinates) {
-        var data = new FinancesServerModels_js_1.FinanceEntryServerModel();
-        data.currencyId = currencyId;
-        data.personId = personId;
-        data.userId = userId;
-        data.timeStamp = timeStamp;
-        data.name = name;
-        data.value = value;
-        data.coordinates = coordinates;
-        this.http.post("/api/Finances/AddEntry", data);
+    FinancesService.prototype.addTransaction = function (tvms) {
+        var _this = this;
+        var data = {};
+        var postData = JSON.stringify(data);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return Observable_1.Observable.create(function (observer) {
+            _this.http.post("/api/Finances/AddTransaction", postData, options).subscribe(function (response) {
+                var lst = _this.getListFromResponse(response, function () { return new FinancesServerModels_js_1.TransactionServerModel(); });
+                observer.next(lst);
+                observer.complete();
+            }, function (error) {
+                observer.error("Error from Server...");
+                observer.complete();
+            });
+        });
     };
     FinancesService.prototype.addPerson = function (name) {
         var data = {
             name: name
         };
-        this.http.post("/api/Finances/AddPerson", data);
+        this.http.post("/api/Finances/AddPerson", JSON.stringify(data)).subscribe(function () {
+            alert("sendet");
+        });
     };
     return FinancesService;
 }());

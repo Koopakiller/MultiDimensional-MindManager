@@ -1,12 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var FinancesViewModels_js_1 = require("../ViewModels/FinancesViewModels.js");
-var FinanceEntryServerModel = (function () {
-    function FinanceEntryServerModel() {
-    }
-    return FinanceEntryServerModel;
-}());
-exports.FinanceEntryServerModel = FinanceEntryServerModel;
 var PersonServerModel = (function () {
     function PersonServerModel() {
     }
@@ -44,3 +38,22 @@ var CurrencySymbolServerModel = (function () {
     return CurrencySymbolServerModel;
 }());
 exports.CurrencySymbolServerModel = CurrencySymbolServerModel;
+var TransactionServerModel = (function () {
+    function TransactionServerModel() {
+        this.rawData = [];
+    }
+    TransactionServerModel.prototype.toViewModel = function () {
+        var tvm = new FinancesViewModels_js_1.TransactionViewModel();
+        tvm.currencyAccountId = this.currencyAccountId;
+        tvm.id = this.id;
+        tvm.note = this.note;
+        tvm.personId = this.personId;
+        tvm.rawData = this.rawData;
+        tvm.timeStamp = this.timeStamp;
+        tvm.userId = this.userId;
+        tvm.value = this.value;
+        return tvm;
+    };
+    return TransactionServerModel;
+}());
+exports.TransactionServerModel = TransactionServerModel;

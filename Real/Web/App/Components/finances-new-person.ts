@@ -2,7 +2,6 @@ import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { FinancesService } from "../Services/FinancesService.js";
 import { LocationService } from "../Services/LocationService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel } from "../ViewModels/FinancesViewModels.js";
-import { FinanceEntryServerModel } from "../ServerModels/FinancesServerModels.js";
 import {Router} from '@angular/router';
 
 @Component({
@@ -25,7 +24,7 @@ export class FinancesNewPersonComponent implements OnInit {
     personName: string;
 
     @Output()
-    close = new EventEmitter();
+    close = new EventEmitter(); 
 
     submit(): void{
         this.financesService.addPerson(this.personName);

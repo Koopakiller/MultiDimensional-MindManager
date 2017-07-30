@@ -1,4 +1,7 @@
-export class UserViewModel{
+import { KeyValuePair } from "../Common/KeyValuePair.js";
+import { TransactionServerModel } from "../ServerModels/FinancesServerModels.js";
+
+export class UserViewModel {
     constructor(
         private _id?: number,
         private _header?: string
@@ -46,7 +49,20 @@ export class CurrencyAccountViewModel{
     accountName: string;
 }
 
-export class TransactionViewModel{
+export class TransactionViewModel implements IServerModelConvert<TransactionServerModel>{
+    toServerModel(): TransactionServerModel {
+        let tvm = new TransactionServerModel();
+        tvm.currencyAccountId = this.currencyAccountId;
+        tvm.id = this.id;
+        tvm.note = this.note;
+        tvm.personId = this.personId;
+        tvm.rawData = this.rawData;
+        tvm.timeStamp = this.timeStamp;
+        tvm.userId = this.userId;
+        tvm.value = this.value;
+        return tvm;
+    }
+
     id: number;
     note: string;
     timeStamp: Date;
@@ -59,18 +75,4 @@ export class TransactionViewModel{
 
     showDetails: boolean;
     suggestedPersonName: string;
-}
-
-export class KeyValuePair<TKey, TValue>{
-    constructor(
-        private _key: TKey,
-        private _value: TValue
-    ) { }
-
-    get key(): TKey {
-        return this._key;
-    }
-    get value(): TValue {
-        return this._value;
-    }
 }

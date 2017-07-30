@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../Services/FinancesService.js";
 import { LocationService } from "../Services/LocationService.js";
-import { PersonViewModel, CurrencyAccountViewModel, UserViewModel } from "../ViewModels/FinancesViewModels.js";
-import { FinanceEntryServerModel } from "../ServerModels/FinancesServerModels.js";
+import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
 import {Router} from '@angular/router';
 
 @Component({
@@ -51,8 +50,20 @@ export class FinancesNewEntryComponent implements OnInit {
     }
 
     public submit(): void {
-        this.financesService.addEntry(this.currencyAccount, this.person, this.user, this.timeStamp, this.name, this.value, this.coordinates);
-        this.router.navigateByUrl("/Finances");
+        let tvm = new TransactionViewModel();
+        tvm.currencyAccountId = this.currencyAccount;
+        tvm.personId = this.person;
+        tvm.userId = this.user;
+        tvm.timeStamp = this.timeStamp;
+        tvm.note = this.name;
+        tvm.value = this.value;
+        this.financesService.addTransaction([tvm]).subscribe(()=>{
+            this.router.navigateByUrl("/Finances");
+        },
+        error => {
+            alert(error);
+        });
+        
     }
 
     public cancel(): void{
