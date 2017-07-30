@@ -14,6 +14,7 @@ var FinancesService_js_1 = require("../Services/FinancesService.js");
 var LocationService_js_1 = require("../Services/LocationService.js");
 var FinancesViewModels_js_1 = require("../ViewModels/FinancesViewModels.js");
 var router_1 = require("@angular/router");
+var KeyValuePair_js_1 = require("../Common/KeyValuePair.js");
 var FinancesNewTransactionComponent = (function () {
     function FinancesNewTransactionComponent(financesService, locationService, router) {
         this.financesService = financesService;
@@ -53,6 +54,11 @@ var FinancesNewTransactionComponent = (function () {
         tvm.timeStamp = this.timeStamp;
         tvm.note = this.name;
         tvm.value = this.value;
+        if (this.coordinates) {
+            tvm.rawData = [
+                new KeyValuePair_js_1.KeyValuePair("Coordinates", JSON.stringify(this.coordinates))
+            ];
+        }
         this.financesService.addTransaction([tvm]).subscribe(function () {
             _this.router.navigateByUrl("/Finances");
         }, function (error) {
@@ -73,8 +79,8 @@ var FinancesNewTransactionComponent = (function () {
 }());
 FinancesNewTransactionComponent = __decorate([
     core_1.Component({
-        selector: "finances-new-entry",
-        templateUrl: "/Templates/FinancesNewEntry"
+        selector: "finances-new-transaction",
+        templateUrl: "/Templates/FinancesNewTransaction"
     }),
     __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
         LocationService_js_1.LocationService,

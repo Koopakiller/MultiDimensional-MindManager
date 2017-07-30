@@ -13,7 +13,7 @@ export class FinancesNewTransactionComponent implements OnInit {
     constructor(
         private financesService: FinancesService,
         private locationService: LocationService,
-        private router: Router
+        private router: Router 
     ) { }
 
     ngOnInit(): void {

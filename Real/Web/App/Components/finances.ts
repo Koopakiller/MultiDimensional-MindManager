@@ -6,13 +6,4 @@ import * as _ from "lodash";
     templateUrl: "/Templates/Finances"
 })
 export class FinancesComponent {
-    _forms: string[] = [];
-
-    get forms(){
-        return this._forms;
-    }
-
-    public addSubmitNewForm() {
-        this._forms.push("new-entry")
-    }
 }     
