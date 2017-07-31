@@ -1,3 +1,5 @@
 export class DataContainer<T>{
-    data: T;
+    constructor(
+        public data: T        
+    ) { }
 } 

@@ -14,6 +14,7 @@ var FinancesServerModels_js_1 = require("../ServerModels/FinancesServerModels.js
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/operator/map");
+var DataContainer_js_1 = require("../Common/DataContainer.js");
 var FinancesService = (function () {
     function FinancesService(http) {
         this.http = http;
@@ -52,12 +53,12 @@ var FinancesService = (function () {
     };
     FinancesService.prototype.addTransaction = function (tvms) {
         var _this = this;
-        var data = {};
+        var data = new DataContainer_js_1.DataContainer(tvms);
         var postData = JSON.stringify(data);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return Observable_1.Observable.create(function (observer) {
-            _this.http.post("/api/Finances/AddTransaction", postData, options).subscribe(function (response) {
+            _this.http.post("/api/Finances/AddTransactions", postData, options).subscribe(function (response) {
                 var lst = _this.getListFromResponse(response, function () { return new FinancesServerModels_js_1.TransactionServerModel(); });
                 observer.next(lst);
                 observer.complete();

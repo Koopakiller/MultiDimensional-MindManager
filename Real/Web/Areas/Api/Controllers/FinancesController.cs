@@ -43,10 +43,10 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddTransaction([FromBody]DataContainer<IEnumerable<FinanceEntry>> data)
+        public IActionResult AddTransactions([FromBody]DataContainer<IEnumerable<FinanceTransaction>> data)
         {
-            System.Console.WriteLine(data.Data);
-            throw new NotImplementedException();
+            var result = this._context.AddTransactions(data.Data);
+            return this.Json(DataContainer.Create(result));
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Koopakiller.Apps.Picosmos.Real.Areas.Api.ViewModels;
 
 namespace Koopakiller.Apps.Picosmos.Real.Model
 {
@@ -29,12 +31,12 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
             return this.CurrencyAccounts.FromSql("EXEC GetCurrencyAccountsForUser {0}", userId);
         }
 
-        public IEnumerable<Transaction> AddTransaction(int personId, decimal value, DateTime timeStamp, int currencyAccountId, string note)
+        public Transaction AddTransaction(int personId, decimal value, DateTime timeStamp, int currencyAccountId, string note)
         {
-            return this.Transactions.FromSql("EXEC AddTransaction {0}, {1}, {2}, {3}, {4}", personId, value, timeStamp, currencyAccountId, note);
+            return this.Transactions.FromSql("EXEC AddTransaction {0}, {1}, {2}, {3}, {4}", personId, value, timeStamp, currencyAccountId, note).SingleOrDefault();
         }
 
-        public void AddTransaction(int transactionId, string key, string value)
+        public void AddRawDataEntry(int transactionId, string key, string value)
         {
             this.Database.ExecuteSqlCommand("EXEC AddRawDataEntry {0}, {1}, {2}", transactionId, key, value);
         }
@@ -42,6 +44,28 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         public IEnumerable<CurrencySymbol> GetCurrencySymbolsForCurrency(int currencyId)
         {
             return this.CurrencySymbols.FromSql("EXEC GetCurrencySymbolsForCurrency {0}", currencyId);
+        }
+
+        public IEnumerable<FinanceTransaction> AddTransactions(IEnumerable<FinanceTransaction> data){
+            foreach(var transaction in data) {
+                var inserted = this.AddTransaction(transaction.PersonId, transaction.Value, transaction.TimeStamp, transaction.CurrencyAccountId, transaction.Note);
+                if(transaction.RawData != null)
+                {
+                    foreach(var rawData in transaction.RawData)
+                    {
+                        this.AddRawDataEntry(inserted.Id, rawData.Key, rawData.Value);
+                    }
+                }
+                yield return new FinanceTransaction(){
+                    Id = inserted.Id,
+                    PersonId = inserted.PersonId,
+                    Value = inserted.Value,
+                    TimeStamp = inserted.TimeStamp,
+                    CurrencyAccountId = inserted.CurrencyAccountId,
+                    Note = inserted.Note,
+                    RawData = transaction.RawData,
+                };
+            }
         }
     }
 
@@ -73,7 +97,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         public DateTime TimeStamp { get; set; }
         public int CurrencyAccountId { get; set; }
         public string Note { get; set; }
-        public int RawDataId { get; set; }
+        public int? RawDataId { get; set; }
     }
 
     public class CurrencySymbol
