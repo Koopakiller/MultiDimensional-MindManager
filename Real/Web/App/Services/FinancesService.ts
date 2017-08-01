@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { PersonServerModel, UserServerModel, CurrencyAccountServerModel, TransactionServerModel } from "../ServerModels/FinancesServerModels.js";
+import { PersonServerModel, UserServerModel, CurrencyAccountServerModel, TransactionServerModel, TransactionOverviewServerModel } from "../ServerModels/FinancesServerModels.js";
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
+import { PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel, TransactionOverviewViewModel } from "../ViewModels/FinancesViewModels.js";
 import { Observer } from "rxjs/Observer";
 import { DataContainer } from "../Common/DataContainer.js";
 
@@ -41,6 +41,16 @@ export class FinancesService {
 
     public getCurrencyAccounts(userId: number): Observable<CurrencyAccountViewModel[]> {
         return this.getList<CurrencyAccountServerModel, CurrencyAccountViewModel>(`/api/Finances/GetCurrencyAccountsForUser?userId=${userId}`, () => new CurrencyAccountServerModel());
+    }
+
+    public getTransactions(currencyAccountId: number, skipCount: number, takeCount: number): Observable<TransactionViewModel[]> {
+        let url = `/api/Finances/GetTransactions?currencyAccountId=${currencyAccountId}&skipCount=${skipCount}&takeCount=${takeCount}`;
+        return this.getList<TransactionServerModel, TransactionViewModel>(url, () => new TransactionServerModel());
+    }
+
+    public getTransactionOverviewForUserAtTimeStamp(userId: number, timeStamp: Date): Observable<TransactionOverviewViewModel[]> {
+        let url = `/api/Finances/GetTransactionOverviewForUserAtTimeStamp?userId=${userId}&timeStamp=${timeStamp}`;
+        return this.getList<TransactionOverviewServerModel, TransactionOverviewViewModel>(url, () => new TransactionOverviewServerModel());
     }
 
     public addTransaction(tvms: TransactionViewModel[]): Observable<TransactionViewModel[]> {

@@ -1,4 +1,4 @@
-import { PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
+import { PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel, TransactionOverviewViewModel } from "../ViewModels/FinancesViewModels.js";
 import { KeyValuePair } from "../Common/KeyValuePair.js";
 
 export class PersonServerModel implements IViewModelConvert<PersonViewModel>{
@@ -66,4 +66,17 @@ export class TransactionServerModel implements IViewModelConvert<TransactionView
     value: number;
 
     rawData: KeyValuePair<string, string>[] = [];
+}
+
+export class TransactionOverviewServerModel implements IViewModelConvert<TransactionOverviewViewModel>{
+    toViewModel() {
+        let tovm = new TransactionOverviewViewModel();
+        tovm.name = this.name;
+        tovm.currencyAccountId = this.currencyAccountId;
+        tovm.value = this.value;
+        return tovm;
+    }
+    name: string;
+    currencyAccountId: number;
+    value: number;
 }

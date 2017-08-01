@@ -57,3 +57,16 @@ var TransactionServerModel = (function () {
     return TransactionServerModel;
 }());
 exports.TransactionServerModel = TransactionServerModel;
+var TransactionOverviewServerModel = (function () {
+    function TransactionOverviewServerModel() {
+    }
+    TransactionOverviewServerModel.prototype.toViewModel = function () {
+        var tovm = new FinancesViewModels_js_1.TransactionOverviewViewModel();
+        tovm.name = this.name;
+        tovm.currencyAccountId = this.currencyAccountId;
+        tovm.value = this.value;
+        return tovm;
+    };
+    return TransactionOverviewServerModel;
+}());
+exports.TransactionOverviewServerModel = TransactionOverviewServerModel;

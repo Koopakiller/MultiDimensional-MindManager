@@ -51,6 +51,14 @@ var FinancesService = (function () {
     FinancesService.prototype.getCurrencyAccounts = function (userId) {
         return this.getList("/api/Finances/GetCurrencyAccountsForUser?userId=" + userId, function () { return new FinancesServerModels_js_1.CurrencyAccountServerModel(); });
     };
+    FinancesService.prototype.getTransactions = function (currencyAccountId, skipCount, takeCount) {
+        var url = "/api/Finances/GetTransactions?currencyAccountId=" + currencyAccountId + "&skipCount=" + skipCount + "&takeCount=" + takeCount;
+        return this.getList(url, function () { return new FinancesServerModels_js_1.TransactionServerModel(); });
+    };
+    FinancesService.prototype.getTransactionOverviewForUserAtTimeStamp = function (userId, timeStamp) {
+        var url = "/api/Finances/GetTransactionOverviewForUserAtTimeStamp?userId=" + userId + "&timeStamp=" + timeStamp;
+        return this.getList(url, function () { return new FinancesServerModels_js_1.TransactionOverviewServerModel(); });
+    };
     FinancesService.prototype.addTransaction = function (tvms) {
         var _this = this;
         var data = new DataContainer_js_1.DataContainer(tvms);

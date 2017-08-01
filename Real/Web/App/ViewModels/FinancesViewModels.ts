@@ -1,5 +1,5 @@
 import { KeyValuePair } from "../Common/KeyValuePair.js";
-import { TransactionServerModel } from "../ServerModels/FinancesServerModels.js";
+import { TransactionServerModel, TransactionOverviewServerModel } from "../ServerModels/FinancesServerModels.js";
 
 export class UserViewModel {
     constructor(
@@ -75,4 +75,18 @@ export class TransactionViewModel implements IServerModelConvert<TransactionServ
 
     showDetails: boolean;
     suggestedPersonName: string;
+}
+
+
+export class TransactionOverviewViewModel implements IViewModelConvert<TransactionOverviewServerModel>{
+    toViewModel() {
+        let tosm = new TransactionOverviewServerModel();
+        tosm.name = this.name;
+        tosm.currencyAccountId = this.currencyAccountId;
+        tosm.value = this.value;
+        return tosm;
+    }
+    name: string;
+    currencyAccountId: number;
+    value: number;
 }
