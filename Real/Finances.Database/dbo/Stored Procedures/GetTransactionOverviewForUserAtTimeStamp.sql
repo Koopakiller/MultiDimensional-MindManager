@@ -4,7 +4,7 @@
 AS
 BEGIN
 	SELECT a.Name AS [AccountName]
-		 , ca.CurrencyId AS [CurrencyId]
+		 , ca.CurrencyId AS [CurrencyAccountId]
 		 , [dbo].[GetValueForDate](@timeStamp, ca.Id)
 	FROM CurrencyAccounts ca
 	INNER JOIN Accounts a ON a.Id = ca.AccountId
