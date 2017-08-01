@@ -14,6 +14,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         private DbSet<Person> Persons { get; set; }
         private DbSet<CurrencyAccount> CurrencyAccounts { get; set; }
         private DbSet<Transaction> Transactions { get; set; }
+        private DbSet<TransactionOverview> TransactionOverviews { get; set; }
         private DbSet<CurrencySymbol> CurrencySymbols { get; set; }
 
         public IEnumerable<User> GetUsers()
@@ -67,6 +68,26 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
                 };
             }
         }
+
+        public IEnumerable<Transaction> GetTransactions(int currencyAccountId, int skipCount, int takeCount, SortOrder sortOrder){
+            return this.Transactions.FromSql("EXEC GetTransactions {0}, {1}, {2}, {3}", 
+                                             currencyAccountId, skipCount, takeCount, sortOrder == SortOrder.Asc ? "ASC" : "DESC");
+        }
+
+        public IEnumerable<TransactionOverview> GetTransactionOverviewForUserAtTimeStamp(int userId, DateTime timeStamp){
+            return this.TransactionOverviews.FromSql("EXEC GetTransactionOverviewForUserAtTimeStamp {0}, {1}", userId, timeStamp);
+        }
+    }
+
+    public enum SortOrder{
+        Asc,
+        Desc
+    }
+
+    public class TransactionOverview{
+        public string Name{get;set;}
+        public int CurrencyAccountId{get;set;}
+        public decimal Value{get;set;}
     }
 
     public class User
