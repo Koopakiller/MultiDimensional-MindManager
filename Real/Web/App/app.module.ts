@@ -13,12 +13,14 @@ import { HomeComponent } from "./Components/home.js";
 import { MediaAppletComponent } from "./Components/MediaApplet.js";
 import { FinancesImportComponent } from "./Components/finances-import.js";
 import { FinancesNewPersonComponent } from "./Components/finances-new-person.js";
+import { FinancesOverviewComponent } from "./Components/finances-overview.js";
 
 const appRoutes: Routes = [
   { path: 'Home',               component: HomeComponent },
   { path: 'Finances',           component: FinancesComponent },
   { path: 'Finances/AddTransaction',  component: FinancesNewTransactionComponent },
   { path: 'Finances/Import',    component: FinancesImportComponent },
+  { path: 'Finances/Overview',    component: FinancesOverviewComponent },
   { path: 'StyleTest',          component: StyleTestComponent },
   { path: 'Media',              component: MediaAppletComponent },
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
@@ -33,13 +35,14 @@ const appRoutes: Routes = [
     ),
     HttpModule,
     BrowserModule,
-    FormsModule
+    FormsModule 
   ],
   declarations: [
     AppComponent,
     FinancesNewTransactionComponent,
     FinancesImportComponent,
     FinancesNewPersonComponent,
+    FinancesOverviewComponent,
     FinancesComponent,
     HomeComponent,
     MediaAppletComponent,
@@ -52,6 +55,6 @@ const appRoutes: Routes = [
     FinancesService,
     LocationService
   ]
-})
+})   
 export class AppModule { }
  

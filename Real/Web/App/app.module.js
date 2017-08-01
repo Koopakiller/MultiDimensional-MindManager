@@ -21,11 +21,13 @@ var home_js_1 = require("./Components/home.js");
 var MediaApplet_js_1 = require("./Components/MediaApplet.js");
 var finances_import_js_1 = require("./Components/finances-import.js");
 var finances_new_person_js_1 = require("./Components/finances-new-person.js");
+var finances_overview_js_1 = require("./Components/finances-overview.js");
 var appRoutes = [
     { path: 'Home', component: home_js_1.HomeComponent },
     { path: 'Finances', component: finances_js_1.FinancesComponent },
     { path: 'Finances/AddTransaction', component: finances_new_transaction_js_1.FinancesNewTransactionComponent },
     { path: 'Finances/Import', component: finances_import_js_1.FinancesImportComponent },
+    { path: 'Finances/Overview', component: finances_overview_js_1.FinancesOverviewComponent },
     { path: 'StyleTest', component: style_test_js_1.StyleTestComponent },
     { path: 'Media', component: MediaApplet_js_1.MediaAppletComponent },
     { path: '', redirectTo: '/Home', pathMatch: 'full' },
@@ -50,6 +52,7 @@ AppModule = __decorate([
             finances_new_transaction_js_1.FinancesNewTransactionComponent,
             finances_import_js_1.FinancesImportComponent,
             finances_new_person_js_1.FinancesNewPersonComponent,
+            finances_overview_js_1.FinancesOverviewComponent,
             finances_js_1.FinancesComponent,
             home_js_1.HomeComponent,
             MediaApplet_js_1.MediaAppletComponent,
