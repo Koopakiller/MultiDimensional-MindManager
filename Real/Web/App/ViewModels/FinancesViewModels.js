@@ -92,6 +92,7 @@ var TransactionOverviewViewModel = (function () {
     TransactionOverviewViewModel.prototype.toViewModel = function () {
         var tosm = new FinancesServerModels_js_1.TransactionOverviewServerModel();
         tosm.accountName = this.accountName;
+        tosm.currencyId = this.currencyId;
         tosm.currencyAccountId = this.currencyAccountId;
         tosm.value = this.value;
         return tosm;

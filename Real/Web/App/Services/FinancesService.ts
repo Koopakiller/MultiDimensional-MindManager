@@ -50,7 +50,36 @@ export class FinancesService {
 
     public getTransactionOverviewForUserAtTimeStamp(userId: number, timeStamp: Date): Observable<TransactionOverviewViewModel[]> {
         let url = `/api/Finances/GetTransactionOverviewForUserAtTimeStamp?userId=${userId}&timeStamp=${timeStamp.toUTCString()}`;
-        return this.getList<TransactionOverviewServerModel, TransactionOverviewViewModel>(url, () => new TransactionOverviewServerModel());
+        return Observable.create((observer: Observer<TransactionOverviewViewModel[]>) =>{
+            var readyCounter = 0;
+            var items: TransactionOverviewViewModel[];
+            var cas: CurrencyAccountViewModel[];
+            function tryAddToObserver(){
+                if(readyCounter != 2){
+                    return; // not ready yet
+                }
+                //assign currency names
+                for(let itemIndex in items){
+                    for(let ca of cas){
+                        if(ca.id === items[itemIndex].currencyAccountId){
+                            items[itemIndex].currencyAccountName = ca.header;
+                        }
+                    }
+                }
+                observer.next(items); 
+                observer.complete();
+            }
+            this.getList<TransactionOverviewServerModel, TransactionOverviewViewModel>(url, () => new TransactionOverviewServerModel()).subscribe((x)=>{
+                readyCounter += 1;
+                tryAddToObserver();
+                items = x;
+            });
+            this.getCurrencyAccounts(userId).subscribe((x)=>{
+                readyCounter += 1;
+                cas = x;
+                tryAddToObserver();
+            });
+        });
     }
 
     public addTransaction(tvms: TransactionViewModel[]): Observable<TransactionViewModel[]> {

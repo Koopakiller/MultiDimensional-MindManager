@@ -72,11 +72,13 @@ export class TransactionOverviewServerModel implements IViewModelConvert<Transac
     toViewModel() {
         let tovm = new TransactionOverviewViewModel();
         tovm.accountName = this.accountName;
+        tovm.currencyId = this.currencyId;
         tovm.currencyAccountId = this.currencyAccountId;
         tovm.value = this.value;
         return tovm;
     }
     accountName: string;
+    currencyId: number;
     currencyAccountId: number;
     value: number;
 }

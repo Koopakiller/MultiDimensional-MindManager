@@ -93,6 +93,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
 
     public class TransactionOverview{
         public string AccountName{get;set;}
+        public int CurrencyId{get;set;}
         public int CurrencyAccountId{get;set;}
         public decimal Value{get;set;}
     }

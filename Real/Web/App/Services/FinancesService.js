@@ -56,8 +56,39 @@ var FinancesService = (function () {
         return this.getList(url, function () { return new FinancesServerModels_js_1.TransactionServerModel(); });
     };
     FinancesService.prototype.getTransactionOverviewForUserAtTimeStamp = function (userId, timeStamp) {
+        var _this = this;
         var url = "/api/Finances/GetTransactionOverviewForUserAtTimeStamp?userId=" + userId + "&timeStamp=" + timeStamp.toUTCString();
-        return this.getList(url, function () { return new FinancesServerModels_js_1.TransactionOverviewServerModel(); });
+        return Observable_1.Observable.create(function (observer) {
+            var readyCounter = 0;
+            var items;
+            var cas;
+            function tryAddToObserver() {
+                if (readyCounter != 2) {
+                    return; // not ready yet
+                }
+                //assign currency names
+                for (var itemIndex in items) {
+                    for (var _i = 0, cas_1 = cas; _i < cas_1.length; _i++) {
+                        var ca = cas_1[_i];
+                        if (ca.id === items[itemIndex].currencyAccountId) {
+                            items[itemIndex].currencyAccountName = ca.header;
+                        }
+                    }
+                }
+                observer.next(items);
+                observer.complete();
+            }
+            _this.getList(url, function () { return new FinancesServerModels_js_1.TransactionOverviewServerModel(); }).subscribe(function (x) {
+                readyCounter += 1;
+                tryAddToObserver();
+                items = x;
+            });
+            _this.getCurrencyAccounts(userId).subscribe(function (x) {
+                readyCounter += 1;
+                cas = x;
+                tryAddToObserver();
+            });
+        });
     };
     FinancesService.prototype.addTransaction = function (tvms) {
         var _this = this;
