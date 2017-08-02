@@ -10,6 +10,20 @@
             </select>
         </div>
     </div>
+    <div>
+        <table>
+            <tr>
+                <th>Account Name</th>
+                <th>Currency Id</th>
+                <th>Value</th>
+            </tr>
+            <tr *ngFor="let row of transactionOverview">
+                <td>{{row.accountName}}</td>
+                <td>{{row.currencyAccountId}}</td>
+                <td>{{row.value}}</td>
+            </tr>
+        </table>
+    </div>
     <div class="form-group">
         <label for="currencyAccount">Currency Account:</label>
         <div class="control-container">  

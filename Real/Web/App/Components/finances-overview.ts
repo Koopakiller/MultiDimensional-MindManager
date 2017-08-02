@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../Services/FinancesService.js";
-import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
+import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel, TransactionOverviewViewModel } from "../ViewModels/FinancesViewModels.js";
 import {Router} from '@angular/router';
 import { KeyValuePair } from "../Common/KeyValuePair.js";
 
@@ -20,6 +20,7 @@ export class FinancesOverviewComponent implements OnInit {
 
     currencyAccounts: CurrencyAccountViewModel[];
     users: UserViewModel[];
+    transactionOverview: TransactionOverviewViewModel[];
 
     currencyAccount: number; 
     _user: number;
@@ -31,5 +32,6 @@ export class FinancesOverviewComponent implements OnInit {
     set user(value: number){
         this._user = value;
         this.financesService.getCurrencyAccounts(value).subscribe(x => { this.currencyAccounts = x; this.currencyAccount = x.length > 0 ? x[0].id : null; });
+        this.financesService.getTransactionOverviewForUserAtTimeStamp(value, new Date()).subscribe(x => { this.transactionOverview = x; });
     }
 }

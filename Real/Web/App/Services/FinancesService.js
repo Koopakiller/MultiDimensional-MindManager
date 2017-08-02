@@ -56,7 +56,7 @@ var FinancesService = (function () {
         return this.getList(url, function () { return new FinancesServerModels_js_1.TransactionServerModel(); });
     };
     FinancesService.prototype.getTransactionOverviewForUserAtTimeStamp = function (userId, timeStamp) {
-        var url = "/api/Finances/GetTransactionOverviewForUserAtTimeStamp?userId=" + userId + "&timeStamp=" + timeStamp;
+        var url = "/api/Finances/GetTransactionOverviewForUserAtTimeStamp?userId=" + userId + "&timeStamp=" + timeStamp.toUTCString();
         return this.getList(url, function () { return new FinancesServerModels_js_1.TransactionOverviewServerModel(); });
     };
     FinancesService.prototype.addTransaction = function (tvms) {

@@ -29,6 +29,7 @@ var FinancesOverviewComponent = (function () {
             var _this = this;
             this._user = value;
             this.financesService.getCurrencyAccounts(value).subscribe(function (x) { _this.currencyAccounts = x; _this.currencyAccount = x.length > 0 ? x[0].id : null; });
+            this.financesService.getTransactionOverviewForUserAtTimeStamp(value, new Date()).subscribe(function (x) { _this.transactionOverview = x; });
         },
         enumerable: true,
         configurable: true

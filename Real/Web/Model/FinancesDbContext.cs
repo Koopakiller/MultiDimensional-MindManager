@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Koopakiller.Apps.Picosmos.Real.Areas.Api.ViewModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace Koopakiller.Apps.Picosmos.Real.Model
 {
@@ -16,6 +17,12 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         private DbSet<Transaction> Transactions { get; set; }
         private DbSet<TransactionOverview> TransactionOverviews { get; set; }
         private DbSet<CurrencySymbol> CurrencySymbols { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TransactionOverview>()
+                .HasKey(x => new { x.AccountName, x.CurrencyAccountId });
+        }
 
         public IEnumerable<User> GetUsers()
         {
@@ -85,7 +92,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
     }
 
     public class TransactionOverview{
-        public string Name{get;set;}
+        public string AccountName{get;set;}
         public int CurrencyAccountId{get;set;}
         public decimal Value{get;set;}
     }

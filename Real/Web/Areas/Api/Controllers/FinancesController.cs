@@ -49,11 +49,13 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             return this.Json(DataContainer.Create(result));
         }
 
-        public IActionResult GetTransactions(int currencyAccountId, int skipCount, int takeCount){
+        public IActionResult GetTransactions(int currencyAccountId, int skipCount, int takeCount)
+        {
             return this.Json(DataContainer.Create(this._context.GetTransactions(currencyAccountId, skipCount, takeCount, SortOrder.Asc)));
         }
 
-        public IActionResult GetTransactionOverviewForUserAtTimeStamp(int userId, DateTime timeStamp){
+        public IActionResult GetTransactionOverviewForUserAtTimeStamp(int userId, DateTime timeStamp)
+        {
             return this.Json(DataContainer.Create(this._context.GetTransactionOverviewForUserAtTimeStamp(userId, timeStamp)));
         }
     }

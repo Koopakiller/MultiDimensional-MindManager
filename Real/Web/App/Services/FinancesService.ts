@@ -49,7 +49,7 @@ export class FinancesService {
     }
 
     public getTransactionOverviewForUserAtTimeStamp(userId: number, timeStamp: Date): Observable<TransactionOverviewViewModel[]> {
-        let url = `/api/Finances/GetTransactionOverviewForUserAtTimeStamp?userId=${userId}&timeStamp=${timeStamp}`;
+        let url = `/api/Finances/GetTransactionOverviewForUserAtTimeStamp?userId=${userId}&timeStamp=${timeStamp.toUTCString()}`;
         return this.getList<TransactionOverviewServerModel, TransactionOverviewViewModel>(url, () => new TransactionOverviewServerModel());
     }
 
