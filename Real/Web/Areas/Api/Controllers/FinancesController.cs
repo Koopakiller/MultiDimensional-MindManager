@@ -51,7 +51,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
 
         public IActionResult GetTransactions(int currencyAccountId, int skipCount, int takeCount)
         {
-            return this.Json(DataContainer.Create(this._context.GetTransactions(currencyAccountId, skipCount, takeCount, SortOrder.Asc)));
+            return this.Json(DataContainer.Create(this._context.GetTransactions(currencyAccountId, skipCount, takeCount, SortOrder.Desc)));
         }
 
         public IActionResult GetTransactionOverviewForUserAtTimeStamp(int userId, DateTime timeStamp)

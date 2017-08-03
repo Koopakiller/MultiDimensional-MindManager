@@ -34,6 +34,15 @@ var FinancesOverviewComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    FinancesOverviewComponent.prototype.showTable = function (currencyAccountId) {
+        var _this = this;
+        this.financesService.getTransactions(currencyAccountId, 0, 25).subscribe(function (x) {
+            _this.transactionsInTable = x;
+        });
+    };
+    FinancesOverviewComponent.prototype.hideTable = function () {
+        this.transactionsInTable = null;
+    };
     return FinancesOverviewComponent;
 }());
 FinancesOverviewComponent = __decorate([

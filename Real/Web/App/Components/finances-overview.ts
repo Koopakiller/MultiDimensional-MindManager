@@ -34,4 +34,16 @@ export class FinancesOverviewComponent implements OnInit {
         this.financesService.getCurrencyAccounts(value).subscribe(x => { this.currencyAccounts = x; this.currencyAccount = x.length > 0 ? x[0].id : null; });
         this.financesService.getTransactionOverviewForUserAtTimeStamp(value, new Date()).subscribe(x => { this.transactionOverview = x; });
     }
+
+    transactionsInTable: TransactionViewModel[];
+
+    public showTable(currencyAccountId: number){
+        this.financesService.getTransactions(currencyAccountId, 0, 25).subscribe(x=>{
+            this.transactionsInTable = x;
+        })
+    }
+
+    public hideTable(){
+        this.transactionsInTable = null;
+    }
 }
