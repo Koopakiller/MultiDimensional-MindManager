@@ -1,11 +1,11 @@
 ﻿CREATE FUNCTION [dbo].[GetCurrencyAccountHistoryDataPoints]()
 RETURNS @result TABLE
 (
-	[TimeStamp] DATETIME,
+	[TimeStampDate] DATE,
 	[Value] DECIMAL(18,2),
-	CurrencyName NVARCHAR(MAX),
-	AccountName NVARCHAR(MAX),
-	UserName NVARCHAR(MAX)
+	[CurrencyName] NVARCHAR(MAX),
+	[AccountName] NVARCHAR(MAX),
+	[UserName] NVARCHAR(MAX)
 )
 AS
 BEGIN
