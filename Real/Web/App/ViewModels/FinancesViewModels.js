@@ -69,6 +69,7 @@ var CurrencyAccountViewModel = (function () {
 exports.CurrencyAccountViewModel = CurrencyAccountViewModel;
 var TransactionViewModel = (function () {
     function TransactionViewModel() {
+        this.includeTimeStampTime = false;
         this.rawData = [];
     }
     TransactionViewModel.prototype.toServerModel = function () {
@@ -78,7 +79,10 @@ var TransactionViewModel = (function () {
         tvm.note = this.note;
         tvm.personId = this.personId;
         tvm.rawData = this.rawData;
-        tvm.timeStamp = this.timeStamp;
+        tvm.timeStampDate = this.timeStampDate;
+        var x = new Date();
+        x.setFullYear(0, 0, 0);
+        tvm.timeStampTime = this.includeTimeStampTime ? this.timeStampTime : x;
         tvm.userId = this.userId;
         tvm.value = this.value;
         return tvm;

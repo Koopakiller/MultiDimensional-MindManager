@@ -49,7 +49,8 @@ var TransactionServerModel = (function () {
         tvm.note = this.note;
         tvm.personId = this.personId;
         tvm.rawData = this.rawData;
-        tvm.timeStamp = this.timeStamp;
+        tvm.timeStampDate = this.timeStampDate;
+        tvm.timeStampTime = this.timeStampTime;
         tvm.userId = this.userId;
         tvm.value = this.value;
         return tvm;

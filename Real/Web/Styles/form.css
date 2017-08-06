@@ -110,7 +110,7 @@ select:active,
 button:active {
   border: 1px solid #209030;
 }
-input:not([type=button]):not([type=submit]),
+input:not([type=button]):not([type=submit]):not([type=checkbox]),
 select {
   width: 100%;
   padding: 2.5px 5px;
@@ -118,9 +118,9 @@ select {
   background-color: #F0F0F0;
   margin-bottom: 2.5px;
 }
-input:not([type=button]):not([type=submit]):active,
+input:not([type=button]):not([type=submit]):not([type=checkbox]):active,
 select:active,
-input:not([type=button]):not([type=submit]):focus,
+input:not([type=button]):not([type=submit]):not([type=checkbox]):focus,
 select:focus {
   border-color: #50D080;
 }
@@ -140,6 +140,10 @@ button:hover,
 input[type=button]:hover,
 input[type=submit]:hover {
   background-color: #C0C0C0;
+}
+input[type=checkbox]:active,
+input[type=checkbox]:focus {
+  border-color: #50D080;
 }
 .button-bar {
   margin-top: 10px;

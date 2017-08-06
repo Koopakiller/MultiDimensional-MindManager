@@ -40,7 +40,7 @@
                 </tr>
                 <tr *ngFor="let transaction of transactionsInTable">
                     <td>{{transaction.id}}</td>
-                    <td>{{transaction.timeStamp}}</td>
+                    <td>{{transaction.timeStampDate}} <span *ngIf="transaction.timeStampTime">({{transaction.timeStampTime}})</span></td>
                     <td>{{transaction.note}}</td>
                     <td>{{transaction.value}}</td>
                     <td>{{transaction.personId}}</td>

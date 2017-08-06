@@ -90,7 +90,7 @@ export class FinancesImportComponent implements OnInit {
                 // Number format: xxx,xx
                 for (let row of result.data) {
                     var tvm = new TransactionViewModel();
-                    tvm.timeStamp = this.parseGermanTimeStamp(row["Wertstellung"]);
+                    tvm.timeStampDate = this.parseGermanTimeStamp(row["Wertstellung"]);
                     tvm.note = row["Buchungstext"];
                     tvm.value = this.parseGermanNumber(row["Betrag"]);
                     //tvm.personId = this.getPersonIdFromName(row[...]);
@@ -113,7 +113,7 @@ export class FinancesImportComponent implements OnInit {
                 // Number format: xxx,xx
                 for (let row of result.data) {
                     var tvm = new TransactionViewModel();
-                    tvm.timeStamp = this.parseGermanTimeStamp(row["Buchungstag"]);
+                    tvm.timeStampDate = this.parseGermanTimeStamp(row["Buchungstag"]);
                     tvm.note = row["Unternehmen"];
                     tvm.value = this.parseGermanNumber(row["Betrag"]);
                     tvm.personId = this.getPersonIdFromName(row["Unternehmen"]);
@@ -142,7 +142,7 @@ export class FinancesImportComponent implements OnInit {
                         continue;
                     }
                     var tvm = new TransactionViewModel();
-                    tvm.timeStamp = this.parseGermanTimeStamp(row["Datum"], row[" Zeit"], row[" Zeitzone"]);
+                    tvm.timeStampDate = tvm.timeStampTime = this.parseGermanTimeStamp(row["Datum"], row[" Zeit"], row[" Zeitzone"]);
                     tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"]: "" );
                     tvm.value = this.parseGermanNumber(row[" Netto"]);
                     tvm.personId = this.getPersonIdFromName(row[" Name"]);  

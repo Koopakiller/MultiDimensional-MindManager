@@ -94,6 +94,7 @@ var FinancesService = (function () {
         var _this = this;
         var data = new DataContainer_js_1.DataContainer(tvms);
         var postData = JSON.stringify(data);
+        console.log(postData);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return Observable_1.Observable.create(function (observer) {

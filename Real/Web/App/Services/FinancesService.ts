@@ -85,6 +85,7 @@ export class FinancesService {
     public addTransaction(tvms: TransactionViewModel[]): Observable<TransactionViewModel[]> {
         let data = new DataContainer<TransactionViewModel[]>(tvms);
         var postData = JSON.stringify(data);
+        console.log(postData);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return Observable.create((observer: Observer<TransactionViewModel[]>) => {

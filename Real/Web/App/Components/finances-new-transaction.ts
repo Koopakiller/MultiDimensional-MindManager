@@ -20,7 +20,9 @@ export class FinancesNewTransactionComponent implements OnInit {
         this.financesService.persons.subscribe(x => { this.persons = x; this.person = x.length > 0 ? x[0].id : null; });
         this.financesService.users.subscribe(x => { this.users = x; this.user = x.length > 0 ? x[0].id : null; });
         this.locationService.location.subscribe(x => this.coordinates = x ? x.coords : null);
-        this.timeStamp = new Date();
+        this.timeStampDate = new Date();
+        this.timeStampDate.setHours(0, 0, 0, 0);
+        this.timeStampTime = new Date('12:34 AM');
         this.value = 0;
     }
 
@@ -35,7 +37,9 @@ export class FinancesNewTransactionComponent implements OnInit {
     person: number;
     currencyAccount: number;
     _user: number;
-    timeStamp: Date;
+    timeStampDate: Date;
+    timeStampTime: Date;
+    includeTimeStampTime: boolean = false;
 
     get user(){ 
         return this._user;
@@ -46,16 +50,14 @@ export class FinancesNewTransactionComponent implements OnInit {
         this.financesService.getCurrencyAccounts(value).subscribe(x => { this.currencyAccounts = x; this.currencyAccount = x.length > 0 ? x[0].id : null; });
     }
 
-    public setTimeToNow(){
-        this.timeStamp = new Date();
-    }
-
     public submit(): void {
         let tvm = new TransactionViewModel();
         tvm.currencyAccountId = this.currencyAccount;
         tvm.personId = this.person;
         tvm.userId = this.user;
-        tvm.timeStamp = this.timeStamp;
+        tvm.timeStampDate = this.timeStampDate;
+        tvm.timeStampTime = this.timeStampTime;
+        tvm.includeTimeStampTime = this.includeTimeStampTime;
         tvm.note = this.name;
         tvm.value = this.value;
         if(this.coordinates){

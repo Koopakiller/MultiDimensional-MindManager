@@ -39,9 +39,10 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
             return this.CurrencyAccounts.FromSql("EXEC GetCurrencyAccountsForUser {0}", userId);
         }
 
-        public Transaction AddTransaction(int personId, decimal value, DateTime timeStamp, int currencyAccountId, string note)
+        public Transaction AddTransaction(int personId, decimal value, DateTime timeStampDate, TimeSpan? timeStampTime, int currencyAccountId, string note)
         {
-            return this.Transactions.FromSql("EXEC AddTransaction {0}, {1}, {2}, {3}, {4}", personId, value, timeStamp, currencyAccountId, note).SingleOrDefault();
+            return this.Transactions.FromSql("EXEC AddTransaction {0}, {1}, {2}, {3}, {4}, {5}", 
+            personId, value, timeStampDate, timeStampTime, currencyAccountId, note).SingleOrDefault();
         }
 
         public void AddRawDataEntry(int transactionId, string key, string value)
@@ -56,7 +57,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
 
         public IEnumerable<FinanceTransaction> AddTransactions(IEnumerable<FinanceTransaction> data){
             foreach(var transaction in data) {
-                var inserted = this.AddTransaction(transaction.PersonId, transaction.Value, transaction.TimeStamp, transaction.CurrencyAccountId, transaction.Note);
+                var inserted = this.AddTransaction(transaction.PersonId, transaction.Value, transaction.TimeStampDate, transaction.TimeStampTime, transaction.CurrencyAccountId, transaction.Note);
                 if(transaction.RawData != null)
                 {
                     foreach(var rawData in transaction.RawData)
@@ -68,7 +69,8 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
                     Id = inserted.Id,
                     PersonId = inserted.PersonId,
                     Value = inserted.Value,
-                    TimeStamp = inserted.TimeStamp,
+                    TimeStampDate = inserted.TimeStampDate,
+                    TimeStampTime = inserted.TimeStampTime,
                     CurrencyAccountId = inserted.CurrencyAccountId,
                     Note = inserted.Note,
                     RawData = transaction.RawData,
@@ -81,8 +83,8 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
                                              currencyAccountId, skipCount, takeCount, sortOrder == SortOrder.Asc ? "ASC" : "DESC");
         }
 
-        public IEnumerable<TransactionOverview> GetTransactionOverviewForUserAtTimeStamp(int userId, DateTime timeStamp){
-            return this.TransactionOverviews.FromSql("EXEC GetTransactionOverviewForUserAtTimeStamp {0}, {1}", userId, timeStamp);
+        public IEnumerable<TransactionOverview> GetTransactionOverviewForUserAtTimeStamp(int userId, DateTime timeStampDate){
+            return this.TransactionOverviews.FromSql("EXEC GetTransactionOverviewForUserAtTimeStamp {0}, {1}", userId, timeStampDate);
         }
     }
 
@@ -123,7 +125,8 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         public int Id { get; set; }
         public int PersonId { get; set; }
         public decimal Value { get; set; }
-        public DateTime TimeStamp { get; set; }
+        public DateTime TimeStampDate { get; set; }
+        public TimeSpan? TimeStampTime { get; set; }
         public int CurrencyAccountId { get; set; }
         public string Note { get; set; }
         public int? RawDataId { get; set; }

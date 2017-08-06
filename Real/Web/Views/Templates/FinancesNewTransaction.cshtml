@@ -65,12 +65,26 @@
             </div> 
         </div>
         <div class="form-group">
-            <label for="timeStamp">Time Stamp:</label>
+            <label for="timeStampDate">Time Stamp Date:</label>
             <div class="control-container">  
-                <input type="datetime" class="form-control" id="timeStamp" [(ngModel)]="timeStamp" name="timeStamp" required />
+                <input type="date" class="form-control" id="timeStampDate" 
+                       [ngModel]="timeStampDate | date:'yyyy-MM-dd'"
+                       (ngModelChange)="timeStampDate = $event"
+                       name="timeStampDate" required />
             </div> 
-            <div class="additional-controls">  
-                <input type="button" class="form-control" (click)="setTimeToNow()" value="Now"/>
+        </div>
+        <div class="form-group">
+            <label for="includeTimeStampTime">Add Time</label>
+            <div class="control-container">  
+                <input type="checkbox" class="form-control" id="includeTimeStampTime" [(ngModel)]="includeTimeStampTime" name="includeTimeStampTime" required />
+            </div>
+        </div>
+        <div class="form-group" *ngIf="includeTimeStampTime">
+            <label for="timeStampTime">Time Stamp Time:</label>
+            <div class="control-container">  
+                <input type="time" class="form-control" id="timeStampTime" [(ngModel)]="timeStampTime" name="timeStampTime" required          
+                       [ngModel]="timeStampTime | date:'mm-ss'"
+                       (ngModelChange)="timeStampTime = $event" />
             </div> 
         </div>
         <div>

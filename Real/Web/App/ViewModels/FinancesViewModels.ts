@@ -57,7 +57,10 @@ export class TransactionViewModel implements IServerModelConvert<TransactionServ
         tvm.note = this.note;
         tvm.personId = this.personId;
         tvm.rawData = this.rawData;
-        tvm.timeStamp = this.timeStamp;
+        tvm.timeStampDate = this.timeStampDate;
+        let x = new Date();
+        x.setFullYear(0, 0, 0);
+        tvm.timeStampTime = this.includeTimeStampTime ? this.timeStampTime : x;
         tvm.userId = this.userId;
         tvm.value = this.value;
         return tvm;
@@ -65,7 +68,9 @@ export class TransactionViewModel implements IServerModelConvert<TransactionServ
 
     id: number;
     note: string;
-    timeStamp: Date;
+    timeStampDate: Date;
+    includeTimeStampTime: boolean = false;
+    timeStampTime: Date;
     userId: number;
     personId: number;
     currencyAccountId: number;

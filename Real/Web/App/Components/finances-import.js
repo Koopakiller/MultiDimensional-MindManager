@@ -97,7 +97,7 @@ var FinancesImportComponent = (function () {
                 for (var _i = 0, _a = result.data; _i < _a.length; _i++) {
                     var row = _a[_i];
                     var tvm = new FinancesViewModels_js_1.TransactionViewModel();
-                    tvm.timeStamp = _this.parseGermanTimeStamp(row["Wertstellung"]);
+                    tvm.timeStampDate = _this.parseGermanTimeStamp(row["Wertstellung"]);
                     tvm.note = row["Buchungstext"];
                     tvm.value = _this.parseGermanNumber(row["Betrag"]);
                     //tvm.personId = this.getPersonIdFromName(row[...]);
@@ -121,7 +121,7 @@ var FinancesImportComponent = (function () {
                 for (var _i = 0, _a = result.data; _i < _a.length; _i++) {
                     var row = _a[_i];
                     var tvm = new FinancesViewModels_js_1.TransactionViewModel();
-                    tvm.timeStamp = _this.parseGermanTimeStamp(row["Buchungstag"]);
+                    tvm.timeStampDate = _this.parseGermanTimeStamp(row["Buchungstag"]);
                     tvm.note = row["Unternehmen"];
                     tvm.value = _this.parseGermanNumber(row["Betrag"]);
                     tvm.personId = _this.getPersonIdFromName(row["Unternehmen"]);
@@ -151,7 +151,7 @@ var FinancesImportComponent = (function () {
                         continue;
                     }
                     var tvm = new FinancesViewModels_js_1.TransactionViewModel();
-                    tvm.timeStamp = _this.parseGermanTimeStamp(row["Datum"], row[" Zeit"], row[" Zeitzone"]);
+                    tvm.timeStampDate = tvm.timeStampTime = _this.parseGermanTimeStamp(row["Datum"], row[" Zeit"], row[" Zeitzone"]);
                     tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"] : "");
                     tvm.value = _this.parseGermanNumber(row[" Netto"]);
                     tvm.personId = _this.getPersonIdFromName(row[" Name"]);

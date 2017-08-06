@@ -20,6 +20,7 @@ var FinancesNewTransactionComponent = (function () {
         this.financesService = financesService;
         this.locationService = locationService;
         this.router = router;
+        this.includeTimeStampTime = false;
         this.showAddPersonForm = false;
     }
     FinancesNewTransactionComponent.prototype.ngOnInit = function () {
@@ -27,7 +28,9 @@ var FinancesNewTransactionComponent = (function () {
         this.financesService.persons.subscribe(function (x) { _this.persons = x; _this.person = x.length > 0 ? x[0].id : null; });
         this.financesService.users.subscribe(function (x) { _this.users = x; _this.user = x.length > 0 ? x[0].id : null; });
         this.locationService.location.subscribe(function (x) { return _this.coordinates = x ? x.coords : null; });
-        this.timeStamp = new Date();
+        this.timeStampDate = new Date();
+        this.timeStampDate.setHours(0, 0, 0, 0);
+        this.timeStampTime = new Date('12:34 AM');
         this.value = 0;
     };
     Object.defineProperty(FinancesNewTransactionComponent.prototype, "user", {
@@ -42,16 +45,15 @@ var FinancesNewTransactionComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    FinancesNewTransactionComponent.prototype.setTimeToNow = function () {
-        this.timeStamp = new Date();
-    };
     FinancesNewTransactionComponent.prototype.submit = function () {
         var _this = this;
         var tvm = new FinancesViewModels_js_1.TransactionViewModel();
         tvm.currencyAccountId = this.currencyAccount;
         tvm.personId = this.person;
         tvm.userId = this.user;
-        tvm.timeStamp = this.timeStamp;
+        tvm.timeStampDate = this.timeStampDate;
+        tvm.timeStampTime = this.timeStampTime;
+        tvm.includeTimeStampTime = this.includeTimeStampTime;
         tvm.note = this.name;
         tvm.value = this.value;
         if (this.coordinates) {
