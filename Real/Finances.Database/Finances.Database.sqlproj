@@ -87,6 +87,7 @@
     <Build Include="dbo\Stored Procedures\GetCurrencySymbolsForCurrency.sql" />
     <Build Include="dbo\Stored Procedures\GetTransactions.sql" />
     <Build Include="dbo\Stored Procedures\GetTransactionOverviewForUserAtTimeStamp.sql" />
+    <Build Include="dbo\Stored Procedures\AddPerson.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="publish.localdbv13.publish.xml" />
