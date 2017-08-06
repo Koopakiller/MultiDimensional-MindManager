@@ -15,9 +15,11 @@ BEGIN
 		 , t.[PersonId]
 	FROM Transactions t
 	WHERE t.CurrencyAccountId = @currencyAccountId
-	ORDER BY CASE WHEN UPPER(@timeStampOrder) = 'ASC' THEN t.[TimeStampDate] END ASC, t.[TimeStampTime] ASC,
-			 CASE WHEN UPPER(@timeStampOrder) = 'DESC' THEN t.[TimeStampDate] END DESC, t.[TimeStampTime] DESC,
-			 t.[Note] ASC
+	ORDER BY CASE WHEN UPPER(@timeStampOrder) = 'ASC'  THEN t.[TimeStampDate] END ASC,
+		     CASE WHEN UPPER(@timeStampOrder) = 'ASC'  THEN t.[TimeStampTime] END ASC,
+			 CASE WHEN UPPER(@timeStampOrder) = 'DESC' THEN t.[TimeStampDate] END DESC,
+			 CASE WHEN UPPER(@timeStampOrder) = 'DESC' THEN t.[TimeStampTime] END DESC,
+			 t.[Id]
 	OFFSET @skipCount ROWS 
 	FETCH NEXT @takeCount ROWS ONLY;
 END
