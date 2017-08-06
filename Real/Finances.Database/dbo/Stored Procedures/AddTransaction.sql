@@ -3,7 +3,7 @@
 	@personId [int],
 	@value [decimal](18, 2),
 	@timeStampDate DATE,
-	@timeStampTime TIME,
+	@timeStampTime TIME NULL,
 	@currencyAccountId [int],
 	@note NVARCHAR(MAX)
 )
