@@ -5,7 +5,8 @@
 	@timeStampOrder NVARCHAR(4) = 'DESC'
 AS
 BEGIN
-	SELECT t.[TimeStamp]
+	SELECT t.[TimeStampDate]
+		 , t.[TimeStampTime]
 		 , t.[Id]
 		 , t.[Note]
 		 , t.[RawDataId]
@@ -13,10 +14,12 @@ BEGIN
 		 , t.[CurrencyAccountId]
 		 , t.[PersonId]
 	FROM Transactions t
-	ORDER BY CASE WHEN UPPER(@timeStampOrder) = 'ASC' THEN t.[TimeStamp] END ASC,
-			 CASE WHEN UPPER(@timeStampOrder) = 'DESC' THEN t.[TimeStamp] END DESC,
-			 t.[Note] ASC
-	OFFSET @skipCount ROWS
+	WHERE t.CurrencyAccountId = @currencyAccountId
+	ORDER BY CASE WHEN UPPER(@timeStampOrder) = 'ASC'  THEN t.[TimeStampDate] END ASC,
+		     CASE WHEN UPPER(@timeStampOrder) = 'ASC'  THEN t.[TimeStampTime] END ASC,
+			 CASE WHEN UPPER(@timeStampOrder) = 'DESC' THEN t.[TimeStampDate] END DESC,
+			 CASE WHEN UPPER(@timeStampOrder) = 'DESC' THEN t.[TimeStampTime] END DESC,
+			 t.[Id]
+	OFFSET @skipCount ROWS 
 	FETCH NEXT @takeCount ROWS ONLY;
-
 END
