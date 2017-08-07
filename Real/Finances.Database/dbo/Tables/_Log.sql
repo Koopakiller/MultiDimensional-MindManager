@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[_Log](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Timestamp] [datetime] NULL,
+	[TimeStamp] [datetime] NULL,
 	[Message] [nvarchar](max) NULL,
  CONSTRAINT [PK__Log] PRIMARY KEY CLUSTERED 
 (

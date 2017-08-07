@@ -10,7 +10,7 @@
 AS
 BEGIN
 	INSERT INTO Transactions (PersonId, [Value], [TimeStampDate], [TimeStampTime], CurrencyAccountId, Note)
-	VALUES (@personId, @value, @timestampDate, @timeStampTime, @currencyAccountId, @note)
+	VALUES (@personId, @value, @timeStampDate, @timeStampTime, @currencyAccountId, @note)
 
 	SELECT * 
 	FROM Transactions t

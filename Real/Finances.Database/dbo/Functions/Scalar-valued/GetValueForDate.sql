@@ -10,9 +10,9 @@ BEGIN
 	DECLARE @fixValue DECIMAL(18,2);
 
 	SELECT TOP 1 @fixValue = fv.[Value]
-	           , @fixTimeStamp = fv.[TimestampDate] 
+	           , @fixTimeStamp = fv.[TimeStampDate] 
 	FROM FixedValues fv 
-	WHERE fv.[TimestampDate] <= @timeStampDate 
+	WHERE fv.[TimeStampDate] <= @timeStampDate 
 	  AND fv.CurrencyAccountId = @currencyAccountId
 	ORDER BY fv.[TimeStampDate] DESC, fv.[TimeStampTime] DESC
 	
@@ -20,8 +20,8 @@ BEGIN
 
 	RETURN @fixValue + ISNULL((SELECT SUM(t.[Value])
 							  FROM Transactions t 
-							  WHERE t.[TimestampDate] <= @timeStampDate 
-							    AND (t.[TimestampDate] > @fixTimeStamp OR @fixTimeStamp IS NULL)
+							  WHERE t.[TimeStampDate] <= @timeStampDate 
+							    AND (t.[TimeStampDate] > @fixTimeStamp OR @fixTimeStamp IS NULL)
 								AND t.CurrencyAccountId = @currencyAccountId
 							  ), 0)
 END

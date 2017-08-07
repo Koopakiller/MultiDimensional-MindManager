@@ -25,11 +25,11 @@ BEGIN
 	),
 	TS_CTE AS
 	(
-		SELECT t.[TimestampDate], t.CurrencyAccountId
+		SELECT t.[TimeStampDate], t.CurrencyAccountId
 		FROM Transactions t	
 		INNER JOIN CA_CTE cte ON cte.Id = t.CurrencyAccountId   
 		UNION	  
-		SElECT fv.[TimestampDate], fv.CurrencyAccountId
+		SElECT fv.[TimeStampDate], fv.CurrencyAccountId
 		FROM FixedValues fv
 		INNER JOIN CA_CTE cte ON cte.Id = fv.CurrencyAccountId
 	),
