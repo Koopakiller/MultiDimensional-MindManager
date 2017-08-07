@@ -5,4 +5,8 @@ AS
 BEGIN
 	INSERT INTO Persons ([Name], UserId)
 	VALUES (@name, @userId)
+
+	SELECT p.*
+	FROM Persons p
+	WHERE p.Id = SCOPE_IDENTITY()
 END
