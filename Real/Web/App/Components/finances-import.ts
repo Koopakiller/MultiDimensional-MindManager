@@ -14,8 +14,8 @@ import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicato
 })
 export class FinancesImportComponent implements OnInit {
     constructor(
-        private financesService: FinancesService,
-        private router: Router,
+        private _financesService: FinancesService,
+        private _router: Router,
         private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
     ) { }
 
@@ -28,12 +28,12 @@ export class FinancesImportComponent implements OnInit {
             { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: "" },
         ];
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this.financesService.persons.subscribe(x => {
+        this._financesService.persons.subscribe(x => {
             this.persons = x;
             this._globalLoadingIndicatorService.removeLoadingProcess();
         });
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this.financesService.users.subscribe(x => {
+        this._financesService.users.subscribe(x => {
             this.users = x;
             this._globalLoadingIndicatorService.removeLoadingProcess();
         });
@@ -52,7 +52,7 @@ export class FinancesImportComponent implements OnInit {
     set selectedUser(value: number) {
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._selectedUser = value;
-        this.financesService.getCurrencyAccounts(value).subscribe(x => {
+        this._financesService.getCurrencyAccounts(value).subscribe(x => {
             this.currencyAccounts = x;
             this._globalLoadingIndicatorService.removeLoadingProcess();
         });

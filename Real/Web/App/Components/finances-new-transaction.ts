@@ -13,27 +13,27 @@ import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicato
 })
 export class FinancesNewTransactionComponent implements OnInit {
     constructor(
-        private financesService: FinancesService,
-        private locationService: LocationService,
-        private router: Router,
+        private _financesService: FinancesService,
+        private _locationService: LocationService,
+        private _router: Router,
         private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
     ) { }
 
     ngOnInit(): void {
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this.financesService.persons.subscribe(x => { 
+        this._financesService.persons.subscribe(x => { 
             this.persons = x; 
             this.person = x.length > 0 ? x[0].id : null; 
             this._globalLoadingIndicatorService.removeLoadingProcess();
         });
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this.financesService.users.subscribe(x => { 
+        this._financesService.users.subscribe(x => { 
             this.users = x; 
             this.user = x.length > 0 ? x[0].id : null;
             this._globalLoadingIndicatorService.removeLoadingProcess();
         });
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this.locationService.location.subscribe(x => {
+        this._locationService.location.subscribe(x => {
             this.coordinates = x ? x.coords : null;
             this._globalLoadingIndicatorService.removeLoadingProcess();
         });
@@ -65,7 +65,7 @@ export class FinancesNewTransactionComponent implements OnInit {
     set user(value: number) {
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._user = value;
-        this.financesService.getCurrencyAccounts(value).subscribe(x => {
+        this._financesService.getCurrencyAccounts(value).subscribe(x => {
              this.currencyAccounts = x; 
              this.currencyAccount = x.length > 0 ? x[0].id : null; 
              this._globalLoadingIndicatorService.removeLoadingProcess();
@@ -88,8 +88,8 @@ export class FinancesNewTransactionComponent implements OnInit {
                 new KeyValuePair<string, string>("Coordinates", JSON.stringify(this.coordinates))
             ];
         }
-        this.financesService.addTransaction([tvm]).subscribe(() => {
-            this.router.navigateByUrl("/Finances");
+        this._financesService.addTransaction([tvm]).subscribe(() => {
+            this._router.navigateByUrl("/Finances");
             this._globalLoadingIndicatorService.removeLoadingProcess();
         }, error => {
             alert(error);
@@ -99,7 +99,7 @@ export class FinancesNewTransactionComponent implements OnInit {
     }
 
     public cancel(): void {
-        this.router.navigateByUrl("/Finances");
+        this._router.navigateByUrl("/Finances");
     }
 
     showAddPersonForm: boolean = false;
@@ -107,10 +107,10 @@ export class FinancesNewTransactionComponent implements OnInit {
 
     public submitNewPerson(): void {
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this.financesService.addPerson(this.addNewPersonName, this.user);
+        this._financesService.addPerson(this.addNewPersonName, this.user);
         this.addNewPersonName = "";
         this.showAddPersonForm = false;
-        this.financesService.persons.subscribe(x => { 
+        this._financesService.persons.subscribe(x => { 
             this.persons = x; 
             this.person = x.length > 0 ? x[0].id : null;
             this._globalLoadingIndicatorService.removeLoadingProcess();

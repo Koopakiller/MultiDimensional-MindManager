@@ -15,16 +15,16 @@ var FinancesViewModels_js_1 = require("../ViewModels/FinancesViewModels.js");
 var router_1 = require("@angular/router");
 var GlobalLoadingIndicatorService_js_1 = require("../Services/GlobalLoadingIndicatorService.js");
 var FinancesNewPersonComponent = (function () {
-    function FinancesNewPersonComponent(financesService, router, _globalLoadingIndicatorService) {
-        this.financesService = financesService;
-        this.router = router;
+    function FinancesNewPersonComponent(_financesService, _router, _globalLoadingIndicatorService) {
+        this._financesService = _financesService;
+        this._router = _router;
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
         this.close = new core_1.EventEmitter();
     }
     FinancesNewPersonComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this.financesService.users.subscribe(function (x) {
+        this._financesService.users.subscribe(function (x) {
             _this.users = x;
             _this.user = x.length > 0 ? x[0].id : null;
             _this._globalLoadingIndicatorService.removeLoadingProcess();
@@ -32,7 +32,7 @@ var FinancesNewPersonComponent = (function () {
     };
     FinancesNewPersonComponent.prototype.submit = function () {
         //TODO: Loading Indicator
-        this.financesService.addPerson(this.personName, this.user);
+        this._financesService.addPerson(this.personName, this.user);
         var pvm = new FinancesViewModels_js_1.PersonViewModel(-1, this.personName);
         this.close.emit(pvm);
     };

@@ -17,10 +17,10 @@ var router_1 = require("@angular/router");
 var KeyValuePair_js_1 = require("../Common/KeyValuePair.js");
 var GlobalLoadingIndicatorService_js_1 = require("../Services/GlobalLoadingIndicatorService.js");
 var FinancesNewTransactionComponent = (function () {
-    function FinancesNewTransactionComponent(financesService, locationService, router, _globalLoadingIndicatorService) {
-        this.financesService = financesService;
-        this.locationService = locationService;
-        this.router = router;
+    function FinancesNewTransactionComponent(_financesService, _locationService, _router, _globalLoadingIndicatorService) {
+        this._financesService = _financesService;
+        this._locationService = _locationService;
+        this._router = _router;
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
         this.includeTimeStampTime = false;
         this.showAddPersonForm = false;
@@ -28,19 +28,19 @@ var FinancesNewTransactionComponent = (function () {
     FinancesNewTransactionComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this.financesService.persons.subscribe(function (x) {
+        this._financesService.persons.subscribe(function (x) {
             _this.persons = x;
             _this.person = x.length > 0 ? x[0].id : null;
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this.financesService.users.subscribe(function (x) {
+        this._financesService.users.subscribe(function (x) {
             _this.users = x;
             _this.user = x.length > 0 ? x[0].id : null;
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this.locationService.location.subscribe(function (x) {
+        this._locationService.location.subscribe(function (x) {
             _this.coordinates = x ? x.coords : null;
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
@@ -57,7 +57,7 @@ var FinancesNewTransactionComponent = (function () {
             var _this = this;
             this._globalLoadingIndicatorService.addLoadingProcess();
             this._user = value;
-            this.financesService.getCurrencyAccounts(value).subscribe(function (x) {
+            this._financesService.getCurrencyAccounts(value).subscribe(function (x) {
                 _this.currencyAccounts = x;
                 _this.currencyAccount = x.length > 0 ? x[0].id : null;
                 _this._globalLoadingIndicatorService.removeLoadingProcess();
@@ -83,8 +83,8 @@ var FinancesNewTransactionComponent = (function () {
                 new KeyValuePair_js_1.KeyValuePair("Coordinates", JSON.stringify(this.coordinates))
             ];
         }
-        this.financesService.addTransaction([tvm]).subscribe(function () {
-            _this.router.navigateByUrl("/Finances");
+        this._financesService.addTransaction([tvm]).subscribe(function () {
+            _this._router.navigateByUrl("/Finances");
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         }, function (error) {
             alert(error);
@@ -92,15 +92,15 @@ var FinancesNewTransactionComponent = (function () {
         });
     };
     FinancesNewTransactionComponent.prototype.cancel = function () {
-        this.router.navigateByUrl("/Finances");
+        this._router.navigateByUrl("/Finances");
     };
     FinancesNewTransactionComponent.prototype.submitNewPerson = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this.financesService.addPerson(this.addNewPersonName, this.user);
+        this._financesService.addPerson(this.addNewPersonName, this.user);
         this.addNewPersonName = "";
         this.showAddPersonForm = false;
-        this.financesService.persons.subscribe(function (x) {
+        this._financesService.persons.subscribe(function (x) {
             _this.persons = x;
             _this.person = x.length > 0 ? x[0].id : null;
             _this._globalLoadingIndicatorService.removeLoadingProcess();

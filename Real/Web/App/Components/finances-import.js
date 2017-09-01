@@ -17,9 +17,9 @@ var Papa = require("papaparse");
 var KeyValuePair_js_1 = require("../Common/KeyValuePair.js");
 var GlobalLoadingIndicatorService_js_1 = require("../Services/GlobalLoadingIndicatorService.js");
 var FinancesImportComponent = (function () {
-    function FinancesImportComponent(financesService, router, _globalLoadingIndicatorService) {
-        this.financesService = financesService;
-        this.router = router;
+    function FinancesImportComponent(_financesService, _router, _globalLoadingIndicatorService) {
+        this._financesService = _financesService;
+        this._router = _router;
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
         this.transactions = [];
         this.lastIndexShownDetails = -1;
@@ -42,12 +42,12 @@ var FinancesImportComponent = (function () {
             { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: "" },
         ];
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this.financesService.persons.subscribe(function (x) {
+        this._financesService.persons.subscribe(function (x) {
             _this.persons = x;
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this.financesService.users.subscribe(function (x) {
+        this._financesService.users.subscribe(function (x) {
             _this.users = x;
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
@@ -60,7 +60,7 @@ var FinancesImportComponent = (function () {
             var _this = this;
             this._globalLoadingIndicatorService.addLoadingProcess();
             this._selectedUser = value;
-            this.financesService.getCurrencyAccounts(value).subscribe(function (x) {
+            this._financesService.getCurrencyAccounts(value).subscribe(function (x) {
                 _this.currencyAccounts = x;
                 _this._globalLoadingIndicatorService.removeLoadingProcess();
             });

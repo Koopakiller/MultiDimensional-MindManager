@@ -10,9 +10,7 @@ var core_1 = require("@angular/core");
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
 var GlobalLoadingIndicatorService = (function () {
     function GlobalLoadingIndicatorService() {
-        // Observable navItem source
         this._isLoadingSource = new BehaviorSubject_1.BehaviorSubject(false);
-        // Observable navItem stream
         this.isLoadingObservable = this._isLoadingSource.asObservable();
         this._loadingProcessCount = 0;
     }

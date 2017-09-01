@@ -12,14 +12,14 @@ import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicato
 })
 export class FinancesNewPersonComponent implements OnInit {
     constructor(
-        private financesService: FinancesService,
-        private router: Router,
+        private _financesService: FinancesService,
+        private _router: Router,
         private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
     ) { }
 
     ngOnInit(): void {
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this.financesService.users.subscribe(x => { 
+        this._financesService.users.subscribe(x => { 
             this.users = x;
             this.user = x.length > 0 ? x[0].id : null; 
             this._globalLoadingIndicatorService.removeLoadingProcess();
@@ -37,7 +37,7 @@ export class FinancesNewPersonComponent implements OnInit {
 
     submit(): void{
         //TODO: Loading Indicator
-        this.financesService.addPerson(this.personName, this.user);
+        this._financesService.addPerson(this.personName, this.user);
         let pvm = new PersonViewModel(-1, this.personName);
         this.close.emit(pvm);
     }
