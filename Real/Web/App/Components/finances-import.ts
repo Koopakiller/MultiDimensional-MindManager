@@ -71,15 +71,19 @@ export class FinancesImportComponent implements OnInit {
     }
 
     import(index: number): void {
-        this.nextStep();
-        this[this.possibleFileTypes[index].method]();
+        this._globalLoadingIndicatorService.addLoadingProcess();
+        setTimeout(() => {
+            this.nextStep();
+            this[this.possibleFileTypes[index].method]();
+            this._globalLoadingIndicatorService.removeLoadingProcess();
+        }, 0)
     }
 
     getPersonIdFromName(name: string) {
         let sortedPersons = this.persons.slice();
-        sortedPersons.sort((a, b) => a.header.length - b.header.length 
-                                  || a.header.localeCompare(b.header));
-     
+        sortedPersons.sort((a, b) => a.header.length - b.header.length
+            || a.header.localeCompare(b.header));
+
         for (let person of sortedPersons) {
             if (person.header.toUpperCase() === name.toUpperCase()) {
                 return person.id;
@@ -95,8 +99,8 @@ export class FinancesImportComponent implements OnInit {
 
     getCurrencyAccountIdFromName(name: string, currency: string): number {
         let sortedCAs = this.currencyAccounts.slice();
-        sortedCAs.sort((a, b) => a.accountName.length - b.accountName.length 
-                              || a.accountName.localeCompare(b.accountName));
+        sortedCAs.sort((a, b) => a.accountName.length - b.accountName.length
+            || a.accountName.localeCompare(b.accountName));
 
         for (let ca of sortedCAs) {
             if (ca.accountName.toUpperCase() === name.toUpperCase()

@@ -76,8 +76,13 @@ var FinancesImportComponent = (function () {
         }
     };
     FinancesImportComponent.prototype.import = function (index) {
-        this.nextStep();
-        this[this.possibleFileTypes[index].method]();
+        var _this = this;
+        this._globalLoadingIndicatorService.addLoadingProcess();
+        setTimeout(function () {
+            _this.nextStep();
+            _this[_this.possibleFileTypes[index].method]();
+            _this._globalLoadingIndicatorService.removeLoadingProcess();
+        }, 0);
     };
     FinancesImportComponent.prototype.getPersonIdFromName = function (name) {
         var sortedPersons = this.persons.slice();
