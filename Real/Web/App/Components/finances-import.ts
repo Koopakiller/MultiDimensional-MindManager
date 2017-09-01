@@ -6,18 +6,18 @@ import { Router } from '@angular/router';
 import * as Papa from "papaparse";
 import { KeyValuePair } from "../Common/KeyValuePair.js";
 import { PageComponentBase } from "../Common/PageComponentBase.js";
+import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
 
 @Component({
     selector: "finances-import",
     templateUrl: "/Templates/FinancesImport"
 })
-export class FinancesImportComponent extends PageComponentBase implements OnInit {
+export class FinancesImportComponent implements OnInit {
     constructor(
         private financesService: FinancesService,
-        private router: Router
-    ) {
-        super();
-    }
+        private router: Router,
+        private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
+    ) { }
 
     ngOnInit(): void {
         this.initCurrentStep();
@@ -27,15 +27,15 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
             { extension: "csv", provider: "PayPal", description: "Paypal (German) \"Guthaben-relevante Zahlungen (CSV, Komma getrennt)\" Export", mode: "not-implemented", method: "importPayPalAccountStatement" },
             { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: "" },
         ];
-        this.addLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
         this.financesService.persons.subscribe(x => {
             this.persons = x;
-            this.removeLoadingProcess();
+            this._globalLoadingIndicatorService.removeLoadingProcess();
         });
-        this.addLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
         this.financesService.users.subscribe(x => {
             this.users = x;
-            this.removeLoadingProcess();
+            this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     }
 
@@ -50,11 +50,11 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
         return this._selectedUser;
     }
     set selectedUser(value: number) {
-        this.addLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
         this._selectedUser = value;
         this.financesService.getCurrencyAccounts(value).subscribe(x => {
             this.currencyAccounts = x;
-            this.removeLoadingProcess();
+            this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     }
 

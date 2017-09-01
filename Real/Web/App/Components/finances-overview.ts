@@ -4,21 +4,21 @@ import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionVi
 import { Router } from '@angular/router';
 import { KeyValuePair } from "../Common/KeyValuePair.js";
 import { PageComponentBase } from "../Common/PageComponentBase.js";
+import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
 
 @Component({
     selector: "finances-overview",
     templateUrl: "/Templates/FinancesOverview"
 })
-export class FinancesOverviewComponent extends PageComponentBase implements OnInit {
+export class FinancesOverviewComponent implements OnInit {
     constructor(
-        private financesService: FinancesService,
-        private router: Router
-    ) { 
-        super();
-    }
+        private _financesService: FinancesService,
+        private _router: Router,
+        private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
+    ) { }
 
     ngOnInit(): void {
-        this.financesService.users.subscribe(x => { this.users = x; this.user = x.length > 0 ? x[0].id : null; });
+        this._financesService.users.subscribe(x => { this.users = x; this.user = x.length > 0 ? x[0].id : null; });
     }
 
     currencyAccounts: CurrencyAccountViewModel[];
@@ -33,23 +33,23 @@ export class FinancesOverviewComponent extends PageComponentBase implements OnIn
     }
 
     set user(value: number) {
-        this.addLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
         this._user = value;
-        this.financesService.getCurrencyAccounts(value).subscribe(x => {
+        this._financesService.getCurrencyAccounts(value).subscribe(x => {
             this.currencyAccounts = x;
             this.currencyAccount = x.length > 0 ? x[0].id : null;
-            this.removeLoadingProcess();
+            this._globalLoadingIndicatorService.removeLoadingProcess();
         });
-        this.financesService.getTransactionOverviewForUserAtTimeStamp(value, new Date()).subscribe(x => { this.transactionOverview = x; });
+        this._financesService.getTransactionOverviewForUserAtTimeStamp(value, new Date()).subscribe(x => { this.transactionOverview = x; });
     }
 
     transactionsInTable: TransactionViewModel[];
 
     public showTable(currencyAccountId: number) {
-        this.addLoadingProcess();
-        this.financesService.getTransactions(currencyAccountId, 0, 25).subscribe(x => {
+        this._globalLoadingIndicatorService.addLoadingProcess();
+        this._financesService.getTransactions(currencyAccountId, 0, 25).subscribe(x => {
             this.transactionsInTable = x;
-            this.removeLoadingProcess();
+            this._globalLoadingIndicatorService.removeLoadingProcess();
         })
     }
 

@@ -1,14 +1,4 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -25,24 +15,22 @@ var FinancesViewModels_js_1 = require("../ViewModels/FinancesViewModels.js");
 var router_1 = require("@angular/router");
 var Papa = require("papaparse");
 var KeyValuePair_js_1 = require("../Common/KeyValuePair.js");
-var PageComponentBase_js_1 = require("../Common/PageComponentBase.js");
-var FinancesImportComponent = (function (_super) {
-    __extends(FinancesImportComponent, _super);
-    function FinancesImportComponent(financesService, router) {
-        var _this = _super.call(this) || this;
-        _this.financesService = financesService;
-        _this.router = router;
-        _this.transactions = [];
-        _this.lastIndexShownDetails = -1;
-        _this.steps = [
+var GlobalLoadingIndicatorService_js_1 = require("../Services/GlobalLoadingIndicatorService.js");
+var FinancesImportComponent = (function () {
+    function FinancesImportComponent(financesService, router, _globalLoadingIndicatorService) {
+        this.financesService = financesService;
+        this.router = router;
+        this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
+        this.transactions = [];
+        this.lastIndexShownDetails = -1;
+        this.steps = [
             "userSelect",
             "fileSelect",
             "fileTypeSelect",
             "showAndFitData"
         ];
-        _this.showAddPersonPopup = false;
-        _this.suggestedNewPersonName = "";
-        return _this;
+        this.showAddPersonPopup = false;
+        this.suggestedNewPersonName = "";
     }
     FinancesImportComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -53,15 +41,15 @@ var FinancesImportComponent = (function (_super) {
             { extension: "csv", provider: "PayPal", description: "Paypal (German) \"Guthaben-relevante Zahlungen (CSV, Komma getrennt)\" Export", mode: "not-implemented", method: "importPayPalAccountStatement" },
             { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: "" },
         ];
-        this.addLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
         this.financesService.persons.subscribe(function (x) {
             _this.persons = x;
-            _this.removeLoadingProcess();
+            _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
-        this.addLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
         this.financesService.users.subscribe(function (x) {
             _this.users = x;
-            _this.removeLoadingProcess();
+            _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     };
     Object.defineProperty(FinancesImportComponent.prototype, "selectedUser", {
@@ -70,11 +58,11 @@ var FinancesImportComponent = (function (_super) {
         },
         set: function (value) {
             var _this = this;
-            this.addLoadingProcess();
+            this._globalLoadingIndicatorService.addLoadingProcess();
             this._selectedUser = value;
             this.financesService.getCurrencyAccounts(value).subscribe(function (x) {
                 _this.currencyAccounts = x;
-                _this.removeLoadingProcess();
+                _this._globalLoadingIndicatorService.removeLoadingProcess();
             });
         },
         enumerable: true,
@@ -277,13 +265,14 @@ var FinancesImportComponent = (function (_super) {
         }
     };
     return FinancesImportComponent;
-}(PageComponentBase_js_1.PageComponentBase));
+}());
 FinancesImportComponent = __decorate([
     core_1.Component({
         selector: "finances-import",
         templateUrl: "/Templates/FinancesImport"
     }),
     __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
-        router_1.Router])
+        router_1.Router,
+        GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService])
 ], FinancesImportComponent);
 exports.FinancesImportComponent = FinancesImportComponent;

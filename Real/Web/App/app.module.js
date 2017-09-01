@@ -23,6 +23,7 @@ var finances_import_js_1 = require("./Components/finances-import.js");
 var finances_new_person_js_1 = require("./Components/finances-new-person.js");
 var finances_overview_js_1 = require("./Components/finances-overview.js");
 var loading_indicator_js_1 = require("./Components/loading-indicator.js");
+var GlobalLoadingIndicatorService_js_1 = require("./Services/GlobalLoadingIndicatorService.js");
 var appRoutes = [
     { path: 'Home', component: home_js_1.HomeComponent },
     { path: 'Finances', component: finances_js_1.FinancesComponent },
@@ -65,7 +66,8 @@ AppModule = __decorate([
         ],
         providers: [
             FinancesService_js_1.FinancesService,
-            LocationService_js_1.LocationService
+            LocationService_js_1.LocationService,
+            GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService
         ]
     })
 ], AppModule);

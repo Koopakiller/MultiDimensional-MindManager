@@ -5,37 +5,37 @@ import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionVi
 import { Router } from '@angular/router';
 import { KeyValuePair } from "../Common/KeyValuePair.js";
 import { PageComponentBase } from "../Common/PageComponentBase.js";
+import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
 
 @Component({
     selector: "finances-new-transaction",
     templateUrl: "/Templates/FinancesNewTransaction"
 })
-export class FinancesNewTransactionComponent extends PageComponentBase implements OnInit {
+export class FinancesNewTransactionComponent implements OnInit {
     constructor(
         private financesService: FinancesService,
         private locationService: LocationService,
-        private router: Router
-    ) {
-        super();
-     }
+        private router: Router,
+        private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
+    ) { }
 
     ngOnInit(): void {
-        this.addLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
         this.financesService.persons.subscribe(x => { 
             this.persons = x; 
             this.person = x.length > 0 ? x[0].id : null; 
-            this.removeLoadingProcess();
+            this._globalLoadingIndicatorService.removeLoadingProcess();
         });
-        this.addLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
         this.financesService.users.subscribe(x => { 
             this.users = x; 
             this.user = x.length > 0 ? x[0].id : null;
-            this.removeLoadingProcess();
+            this._globalLoadingIndicatorService.removeLoadingProcess();
         });
-        this.addLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
         this.locationService.location.subscribe(x => {
             this.coordinates = x ? x.coords : null;
-            this.removeLoadingProcess();
+            this._globalLoadingIndicatorService.removeLoadingProcess();
         });
         this.timeStampDate = new Date();
         this.timeStampDate.setHours(0, 0, 0, 0);
@@ -63,17 +63,17 @@ export class FinancesNewTransactionComponent extends PageComponentBase implement
     }
 
     set user(value: number) {
-        this.addLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
         this._user = value;
         this.financesService.getCurrencyAccounts(value).subscribe(x => {
              this.currencyAccounts = x; 
              this.currencyAccount = x.length > 0 ? x[0].id : null; 
-             this.removeLoadingProcess();
+             this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     }
 
     public submit(): void {
-        this.addLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
         let tvm = new TransactionViewModel();
         tvm.currencyAccountId = this.currencyAccount;
         tvm.personId = this.person;
@@ -90,10 +90,10 @@ export class FinancesNewTransactionComponent extends PageComponentBase implement
         }
         this.financesService.addTransaction([tvm]).subscribe(() => {
             this.router.navigateByUrl("/Finances");
-            this.removeLoadingProcess();
+            this._globalLoadingIndicatorService.removeLoadingProcess();
         }, error => {
             alert(error);
-            this.removeLoadingProcess();
+            this._globalLoadingIndicatorService.removeLoadingProcess();
         });
 
     }
@@ -106,14 +106,14 @@ export class FinancesNewTransactionComponent extends PageComponentBase implement
     addNewPersonName: string;
 
     public submitNewPerson(): void {
-        this.addLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
         this.financesService.addPerson(this.addNewPersonName, this.user);
         this.addNewPersonName = "";
         this.showAddPersonForm = false;
         this.financesService.persons.subscribe(x => { 
             this.persons = x; 
             this.person = x.length > 0 ? x[0].id : null;
-            this.removeLoadingProcess();
+            this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     }
 }

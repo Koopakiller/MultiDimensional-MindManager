@@ -4,25 +4,25 @@ import { LocationService } from "../Services/LocationService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel } from "../ViewModels/FinancesViewModels.js";
 import {Router} from '@angular/router';
 import { PageComponentBase } from "../Common/PageComponentBase.js";
+import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
 
 @Component({
     selector: "finances-new-person",
     templateUrl: "/Templates/FinancesNewPerson"
 })
-export class FinancesNewPersonComponent extends PageComponentBase implements OnInit {
+export class FinancesNewPersonComponent implements OnInit {
     constructor(
         private financesService: FinancesService,
-        private router: Router
-    ) { 
-        super();
-    }
+        private router: Router,
+        private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
+    ) { }
 
     ngOnInit(): void {
-        this.addLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
         this.financesService.users.subscribe(x => { 
             this.users = x;
             this.user = x.length > 0 ? x[0].id : null; 
-            this.removeLoadingProcess();
+            this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     }
 

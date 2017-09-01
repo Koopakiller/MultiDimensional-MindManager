@@ -1,14 +1,4 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -23,23 +13,21 @@ var core_1 = require("@angular/core");
 var FinancesService_js_1 = require("../Services/FinancesService.js");
 var FinancesViewModels_js_1 = require("../ViewModels/FinancesViewModels.js");
 var router_1 = require("@angular/router");
-var PageComponentBase_js_1 = require("../Common/PageComponentBase.js");
-var FinancesNewPersonComponent = (function (_super) {
-    __extends(FinancesNewPersonComponent, _super);
-    function FinancesNewPersonComponent(financesService, router) {
-        var _this = _super.call(this) || this;
-        _this.financesService = financesService;
-        _this.router = router;
-        _this.close = new core_1.EventEmitter();
-        return _this;
+var GlobalLoadingIndicatorService_js_1 = require("../Services/GlobalLoadingIndicatorService.js");
+var FinancesNewPersonComponent = (function () {
+    function FinancesNewPersonComponent(financesService, router, _globalLoadingIndicatorService) {
+        this.financesService = financesService;
+        this.router = router;
+        this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
+        this.close = new core_1.EventEmitter();
     }
     FinancesNewPersonComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.addLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
         this.financesService.users.subscribe(function (x) {
             _this.users = x;
             _this.user = x.length > 0 ? x[0].id : null;
-            _this.removeLoadingProcess();
+            _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     };
     FinancesNewPersonComponent.prototype.submit = function () {
@@ -52,7 +40,7 @@ var FinancesNewPersonComponent = (function (_super) {
         this.close.emit();
     };
     return FinancesNewPersonComponent;
-}(PageComponentBase_js_1.PageComponentBase));
+}());
 __decorate([
     core_1.Input(),
     __metadata("design:type", String)
@@ -67,6 +55,7 @@ FinancesNewPersonComponent = __decorate([
         templateUrl: "/Templates/FinancesNewPerson"
     }),
     __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
-        router_1.Router])
+        router_1.Router,
+        GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService])
 ], FinancesNewPersonComponent);
 exports.FinancesNewPersonComponent = FinancesNewPersonComponent;
