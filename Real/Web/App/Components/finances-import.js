@@ -92,22 +92,42 @@ var FinancesImportComponent = (function (_super) {
         this[this.possibleFileTypes[index].method]();
     };
     FinancesImportComponent.prototype.getPersonIdFromName = function (name) {
-        for (var _i = 0, _a = this.persons; _i < _a.length; _i++) {
-            var person = _a[_i];
-            if (person.header == name) {
+        var sortedPersons = this.persons.slice();
+        sortedPersons.sort(function (a, b) { return a.header.length - b.header.length
+            || a.header.localeCompare(b.header); });
+        for (var _i = 0, sortedPersons_1 = sortedPersons; _i < sortedPersons_1.length; _i++) {
+            var person = sortedPersons_1[_i];
+            if (person.header.toUpperCase() === name.toUpperCase()) {
                 return person.id;
+            }
+        }
+        for (var _a = 0, sortedPersons_2 = sortedPersons; _a < sortedPersons_2.length; _a++) {
+            var person = sortedPersons_2[_a];
+            if (name.indexOf(person.header) >= 0) {
+                return person.id; // in case the person name is in another text like a description or similar
             }
         }
         return null;
     };
-    FinancesImportComponent.prototype.getCurrencyAccountId = function (name, currency) {
-        for (var _i = 0, _a = this.currencyAccounts; _i < _a.length; _i++) {
-            var ca = _a[_i];
-            if (ca.accountName.toUpperCase() == name.toUpperCase()
+    FinancesImportComponent.prototype.getCurrencyAccountIdFromName = function (name, currency) {
+        var sortedCAs = this.currencyAccounts.slice();
+        sortedCAs.sort(function (a, b) { return a.accountName.length - b.accountName.length
+            || a.accountName.localeCompare(b.accountName); });
+        for (var _i = 0, sortedCAs_1 = sortedCAs; _i < sortedCAs_1.length; _i++) {
+            var ca = sortedCAs_1[_i];
+            if (ca.accountName.toUpperCase() === name.toUpperCase()
                 && ca.currencySymbols.indexOf(currency) >= 0) {
                 return ca.id;
             }
         }
+        for (var _a = 0, sortedCAs_2 = sortedCAs; _a < sortedCAs_2.length; _a++) {
+            var ca = sortedCAs_2[_a];
+            if (ca.accountName.toUpperCase().indexOf(name.toUpperCase()) >= 0
+                && ca.currencySymbols.indexOf(currency) >= 0) {
+                return ca.id;
+            }
+        }
+        return null;
     };
     FinancesImportComponent.prototype.importCommerzbankGiroAccountStatement = function () {
         var _this = this;
@@ -126,7 +146,8 @@ var FinancesImportComponent = (function (_super) {
                     tvm.timeStampDate = _this.parseGermanTimeStamp(row["Wertstellung"]);
                     tvm.note = row["Buchungstext"];
                     tvm.value = _this.parseGermanNumber(row["Betrag"]);
-                    //tvm.personId = this.getPersonIdFromName(row[...]);
+                    tvm.personId = _this.getPersonIdFromName(row["Buchungstext"]);
+                    tvm.currencyAccountId = _this.getCurrencyAccountIdFromName("Konto", "EUR");
                     _this.addRawData(tvm, row, result.meta.fields);
                     _this.transactions.push(tvm);
                 }
@@ -152,6 +173,7 @@ var FinancesImportComponent = (function (_super) {
                     tvm.value = _this.parseGermanNumber(row["Betrag"]);
                     tvm.personId = _this.getPersonIdFromName(row["Unternehmen"]);
                     tvm.suggestedPersonName = row["Unternehmen"];
+                    tvm.currencyAccountId = _this.getCurrencyAccountIdFromName("Kreditkarte", "EUR");
                     _this.addRawData(tvm, row, result.meta.fields);
                     _this.transactions.push(tvm);
                 }
@@ -182,7 +204,7 @@ var FinancesImportComponent = (function (_super) {
                     tvm.value = _this.parseGermanNumber(row[" Netto"]);
                     tvm.personId = _this.getPersonIdFromName(row[" Name"]);
                     tvm.suggestedPersonName = row[" Name"];
-                    tvm.currencyAccountId = _this.getCurrencyAccountId("PayPal", row[" Währung"]);
+                    tvm.currencyAccountId = _this.getCurrencyAccountIdFromName("PayPal", row[" Währung"]);
                     _this.addRawData(tvm, row, result.meta.fields);
                     _this.transactions.push(tvm);
                 }

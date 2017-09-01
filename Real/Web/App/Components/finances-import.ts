@@ -15,7 +15,7 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
     constructor(
         private financesService: FinancesService,
         private router: Router
-    ) { 
+    ) {
         super();
     }
 
@@ -33,8 +33,8 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
             this.removeLoadingProcess();
         });
         this.addLoadingProcess();
-        this.financesService.users.subscribe(x => { 
-            this.users = x; 
+        this.financesService.users.subscribe(x => {
+            this.users = x;
             this.removeLoadingProcess();
         });
     }
@@ -46,14 +46,14 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
     possibleFileTypes: any[];
 
     _selectedUser: number;
-    get selectedUser(){
+    get selectedUser() {
         return this._selectedUser;
     }
-    set selectedUser(value: number){
+    set selectedUser(value: number) {
         this.addLoadingProcess();
-        this._selectedUser = value;  
-        this.financesService.getCurrencyAccounts(value).subscribe(x => { 
-            this.currencyAccounts = x; 
+        this._selectedUser = value;
+        this.financesService.getCurrencyAccounts(value).subscribe(x => {
+            this.currencyAccounts = x;
             this.removeLoadingProcess();
         });
     }
@@ -75,22 +75,42 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
         this[this.possibleFileTypes[index].method]();
     }
 
-    getPersonIdFromName(name: string){
-        for(let person of this.persons){
-            if(person.header == name){
+    getPersonIdFromName(name: string) {
+        let sortedPersons = this.persons.slice();
+        sortedPersons.sort((a, b) => a.header.length - b.header.length 
+                                  || a.header.localeCompare(b.header));
+     
+        for (let person of sortedPersons) {
+            if (person.header.toUpperCase() === name.toUpperCase()) {
                 return person.id;
+            }
+        }
+        for (let person of sortedPersons) {
+            if (name.indexOf(person.header) >= 0) {
+                return person.id; // in case the person name is in another text like a description or similar
             }
         }
         return null;
     }
 
-    getCurrencyAccountId(name: string, currency: string){
-        for(let ca of this.currencyAccounts){
-            if(ca.accountName.toUpperCase() == name.toUpperCase()
-            && ca.currencySymbols.indexOf(currency) >= 0){
+    getCurrencyAccountIdFromName(name: string, currency: string): number {
+        let sortedCAs = this.currencyAccounts.slice();
+        sortedCAs.sort((a, b) => a.accountName.length - b.accountName.length 
+                              || a.accountName.localeCompare(b.accountName));
+
+        for (let ca of sortedCAs) {
+            if (ca.accountName.toUpperCase() === name.toUpperCase()
+                && ca.currencySymbols.indexOf(currency) >= 0) {
                 return ca.id;
             }
         }
+        for (let ca of sortedCAs) {
+            if (ca.accountName.toUpperCase().indexOf(name.toUpperCase()) >= 0
+                && ca.currencySymbols.indexOf(currency) >= 0) {
+                return ca.id;
+            }
+        }
+        return null;
     }
 
     importCommerzbankGiroAccountStatement(): void {
@@ -108,15 +128,16 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
                     tvm.timeStampDate = this.parseGermanTimeStamp(row["Wertstellung"]);
                     tvm.note = row["Buchungstext"];
                     tvm.value = this.parseGermanNumber(row["Betrag"]);
-                    //tvm.personId = this.getPersonIdFromName(row[...]);
+                    tvm.personId = this.getPersonIdFromName(row["Buchungstext"]);
+                    tvm.currencyAccountId = this.getCurrencyAccountIdFromName("Konto", "EUR");
                     this.addRawData(tvm, row, result.meta.fields);
                     this.transactions.push(tvm);
                 }
             }
         });
-    } 
+    }
 
-    importCommerzbankCreditCardStatement(): void{
+    importCommerzbankCreditCardStatement(): void {
         let result = Papa.parse(this.selectedFile, {
             delimiter: ";",
             header: true,
@@ -133,6 +154,7 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
                     tvm.value = this.parseGermanNumber(row["Betrag"]);
                     tvm.personId = this.getPersonIdFromName(row["Unternehmen"]);
                     tvm.suggestedPersonName = row["Unternehmen"];
+                    tvm.currencyAccountId = this.getCurrencyAccountIdFromName("Kreditkarte", "EUR");
                     this.addRawData(tvm, row, result.meta.fields);
                     this.transactions.push(tvm);
                 }
@@ -140,7 +162,7 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
         });
     }
 
-    importPayPalAccountStatement(): void{
+    importPayPalAccountStatement(): void {
         let result = Papa.parse(this.selectedFile, {
             delimiter: ",",
             header: true,
@@ -153,16 +175,16 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
                 // Number format: xxx,xx
                 // Attention: PayPals CSV contains spaces before the header-names
                 for (let row of result.data) {
-                    if(!row[" Netto"] || row[" Netto"] == ""){
+                    if (!row[" Netto"] || row[" Netto"] == "") {
                         continue;
                     }
                     var tvm = new TransactionViewModel();
                     tvm.timeStampDate = tvm.timeStampTime = this.parseGermanTimeStamp(row["Datum"], row[" Zeit"], row[" Zeitzone"]);
-                    tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"]: "" );
+                    tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"] : "");
                     tvm.value = this.parseGermanNumber(row[" Netto"]);
-                    tvm.personId = this.getPersonIdFromName(row[" Name"]);  
-                    tvm.suggestedPersonName = row[" Name"];          
-                    tvm.currencyAccountId = this.getCurrencyAccountId("PayPal", row[" Währung"]);        
+                    tvm.personId = this.getPersonIdFromName(row[" Name"]);
+                    tvm.suggestedPersonName = row[" Name"];
+                    tvm.currencyAccountId = this.getCurrencyAccountIdFromName("PayPal", row[" Währung"]);
                     this.addRawData(tvm, row, result.meta.fields);
                     this.transactions.push(tvm);
                 }
@@ -170,9 +192,9 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
         });
     }
 
-    addRawData(tvm: TransactionViewModel, row: any, keys: string[]){
-        for(let key of keys){
-            if(key && row[key] && row[key] != ""){
+    addRawData(tvm: TransactionViewModel, row: any, keys: string[]) {
+        for (let key of keys) {
+            if (key && row[key] && row[key] != "") {
                 tvm.rawData.push(new KeyValuePair<string, string>(key, row[key]));
             }
         }
@@ -200,14 +222,14 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
     // Show Details (additional/raw data) of a Transaction ###########################################
     shownRawData: KeyValuePair<string, string>[];
     lastIndexShownDetails: number = -1;
-    toggleDetails(i: number): void{
-        if(this.transactions[i].showDetails){
-            this.transactions[i].showDetails = false;   
-            this.shownRawData = null;  
-            this.lastIndexShownDetails = -1;       
+    toggleDetails(i: number): void {
+        if (this.transactions[i].showDetails) {
+            this.transactions[i].showDetails = false;
+            this.shownRawData = null;
+            this.lastIndexShownDetails = -1;
         }
-        else{
-            if(this.lastIndexShownDetails >= 0){
+        else {
+            if (this.lastIndexShownDetails >= 0) {
                 this.transactions[this.lastIndexShownDetails].showDetails = false;
             }
             this.transactions[i].showDetails = true;
@@ -232,17 +254,17 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
     }
 
     // Add Person ####################################################################################
-    addPerson(name: string = ""): void{
+    addPerson(name: string = ""): void {
         this.showAddPersonPopup = true;
         this.suggestedNewPersonName = name;
     }
-    closeAddPersonPopup(pvm: PersonViewModel){
+    closeAddPersonPopup(pvm: PersonViewModel) {
         this.showAddPersonPopup = false;
         this.suggestedNewPersonName = "";
-        if(pvm){
+        if (pvm) {
             this.persons.push(pvm);
-            for(let transaction of this.transactions){
-                if(transaction.suggestedPersonName === pvm.header && !transaction.personId){
+            for (let transaction of this.transactions) {
+                if (transaction.suggestedPersonName === pvm.header && !transaction.personId) {
                     transaction.personId = pvm.id
                 }
             }
