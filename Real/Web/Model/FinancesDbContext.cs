@@ -31,7 +31,8 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
 
         public IEnumerable<Person> GetPersons()
         {
-            return this.Persons.FromSql("EXEC GetPersons");
+            // NULL = @userId
+            return this.Persons.FromSql("EXEC GetPersons NULL");
         }
 
         public IEnumerable<CurrencyAccount> GetCurrencyAccountsForUser(int userId)
@@ -122,7 +123,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int UserId { get; set; }
+        //public int? UserId { get; set; }
     }
 
     public class CurrencyAccount
