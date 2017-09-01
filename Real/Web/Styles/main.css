@@ -26,19 +26,6 @@ body {
 body div {
   margin: 0;
 }
-body .init-loading-message {
-  position: relative;
-  opacity: 0.8;
-  display: block;
-}
-body .init-loading-message img {
-  left: 50%;
-  position: fixed;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 128px;
-  max-height: 128px;
-}
 body .padding {
   margin: 0 auto;
   padding: 10px;

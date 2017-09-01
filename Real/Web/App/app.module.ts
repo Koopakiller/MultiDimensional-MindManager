@@ -14,6 +14,7 @@ import { MediaAppletComponent } from "./Components/MediaApplet.js";
 import { FinancesImportComponent } from "./Components/finances-import.js";
 import { FinancesNewPersonComponent } from "./Components/finances-new-person.js";
 import { FinancesOverviewComponent } from "./Components/finances-overview.js";
+import { LoadingIndicatorComponent } from "./Components/loading-indicator.js";
 
 const appRoutes: Routes = [
   { path: 'Home',               component: HomeComponent },
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
   ],
   declarations: [
     AppComponent,
+    LoadingIndicatorComponent,
     FinancesNewTransactionComponent,
     FinancesImportComponent,
     FinancesNewPersonComponent,

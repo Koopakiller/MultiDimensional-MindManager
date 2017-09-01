@@ -3,22 +3,31 @@ import { FinancesService } from "../Services/FinancesService.js";
 import { LocationService } from "../Services/LocationService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel } from "../ViewModels/FinancesViewModels.js";
 import {Router} from '@angular/router';
+import { PageComponentBase } from "../Common/PageComponentBase.js";
 
 @Component({
     selector: "finances-new-person",
     templateUrl: "/Templates/FinancesNewPerson"
 })
-export class FinancesNewPersonComponent implements OnInit {
+export class FinancesNewPersonComponent extends PageComponentBase implements OnInit {
     constructor(
         private financesService: FinancesService,
         private router: Router
-    ) { }
-
-    ngOnInit(): void {
-        this.financesService.persons.subscribe(x => { this.persons = x; });
+    ) { 
+        super();
     }
 
-    persons: PersonViewModel[];
+    ngOnInit(): void {
+        this.addLoadingProcess();
+        this.financesService.users.subscribe(x => { 
+            this.users = x;
+            this.user = x.length > 0 ? x[0].id : null; 
+            this.removeLoadingProcess();
+        });
+    }
+
+    users: UserViewModel[];
+    user: number;
 
     @Input() 
     personName: string;
@@ -27,7 +36,8 @@ export class FinancesNewPersonComponent implements OnInit {
     close = new EventEmitter(); 
 
     submit(): void{
-        this.financesService.addPerson(this.personName);
+        //TODO: Loading Indicator
+        this.financesService.addPerson(this.personName, this.user);
         let pvm = new PersonViewModel(-1, this.personName);
         this.close.emit(pvm);
     }

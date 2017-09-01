@@ -31,13 +31,14 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
         public IActionResult GetCurrencyAccountsForUser(int userId)
         {
             return this.Json(DataContainer.Create(
-                this._context.GetCurrencyAccountsForUser(userId).ToList().Select(ca => 
-                    new {
-                        ca.AccountId, 
-                        ca.AccountName, 
-                        ca.CurrencyAccountId, 
+                this._context.GetCurrencyAccountsForUser(userId).ToList().Select(ca =>
+                    new
+                    {
+                        ca.AccountId,
+                        ca.AccountName,
+                        ca.CurrencyAccountId,
                         ca.CurrencyId,
-                        CurrencyNames = this._context.GetCurrencySymbolsForCurrency(ca.CurrencyId), 
+                        CurrencyNames = this._context.GetCurrencySymbolsForCurrency(ca.CurrencyId),
                     })
                 ));
         }
@@ -45,10 +46,6 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
         [HttpPost]
         public IActionResult AddTransactions([FromBody]DataContainer<FinanceTransaction[]> data)
         {
-            Console.WriteLine(data);
-            Console.WriteLine(data.Data);
-            Console.WriteLine(data.Data.Count());
-            
             var result = this._context.AddTransactions(data.Data);
             return this.Json(DataContainer.Create(result));
         }
@@ -61,6 +58,12 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
         public IActionResult GetTransactionOverviewForUserAtTimeStamp(int userId, DateTime timeStamp)
         {
             return this.Json(DataContainer.Create(this._context.GetTransactionOverviewForUserAtTimeStamp(userId, timeStamp)));
+        }
+
+        public IActionResult AddPerson([FromBody] DataContainer<FinancePerson> data)
+        {
+            var result = this._context.AddPerson(data.Data.Name, data.Data.UserId);
+            return this.Json(DataContainer.Create(result));
         }
     }
 }

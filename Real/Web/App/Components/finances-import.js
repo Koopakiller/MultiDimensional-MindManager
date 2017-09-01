@@ -1,4 +1,14 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -15,20 +25,24 @@ var FinancesViewModels_js_1 = require("../ViewModels/FinancesViewModels.js");
 var router_1 = require("@angular/router");
 var Papa = require("papaparse");
 var KeyValuePair_js_1 = require("../Common/KeyValuePair.js");
-var FinancesImportComponent = (function () {
+var PageComponentBase_js_1 = require("../Common/PageComponentBase.js");
+var FinancesImportComponent = (function (_super) {
+    __extends(FinancesImportComponent, _super);
     function FinancesImportComponent(financesService, router) {
-        this.financesService = financesService;
-        this.router = router;
-        this.transactions = [];
-        this.lastIndexShownDetails = -1;
-        this.steps = [
+        var _this = _super.call(this) || this;
+        _this.financesService = financesService;
+        _this.router = router;
+        _this.transactions = [];
+        _this.lastIndexShownDetails = -1;
+        _this.steps = [
             "userSelect",
             "fileSelect",
             "fileTypeSelect",
             "showAndFitData"
         ];
-        this.showAddPersonPopup = false;
-        this.suggestedNewPersonName = "";
+        _this.showAddPersonPopup = false;
+        _this.suggestedNewPersonName = "";
+        return _this;
     }
     FinancesImportComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -229,7 +243,7 @@ var FinancesImportComponent = (function () {
         }
     };
     return FinancesImportComponent;
-}());
+}(PageComponentBase_js_1.PageComponentBase));
 FinancesImportComponent = __decorate([
     core_1.Component({
         selector: "finances-import",

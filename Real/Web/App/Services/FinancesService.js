@@ -108,9 +108,10 @@ var FinancesService = (function () {
             });
         });
     };
-    FinancesService.prototype.addPerson = function (name) {
+    FinancesService.prototype.addPerson = function (name, userId) {
         var data = {
-            name: name
+            name: name,
+            userId: userId
         };
         this.http.post("/api/Finances/AddPerson", JSON.stringify(data)).subscribe(function () {
             alert("sendet");

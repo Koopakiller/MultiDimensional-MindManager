@@ -1,4 +1,14 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -15,19 +25,37 @@ var LocationService_js_1 = require("../Services/LocationService.js");
 var FinancesViewModels_js_1 = require("../ViewModels/FinancesViewModels.js");
 var router_1 = require("@angular/router");
 var KeyValuePair_js_1 = require("../Common/KeyValuePair.js");
-var FinancesNewTransactionComponent = (function () {
+var PageComponentBase_js_1 = require("../Common/PageComponentBase.js");
+var FinancesNewTransactionComponent = (function (_super) {
+    __extends(FinancesNewTransactionComponent, _super);
     function FinancesNewTransactionComponent(financesService, locationService, router) {
-        this.financesService = financesService;
-        this.locationService = locationService;
-        this.router = router;
-        this.includeTimeStampTime = false;
-        this.showAddPersonForm = false;
+        var _this = _super.call(this) || this;
+        _this.financesService = financesService;
+        _this.locationService = locationService;
+        _this.router = router;
+        _this.includeTimeStampTime = false;
+        _this.showAddPersonForm = false;
+        return _this;
     }
     FinancesNewTransactionComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.financesService.persons.subscribe(function (x) { _this.persons = x; _this.person = x.length > 0 ? x[0].id : null; });
-        this.financesService.users.subscribe(function (x) { _this.users = x; _this.user = x.length > 0 ? x[0].id : null; });
-        this.locationService.location.subscribe(function (x) { return _this.coordinates = x ? x.coords : null; });
+        this.addLoadingProcess();
+        this.financesService.persons.subscribe(function (x) {
+            _this.persons = x;
+            _this.person = x.length > 0 ? x[0].id : null;
+            _this.removeLoadingProcess();
+        });
+        this.addLoadingProcess();
+        this.financesService.users.subscribe(function (x) {
+            _this.users = x;
+            _this.user = x.length > 0 ? x[0].id : null;
+            _this.removeLoadingProcess();
+        });
+        this.addLoadingProcess();
+        this.locationService.location.subscribe(function (x) {
+            _this.coordinates = x ? x.coords : null;
+            _this.removeLoadingProcess();
+        });
         this.timeStampDate = new Date();
         this.timeStampDate.setHours(0, 0, 0, 0);
         this.timeStampTime = new Date('12:34 AM');
@@ -39,14 +67,20 @@ var FinancesNewTransactionComponent = (function () {
         },
         set: function (value) {
             var _this = this;
+            this.addLoadingProcess();
             this._user = value;
-            this.financesService.getCurrencyAccounts(value).subscribe(function (x) { _this.currencyAccounts = x; _this.currencyAccount = x.length > 0 ? x[0].id : null; });
+            this.financesService.getCurrencyAccounts(value).subscribe(function (x) {
+                _this.currencyAccounts = x;
+                _this.currencyAccount = x.length > 0 ? x[0].id : null;
+                _this.removeLoadingProcess();
+            });
         },
         enumerable: true,
         configurable: true
     });
     FinancesNewTransactionComponent.prototype.submit = function () {
         var _this = this;
+        this.addLoadingProcess();
         var tvm = new FinancesViewModels_js_1.TransactionViewModel();
         tvm.currencyAccountId = this.currencyAccount;
         tvm.personId = this.person;
@@ -63,8 +97,10 @@ var FinancesNewTransactionComponent = (function () {
         }
         this.financesService.addTransaction([tvm]).subscribe(function () {
             _this.router.navigateByUrl("/Finances");
+            _this.removeLoadingProcess();
         }, function (error) {
             alert(error);
+            _this.removeLoadingProcess();
         });
     };
     FinancesNewTransactionComponent.prototype.cancel = function () {
@@ -72,13 +108,18 @@ var FinancesNewTransactionComponent = (function () {
     };
     FinancesNewTransactionComponent.prototype.submitNewPerson = function () {
         var _this = this;
-        this.financesService.addPerson(this.addNewPersonName);
+        this.addLoadingProcess();
+        this.financesService.addPerson(this.addNewPersonName, this.user);
         this.addNewPersonName = "";
         this.showAddPersonForm = false;
-        this.financesService.persons.subscribe(function (x) { _this.persons = x; _this.person = x.length > 0 ? x[0].id : null; });
+        this.financesService.persons.subscribe(function (x) {
+            _this.persons = x;
+            _this.person = x.length > 0 ? x[0].id : null;
+            _this.removeLoadingProcess();
+        });
     };
     return FinancesNewTransactionComponent;
-}());
+}(PageComponentBase_js_1.PageComponentBase));
 FinancesNewTransactionComponent = __decorate([
     core_1.Component({
         selector: "finances-new-transaction",

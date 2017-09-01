@@ -41,8 +41,8 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
 
         public Transaction AddTransaction(int personId, decimal value, DateTime timeStampDate, TimeSpan? timeStampTime, int currencyAccountId, string note)
         {
-            return this.Transactions.FromSql("EXEC AddTransaction {0}, {1}, {2}, {3}, {4}, {5}", 
-            personId, value, timeStampDate, timeStampTime, currencyAccountId, note).SingleOrDefault();
+            return this.Transactions.FromSql("EXEC AddTransaction {0}, {1}, {2}, {3}, {4}, {5}",
+                                             personId, value, timeStampDate, timeStampTime, currencyAccountId, note).SingleOrDefault();
         }
 
         public void AddRawDataEntry(int transactionId, string key, string value)
@@ -55,17 +55,20 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
             return this.CurrencySymbols.FromSql("EXEC GetCurrencySymbolsForCurrency {0}", currencyId);
         }
 
-        public IEnumerable<FinanceTransaction> AddTransactions(IEnumerable<FinanceTransaction> data){
-            foreach(var transaction in data) {
+        public IEnumerable<FinanceTransaction> AddTransactions(IEnumerable<FinanceTransaction> data)
+        {
+            foreach (var transaction in data)
+            {
                 var inserted = this.AddTransaction(transaction.PersonId, transaction.Value, transaction.TimeStampDate, transaction.TimeStampTime, transaction.CurrencyAccountId, transaction.Note);
-                if(transaction.RawData != null)
+                if (transaction.RawData != null)
                 {
-                    foreach(var rawData in transaction.RawData)
+                    foreach (var rawData in transaction.RawData)
                     {
                         this.AddRawDataEntry(inserted.Id, rawData.Key, rawData.Value);
                     }
                 }
-                yield return new FinanceTransaction(){
+                yield return new FinanceTransaction()
+                {
                     Id = inserted.Id,
                     PersonId = inserted.PersonId,
                     Value = inserted.Value,
@@ -78,26 +81,35 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
             }
         }
 
-        public IEnumerable<Transaction> GetTransactions(int currencyAccountId, int skipCount, int takeCount, SortOrder sortOrder){
-            return this.Transactions.FromSql("EXEC GetTransactions {0}, {1}, {2}, {3}", 
+        public IEnumerable<Transaction> GetTransactions(int currencyAccountId, int skipCount, int takeCount, SortOrder sortOrder)
+        {
+            return this.Transactions.FromSql("EXEC GetTransactions {0}, {1}, {2}, {3}",
                                              currencyAccountId, skipCount, takeCount, sortOrder == SortOrder.Asc ? "ASC" : "DESC");
         }
 
-        public IEnumerable<TransactionOverview> GetTransactionOverviewForUserAtTimeStamp(int userId, DateTime timeStampDate){
+        public IEnumerable<TransactionOverview> GetTransactionOverviewForUserAtTimeStamp(int userId, DateTime timeStampDate)
+        {
             return this.TransactionOverviews.FromSql("EXEC GetTransactionOverviewForUserAtTimeStamp {0}, {1}", userId, timeStampDate);
+        }
+
+        public Person AddPerson(string name, int userId)
+        {
+            return this.Persons.FromSql("EXEC AddPerson {0}, {1}", name, userId).SingleOrDefault();
         }
     }
 
-    public enum SortOrder{
+    public enum SortOrder
+    {
         Asc,
         Desc
     }
 
-    public class TransactionOverview{
-        public string AccountName{get;set;}
-        public int CurrencyId{get;set;}
-        public int CurrencyAccountId{get;set;}
-        public decimal Value{get;set;}
+    public class TransactionOverview
+    {
+        public string AccountName { get; set; }
+        public int CurrencyId { get; set; }
+        public int CurrencyAccountId { get; set; }
+        public decimal Value { get; set; }
     }
 
     public class User
@@ -110,6 +122,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int UserId { get; set; }
     }
 
     public class CurrencyAccount

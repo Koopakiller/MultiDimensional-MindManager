@@ -5,16 +5,19 @@ import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionVi
 import { Router } from '@angular/router';
 import * as Papa from "papaparse";
 import { KeyValuePair } from "../Common/KeyValuePair.js";
+import { PageComponentBase } from "../Common/PageComponentBase.js";
 
 @Component({
     selector: "finances-import",
     templateUrl: "/Templates/FinancesImport"
 })
-export class FinancesImportComponent implements OnInit {
+export class FinancesImportComponent extends PageComponentBase implements OnInit {
     constructor(
         private financesService: FinancesService,
         private router: Router
-    ) { }
+    ) { 
+        super();
+    }
 
     ngOnInit(): void {
         this.initCurrentStep();

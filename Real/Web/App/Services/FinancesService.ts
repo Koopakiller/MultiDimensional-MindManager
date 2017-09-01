@@ -101,9 +101,10 @@ export class FinancesService {
         });
     }
 
-    public addPerson(name: string) {
+    public addPerson(name: string, userId: number) {
         let data = {
-            name: name
+            name: name,
+            userId: userId
         };
         this.http.post("/api/Finances/AddPerson", JSON.stringify(data)).subscribe(()=>{
             alert("sendet");

@@ -22,12 +22,16 @@
     <link rel="stylesheet" href="/Styles/main.css">
     <link rel="stylesheet" href="/Styles/text.css">
     <link rel="stylesheet" href="/Styles/form.css">
+    <link rel="stylesheet" href="/Styles/loading-indicator.css">
 
     <script>
         System.import('/App/main.js').catch(function(err){ console.error(err); });
     </script>
 </head>
 <body>    
-    <app style="height:1px;"><div class="init-loading-message"><img src="/Images/loading.gif" alt="Loading..."/></div></app>
+    <app style="height:1px;">
+        <!-- Equal to loading-indicator-component -->
+        <div class="loading-indicator"><div class="loading-indicator-background"></div><img class="loading-indicator-animation" src="/Images/loading.gif" alt="Loading..."/></div>
+    </app>
 </body>
 </html>

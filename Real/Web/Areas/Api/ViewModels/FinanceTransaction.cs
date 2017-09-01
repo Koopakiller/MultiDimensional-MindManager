@@ -17,6 +17,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.ViewModels
         public int CurrencyAccountId { get; set; }
 
         public DateTime TimeStampDate { get; set; }
+
         public TimeSpan? TimeStampTime { get; set; }
 
         public KeyValuePair[] RawData { get; set; }
@@ -26,5 +27,12 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.ViewModels
     {
         public string Key { get; set; }
         public string Value { get; set; }
+    }
+
+    public class FinancePerson
+    {
+        public string Name { get; set; }
+
+        public int UserId { get; set; }
     }
 }
