@@ -27,8 +27,16 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
             { extension: "csv", provider: "PayPal", description: "Paypal (German) \"Guthaben-relevante Zahlungen (CSV, Komma getrennt)\" Export", mode: "not-implemented", method: "importPayPalAccountStatement" },
             { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: "" },
         ];
-        this.financesService.persons.subscribe(x => { this.persons = x; });
-        this.financesService.users.subscribe(x => { this.users = x; });
+        this.addLoadingProcess();
+        this.financesService.persons.subscribe(x => {
+            this.persons = x;
+            this.removeLoadingProcess();
+        });
+        this.addLoadingProcess();
+        this.financesService.users.subscribe(x => { 
+            this.users = x; 
+            this.removeLoadingProcess();
+        });
     }
 
     persons: PersonViewModel[];
@@ -42,8 +50,12 @@ export class FinancesImportComponent extends PageComponentBase implements OnInit
         return this._selectedUser;
     }
     set selectedUser(value: number){
+        this.addLoadingProcess();
         this._selectedUser = value;  
-        this.financesService.getCurrencyAccounts(value).subscribe(x => { this.currencyAccounts = x; });
+        this.financesService.getCurrencyAccounts(value).subscribe(x => { 
+            this.currencyAccounts = x; 
+            this.removeLoadingProcess();
+        });
     }
 
     selectedFile: File;

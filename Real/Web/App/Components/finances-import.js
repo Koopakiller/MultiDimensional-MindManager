@@ -53,8 +53,16 @@ var FinancesImportComponent = (function (_super) {
             { extension: "csv", provider: "PayPal", description: "Paypal (German) \"Guthaben-relevante Zahlungen (CSV, Komma getrennt)\" Export", mode: "not-implemented", method: "importPayPalAccountStatement" },
             { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: "" },
         ];
-        this.financesService.persons.subscribe(function (x) { _this.persons = x; });
-        this.financesService.users.subscribe(function (x) { _this.users = x; });
+        this.addLoadingProcess();
+        this.financesService.persons.subscribe(function (x) {
+            _this.persons = x;
+            _this.removeLoadingProcess();
+        });
+        this.addLoadingProcess();
+        this.financesService.users.subscribe(function (x) {
+            _this.users = x;
+            _this.removeLoadingProcess();
+        });
     };
     Object.defineProperty(FinancesImportComponent.prototype, "selectedUser", {
         get: function () {
@@ -62,8 +70,12 @@ var FinancesImportComponent = (function (_super) {
         },
         set: function (value) {
             var _this = this;
+            this.addLoadingProcess();
             this._selectedUser = value;
-            this.financesService.getCurrencyAccounts(value).subscribe(function (x) { _this.currencyAccounts = x; });
+            this.financesService.getCurrencyAccounts(value).subscribe(function (x) {
+                _this.currencyAccounts = x;
+                _this.removeLoadingProcess();
+            });
         },
         enumerable: true,
         configurable: true
