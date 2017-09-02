@@ -5,7 +5,7 @@
 )
 RETURNS @result TABLE
 (
-	[TimeStamp] DATETIME,
+	[TimeStampDate] DATE,
 	[Value] DECIMAL(18,2),
 	CurrencyName NVARCHAR(MAX),
 	AccountName NVARCHAR(MAX),
@@ -25,11 +25,11 @@ BEGIN
 	),
 	TS_CTE AS
 	(
-		SELECT t.[Timestamp], t.CurrencyAccountId
+		SELECT t.[TimestampDate], t.CurrencyAccountId
 		FROM Transactions t	
 		INNER JOIN CA_CTE cte ON cte.Id = t.CurrencyAccountId   
 		UNION	  
-		SElECT fv.[Timestamp], fv.CurrencyAccountId
+		SElECT fv.[TimestampDate], fv.CurrencyAccountId
 		FROM FixedValues fv
 		INNER JOIN CA_CTE cte ON cte.Id = fv.CurrencyAccountId
 	),
@@ -39,8 +39,8 @@ BEGIN
 		FROM TS_CTE
 	)
 	INSERT INTO @result
-	SELECT ts.[Timestamp]
-		 , [dbo].[GetValueForDate](ts.[Timestamp], ca.Id)
+	SELECT ts.[TimeStampDate]
+		 , [dbo].[GetValueForDate](ts.[TimeStampDate], ca.Id)
 		 , (SELECT TOP 1 cs.Symbol FROM CurrencySymbols cs WHERE cs.CurrencyId = ca.CurrencyId) AS CurrencyName
 		 , a.[Name] AS AccountName
 		 , up.[Name] AS UserName

@@ -1,6 +1,6 @@
 ﻿CREATE FUNCTION [dbo].[GetValueForDate]
 (
-	@timeStamp DATETIME,
+	@timeStampDate DATE,
 	@currencyAccountId INT
 )
 RETURNS DECIMAL(18,2)
@@ -10,18 +10,18 @@ BEGIN
 	DECLARE @fixValue DECIMAL(18,2);
 
 	SELECT TOP 1 @fixValue = fv.[Value]
-	           , @fixTimeStamp = fv.[Timestamp] 
+	           , @fixTimeStamp = fv.[TimestampDate] 
 	FROM FixedValues fv 
-	WHERE fv.[Timestamp] <= @timeStamp 
+	WHERE fv.[TimestampDate] <= @timeStampDate 
 	  AND fv.CurrencyAccountId = @currencyAccountId
-	ORDER BY fv.[Timestamp] DESC
+	ORDER BY fv.[TimeStampDate] DESC, fv.[TimeStampTime] DESC
 	
 	SET @fixValue = ISNULL(@fixValue, 0)
 
 	RETURN @fixValue + ISNULL((SELECT SUM(t.[Value])
 							  FROM Transactions t 
-							  WHERE t.[Timestamp] <= @timeStamp 
-							    AND (t.[Timestamp] > @fixTimeStamp OR @fixTimeStamp IS NULL)
+							  WHERE t.[TimestampDate] <= @timeStampDate 
+							    AND (t.[TimestampDate] > @fixTimeStamp OR @fixTimeStamp IS NULL)
 								AND t.CurrencyAccountId = @currencyAccountId
 							  ), 0)
 END

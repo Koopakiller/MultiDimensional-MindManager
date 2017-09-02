@@ -2,14 +2,15 @@
 (
 	@personId [int],
 	@value [decimal](18, 2),
-	@timeStamp [datetime],
+	@timeStampDate DATE,
+	@timeStampTime TIME NULL,
 	@currencyAccountId [int],
 	@note NVARCHAR(MAX)
 )
 AS
 BEGIN
-	INSERT INTO Transactions (PersonId, [Value], [TimeStamp], CurrencyAccountId, Note)
-	VALUES (@personId, @value, @timestamp, @currencyAccountId, @note)
+	INSERT INTO Transactions (PersonId, [Value], [TimeStampDate], [TimeStampTime], CurrencyAccountId, Note)
+	VALUES (@personId, @value, @timestampDate, @timeStampTime, @currencyAccountId, @note)
 
 	SELECT * 
 	FROM Transactions t
