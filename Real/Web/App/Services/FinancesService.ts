@@ -14,19 +14,19 @@ export class FinancesService {
         private http: Http
     ) { }
 
-    private getListFromResponse<TServerModel extends IViewModelConvert<TViewModel>, TViewModel>(response: Response, serverModelFactory : (() => TServerModel)): TViewModel[]{
+    private getListFromResponse<TServerModel extends IViewModelConvert<TViewModel>, TViewModel>(response: Response, serverModelFactory: (() => TServerModel)): TViewModel[] {
         let object: DataContainer<IViewModelConvert<TServerModel>[]> = response.json();
         let lst = object.data;
         return lst.map(smo => {
             // Object.assign is neccessary because assigning does not "transfer" methods too.
             // see: https://stackoverflow.com/a/40063179/1623754
-            var sm = serverModelFactory(); 
-            Object.assign(sm, smo); 
-            return sm.toViewModel(); 
+            var sm = serverModelFactory();
+            Object.assign(sm, smo);
+            return sm.toViewModel();
         });
     }
 
-    private getList<TServerModel extends IViewModelConvert<TViewModel>, TViewModel>(url: string, serverModelFactory : (()=>TServerModel)): Observable<TViewModel[]>{
+    private getList<TServerModel extends IViewModelConvert<TViewModel>, TViewModel>(url: string, serverModelFactory: (() => TServerModel)): Observable<TViewModel[]> {
         return this.http.get(url).map(response => this.getListFromResponse(response, serverModelFactory));
     }
 
@@ -50,31 +50,31 @@ export class FinancesService {
 
     public getTransactionOverviewForUserAtTimeStamp(userId: number, timeStamp: Date): Observable<TransactionOverviewViewModel[]> {
         let url = `/api/Finances/GetTransactionOverviewForUserAtTimeStamp?userId=${userId}&timeStamp=${timeStamp.toUTCString()}`;
-        return Observable.create((observer: Observer<TransactionOverviewViewModel[]>) =>{
+        return Observable.create((observer: Observer<TransactionOverviewViewModel[]>) => {
             var readyCounter = 0;
             var items: TransactionOverviewViewModel[];
             var cas: CurrencyAccountViewModel[];
-            function tryAddToObserver(){
-                if(readyCounter != 2){
+            function tryAddToObserver() {
+                if (readyCounter != 2) {
                     return; // not ready yet
                 }
                 //assign currency names
-                for(let itemIndex in items){
-                    for(let ca of cas){
-                        if(ca.id === items[itemIndex].currencyAccountId){
+                for (let itemIndex in items) {
+                    for (let ca of cas) {
+                        if (ca.id === items[itemIndex].currencyAccountId) {
                             items[itemIndex].currencyAccountName = ca.header;
                         }
                     }
                 }
-                observer.next(items); 
+                observer.next(items);
                 observer.complete();
             }
-            this.getList<TransactionOverviewServerModel, TransactionOverviewViewModel>(url, () => new TransactionOverviewServerModel()).subscribe((x)=>{
+            this.getList<TransactionOverviewServerModel, TransactionOverviewViewModel>(url, () => new TransactionOverviewServerModel()).subscribe((x) => {
                 readyCounter += 1;
                 tryAddToObserver();
                 items = x;
             });
-            this.getCurrencyAccounts(userId).subscribe((x)=>{
+            this.getCurrencyAccounts(userId).subscribe((x) => {
                 readyCounter += 1;
                 cas = x;
                 tryAddToObserver();
@@ -89,25 +89,44 @@ export class FinancesService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return Observable.create((observer: Observer<TransactionViewModel[]>) => {
-            this.http.post("/api/Finances/AddTransactions", postData, options).subscribe(response => {
-                let lst = this.getListFromResponse<TransactionServerModel, TransactionViewModel>(response, () => new TransactionServerModel());
-                observer.next(lst);
-                observer.complete(); 
-            },
-            error => {
-                observer.error("Error from Server...");
-                observer.complete();
-            });
+            this.http.post("/api/Finances/AddTransactions", postData, options).subscribe(
+                response => {
+                    let lst = this.getListFromResponse<TransactionServerModel, TransactionViewModel>(response, () => new TransactionServerModel());
+                    observer.next(lst);
+                    observer.complete();
+                },
+                error => {
+                    observer.error(error);
+                    observer.complete();
+                }
+            );
         });
     }
 
-    public addPerson(name: string, userId: number) {
+    public addPerson(name: string, userId: number): Observable<PersonViewModel> {
         let data = {
-            name: name,
-            userId: userId
+            data: {
+                name: name,
+                userId: userId
+            }
         };
-        this.http.post("/api/Finances/AddPerson", JSON.stringify(data)).subscribe(()=>{
-            alert("sendet");
-        });
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return Observable.create((observer: Observer<PersonViewModel>) => {
+            this.http.post("/api/Finances/AddPerson", JSON.stringify(data), options).subscribe(
+                response => {
+                    let smodc: DataContainer<IViewModelConvert<PersonServerModel>> = response.json();
+                    let smo = smodc.data;
+                    var sm = new PersonServerModel();
+                    Object.assign(sm, smo);
+                    observer.next(sm.toViewModel());
+                    observer.complete();
+                },
+                error => {
+                    observer.error(error);
+                    observer.complete();
+                }
+            );
+        })
     }
 }

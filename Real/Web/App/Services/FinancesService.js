@@ -103,18 +103,33 @@ var FinancesService = (function () {
                 observer.next(lst);
                 observer.complete();
             }, function (error) {
-                observer.error("Error from Server...");
+                observer.error(error);
                 observer.complete();
             });
         });
     };
     FinancesService.prototype.addPerson = function (name, userId) {
+        var _this = this;
         var data = {
-            name: name,
-            userId: userId
+            data: {
+                name: name,
+                userId: userId
+            }
         };
-        this.http.post("/api/Finances/AddPerson", JSON.stringify(data)).subscribe(function () {
-            alert("sendet");
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return Observable_1.Observable.create(function (observer) {
+            _this.http.post("/api/Finances/AddPerson", JSON.stringify(data), options).subscribe(function (response) {
+                var smodc = response.json();
+                var smo = smodc.data;
+                var sm = new FinancesServerModels_js_1.PersonServerModel();
+                Object.assign(sm, smo);
+                observer.next(sm.toViewModel());
+                observer.complete();
+            }, function (error) {
+                observer.error(error);
+                observer.complete();
+            });
         });
     };
     return FinancesService;

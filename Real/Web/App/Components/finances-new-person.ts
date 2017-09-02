@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { FinancesService } from "../Services/FinancesService.js";
 import { LocationService } from "../Services/LocationService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel } from "../ViewModels/FinancesViewModels.js";
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { PageComponentBase } from "../Common/PageComponentBase.js";
 import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
 
@@ -18,31 +18,42 @@ export class FinancesNewPersonComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.users.subscribe(x => { 
-            this.users = x;
-            this.user = x.length > 0 ? x[0].id : null; 
-            this._globalLoadingIndicatorService.removeLoadingProcess();
-        });
+        //this._globalLoadingIndicatorService.addLoadingProcess();
+        this._financesService.users.subscribe(
+            x => {
+                this.users = x;
+                this.user = x.length > 0 ? x[0].id : null;
+                //this._globalLoadingIndicatorService.removeLoadingProcess();
+            },
+            error => {
+                alert(error);
+            }
+        );  
     }
 
     users: UserViewModel[];
     user: number;
 
-    @Input() 
+    @Input()
     personName: string;
 
     @Output()
-    close = new EventEmitter(); 
+    close = new EventEmitter();
 
-    submit(): void{
-        //TODO: Loading Indicator
-        this._financesService.addPerson(this.personName, this.user);
-        let pvm = new PersonViewModel(-1, this.personName);
-        this.close.emit(pvm);
+    submit(): void {
+        this._globalLoadingIndicatorService.addLoadingProcess();
+        this._financesService.addPerson(this.personName, this.user).subscribe(
+            item => {
+                this.close.emit(item);
+                this._globalLoadingIndicatorService.removeLoadingProcess();
+            },
+            error => {
+                alert(error);
+            }
+        );
     }
 
-    cancel(): void{
+    cancel(): void {
         this.close.emit();
     }
 }

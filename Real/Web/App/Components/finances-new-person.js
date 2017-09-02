@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var FinancesService_js_1 = require("../Services/FinancesService.js");
-var FinancesViewModels_js_1 = require("../ViewModels/FinancesViewModels.js");
 var router_1 = require("@angular/router");
 var GlobalLoadingIndicatorService_js_1 = require("../Services/GlobalLoadingIndicatorService.js");
 var FinancesNewPersonComponent = (function () {
@@ -23,18 +22,24 @@ var FinancesNewPersonComponent = (function () {
     }
     FinancesNewPersonComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._globalLoadingIndicatorService.addLoadingProcess();
+        //this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.users.subscribe(function (x) {
             _this.users = x;
             _this.user = x.length > 0 ? x[0].id : null;
-            _this._globalLoadingIndicatorService.removeLoadingProcess();
+            //this._globalLoadingIndicatorService.removeLoadingProcess();
+        }, function (error) {
+            alert(error);
         });
     };
     FinancesNewPersonComponent.prototype.submit = function () {
-        //TODO: Loading Indicator
-        this._financesService.addPerson(this.personName, this.user);
-        var pvm = new FinancesViewModels_js_1.PersonViewModel(-1, this.personName);
-        this.close.emit(pvm);
+        var _this = this;
+        this._globalLoadingIndicatorService.addLoadingProcess();
+        this._financesService.addPerson(this.personName, this.user).subscribe(function (item) {
+            _this.close.emit(item);
+            _this._globalLoadingIndicatorService.removeLoadingProcess();
+        }, function (error) {
+            alert(error);
+        });
     };
     FinancesNewPersonComponent.prototype.cancel = function () {
         this.close.emit();

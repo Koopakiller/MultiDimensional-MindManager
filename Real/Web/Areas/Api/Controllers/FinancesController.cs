@@ -7,6 +7,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
     using Koopakiller.Apps.Picosmos.Real.Common;
     using System.Collections.Generic;
     using System;
+    using System.Diagnostics;
 
     [Area("Api")]
     public class FinancesController : Controller

@@ -1,13 +1,17 @@
 {
     "version": "0.1.0",
-    "command": "gulp",
+    "command": "dotnet",
     "isShellCommand": true,
+    "args": [],
     "tasks": [
         {
-            "taskName": "default",
+            "taskName": "build",
+            "args": [
+                "${workspaceRoot}/Real.csproj"
+            ],
             "isBuildCommand": true,
-            "showOutput": "always",
-            "isBackground": true
+            "problemMatcher": "$msCompile",
+            "showOutput": "silent"
         }
     ]
 }
