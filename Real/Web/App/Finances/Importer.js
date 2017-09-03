@@ -167,3 +167,41 @@ var PayPalAccountStatementImporter = (function (_super) {
     return PayPalAccountStatementImporter;
 }(FinanceAccountStatementImporter));
 exports.PayPalAccountStatementImporter = PayPalAccountStatementImporter;
+var FinancesCsvImporter = (function (_super) {
+    __extends(FinancesCsvImporter, _super);
+    function FinancesCsvImporter() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    FinancesCsvImporter.prototype.readFile = function (file) {
+        var _this = this;
+        this._transactions = [];
+        var result = Papa.parse(file, {
+            delimiter: ",",
+            header: true,
+            skipEmptyLines: true,
+            encoding: "utf-8",
+            complete: function (result) {
+                // it is a german localized file format:
+                // Date format: dd.mm.yyyy
+                // Number format: xxx,xx
+                for (var _i = 0, _a = result.data; _i < _a.length; _i++) {
+                    var row = _a[_i];
+                    var tvm = new FinancesViewModels_js_1.TransactionViewModel();
+                    var timeStampString = row["Date"] + (row["Time"] ? " " + row["Time"] : "");
+                    var timeStampFormat = "MM/DD/YYYY" + (row["Time"] ? " hh:mm:ss A" : "");
+                    var timeStamp = _this.dataParser.parseTimeStamp(timeStampString, timeStampFormat);
+                    tvm = _this.assignTimeStamp(tvm, timeStamp, false);
+                    tvm.note = row["Description"];
+                    tvm.value = _this.dataParser.parseNumber(row["Value"]);
+                    tvm.personId = _this.dbValueProvider.getPersonIdFromName(row["Person"]);
+                    tvm.suggestedPersonName = row["Person"];
+                    tvm.currencyAccountId = _this.dbValueProvider.getCurrencyAccountIdFromName(row["Account"], row["Currency"]);
+                    _this.addRawData(tvm, row, result.meta.fields);
+                    _this._transactions.push(tvm);
+                }
+            }
+        });
+    };
+    return FinancesCsvImporter;
+}(FinanceAccountStatementImporter));
+exports.FinancesCsvImporter = FinancesCsvImporter;

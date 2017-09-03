@@ -47,7 +47,7 @@ var FinancesImportComponent = (function () {
                     extension: "csv",
                     provider: "Commerzbank",
                     description: "Commerzbank Giro Account Statement CSV Export",
-                    mode: "recommended",
+                    mode: "implemented",
                     factory: function () {
                         var result = new Importer_js_1.CommerzbankGiroAccountStatementImporter();
                         result.dataParser = new Parser_js_1.GermanDataParser();
@@ -58,7 +58,7 @@ var FinancesImportComponent = (function () {
                     extension: "csv",
                     provider: "Commerzbank",
                     description: "Commerzbank Credit Card Statement CSV Export",
-                    mode: "not-implemented",
+                    mode: "implemented",
                     factory: function () {
                         var result = new Importer_js_1.CommerzbankCreditCardStatementImporter();
                         result.dataParser = new Parser_js_1.GermanDataParser();
@@ -69,7 +69,7 @@ var FinancesImportComponent = (function () {
                     extension: "csv",
                     provider: "PayPal",
                     description: "Paypal (German) \"Guthaben-relevante Zahlungen (CSV, Komma getrennt)\" Export",
-                    mode: "not-implemented",
+                    mode: "implemented",
                     factory: function () {
                         var result = new Importer_js_1.PayPalAccountStatementImporter();
                         result.dataParser = new Parser_js_1.GermanDataParser();
@@ -77,11 +77,15 @@ var FinancesImportComponent = (function () {
                     }
                 },
                 {
-                    extension: "xml",
+                    extension: "csv",
                     provider: "Finances",
-                    description: "Excel Form XML Export",
-                    mode: "not-implemented",
-                    factory: function () { return null; }
+                    description: "Finances Import Form CSV",
+                    mode: "implemented",
+                    factory: function () {
+                        var result = new Importer_js_1.FinancesCsvImporter();
+                        result.dataParser = new Parser_js_1.GermanDataParser();
+                        return result;
+                    }
                 }
             ];
             _this._globalLoadingIndicatorService.removeLoadingProcess();

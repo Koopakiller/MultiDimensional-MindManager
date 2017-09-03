@@ -152,3 +152,35 @@ export class PayPalAccountStatementImporter extends FinanceAccountStatementImpor
         return name;
     }
 }
+
+export class FinancesCsvImporter extends FinanceAccountStatementImporter {
+
+    readFile(file: File): void {
+        this._transactions = [];
+        let result = Papa.parse(file, {
+            delimiter: ",",
+            header: true,
+            skipEmptyLines: true,
+            encoding: "utf-8",
+            complete: (result) => {
+                // it is a german localized file format:
+                // Date format: dd.mm.yyyy
+                // Number format: xxx,xx
+                for (let row of result.data) {
+                    var tvm = new TransactionViewModel();
+                    let timeStampString = row["Date"] + (row["Time"] ? " " + row["Time"] : "");
+                    let timeStampFormat = "MM/DD/YYYY" + (row["Time"] ? " hh:mm:ss A" : "")
+                    let timeStamp = this.dataParser.parseTimeStamp(timeStampString, timeStampFormat);
+                    tvm = this.assignTimeStamp(tvm, timeStamp, false);
+                    tvm.note = row["Description"];
+                    tvm.value = this.dataParser.parseNumber(row["Value"]);
+                    tvm.personId = this.dbValueProvider.getPersonIdFromName(row["Person"]);
+                    tvm.suggestedPersonName = row["Person"];
+                    tvm.currencyAccountId = this.dbValueProvider.getCurrencyAccountIdFromName(row["Account"], row["Currency"]);
+                    this.addRawData(tvm, row, result.meta.fields);
+                    this._transactions.push(tvm);
+                }
+            }
+        });
+    }
+}

@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { KeyValuePair } from "../Common/KeyValuePair.js";
 import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
 import { Observable } from "rxjs/Rx";
-import { PayPalAccountStatementImporter, FinanceAccountStatementImporter, CommerzbankCreditCardStatementImporter, CommerzbankGiroAccountStatementImporter } from "../Finances/Importer.js";
+import { PayPalAccountStatementImporter, FinanceAccountStatementImporter, CommerzbankCreditCardStatementImporter, CommerzbankGiroAccountStatementImporter, FinancesCsvImporter } from "../Finances/Importer.js";
 import { GermanDataParser } from "../Finances/Parser.js";
 import { DBValueProvider } from "../Finances/DBValueProvider.js";
 
@@ -37,7 +37,7 @@ export class FinancesImportComponent implements OnInit {
                         extension: "csv",
                         provider: "Commerzbank",
                         description: "Commerzbank Giro Account Statement CSV Export",
-                        mode: "recommended",
+                        mode: "implemented",
                         factory: () => {
                             let result = new CommerzbankGiroAccountStatementImporter();
                             result.dataParser = new GermanDataParser();
@@ -48,7 +48,7 @@ export class FinancesImportComponent implements OnInit {
                         extension: "csv",
                         provider: "Commerzbank",
                         description: "Commerzbank Credit Card Statement CSV Export",
-                        mode: "not-implemented",
+                        mode: "implemented",
                         factory: () => {
                             let result = new CommerzbankCreditCardStatementImporter();
                             result.dataParser = new GermanDataParser();
@@ -59,7 +59,7 @@ export class FinancesImportComponent implements OnInit {
                         extension: "csv",
                         provider: "PayPal",
                         description: "Paypal (German) \"Guthaben-relevante Zahlungen (CSV, Komma getrennt)\" Export",
-                        mode: "not-implemented",
+                        mode: "implemented",
                         factory: () => {
                             let result = new PayPalAccountStatementImporter();
                             result.dataParser = new GermanDataParser();
@@ -67,11 +67,15 @@ export class FinancesImportComponent implements OnInit {
                         }
                     },
                     {
-                        extension: "xml",
+                        extension: "csv",
                         provider: "Finances",
-                        description: "Excel Form XML Export",
-                        mode: "not-implemented",
-                        factory: (): FinanceAccountStatementImporter => null
+                        description: "Finances Import Form CSV",
+                        mode: "implemented",
+                        factory: () => {
+                            let result = new FinancesCsvImporter();
+                            result.dataParser = new GermanDataParser();
+                            return result;
+                        }
                     }
                 ];
 
