@@ -16,6 +16,7 @@ import { FinancesNewPersonComponent } from "./Components/finances-new-person.js"
 import { FinancesOverviewComponent } from "./Components/finances-overview.js";
 import { LoadingIndicatorComponent } from "./Components/loading-indicator.js";
 import { GlobalLoadingIndicatorService } from "./Services/GlobalLoadingIndicatorService.js";
+import { UtcPipe } from "./Pipes/UtcPipe.js";
 
 const appRoutes: Routes = [
   { path: 'Home',               component: HomeComponent },
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
     FinancesComponent,
     HomeComponent,
     MediaAppletComponent,
-    StyleTestComponent
+    StyleTestComponent,
+    UtcPipe
   ],
   bootstrap: [
     AppComponent
@@ -58,7 +60,7 @@ const appRoutes: Routes = [
     FinancesService,
     LocationService,
     GlobalLoadingIndicatorService
-  ]
+  ],
 })   
 export class AppModule { }
  

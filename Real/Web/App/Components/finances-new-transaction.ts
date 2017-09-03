@@ -4,7 +4,6 @@ import { LocationService } from "../Services/LocationService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
 import { Router } from '@angular/router';
 import { KeyValuePair } from "../Common/KeyValuePair.js";
-import { PageComponentBase } from "../Common/PageComponentBase.js";
 import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
 
 @Component({

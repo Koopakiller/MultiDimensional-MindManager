@@ -49,7 +49,10 @@
                 </tr>
                 <ng-template ngFor [ngForOf]="transactions" let-transaction let-i="index">
                     <tr>
-                        <td>{{transaction.timeStamp}}</td>
+                        <td>
+                            <span>{{transaction.timeStampDate | utc | date: "dd/MM/yyyy"}}</span>
+                            <span *ngIf="transaction.includeTimeStampTime">&nbsp;{{transaction.timeStampTime | utc | date: "HH:mm:ss"}}</span>
+                        </td>
                         <td>{{transaction.note}}</td>
                         <td>{{transaction.value}}</td>
                         <td class="{{transaction.personId ? '' : 'error-cell'}}">

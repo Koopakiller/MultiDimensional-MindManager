@@ -24,6 +24,7 @@ var finances_new_person_js_1 = require("./Components/finances-new-person.js");
 var finances_overview_js_1 = require("./Components/finances-overview.js");
 var loading_indicator_js_1 = require("./Components/loading-indicator.js");
 var GlobalLoadingIndicatorService_js_1 = require("./Services/GlobalLoadingIndicatorService.js");
+var UtcPipe_js_1 = require("./Pipes/UtcPipe.js");
 var appRoutes = [
     { path: 'Home', component: home_js_1.HomeComponent },
     { path: 'Finances', component: finances_js_1.FinancesComponent },
@@ -59,7 +60,8 @@ AppModule = __decorate([
             finances_js_1.FinancesComponent,
             home_js_1.HomeComponent,
             MediaApplet_js_1.MediaAppletComponent,
-            style_test_js_1.StyleTestComponent
+            style_test_js_1.StyleTestComponent,
+            UtcPipe_js_1.UtcPipe
         ],
         bootstrap: [
             app_js_1.AppComponent
@@ -68,7 +70,7 @@ AppModule = __decorate([
             FinancesService_js_1.FinancesService,
             LocationService_js_1.LocationService,
             GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService
-        ]
+        ],
     })
 ], AppModule);
 exports.AppModule = AppModule;

@@ -11,11 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var FinancesService_js_1 = require("../Services/FinancesService.js");
-var FinancesViewModels_js_1 = require("../ViewModels/FinancesViewModels.js");
 var router_1 = require("@angular/router");
-var Papa = require("papaparse");
-var KeyValuePair_js_1 = require("../Common/KeyValuePair.js");
 var GlobalLoadingIndicatorService_js_1 = require("../Services/GlobalLoadingIndicatorService.js");
+var Rx_1 = require("rxjs/Rx");
+var Importer_js_1 = require("../Finances/Importer.js");
+var Parser_js_1 = require("../Finances/Parser.js");
+var DBValueProvider_js_1 = require("../Finances/DBValueProvider.js");
 var FinancesImportComponent = (function () {
     function FinancesImportComponent(_financesService, _router, _globalLoadingIndicatorService) {
         this._financesService = _financesService;
@@ -35,20 +36,54 @@ var FinancesImportComponent = (function () {
     FinancesImportComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.initCurrentStep();
-        this.possibleFileTypes = [
-            { extension: "csv", provider: "Commerzbank", description: "Commerzbank Giro Account Statement CSV Export", mode: "recommended", method: "importCommerzbankGiroAccountStatement" },
-            { extension: "csv", provider: "Commerzbank", description: "Commerzbank Credit Card Statement CSV Export", mode: "not-implemented", method: "importCommerzbankCreditCardStatement" },
-            { extension: "csv", provider: "PayPal", description: "Paypal (German) \"Guthaben-relevante Zahlungen (CSV, Komma getrennt)\" Export", mode: "not-implemented", method: "importPayPalAccountStatement" },
-            { extension: "xml", provider: "Finances", description: "Excel Form XML Export", mode: "not-implemented", method: "" },
-        ];
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.persons.subscribe(function (x) {
-            _this.persons = x;
-            _this._globalLoadingIndicatorService.removeLoadingProcess();
-        });
-        this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.users.subscribe(function (x) {
-            _this.users = x;
+        Rx_1.Observable.zip(this._financesService.persons, this._financesService.users)
+            .subscribe(function (_a) {
+            var persons = _a[0], users = _a[1];
+            _this.persons = persons;
+            _this.users = users;
+            _this.possibleFileTypes = [
+                {
+                    extension: "csv",
+                    provider: "Commerzbank",
+                    description: "Commerzbank Giro Account Statement CSV Export",
+                    mode: "recommended",
+                    factory: function () {
+                        var result = new Importer_js_1.CommerzbankGiroAccountStatementImporter();
+                        result.dataParser = new Parser_js_1.GermanDataParser();
+                        return result;
+                    }
+                },
+                {
+                    extension: "csv",
+                    provider: "Commerzbank",
+                    description: "Commerzbank Credit Card Statement CSV Export",
+                    mode: "not-implemented",
+                    factory: function () {
+                        var result = new Importer_js_1.CommerzbankCreditCardStatementImporter();
+                        result.dataParser = new Parser_js_1.GermanDataParser();
+                        return result;
+                    }
+                },
+                {
+                    extension: "csv",
+                    provider: "PayPal",
+                    description: "Paypal (German) \"Guthaben-relevante Zahlungen (CSV, Komma getrennt)\" Export",
+                    mode: "not-implemented",
+                    factory: function () {
+                        var result = new Importer_js_1.PayPalAccountStatementImporter();
+                        result.dataParser = new Parser_js_1.GermanDataParser();
+                        return result;
+                    }
+                },
+                {
+                    extension: "xml",
+                    provider: "Finances",
+                    description: "Excel Form XML Export",
+                    mode: "not-implemented",
+                    factory: function () { return null; }
+                }
+            ];
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     };
@@ -80,154 +115,12 @@ var FinancesImportComponent = (function () {
         this._globalLoadingIndicatorService.addLoadingProcess();
         setTimeout(function () {
             _this.nextStep();
-            _this[_this.possibleFileTypes[index].method]();
+            var importer = _this.possibleFileTypes[index].factory();
+            importer.dbValueProvider = new DBValueProvider_js_1.DBValueProvider(_this.persons, _this.currencyAccounts);
+            importer.readFile(_this.selectedFile);
+            _this.transactions = importer.transactions;
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         }, 0);
-    };
-    FinancesImportComponent.prototype.getPersonIdFromName = function (name) {
-        var sortedPersons = this.persons.slice();
-        sortedPersons.sort(function (a, b) { return a.header.length - b.header.length
-            || a.header.localeCompare(b.header); });
-        for (var _i = 0, sortedPersons_1 = sortedPersons; _i < sortedPersons_1.length; _i++) {
-            var person = sortedPersons_1[_i];
-            if (person.header.toUpperCase() === name.toUpperCase()) {
-                return person.id;
-            }
-        }
-        for (var _a = 0, sortedPersons_2 = sortedPersons; _a < sortedPersons_2.length; _a++) {
-            var person = sortedPersons_2[_a];
-            if (name.indexOf(person.header) >= 0) {
-                return person.id; // in case the person name is in another text like a description or similar
-            }
-        }
-        return null;
-    };
-    FinancesImportComponent.prototype.getCurrencyAccountIdFromName = function (name, currency) {
-        var sortedCAs = this.currencyAccounts.slice();
-        sortedCAs.sort(function (a, b) { return a.accountName.length - b.accountName.length
-            || a.accountName.localeCompare(b.accountName); });
-        for (var _i = 0, sortedCAs_1 = sortedCAs; _i < sortedCAs_1.length; _i++) {
-            var ca = sortedCAs_1[_i];
-            if (ca.accountName.toUpperCase() === name.toUpperCase()
-                && ca.currencySymbols.indexOf(currency) >= 0) {
-                return ca.id;
-            }
-        }
-        for (var _a = 0, sortedCAs_2 = sortedCAs; _a < sortedCAs_2.length; _a++) {
-            var ca = sortedCAs_2[_a];
-            if (ca.accountName.toUpperCase().indexOf(name.toUpperCase()) >= 0
-                && ca.currencySymbols.indexOf(currency) >= 0) {
-                return ca.id;
-            }
-        }
-        return null;
-    };
-    FinancesImportComponent.prototype.importCommerzbankGiroAccountStatement = function () {
-        var _this = this;
-        var result = Papa.parse(this.selectedFile, {
-            delimiter: ";",
-            header: true,
-            skipEmptyLines: true,
-            encoding: "utf-8",
-            complete: function (result) {
-                // it is a german localized file format:
-                // Date format: dd.mm.yyyy
-                // Number format: xxx,xx
-                for (var _i = 0, _a = result.data; _i < _a.length; _i++) {
-                    var row = _a[_i];
-                    var tvm = new FinancesViewModels_js_1.TransactionViewModel();
-                    tvm.timeStampDate = _this.parseGermanTimeStamp(row["Wertstellung"]);
-                    tvm.note = row["Buchungstext"];
-                    tvm.value = _this.parseGermanNumber(row["Betrag"]);
-                    tvm.personId = _this.getPersonIdFromName(row["Buchungstext"]);
-                    tvm.currencyAccountId = _this.getCurrencyAccountIdFromName("Konto", "EUR");
-                    _this.addRawData(tvm, row, result.meta.fields);
-                    _this.transactions.push(tvm);
-                }
-            }
-        });
-    };
-    FinancesImportComponent.prototype.importCommerzbankCreditCardStatement = function () {
-        var _this = this;
-        var result = Papa.parse(this.selectedFile, {
-            delimiter: ";",
-            header: true,
-            skipEmptyLines: true,
-            encoding: "utf-8",
-            complete: function (result) {
-                // it is a german localized file format:
-                // Date format: dd.mm.yyyy
-                // Number format: xxx,xx
-                for (var _i = 0, _a = result.data; _i < _a.length; _i++) {
-                    var row = _a[_i];
-                    var tvm = new FinancesViewModels_js_1.TransactionViewModel();
-                    tvm.timeStampDate = _this.parseGermanTimeStamp(row["Buchungstag"]);
-                    tvm.note = row["Unternehmen"];
-                    tvm.value = _this.parseGermanNumber(row["Betrag"]);
-                    tvm.personId = _this.getPersonIdFromName(row["Unternehmen"]);
-                    tvm.suggestedPersonName = row["Unternehmen"];
-                    tvm.currencyAccountId = _this.getCurrencyAccountIdFromName("Kreditkarte", "EUR");
-                    _this.addRawData(tvm, row, result.meta.fields);
-                    _this.transactions.push(tvm);
-                }
-            }
-        });
-    };
-    FinancesImportComponent.prototype.importPayPalAccountStatement = function () {
-        var _this = this;
-        var result = Papa.parse(this.selectedFile, {
-            delimiter: ",",
-            header: true,
-            skipEmptyLines: true,
-            encoding: "ISO-8859-15",
-            complete: function (result) {
-                // it is a german localized file format:
-                // Date format: dd.mm.yyyy
-                // Time format: hh:mm:ss
-                // Number format: xxx,xx
-                // Attention: PayPals CSV contains spaces before the header-names
-                for (var _i = 0, _a = result.data; _i < _a.length; _i++) {
-                    var row = _a[_i];
-                    if (!row[" Netto"] || row[" Netto"] == "") {
-                        continue;
-                    }
-                    var tvm = new FinancesViewModels_js_1.TransactionViewModel();
-                    tvm.timeStampDate = tvm.timeStampTime = _this.parseGermanTimeStamp(row["Datum"], row[" Zeit"], row[" Zeitzone"]);
-                    tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"] : "");
-                    tvm.value = _this.parseGermanNumber(row[" Netto"]);
-                    tvm.personId = _this.getPersonIdFromName(row[" Name"]);
-                    tvm.suggestedPersonName = row[" Name"];
-                    tvm.currencyAccountId = _this.getCurrencyAccountIdFromName("PayPal", row[" Währung"]);
-                    _this.addRawData(tvm, row, result.meta.fields);
-                    _this.transactions.push(tvm);
-                }
-            }
-        });
-    };
-    FinancesImportComponent.prototype.addRawData = function (tvm, row, keys) {
-        for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
-            var key = keys_1[_i];
-            if (key && row[key] && row[key] != "") {
-                tvm.rawData.push(new KeyValuePair_js_1.KeyValuePair(key, row[key]));
-            }
-        }
-    };
-    // TODO: respect timeZone parameter 
-    FinancesImportComponent.prototype.parseGermanTimeStamp = function (date, time, timeZone) {
-        if (time === void 0) { time = "00:00:00"; }
-        if (timeZone === void 0) { timeZone = ""; }
-        if (!date) {
-            return null;
-        }
-        var dateParts = date.split(".");
-        var timeParts = time.split(":");
-        return new Date(+dateParts[2], +dateParts[1], +dateParts[0], +timeParts[0], +timeParts[1], +timeParts[2]);
-    };
-    FinancesImportComponent.prototype.parseGermanNumber = function (str) {
-        if (!str) {
-            return null;
-        }
-        return Number(str.replace(/,/g, "."));
     };
     FinancesImportComponent.prototype.toggleDetails = function (i) {
         if (this.transactions[i].showDetails) {

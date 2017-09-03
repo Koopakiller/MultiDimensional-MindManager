@@ -3,7 +3,6 @@ import { FinancesService } from "../Services/FinancesService.js";
 import { LocationService } from "../Services/LocationService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel } from "../ViewModels/FinancesViewModels.js";
 import { Router } from '@angular/router';
-import { PageComponentBase } from "../Common/PageComponentBase.js";
 import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
 
 @Component({
