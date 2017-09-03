@@ -83,7 +83,7 @@ var FinancesNewTransactionComponent = (function () {
                 new KeyValuePair_js_1.KeyValuePair("Coordinates", JSON.stringify(this.coordinates))
             ];
         }
-        this._financesService.addTransaction([tvm]).subscribe(function () {
+        this._financesService.addTransactions([tvm]).subscribe(function () {
             _this._router.navigateByUrl("/Finances");
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         }, function (error) {

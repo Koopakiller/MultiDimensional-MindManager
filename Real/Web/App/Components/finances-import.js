@@ -122,6 +122,30 @@ var FinancesImportComponent = (function () {
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         }, 0);
     };
+    Object.defineProperty(FinancesImportComponent.prototype, "transactionsHasErrors", {
+        get: function () {
+            for (var _i = 0, _a = this.transactions; _i < _a.length; _i++) {
+                var t = _a[_i];
+                if (!t.currencyAccountId || !t.personId) {
+                    return true;
+                }
+            }
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    FinancesImportComponent.prototype.submitData = function () {
+        var _this = this;
+        this._globalLoadingIndicatorService.addLoadingProcess();
+        this._financesService.addTransactions(this.transactions).subscribe(function () {
+            _this._router.navigateByUrl("/Finances");
+            _this._globalLoadingIndicatorService.removeLoadingProcess();
+        }, function (error) {
+            alert(error);
+            _this._globalLoadingIndicatorService.removeLoadingProcess();
+        });
+    };
     FinancesImportComponent.prototype.toggleDetails = function (i) {
         if (this.transactions[i].showDetails) {
             this.transactions[i].showDetails = false;

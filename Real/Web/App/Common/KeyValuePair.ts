@@ -1,13 +1,6 @@
 export class KeyValuePair<TKey, TValue>{
     constructor(
-        private _key: TKey,
-        private _value: TValue
+        public key: TKey,
+        public value: TValue
     ) { }
-
-    get key(): TKey {
-        return this._key;
-    }
-    get value(): TValue {
-        return this._value;
-    }
 }  

@@ -124,6 +124,26 @@ export class FinancesImportComponent implements OnInit {
 
     transactions: TransactionViewModel[] = [];
 
+    public get transactionsHasErrors(): boolean{
+        for(let t of this.transactions){
+            if(!t.currencyAccountId || !t.personId){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public submitData(){
+        this._globalLoadingIndicatorService.addLoadingProcess();
+        this._financesService.addTransactions(this.transactions).subscribe(() => {
+            this._router.navigateByUrl("/Finances");
+            this._globalLoadingIndicatorService.removeLoadingProcess();
+        }, error => {
+            alert(error);
+            this._globalLoadingIndicatorService.removeLoadingProcess();
+        });
+    }
+
     // Show Details (additional/raw data) of a Transaction ###########################################
     shownRawData: KeyValuePair<string, string>[];
     lastIndexShownDetails: number = -1;

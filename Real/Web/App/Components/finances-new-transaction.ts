@@ -87,7 +87,7 @@ export class FinancesNewTransactionComponent implements OnInit {
                 new KeyValuePair<string, string>("Coordinates", JSON.stringify(this.coordinates))
             ];
         }
-        this._financesService.addTransaction([tvm]).subscribe(() => {
+        this._financesService.addTransactions([tvm]).subscribe(() => {
             this._router.navigateByUrl("/Finances");
             this._globalLoadingIndicatorService.removeLoadingProcess();
         }, error => {

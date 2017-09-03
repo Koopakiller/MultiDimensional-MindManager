@@ -24,20 +24,25 @@ export abstract class FinanceAccountStatementImporter {
                 tvm.rawData.push(new KeyValuePair<string, string>(key, row[key]));
             }
         }
-    } 
+    }
 
     protected assignTimeStamp(tvm: TransactionViewModel, timeStamp: moment.Moment, includeTime: boolean): TransactionViewModel {
         tvm.timeStampDate = new Date(Date.UTC(
             timeStamp.year(),
             timeStamp.month(),
-            timeStamp.date(), 
+            timeStamp.date(),
             0, 0, 0, 0));
-        tvm.timeStampTime = new Date(Date.UTC(
-            0, 0, 0,
-            timeStamp.hour(),
-            timeStamp.minute(),
-            timeStamp.second(),
-            timeStamp.millisecond()));
+        if (includeTime) {
+            tvm.timeStampTime = new Date(Date.UTC(
+                0, 0, 0,
+                timeStamp.hour(),
+                timeStamp.minute(),
+                timeStamp.second(),
+                timeStamp.millisecond()));
+        }
+        else {
+            tvm.timeStampTime = null;
+        }
         tvm.includeTimeStampTime = includeTime;
         return tvm;
     }

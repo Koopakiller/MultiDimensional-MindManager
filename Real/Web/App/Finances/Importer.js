@@ -33,7 +33,12 @@ var FinanceAccountStatementImporter = (function () {
     };
     FinanceAccountStatementImporter.prototype.assignTimeStamp = function (tvm, timeStamp, includeTime) {
         tvm.timeStampDate = new Date(Date.UTC(timeStamp.year(), timeStamp.month(), timeStamp.date(), 0, 0, 0, 0));
-        tvm.timeStampTime = new Date(Date.UTC(0, 0, 0, timeStamp.hour(), timeStamp.minute(), timeStamp.second(), timeStamp.millisecond()));
+        if (includeTime) {
+            tvm.timeStampTime = new Date(Date.UTC(0, 0, 0, timeStamp.hour(), timeStamp.minute(), timeStamp.second(), timeStamp.millisecond()));
+        }
+        else {
+            tvm.timeStampTime = null;
+        }
         tvm.includeTimeStampTime = includeTime;
         return tvm;
     };

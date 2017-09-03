@@ -82,7 +82,7 @@ export class FinancesService {
         });
     }
 
-    public addTransaction(tvms: TransactionViewModel[]): Observable<TransactionViewModel[]> {
+    public addTransactions(tvms: TransactionViewModel[]): Observable<TransactionViewModel[]> {
         let data = new DataContainer<TransactionViewModel[]>(tvms);
         var postData = JSON.stringify(data);
         console.log(postData);

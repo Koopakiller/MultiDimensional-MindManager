@@ -90,7 +90,7 @@ var FinancesService = (function () {
             });
         });
     };
-    FinancesService.prototype.addTransaction = function (tvms) {
+    FinancesService.prototype.addTransactions = function (tvms) {
         var _this = this;
         var data = new DataContainer_js_1.DataContainer(tvms);
         var postData = JSON.stringify(data);
