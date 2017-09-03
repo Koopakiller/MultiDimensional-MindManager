@@ -133,13 +133,22 @@ export class PayPalAccountStatementImporter extends FinanceAccountStatementImpor
                     tvm = this.assignTimeStamp(tvm, timeStamp, row[" Zeit"] != "");
                     tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"] : "");
                     tvm.value = this.dataParser.parseNumber(row[" Netto"]);
-                    tvm.personId = this.dbValueProvider.getPersonIdFromName(row[" Name"]);
-                    tvm.suggestedPersonName = row[" Name"];
+                    let name = this.tryGetPayPal(row[" Name"]);
+                    tvm.personId = this.dbValueProvider.getPersonIdFromName(name);
+                    tvm.suggestedPersonName = name;
                     tvm.currencyAccountId = this.dbValueProvider.getCurrencyAccountIdFromName("PayPal", row[" Währung"]);
                     this.addRawData(tvm, row, result.meta.fields);
                     this._transactions.push(tvm);
                 }
             }
         });
+    }
+
+    private tryGetPayPal(name: string){
+        //TODO: move to DBValueProvider/IDataParser
+        if(name == "von Euro" || name == "in US Dollar" || name == "Kredikarte" || name=="Bankkonto (Lastschrift)"){
+            return "PayPal";
+        }
+        return name;
     }
 }

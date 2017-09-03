@@ -147,14 +147,22 @@ var PayPalAccountStatementImporter = (function (_super) {
                     tvm = _this.assignTimeStamp(tvm, timeStamp, row[" Zeit"] != "");
                     tvm.note = row[" Name"] + " " + row[" Typ"] + (row[" Artikelbezeichnung"] ? " " + row[" Artikelbezeichnung"] : "");
                     tvm.value = _this.dataParser.parseNumber(row[" Netto"]);
-                    tvm.personId = _this.dbValueProvider.getPersonIdFromName(row[" Name"]);
-                    tvm.suggestedPersonName = row[" Name"];
+                    var name_1 = _this.tryGetPayPal(row[" Name"]);
+                    tvm.personId = _this.dbValueProvider.getPersonIdFromName(name_1);
+                    tvm.suggestedPersonName = name_1;
                     tvm.currencyAccountId = _this.dbValueProvider.getCurrencyAccountIdFromName("PayPal", row[" Währung"]);
                     _this.addRawData(tvm, row, result.meta.fields);
                     _this._transactions.push(tvm);
                 }
             }
         });
+    };
+    PayPalAccountStatementImporter.prototype.tryGetPayPal = function (name) {
+        //TODO: move to DBValueProvider/IDataParser
+        if (name == "von Euro" || name == "in US Dollar" || name == "Kredikarte" || name == "Bankkonto (Lastschrift)") {
+            return "PayPal";
+        }
+        return name;
     };
     return PayPalAccountStatementImporter;
 }(FinanceAccountStatementImporter));
