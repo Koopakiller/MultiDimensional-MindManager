@@ -80,9 +80,13 @@ var TransactionViewModel = (function () {
         tvm.personId = this.personId;
         tvm.rawData = this.rawData;
         tvm.timeStampDate = this.timeStampDate;
-        var x = new Date();
-        x.setFullYear(0, 0, 0);
-        tvm.timeStampTime = this.includeTimeStampTime ? this.timeStampTime : x;
+        if (this.includeTimeStampTime) {
+            tvm.timeStampTime = this.timeStampTime.getHours() + ":" + this.timeStampTime.getMinutes() + ":" + this.timeStampTime.getSeconds() + "." + this.timeStampTime.getMilliseconds();
+        }
+        else {
+            tvm.timeStampTime = null;
+        }
+        tvm.includeTimeStampTime = this.includeTimeStampTime;
         tvm.userId = this.userId;
         tvm.value = this.value;
         return tvm;

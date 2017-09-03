@@ -50,7 +50,7 @@ var TransactionServerModel = (function () {
         tvm.personId = this.personId;
         tvm.rawData = this.rawData;
         tvm.timeStampDate = this.timeStampDate;
-        tvm.timeStampTime = this.timeStampTime;
+        tvm.timeStampTime = new Date(this.timeStampTime);
         tvm.userId = this.userId;
         tvm.value = this.value;
         return tvm;

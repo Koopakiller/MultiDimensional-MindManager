@@ -83,7 +83,7 @@ export class FinancesService {
     }
 
     public addTransactions(tvms: TransactionViewModel[]): Observable<TransactionViewModel[]> {
-        let data = new DataContainer<TransactionViewModel[]>(tvms);
+        let data = new DataContainer<TransactionServerModel[]>(tvms.map(x => x.toServerModel()));
         var postData = JSON.stringify(data);
         console.log(postData);
         let headers = new Headers({ 'Content-Type': 'application/json' });

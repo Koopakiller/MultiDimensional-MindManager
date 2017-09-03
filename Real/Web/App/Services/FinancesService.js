@@ -92,7 +92,7 @@ var FinancesService = (function () {
     };
     FinancesService.prototype.addTransactions = function (tvms) {
         var _this = this;
-        var data = new DataContainer_js_1.DataContainer(tvms);
+        var data = new DataContainer_js_1.DataContainer(tvms.map(function (x) { return x.toServerModel(); }));
         var postData = JSON.stringify(data);
         console.log(postData);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });

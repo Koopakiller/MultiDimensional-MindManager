@@ -16,7 +16,7 @@ export class UserServerModel implements IViewModelConvert<UserViewModel>{
     toViewModel(): UserViewModel {
         return new UserViewModel(this.id, this.name);
     }
-    
+
     public id: number;
     public name: string;
 }
@@ -27,7 +27,7 @@ export class CurrencyAccountServerModel implements IViewModelConvert<CurrencyAcc
         let currencyNames = this.currencyNames.map(x => x.symbol).join(", ");
         let cavm = new CurrencyAccountViewModel(this.currencyAccountId, this.accountName + " (" + currencyNames + ")");
         cavm.currencySymbols = this.currencyNames.map(x => x.symbol);
-        cavm.accountName = this.accountName;    
+        cavm.accountName = this.accountName;
         return cavm;
     }
 
@@ -38,7 +38,7 @@ export class CurrencyAccountServerModel implements IViewModelConvert<CurrencyAcc
     public currencyNames: CurrencySymbolServerModel[];
 }
 
-export class CurrencySymbolServerModel{
+export class CurrencySymbolServerModel {
     public id: number;
     public symbol: string;
 }
@@ -52,16 +52,17 @@ export class TransactionServerModel implements IViewModelConvert<TransactionView
         tvm.personId = this.personId;
         tvm.rawData = this.rawData;
         tvm.timeStampDate = this.timeStampDate;
-        tvm.timeStampTime = this.timeStampTime;
+        tvm.timeStampTime = new Date(this.timeStampTime);
         tvm.userId = this.userId;
         tvm.value = this.value;
         return tvm;
     }
-    
+
     id: number;
     note: string;
     timeStampDate: Date;
-    timeStampTime: Date;
+    timeStampTime: string;
+    includeTimeStampTime: boolean;
     userId: number;
     personId: number;
     currencyAccountId: number;
