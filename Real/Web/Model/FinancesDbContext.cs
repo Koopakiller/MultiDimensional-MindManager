@@ -17,6 +17,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         private DbSet<Transaction> Transactions { get; set; }
         private DbSet<TransactionOverview> TransactionOverviews { get; set; }
         private DbSet<CurrencySymbol> CurrencySymbols { get; set; }
+        private DbSet<UserGroup> UserGroups { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,7 +33,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         public IEnumerable<Person> GetPersons()
         {
             // NULL = @userId
-            return this.Persons.FromSql("EXEC GetPersons NULL");
+            return this.Persons.FromSql("EXEC GetPersons");
         }
 
         public IEnumerable<CurrencyAccount> GetCurrencyAccountsForUser(int userId)
@@ -97,6 +98,33 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         {
             return this.Persons.FromSql("EXEC AddPerson {0}, {1}", name, userId).SingleOrDefault();
         }
+
+        public User AddUser(string name, string email, string phone)
+        {
+            return this.Users.FromSql("EXEC AddUser {0}, {1}, {3}", name, email, phone).SingleOrDefault();
+        }
+
+        public UserGroup AddUserGroup(string name)
+        {
+            return this.UserGroups.FromSql("EXEC AddUserGroup {0}", name).SingleOrDefault();
+        }
+
+        public void AddUserToUserGroup(int userGroupId, int userId)
+        {
+            this.Database.ExecuteSqlCommand("EXEC AddUserToUserGroup {0}, {1}", userGroupId, userId);
+        }
+
+        public IEnumerable<UserGroup> GetUserGroups(int? userId)
+        {
+            if (userId == null)
+            {
+                return this.UserGroups.FromSql("EXEC GetUserGroups");
+            }
+            else
+            {
+                return this.UserGroups.FromSql("EXEC GetUserGroups {0}", userId);
+            }
+        }
     }
 
     public enum SortOrder
@@ -111,6 +139,12 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
         public int CurrencyId { get; set; }
         public int CurrencyAccountId { get; set; }
         public decimal Value { get; set; }
+    }
+
+    public class UserGroup
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 
     public class User
