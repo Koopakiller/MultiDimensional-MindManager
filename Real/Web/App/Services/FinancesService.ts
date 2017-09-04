@@ -110,11 +110,11 @@ export class FinancesService {
         });
     }
 
-    public addPerson(name: string, userId: number): Observable<PersonViewModel> {
+    public addPerson(name: string, userGroupId: number): Observable<PersonViewModel> {
         let data = {
             data: {
                 name: name,
-                userId: userId
+                userGroupId: userGroupId
             }
         };
         let headers = new Headers({ 'Content-Type': 'application/json' });

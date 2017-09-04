@@ -68,7 +68,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
 
         public IActionResult AddPerson([FromBody] DataContainer<FinancePerson> data)
         {
-            var result = this._context.AddPerson(data.Data.Name, data.Data.UserId);
+            var result = this._context.AddPerson(data.Data.Name, data.Data.UserGroupId);
             return this.Json(DataContainer.Create(result));
         }
     }

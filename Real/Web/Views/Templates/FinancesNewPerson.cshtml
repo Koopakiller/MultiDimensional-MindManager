@@ -1,10 +1,10 @@
 
 <form (ngSubmit)="submit()">
     <div class="form-group">
-        <label for="user">User:</label>
+        <label for="userGroup">UserGroup:</label>
         <div class="control-container">  
-            <select [(ngModel)]="user" name="user">
-                <option *ngFor="let user of users" [ngValue]="user.id">{{user.header}}</option>
+            <select [(ngModel)]="userGroup" name="userGroup">
+                <option *ngFor="let userGroup of userGroups" [ngValue]="userGroup.id">{{userGroup.name}}</option>
             </select>
         </div>
     </div>

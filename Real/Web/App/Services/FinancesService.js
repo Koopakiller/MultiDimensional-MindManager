@@ -115,12 +115,12 @@ var FinancesService = (function () {
             });
         });
     };
-    FinancesService.prototype.addPerson = function (name, userId) {
+    FinancesService.prototype.addPerson = function (name, userGroupId) {
         var _this = this;
         var data = {
             data: {
                 name: name,
-                userId: userId
+                userGroupId: userGroupId
             }
         };
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });

@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
+import { Component, OnInit, Input, EventEmitter, Output, OnDestroy } from "@angular/core";
 import { FinancesService } from "../Services/FinancesService.js";
 import { LocationService } from "../Services/LocationService.js";
-import { PersonViewModel, CurrencyAccountViewModel, UserViewModel } from "../ViewModels/FinancesViewModels.js";
+import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, UserGroupViewModel } from "../ViewModels/FinancesViewModels.js";
 import { Router } from '@angular/router';
 import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
 
@@ -9,7 +9,7 @@ import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicato
     selector: "finances-new-person",
     templateUrl: "/Templates/FinancesNewPerson"
 })
-export class FinancesNewPersonComponent implements OnInit {
+export class FinancesNewPersonComponent implements OnInit, OnDestroy {
     constructor(
         private _financesService: FinancesService,
         private _router: Router,
@@ -17,31 +17,53 @@ export class FinancesNewPersonComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        //this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.users.subscribe(
+        this._isInitialized = true;
+        this.updateUserGroups();
+    }
+
+    ngOnDestroy(): void {
+        this._isInitialized = false;
+    }
+
+    private userGroups: UserGroupViewModel[];
+    private userGroup: number;
+    private _userId: number;
+    private _isInitialized: boolean = false;
+
+    @Input()
+    personName: string;
+
+    @Input("userId")
+    public set userId(value: number) {
+        this._userId = value;
+        if (this._isInitialized) {
+            this.updateUserGroups();
+        }
+    }
+    public get userId(): number {
+        return this._userId;
+    }
+
+    private updateUserGroups(): void {
+        this._globalLoadingIndicatorService.addLoadingProcess();
+        this._financesService.getUserGroups(this._userId).subscribe(
             x => {
-                this.users = x;
-                this.user = x.length > 0 ? x[0].id : null;
-                //this._globalLoadingIndicatorService.removeLoadingProcess();
+                this.userGroups = x;
+                this.userGroup = x.length > 0 ? x[0].id : null;
+                this._globalLoadingIndicatorService.removeLoadingProcess();
             },
             error => {
                 alert(error);
             }
-        );  
+        );
     }
-
-    users: UserViewModel[];
-    user: number;
-
-    @Input()
-    personName: string;
 
     @Output()
     close = new EventEmitter();
 
     submit(): void {
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.addPerson(this.personName, this.user).subscribe(
+        this._financesService.addPerson(this.personName, this.userGroup).subscribe(
             item => {
                 this.close.emit(item);
                 this._globalLoadingIndicatorService.removeLoadingProcess();

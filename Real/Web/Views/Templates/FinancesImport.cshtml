@@ -111,7 +111,9 @@
                 <div class="popup-content text">
                     <span class="header">Add Person</span>
                     
-                    <finances-new-person [personName]="suggestedNewPersonName" (close)="closeAddPersonPopup($event)"></finances-new-person>
+                    <finances-new-person [personName]="suggestedNewPersonName"
+                                         [userId]="selectedUser"
+                                         (close)="closeAddPersonPopup($event)"></finances-new-person>
                 </div>
             </div>
         </div>

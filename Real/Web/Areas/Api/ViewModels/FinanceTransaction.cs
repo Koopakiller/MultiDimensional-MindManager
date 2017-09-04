@@ -33,6 +33,6 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.ViewModels
     {
         public string Name { get; set; }
 
-        public int UserId { get; set; }
+        public int UserGroupId { get; set; }
     }
 }

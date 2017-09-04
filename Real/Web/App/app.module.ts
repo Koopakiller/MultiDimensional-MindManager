@@ -21,15 +21,15 @@ import { FinancesUsersComponent } from "./Components/finances-users.js";
 import { FinancesUserGroupsComponent } from "./Components/finances-usergroups.js";
 
 const appRoutes: Routes = [
-  { path: 'Home',               component: HomeComponent },
-  { path: 'Finances',           component: FinancesComponent },
+  { path: 'Home',                     component: HomeComponent },
+  { path: 'Finances',                 component: FinancesComponent },
   { path: 'Finances/AddTransaction',  component: FinancesNewTransactionComponent },
-  { path: 'Finances/Import',    component: FinancesImportComponent },
-  { path: 'Finances/Overview',    component: FinancesOverviewComponent },
-  { path: 'Finances/Users',    component: FinancesUsersComponent },
-  { path: 'Finances/UserGroups',    component: FinancesUserGroupsComponent },
-  { path: 'StyleTest',          component: StyleTestComponent },
-  { path: 'Media',              component: MediaAppletComponent },
+  { path: 'Finances/Import',          component: FinancesImportComponent },
+  { path: 'Finances/Overview',        component: FinancesOverviewComponent },
+  { path: 'Finances/Users',           component: FinancesUsersComponent },
+  { path: 'Finances/UserGroups',      component: FinancesUserGroupsComponent },
+  { path: 'StyleTest',                component: StyleTestComponent },
+  { path: 'Media',                    component: MediaAppletComponent },
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
   //{ path: '**', component: PageNotFoundComponent }
 ];

@@ -94,9 +94,9 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
             return this.TransactionOverviews.FromSql("EXEC GetTransactionOverviewForUserAtTimeStamp {0}, {1}", userId, timeStampDate);
         }
 
-        public Person AddPerson(string name, int userId)
+        public Person AddPerson(string name, int userGroupId)
         {
-            return this.Persons.FromSql("EXEC AddPerson {0}, {1}", name, userId).SingleOrDefault();
+            return this.Persons.FromSql("EXEC AddPerson {0}, {1}", name, userGroupId).SingleOrDefault();
         }
 
         public User AddUser(string name, string email, string phone)

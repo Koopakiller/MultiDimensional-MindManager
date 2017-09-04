@@ -18,15 +18,36 @@ var FinancesNewPersonComponent = (function () {
         this._financesService = _financesService;
         this._router = _router;
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
+        this._isInitialized = false;
         this.close = new core_1.EventEmitter();
     }
     FinancesNewPersonComponent.prototype.ngOnInit = function () {
+        this._isInitialized = true;
+        this.updateUserGroups();
+    };
+    FinancesNewPersonComponent.prototype.ngOnDestroy = function () {
+        this._isInitialized = false;
+    };
+    Object.defineProperty(FinancesNewPersonComponent.prototype, "userId", {
+        get: function () {
+            return this._userId;
+        },
+        set: function (value) {
+            this._userId = value;
+            if (this._isInitialized) {
+                this.updateUserGroups();
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    FinancesNewPersonComponent.prototype.updateUserGroups = function () {
         var _this = this;
-        //this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.users.subscribe(function (x) {
-            _this.users = x;
-            _this.user = x.length > 0 ? x[0].id : null;
-            //this._globalLoadingIndicatorService.removeLoadingProcess();
+        this._globalLoadingIndicatorService.addLoadingProcess();
+        this._financesService.getUserGroups(this._userId).subscribe(function (x) {
+            _this.userGroups = x;
+            _this.userGroup = x.length > 0 ? x[0].id : null;
+            _this._globalLoadingIndicatorService.removeLoadingProcess();
         }, function (error) {
             alert(error);
         });
@@ -34,7 +55,7 @@ var FinancesNewPersonComponent = (function () {
     FinancesNewPersonComponent.prototype.submit = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.addPerson(this.personName, this.user).subscribe(function (item) {
+        this._financesService.addPerson(this.personName, this.userGroup).subscribe(function (item) {
             _this.close.emit(item);
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         }, function (error) {
@@ -50,6 +71,11 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", String)
 ], FinancesNewPersonComponent.prototype, "personName", void 0);
+__decorate([
+    core_1.Input("userId"),
+    __metadata("design:type", Number),
+    __metadata("design:paramtypes", [Number])
+], FinancesNewPersonComponent.prototype, "userId", null);
 __decorate([
     core_1.Output(),
     __metadata("design:type", Object)
