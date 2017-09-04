@@ -3,9 +3,10 @@
 	@personId [int],
 	@value [decimal](18, 2),
 	@timeStampDate DATE,
-	@timeStampTime TIME NULL,
+	@timeStampTime TIME NULL = NULL,
 	@currencyAccountId [int],
-	@note NVARCHAR(MAX)
+	@note NVARCHAR(MAX),
+	@isDebt bit NOT NULL = 0
 )
 AS
 BEGIN
