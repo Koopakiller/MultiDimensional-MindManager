@@ -2,7 +2,6 @@
 AS
 BEGIN
     SELECT u.Id AS [Id]
-         , p.[Name] as [Name]
+         , u.[Name] as [Name]
     FROM Users u
-    INNER JOIN Persons p ON p.Id = u.PersonId
 END

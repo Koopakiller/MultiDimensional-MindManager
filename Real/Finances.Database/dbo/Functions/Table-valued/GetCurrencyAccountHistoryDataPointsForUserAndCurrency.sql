@@ -43,12 +43,11 @@ BEGIN
          , [dbo].[GetValueForDate](ts.[TimeStampDate], ca.Id)
          , (SELECT TOP 1 cs.Symbol FROM CurrencySymbols cs WHERE cs.CurrencyId = ca.CurrencyId) AS CurrencyName
          , a.[Name] AS AccountName
-         , up.[Name] AS UserName
+         , u.[Name] AS UserName
     FROM TS_CTE_DISTINCT ts
     CROSS JOIN (SELECT * FROM CA_CTE) ca 
     INNER JOIN Accounts a ON a.Id = ca.AccountId
     INNER JOIN Users u ON u.Id = a.UserId
-    INNER JOIN Persons up ON up.Id = u.PersonId
 
     RETURN
 END

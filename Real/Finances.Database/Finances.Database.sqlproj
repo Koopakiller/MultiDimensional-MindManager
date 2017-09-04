@@ -93,6 +93,7 @@
     <Build Include="dbo\Stored Procedures\GetUserGroups.sql" />
     <Build Include="dbo\Tables\UserGroupUsers.sql" />
     <Build Include="dbo\Stored Procedures\AddUserToUserGroup.sql" />
+    <Build Include="dbo\Stored Procedures\AddUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="publish.localdbv13.publish.xml" />
