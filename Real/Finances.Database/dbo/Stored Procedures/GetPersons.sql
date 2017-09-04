@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[GetPersons]
 (
-	@userId INT NULL
+	@userId INT NULL = NULL
 )
 AS
 BEGIN
