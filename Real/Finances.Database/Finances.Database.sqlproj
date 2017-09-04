@@ -88,6 +88,11 @@
     <Build Include="dbo\Stored Procedures\GetTransactions.sql" />
     <Build Include="dbo\Stored Procedures\GetTransactionOverviewForUserAtTimeStamp.sql" />
     <Build Include="dbo\Stored Procedures\AddPerson.sql" />
+    <Build Include="dbo\Tables\UserGroups.sql" />
+    <Build Include="dbo\Stored Procedures\AddUserGroup.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserGroups.sql" />
+    <Build Include="dbo\Tables\UserGroupUsers.sql" />
+    <Build Include="dbo\Stored Procedures\AddUserToUserGroup.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="publish.localdbv13.publish.xml" />
