@@ -18,6 +18,7 @@ import { LoadingIndicatorComponent } from "./Components/loading-indicator.js";
 import { GlobalLoadingIndicatorService } from "./Services/GlobalLoadingIndicatorService.js";
 import { UtcPipe } from "./Pipes/UtcPipe.js";
 import { FinancesUsersComponent } from "./Components/finances-users.js";
+import { FinancesUserGroupsComponent } from "./Components/finances-usergroups.js";
 
 const appRoutes: Routes = [
   { path: 'Home',               component: HomeComponent },
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
   { path: 'Finances/Import',    component: FinancesImportComponent },
   { path: 'Finances/Overview',    component: FinancesOverviewComponent },
   { path: 'Finances/Users',    component: FinancesUsersComponent },
+  { path: 'Finances/UserGroups',    component: FinancesUserGroupsComponent },
   { path: 'StyleTest',          component: StyleTestComponent },
   { path: 'Media',              component: MediaAppletComponent },
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
@@ -45,6 +47,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoadingIndicatorComponent,
+    FinancesUserGroupsComponent,
     FinancesNewTransactionComponent,
     FinancesImportComponent,
     FinancesNewPersonComponent,

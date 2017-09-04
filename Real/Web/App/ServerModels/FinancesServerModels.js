@@ -19,6 +19,15 @@ var UserServerModel = (function () {
     return UserServerModel;
 }());
 exports.UserServerModel = UserServerModel;
+var UserGroupServerModel = (function () {
+    function UserGroupServerModel() {
+    }
+    UserGroupServerModel.prototype.toViewModel = function () {
+        return new FinancesViewModels_js_1.UserGroupViewModel(this.id, this.name);
+    };
+    return UserGroupServerModel;
+}());
+exports.UserGroupServerModel = UserGroupServerModel;
 var CurrencyAccountServerModel = (function () {
     function CurrencyAccountServerModel() {
     }

@@ -23,6 +23,14 @@ var UserViewModel = (function () {
     return UserViewModel;
 }());
 exports.UserViewModel = UserViewModel;
+var UserGroupViewModel = (function () {
+    function UserGroupViewModel(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+    return UserGroupViewModel;
+}());
+exports.UserGroupViewModel = UserGroupViewModel;
 var PersonViewModel = (function () {
     function PersonViewModel(_id, _header) {
         this._id = _id;

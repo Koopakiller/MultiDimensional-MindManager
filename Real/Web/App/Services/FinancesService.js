@@ -48,6 +48,13 @@ var FinancesService = (function () {
         enumerable: true,
         configurable: true
     });
+    FinancesService.prototype.getUserGroups = function (userId) {
+        var url = "/api/Finances/GetUserGroups";
+        if (userId) {
+            url = url + ("?userId=" + userId);
+        }
+        return this.getList(url, function () { return new FinancesServerModels_js_1.UserGroupServerModel(); });
+    };
     FinancesService.prototype.getCurrencyAccounts = function (userId) {
         return this.getList("/api/Finances/GetCurrencyAccountsForUser?userId=" + userId, function () { return new FinancesServerModels_js_1.CurrencyAccountServerModel(); });
     };

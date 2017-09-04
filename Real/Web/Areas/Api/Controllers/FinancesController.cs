@@ -24,6 +24,11 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             return this.Json(DataContainer.Create(this._context.GetUsers()));
         }
 
+        public IActionResult GetUserGroups(int? userId)
+        {
+            return this.Json(DataContainer.Create(this._context.GetUserGroups(userId)));
+        }
+
         public IActionResult GetPersons()
         {
             return this.Json(DataContainer.Create(this._context.GetPersons()));

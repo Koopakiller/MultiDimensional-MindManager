@@ -16,6 +16,13 @@ export class UserViewModel {
     }
 }
 
+export class UserGroupViewModel{
+    constructor(
+        public id: number,
+        public name: number
+    ) { }
+}
+
 export class PersonViewModel {
     constructor(
         private _id?: number,

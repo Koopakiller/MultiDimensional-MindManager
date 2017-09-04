@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { PersonServerModel, UserServerModel, CurrencyAccountServerModel, TransactionServerModel, TransactionOverviewServerModel } from "../ServerModels/FinancesServerModels.js";
+import { PersonServerModel, UserServerModel, CurrencyAccountServerModel, TransactionServerModel, TransactionOverviewServerModel, UserGroupServerModel } from "../ServerModels/FinancesServerModels.js";
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel, TransactionOverviewViewModel } from "../ViewModels/FinancesViewModels.js";
+import { PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel, TransactionOverviewViewModel, UserGroupViewModel } from "../ViewModels/FinancesViewModels.js";
 import { Observer } from "rxjs/Observer";
 import { DataContainer } from "../Common/DataContainer.js";
 
@@ -36,6 +36,14 @@ export class FinancesService {
 
     public get users(): Observable<UserViewModel[]> {
         return this.getList<UserServerModel, UserViewModel>(`/api/Finances/GetUsers`, () => new UserServerModel());
+    }
+
+    public getUserGroups(userId?: number): Observable<UserGroupViewModel[]>{
+        var url = `/api/Finances/GetUserGroups`;
+        if(userId){
+            url = url + `?userId=${userId}`;
+        }
+        return this.getList<UserGroupServerModel, UserGroupViewModel>(url, () => new UserGroupServerModel());
     }
 
     public getCurrencyAccounts(userId: number): Observable<CurrencyAccountViewModel[]> {
