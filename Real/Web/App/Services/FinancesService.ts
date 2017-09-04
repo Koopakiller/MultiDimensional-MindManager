@@ -30,7 +30,6 @@ export class FinancesService {
         return this.http.get(url).map(response => this.getListFromResponse(response, serverModelFactory));
     }
 
-
     public get persons(): Observable<PersonViewModel[]> {
         return this.getList<PersonServerModel, PersonViewModel>(`/api/Finances/GetPersons`, () => new PersonServerModel());
     }
