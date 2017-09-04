@@ -6,7 +6,7 @@
 	@timeStampTime TIME NULL = NULL,
 	@currencyAccountId [int],
 	@note NVARCHAR(MAX),
-	@isDebt bit NOT NULL = 0
+	@isDebt bit = 0
 )
 AS
 BEGIN
