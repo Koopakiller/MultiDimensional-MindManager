@@ -5,12 +5,12 @@
     PRIMARY KEY ([UserId], [UserGroupId])
 )
 GO
-ALTER TABLE [dbo].[UserGroupUsers]  ADD  CONSTRAINT [FK_UserGroupsUsers_Users] FOREIGN KEY([UserId])
+ALTER TABLE [dbo].[UserGroupUsers]  ADD  CONSTRAINT [FK_UserGroupsUsers_Users] FOREIGN KEY([UserGroupId])
 REFERENCES [dbo].[UserGroups] ([Id])
 GO
 ALTER TABLE [dbo].[UserGroupUsers] CHECK CONSTRAINT [FK_UserGroupsUsers_Users]
 GO
-ALTER TABLE [dbo].[UserGroupUsers]  ADD  CONSTRAINT [FK_UserGroupsUsers_UserGroups] FOREIGN KEY([UserGroupId])
+ALTER TABLE [dbo].[UserGroupUsers]  ADD  CONSTRAINT [FK_UserGroupsUsers_UserGroups] FOREIGN KEY([UserId])
 REFERENCES [dbo].[Users] ([Id])
 GO
 ALTER TABLE [dbo].[UserGroupUsers] CHECK CONSTRAINT [FK_UserGroupsUsers_UserGroups]

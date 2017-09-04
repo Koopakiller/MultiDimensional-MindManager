@@ -98,4 +98,7 @@
     <None Include="publish.localdbv13.publish.xml" />
     <None Include="publish.azure-code13.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Finances.Database.refactorlog" />
+  </ItemGroup>
 </Project>

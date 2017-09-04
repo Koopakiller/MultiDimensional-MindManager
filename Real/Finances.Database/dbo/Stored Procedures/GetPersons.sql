@@ -1,11 +1,11 @@
 ﻿CREATE PROCEDURE [dbo].[GetPersons]
 (
-	@userId INT NULL = NULL
+    @userGroupId INT NULL = NULL
 )
 AS
 BEGIN
-	SELECT p.Id AS [Id]
-	     , p.[Name] as [Name]
-	FROM Persons p
-	WHERE @userId IS NULL OR @userId = p.UserId
+    SELECT p.Id AS [Id]
+         , p.[Name] as [Name]
+    FROM Persons p
+    WHERE @userGroupId IS NULL OR @userGroupId = p.UserGroupId
 END

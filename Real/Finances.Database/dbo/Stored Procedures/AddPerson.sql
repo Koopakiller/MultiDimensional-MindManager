@@ -1,12 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[AddPerson]
-	@name NVARCHAR(MAX),
-	@userId INT
+    @name NVARCHAR(MAX),
+    @userGroupId INT
 AS
 BEGIN
-	INSERT INTO Persons ([Name], UserId)
-	VALUES (@name, @userId)
+    INSERT INTO Persons ([Name], UserGroupId)
+    VALUES (@name, @userGroupId)
 
-	SELECT p.*
-	FROM Persons p
-	WHERE p.Id = SCOPE_IDENTITY()
+    SELECT p.*
+    FROM Persons p
+    WHERE p.Id = SCOPE_IDENTITY()
 END
