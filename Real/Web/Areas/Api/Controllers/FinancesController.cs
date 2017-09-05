@@ -21,32 +21,34 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
 
         public IActionResult GetUsers()
         {
-            return this.Json(DataContainer.Create(this._context.GetUsers()));
+            var result = this._context.GetUsers();
+            return this.Json(DataContainer.Create(result));
         }
 
         public IActionResult GetUserGroups(int? userId)
         {
-            return this.Json(DataContainer.Create(this._context.GetUserGroups(userId)));
+            var result = this._context.GetUserGroups(userId);
+            return this.Json(DataContainer.Create(result));
         }
 
         public IActionResult GetPersons()
         {
-            return this.Json(DataContainer.Create(this._context.GetPersons()));
+            var result = this._context.GetPersons();
+            return this.Json(DataContainer.Create(result));
         }
 
         public IActionResult GetCurrencyAccountsForUser(int userId)
         {
-            return this.Json(DataContainer.Create(
-                this._context.GetCurrencyAccountsForUser(userId).ToList().Select(ca =>
-                    new
-                    {
-                        ca.AccountId,
-                        ca.AccountName,
-                        ca.CurrencyAccountId,
-                        ca.CurrencyId,
-                        CurrencyNames = this._context.GetCurrencySymbolsForCurrency(ca.CurrencyId),
-                    })
-                ));
+            var result = this._context.GetCurrencyAccountsForUser(userId).ToList().Select(ca =>
+                new
+                {
+                    ca.AccountId,
+                    ca.AccountName,
+                    ca.CurrencyAccountId,
+                    ca.CurrencyId,
+                    CurrencyNames = this._context.GetCurrencySymbolsForCurrency(ca.CurrencyId),
+                });
+            return this.Json(DataContainer.Create(result));
         }
 
         [HttpPost]
@@ -58,12 +60,14 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
 
         public IActionResult GetTransactions(int currencyAccountId, int skipCount, int takeCount)
         {
-            return this.Json(DataContainer.Create(this._context.GetTransactions(currencyAccountId, skipCount, takeCount, SortOrder.Desc)));
+            var result = this._context.GetTransactions(currencyAccountId, skipCount, takeCount, SortOrder.Desc);
+            return this.Json(DataContainer.Create(result));
         }
 
         public IActionResult GetTransactionOverviewForUserAtTimeStamp(int userId, DateTime timeStamp)
         {
-            return this.Json(DataContainer.Create(this._context.GetTransactionOverviewForUserAtTimeStamp(userId, timeStamp)));
+            var result = this._context.GetTransactionOverviewForUserAtTimeStamp(userId, timeStamp);
+            return this.Json(DataContainer.Create(result));
         }
 
         public IActionResult AddPerson([FromBody] DataContainer<FinancePerson> data)
