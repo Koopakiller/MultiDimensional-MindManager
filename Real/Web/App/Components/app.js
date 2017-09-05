@@ -16,12 +16,7 @@ var AppComponent = (function () {
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
     }
     AppComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.subscription = this._globalLoadingIndicatorService.isLoadingObservable
-            .subscribe(function (item) { return _this.isLoading = item; });
-    };
-    AppComponent.prototype.ngOnDestroy = function () {
-        this.subscription.unsubscribe();
+        this.isLoadingObservable = this._globalLoadingIndicatorService.isLoadingObservable;
     };
     return AppComponent;
 }());
