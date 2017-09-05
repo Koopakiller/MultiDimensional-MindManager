@@ -19,6 +19,7 @@ import { GlobalLoadingIndicatorService } from "./Services/GlobalLoadingIndicator
 import { UtcPipe } from "./Pipes/UtcPipe.js";
 import { FinancesUsersComponent } from "./Components/finances-users.js";
 import { FinancesUserGroupsComponent } from "./Components/finances-usergroups.js";
+import { ErrorComponent } from "./Components/error.js";
 
 const appRoutes: Routes = [
   { path: 'Home',                     component: HomeComponent },
@@ -30,8 +31,9 @@ const appRoutes: Routes = [
   { path: 'Finances/UserGroups',      component: FinancesUserGroupsComponent },
   { path: 'StyleTest',                component: StyleTestComponent },
   { path: 'Media',                    component: MediaAppletComponent },
-  { path: '', redirectTo: '/Home', pathMatch: 'full' },
-  //{ path: '**', component: PageNotFoundComponent }
+  { path: 'Error/:errorId',           component: ErrorComponent },
+  { path: '',      pathMatch: 'full', redirectTo: '/Home' },
+  { path: '**',                       redirectTo: '/Error/http404' }
 ];
 
 @NgModule({
@@ -46,6 +48,7 @@ const appRoutes: Routes = [
   ],
   declarations: [
     AppComponent,
+    ErrorComponent,
     LoadingIndicatorComponent,
     FinancesUserGroupsComponent,
     FinancesNewTransactionComponent,

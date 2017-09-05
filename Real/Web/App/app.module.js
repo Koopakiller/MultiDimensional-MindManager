@@ -27,6 +27,7 @@ var GlobalLoadingIndicatorService_js_1 = require("./Services/GlobalLoadingIndica
 var UtcPipe_js_1 = require("./Pipes/UtcPipe.js");
 var finances_users_js_1 = require("./Components/finances-users.js");
 var finances_usergroups_js_1 = require("./Components/finances-usergroups.js");
+var error_js_1 = require("./Components/error.js");
 var appRoutes = [
     { path: 'Home', component: home_js_1.HomeComponent },
     { path: 'Finances', component: finances_js_1.FinancesComponent },
@@ -37,7 +38,9 @@ var appRoutes = [
     { path: 'Finances/UserGroups', component: finances_usergroups_js_1.FinancesUserGroupsComponent },
     { path: 'StyleTest', component: style_test_js_1.StyleTestComponent },
     { path: 'Media', component: MediaApplet_js_1.MediaAppletComponent },
-    { path: '', redirectTo: '/Home', pathMatch: 'full' },
+    { path: 'Error/:errorId', component: error_js_1.ErrorComponent },
+    { path: '', pathMatch: 'full', redirectTo: '/Home' },
+    { path: '**', redirectTo: '/Error/http404' }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -56,6 +59,7 @@ AppModule = __decorate([
         ],
         declarations: [
             app_js_1.AppComponent,
+            error_js_1.ErrorComponent,
             loading_indicator_js_1.LoadingIndicatorComponent,
             finances_usergroups_js_1.FinancesUserGroupsComponent,
             finances_new_transaction_js_1.FinancesNewTransactionComponent,
