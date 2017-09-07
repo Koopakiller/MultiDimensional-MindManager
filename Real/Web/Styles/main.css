@@ -87,6 +87,12 @@ body .menu nav li a:hover {
   background-color: #ffffff;
   text-decoration: none;
 }
+body .menu nav li a .icon {
+  margin-right: 5px;
+}
+body .menu nav li a .text {
+  vertical-align: 5.5px;
+}
 body footer {
   text-align: center;
   padding: 10px;
@@ -154,6 +160,8 @@ body .link-tile .tile-image {
   float: left;
   width: 64px;
   height: 64px;
+  font-size: 64px;
+  font-style: normal;
   margin-right: 10px;
 }
 body .link-tile .tile-header {
