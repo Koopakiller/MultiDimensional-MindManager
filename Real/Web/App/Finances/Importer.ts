@@ -1,5 +1,5 @@
 import { DBValueProvider } from "./DBValueProvider.js";
-import { TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
+import { TransactionViewModel } from "./ViewModels/FinancesViewModels.js";
 import { KeyValuePair } from "../Common/KeyValuePair.js";
 import { IDataParser } from "./Parser.js";
 import * as Papa from "papaparse";

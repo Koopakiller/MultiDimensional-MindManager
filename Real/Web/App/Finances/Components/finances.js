@@ -7,15 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var MediaAppletComponent = (function () {
-    function MediaAppletComponent() {
+var FinancesComponent = (function () {
+    function FinancesComponent() {
     }
-    return MediaAppletComponent;
+    return FinancesComponent;
 }());
-MediaAppletComponent = __decorate([
+FinancesComponent = __decorate([
     core_1.Component({
-        selector: "media-applet",
-        templateUrl: "/Templates/Media/MediaApplet"
+        selector: "finances",
+        templateUrl: "/Templates/Finances/Finances"
     })
-], MediaAppletComponent);
-exports.MediaAppletComponent = MediaAppletComponent;
+], FinancesComponent);
+exports.FinancesComponent = FinancesComponent;

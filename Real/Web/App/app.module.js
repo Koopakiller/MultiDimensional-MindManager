@@ -11,32 +11,32 @@ var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_js_1 = require("./Components/app.js");
-var finances_js_1 = require("./Components/finances.js");
-var finances_new_transaction_js_1 = require("./Components/finances-new-transaction.js");
-var FinancesService_js_1 = require("./Services/FinancesService.js");
+var finances_js_1 = require("./Finances/Components/finances.js");
+var transaction_add_js_1 = require("./Finances/Components/transaction-add.js");
+var FinancesService_js_1 = require("./Finances/Services/FinancesService.js");
 var LocationService_js_1 = require("./Services/LocationService.js");
 var router_1 = require("@angular/router");
 var style_test_js_1 = require("./Components/style-test.js");
 var home_js_1 = require("./Components/home.js");
 var MediaApplet_js_1 = require("./Components/MediaApplet.js");
-var finances_import_js_1 = require("./Components/finances-import.js");
-var finances_new_person_js_1 = require("./Components/finances-new-person.js");
-var finances_overview_js_1 = require("./Components/finances-overview.js");
+var import_js_1 = require("./Finances/Components/import.js");
+var person_add_js_1 = require("./Finances/Components/person-add.js");
+var overview_js_1 = require("./Finances/Components/overview.js");
 var loading_indicator_js_1 = require("./Components/loading-indicator.js");
 var GlobalLoadingIndicatorService_js_1 = require("./Services/GlobalLoadingIndicatorService.js");
 var UtcPipe_js_1 = require("./Pipes/UtcPipe.js");
-var finances_users_js_1 = require("./Components/finances-users.js");
-var finances_usergroups_js_1 = require("./Components/finances-usergroups.js");
+var users_js_1 = require("./Finances/Components/users.js");
+var usergroups_js_1 = require("./Finances/Components/usergroups.js");
 var error_js_1 = require("./Components/error.js");
-var finances_users_list_js_1 = require("./Components/finances-users-list.js");
+var users_list_js_1 = require("./Finances/Components/users-list.js");
 var appRoutes = [
     { path: 'Home', component: home_js_1.HomeComponent },
     { path: 'Finances', component: finances_js_1.FinancesComponent },
-    { path: 'Finances/AddTransaction', component: finances_new_transaction_js_1.FinancesNewTransactionComponent },
-    { path: 'Finances/Import', component: finances_import_js_1.FinancesImportComponent },
-    { path: 'Finances/Overview', component: finances_overview_js_1.FinancesOverviewComponent },
-    { path: 'Finances/Users', component: finances_users_js_1.FinancesUsersComponent },
-    { path: 'Finances/UserGroups', component: finances_usergroups_js_1.FinancesUserGroupsComponent },
+    { path: 'Finances/Transactions/Add', component: transaction_add_js_1.FinancesNewTransactionComponent },
+    { path: 'Finances/Import', component: import_js_1.FinancesImportComponent },
+    { path: 'Finances/Overview', component: overview_js_1.FinancesOverviewComponent },
+    { path: 'Finances/Users', component: users_js_1.FinancesUsersComponent },
+    { path: 'Finances/UserGroups', component: usergroups_js_1.FinancesUserGroupsComponent },
     { path: 'StyleTest', component: style_test_js_1.StyleTestComponent },
     { path: 'Media', component: MediaApplet_js_1.MediaAppletComponent },
     { path: 'Error/:errorId', component: error_js_1.ErrorComponent },
@@ -62,14 +62,14 @@ AppModule = __decorate([
             app_js_1.AppComponent,
             error_js_1.ErrorComponent,
             loading_indicator_js_1.LoadingIndicatorComponent,
-            finances_usergroups_js_1.FinancesUserGroupsComponent,
-            finances_new_transaction_js_1.FinancesNewTransactionComponent,
-            finances_import_js_1.FinancesImportComponent,
-            finances_new_person_js_1.FinancesNewPersonComponent,
-            finances_overview_js_1.FinancesOverviewComponent,
+            usergroups_js_1.FinancesUserGroupsComponent,
+            transaction_add_js_1.FinancesNewTransactionComponent,
+            import_js_1.FinancesImportComponent,
+            person_add_js_1.FinancesPersonAddComponent,
+            overview_js_1.FinancesOverviewComponent,
             finances_js_1.FinancesComponent,
-            finances_users_js_1.FinancesUsersComponent,
-            finances_users_list_js_1.FinancesUsersListComponent,
+            users_js_1.FinancesUsersComponent,
+            users_list_js_1.FinancesUsersListComponent,
             home_js_1.HomeComponent,
             MediaApplet_js_1.MediaAppletComponent,
             style_test_js_1.StyleTestComponent,

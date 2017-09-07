@@ -1,4 +1,4 @@
-import { KeyValuePair } from "../Common/KeyValuePair.js";
+import { KeyValuePair } from "../../Common/KeyValuePair.js";
 import { TransactionServerModel, TransactionOverviewServerModel } from "../ServerModels/FinancesServerModels.js";
 
 export class UserViewModel {
@@ -12,7 +12,7 @@ export class UserViewModel {
     }
 
     get header() {
-        return this._header;
+        return this._header; 
     }
 }
 

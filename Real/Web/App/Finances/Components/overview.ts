@@ -2,12 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../Services/FinancesService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel, TransactionOverviewViewModel } from "../ViewModels/FinancesViewModels.js";
 import { Router } from '@angular/router';
-import { KeyValuePair } from "../Common/KeyValuePair.js";
-import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
+import { KeyValuePair } from "../../Common/KeyValuePair.js";
+import { GlobalLoadingIndicatorService } from "../../Services/GlobalLoadingIndicatorService.js";
 
 @Component({
     selector: "finances-overview",
-    templateUrl: "/Templates/FinancesOverview"
+    templateUrl: "/Templates/Finances/Overview"
 })
 export class FinancesOverviewComponent implements OnInit {
     constructor(

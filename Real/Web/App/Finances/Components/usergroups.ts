@@ -2,12 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import * as _ from "lodash";
 import { FinancesService } from "../Services/FinancesService.js";
 import { Router } from "@angular/router";
-import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
+import { GlobalLoadingIndicatorService } from "../../Services/GlobalLoadingIndicatorService.js";
 import { UserViewModel, UserGroupViewModel } from "../ViewModels/FinancesViewModels.js";
 
 @Component({
     selector: "finances-usergroups",
-    templateUrl: "/Templates/FinancesUserGroups"
+    templateUrl: "/Templates/Finances/UserGroups"
 })
 export class FinancesUserGroupsComponent implements OnInit {
 

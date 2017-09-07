@@ -1,14 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../Services/FinancesService.js";
-import { LocationService } from "../Services/LocationService.js";
+import { LocationService } from "../../Services/LocationService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
 import { Router } from '@angular/router';
-import { KeyValuePair } from "../Common/KeyValuePair.js";
-import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
+import { KeyValuePair } from "../../Common/KeyValuePair.js";
+import { GlobalLoadingIndicatorService } from "../../Services/GlobalLoadingIndicatorService.js";
 
 @Component({
-    selector: "finances-new-transaction",
-    templateUrl: "/Templates/FinancesNewTransaction"
+    selector: "finances-transaction-add",
+    templateUrl: "/Templates/Finances/TransactionAdd"
 })
 export class FinancesNewTransactionComponent implements OnInit {
     constructor(

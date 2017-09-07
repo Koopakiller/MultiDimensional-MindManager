@@ -1,18 +1,18 @@
 import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../Services/FinancesService.js";
-import { LocationService } from "../Services/LocationService.js";
+import { LocationService } from "../../Services/LocationService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
 import { Router } from '@angular/router';
-import { KeyValuePair } from "../Common/KeyValuePair.js";
-import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
+import { KeyValuePair } from "../../Common/KeyValuePair.js";
+import { GlobalLoadingIndicatorService } from "../../Services/GlobalLoadingIndicatorService.js";
 import { Observable } from "rxjs/Rx";
-import { PayPalAccountStatementImporter, FinanceAccountStatementImporter, CommerzbankCreditCardStatementImporter, CommerzbankGiroAccountStatementImporter, FinancesCsvImporter } from "../Finances/Importer.js";
-import { GermanDataParser } from "../Finances/Parser.js";
-import { DBValueProvider } from "../Finances/DBValueProvider.js";
+import { PayPalAccountStatementImporter, FinanceAccountStatementImporter, CommerzbankCreditCardStatementImporter, CommerzbankGiroAccountStatementImporter, FinancesCsvImporter } from "../Importer.js";
+import { GermanDataParser } from "../Parser.js";
+import { DBValueProvider } from "../DBValueProvider.js";
 
 @Component({
     selector: "finances-import",
-    templateUrl: "/Templates/FinancesImport"
+    templateUrl: "/Templates/Finances/Import"
 })
 export class FinancesImportComponent implements OnInit {
     constructor(
