@@ -48,6 +48,9 @@ var FinancesService = (function () {
         enumerable: true,
         configurable: true
     });
+    FinancesService.prototype.getUsersFromUserGroup = function (userGroupId) {
+        return this.getList("/api/Finances/GetUsersFromUserGroup?userGroupId=" + userGroupId, function () { return new FinancesServerModels_js_1.UserServerModel(); });
+    };
     FinancesService.prototype.getUserGroups = function (userId) {
         var url = "/api/Finances/GetUserGroups";
         if (userId) {

@@ -15,12 +15,12 @@
             <tr>
                 <th>Account Name (Currency)</th>
                 <th>Value</th>
-                <th>Actions</th>
+                <th class="action-column">Actions</th>
             </tr>
             <tr *ngFor="let row of transactionOverview">
                 <td>{{row.currencyAccountName}}</td>
                 <td>{{row.value}}</td>
-                <td><a (click)="showTable(row.currencyAccountId)">Show Table</a></td>
+                <td class="action-column"><a (click)="showTable(row.currencyAccountId)">Show Table</a></td>
             </tr>
         </table>
     </div>

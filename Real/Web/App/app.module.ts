@@ -20,6 +20,7 @@ import { UtcPipe } from "./Pipes/UtcPipe.js";
 import { FinancesUsersComponent } from "./Components/finances-users.js";
 import { FinancesUserGroupsComponent } from "./Components/finances-usergroups.js";
 import { ErrorComponent } from "./Components/error.js";
+import { FinancesUsersListComponent } from "./Components/finances-users-list.js";
 
 const appRoutes: Routes = [
   { path: 'Home',                     component: HomeComponent },
@@ -57,6 +58,7 @@ const appRoutes: Routes = [
     FinancesOverviewComponent,
     FinancesComponent,
     FinancesUsersComponent,
+    FinancesUsersListComponent,
     HomeComponent,
     MediaAppletComponent,
     StyleTestComponent,

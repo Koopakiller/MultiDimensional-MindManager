@@ -6,11 +6,32 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th class="action-column">Actions</th>
             </tr>
-            <tr *ngFor="let row of userGroups">
-                <td>{{row.id}}</td>
-                <td>{{row.name}}</td>
-            </tr>
+            <ng-template ngFor let-userGroup [ngForOf]="userGroups" let-index="index">
+                <tr>
+                    <td>{{userGroup.id}}</td>
+                    <td>{{userGroup.name}}</td>
+                    <td class="action-column">
+                        <a (click)="toggleManageUsers(index)">Manage Users</a>
+                    </td>
+                </tr>
+            </ng-template>
         </table>
+    </div>
+</div>
+<div class="popup" *ngIf="selectedUserGroup">
+    <div class="popup-container">
+        <div class="popup-content text">
+            <span class="header">Manage Users in "{{selectedUserGroup.name}}"</span>
+            
+            <section>
+                <finances-users-list [users]="usersInSelectedGroup"></finances-users-list>
+            </section>
+
+            <div class="button-bar">
+                <input type="submit" value="Close" (click)="toggleManageUsers()" />
+            </div>
+        </div>
     </div>
 </div>

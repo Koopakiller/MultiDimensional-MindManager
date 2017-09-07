@@ -27,7 +27,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
 
         public IActionResult GetUserGroups(int? userId)
         {
-            var result = this._context.GetUserGroups(userId);
+            var result = this._context.GetUserGroups(userId).ToList();
             return this.Json(DataContainer.Create(result));
         }
 
@@ -73,6 +73,11 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
         public IActionResult AddPerson([FromBody] DataContainer<FinancePerson> data)
         {
             var result = this._context.AddPerson(data.Data.Name, data.Data.UserGroupId);
+            return this.Json(DataContainer.Create(result));
+        }
+
+        public IActionResult GetUsersFromUserGroup(int userGroupId){
+            var result = this._context.GetUsersFromUserGroup(userGroupId);
             return this.Json(DataContainer.Create(result));
         }
     }

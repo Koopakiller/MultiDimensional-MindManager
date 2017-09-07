@@ -28,6 +28,7 @@ var UtcPipe_js_1 = require("./Pipes/UtcPipe.js");
 var finances_users_js_1 = require("./Components/finances-users.js");
 var finances_usergroups_js_1 = require("./Components/finances-usergroups.js");
 var error_js_1 = require("./Components/error.js");
+var finances_users_list_js_1 = require("./Components/finances-users-list.js");
 var appRoutes = [
     { path: 'Home', component: home_js_1.HomeComponent },
     { path: 'Finances', component: finances_js_1.FinancesComponent },
@@ -68,6 +69,7 @@ AppModule = __decorate([
             finances_overview_js_1.FinancesOverviewComponent,
             finances_js_1.FinancesComponent,
             finances_users_js_1.FinancesUsersComponent,
+            finances_users_list_js_1.FinancesUsersListComponent,
             home_js_1.HomeComponent,
             MediaApplet_js_1.MediaAppletComponent,
             style_test_js_1.StyleTestComponent,

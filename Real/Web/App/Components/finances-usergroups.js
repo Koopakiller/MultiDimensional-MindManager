@@ -27,7 +27,26 @@ var FinancesUserGroupsComponent = (function () {
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         }, function (error) {
             alert(error);
+            _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
+    };
+    FinancesUserGroupsComponent.prototype.toggleManageUsers = function (index) {
+        var _this = this;
+        if (this.selectedUserGroup || !index) {
+            this.selectedUserGroup = null;
+        }
+        else {
+            this.selectedUserGroup = this.userGroups[index];
+            this._globalLoadingIndicatorService.addLoadingProcess();
+            this._financesService.getUsersFromUserGroup(this.selectedUserGroup.id).subscribe(function (x) {
+                _this.usersInSelectedGroup = x;
+                _this._globalLoadingIndicatorService.removeLoadingProcess();
+            }, function (error) {
+                alert(error);
+                _this.toggleManageUsers();
+                _this._globalLoadingIndicatorService.removeLoadingProcess();
+            });
+        }
     };
     return FinancesUserGroupsComponent;
 }());

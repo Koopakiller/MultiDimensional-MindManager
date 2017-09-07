@@ -10,7 +10,7 @@ import { UserViewModel, UserGroupViewModel } from "../ViewModels/FinancesViewMod
     templateUrl: "/Templates/FinancesUserGroups"
 })
 export class FinancesUserGroupsComponent implements OnInit {
-    
+
     constructor(
         private _financesService: FinancesService,
         private _router: Router,
@@ -26,9 +26,35 @@ export class FinancesUserGroupsComponent implements OnInit {
             },
             error => {
                 alert(error);
+                this._globalLoadingIndicatorService.removeLoadingProcess();
             }
-        );  
+        );
     }
 
-    userGroups: UserGroupViewModel[];
+    public userGroups: UserGroupViewModel[];
+
+    public selectedUserGroup: UserGroupViewModel;
+
+    public toggleManageUsers(index?: number): void {
+        if (this.selectedUserGroup || !index) {
+            this.selectedUserGroup = null;
+        }
+        else {
+            this.selectedUserGroup = this.userGroups[index];
+            this._globalLoadingIndicatorService.addLoadingProcess();
+            this._financesService.getUsersFromUserGroup(this.selectedUserGroup.id).subscribe(
+                x => {
+                    this.usersInSelectedGroup = x;
+                    this._globalLoadingIndicatorService.removeLoadingProcess();
+                },
+                error => {
+                    alert(error);
+                    this.toggleManageUsers();
+                    this._globalLoadingIndicatorService.removeLoadingProcess();
+                }
+            );
+        }
+    }
+
+    public usersInSelectedGroup: UserViewModel[];
 }

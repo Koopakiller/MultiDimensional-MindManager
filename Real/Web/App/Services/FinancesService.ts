@@ -38,6 +38,10 @@ export class FinancesService {
         return this.getList<UserServerModel, UserViewModel>(`/api/Finances/GetUsers`, () => new UserServerModel());
     }
 
+    public getUsersFromUserGroup(userGroupId: number): Observable<UserViewModel[]>{
+        return this.getList<UserServerModel, UserViewModel>(`/api/Finances/GetUsersFromUserGroup?userGroupId=${userGroupId}`, () => new UserServerModel());
+    }
+
     public getUserGroups(userId?: number): Observable<UserGroupViewModel[]>{
         var url = `/api/Finances/GetUserGroups`;
         if(userId){

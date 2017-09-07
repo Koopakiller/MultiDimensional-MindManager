@@ -1,16 +1,5 @@
 <div class="tile text">
     <h1>Finances: Users</h1>
 
-    <div>
-        <table>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-            </tr>
-            <tr *ngFor="let row of users">
-                <td>{{row.id}}</td>
-                <td>{{row.header}}</td>
-            </tr>
-        </table>
-    </div>
+    <finances-users-list [users]="users"></finances-users-list>
 </div>

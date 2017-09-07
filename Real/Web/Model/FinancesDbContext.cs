@@ -83,6 +83,11 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
             }
         }
 
+        internal IEnumerable<User> GetUsersFromUserGroup(int userGroupId)
+        {
+            return this.Users.FromSql("EXEC GetUsersFromUserGroup {0}", userGroupId);
+        }
+
         public IEnumerable<Transaction> GetTransactions(int currencyAccountId, int skipCount, int takeCount, SortOrder sortOrder)
         {
             return this.Transactions.FromSql("EXEC GetTransactions {0}, {1}, {2}, {3}",
