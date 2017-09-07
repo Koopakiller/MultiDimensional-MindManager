@@ -15,7 +15,7 @@ var FinancesComponent = (function () {
 FinancesComponent = __decorate([
     core_1.Component({
         selector: "finances",
-        templateUrl: "/Templates/Finances/Finances"
+        templateUrl: "/Templates/Finances/Index"
     })
 ], FinancesComponent);
 exports.FinancesComponent = FinancesComponent;

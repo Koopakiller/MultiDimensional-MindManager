@@ -1,30 +1,29 @@
 
-<div class="tile text">
-    <h1>Finances Overview</h1>
+<h1>Finances Overview</h1>
 
-    <div class="form-group">
-        <label for="user">User:</label>
-        <div class="control-container">  
-            <select [(ngModel)]="user" name="user">
-                <option *ngFor="let user of users" [ngValue]="user.id">{{user.header}}</option>
-            </select>
-        </div>
-    </div>
-    <div>
-        <table>
-            <tr>
-                <th>Account Name (Currency)</th>
-                <th>Value</th>
-                <th class="action-column">Actions</th>
-            </tr>
-            <tr *ngFor="let row of transactionOverview">
-                <td>{{row.currencyAccountName}}</td>
-                <td>{{row.value}}</td>
-                <td class="action-column"><a (click)="showTable(row.currencyAccountId)">Show Table</a></td>
-            </tr>
-        </table>
+<div class="form-group">
+    <label for="user">User:</label>
+    <div class="control-container">  
+        <select [(ngModel)]="user" name="user">
+            <option *ngFor="let user of users" [ngValue]="user.id">{{user.header}}</option>
+        </select>
     </div>
 </div>
+<div>
+    <table>
+        <tr>
+            <th>Account Name (Currency)</th>
+            <th>Value</th>
+            <th class="action-column">Actions</th>
+        </tr>
+        <tr *ngFor="let row of transactionOverview">
+            <td>{{row.currencyAccountName}}</td>
+            <td>{{row.value}}</td>
+            <td class="action-column"><a (click)="showTable(row.currencyAccountId)">Show Table</a></td>
+        </tr>
+    </table>
+</div>
+
 <div class="popup" *ngIf="transactionsInTable">
     <div class="popup-container">
         <div class="popup-content text">

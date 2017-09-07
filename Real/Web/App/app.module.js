@@ -31,12 +31,16 @@ var error_js_1 = require("./Components/error.js");
 var users_list_js_1 = require("./Finances/Components/users-list.js");
 var appRoutes = [
     { path: 'Home', component: home_js_1.HomeComponent },
-    { path: 'Finances', component: finances_js_1.FinancesComponent },
-    { path: 'Finances/Transactions/Add', component: transaction_add_js_1.FinancesNewTransactionComponent },
-    { path: 'Finances/Import', component: import_js_1.FinancesImportComponent },
-    { path: 'Finances/Transactions/Overview', component: overview_js_1.FinancesOverviewComponent },
-    { path: 'Finances/Users', component: users_js_1.FinancesUsersComponent },
-    { path: 'Finances/UserGroups', component: usergroups_js_1.FinancesUserGroupsComponent },
+    {
+        path: 'Finances', component: finances_js_1.FinancesComponent,
+        children: [
+            { path: 'Transactions/Add', component: transaction_add_js_1.FinancesNewTransactionComponent },
+            { path: 'Import', component: import_js_1.FinancesImportComponent },
+            { path: 'Transactions/Overview', component: overview_js_1.FinancesOverviewComponent },
+            { path: 'Users', component: users_js_1.FinancesUsersComponent },
+            { path: 'UserGroups', component: usergroups_js_1.FinancesUserGroupsComponent },
+        ]
+    },
     { path: 'StyleTest', component: style_test_js_1.StyleTestComponent },
     { path: 'Media', component: MediaApplet_js_1.MediaAppletComponent },
     { path: 'Error/:errorId', component: error_js_1.ErrorComponent },

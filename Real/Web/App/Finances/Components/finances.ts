@@ -3,7 +3,7 @@ import * as _ from "lodash";
 
 @Component({
     selector: "finances",
-    templateUrl: "/Templates/Finances/Finances"
+    templateUrl: "/Templates/Finances/Index"
 })
 export class FinancesComponent {
 }     
