@@ -23,18 +23,18 @@ import { ErrorComponent } from "./Components/error.js";
 import { FinancesUsersListComponent } from "./Finances/Components/users-list.js";
 
 const appRoutes: Routes = [
-  { path: 'Home',                       component: HomeComponent },
-  { path: 'Finances',                   component: FinancesComponent },
-  { path: 'Finances/Transactions/Add',  component: FinancesNewTransactionComponent },
-  { path: 'Finances/Import',            component: FinancesImportComponent },
-  { path: 'Finances/Overview',          component: FinancesOverviewComponent },
-  { path: 'Finances/Users',             component: FinancesUsersComponent },
-  { path: 'Finances/UserGroups',        component: FinancesUserGroupsComponent },
-  { path: 'StyleTest',                  component: StyleTestComponent },
-  { path: 'Media',                      component: MediaAppletComponent },
-  { path: 'Error/:errorId',             component: ErrorComponent },
-  { path: '',     pathMatch: 'full',    redirectTo: '/Home' },
-  { path: '**',                         redirectTo: '/Error/http404' }
+  { path: 'Home',                            component: HomeComponent },
+  { path: 'Finances',                        component: FinancesComponent },
+  { path: 'Finances/Transactions/Add',       component: FinancesNewTransactionComponent },
+  { path: 'Finances/Import',                 component: FinancesImportComponent },
+  { path: 'Finances/Transactions/Overview',  component: FinancesOverviewComponent },
+  { path: 'Finances/Users',                  component: FinancesUsersComponent },
+  { path: 'Finances/UserGroups',             component: FinancesUserGroupsComponent },
+  { path: 'StyleTest',                       component: StyleTestComponent },
+  { path: 'Media',                           component: MediaAppletComponent },
+  { path: 'Error/:errorId',                  component: ErrorComponent },
+  { path: '',     pathMatch: 'full',         redirectTo: '/Home' },
+  { path: '**',                              redirectTo: '/Error/http404' }
 ];
 
 @NgModule({
