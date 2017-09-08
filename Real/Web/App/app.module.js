@@ -29,6 +29,7 @@ var users_js_1 = require("./Finances/Components/users.js");
 var usergroups_js_1 = require("./Finances/Components/usergroups.js");
 var error_js_1 = require("./Scaffold/Components/error.js");
 var users_list_js_1 = require("./Finances/Components/users-list.js");
+var NavigationService_js_1 = require("./Scaffold/Services/NavigationService.js");
 var appRoutes = [
     { path: 'Home', component: home_js_1.HomeComponent },
     {
@@ -85,7 +86,8 @@ AppModule = __decorate([
         providers: [
             FinancesService_js_1.FinancesService,
             LocationService_js_1.LocationService,
-            GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService
+            GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService,
+            NavigationService_js_1.NavigationService
         ],
     })
 ], AppModule);

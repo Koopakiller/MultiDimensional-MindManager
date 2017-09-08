@@ -83,7 +83,7 @@ __decorate([
 FinancesPersonAddComponent = __decorate([
     core_1.Component({
         selector: "finances-person-add",
-        templateUrl: "/Templates/Finances/PersonAdd"
+        templateUrl: "/Templates/Finances/PersonAdd.html"
     }),
     __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
         router_1.Router,

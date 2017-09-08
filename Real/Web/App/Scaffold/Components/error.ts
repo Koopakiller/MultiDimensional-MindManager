@@ -6,7 +6,7 @@ import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: "error",
-    templateUrl: "/Templates/Scaffold/Error"
+    templateUrl: "/Templates/Scaffold/Error.html"
 })
 export class ErrorComponent implements OnInit, OnDestroy {
     constructor(

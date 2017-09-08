@@ -12,7 +12,7 @@ import { DBValueProvider } from "../DBValueProvider.js";
 
 @Component({
     selector: "finances-import",
-    templateUrl: "/Templates/Finances/Import"
+    templateUrl: "/Templates/Finances/Import.html"
 })
 export class FinancesImportComponent implements OnInit {
     constructor(

@@ -15,7 +15,7 @@ var StyleTestComponent = (function () {
 StyleTestComponent = __decorate([
     core_1.Component({
         selector: "style-test",
-        templateUrl: "/Templates/StyleTest"
+        templateUrl: "/Templates/StyleTest.html"
     })
 ], StyleTestComponent);
 exports.StyleTestComponent = StyleTestComponent;

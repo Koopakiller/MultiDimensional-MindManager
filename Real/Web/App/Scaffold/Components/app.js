@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var GlobalLoadingIndicatorService_js_1 = require("../Services/GlobalLoadingIndicatorService.js");
-var NavigationService_1 = require("../Services/NavigationService");
+var NavigationService_js_1 = require("../Services/NavigationService.js");
 var AppComponent = (function () {
     function AppComponent(_globalLoadingIndicatorService, _navigationService) {
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
@@ -25,9 +25,9 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: "app",
-        templateUrl: "/Templates/Scaffold/App"
+        templateUrl: "/Templates/Scaffold/App.html"
     }),
     __metadata("design:paramtypes", [GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService,
-        NavigationService_1.NavigationService])
+        NavigationService_js_1.NavigationService])
 ], AppComponent);
 exports.AppComponent = AppComponent;

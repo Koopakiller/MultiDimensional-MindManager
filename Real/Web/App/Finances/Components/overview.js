@@ -57,7 +57,7 @@ var FinancesOverviewComponent = (function () {
 FinancesOverviewComponent = __decorate([
     core_1.Component({
         selector: "finances-overview",
-        templateUrl: "/Templates/Finances/Overview"
+        templateUrl: "/Templates/Finances/Overview.html"
     }),
     __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
         router_1.Router,

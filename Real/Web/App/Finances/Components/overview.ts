@@ -7,7 +7,7 @@ import { GlobalLoadingIndicatorService } from "../../Scaffold/Services/GlobalLoa
 
 @Component({
     selector: "finances-overview",
-    templateUrl: "/Templates/Finances/Overview"
+    templateUrl: "/Templates/Finances/Overview.html"
 })
 export class FinancesOverviewComponent implements OnInit {
     constructor(

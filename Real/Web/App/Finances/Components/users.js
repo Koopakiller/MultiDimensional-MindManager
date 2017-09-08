@@ -34,7 +34,7 @@ var FinancesUsersComponent = (function () {
 FinancesUsersComponent = __decorate([
     core_1.Component({
         selector: "finances-users",
-        templateUrl: "/Templates/Finances/Users"
+        templateUrl: "/Templates/Finances/Users.html"
     }),
     __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
         router_1.Router,

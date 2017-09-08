@@ -15,7 +15,7 @@ var MediaAppletComponent = (function () {
 MediaAppletComponent = __decorate([
     core_1.Component({
         selector: "media-applet",
-        templateUrl: "/Templates/Media/MediaApplet"
+        templateUrl: "/Templates/Media/MediaApplet.html"
     })
 ], MediaAppletComponent);
 exports.MediaAppletComponent = MediaAppletComponent;

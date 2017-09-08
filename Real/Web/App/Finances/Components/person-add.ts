@@ -7,7 +7,7 @@ import { GlobalLoadingIndicatorService } from "../../Scaffold/Services/GlobalLoa
 
 @Component({
     selector: "finances-person-add",
-    templateUrl: "/Templates/Finances/PersonAdd"
+    templateUrl: "/Templates/Finances/PersonAdd.html"
 })
 export class FinancesPersonAddComponent implements OnInit, OnDestroy {
     constructor(

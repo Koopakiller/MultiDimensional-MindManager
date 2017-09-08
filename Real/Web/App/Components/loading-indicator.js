@@ -15,7 +15,7 @@ var LoadingIndicatorComponent = (function () {
 LoadingIndicatorComponent = __decorate([
     core_1.Component({
         selector: "loading-indicator",
-        templateUrl: "/Templates/LoadingIndicator"
+        templateUrl: "/Templates/LoadingIndicator.html"
     })
 ], LoadingIndicatorComponent);
 exports.LoadingIndicatorComponent = LoadingIndicatorComponent;

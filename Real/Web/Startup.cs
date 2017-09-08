@@ -57,6 +57,7 @@
             app.UseStaticFilesFromFolder("App");
             app.UseStaticFilesFromFolder("Styles");
             app.UseStaticFilesFromFolder("Images");
+            app.UseStaticFilesFromFolder("Templates");
             app.UseStaticFilesFromFolder("");
 
             app.UseMvc(routes =>
@@ -68,10 +69,6 @@
                     name: "AngularHomeApp",
                     template: "Home/{*route}",
                     defaults: new { controller = "Home", action = "Index" });
-                routes.MapRoute(
-                    name: "AngularTemplates",
-                    template: "Templates/{*actionName}",
-                    defaults: new { controller = "Templates", action = "Default" });
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

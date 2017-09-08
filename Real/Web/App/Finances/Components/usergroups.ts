@@ -7,7 +7,7 @@ import { UserViewModel, UserGroupViewModel } from "../ViewModels/FinancesViewMod
 
 @Component({
     selector: "finances-usergroups",
-    templateUrl: "/Templates/Finances/UserGroups"
+    templateUrl: "/Templates/Finances/UserGroups.html"
 })
 export class FinancesUserGroupsComponent implements OnInit {
 

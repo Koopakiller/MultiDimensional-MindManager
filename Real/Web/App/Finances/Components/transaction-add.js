@@ -111,7 +111,7 @@ var FinancesNewTransactionComponent = (function () {
 FinancesNewTransactionComponent = __decorate([
     core_1.Component({
         selector: "finances-transaction-add",
-        templateUrl: "/Templates/Finances/TransactionAdd"
+        templateUrl: "/Templates/Finances/TransactionAdd.html"
     }),
     __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
         LocationService_js_1.LocationService,

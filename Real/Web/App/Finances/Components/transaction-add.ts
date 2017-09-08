@@ -8,7 +8,7 @@ import { GlobalLoadingIndicatorService } from "../../Scaffold/Services/GlobalLoa
 
 @Component({
     selector: "finances-transaction-add",
-    templateUrl: "/Templates/Finances/TransactionAdd"
+    templateUrl: "/Templates/Finances/TransactionAdd.html"
 })
 export class FinancesNewTransactionComponent implements OnInit {
     constructor(

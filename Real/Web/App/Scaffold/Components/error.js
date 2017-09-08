@@ -49,7 +49,7 @@ __decorate([
 ErrorComponent = __decorate([
     core_1.Component({
         selector: "error",
-        templateUrl: "/Templates/Scaffold/Error"
+        templateUrl: "/Templates/Scaffold/Error.html"
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute])
 ], ErrorComponent);

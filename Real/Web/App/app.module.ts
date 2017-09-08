@@ -21,6 +21,7 @@ import { FinancesUsersComponent } from "./Finances/Components/users.js";
 import { FinancesUserGroupsComponent } from "./Finances/Components/usergroups.js";
 import { ErrorComponent } from "./Scaffold/Components/error.js";
 import { FinancesUsersListComponent } from "./Finances/Components/users-list.js";
+import { NavigationService } from "./Scaffold/Services/NavigationService.js";
 
 const appRoutes: Routes = [
   { path: 'Home', component: HomeComponent },
@@ -74,7 +75,8 @@ const appRoutes: Routes = [
   providers: [
     FinancesService,
     LocationService,
-    GlobalLoadingIndicatorService
+    GlobalLoadingIndicatorService,
+    NavigationService
   ],
 })
 export class AppModule { }

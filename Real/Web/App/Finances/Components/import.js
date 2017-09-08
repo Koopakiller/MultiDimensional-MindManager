@@ -195,7 +195,7 @@ var FinancesImportComponent = (function () {
 FinancesImportComponent = __decorate([
     core_1.Component({
         selector: "finances-import",
-        templateUrl: "/Templates/Finances/Import"
+        templateUrl: "/Templates/Finances/Import.html"
     }),
     __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
         router_1.Router,

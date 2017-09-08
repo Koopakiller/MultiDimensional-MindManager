@@ -7,7 +7,7 @@ import { UserViewModel } from "../ViewModels/FinancesViewModels.js";
 
 @Component({
     selector: "finances-users",
-    templateUrl: "/Templates/Finances/Users"
+    templateUrl: "/Templates/Finances/Users.html"
 })
 export class FinancesUsersComponent implements OnInit {
     constructor(
