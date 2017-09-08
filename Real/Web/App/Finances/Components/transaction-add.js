@@ -11,11 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var FinancesService_js_1 = require("../Services/FinancesService.js");
-var LocationService_js_1 = require("../../Services/LocationService.js");
+var LocationService_js_1 = require("../../Common/Services/LocationService.js");
 var FinancesViewModels_js_1 = require("../ViewModels/FinancesViewModels.js");
 var router_1 = require("@angular/router");
 var KeyValuePair_js_1 = require("../../Common/KeyValuePair.js");
-var GlobalLoadingIndicatorService_js_1 = require("../../Services/GlobalLoadingIndicatorService.js");
+var GlobalLoadingIndicatorService_js_1 = require("../../Scaffold/Services/GlobalLoadingIndicatorService.js");
 var FinancesNewTransactionComponent = (function () {
     function FinancesNewTransactionComponent(_financesService, _locationService, _router, _globalLoadingIndicatorService) {
         this._financesService = _financesService;

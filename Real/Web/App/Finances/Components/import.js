@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var FinancesService_js_1 = require("../Services/FinancesService.js");
 var router_1 = require("@angular/router");
-var GlobalLoadingIndicatorService_js_1 = require("../../Services/GlobalLoadingIndicatorService.js");
+var GlobalLoadingIndicatorService_js_1 = require("../../Scaffold/Services/GlobalLoadingIndicatorService.js");
 var Rx_1 = require("rxjs/Rx");
 var Importer_js_1 = require("../Importer.js");
 var Parser_js_1 = require("../Parser.js");

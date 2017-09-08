@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../Services/FinancesService.js";
-import { LocationService } from "../../Services/LocationService.js";
+import { LocationService } from "../../Common/Services/LocationService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
 import { Router } from '@angular/router';
 import { KeyValuePair } from "../../Common/KeyValuePair.js";
-import { GlobalLoadingIndicatorService } from "../../Services/GlobalLoadingIndicatorService.js";
+import { GlobalLoadingIndicatorService } from "../../Scaffold/Services/GlobalLoadingIndicatorService.js";
 import { Observable } from "rxjs/Rx";
 import { PayPalAccountStatementImporter, FinanceAccountStatementImporter, CommerzbankCreditCardStatementImporter, CommerzbankGiroAccountStatementImporter, FinancesCsvImporter } from "../Importer.js";
 import { GermanDataParser } from "../Parser.js";
