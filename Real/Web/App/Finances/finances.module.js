@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
-var platform_browser_1 = require("@angular/platform-browser");
+var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
 var index_js_1 = require("./Components/Transactions/index.js");
 var add_js_1 = require("./Components/Transactions/add.js");
@@ -70,7 +70,7 @@ FinancesModule = __decorate([
         imports: [
             router_1.RouterModule.forChild(financesRoutes),
             http_1.HttpModule,
-            platform_browser_1.BrowserModule,
+            common_1.CommonModule,
             forms_1.FormsModule
         ],
         declarations: [

@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
-import { BrowserModule } from "@angular/platform-browser";
+import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
 import { IndexComponent as TransactionIndexComponent } from "./Components/Transactions/index.js";
@@ -67,7 +67,7 @@ const financesRoutes: Routes = [
             financesRoutes
         ),
         HttpModule,
-        BrowserModule,
+        CommonModule,
         FormsModule
     ],
     declarations: [
