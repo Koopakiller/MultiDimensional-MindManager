@@ -1,16 +1,15 @@
 import { Component, OnInit } from "@angular/core";
-import { FinancesService } from "../Services/FinancesService.js";
-import { LocationService } from "../../Common/Services/LocationService.js";
-import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
+import { FinancesService } from "../../Services/FinancesService.js";
+import { LocationService } from "../../../Shared/Services/LocationService.js";
+import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../../ViewModels/FinancesViewModels.js";
 import { Router } from '@angular/router';
-import { KeyValuePair } from "../../Common/KeyValuePair.js";
-import { GlobalLoadingIndicatorService } from "../../Scaffold/Services/GlobalLoadingIndicatorService.js";
+import { KeyValuePair } from "../../../Shared/KeyValuePair.js";
+import { GlobalLoadingIndicatorService } from "../../../Scaffold/Services/GlobalLoadingIndicatorService.js";
 
 @Component({
-    selector: "finances-transaction-add",
-    templateUrl: "/Templates/Finances/TransactionAdd.html"
+    templateUrl: "/Templates/Finances/Transactions/Add.html"
 })
-export class FinancesNewTransactionComponent implements OnInit {
+export class AddComponent implements OnInit {
     constructor(
         private _financesService: FinancesService,
         private _locationService: LocationService,

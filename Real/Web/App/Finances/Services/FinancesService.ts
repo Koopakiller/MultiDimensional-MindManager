@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel, TransactionOverviewViewModel, UserGroupViewModel } from "../ViewModels/FinancesViewModels.js";
 import { Observer } from "rxjs/Observer";
-import { DataContainer } from "../../Common/DataContainer.js";
+import { DataContainer } from "../../Shared/DataContainer.js";
 
 @Injectable()
 export class FinancesService {

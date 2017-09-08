@@ -1,20 +1,22 @@
 import { Component, OnInit } from "@angular/core";
-import { FinancesService } from "../Services/FinancesService.js";
-import { LocationService } from "../../Common/Services/LocationService.js";
-import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../ViewModels/FinancesViewModels.js";
+import { FinancesService } from "../../Services/FinancesService.js";
+import { LocationService } from "../../../Shared/Services/LocationService.js";
+import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../../ViewModels/FinancesViewModels.js";
 import { Router } from '@angular/router';
-import { KeyValuePair } from "../../Common/KeyValuePair.js";
-import { GlobalLoadingIndicatorService } from "../../Scaffold/Services/GlobalLoadingIndicatorService.js";
+import { KeyValuePair } from "../../../Shared/KeyValuePair.js";
+import { GlobalLoadingIndicatorService } from "../../../Scaffold/Services/GlobalLoadingIndicatorService.js";
 import { Observable } from "rxjs/Rx";
-import { PayPalAccountStatementImporter, FinanceAccountStatementImporter, CommerzbankCreditCardStatementImporter, CommerzbankGiroAccountStatementImporter, FinancesCsvImporter } from "../Importer.js";
-import { GermanDataParser } from "../Parser.js";
-import { DBValueProvider } from "../DBValueProvider.js";
+import { PayPalAccountStatementImporter, FinanceAccountStatementImporter, 
+    CommerzbankCreditCardStatementImporter, CommerzbankGiroAccountStatementImporter, 
+    FinancesCsvImporter } from "../../Importer.js";
+import { GermanDataParser } from "../../Parser.js";
+import { DBValueProvider } from "../../DBValueProvider.js";
 
 @Component({
     selector: "finances-import",
-    templateUrl: "/Templates/Finances/Import.html"
+    templateUrl: "/Templates/Finances/Import/Index.html"
 })
-export class FinancesImportComponent implements OnInit {
+export class IndexComponent implements OnInit {
     constructor(
         private _financesService: FinancesService,
         private _router: Router,

@@ -1,15 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import * as _ from "lodash";
-import { FinancesService } from "../Services/FinancesService.js";
+import { FinancesService } from "../../Services/FinancesService.js";
 import { Router } from "@angular/router";
-import { GlobalLoadingIndicatorService } from "../../Scaffold/Services/GlobalLoadingIndicatorService.js";
-import { UserViewModel } from "../ViewModels/FinancesViewModels.js";
+import { GlobalLoadingIndicatorService } from "../../../Scaffold/Services/GlobalLoadingIndicatorService.js";
+import { UserViewModel } from "../../ViewModels/FinancesViewModels.js";
 
 @Component({
-    selector: "finances-users",
-    templateUrl: "/Templates/Finances/Users.html"
+    templateUrl: "/Templates/Finances/Index.html"
 })
-export class FinancesUsersComponent implements OnInit {
+export class IndexComponent implements OnInit {
     constructor(
         private _financesService: FinancesService,
         private _router: Router,

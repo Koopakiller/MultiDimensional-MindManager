@@ -1,6 +1,6 @@
 import { DBValueProvider } from "./DBValueProvider.js";
 import { TransactionViewModel } from "./ViewModels/FinancesViewModels.js";
-import { KeyValuePair } from "../Common/KeyValuePair.js";
+import { KeyValuePair } from "../Shared/KeyValuePair.js";
 import { IDataParser } from "./Parser.js";
 import * as Papa from "papaparse";
 import * as moment from "moment";

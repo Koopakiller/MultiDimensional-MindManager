@@ -1,15 +1,14 @@
 import { Component, OnInit } from "@angular/core";
-import { FinancesService } from "../Services/FinancesService.js";
-import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel, TransactionOverviewViewModel } from "../ViewModels/FinancesViewModels.js";
+import { FinancesService } from "../../Services/FinancesService.js";
+import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel, TransactionOverviewViewModel } from "../../ViewModels/FinancesViewModels.js";
 import { Router } from '@angular/router';
-import { KeyValuePair } from "../../Common/KeyValuePair.js";
-import { GlobalLoadingIndicatorService } from "../../Scaffold/Services/GlobalLoadingIndicatorService.js";
+import { KeyValuePair } from "../../../Shared/KeyValuePair.js";
+import { GlobalLoadingIndicatorService } from "../../../Scaffold/Services/GlobalLoadingIndicatorService.js";
 
 @Component({
-    selector: "finances-overview",
-    templateUrl: "/Templates/Finances/Overview.html"
+    templateUrl: "/Templates/Finances/Transactions/Overview.html"
 })
-export class FinancesOverviewComponent implements OnInit {
+export class OverviewComponent implements OnInit {
     constructor(
         private _financesService: FinancesService,
         private _router: Router,

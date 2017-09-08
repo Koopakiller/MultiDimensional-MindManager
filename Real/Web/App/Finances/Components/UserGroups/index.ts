@@ -1,15 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import * as _ from "lodash";
-import { FinancesService } from "../Services/FinancesService.js";
+import { FinancesService } from "../../Services/FinancesService.js";
 import { Router } from "@angular/router";
-import { GlobalLoadingIndicatorService } from "../../Scaffold/Services/GlobalLoadingIndicatorService.js";
-import { UserViewModel, UserGroupViewModel } from "../ViewModels/FinancesViewModels.js";
+import { GlobalLoadingIndicatorService } from "../../../Scaffold/Services/GlobalLoadingIndicatorService.js";
+import { UserViewModel, UserGroupViewModel } from "../../ViewModels/FinancesViewModels.js";
 
 @Component({
     selector: "finances-usergroups",
-    templateUrl: "/Templates/Finances/UserGroups.html"
+    templateUrl: "/Templates/Finances/Index.html"
 })
-export class FinancesUserGroupsComponent implements OnInit {
+export class IndexComponent implements OnInit {
 
     constructor(
         private _financesService: FinancesService,

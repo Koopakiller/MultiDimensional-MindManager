@@ -1,15 +1,14 @@
 import { Component, OnInit, Input, EventEmitter, Output, OnDestroy } from "@angular/core";
-import { FinancesService } from "../Services/FinancesService.js";
-import { LocationService } from "../../Common/Services/LocationService.js";
-import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, UserGroupViewModel } from "../ViewModels/FinancesViewModels.js";
+import { FinancesService } from "../../Services/FinancesService.js";
+import { LocationService } from "../../../Shared/Services/LocationService.js";
+import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, UserGroupViewModel } from "../../ViewModels/FinancesViewModels.js";
 import { Router } from '@angular/router';
-import { GlobalLoadingIndicatorService } from "../../Scaffold/Services/GlobalLoadingIndicatorService.js";
+import { GlobalLoadingIndicatorService } from "../../../Scaffold/Services/GlobalLoadingIndicatorService.js";
 
 @Component({
-    selector: "finances-person-add",
-    templateUrl: "/Templates/Finances/PersonAdd.html"
+    templateUrl: "/Templates/Finances/Persons/Add.html"
 })
-export class FinancesPersonAddComponent implements OnInit, OnDestroy {
+export class AddComponent implements OnInit, OnDestroy {
     constructor(
         private _financesService: FinancesService,
         private _router: Router,

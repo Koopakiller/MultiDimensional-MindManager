@@ -14,7 +14,7 @@ var FinancesServerModels_js_1 = require("../ServerModels/FinancesServerModels.js
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/operator/map");
-var DataContainer_js_1 = require("../../Common/DataContainer.js");
+var DataContainer_js_1 = require("../../Shared/DataContainer.js");
 var FinancesService = (function () {
     function FinancesService(http) {
         this.http = http;

@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var FinancesViewModels_js_1 = require("./ViewModels/FinancesViewModels.js");
-var KeyValuePair_js_1 = require("../Common/KeyValuePair.js");
+var KeyValuePair_js_1 = require("../Shared/KeyValuePair.js");
 var Papa = require("papaparse");
 var FinanceAccountStatementImporter = (function () {
     function FinanceAccountStatementImporter() {

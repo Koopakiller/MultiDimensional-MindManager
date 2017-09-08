@@ -1,4 +1,4 @@
-import { KeyValuePair } from "../../Common/KeyValuePair.js";
+import { KeyValuePair } from "../../Shared/KeyValuePair.js";
 import { TransactionServerModel, TransactionOverviewServerModel } from "../ServerModels/FinancesServerModels.js";
 
 export class UserViewModel {

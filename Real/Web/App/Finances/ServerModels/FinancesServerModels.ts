@@ -1,5 +1,5 @@
 import { PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel, TransactionOverviewViewModel, UserGroupViewModel } from "../ViewModels/FinancesViewModels.js";
-import { KeyValuePair } from "../../Common/KeyValuePair.js";
+import { KeyValuePair } from "../../Shared/KeyValuePair.js";
 
 export class PersonServerModel implements IViewModelConvert<PersonViewModel>{
 
