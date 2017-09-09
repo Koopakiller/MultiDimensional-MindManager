@@ -11,8 +11,6 @@ var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_js_1 = require("./Scaffold/Components/app.js");
-var FinancesService_js_1 = require("./Finances/Services/FinancesService.js");
-var LocationService_js_1 = require("./Shared/Services/LocationService.js");
 var router_1 = require("@angular/router");
 var home_js_1 = require("./Components/home.js");
 var MediaApplet_js_1 = require("./Components/MediaApplet.js");
@@ -53,8 +51,6 @@ AppModule = __decorate([
             app_js_1.AppComponent
         ],
         providers: [
-            FinancesService_js_1.FinancesService,
-            LocationService_js_1.LocationService,
             GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService,
             NavigationService_js_1.NavigationService
         ],

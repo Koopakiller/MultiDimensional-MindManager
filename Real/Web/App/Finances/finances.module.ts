@@ -4,20 +4,20 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
-import { IndexComponent as TransactionIndexComponent } from "./Components/Transactions/index.js";
-import { AddComponent as TransactionAddComponent } from "./Components/Transactions/add.js";
-import { OverviewComponent as TransactionOverviewComponent } from "./Components/Transactions/overview.js";
+import { IndexComponent as TransactionIndexComponent } from "./Components/Transactions/Index.js";
+import { AddComponent as TransactionAddComponent } from "./Components/Transactions/Add.js";
+import { OverviewComponent as TransactionOverviewComponent } from "./Components/Transactions/Overview.js";
 
-import { IndexComponent as ImportIndexComponent } from "./Components/Import/index.js";
+import { IndexComponent as ImportIndexComponent } from "./Components/Import/Index.js";
 
-import { IndexComponent as PersonsIndexComponent } from "./Components/Persons/index.js";
-import { AddComponent as PersonsAddComponent } from "./Components/Persons/add.js";
+import { IndexComponent as PersonsIndexComponent } from "./Components/Persons/Index.js";
+import { AddComponent as PersonsAddComponent } from "./Components/Persons/Add.js";
 
-import { IndexComponent as UserGroupsIndexComponent } from "./Components/UserGroups/index.js";
+import { IndexComponent as UserGroupsIndexComponent } from "./Components/UserGroups/Index.js";
 
-import { IndexComponent as UsersIndexComponent } from "./Components/Users/index.js";
+import { IndexComponent as UsersIndexComponent } from "./Components/Users/Index.js";
 
-import { FinancesComponent } from "./Components/finances.js";
+import { IndexComponent } from "./Components/Index.js";
 
 import { FinancesService } from "./Services/FinancesService.js";
 import { LocationService } from "../Shared/Services/LocationService.js";
@@ -28,7 +28,7 @@ import { UtcPipe } from "../Shared/Pipes/UtcPipe.js";
 const financesRoutes: Routes = [
     {
         path: '',
-        component: FinancesComponent
+        component: IndexComponent
     },
     {
         path: 'Transactions',
@@ -75,7 +75,7 @@ const financesRoutes: Routes = [
         FormsModule
     ],
     declarations: [
-        FinancesComponent,
+        IndexComponent,
         TransactionIndexComponent,
         TransactionAddComponent,
         TransactionOverviewComponent,
@@ -87,7 +87,7 @@ const financesRoutes: Routes = [
         UtcPipe
     ],
     bootstrap: [
-        FinancesComponent
+        IndexComponent
     ],
     providers: [
         FinancesService,

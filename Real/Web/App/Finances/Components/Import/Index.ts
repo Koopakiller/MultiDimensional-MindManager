@@ -8,9 +8,9 @@ import { GlobalLoadingIndicatorService } from "../../../Scaffold/Services/Global
 import { Observable } from "rxjs/Rx";
 import { PayPalAccountStatementImporter, FinanceAccountStatementImporter, 
     CommerzbankCreditCardStatementImporter, CommerzbankGiroAccountStatementImporter, 
-    FinancesCsvImporter } from "../../Importer.js";
-import { GermanDataParser } from "../../Parser.js";
-import { DBValueProvider } from "../../DBValueProvider.js";
+    FinancesCsvImporter } from "../../Helper/Importer.js";
+import { GermanDataParser } from "../../Helper/Parser.js";
+import { DBValueProvider } from "../../Helper/DBValueProvider.js";
 
 @Component({
     selector: "finances-import",

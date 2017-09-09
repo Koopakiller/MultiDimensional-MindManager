@@ -14,41 +14,41 @@ import { IndexComponent } from "./Components/Index.js";
 import { IndexComponent as StyleIndexComponent } from "./Components/Style/Index.js";
 
 const financesRoutes: Routes = [
-    {
-        path: '',
-        component: IndexComponent,
-        children: [
-            {
-                path: 'Style',
-                children: [
-                    { path: '', component: StyleIndexComponent },
-                ]
-            }
-        ]
-    },
+	{
+		path: '',
+		component: IndexComponent,
+		children: [
+			{
+				path: 'Style',
+				children: [
+					{ path: '', component: StyleIndexComponent },
+				]
+			}
+		]
+	},
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forChild(
-            financesRoutes
-        ),
-        HttpModule,
-        CommonModule,
-        FormsModule
-    ],
-    declarations: [
-        IndexComponent,
-        StyleIndexComponent,
-        UtcPipe
-    ],
-    bootstrap: [
-        IndexComponent
-    ],
-    providers: [
-        GlobalLoadingIndicatorService,
-        NavigationService
-    ],
+	imports: [
+		RouterModule.forChild(
+			financesRoutes
+		),
+		HttpModule,
+		CommonModule,
+		FormsModule
+	],
+	declarations: [
+		IndexComponent,
+		StyleIndexComponent,
+		UtcPipe
+	],
+	bootstrap: [
+		IndexComponent
+	],
+	providers: [
+		GlobalLoadingIndicatorService,
+		NavigationService
+	],
 })
 export class TestModule {
 }

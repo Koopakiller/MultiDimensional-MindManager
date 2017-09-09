@@ -1,4 +1,4 @@
-import { PersonViewModel, CurrencyAccountViewModel } from "./ViewModels/FinancesViewModels.js";
+import { PersonViewModel, CurrencyAccountViewModel } from "../ViewModels/FinancesViewModels.js";
 
 export class DBValueProvider {
     constructor(

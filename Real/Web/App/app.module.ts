@@ -3,9 +3,6 @@ import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppComponent } from "./Scaffold/Components/app.js";
-import { FinancesComponent } from "./Finances/Components/finances.js";
-import { FinancesService } from "./Finances/Services/FinancesService.js";
-import { LocationService } from "./Shared/Services/LocationService.js";
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from "./Components/home.js";
 import { MediaAppletComponent } from "./Components/MediaApplet.js";
@@ -46,8 +43,6 @@ const appRoutes: Routes = [
     AppComponent
   ],
   providers: [
-    FinancesService,
-    LocationService,
     GlobalLoadingIndicatorService,
     NavigationService
   ],

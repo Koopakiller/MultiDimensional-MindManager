@@ -11,15 +11,15 @@ var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
-var index_js_1 = require("./Components/Transactions/index.js");
-var add_js_1 = require("./Components/Transactions/add.js");
-var overview_js_1 = require("./Components/Transactions/overview.js");
-var index_js_2 = require("./Components/Import/index.js");
-var index_js_3 = require("./Components/Persons/index.js");
-var add_js_2 = require("./Components/Persons/add.js");
-var index_js_4 = require("./Components/UserGroups/index.js");
-var index_js_5 = require("./Components/Users/index.js");
-var finances_js_1 = require("./Components/finances.js");
+var Index_js_1 = require("./Components/Transactions/Index.js");
+var Add_js_1 = require("./Components/Transactions/Add.js");
+var Overview_js_1 = require("./Components/Transactions/Overview.js");
+var Index_js_2 = require("./Components/Import/Index.js");
+var Index_js_3 = require("./Components/Persons/Index.js");
+var Add_js_2 = require("./Components/Persons/Add.js");
+var Index_js_4 = require("./Components/UserGroups/Index.js");
+var Index_js_5 = require("./Components/Users/Index.js");
+var Index_js_6 = require("./Components/Index.js");
 var FinancesService_js_1 = require("./Services/FinancesService.js");
 var LocationService_js_1 = require("../Shared/Services/LocationService.js");
 var GlobalLoadingIndicatorService_js_1 = require("../Scaffold/Services/GlobalLoadingIndicatorService.js");
@@ -28,39 +28,39 @@ var UtcPipe_js_1 = require("../Shared/Pipes/UtcPipe.js");
 var financesRoutes = [
     {
         path: '',
-        component: finances_js_1.FinancesComponent
+        component: Index_js_6.IndexComponent
     },
     {
         path: 'Transactions',
         children: [
-            { path: '', component: index_js_1.IndexComponent },
-            { path: 'Add', component: add_js_1.AddComponent },
-            { path: 'Overview', component: overview_js_1.OverviewComponent },
+            { path: '', component: Index_js_1.IndexComponent },
+            { path: 'Add', component: Add_js_1.AddComponent },
+            { path: 'Overview', component: Overview_js_1.OverviewComponent },
         ]
     },
     {
         path: 'Import',
         children: [
-            { path: '', component: index_js_2.IndexComponent },
+            { path: '', component: Index_js_2.IndexComponent },
         ]
     },
     {
         path: 'Persons',
         children: [
-            { path: '', component: index_js_3.IndexComponent },
-            { path: 'add', component: add_js_2.AddComponent },
+            { path: '', component: Index_js_3.IndexComponent },
+            { path: 'add', component: Add_js_2.AddComponent },
         ]
     },
     {
         path: 'UserGroups',
         children: [
-            { path: '', component: index_js_4.IndexComponent },
+            { path: '', component: Index_js_4.IndexComponent },
         ]
     },
     {
         path: 'Users',
         children: [
-            { path: '', component: index_js_5.IndexComponent },
+            { path: '', component: Index_js_5.IndexComponent },
         ]
     }
 ];
@@ -78,19 +78,19 @@ FinancesModule = __decorate([
             forms_1.FormsModule
         ],
         declarations: [
-            finances_js_1.FinancesComponent,
-            index_js_1.IndexComponent,
-            add_js_1.AddComponent,
-            overview_js_1.OverviewComponent,
-            index_js_2.IndexComponent,
-            index_js_3.IndexComponent,
-            add_js_2.AddComponent,
-            index_js_4.IndexComponent,
-            index_js_5.IndexComponent,
+            Index_js_6.IndexComponent,
+            Index_js_1.IndexComponent,
+            Add_js_1.AddComponent,
+            Overview_js_1.OverviewComponent,
+            Index_js_2.IndexComponent,
+            Index_js_3.IndexComponent,
+            Add_js_2.AddComponent,
+            Index_js_4.IndexComponent,
+            Index_js_5.IndexComponent,
             UtcPipe_js_1.UtcPipe
         ],
         bootstrap: [
-            finances_js_1.FinancesComponent
+            Index_js_6.IndexComponent
         ],
         providers: [
             FinancesService_js_1.FinancesService,
