@@ -14,7 +14,6 @@ var app_js_1 = require("./Scaffold/Components/app.js");
 var FinancesService_js_1 = require("./Finances/Services/FinancesService.js");
 var LocationService_js_1 = require("./Shared/Services/LocationService.js");
 var router_1 = require("@angular/router");
-var style_test_js_1 = require("./Components/style-test.js");
 var home_js_1 = require("./Components/home.js");
 var MediaApplet_js_1 = require("./Components/MediaApplet.js");
 var loading_indicator_js_1 = require("./Components/loading-indicator.js");
@@ -23,10 +22,8 @@ var error_js_1 = require("./Scaffold/Components/error.js");
 var NavigationService_js_1 = require("./Scaffold/Services/NavigationService.js");
 var appRoutes = [
     { path: 'Home', component: home_js_1.HomeComponent },
-    {
-        path: 'Finances', loadChildren: "/App/Finances/finances.module.js#FinancesModule",
-    },
-    { path: 'StyleTest', component: style_test_js_1.StyleTestComponent },
+    { path: 'Finances', loadChildren: "/App/Finances/finances.module.js#FinancesModule" },
+    { path: 'Test', loadChildren: "/App/Test/test.module.js#TestModule" },
     { path: 'Media', component: MediaApplet_js_1.MediaAppletComponent },
     { path: 'Error/:errorId', component: error_js_1.ErrorComponent },
     { path: '', pathMatch: 'full', redirectTo: '/Home' },
@@ -50,8 +47,7 @@ AppModule = __decorate([
             error_js_1.ErrorComponent,
             loading_indicator_js_1.LoadingIndicatorComponent,
             home_js_1.HomeComponent,
-            MediaApplet_js_1.MediaAppletComponent,
-            style_test_js_1.StyleTestComponent
+            MediaApplet_js_1.MediaAppletComponent
         ],
         bootstrap: [
             app_js_1.AppComponent

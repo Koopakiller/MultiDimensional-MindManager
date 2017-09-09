@@ -7,7 +7,6 @@ import { FinancesComponent } from "./Finances/Components/finances.js";
 import { FinancesService } from "./Finances/Services/FinancesService.js";
 import { LocationService } from "./Shared/Services/LocationService.js";
 import { RouterModule, Routes } from '@angular/router';
-import { StyleTestComponent } from "./Components/style-test.js";
 import { HomeComponent } from "./Components/home.js";
 import { MediaAppletComponent } from "./Components/MediaApplet.js";
 import { LoadingIndicatorComponent } from "./Components/loading-indicator.js";
@@ -17,10 +16,10 @@ import { NavigationService } from "./Scaffold/Services/NavigationService.js";
 
 const appRoutes: Routes = [
   { path: 'Home', component: HomeComponent },
-  {
-    path: 'Finances', loadChildren: "/App/Finances/finances.module.js#FinancesModule",
-  },
-  { path: 'StyleTest', component: StyleTestComponent },
+
+  { path: 'Finances', loadChildren: "/App/Finances/finances.module.js#FinancesModule" },
+  { path: 'Test', loadChildren: "/App/Test/test.module.js#TestModule" },
+
   { path: 'Media', component: MediaAppletComponent },
   { path: 'Error/:errorId', component: ErrorComponent },
   { path: '', pathMatch: 'full', redirectTo: '/Home' },
@@ -41,8 +40,7 @@ const appRoutes: Routes = [
     ErrorComponent,
     LoadingIndicatorComponent,
     HomeComponent,
-    MediaAppletComponent,
-    StyleTestComponent
+    MediaAppletComponent
   ],
   bootstrap: [
     AppComponent

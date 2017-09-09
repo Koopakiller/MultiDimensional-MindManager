@@ -3,7 +3,7 @@ import * as _ from "lodash";
 
 @Component({
     selector: "style-test",
-    templateUrl: "/Templates/StyleTest.html"
+    templateUrl: "/App/Test/Templates/Style/Index.html"
 })
-export class StyleTestComponent {
+export class IndexComponent {
 }     
