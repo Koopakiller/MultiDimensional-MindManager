@@ -22,7 +22,7 @@ __decorate([
 FinancesUsersListComponent = __decorate([
     core_1.Component({
         selector: "users-list",
-        templateUrl: "/Templates/Finances/Users/List.html"
+        templateUrl: "/App/Finances/Templates/Users/List.html"
     })
 ], FinancesUsersListComponent);
 exports.FinancesUsersListComponent = FinancesUsersListComponent;

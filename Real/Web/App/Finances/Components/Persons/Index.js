@@ -14,7 +14,7 @@ var IndexComponent = (function () {
 }());
 IndexComponent = __decorate([
     core_1.Component({
-        templateUrl: "/Templates/Finances/Persons/Index.html"
+        templateUrl: "/App/Finances/Templates/Persons/Index.html"
     })
 ], IndexComponent);
 exports.IndexComponent = IndexComponent;

@@ -7,7 +7,7 @@ import { KeyValuePair } from "../../../Shared/KeyValuePair.js";
 import { GlobalLoadingIndicatorService } from "../../../Scaffold/Services/GlobalLoadingIndicatorService.js";
 
 @Component({
-    templateUrl: "/Templates/Finances/Transactions/Add.html"
+    templateUrl: "/App/Finances/Templates/Transactions/Add.html"
 })
 export class AddComponent implements OnInit {
     constructor(

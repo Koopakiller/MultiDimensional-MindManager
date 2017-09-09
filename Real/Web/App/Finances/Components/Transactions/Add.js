@@ -110,7 +110,7 @@ var AddComponent = (function () {
 }());
 AddComponent = __decorate([
     core_1.Component({
-        templateUrl: "/Templates/Finances/Transactions/Add.html"
+        templateUrl: "/App/Finances/Templates/Transactions/Add.html"
     }),
     __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
         LocationService_js_1.LocationService,

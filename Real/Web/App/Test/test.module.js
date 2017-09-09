@@ -13,7 +13,6 @@ var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
 var GlobalLoadingIndicatorService_js_1 = require("../Scaffold/Services/GlobalLoadingIndicatorService.js");
 var NavigationService_js_1 = require("../Scaffold/Services/NavigationService.js");
-var UtcPipe_js_1 = require("../Shared/Pipes/UtcPipe.js");
 var Index_js_1 = require("./Components/Index.js");
 var Index_js_2 = require("./Components/Style/Index.js");
 var financesRoutes = [
@@ -45,8 +44,7 @@ TestModule = __decorate([
         ],
         declarations: [
             Index_js_1.IndexComponent,
-            Index_js_2.IndexComponent,
-            UtcPipe_js_1.UtcPipe
+            Index_js_2.IndexComponent
         ],
         bootstrap: [
             Index_js_1.IndexComponent

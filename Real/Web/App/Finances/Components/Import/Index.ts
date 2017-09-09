@@ -14,7 +14,7 @@ import { DBValueProvider } from "../../Helper/DBValueProvider.js";
 
 @Component({
     selector: "finances-import",
-    templateUrl: "/Templates/Finances/Import/Index.html"
+    templateUrl: "/App/Finances/Templates/Import/Index.html"
 })
 export class IndexComponent implements OnInit {
     constructor(

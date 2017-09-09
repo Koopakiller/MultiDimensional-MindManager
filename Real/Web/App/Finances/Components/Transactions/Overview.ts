@@ -6,7 +6,7 @@ import { KeyValuePair } from "../../../Shared/KeyValuePair.js";
 import { GlobalLoadingIndicatorService } from "../../../Scaffold/Services/GlobalLoadingIndicatorService.js";
 
 @Component({
-    templateUrl: "/Templates/Finances/Transactions/Overview.html"
+    templateUrl: "/App/Finances/Templates/Transactions/Overview.html"
 })
 export class OverviewComponent implements OnInit {
     constructor(

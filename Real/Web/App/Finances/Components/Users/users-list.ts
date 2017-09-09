@@ -7,7 +7,7 @@ import { UserViewModel } from "../../ViewModels/FinancesViewModels.js";
 
 @Component({
     selector: "users-list",
-    templateUrl: "/Templates/Finances/Users/List.html"
+    templateUrl: "/App/Finances/Templates/Users/List.html"
 })
 export class FinancesUsersListComponent {
 

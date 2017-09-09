@@ -195,7 +195,7 @@ var IndexComponent = (function () {
 IndexComponent = __decorate([
     core_1.Component({
         selector: "finances-import",
-        templateUrl: "/Templates/Finances/Import/Index.html"
+        templateUrl: "/App/Finances/Templates/Import/Index.html"
     }),
     __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
         router_1.Router,

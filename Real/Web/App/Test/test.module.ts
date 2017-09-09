@@ -39,8 +39,7 @@ const financesRoutes: Routes = [
 	],
 	declarations: [
 		IndexComponent,
-		StyleIndexComponent,
-		UtcPipe
+		StyleIndexComponent
 	],
 	bootstrap: [
 		IndexComponent

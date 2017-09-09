@@ -82,7 +82,7 @@ __decorate([
 ], AddComponent.prototype, "close", void 0);
 AddComponent = __decorate([
     core_1.Component({
-        templateUrl: "/Templates/Finances/Persons/Add.html"
+        templateUrl: "/App/Finances/Templates/Persons/Add.html"
     }),
     __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
         router_1.Router,

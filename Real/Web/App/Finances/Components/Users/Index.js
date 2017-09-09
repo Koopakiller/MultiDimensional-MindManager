@@ -33,7 +33,7 @@ var IndexComponent = (function () {
 }());
 IndexComponent = __decorate([
     core_1.Component({
-        templateUrl: "/Templates/Finances/Index.html"
+        templateUrl: "/App/Finances/Templates/Index.html"
     }),
     __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
         router_1.Router,

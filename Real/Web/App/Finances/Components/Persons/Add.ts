@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { GlobalLoadingIndicatorService } from "../../../Scaffold/Services/GlobalLoadingIndicatorService.js";
 
 @Component({
-    templateUrl: "/Templates/Finances/Persons/Add.html"
+    templateUrl: "/App/Finances/Templates/Persons/Add.html"
 })
 export class AddComponent implements OnInit, OnDestroy {
     constructor(
