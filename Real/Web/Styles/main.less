@@ -149,27 +149,12 @@ body{
       .font-bold;
     }
   }
-
-  .popup{
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    overflow: auto;
-    background-color: @color-tile-dark;
-    .popup-container{
-      .padding;
-      .popup-content{
-        .tile;
-        border: 2px solid @color-light;
-      }
-      .button-bar{
-        text-align: right;
-      }
-    }
-  }
   
+  section.pane{
+    .tile;
+    padding: 0 0 @padding 0;
+  }
+
 } 
 
 // format selected text

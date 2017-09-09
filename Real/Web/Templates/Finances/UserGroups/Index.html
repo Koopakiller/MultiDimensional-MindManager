@@ -1,25 +1,25 @@
+<section class="pane">
+    <h1>Finances: UserGroups</h1>
 
-<h1>Finances: UserGroups</h1>
-
-<div>
-    <table>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th class="action-column">Actions</th>
-        </tr>
-        <ng-template ngFor let-userGroup [ngForOf]="userGroups" let-index="index">
+    <div>
+        <table>
             <tr>
-                <td>{{userGroup.id}}</td>
-                <td>{{userGroup.name}}</td>
-                <td class="action-column">
-                    <a (click)="toggleManageUsers(index)">Manage Users</a>
-                </td>
+                <th>Id</th>
+                <th>Name</th>
+                <th class="action-column">Actions</th>
             </tr>
-        </ng-template>
-    </table>
-</div>
-
+            <ng-template ngFor let-userGroup [ngForOf]="userGroups" let-index="index">
+                <tr>
+                    <td>{{userGroup.id}}</td>
+                    <td>{{userGroup.name}}</td>
+                    <td class="action-column">
+                        <a (click)="toggleManageUsers(index)">Manage Users</a>
+                    </td>
+                </tr>
+            </ng-template>
+        </table>
+    </div>
+</section>
 <div class="popup" *ngIf="selectedUserGroup">
     <div class="popup-container">
         <div class="popup-content text">

@@ -27,6 +27,10 @@ import { UtcPipe } from "../Shared/Pipes/UtcPipe.js";
 
 const financesRoutes: Routes = [
     {
+        path: '',
+        component: FinancesComponent
+    },
+    {
         path: 'Transactions',
         children: [
             { path: '', component: TransactionIndexComponent },

@@ -27,6 +27,10 @@ var NavigationService_js_1 = require("../Scaffold/Services/NavigationService.js"
 var UtcPipe_js_1 = require("../Shared/Pipes/UtcPipe.js");
 var financesRoutes = [
     {
+        path: '',
+        component: finances_js_1.FinancesComponent
+    },
+    {
         path: 'Transactions',
         children: [
             { path: '', component: index_js_1.IndexComponent },
