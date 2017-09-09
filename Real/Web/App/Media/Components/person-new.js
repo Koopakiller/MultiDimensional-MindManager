@@ -10,25 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var FinancesService_js_1 = require("../../Services/FinancesService.js");
+var FinancesService_js_1 = require("../Services/FinancesService.js");
 var router_1 = require("@angular/router");
-var GlobalLoadingIndicatorService_js_1 = require("../../../Shared/Services/GlobalLoadingIndicatorService.js");
-var AddComponent = (function () {
-    function AddComponent(_financesService, _router, _globalLoadingIndicatorService) {
+var GlobalLoadingIndicatorService_js_1 = require("../../Services/GlobalLoadingIndicatorService.js");
+var FinancesNewPersonComponent = (function () {
+    function FinancesNewPersonComponent(_financesService, _router, _globalLoadingIndicatorService) {
         this._financesService = _financesService;
         this._router = _router;
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
         this._isInitialized = false;
         this.close = new core_1.EventEmitter();
     }
-    AddComponent.prototype.ngOnInit = function () {
+    FinancesNewPersonComponent.prototype.ngOnInit = function () {
         this._isInitialized = true;
         this.updateUserGroups();
     };
-    AddComponent.prototype.ngOnDestroy = function () {
+    FinancesNewPersonComponent.prototype.ngOnDestroy = function () {
         this._isInitialized = false;
     };
-    Object.defineProperty(AddComponent.prototype, "userId", {
+    Object.defineProperty(FinancesNewPersonComponent.prototype, "userId", {
         get: function () {
             return this._userId;
         },
@@ -41,7 +41,7 @@ var AddComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    AddComponent.prototype.updateUserGroups = function () {
+    FinancesNewPersonComponent.prototype.updateUserGroups = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.getUserGroups(this._userId).subscribe(function (x) {
@@ -52,7 +52,7 @@ var AddComponent = (function () {
             alert(error);
         });
     };
-    AddComponent.prototype.submit = function () {
+    FinancesNewPersonComponent.prototype.submit = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.addPerson(this.personName, this.userGroup).subscribe(function (item) {
@@ -62,30 +62,31 @@ var AddComponent = (function () {
             alert(error);
         });
     };
-    AddComponent.prototype.cancel = function () {
+    FinancesNewPersonComponent.prototype.cancel = function () {
         this.close.emit();
     };
-    return AddComponent;
+    return FinancesNewPersonComponent;
 }());
 __decorate([
     core_1.Input(),
     __metadata("design:type", String)
-], AddComponent.prototype, "personName", void 0);
+], FinancesNewPersonComponent.prototype, "personName", void 0);
 __decorate([
     core_1.Input("userId"),
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [Number])
-], AddComponent.prototype, "userId", null);
+], FinancesNewPersonComponent.prototype, "userId", null);
 __decorate([
     core_1.Output(),
     __metadata("design:type", Object)
-], AddComponent.prototype, "close", void 0);
-AddComponent = __decorate([
+], FinancesNewPersonComponent.prototype, "close", void 0);
+FinancesNewPersonComponent = __decorate([
     core_1.Component({
-        templateUrl: "/App/Finances/Templates/Persons/Add.html"
+        selector: "finances-new-person",
+        templateUrl: "/Templates/Finances/PersonAdd"
     }),
     __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
         router_1.Router,
         GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService])
-], AddComponent);
-exports.AddComponent = AddComponent;
+], FinancesNewPersonComponent);
+exports.FinancesNewPersonComponent = FinancesNewPersonComponent;

@@ -11,30 +11,21 @@ var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
+var Index_js_1 = require("./Components/Index.js");
 var GlobalLoadingIndicatorService_js_1 = require("../Shared/Services/GlobalLoadingIndicatorService.js");
 var NavigationService_js_1 = require("../Shared/Services/NavigationService.js");
-var Index_js_1 = require("./Components/Index.js");
-var Index_js_2 = require("./Components/Style/Index.js");
 var financesRoutes = [
     {
         path: '',
-        component: Index_js_1.IndexComponent,
-        children: [
-            {
-                path: 'Style',
-                children: [
-                    { path: '', component: Index_js_2.IndexComponent },
-                ]
-            }
-        ]
+        component: Index_js_1.IndexComponent
     },
 ];
-var TestModule = (function () {
-    function TestModule() {
+var MediaModule = (function () {
+    function MediaModule() {
     }
-    return TestModule;
+    return MediaModule;
 }());
-TestModule = __decorate([
+MediaModule = __decorate([
     core_1.NgModule({
         imports: [
             router_1.RouterModule.forChild(financesRoutes),
@@ -43,8 +34,7 @@ TestModule = __decorate([
             forms_1.FormsModule
         ],
         declarations: [
-            Index_js_1.IndexComponent,
-            Index_js_2.IndexComponent
+            Index_js_1.IndexComponent
         ],
         bootstrap: [
             Index_js_1.IndexComponent
@@ -54,5 +44,5 @@ TestModule = __decorate([
             NavigationService_js_1.NavigationService
         ],
     })
-], TestModule);
-exports.TestModule = TestModule;
+], MediaModule);
+exports.MediaModule = MediaModule;

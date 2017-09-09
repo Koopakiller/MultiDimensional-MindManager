@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit, Input } from "@angular/core";
-import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
+import { GlobalLoadingIndicatorService } from "../../Shared/Services/GlobalLoadingIndicatorService.js";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: "error",
-    templateUrl: "/Templates/Scaffold/Error.html"
+    templateUrl: "/App/Scaffold/Templates/Error.html"
 })
 export class ErrorComponent implements OnInit, OnDestroy {
     constructor(

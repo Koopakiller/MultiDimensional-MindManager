@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { GlobalLoadingIndicatorService } from "../Services/GlobalLoadingIndicatorService.js";
+import { GlobalLoadingIndicatorService } from "../../Shared/Services/GlobalLoadingIndicatorService.js";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
-import { NavigationService } from "../Services/NavigationService.js";
+import { NavigationService } from "../../Shared/Services/NavigationService.js";
 
 @Component({
     selector: "app",
-    templateUrl: "/Templates/Scaffold/App.html"
+    templateUrl: "/App/Scaffold/Templates/App.html"
 })
 export class AppComponent implements OnInit{
     constructor(

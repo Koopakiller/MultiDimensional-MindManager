@@ -3,7 +3,7 @@ import { FinancesService } from "../../Services/FinancesService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel, TransactionOverviewViewModel } from "../../ViewModels/FinancesViewModels.js";
 import { Router } from '@angular/router';
 import { KeyValuePair } from "../../../Shared/KeyValuePair.js";
-import { GlobalLoadingIndicatorService } from "../../../Scaffold/Services/GlobalLoadingIndicatorService.js";
+import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService.js";
 
 @Component({
     templateUrl: "/App/Finances/Templates/Transactions/Overview.html"

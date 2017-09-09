@@ -10,14 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var FinancesService_js_1 = require("../../Services/FinancesService.js");
-var LocationService_js_1 = require("../../../Shared/Services/LocationService.js");
-var FinancesViewModels_js_1 = require("../../ViewModels/FinancesViewModels.js");
+var FinancesService_js_1 = require("../Services/FinancesService.js");
+var LocationService_js_1 = require("../Services/LocationService.js");
+var FinancesViewModels_js_1 = require("../ViewModels/FinancesViewModels.js");
 var router_1 = require("@angular/router");
-var KeyValuePair_js_1 = require("../../../Shared/KeyValuePair.js");
-var GlobalLoadingIndicatorService_js_1 = require("../../../Shared/Services/GlobalLoadingIndicatorService.js");
-var AddComponent = (function () {
-    function AddComponent(_financesService, _locationService, _router, _globalLoadingIndicatorService) {
+var KeyValuePair_js_1 = require("../Common/KeyValuePair.js");
+var GlobalLoadingIndicatorService_js_1 = require("../Services/GlobalLoadingIndicatorService.js");
+var FinancesNewTransactionComponent = (function () {
+    function FinancesNewTransactionComponent(_financesService, _locationService, _router, _globalLoadingIndicatorService) {
         this._financesService = _financesService;
         this._locationService = _locationService;
         this._router = _router;
@@ -25,7 +25,7 @@ var AddComponent = (function () {
         this.includeTimeStampTime = false;
         this.showAddPersonForm = false;
     }
-    AddComponent.prototype.ngOnInit = function () {
+    FinancesNewTransactionComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.persons.subscribe(function (x) {
@@ -49,7 +49,7 @@ var AddComponent = (function () {
         this.timeStampTime = new Date('12:34 AM');
         this.value = 0;
     };
-    Object.defineProperty(AddComponent.prototype, "user", {
+    Object.defineProperty(FinancesNewTransactionComponent.prototype, "user", {
         get: function () {
             return this._user;
         },
@@ -66,7 +66,7 @@ var AddComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    AddComponent.prototype.submit = function () {
+    FinancesNewTransactionComponent.prototype.submit = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
         var tvm = new FinancesViewModels_js_1.TransactionViewModel();
@@ -91,10 +91,10 @@ var AddComponent = (function () {
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     };
-    AddComponent.prototype.cancel = function () {
+    FinancesNewTransactionComponent.prototype.cancel = function () {
         this._router.navigateByUrl("/Finances");
     };
-    AddComponent.prototype.submitNewPerson = function () {
+    FinancesNewTransactionComponent.prototype.submitNewPerson = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.addPerson(this.addNewPersonName, this.user);
@@ -106,15 +106,14 @@ var AddComponent = (function () {
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     };
-    return AddComponent;
+    return FinancesNewTransactionComponent;
 }());
-AddComponent = __decorate([
+FinancesNewTransactionComponent = __decorate([
     core_1.Component({
-        templateUrl: "/App/Finances/Templates/Transactions/Add.html"
+        selector: "finances-new-transaction",
+        templateUrl: "/Templates/FinancesNewTransaction"
     }),
-    __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
-        LocationService_js_1.LocationService,
-        router_1.Router,
-        GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService])
-], AddComponent);
-exports.AddComponent = AddComponent;
+    __metadata("design:paramtypes", [typeof (_a = typeof FinancesService_js_1.FinancesService !== "undefined" && FinancesService_js_1.FinancesService) === "function" && _a || Object, typeof (_b = typeof LocationService_js_1.LocationService !== "undefined" && LocationService_js_1.LocationService) === "function" && _b || Object, router_1.Router, typeof (_c = typeof GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService !== "undefined" && GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService) === "function" && _c || Object])
+], FinancesNewTransactionComponent);
+exports.FinancesNewTransactionComponent = FinancesNewTransactionComponent;
+var _a, _b, _c;

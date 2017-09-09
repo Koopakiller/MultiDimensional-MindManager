@@ -57,7 +57,6 @@
             app.UseStaticFilesFromFolder("App");
             app.UseStaticFilesFromFolder("Styles");
             app.UseStaticFilesFromFolder("Images");
-            app.UseStaticFilesFromFolder("Templates");
             app.UseStaticFilesFromFolder("");
 
             app.UseMvc(routes =>

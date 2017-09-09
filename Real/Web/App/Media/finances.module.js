@@ -22,8 +22,8 @@ var Index_js_5 = require("./Components/Users/Index.js");
 var Index_js_6 = require("./Components/Index.js");
 var FinancesService_js_1 = require("./Services/FinancesService.js");
 var LocationService_js_1 = require("../Shared/Services/LocationService.js");
-var GlobalLoadingIndicatorService_js_1 = require("../Shared/Services/GlobalLoadingIndicatorService.js");
-var NavigationService_js_1 = require("../Shared/Services/NavigationService.js");
+var GlobalLoadingIndicatorService_js_1 = require("../Scaffold/Services/GlobalLoadingIndicatorService.js");
+var NavigationService_js_1 = require("../Scaffold/Services/NavigationService.js");
 var UtcPipe_js_1 = require("../Shared/Pipes/UtcPipe.js");
 var financesRoutes = [
     {

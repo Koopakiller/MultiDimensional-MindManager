@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import * as _ from "lodash";
 import { FinancesService } from "../../Services/FinancesService.js";
 import { Router } from "@angular/router";
-import { GlobalLoadingIndicatorService } from "../../../Scaffold/Services/GlobalLoadingIndicatorService.js";
+import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService.js";
 import { UserViewModel, UserGroupViewModel } from "../../ViewModels/FinancesViewModels.js";
 
 @Component({

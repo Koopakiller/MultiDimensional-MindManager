@@ -5,8 +5,8 @@ import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
 import { LocationService } from "../Shared/Services/LocationService.js";
-import { GlobalLoadingIndicatorService } from "../Scaffold/Services/GlobalLoadingIndicatorService.js";
-import { NavigationService } from "../Scaffold/Services/NavigationService.js";
+import { GlobalLoadingIndicatorService } from "../Shared/Services/GlobalLoadingIndicatorService.js";
+import { NavigationService } from "../Shared/Services/NavigationService.js";
 import { UtcPipe } from "../Shared/Pipes/UtcPipe.js";
 
 import { IndexComponent } from "./Components/Index.js";

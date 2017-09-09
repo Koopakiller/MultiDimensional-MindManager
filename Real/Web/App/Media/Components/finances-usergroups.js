@@ -10,16 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var FinancesService_js_1 = require("../../Services/FinancesService.js");
+var FinancesService_js_1 = require("../Services/FinancesService.js");
 var router_1 = require("@angular/router");
-var GlobalLoadingIndicatorService_js_1 = require("../../../Shared/Services/GlobalLoadingIndicatorService.js");
-var IndexComponent = (function () {
-    function IndexComponent(_financesService, _router, _globalLoadingIndicatorService) {
+var GlobalLoadingIndicatorService_js_1 = require("../Services/GlobalLoadingIndicatorService.js");
+var FinancesUserGroupsComponent = (function () {
+    function FinancesUserGroupsComponent(_financesService, _router, _globalLoadingIndicatorService) {
         this._financesService = _financesService;
         this._router = _router;
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
     }
-    IndexComponent.prototype.ngOnInit = function () {
+    FinancesUserGroupsComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.getUserGroups().subscribe(function (x) {
@@ -30,7 +30,7 @@ var IndexComponent = (function () {
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     };
-    IndexComponent.prototype.toggleManageUsers = function (index) {
+    FinancesUserGroupsComponent.prototype.toggleManageUsers = function (index) {
         var _this = this;
         if (this.selectedUserGroup || !index) {
             this.selectedUserGroup = null;
@@ -48,15 +48,14 @@ var IndexComponent = (function () {
             });
         }
     };
-    return IndexComponent;
+    return FinancesUserGroupsComponent;
 }());
-IndexComponent = __decorate([
+FinancesUserGroupsComponent = __decorate([
     core_1.Component({
         selector: "finances-usergroups",
-        templateUrl: "/App/Finances/Templates/Index.html"
+        templateUrl: "/Templates/FinancesUserGroups"
     }),
-    __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
-        router_1.Router,
-        GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService])
-], IndexComponent);
-exports.IndexComponent = IndexComponent;
+    __metadata("design:paramtypes", [typeof (_a = typeof FinancesService_js_1.FinancesService !== "undefined" && FinancesService_js_1.FinancesService) === "function" && _a || Object, router_1.Router, typeof (_b = typeof GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService !== "undefined" && GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService) === "function" && _b || Object])
+], FinancesUserGroupsComponent);
+exports.FinancesUserGroupsComponent = FinancesUserGroupsComponent;
+var _a, _b;

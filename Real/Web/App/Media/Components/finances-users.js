@@ -10,16 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var FinancesService_js_1 = require("../../Services/FinancesService.js");
+var FinancesService_js_1 = require("../Services/FinancesService.js");
 var router_1 = require("@angular/router");
-var GlobalLoadingIndicatorService_js_1 = require("../../../Shared/Services/GlobalLoadingIndicatorService.js");
-var IndexComponent = (function () {
-    function IndexComponent(_financesService, _router, _globalLoadingIndicatorService) {
+var GlobalLoadingIndicatorService_js_1 = require("../Services/GlobalLoadingIndicatorService.js");
+var FinancesUsersComponent = (function () {
+    function FinancesUsersComponent(_financesService, _router, _globalLoadingIndicatorService) {
         this._financesService = _financesService;
         this._router = _router;
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
     }
-    IndexComponent.prototype.ngOnInit = function () {
+    FinancesUsersComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.users.subscribe(function (x) {
@@ -29,14 +29,14 @@ var IndexComponent = (function () {
             alert(error);
         });
     };
-    return IndexComponent;
+    return FinancesUsersComponent;
 }());
-IndexComponent = __decorate([
+FinancesUsersComponent = __decorate([
     core_1.Component({
-        templateUrl: "/App/Finances/Templates/Index.html"
+        selector: "finances-users",
+        templateUrl: "/Templates/FinancesUsers"
     }),
-    __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
-        router_1.Router,
-        GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService])
-], IndexComponent);
-exports.IndexComponent = IndexComponent;
+    __metadata("design:paramtypes", [typeof (_a = typeof FinancesService_js_1.FinancesService !== "undefined" && FinancesService_js_1.FinancesService) === "function" && _a || Object, router_1.Router, typeof (_b = typeof GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService !== "undefined" && GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService) === "function" && _b || Object])
+], FinancesUsersComponent);
+exports.FinancesUsersComponent = FinancesUsersComponent;
+var _a, _b;

@@ -21,8 +21,8 @@ import { IndexComponent } from "./Components/Index.js";
 
 import { FinancesService } from "./Services/FinancesService.js";
 import { LocationService } from "../Shared/Services/LocationService.js";
-import { GlobalLoadingIndicatorService } from "../Scaffold/Services/GlobalLoadingIndicatorService.js";
-import { NavigationService } from "../Scaffold/Services/NavigationService.js";
+import { GlobalLoadingIndicatorService } from "../Shared/Services/GlobalLoadingIndicatorService.js";
+import { NavigationService } from "../Shared/Services/NavigationService.js";
 import { UtcPipe } from "../Shared/Pipes/UtcPipe.js";
 
 const financesRoutes: Routes = [

@@ -12,17 +12,16 @@ var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_js_1 = require("./Scaffold/Components/app.js");
 var router_1 = require("@angular/router");
-var home_js_1 = require("./Components/home.js");
-var MediaApplet_js_1 = require("./Components/MediaApplet.js");
-var loading_indicator_js_1 = require("./Components/loading-indicator.js");
-var GlobalLoadingIndicatorService_js_1 = require("./Scaffold/Services/GlobalLoadingIndicatorService.js");
+var home_js_1 = require("./Scaffold/Components/home.js");
+var loading_indicator_js_1 = require("./Scaffold/Components/loading-indicator.js");
+var GlobalLoadingIndicatorService_js_1 = require("./Shared/Services/GlobalLoadingIndicatorService.js");
 var error_js_1 = require("./Scaffold/Components/error.js");
-var NavigationService_js_1 = require("./Scaffold/Services/NavigationService.js");
+var NavigationService_js_1 = require("./Shared/Services/NavigationService.js");
 var appRoutes = [
     { path: 'Home', component: home_js_1.HomeComponent },
     { path: 'Finances', loadChildren: "/App/Finances/finances.module.js#FinancesModule" },
     { path: 'Test', loadChildren: "/App/Test/test.module.js#TestModule" },
-    { path: 'Media', component: MediaApplet_js_1.MediaAppletComponent },
+    { path: 'Media', loadChildren: "/App/Media/media.module.js#MediaModule" },
     { path: 'Error/:errorId', component: error_js_1.ErrorComponent },
     { path: '', pathMatch: 'full', redirectTo: '/Home' },
     { path: '**', redirectTo: '/Error/http404' }
@@ -44,8 +43,7 @@ AppModule = __decorate([
             app_js_1.AppComponent,
             error_js_1.ErrorComponent,
             loading_indicator_js_1.LoadingIndicatorComponent,
-            home_js_1.HomeComponent,
-            MediaApplet_js_1.MediaAppletComponent
+            home_js_1.HomeComponent
         ],
         bootstrap: [
             app_js_1.AppComponent

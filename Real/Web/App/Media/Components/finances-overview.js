@@ -10,20 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var FinancesService_js_1 = require("../../Services/FinancesService.js");
+var FinancesService_js_1 = require("../Services/FinancesService.js");
 var router_1 = require("@angular/router");
-var GlobalLoadingIndicatorService_js_1 = require("../../../Shared/Services/GlobalLoadingIndicatorService.js");
-var OverviewComponent = (function () {
-    function OverviewComponent(_financesService, _router, _globalLoadingIndicatorService) {
+var GlobalLoadingIndicatorService_js_1 = require("../Services/GlobalLoadingIndicatorService.js");
+var FinancesOverviewComponent = (function () {
+    function FinancesOverviewComponent(_financesService, _router, _globalLoadingIndicatorService) {
         this._financesService = _financesService;
         this._router = _router;
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
     }
-    OverviewComponent.prototype.ngOnInit = function () {
+    FinancesOverviewComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._financesService.users.subscribe(function (x) { _this.users = x; _this.user = x.length > 0 ? x[0].id : null; });
     };
-    Object.defineProperty(OverviewComponent.prototype, "user", {
+    Object.defineProperty(FinancesOverviewComponent.prototype, "user", {
         get: function () {
             return this._user;
         },
@@ -41,7 +41,7 @@ var OverviewComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    OverviewComponent.prototype.showTable = function (currencyAccountId) {
+    FinancesOverviewComponent.prototype.showTable = function (currencyAccountId) {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.getTransactions(currencyAccountId, 0, 25).subscribe(function (x) {
@@ -49,17 +49,17 @@ var OverviewComponent = (function () {
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     };
-    OverviewComponent.prototype.hideTable = function () {
+    FinancesOverviewComponent.prototype.hideTable = function () {
         this.transactionsInTable = null;
     };
-    return OverviewComponent;
+    return FinancesOverviewComponent;
 }());
-OverviewComponent = __decorate([
+FinancesOverviewComponent = __decorate([
     core_1.Component({
-        templateUrl: "/App/Finances/Templates/Transactions/Overview.html"
+        selector: "finances-overview",
+        templateUrl: "/Templates/FinancesOverview"
     }),
-    __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
-        router_1.Router,
-        GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService])
-], OverviewComponent);
-exports.OverviewComponent = OverviewComponent;
+    __metadata("design:paramtypes", [typeof (_a = typeof FinancesService_js_1.FinancesService !== "undefined" && FinancesService_js_1.FinancesService) === "function" && _a || Object, router_1.Router, typeof (_b = typeof GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService !== "undefined" && GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService) === "function" && _b || Object])
+], FinancesOverviewComponent);
+exports.FinancesOverviewComponent = FinancesOverviewComponent;
+var _a, _b;

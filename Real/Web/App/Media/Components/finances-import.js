@@ -10,15 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var FinancesService_js_1 = require("../../Services/FinancesService.js");
+var FinancesService_js_1 = require("../Services/FinancesService.js");
 var router_1 = require("@angular/router");
-var GlobalLoadingIndicatorService_js_1 = require("../../../Shared/Services/GlobalLoadingIndicatorService.js");
+var GlobalLoadingIndicatorService_js_1 = require("../Services/GlobalLoadingIndicatorService.js");
 var Rx_1 = require("rxjs/Rx");
-var Importer_js_1 = require("../../Helper/Importer.js");
-var Parser_js_1 = require("../../Helper/Parser.js");
-var DBValueProvider_js_1 = require("../../Helper/DBValueProvider.js");
-var IndexComponent = (function () {
-    function IndexComponent(_financesService, _router, _globalLoadingIndicatorService) {
+var Importer_js_1 = require("../Finances/Importer.js");
+var Parser_js_1 = require("../Finances/Parser.js");
+var DBValueProvider_js_1 = require("../Finances/DBValueProvider.js");
+var FinancesImportComponent = (function () {
+    function FinancesImportComponent(_financesService, _router, _globalLoadingIndicatorService) {
         this._financesService = _financesService;
         this._router = _router;
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
@@ -33,7 +33,7 @@ var IndexComponent = (function () {
         this.showAddPersonPopup = false;
         this.suggestedNewPersonName = "";
     }
-    IndexComponent.prototype.ngOnInit = function () {
+    FinancesImportComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.initCurrentStep();
         this._globalLoadingIndicatorService.addLoadingProcess();
@@ -91,7 +91,7 @@ var IndexComponent = (function () {
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     };
-    Object.defineProperty(IndexComponent.prototype, "selectedUser", {
+    Object.defineProperty(FinancesImportComponent.prototype, "selectedUser", {
         get: function () {
             return this._selectedUser;
         },
@@ -107,14 +107,14 @@ var IndexComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    IndexComponent.prototype.processFileInputChange = function ($event) {
+    FinancesImportComponent.prototype.processFileInputChange = function ($event) {
         var inputValue = $event.target;
         if ($event.target.files.length > 0) {
             this.nextStep();
             this.selectedFile = inputValue.files[0];
         }
     };
-    IndexComponent.prototype.import = function (index) {
+    FinancesImportComponent.prototype.import = function (index) {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
         setTimeout(function () {
@@ -126,7 +126,7 @@ var IndexComponent = (function () {
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         }, 0);
     };
-    Object.defineProperty(IndexComponent.prototype, "transactionsHasErrors", {
+    Object.defineProperty(FinancesImportComponent.prototype, "transactionsHasErrors", {
         get: function () {
             for (var _i = 0, _a = this.transactions; _i < _a.length; _i++) {
                 var t = _a[_i];
@@ -139,7 +139,7 @@ var IndexComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    IndexComponent.prototype.submitData = function () {
+    FinancesImportComponent.prototype.submitData = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.addTransactions(this.transactions).subscribe(function () {
@@ -150,7 +150,7 @@ var IndexComponent = (function () {
             _this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     };
-    IndexComponent.prototype.toggleDetails = function (i) {
+    FinancesImportComponent.prototype.toggleDetails = function (i) {
         if (this.transactions[i].showDetails) {
             this.transactions[i].showDetails = false;
             this.shownRawData = null;
@@ -165,19 +165,19 @@ var IndexComponent = (function () {
             this.lastIndexShownDetails = i;
         }
     };
-    IndexComponent.prototype.initCurrentStep = function () {
+    FinancesImportComponent.prototype.initCurrentStep = function () {
         this.currentStep = this.steps[0];
     };
-    IndexComponent.prototype.nextStep = function () {
+    FinancesImportComponent.prototype.nextStep = function () {
         this.currentStep = this.steps[this.steps.indexOf(this.currentStep) + 1];
     };
     // Add Person ####################################################################################
-    IndexComponent.prototype.addPerson = function (name) {
+    FinancesImportComponent.prototype.addPerson = function (name) {
         if (name === void 0) { name = ""; }
         this.showAddPersonPopup = true;
         this.suggestedNewPersonName = name;
     };
-    IndexComponent.prototype.closeAddPersonPopup = function (pvm) {
+    FinancesImportComponent.prototype.closeAddPersonPopup = function (pvm) {
         this.showAddPersonPopup = false;
         this.suggestedNewPersonName = "";
         if (pvm) {
@@ -190,15 +190,14 @@ var IndexComponent = (function () {
             }
         }
     };
-    return IndexComponent;
+    return FinancesImportComponent;
 }());
-IndexComponent = __decorate([
+FinancesImportComponent = __decorate([
     core_1.Component({
         selector: "finances-import",
-        templateUrl: "/App/Finances/Templates/Import/Index.html"
+        templateUrl: "/Templates/FinancesImport"
     }),
-    __metadata("design:paramtypes", [FinancesService_js_1.FinancesService,
-        router_1.Router,
-        GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService])
-], IndexComponent);
-exports.IndexComponent = IndexComponent;
+    __metadata("design:paramtypes", [typeof (_a = typeof FinancesService_js_1.FinancesService !== "undefined" && FinancesService_js_1.FinancesService) === "function" && _a || Object, router_1.Router, typeof (_b = typeof GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService !== "undefined" && GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService) === "function" && _b || Object])
+], FinancesImportComponent);
+exports.FinancesImportComponent = FinancesImportComponent;
+var _a, _b;
