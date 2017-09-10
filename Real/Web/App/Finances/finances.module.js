@@ -24,7 +24,7 @@ var FinancesService_js_1 = require("./Services/FinancesService.js");
 var LocationService_js_1 = require("../Shared/Services/LocationService.js");
 var GlobalLoadingIndicatorService_js_1 = require("../Shared/Services/GlobalLoadingIndicatorService.js");
 var NavigationService_js_1 = require("../Shared/Services/NavigationService.js");
-var UtcPipe_js_1 = require("../Shared/Pipes/UtcPipe.js");
+var shared_module_js_1 = require("../Shared/shared.module.js");
 var financesRoutes = [
     {
         path: '',
@@ -73,6 +73,7 @@ FinancesModule = __decorate([
         imports: [
             router_1.RouterModule.forChild(financesRoutes),
             http_1.HttpModule,
+            shared_module_js_1.SharedModule,
             common_1.CommonModule,
             forms_1.FormsModule
         ],
@@ -85,8 +86,7 @@ FinancesModule = __decorate([
             Index_js_3.IndexComponent,
             Add_js_2.AddComponent,
             Index_js_4.IndexComponent,
-            Index_js_5.IndexComponent,
-            UtcPipe_js_1.UtcPipe
+            Index_js_5.IndexComponent
         ],
         bootstrap: [
             Index_js_6.IndexComponent

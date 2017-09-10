@@ -9,6 +9,7 @@ import { GlobalLoadingIndicatorService } from "./Shared/Services/GlobalLoadingIn
 import { ErrorComponent } from "./Scaffold/Components/error.js";
 import { NavigationService } from "./Shared/Services/NavigationService.js";
 import { IndexComponent } from "./Scaffold/Components/Index.js";
+import { SharedModule } from "./Shared/shared.module.js";
 
 const appRoutes: Routes = [
   { path: 'Finances', loadChildren: "/App/Finances/finances.module.js#FinancesModule" },
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
     ),
     HttpModule,
     BrowserModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   declarations: [
     AppComponent,

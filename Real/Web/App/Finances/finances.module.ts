@@ -23,7 +23,7 @@ import { FinancesService } from "./Services/FinancesService.js";
 import { LocationService } from "../Shared/Services/LocationService.js";
 import { GlobalLoadingIndicatorService } from "../Shared/Services/GlobalLoadingIndicatorService.js";
 import { NavigationService } from "../Shared/Services/NavigationService.js";
-import { UtcPipe } from "../Shared/Pipes/UtcPipe.js";
+import { SharedModule } from "../Shared/shared.module.js";
 
 const financesRoutes: Routes = [
     {
@@ -73,6 +73,7 @@ const financesRoutes: Routes = [
             financesRoutes
         ),
         HttpModule,
+        SharedModule,
         CommonModule,
         FormsModule
     ],
@@ -85,8 +86,7 @@ const financesRoutes: Routes = [
         PersonsIndexComponent,
         PersonsAddComponent,
         UserGroupsIndexComponent,
-        UsersIndexComponent,
-        UtcPipe
+        UsersIndexComponent
     ],
     bootstrap: [
         IndexComponent

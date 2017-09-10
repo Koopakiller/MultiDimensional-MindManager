@@ -8,6 +8,7 @@ import { IndexComponent } from "./Components/Index.js";
 
 import { GlobalLoadingIndicatorService } from "../Shared/Services/GlobalLoadingIndicatorService.js";
 import { NavigationService } from "../Shared/Services/NavigationService.js";
+import { SharedModule } from "../Shared/shared.module.js";
 
 const financesRoutes: Routes = [
     {
@@ -23,7 +24,8 @@ const financesRoutes: Routes = [
         ),
         HttpModule,
         CommonModule,
-        FormsModule
+        FormsModule,
+        SharedModule
     ],
     declarations: [
         IndexComponent

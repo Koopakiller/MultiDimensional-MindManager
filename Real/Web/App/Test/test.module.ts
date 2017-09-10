@@ -13,6 +13,8 @@ import { IndexComponent } from "./Components/Index.js";
 
 import { IndexComponent as StyleIndexComponent } from "./Components/Style/Index.js";
 
+import { SharedModule } from "../Shared/shared.module.js";
+
 const financesRoutes: Routes = [
 	{
 		path: '',
@@ -35,7 +37,8 @@ const financesRoutes: Routes = [
 		),
 		HttpModule,
 		CommonModule,
-		FormsModule
+		FormsModule,
+		SharedModule
 	],
 	declarations: [
 		IndexComponent,

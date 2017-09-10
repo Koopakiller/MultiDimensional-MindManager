@@ -14,6 +14,7 @@ var router_1 = require("@angular/router");
 var Index_js_1 = require("./Components/Index.js");
 var GlobalLoadingIndicatorService_js_1 = require("../Shared/Services/GlobalLoadingIndicatorService.js");
 var NavigationService_js_1 = require("../Shared/Services/NavigationService.js");
+var shared_module_js_1 = require("../Shared/shared.module.js");
 var financesRoutes = [
     {
         path: '',
@@ -31,7 +32,8 @@ MediaModule = __decorate([
             router_1.RouterModule.forChild(financesRoutes),
             http_1.HttpModule,
             common_1.CommonModule,
-            forms_1.FormsModule
+            forms_1.FormsModule,
+            shared_module_js_1.SharedModule
         ],
         declarations: [
             Index_js_1.IndexComponent

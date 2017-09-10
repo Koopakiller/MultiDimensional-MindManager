@@ -17,6 +17,7 @@ var GlobalLoadingIndicatorService_js_1 = require("./Shared/Services/GlobalLoadin
 var error_js_1 = require("./Scaffold/Components/error.js");
 var NavigationService_js_1 = require("./Shared/Services/NavigationService.js");
 var Index_js_1 = require("./Scaffold/Components/Index.js");
+var shared_module_js_1 = require("./Shared/shared.module.js");
 var appRoutes = [
     { path: 'Finances', loadChildren: "/App/Finances/finances.module.js#FinancesModule" },
     { path: 'Test', loadChildren: "/App/Test/test.module.js#TestModule" },
@@ -36,7 +37,8 @@ AppModule = __decorate([
             router_1.RouterModule.forRoot(appRoutes),
             http_1.HttpModule,
             platform_browser_1.BrowserModule,
-            forms_1.FormsModule
+            forms_1.FormsModule,
+            shared_module_js_1.SharedModule
         ],
         declarations: [
             app_js_1.AppComponent,
