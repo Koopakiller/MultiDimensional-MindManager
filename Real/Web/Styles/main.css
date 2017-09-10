@@ -30,9 +30,15 @@ body #header {
   background-color: #101010;
   border-bottom: 2.5px #888888;
 }
-body #header .icon {
-  font-size: 59px;
-  margin: 2.5px;
+body #header a {
+  color: #F0F0F0;
+}
+body #header a:hover {
+  color: #50D080;
+}
+body #header a .icon {
+  font-size: 44px;
+  margin: 10px;
 }
 body #sections {
   overflow-x: hidden;

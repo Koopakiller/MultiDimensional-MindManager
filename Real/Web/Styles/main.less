@@ -15,9 +15,15 @@ body {
         background-color: @color-dark;
         border-bottom: @padding-tiny @color-neutral;
 
-        .icon{
-            font-size: @header-height - 2 * @padding-tiny;
-            margin: @padding-tiny;
+        a {
+            color: @color-light;
+            &:hover {
+                color: @color-accent-light;
+            }
+            .icon {
+                font-size: @header-height - 2 * @padding;
+                margin: @padding;
+            }
         }
     }
 
