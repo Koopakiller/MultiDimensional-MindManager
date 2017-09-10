@@ -108,7 +108,7 @@ button {
 input:active,
 select:active,
 button:active {
-  border: 1px solid #209030;
+  border: 1px solid #105020;
 }
 input:not([type=button]):not([type=submit]):not([type=checkbox]),
 select {
@@ -173,10 +173,10 @@ input[type=checkbox]:focus {
 .button-bar input[type=button][type=submit],
 .button-bar input[type=submit][type=submit],
 .button-bar button[type=submit] {
-  background-color: #209030;
+  background-color: #105020;
 }
 .button-bar input[type=button][type=submit]:hover,
 .button-bar input[type=submit][type=submit]:hover,
 .button-bar button[type=submit]:hover {
-  background-color: #40A04C;
+  background-color: #187830;
 }
