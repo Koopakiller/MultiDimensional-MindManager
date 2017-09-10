@@ -3,20 +3,35 @@ import { GlobalLoadingIndicatorService } from "../../Shared/Services/GlobalLoadi
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
 import { NavigationService } from "../../Shared/Services/NavigationService.js";
+import {
+    Event as RouterEvent,
+    NavigationStart,
+    NavigationEnd,
+    NavigationCancel,
+    NavigationError,
+    Router
+} from "@angular/router";
 
 @Component({
     selector: "app",
     templateUrl: "/App/Scaffold/Templates/App.html"
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
     constructor(
-        private _globalLoadingIndicatorService: GlobalLoadingIndicatorService,
-        private _navigationService: NavigationService
-    ) { }
-
-    public isLoadingObservable: Observable<boolean>;
-
-    ngOnInit() {
-        this.isLoadingObservable = this._globalLoadingIndicatorService.isLoadingObservable;
+        private _navigationService: NavigationService,
+        private _router: Router
+    ) {
+        this._router.events.subscribe((event: RouterEvent) => {
+            if (event instanceof NavigationStart) {
+                this.isLoading = true;
+            }
+            if (event instanceof NavigationEnd ||
+                event instanceof NavigationCancel ||
+                event instanceof NavigationError) {
+                this.isLoading = false;
+            }
+        });
     }
+
+    public isLoading: boolean = true
 }

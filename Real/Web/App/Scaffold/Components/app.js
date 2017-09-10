@@ -10,16 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var GlobalLoadingIndicatorService_js_1 = require("../../Shared/Services/GlobalLoadingIndicatorService.js");
 var NavigationService_js_1 = require("../../Shared/Services/NavigationService.js");
+var router_1 = require("@angular/router");
 var AppComponent = (function () {
-    function AppComponent(_globalLoadingIndicatorService, _navigationService) {
-        this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
+    function AppComponent(_navigationService, _router) {
+        var _this = this;
         this._navigationService = _navigationService;
+        this._router = _router;
+        this.isLoading = true;
+        this._router.events.subscribe(function (event) {
+            if (event instanceof router_1.NavigationStart) {
+                _this.isLoading = true;
+            }
+            if (event instanceof router_1.NavigationEnd ||
+                event instanceof router_1.NavigationCancel ||
+                event instanceof router_1.NavigationError) {
+                _this.isLoading = false;
+            }
+        });
     }
-    AppComponent.prototype.ngOnInit = function () {
-        this.isLoadingObservable = this._globalLoadingIndicatorService.isLoadingObservable;
-    };
     return AppComponent;
 }());
 AppComponent = __decorate([
@@ -27,7 +36,7 @@ AppComponent = __decorate([
         selector: "app",
         templateUrl: "/App/Scaffold/Templates/App.html"
     }),
-    __metadata("design:paramtypes", [GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService,
-        NavigationService_js_1.NavigationService])
+    __metadata("design:paramtypes", [NavigationService_js_1.NavigationService,
+        router_1.Router])
 ], AppComponent);
 exports.AppComponent = AppComponent;
