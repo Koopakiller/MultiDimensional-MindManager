@@ -27,7 +27,7 @@ body {
         }
     }
 
-    #sections {
+    #routing-content {
         overflow-x: hidden;
         overflow-y: auto;
         position: absolute;
@@ -37,10 +37,8 @@ body {
         bottom: 0;
 
         .section {
-            margin-top: @padding-tiny;
-            &.first-section {
-                margin-top: 0;
-            }
+            margin-bottom: @padding-tiny;
+            
             &>.section-header {
                 display: block;
                 background-color: @color-dark;

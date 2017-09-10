@@ -16,14 +16,15 @@ var loading_indicator_js_1 = require("./Scaffold/Components/loading-indicator.js
 var GlobalLoadingIndicatorService_js_1 = require("./Shared/Services/GlobalLoadingIndicatorService.js");
 var error_js_1 = require("./Scaffold/Components/error.js");
 var NavigationService_js_1 = require("./Shared/Services/NavigationService.js");
-var Index_js_1 = require("./Scaffold/Components/Index.js");
+var Dashboard_js_1 = require("./Scaffold/Components/Dashboard.js");
 var shared_module_js_1 = require("./Shared/shared.module.js");
 var appRoutes = [
     { path: 'Finances', loadChildren: "/App/Finances/finances.module.js#FinancesModule" },
     { path: 'Test', loadChildren: "/App/Test/test.module.js#TestModule" },
     { path: 'Media', loadChildren: "/App/Media/media.module.js#MediaModule" },
+    { path: "Dashboard", component: Dashboard_js_1.DashboardComponent },
     { path: 'Error/:errorId', component: error_js_1.ErrorComponent },
-    { path: '', component: Index_js_1.IndexComponent, pathMatch: 'full' },
+    { path: '', pathMatch: 'full', redirectTo: "Dashboard" },
     { path: '**', redirectTo: '/Error/http404' }
 ];
 var AppModule = (function () {
@@ -44,7 +45,7 @@ AppModule = __decorate([
             app_js_1.AppComponent,
             error_js_1.ErrorComponent,
             loading_indicator_js_1.LoadingIndicatorComponent,
-            Index_js_1.IndexComponent
+            Dashboard_js_1.DashboardComponent
         ],
         bootstrap: [
             app_js_1.AppComponent

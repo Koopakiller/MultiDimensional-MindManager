@@ -8,7 +8,7 @@ import { LoadingIndicatorComponent } from "./Scaffold/Components/loading-indicat
 import { GlobalLoadingIndicatorService } from "./Shared/Services/GlobalLoadingIndicatorService.js";
 import { ErrorComponent } from "./Scaffold/Components/error.js";
 import { NavigationService } from "./Shared/Services/NavigationService.js";
-import { IndexComponent } from "./Scaffold/Components/Index.js";
+import { DashboardComponent } from "./Scaffold/Components/Dashboard.js";
 import { SharedModule } from "./Shared/shared.module.js";
 
 const appRoutes: Routes = [
@@ -16,8 +16,9 @@ const appRoutes: Routes = [
   { path: 'Test', loadChildren: "/App/Test/test.module.js#TestModule" },
   { path: 'Media', loadChildren: "/App/Media/media.module.js#MediaModule" },
 
+  { path: "Dashboard", component: DashboardComponent },
   { path: 'Error/:errorId', component: ErrorComponent },
-  { path: '', component: IndexComponent, pathMatch: 'full' },
+  { path: '', pathMatch: 'full', redirectTo: "Dashboard"},
   { path: '**', redirectTo: '/Error/http404' }
 ];
 
@@ -35,7 +36,7 @@ const appRoutes: Routes = [
     AppComponent,
     ErrorComponent,
     LoadingIndicatorComponent,
-    IndexComponent
+    DashboardComponent
   ],
   bootstrap: [
     AppComponent

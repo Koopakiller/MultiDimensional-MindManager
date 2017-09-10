@@ -40,7 +40,7 @@ body #header a .icon {
   font-size: 44px;
   margin: 10px;
 }
-body #sections {
+body #routing-content {
   overflow-x: hidden;
   overflow-y: auto;
   position: absolute;
@@ -49,13 +49,10 @@ body #sections {
   top: 66.5px;
   bottom: 0;
 }
-body #sections .section {
-  margin-top: 2.5px;
+body #routing-content .section {
+  margin-bottom: 2.5px;
 }
-body #sections .section.first-section {
-  margin-top: 0;
-}
-body #sections .section > .section-header {
+body #routing-content .section > .section-header {
   display: block;
   background-color: #101010;
   color: #F0F0F0;
@@ -64,21 +61,21 @@ body #sections .section > .section-header {
   font-size: 24pt;
   font-weight: 300;
 }
-body #sections .section > .section-header code {
+body #routing-content .section > .section-header code {
   font-family: 'Courier New', monospace;
   font-size: 22pt;
 }
 @media screen and (max-width: 500px) {
-  body #sections .section > .section-header {
+  body #routing-content .section > .section-header {
     font-size: 17.33333333pt;
     font-weight: 400;
   }
-  body #sections .section > .section-header code {
+  body #routing-content .section > .section-header code {
     font-family: 'Courier New', monospace;
     font-size: 15.88888889pt;
   }
 }
-body #sections .section > .section-content {
+body #routing-content .section > .section-content {
   display: block;
   background-color: #404040;
   color: #F0F0F0;
