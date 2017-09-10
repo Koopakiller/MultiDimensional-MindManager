@@ -28,39 +28,41 @@ var UtcPipe_js_1 = require("../Shared/Pipes/UtcPipe.js");
 var financesRoutes = [
     {
         path: '',
-        component: Index_js_6.IndexComponent
-    },
-    {
-        path: 'Transactions',
+        component: Index_js_6.IndexComponent,
         children: [
-            { path: '', component: Index_js_1.IndexComponent },
-            { path: 'Add', component: Add_js_1.AddComponent },
-            { path: 'Overview', component: Overview_js_1.OverviewComponent },
-        ]
-    },
-    {
-        path: 'Import',
-        children: [
-            { path: '', component: Index_js_2.IndexComponent },
-        ]
-    },
-    {
-        path: 'Persons',
-        children: [
-            { path: '', component: Index_js_3.IndexComponent },
-            { path: 'add', component: Add_js_2.AddComponent },
-        ]
-    },
-    {
-        path: 'UserGroups',
-        children: [
-            { path: '', component: Index_js_4.IndexComponent },
-        ]
-    },
-    {
-        path: 'Users',
-        children: [
-            { path: '', component: Index_js_5.IndexComponent },
+            {
+                path: 'Transactions',
+                children: [
+                    { path: '', component: Index_js_1.IndexComponent },
+                    { path: 'Add', component: Add_js_1.AddComponent },
+                    { path: 'Overview', component: Overview_js_1.OverviewComponent },
+                ]
+            },
+            {
+                path: 'Import',
+                children: [
+                    { path: '', component: Index_js_2.IndexComponent },
+                ]
+            },
+            {
+                path: 'Persons',
+                children: [
+                    { path: '', component: Index_js_3.IndexComponent },
+                    { path: 'add', component: Add_js_2.AddComponent },
+                ]
+            },
+            {
+                path: 'UserGroups',
+                children: [
+                    { path: '', component: Index_js_4.IndexComponent },
+                ]
+            },
+            {
+                path: 'Users',
+                children: [
+                    { path: '', component: Index_js_5.IndexComponent },
+                ]
+            }
         ]
     }
 ];

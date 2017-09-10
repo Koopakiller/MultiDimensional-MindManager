@@ -1,12 +1,17 @@
+<section class="section">
 
-<section class="pane">
-    <nav>
-        <li><a routerLink="Transactions"><i class="material-icons"></i><span class="text">Transactions</span></a></li>
-        <li><a routerLink="Import"><i class="material-icons"></i><span class="text">Import</span></a></li>
-        <li><a routerLink="Persons"><i class="material-icons"></i><span class="text">Persons</span></a></li>
-        <li><a routerLink="UserGroups"><i class="material-icons">group</i><span class="text">UserGroups</span></a></li>
-        <li><a routerLink="Users"><i class="material-icons">person</i><span class="text">Users</span></a></li>
-    </nav>
+    <span class="section-header">Finances</span>
+    
+    <div class="section-content">
+        <nav>
+            <li><a routerLink="Transactions"><i class="material-icons"></i><span class="text">Transactions</span></a></li>
+            <li><a routerLink="Import"><i class="material-icons"></i><span class="text">Import</span></a></li>
+            <li><a routerLink="Persons"><i class="material-icons"></i><span class="text">Persons</span></a></li>
+            <li><a routerLink="UserGroups"><i class="material-icons">group</i><span class="text">UserGroups</span></a></li>
+            <li><a routerLink="Users"><i class="material-icons">person</i><span class="text">Users</span></a></li>
+        </nav>
+    </div>
+
 </section>
 
-<router-outlet class="pane-container"></router-outlet>
+<router-outlet></router-outlet>

@@ -1,0 +1,27 @@
+@import "common.less";
+
+body{
+    .font-text;
+    background: @color-neutral;
+    margin: 0;
+
+    .section{
+        border-top: @padding @color-neutral solid;
+
+        & > .section-header{
+            display: block;
+            background-color: @color-dark;
+            color: @color-light;
+            padding: @padding;
+            .font-header(24pt);
+        }
+
+        & > .section-content{
+            display: block;
+            background-color: @color-dark-1;
+            color: @color-light;
+            padding: @padding;
+
+        }
+    }
+}

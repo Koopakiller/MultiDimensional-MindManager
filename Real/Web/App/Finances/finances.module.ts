@@ -28,39 +28,41 @@ import { UtcPipe } from "../Shared/Pipes/UtcPipe.js";
 const financesRoutes: Routes = [
     {
         path: '',
-        component: IndexComponent
-    },
-    {
-        path: 'Transactions',
+        component: IndexComponent,
         children: [
-            { path: '', component: TransactionIndexComponent },
-            { path: 'Add', component: TransactionAddComponent },
-            { path: 'Overview', component: TransactionOverviewComponent },
-        ]
-    },
-    {
-        path: 'Import',
-        children: [
-            { path: '', component: ImportIndexComponent },
-        ]
-    },
-    {
-        path: 'Persons',
-        children: [
-            { path: '', component: PersonsIndexComponent },
-            { path: 'add', component: PersonsAddComponent },
-        ]
-    },
-    {
-        path: 'UserGroups',
-        children: [
-            { path: '', component: UserGroupsIndexComponent },
-        ]
-    },
-    {
-        path: 'Users',
-        children: [
-            { path: '', component: UsersIndexComponent },
+            {
+                path: 'Transactions',
+                children: [
+                    { path: '', component: TransactionIndexComponent },
+                    { path: 'Add', component: TransactionAddComponent },
+                    { path: 'Overview', component: TransactionOverviewComponent },
+                ]
+            },
+            {
+                path: 'Import',
+                children: [
+                    { path: '', component: ImportIndexComponent },
+                ]
+            },
+            {
+                path: 'Persons',
+                children: [
+                    { path: '', component: PersonsIndexComponent },
+                    { path: 'add', component: PersonsAddComponent },
+                ]
+            },
+            {
+                path: 'UserGroups',
+                children: [
+                    { path: '', component: UserGroupsIndexComponent },
+                ]
+            },
+            {
+                path: 'Users',
+                children: [
+                    { path: '', component: UsersIndexComponent },
+                ]
+            }
         ]
     }
 ];
