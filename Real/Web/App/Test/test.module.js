@@ -22,9 +22,8 @@ var financesRoutes = [
         children: [
             {
                 path: 'Style',
-                children: [
-                    { path: '', component: Index_js_2.IndexComponent },
-                ]
+                component: Index_js_2.IndexComponent,
+                children: []
             }
         ]
     },

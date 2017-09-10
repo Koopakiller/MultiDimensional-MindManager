@@ -32,36 +32,33 @@ var financesRoutes = [
         children: [
             {
                 path: 'Transactions',
+                component: Index_js_1.IndexComponent,
                 children: [
-                    { path: '', component: Index_js_1.IndexComponent },
                     { path: 'Add', component: Add_js_1.AddComponent },
                     { path: 'Overview', component: Overview_js_1.OverviewComponent },
                 ]
             },
             {
                 path: 'Import',
-                children: [
-                    { path: '', component: Index_js_2.IndexComponent },
-                ]
+                component: Index_js_2.IndexComponent,
+                children: []
             },
             {
                 path: 'Persons',
+                component: Index_js_3.IndexComponent,
                 children: [
-                    { path: '', component: Index_js_3.IndexComponent },
-                    { path: 'add', component: Add_js_2.AddComponent },
+                    { path: 'Add', component: Add_js_2.AddComponent },
                 ]
             },
             {
                 path: 'UserGroups',
-                children: [
-                    { path: '', component: Index_js_4.IndexComponent },
-                ]
+                component: Index_js_4.IndexComponent,
+                children: []
             },
             {
                 path: 'Users',
-                children: [
-                    { path: '', component: Index_js_5.IndexComponent },
-                ]
+                component: Index_js_5.IndexComponent,
+                children: []
             }
         ]
     }

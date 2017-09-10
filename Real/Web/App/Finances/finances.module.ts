@@ -32,35 +32,35 @@ const financesRoutes: Routes = [
         children: [
             {
                 path: 'Transactions',
+                component: TransactionIndexComponent,
                 children: [
-                    { path: '', component: TransactionIndexComponent },
                     { path: 'Add', component: TransactionAddComponent },
                     { path: 'Overview', component: TransactionOverviewComponent },
                 ]
             },
             {
                 path: 'Import',
+                component: ImportIndexComponent,
                 children: [
-                    { path: '', component: ImportIndexComponent },
                 ]
             },
             {
                 path: 'Persons',
+                component: PersonsIndexComponent,
                 children: [
-                    { path: '', component: PersonsIndexComponent },
-                    { path: 'add', component: PersonsAddComponent },
+                    { path: 'Add', component: PersonsAddComponent },
                 ]
             },
             {
                 path: 'UserGroups',
+                component: UserGroupsIndexComponent,
                 children: [
-                    { path: '', component: UserGroupsIndexComponent },
                 ]
             },
             {
                 path: 'Users',
+                component: UsersIndexComponent,
                 children: [
-                    { path: '', component: UsersIndexComponent },
                 ]
             }
         ]

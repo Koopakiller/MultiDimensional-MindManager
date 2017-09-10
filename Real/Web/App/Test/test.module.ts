@@ -20,8 +20,8 @@ const financesRoutes: Routes = [
 		children: [
 			{
 				path: 'Style',
+				component: StyleIndexComponent,
 				children: [
-					{ path: '', component: StyleIndexComponent },
 				]
 			}
 		]
