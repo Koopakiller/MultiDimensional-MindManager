@@ -15,168 +15,62 @@
   font-weight: 500;
 }
 body {
-  background: url('/Images/background.png');
-  background-repeat: repeat;
-  background-position-x: 50%;
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
   font-weight: 500;
+  background: #888888;
   margin: 0;
 }
-body div {
-  margin: 0;
-}
-body .padding {
-  margin: 0 auto;
-  padding: 10px;
-  max-width: 1000px;
-  display: block;
-}
-@media screen and (max-width: 500px) {
-  body .padding {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-body .tile {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 10px;
-}
-body header {
-  color: #F0F0F0;
-  display: block;
-  text-align: center;
-  font-family: 'Courier New', monospace;
-  font-size: 11pt;
-  font-size: 44pt;
-}
-@media screen and (max-width: 500px) {
-  body header {
-    font-size: 24pt;
-  }
-}
-body .menu {
-  margin: 0 auto;
-  padding: 10px;
-  max-width: 1000px;
-  display: block;
-  padding-bottom: 0;
-}
-@media screen and (max-width: 500px) {
-  body .menu {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-body .menu nav {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 10px;
-  list-style: none;
-  padding: 0;
-}
-body .menu nav li {
-  display: inline-block;
-}
-body .menu nav li a {
-  display: inline-block;
-  padding: 10px;
-  color: #101010;
-  text-decoration: none;
-}
-body .menu nav li a:hover {
-  background-color: #ffffff;
-  text-decoration: none;
-}
-body .menu nav li a .icon {
-  margin-right: 5px;
-}
-body .menu nav li a .text {
-  vertical-align: 5.5px;
-}
-body footer {
-  text-align: center;
-  padding: 10px;
-  color: #F0F0F0;
-}
-body footer .columns {
-  display: block;
-}
-body footer .columns .column {
-  display: inline-block;
-  vertical-align: top;
-  text-align: left;
-  min-width: 250px;
-}
-body footer ul.text-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-body footer ul.text-list li a {
-  text-decoration: none;
-  color: #50D080;
-}
-body footer ul.text-list li a:hover {
-  text-decoration: underline;
-}
-body footer ul.text-list li a img,
-body footer ul.text-list li a svg {
-  width: 16px;
-  height: 16px;
-  margin: 0 5px 0 0;
-  vertical-align: -2px;
-}
-body footer ul.text-list li a img .fill-path,
-body footer ul.text-list li a svg .fill-path {
-  fill: #50D080;
-}
-body .link-tile {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 10px;
-  vertical-align: top;
-  margin-top: 10px;
-  width: 326.66666667px;
-  display: inline-block;
-  color: black;
-  text-decoration: none;
-  text-align: left;
-  margin-right: 10px;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-body .link-tile:nth-child(3n + 1) {
-  margin-right: 0;
-}
-body .link-tile:hover {
-  text-decoration: none;
-  background-color: #ffffff;
-}
-@media screen and (max-width: 500px) {
-  body .link-tile {
-    width: 100%;
-  }
-}
-body .link-tile .tile-image {
-  float: left;
-  width: 64px;
+body #header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
   height: 64px;
-  font-size: 64px;
-  font-style: normal;
-  margin-right: 10px;
+  background-color: #101010;
+  border-bottom: 2.5px #888888;
 }
-body .link-tile .tile-header {
-  font-family: 'Quicksand', sans-serif;
-  font-size: 12pt;
-  font-weight: 500;
-  font-weight: 700;
+body #sections {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 66.5px;
+  bottom: 0;
 }
-body section.pane {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 10px;
-  padding: 0 0 10px 0;
+body #sections .section {
+  margin-top: 2.5px;
 }
-::selection {
-  text-shadow: none;
-  background: #209030;
+body #sections .section.first-section {
+  margin-top: 0;
+}
+body #sections .section > .section-header {
+  display: block;
+  background-color: #101010;
   color: #F0F0F0;
+  padding: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 24pt;
+  font-weight: 300;
+}
+body #sections .section > .section-header code {
+  font-family: 'Courier New', monospace;
+  font-size: 22pt;
+}
+@media screen and (max-width: 500px) {
+  body #sections .section > .section-header {
+    font-size: 17.33333333pt;
+    font-weight: 400;
+  }
+  body #sections .section > .section-header code {
+    font-family: 'Courier New', monospace;
+    font-size: 15.88888889pt;
+  }
+}
+body #sections .section > .section-content {
+  display: block;
+  background-color: #404040;
+  color: #F0F0F0;
+  padding: 10px;
 }

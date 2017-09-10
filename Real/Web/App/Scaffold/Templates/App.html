@@ -1,27 +1,32 @@
-﻿<section class="section">
-    
-    <span class="section-header">Picosmos</span>
+﻿<div id="header">
+    <a routerLink="/">Home</a>
+</div>
 
-    <div class="section-content">
+<div id="sections">
+    <section class="section first-section">
 
-        <a routerLink="/Finances" class="text link-tile">
-            <i class="material-icons tile-image">account_balance</i> 
-            <span class="tile-header">Finances</span><br/>
-            <span class="tile-description">Finances v5</span>
-        </a><a routerLink="/Media" class="text link-tile">
-            <i class="material-icons tile-image">weekend</i>
-            <span class="tile-header">Media</span><br/>
-            <span class="tile-description">Play Music or Videos</span>
-        </a><a routerLink="/Test" class="text link-tile">
-            <i class="material-icons tile-image">bug_report</i>
-            <span class="tile-header">Test</span><br/>
-            <span class="tile-description">Test pages</span>
-        </a>
+        <span class="section-header">Picosmos</span>
 
-    </div>
+        <div class="section-content">
 
-</section>
+            <a routerLink="/Finances" class="text link-tile">
+                <i class="material-icons tile-image">account_balance</i> 
+                <span class="tile-header">Finances</span><br/>
+                <span class="tile-description">Finances v5</span>
+            </a><a routerLink="/Media" class="text link-tile">
+                <i class="material-icons tile-image">weekend</i>
+                <span class="tile-header">Media</span><br/>
+                <span class="tile-description">Play Music or Videos</span>
+            </a><a routerLink="/Test" class="text link-tile">
+                <i class="material-icons tile-image">bug_report</i>
+                <span class="tile-header">Test</span><br/>
+                <span class="tile-description">Test pages</span>
+            </a>
 
-<router-outlet></router-outlet>
+        </div>
 
+    </section>
+
+    <router-outlet></router-outlet>
+</div>
 <loading-indicator *ngIf="isLoading">Loading...</loading-indicator>

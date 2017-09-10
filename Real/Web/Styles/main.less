@@ -1,165 +1,48 @@
 @import "common.less";
 
-body{
-  background: url('/Images/background.png');
-  background-repeat: repeat;
-  background-position-x: 50%;
-  .font-text;
-  margin: 0;
-
-  div{
+body {
+    .font-text;
+    background: @color-neutral;
     margin: 0;
-  }
 
-  .padding{
-    margin: 0 auto;
-    padding: @padding;
-    max-width: @page-width;
-    display:block;
-  
-    @media @mobile-selector{
-      &{
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
-  }
-
-  .tile{
-    background-color: @color-tile-light;
-    padding: @padding;
-  }
-
-  header{
-    color: @color-light;
-    display: block;
-    text-align:center;
-    .font-code;
-    font-size: 44pt;
-    @media @mobile-selector{
-      &{
-        font-size: 24pt;
-      }
-    }
-  }
-
-  .menu{
-    .padding;
-    padding-bottom: 0;
-    nav{
-      .tile;
-      list-style: none;
-      padding:0;
-      li{
-        display:inline-block;
-        a{
-          display:inline-block;
-          padding: @padding;
-          color: @color-dark;
-          text-decoration: none;
-          &:hover{
-            background-color: @color-tile-light-hover;
-            text-decoration: none;
-          }
-          .icon{
-            margin-right: @padding-small;
-          }
-          .text{
-            vertical-align: 5.5px;
-          }
-        }
-      }
-    }
-  }
-
-  footer{
-    text-align: center;
-    padding: @padding;
-    color: @color-light;
-
-    .columns{
-      display:block;
-
-      .column{
-        display:inline-block;    
-        vertical-align: top;
-        text-align: left;
-        min-width: @page-width / 4;
-      }
+    @header-height: 64px;
+    #header {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: @header-height;
+        background-color: @color-dark;
+        border-bottom: @padding-tiny @color-neutral;
     }
 
-    ul.text-list{
-      list-style: none;
-      padding: 0;
-      margin:0;
-      li{
-        a{
-          text-decoration: none;
-          color: @color-accent-light;
-          &:hover{
-            text-decoration: underline;
-          }
-          img, svg{
-            width:16px;
-            height:16px;
-            margin:0 5px 0 0;
-            vertical-align: -2px;
-            .fill-path{
-              fill: @color-accent-light;
+    #sections {
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: @header-height + @padding-tiny;
+        bottom: 0;
+
+        .section {
+            margin-top: @padding-tiny;
+            &.first-section {
+                margin-top: 0;
             }
-          }
+            &>.section-header {
+                display: block;
+                background-color: @color-dark;
+                color: @color-light;
+                padding: @padding;
+                .font-header(24pt);
+            }
+            &>.section-content {
+                display: block;
+                background-color: @color-dark-1;
+                color: @color-light;
+                padding: @padding;
+            }
         }
-      }
     }
-  }
-
-  .link-tile{
-    .tile;
-    vertical-align: top;
-    margin-top:@padding;
-    width: @column-width-3;
-    display:inline-block;
-    color:black;
-    text-decoration: none;
-    text-align: left;
-    margin-right: @padding;
-    box-sizing: border-box;
-    cursor: pointer;
-    &:nth-child(3n + 1){
-      margin-right:0;
-    }
-    &:hover{
-      text-decoration: none;
-      background-color: @color-tile-light-hover;
-    }
-    @media @mobile-selector{
-      &{
-        width: 100%;
-      }
-    }
-    .tile-image{
-      float:left;
-      width:64px;
-      height:64px;
-      font-size:64px;
-      font-style:normal;
-      margin-right:@padding;
-    }
-    .tile-header{
-      .font-bold;
-    }
-  }
-  
-  section.pane{
-    .tile;
-    padding: 0 0 @padding 0;
-  }
-
-} 
-
-// format selected text
-::selection { 
-  text-shadow: none;
-  background: @color-accent-dark;
-  color: @color-light;
-} 
+}
