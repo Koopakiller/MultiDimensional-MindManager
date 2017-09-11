@@ -1,15 +1,40 @@
-<section class="section">
+<section class="section form">
 
     <span class="section-header">Finances</span>
-    
+
     <div class="section-content">
-        <nav>
-            <li><a routerLink="Transactions"><i class="material-icons"></i><span class="text">Transactions</span></a></li>
-            <li><a routerLink="Import"><i class="material-icons"></i><span class="text">Import</span></a></li>
-            <li><a routerLink="Persons"><i class="material-icons"></i><span class="text">Persons</span></a></li>
-            <li><a routerLink="UserGroups"><i class="material-icons">group</i><span class="text">UserGroups</span></a></li>
-            <li><a routerLink="Users"><i class="material-icons">person</i><span class="text">Users</span></a></li>
-        </nav>
+
+        <h1>Common</h1>
+
+        <div class="tiles">
+            <a routerLink="Transactions" class="tile">
+                <i class="material-icons icon"></i>
+                <span class="header">Transactions</span>
+            </a>
+            <a routerLink="Import" class="tile">
+                <i class="material-icons icon"></i>
+                <span class="header">Import</span><br/>
+                <span class="description">Import an <em>account statement</em> or a <em>Finances CSV</em> file.</span>
+            </a>
+            <a routerLink="Persons" class="tile">
+                <i class="material-icons icon"></i>
+                <span class="header">Persons</span>
+            </a>
+        </div>
+
+        <h1>Administrative</h1>
+        
+        <div class="tiles">
+            <a routerLink="UserGroups" class="tile">
+                <i class="material-icons icon">group</i>
+                <span class="header">UserGroups</span>
+            </a>
+            <a routerLink="Users" class="tile">
+                <i class="material-icons icon">person</i>
+                <span class="header">Users</span>
+            </a>
+        </div>
+        
     </div>
 
 </section>

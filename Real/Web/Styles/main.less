@@ -48,9 +48,86 @@ body {
             }
             &>.section-content {
                 display: block;
-                background-color: @color-dark-1;
+                background-color: @color-dark;
                 color: @color-light;
                 padding: @padding;
+            }
+
+            &.form {
+                h1 {
+                    .font-header(18pt);
+                    margin: 0;
+                    margin-bottom: @padding-small;
+                }
+            }
+        }
+
+        a {
+            color: @color-accent-light;
+            text-decoration: none;
+            &:hover {
+                color: @color-accent-light;
+                text-decoration: underline;
+            }
+        }
+
+        .tiles {
+            @tile-height: 64px;
+            @tile-distance: @padding-small;
+
+            display: flex;
+            margin: 0;
+            padding: 0;
+            margin-right: -@tile-distance;
+            margin-bottom: -@tile-distance;
+            white-space: nowrap;
+
+            flex-wrap: wrap;
+            justify-content: flex-start;
+
+            .tile {
+                display: inline-block;
+                vertical-align: top;
+                padding: 0;
+                
+                min-width: 250px;
+                max-width: 400px;
+                flex-basis: content; /* default value */
+                flex-grow: 1;
+                
+                margin-right: @tile-distance;
+                margin-bottom: @tile-distance;
+                overflow: hidden;
+                background-color: @color-dark-1;
+                height: @tile-height;
+                box-sizing: content-box;
+                padding: @padding-small;
+                text-decoration: none;
+                color: @color-light;
+                border: @color-light @padding-tiny solid;
+                .icon {
+                    float: left;
+                    height: @tile-height;
+                    width: @tile-height;
+                    font-size: @tile-height;
+                    margin-right: @padding-small;
+                }
+                .header {
+                    .font-bold;
+                }
+                .description {
+                    word-wrap: break-word;
+                    
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    em {
+                        font-style: normal;
+                    }
+                }
+                &:hover {
+                    text-decoration: none;
+                    background-color: @color-accent-light;
+                }
             }
         }
     }

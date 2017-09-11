@@ -1,18 +1,18 @@
 .font-text {
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 400;
 }
 .font-bold {
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 400;
   font-weight: 700;
 }
 .font-input {
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 400;
 }
 .loading-indicator {
   position: relative;

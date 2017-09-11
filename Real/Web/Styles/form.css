@@ -1,53 +1,34 @@
 .font-text {
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 400;
 }
 .font-bold {
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 400;
   font-weight: 700;
 }
 .font-input {
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 400;
 }
 form {
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 form:last-of-type {
   margin-bottom: 0;
 }
-form .form-header {
-  font-family: 'Quicksand', sans-serif;
-  font-size: 18pt;
-  font-weight: 300;
-}
-form .form-header code {
-  font-family: 'Courier New', monospace;
-  font-size: 16.5pt;
-}
-@media screen and (max-width: 500px) {
-  form .form-header {
-    font-size: 13pt;
-    font-weight: 400;
-  }
-  form .form-header code {
-    font-family: 'Courier New', monospace;
-    font-size: 11.91666667pt;
-  }
-}
 form .form-group {
   display: table-row;
-  padding-bottom: 5px;
+  padding-bottom: 4px;
 }
 @media screen and (max-width: 500px) {
   form .form-group {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
   }
 }
 form .form-group > * {
@@ -60,21 +41,21 @@ form .form-group > * {
   }
 }
 form .form-group label {
-  padding-right: 5px;
+  padding-right: 4px;
   vertical-align: top;
 }
 form .form-group .control-container {
-  padding-right: 5px;
-  min-width: 242.5px;
+  padding-right: 4px;
+  min-width: 244px;
 }
 form .inner-form {
   display: table-row-group;
-  padding: 10px;
+  padding: 8px;
 }
 form .inner-form button,
 form .inner-form input[type=button],
 form .inner-form input[type=submit] {
-  padding: 2.5px 5px;
+  padding: 2px 4px;
 }
 form .form-overlay {
   opacity: 0.8;
@@ -102,35 +83,35 @@ button {
   box-sizing: border-box;
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 400;
   outline: none;
 }
 input:active,
 select:active,
 button:active {
-  border: 1px solid #105020;
+  border: 1px solid #064375;
 }
 input:not([type=button]):not([type=submit]):not([type=checkbox]),
 select {
   width: 100%;
-  padding: 2.5px 5px;
+  padding: 2px 4px;
   border: 2px solid #C0C0C0;
   background-color: #F0F0F0;
-  margin-bottom: 2.5px;
+  margin-bottom: 2px;
 }
 input:not([type=button]):not([type=submit]):not([type=checkbox]):active,
 select:active,
 input:not([type=button]):not([type=submit]):not([type=checkbox]):focus,
 select:focus {
-  border-color: #50D080;
+  border-color: #50AEF7;
 }
 button,
 input[type=button],
 input[type=submit] {
   border: none;
-  color: #101010;
+  color: #202020;
   cursor: pointer;
-  padding: 2.5px 5px;
+  padding: 2px 4px;
   background-color: #F0F0F0;
   border: 2px solid #C0C0C0;
   min-width: 50px;
@@ -143,11 +124,11 @@ input[type=submit]:hover {
 }
 input[type=checkbox]:active,
 input[type=checkbox]:focus {
-  border-color: #50D080;
+  border-color: #50AEF7;
 }
 .button-bar {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 .button-bar:last-child {
   margin-bottom: 0;
@@ -155,28 +136,28 @@ input[type=checkbox]:focus {
 .button-bar input[type=button],
 .button-bar input[type=submit],
 .button-bar button {
-  padding: 5px 10px;
-  background-color: #101010;
+  padding: 4px 8px;
+  background-color: #202020;
   color: #F0F0F0;
   border: none;
   min-width: 120px;
   cursor: pointer;
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 400;
 }
 .button-bar input[type=button]:hover,
 .button-bar input[type=submit]:hover,
 .button-bar button:hover {
-  background-color: #404040;
+  background-color: #303030;
 }
 .button-bar input[type=button][type=submit],
 .button-bar input[type=submit][type=submit],
 .button-bar button[type=submit] {
-  background-color: #105020;
+  background-color: #064375;
 }
 .button-bar input[type=button][type=submit]:hover,
 .button-bar input[type=submit][type=submit]:hover,
 .button-bar button[type=submit]:hover {
-  background-color: #187830;
+  background-color: #0A66B1;
 }
