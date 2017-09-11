@@ -7,14 +7,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var IndexComponent = (function () {
-    function IndexComponent() {
+var TextSectionComponent = (function () {
+    function TextSectionComponent() {
     }
-    return IndexComponent;
+    return TextSectionComponent;
 }());
-IndexComponent = __decorate([
+TextSectionComponent = __decorate([
     core_1.Component({
-        templateUrl: "/App/Test/Templates/Style/Index.html"
+        templateUrl: "/App/Test/Templates/Style/TextSection.html"
     })
-], IndexComponent);
-exports.IndexComponent = IndexComponent;
+], TextSectionComponent);
+exports.TextSectionComponent = TextSectionComponent;

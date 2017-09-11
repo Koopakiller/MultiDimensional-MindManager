@@ -16,6 +16,8 @@ var NavigationService_js_1 = require("../Shared/Services/NavigationService.js");
 var Index_js_1 = require("./Components/Index.js");
 var Index_js_2 = require("./Components/Style/Index.js");
 var shared_module_js_1 = require("../Shared/shared.module.js");
+var FormSection_js_1 = require("./Components/Style/FormSection.js");
+var TextSection_js_1 = require("./Components/Style/TextSection.js");
 var financesRoutes = [
     {
         path: '',
@@ -24,7 +26,10 @@ var financesRoutes = [
             {
                 path: 'Style',
                 component: Index_js_2.IndexComponent,
-                children: []
+                children: [
+                    { path: "Section/Form", component: FormSection_js_1.FormSectionComponent },
+                    { path: "Section/Text", component: TextSection_js_1.TextSectionComponent }
+                ]
             }
         ]
     },
@@ -45,7 +50,9 @@ TestModule = __decorate([
         ],
         declarations: [
             Index_js_1.IndexComponent,
-            Index_js_2.IndexComponent
+            Index_js_2.IndexComponent,
+            FormSection_js_1.FormSectionComponent,
+            TextSection_js_1.TextSectionComponent
         ],
         bootstrap: [
             Index_js_1.IndexComponent

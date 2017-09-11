@@ -15,6 +15,9 @@ import { IndexComponent as StyleIndexComponent } from "./Components/Style/Index.
 
 import { SharedModule } from "../Shared/shared.module.js";
 
+import { FormSectionComponent } from "./Components/Style/FormSection.js";
+import { TextSectionComponent } from "./Components/Style/TextSection.js";
+
 const financesRoutes: Routes = [
 	{
 		path: '',
@@ -24,6 +27,8 @@ const financesRoutes: Routes = [
 				path: 'Style',
 				component: StyleIndexComponent,
 				children: [
+					{ path: "Section/Form", component: FormSectionComponent },
+					{ path: "Section/Text", component: TextSectionComponent }
 				]
 			}
 		]
@@ -42,7 +47,9 @@ const financesRoutes: Routes = [
 	],
 	declarations: [
 		IndexComponent,
-		StyleIndexComponent
+		StyleIndexComponent,
+		FormSectionComponent,
+		TextSectionComponent
 	],
 	bootstrap: [
 		IndexComponent
