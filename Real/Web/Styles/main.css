@@ -135,7 +135,7 @@ body #routing-content .tiles .tile {
   margin-bottom: 4px;
   overflow: hidden;
   background-color: #303030;
-  height: 64px;
+  height: 61px;
   box-sizing: content-box;
   padding: 4px;
   text-decoration: none;
@@ -144,9 +144,9 @@ body #routing-content .tiles .tile {
 }
 body #routing-content .tiles .tile .icon {
   float: left;
-  height: 64px;
-  width: 64px;
-  font-size: 64px;
+  height: 61px;
+  width: 61px;
+  font-size: 61px;
   margin-right: 4px;
 }
 body #routing-content .tiles .tile .header {
@@ -154,11 +154,16 @@ body #routing-content .tiles .tile .header {
   font-size: 12pt;
   font-weight: 400;
   font-weight: 700;
+  margin: 0;
 }
 body #routing-content .tiles .tile .description {
+  margin: 0;
   word-wrap: break-word;
+  white-space: pre-wrap;
   text-overflow: ellipsis;
-  overflow: hidden;
+}
+body #routing-content .tiles .tile .description p {
+  margin: 0;
 }
 body #routing-content .tiles .tile .description em {
   font-style: normal;
