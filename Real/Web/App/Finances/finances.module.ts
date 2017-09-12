@@ -34,8 +34,15 @@ const financesRoutes: Routes = [
                 path: 'Transactions',
                 component: TransactionIndexComponent,
                 children: [
-                    { path: 'Add', component: TransactionAddComponent },
-                    { path: 'Overview', component: TransactionOverviewComponent },
+                    {
+                        path: 'Add',
+                        outlet: "next",
+                        component: TransactionAddComponent,
+                        children: [
+                            { path: "AddPerson", component: PersonsAddComponent, outlet: "next" }
+                        ]
+                    },
+                    { path: 'Overview', component: TransactionOverviewComponent, outlet: "next" },
                 ]
             },
             {

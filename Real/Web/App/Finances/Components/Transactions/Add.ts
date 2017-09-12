@@ -19,14 +19,14 @@ export class AddComponent implements OnInit {
 
     ngOnInit(): void {
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.persons.subscribe(x => { 
-            this.persons = x; 
-            this.person = x.length > 0 ? x[0].id : null; 
+        this._financesService.persons.subscribe(x => {
+            this.persons = x;
+            this.person = x.length > 0 ? x[0].id : null;
             this._globalLoadingIndicatorService.removeLoadingProcess();
         });
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.users.subscribe(x => { 
-            this.users = x; 
+        this._financesService.users.subscribe(x => {
+            this.users = x;
             this.user = x.length > 0 ? x[0].id : null;
             this._globalLoadingIndicatorService.removeLoadingProcess();
         });
@@ -64,9 +64,9 @@ export class AddComponent implements OnInit {
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._user = value;
         this._financesService.getCurrencyAccounts(value).subscribe(x => {
-             this.currencyAccounts = x; 
-             this.currencyAccount = x.length > 0 ? x[0].id : null; 
-             this._globalLoadingIndicatorService.removeLoadingProcess();
+            this.currencyAccounts = x;
+            this.currencyAccount = x.length > 0 ? x[0].id : null;
+            this._globalLoadingIndicatorService.removeLoadingProcess();
         });
     }
 
@@ -100,18 +100,7 @@ export class AddComponent implements OnInit {
         this._router.navigateByUrl("/Finances");
     }
 
-    showAddPersonForm: boolean = false;
-    addNewPersonName: string;
-
-    public submitNewPerson(): void {
-        this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.addPerson(this.addNewPersonName, this.user);
-        this.addNewPersonName = "";
-        this.showAddPersonForm = false;
-        this._financesService.persons.subscribe(x => { 
-            this.persons = x; 
-            this.person = x.length > 0 ? x[0].id : null;
-            this._globalLoadingIndicatorService.removeLoadingProcess();
-        });
+    public addPerson(): void {
+        this._router.navigate([{ outlets: { next: "AddPerson" } }]);
     }
 }

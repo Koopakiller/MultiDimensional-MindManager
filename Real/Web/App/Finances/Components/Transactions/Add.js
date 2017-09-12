@@ -23,7 +23,6 @@ var AddComponent = (function () {
         this._router = _router;
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
         this.includeTimeStampTime = false;
-        this.showAddPersonForm = false;
     }
     AddComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -94,17 +93,8 @@ var AddComponent = (function () {
     AddComponent.prototype.cancel = function () {
         this._router.navigateByUrl("/Finances");
     };
-    AddComponent.prototype.submitNewPerson = function () {
-        var _this = this;
-        this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.addPerson(this.addNewPersonName, this.user);
-        this.addNewPersonName = "";
-        this.showAddPersonForm = false;
-        this._financesService.persons.subscribe(function (x) {
-            _this.persons = x;
-            _this.person = x.length > 0 ? x[0].id : null;
-            _this._globalLoadingIndicatorService.removeLoadingProcess();
-        });
+    AddComponent.prototype.addPerson = function () {
+        this._router.navigate([{ outlets: { next: "AddPerson" } }]);
     };
     return AddComponent;
 }());

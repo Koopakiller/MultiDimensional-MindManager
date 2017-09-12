@@ -34,8 +34,15 @@ var financesRoutes = [
                 path: 'Transactions',
                 component: Index_js_1.IndexComponent,
                 children: [
-                    { path: 'Add', component: Add_js_1.AddComponent },
-                    { path: 'Overview', component: Overview_js_1.OverviewComponent },
+                    {
+                        path: 'Add',
+                        outlet: "next",
+                        component: Add_js_1.AddComponent,
+                        children: [
+                            { path: "AddPerson", component: Add_js_2.AddComponent, outlet: "next" }
+                        ]
+                    },
+                    { path: 'Overview', component: Overview_js_1.OverviewComponent, outlet: "next" },
                 ]
             },
             {
