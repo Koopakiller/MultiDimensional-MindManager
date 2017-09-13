@@ -14,11 +14,10 @@ export class FinancesAuthenticationService {
 
     public getToken(userName: string, password: string): Observable<string>{
         let url = `/api/FinancesAuthentication/GetToken`;
-        let obj = {
+        let data = {
             userName: userName,
             password: password,
         }
-        let data = new DataContainer<any>(obj);
         var postData = JSON.stringify(data);
         console.log(postData);
         let headers = new Headers({ "Content-Type": "application/json" });

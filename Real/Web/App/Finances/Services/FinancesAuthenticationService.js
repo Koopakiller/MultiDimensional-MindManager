@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var rxjs_1 = require("rxjs");
-var DataContainer_js_1 = require("../../Shared/DataContainer.js");
 var FinancesAuthenticationService = (function () {
     function FinancesAuthenticationService(http) {
         this.http = http;
@@ -20,11 +19,10 @@ var FinancesAuthenticationService = (function () {
     FinancesAuthenticationService.prototype.getToken = function (userName, password) {
         var _this = this;
         var url = "/api/FinancesAuthentication/GetToken";
-        var obj = {
+        var data = {
             userName: userName,
             password: password,
         };
-        var data = new DataContainer_js_1.DataContainer(obj);
         var postData = JSON.stringify(data);
         console.log(postData);
         var headers = new http_1.Headers({ "Content-Type": "application/json" });
