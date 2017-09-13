@@ -30,7 +30,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             catch (Exception ex)
             {
                 DebugHelper.WriteException(ex);
-                return this.Json(DataContainer.Create("An error occured"));
+                return this.StatusCode(500);
             }
         }
 
@@ -44,7 +44,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             catch (Exception ex)
             {
                 DebugHelper.WriteException(ex);
-                return this.Json(DataContainer.Create("An error occured"));
+                return this.StatusCode(500);
             }
         }
 
@@ -58,7 +58,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             catch (Exception ex)
             {
                 DebugHelper.WriteException(ex);
-                return this.Json(DataContainer.Create("An error occured"));
+                return this.StatusCode(500);
             }
         }
 
@@ -80,7 +80,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             catch (Exception ex)
             {
                 DebugHelper.WriteException(ex);
-                return this.Json(DataContainer.Create("An error occured"));
+                return this.StatusCode(500);
             }
         }
 
@@ -95,7 +95,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             catch (Exception ex)
             {
                 DebugHelper.WriteException(ex);
-                return this.Json(DataContainer.Create("An error occured"));
+                return this.StatusCode(500);
             }
         }
 
@@ -109,7 +109,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             catch (Exception ex)
             {
                 DebugHelper.WriteException(ex);
-                return this.Json(DataContainer.Create("An error occured"));
+                return this.StatusCode(500);
             }
         }
 
@@ -123,7 +123,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             catch (Exception ex)
             {
                 DebugHelper.WriteException(ex);
-                return this.Json(DataContainer.Create("An error occured"));
+                return this.StatusCode(500);
             }
         }
 
@@ -137,7 +137,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             catch (Exception ex)
             {
                 DebugHelper.WriteException(ex);
-                return this.Json(DataContainer.Create("An error occured"));
+                return this.StatusCode(500);
             }
         }
 
@@ -151,7 +151,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             catch (Exception ex)
             {
                 DebugHelper.WriteException(ex);
-                return this.Json(DataContainer.Create("An error occured"));
+                return this.StatusCode(500);
             }
         }
     }
