@@ -19,13 +19,13 @@ var NavigationService_js_1 = require("./Shared/Services/NavigationService.js");
 var Dashboard_js_1 = require("./Scaffold/Components/Dashboard.js");
 var shared_module_js_1 = require("./Shared/shared.module.js");
 var appRoutes = [
-    { path: 'Finances', loadChildren: "/App/Finances/finances.module.js#FinancesModule" },
-    { path: 'Test', loadChildren: "/App/Test/test.module.js#TestModule" },
-    { path: 'Media', loadChildren: "/App/Media/media.module.js#MediaModule" },
+    { path: "Finances", loadChildren: "/App/Finances/finances.module.js#FinancesModule" },
+    { path: "Test", loadChildren: "/App/Test/test.module.js#TestModule" },
+    { path: "Media", loadChildren: "/App/Media/media.module.js#MediaModule" },
     { path: "Dashboard", component: Dashboard_js_1.DashboardComponent },
-    { path: 'Error/:errorId', component: error_js_1.ErrorComponent },
-    { path: '', pathMatch: 'full', redirectTo: "Dashboard" },
-    { path: '**', redirectTo: '/Error/http404' }
+    { path: "Error/:errorId", component: error_js_1.ErrorComponent },
+    { path: "", pathMatch: "full", redirectTo: "Dashboard" },
+    { path: "**", redirectTo: "/Error/http404" }
 ];
 var AppModule = (function () {
     function AppModule() {

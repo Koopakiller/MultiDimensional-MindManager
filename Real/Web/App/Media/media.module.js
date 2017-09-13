@@ -15,9 +15,9 @@ var Index_js_1 = require("./Components/Index.js");
 var GlobalLoadingIndicatorService_js_1 = require("../Shared/Services/GlobalLoadingIndicatorService.js");
 var NavigationService_js_1 = require("../Shared/Services/NavigationService.js");
 var shared_module_js_1 = require("../Shared/shared.module.js");
-var financesRoutes = [
+var mediaRoutes = [
     {
-        path: '',
+        path: "",
         component: Index_js_1.IndexComponent
     },
 ];
@@ -29,7 +29,7 @@ var MediaModule = (function () {
 MediaModule = __decorate([
     core_1.NgModule({
         imports: [
-            router_1.RouterModule.forChild(financesRoutes),
+            router_1.RouterModule.forChild(mediaRoutes),
             http_1.HttpModule,
             common_1.CommonModule,
             forms_1.FormsModule,

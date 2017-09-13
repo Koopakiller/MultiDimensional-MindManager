@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../../Services/FinancesService.js";
 import { LocationService } from "../../../Shared/Services/LocationService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../../ViewModels/FinancesViewModels.js";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 import { KeyValuePair } from "../../../Shared/KeyValuePair.js";
 import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService.js";
 
@@ -37,7 +37,7 @@ export class AddComponent implements OnInit {
         });
         this.timeStampDate = new Date();
         this.timeStampDate.setHours(0, 0, 0, 0);
-        this.timeStampTime = new Date('12:34 AM');
+        this.timeStampTime = new Date("12:34 AM");
         this.value = 0;
     }
 
@@ -101,6 +101,6 @@ export class AddComponent implements OnInit {
     }
 
     public addPerson(): void {
-        this._router.navigate([{ outlets: { next: '/Persons/Add' }}]).then(() => { });
+        this._router.navigate([{ outlets: { next: "/Persons/Add" }}]).then(() => { });
     }
 }

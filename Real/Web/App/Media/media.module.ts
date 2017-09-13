@@ -10,9 +10,9 @@ import { GlobalLoadingIndicatorService } from "../Shared/Services/GlobalLoadingI
 import { NavigationService } from "../Shared/Services/NavigationService.js";
 import { SharedModule } from "../Shared/shared.module.js";
 
-const financesRoutes: Routes = [
+const mediaRoutes: Routes = [
     {
-        path: '',
+        path: "",
         component: IndexComponent
     },
 ];
@@ -20,7 +20,7 @@ const financesRoutes: Routes = [
 @NgModule({
     imports: [
         RouterModule.forChild(
-            financesRoutes
+            mediaRoutes
         ),
         HttpModule,
         CommonModule,

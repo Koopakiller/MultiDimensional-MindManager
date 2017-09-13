@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { PersonServerModel, UserServerModel, CurrencyAccountServerModel, TransactionServerModel, TransactionOverviewServerModel, UserGroupServerModel } from "../ServerModels/FinancesServerModels.js";
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Http, Response, RequestOptions, Headers } from "@angular/http";
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/map";
 import { PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel, TransactionOverviewViewModel, UserGroupViewModel } from "../ViewModels/FinancesViewModels.js";
 import { Observer } from "rxjs/Observer";
 import { DataContainer } from "../../Shared/DataContainer.js";
@@ -97,7 +97,7 @@ export class FinancesService {
         let data = new DataContainer<TransactionServerModel[]>(tvms.map(x => x.toServerModel()));
         var postData = JSON.stringify(data);
         console.log(postData);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let headers = new Headers({ "Content-Type": "application/json" });
         let options = new RequestOptions({ headers: headers });
         return Observable.create((observer: Observer<TransactionViewModel[]>) => {
             this.http.post("/api/Finances/AddTransactions", postData, options).subscribe(
@@ -121,7 +121,7 @@ export class FinancesService {
                 userGroupId: userGroupId
             }
         };
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let headers = new Headers({ "Content-Type": "application/json" });
         let options = new RequestOptions({ headers: headers });
         return Observable.create((observer: Observer<PersonViewModel>) => {
             this.http.post("/api/Finances/AddPerson", JSON.stringify(data), options).subscribe(

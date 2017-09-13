@@ -45,7 +45,7 @@ var AddComponent = (function () {
         });
         this.timeStampDate = new Date();
         this.timeStampDate.setHours(0, 0, 0, 0);
-        this.timeStampTime = new Date('12:34 AM');
+        this.timeStampTime = new Date("12:34 AM");
         this.value = 0;
     };
     Object.defineProperty(AddComponent.prototype, "user", {
@@ -94,7 +94,7 @@ var AddComponent = (function () {
         this._router.navigateByUrl("/Finances");
     };
     AddComponent.prototype.addPerson = function () {
-        this._router.navigate([{ outlets: { next: '/Persons/Add' } }]).then(function () { });
+        this._router.navigate([{ outlets: { next: "/Persons/Add" } }]).then(function () { });
     };
     return AddComponent;
 }());

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../../Services/FinancesService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel, TransactionOverviewViewModel } from "../../ViewModels/FinancesViewModels.js";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 import { KeyValuePair } from "../../../Shared/KeyValuePair.js";
 import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService.js";
 

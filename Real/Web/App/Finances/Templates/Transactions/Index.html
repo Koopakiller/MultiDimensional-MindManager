@@ -1,17 +1,17 @@
-<section class="section">
+<section class='section'>
 
-    <span class="section-header">Transactions</span>
+    <span class='section-header'>Transactions</span>
 
-    <div class="section-content">
+    <div class='section-content'>
 
-            <div class="tiles">
-                <a [routerLink]="[{ outlets: { next: 'Add' }}]" class="tile">
-                    <i class="material-icons icon">add</i>
-                    <div class="header">Add</div>
+            <div class='tiles'>
+                <a [routerLink]='[{ outlets: { next: "Add" }}]' class='tile'>
+                    <i class='material-icons icon'>add</i>
+                    <div class='header'>Add</div>
                 </a>
-                <a [routerLink]="[{ outlets: { next: 'Overview' }}]" class="tile">
-                    <i class="material-icons icon">view_list</i>
-                    <div class="header">Overview</div>
+                <a [routerLink]='[{ outlets: { next: "Overview" }}]' class='tile'>
+                    <i class='material-icons icon'>view_list</i>
+                    <div class='header'>Overview</div>
                 </a>
             </div>
 
@@ -19,4 +19,4 @@
 
     </section>
 
-    <router-outlet name="next"></router-outlet>
+    <router-outlet name='next'></router-outlet>

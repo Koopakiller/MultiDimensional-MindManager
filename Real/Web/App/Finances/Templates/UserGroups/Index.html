@@ -1,20 +1,20 @@
-<section class="section">
+<section class='section'>
 
-    <span class="section-header">Finances: UserGroups</span>
+    <span class='section-header'>Finances: UserGroups</span>
     
-    <div class="section-content">
+    <div class='section-content'>
         <table>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th class="action-column">Actions</th>
+                <th class='action-column'>Actions</th>
             </tr>
-            <ng-template ngFor let-userGroup [ngForOf]="userGroups" let-index="index">
+            <ng-template ngFor let-userGroup [ngForOf]='userGroups' let-index='index'>
                 <tr>
                     <td>{{userGroup.id}}</td>
                     <td>{{userGroup.name}}</td>
-                    <td class="action-column">
-                        <a (click)="toggleManageUsers(index)">Manage Users</a>
+                    <td class='action-column'>
+                        <a (click)='toggleManageUsers(index)'>Manage Users</a>
                     </td>
                 </tr>
             </ng-template>
@@ -22,17 +22,17 @@
     </div>
     
 </section>
-<div class="popup" *ngIf="selectedUserGroup">
-    <div class="popup-container">
-        <div class="popup-content text">
-            <span class="header">Manage Users in "{{selectedUserGroup.name}}"</span>
+<div class='popup' *ngIf='selectedUserGroup'>
+    <div class='popup-container'>
+        <div class='popup-content text'>
+            <span class='header'>Manage Users in '{{selectedUserGroup.name}}'</span>
             
             <section>
-                <!--TODO <finances-users-list [users]="usersInSelectedGroup"></finances-users-list> -->
+                <!--TODO <finances-users-list [users]='usersInSelectedGroup'></finances-users-list> -->
             </section>
 
-            <div class="button-bar">
-                <input type="submit" value="Close" (click)="toggleManageUsers()" />
+            <div class='button-bar'>
+                <input type='submit' value='Close' (click)='toggleManageUsers()' />
             </div>
         </div>
     </div>

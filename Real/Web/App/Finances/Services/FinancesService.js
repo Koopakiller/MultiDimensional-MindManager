@@ -105,7 +105,7 @@ var FinancesService = (function () {
         var data = new DataContainer_js_1.DataContainer(tvms.map(function (x) { return x.toServerModel(); }));
         var postData = JSON.stringify(data);
         console.log(postData);
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var headers = new http_1.Headers({ "Content-Type": "application/json" });
         var options = new http_1.RequestOptions({ headers: headers });
         return Observable_1.Observable.create(function (observer) {
             _this.http.post("/api/Finances/AddTransactions", postData, options).subscribe(function (response) {
@@ -126,7 +126,7 @@ var FinancesService = (function () {
                 userGroupId: userGroupId
             }
         };
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var headers = new http_1.Headers({ "Content-Type": "application/json" });
         var options = new http_1.RequestOptions({ headers: headers });
         return Observable_1.Observable.create(function (observer) {
             _this.http.post("/api/Finances/AddPerson", JSON.stringify(data), options).subscribe(function (response) {

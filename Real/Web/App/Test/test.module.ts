@@ -20,11 +20,11 @@ import { TextSectionComponent } from "./Components/Style/TextSection.js";
 
 const financesRoutes: Routes = [
 	{
-		path: '',
+		path: "",
 		component: IndexComponent,
 		children: [
 			{
-				path: 'Style',
+				path: "Style",
 				component: StyleIndexComponent,
 				children: [
 					{ path: "Section/Form", component: FormSectionComponent },

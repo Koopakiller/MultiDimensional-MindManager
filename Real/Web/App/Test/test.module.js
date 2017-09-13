@@ -20,11 +20,11 @@ var FormSection_js_1 = require("./Components/Style/FormSection.js");
 var TextSection_js_1 = require("./Components/Style/TextSection.js");
 var financesRoutes = [
     {
-        path: '',
+        path: "",
         component: Index_js_1.IndexComponent,
         children: [
             {
-                path: 'Style',
+                path: "Style",
                 component: Index_js_2.IndexComponent,
                 children: [
                     { path: "Section/Form", component: FormSection_js_1.FormSectionComponent },

@@ -17,6 +17,6 @@ var UtcPipe = (function () {
     return UtcPipe;
 }());
 UtcPipe = __decorate([
-    core_1.Pipe({ name: 'utc' })
+    core_1.Pipe({ name: "utc" })
 ], UtcPipe);
 exports.UtcPipe = UtcPipe;

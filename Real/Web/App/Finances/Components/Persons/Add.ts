@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output, OnDestroy } from "@angu
 import { FinancesService } from "../../Services/FinancesService.js";
 import { LocationService } from "../../../Shared/Services/LocationService.js";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, UserGroupViewModel } from "../../ViewModels/FinancesViewModels.js";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService.js";
 
 @Component({

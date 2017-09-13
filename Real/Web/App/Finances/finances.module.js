@@ -26,51 +26,44 @@ var GlobalLoadingIndicatorService_js_1 = require("../Shared/Services/GlobalLoadi
 var NavigationService_js_1 = require("../Shared/Services/NavigationService.js");
 var shared_module_js_1 = require("../Shared/shared.module.js");
 var financesRoutes = [{
-        path: '',
+        path: "",
         component: Index_js_6.IndexComponent,
         children: [
             {
-                path: 'Transactions',
+                path: "Transactions",
                 component: Index_js_1.IndexComponent,
                 children: [
                     {
-                        path: 'Add',
+                        path: "Add",
                         outlet: "next",
-                        component: Add_js_1.AddComponent,
-                        children: [
-                            {
-                                path: "AddPerson",
-                                component: Add_js_2.AddComponent,
-                                outlet: "next"
-                            }
-                        ]
+                        component: Add_js_1.AddComponent
                     },
                     {
-                        path: 'Overview',
-                        component: Overview_js_1.OverviewComponent,
-                        outlet: "next"
+                        path: "Overview",
+                        outlet: "next",
+                        component: Overview_js_1.OverviewComponent
                     },
                 ]
             },
             {
-                path: 'Import',
+                path: "Import",
                 component: Index_js_2.IndexComponent,
                 children: []
             },
             {
-                path: 'Persons',
+                path: "Persons",
                 component: Index_js_3.IndexComponent,
                 children: [
-                    { path: 'Add', component: Add_js_2.AddComponent, outlet: "next" },
+                    { path: "Add", component: Add_js_2.AddComponent, outlet: "next" },
                 ]
             },
             {
-                path: 'UserGroups',
+                path: "UserGroups",
                 component: Index_js_4.IndexComponent,
                 children: []
             },
             {
-                path: 'Users',
+                path: "Users",
                 component: Index_js_5.IndexComponent,
                 children: []
             }

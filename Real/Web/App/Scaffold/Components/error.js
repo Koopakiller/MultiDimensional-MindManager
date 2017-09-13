@@ -25,7 +25,7 @@ var ErrorComponent = (function () {
     ErrorComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._subscription = this._activatedRoute.params.subscribe(function (params) {
-            _this.errorId = params['errorId'];
+            _this.errorId = params["errorId"];
             _this.updateDisplay();
         });
     };

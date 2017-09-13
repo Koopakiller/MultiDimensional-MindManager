@@ -25,7 +25,7 @@ export class ErrorComponent implements OnInit, OnDestroy {
 
     public ngOnInit() {
         this._subscription = this._activatedRoute.params.subscribe(params => {
-            this.errorId = params['errorId'];
+            this.errorId = params["errorId"];
             this.updateDisplay();
         });
     }
