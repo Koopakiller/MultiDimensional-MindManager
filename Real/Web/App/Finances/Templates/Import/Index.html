@@ -4,7 +4,7 @@
 
     <div class='section-content'>
         <div [ngSwitch]='currentStep'>
-            <div *ngSwitchCase=''userSelect''>
+            <div *ngSwitchCase='"userSelect"'>
                 <div class='tile text'>
                     <form (ngSubmit)='nextStep()'>
                         <div class='form-group'>
@@ -21,14 +21,14 @@
                     </form>
                 </div>
             </div>
-            <div *ngSwitchCase=''fileSelect''>
+            <div *ngSwitchCase='"fileSelect"'>
                 <div class='tile text'>
                     <form>
                         <input type='file' (change)='processFileInputChange($event)' value='Choose file' />
                     </form>
                 </div>
             </div>
-            <div *ngSwitchCase=''fileTypeSelect''>
+            <div *ngSwitchCase='"fileTypeSelect"'>
                 <div class='tile text'>
                     <p>Please choose the file type:</p>
                 </div>         
@@ -38,7 +38,7 @@
                     <span class='tile-description'>{{type.description}}</span>
                 </a>
             </div>
-            <div *ngSwitchCase=''showAndFitData''>
+            <div *ngSwitchCase='"showAndFitData"'>
                 <div class='tile text'>
                     <table class='form-table'>
                         <tr>
@@ -57,13 +57,13 @@
                                 </td>
                                 <td>{{transaction.note}}</td>
                                 <td>{{transaction.value}}</td>
-                                <td class='{{transaction.personId ? '' : 'error-cell'}}'>
+                                <td class='{{transaction.personId ? "" : "error-cell"}}'>
                                     <select [(ngModel)]='transaction.personId' >
                                         <option *ngFor='let person of persons' [ngValue]='person.id'>{{person.header}}</option>
                                     </select>
                                     <a *ngIf='!transaction.personId' (click)='addPerson(transaction.suggestedPersonName)'>Add {{transaction.suggestedPersonName}}</a>
                                 </td>
-                                <td class='{{transaction.currencyAccountId ? '' : 'error-cell'}}'>
+                                <td class='{{transaction.currencyAccountId ? "" : "error-cell"}}'>
                                     <select [(ngModel)]='transaction.currencyAccountId' >
                                         <option *ngFor='let currencyAccount of currencyAccounts' [ngValue]='currencyAccount.id'>{{currencyAccount.header}}</option>
                                     </select>
