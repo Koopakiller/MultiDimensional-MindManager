@@ -25,54 +25,60 @@ import { GlobalLoadingIndicatorService } from "../Shared/Services/GlobalLoadingI
 import { NavigationService } from "../Shared/Services/NavigationService.js";
 import { SharedModule } from "../Shared/shared.module.js";
 
-const financesRoutes: Routes = [
-    {
-        path: '',
-        component: IndexComponent,
-        children: [
-            {
-                path: 'Transactions',
-                component: TransactionIndexComponent,
-                children: [
-                    {
-                        path: 'Add',
-                        outlet: "next",
-                        component: TransactionAddComponent,
-                        children: [
-                            { path: "AddPerson", component: PersonsAddComponent, outlet: "next" }
-                        ]
-                    },
-                    { path: 'Overview', component: TransactionOverviewComponent, outlet: "next" },
-                ]
-            },
-            {
-                path: 'Import',
-                component: ImportIndexComponent,
-                children: [
-                ]
-            },
-            {
-                path: 'Persons',
-                component: PersonsIndexComponent,
-                children: [
-                    { path: 'Add', component: PersonsAddComponent },
-                ]
-            },
-            {
-                path: 'UserGroups',
-                component: UserGroupsIndexComponent,
-                children: [
-                ]
-            },
-            {
-                path: 'Users',
-                component: UsersIndexComponent,
-                children: [
-                ]
-            }
-        ]
-    }
-];
+const financesRoutes: Routes = [{
+    path: '',
+    component: IndexComponent,
+    children: [
+        {
+            path: 'Transactions',
+            component: TransactionIndexComponent,
+            children: [
+                {
+                    path: 'Add',
+                    outlet: "next",
+                    component: TransactionAddComponent,
+                    children: [
+                        {
+                            path: "AddPerson",
+                            component: PersonsAddComponent,
+                            outlet: "next"
+                        }
+                    ]
+                },
+                {
+                    path: 'Overview',
+                    component: TransactionOverviewComponent,
+                    outlet: "next"
+                },
+            ]
+        },
+        {
+            path: 'Import',
+            component: ImportIndexComponent,
+            children: [
+            ]
+        },
+        {
+            path: 'Persons',
+            component: PersonsIndexComponent,
+            children: [
+                { path: 'Add', component: PersonsAddComponent, outlet: "next" },
+            ]
+        },
+        {
+            path: 'UserGroups',
+            component: UserGroupsIndexComponent,
+            children: [
+            ]
+        },
+        {
+            path: 'Users',
+            component: UsersIndexComponent,
+            children: [
+            ]
+        }
+    ]
+}];
 
 @NgModule({
     imports: [

@@ -25,8 +25,7 @@ var LocationService_js_1 = require("../Shared/Services/LocationService.js");
 var GlobalLoadingIndicatorService_js_1 = require("../Shared/Services/GlobalLoadingIndicatorService.js");
 var NavigationService_js_1 = require("../Shared/Services/NavigationService.js");
 var shared_module_js_1 = require("../Shared/shared.module.js");
-var financesRoutes = [
-    {
+var financesRoutes = [{
         path: '',
         component: Index_js_6.IndexComponent,
         children: [
@@ -39,10 +38,18 @@ var financesRoutes = [
                         outlet: "next",
                         component: Add_js_1.AddComponent,
                         children: [
-                            { path: "AddPerson", component: Add_js_2.AddComponent, outlet: "next" }
+                            {
+                                path: "AddPerson",
+                                component: Add_js_2.AddComponent,
+                                outlet: "next"
+                            }
                         ]
                     },
-                    { path: 'Overview', component: Overview_js_1.OverviewComponent, outlet: "next" },
+                    {
+                        path: 'Overview',
+                        component: Overview_js_1.OverviewComponent,
+                        outlet: "next"
+                    },
                 ]
             },
             {
@@ -54,7 +61,7 @@ var financesRoutes = [
                 path: 'Persons',
                 component: Index_js_3.IndexComponent,
                 children: [
-                    { path: 'Add', component: Add_js_2.AddComponent },
+                    { path: 'Add', component: Add_js_2.AddComponent, outlet: "next" },
                 ]
             },
             {
@@ -68,8 +75,7 @@ var financesRoutes = [
                 children: []
             }
         ]
-    }
-];
+    }];
 var FinancesModule = (function () {
     function FinancesModule() {
     }

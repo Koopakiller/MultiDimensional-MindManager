@@ -94,7 +94,7 @@ var AddComponent = (function () {
         this._router.navigateByUrl("/Finances");
     };
     AddComponent.prototype.addPerson = function () {
-        this._router.navigate([{ outlets: { next: "AddPerson" } }]);
+        this._router.navigate([{ outlets: { next: '/Persons/Add' } }]).then(function () { });
     };
     return AddComponent;
 }());

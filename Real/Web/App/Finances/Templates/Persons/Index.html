@@ -3,9 +3,9 @@
     <span class="section-header">Persons</span>
 
     <div class="section-content">
-        <a routerLink="Add">Add</a>
+        <a [routerLink]="[{ outlets: { next: 'Add' }}]">Add</a>
     </div>
 
 </section>
 
-<router-outlet></router-outlet>
+<router-outlet name="next"></router-outlet>

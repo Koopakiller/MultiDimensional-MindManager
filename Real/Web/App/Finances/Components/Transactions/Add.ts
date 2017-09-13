@@ -101,6 +101,6 @@ export class AddComponent implements OnInit {
     }
 
     public addPerson(): void {
-        this._router.navigate([{ outlets: { next: "AddPerson" } }]);
+        this._router.navigate([{ outlets: { next: '/Persons/Add' }}]).then(() => { });
     }
 }
