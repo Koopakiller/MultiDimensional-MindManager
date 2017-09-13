@@ -26,7 +26,7 @@
                     <input type='text' class='form-control' id='name' [(ngModel)]='name' name='name' required />
                 </div>
                 <div class='additional-controls'>  
-                    <input type='button' class='form-control' (click)='name=''' value='Clear' *ngIf='name!=''&&name!=null'/>
+                    <input type='button' class='form-control' (click)='name=""' value='Clear' *ngIf='name != "" && name != null'/>
                 </div> 
             </div>
             <div class='form-group'>
@@ -66,7 +66,7 @@
                 <label for='timeStampDate'>Time Stamp Date:</label>
                 <div class='control-container'>  
                     <input type='date' class='form-control' id='timeStampDate' 
-                            [ngModel]='timeStampDate | date:'yyyy-MM-dd''
+                            [ngModel]='timeStampDate | date:"yyyy-MM-dd"'
                             (ngModelChange)='timeStampDate = $event'
                             name='timeStampDate' required />
                 </div> 
@@ -81,7 +81,7 @@
                 <label for='timeStampTime'>Time Stamp Time:</label>
                 <div class='control-container'>  
                     <input type='time' class='form-control' id='timeStampTime' [(ngModel)]='timeStampTime' name='timeStampTime' required          
-                            [ngModel]='timeStampTime | date:'mm-ss''
+                            [ngModel]='timeStampTime | date:"mm-ss"'
                             (ngModelChange)='timeStampTime = $event' />
                 </div> 
             </div>
