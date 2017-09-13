@@ -6,7 +6,7 @@ import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLo
 import { UserViewModel } from "../../ViewModels/FinancesViewModels.js";
 
 @Component({
-    templateUrl: "/App/Finances/Templates/Index.html"
+    templateUrl: "/App/Finances/Templates/Users/Index.html"
 })
 export class IndexComponent implements OnInit {
     constructor(

@@ -7,7 +7,7 @@ import { UserViewModel, UserGroupViewModel } from "../../ViewModels/FinancesView
 
 @Component({
     selector: "finances-usergroups",
-    templateUrl: "/App/Finances/Templates/Index.html"
+    templateUrl: "/App/Finances/Templates/UserGroups/Index.html"
 })
 export class IndexComponent implements OnInit {
 
