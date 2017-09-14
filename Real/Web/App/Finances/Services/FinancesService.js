@@ -19,6 +19,9 @@ var FinancesService = (function () {
     function FinancesService(http) {
         this.http = http;
     }
+    FinancesService.prototype.assignToken = function (token) {
+        this._token = token;
+    };
     FinancesService.prototype.getListFromResponse = function (response, serverModelFactory) {
         var object = response.json();
         var lst = object.data;

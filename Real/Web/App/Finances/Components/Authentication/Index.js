@@ -22,8 +22,9 @@ var IndexComponent = (function () {
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
     }
     IndexComponent.prototype.submit = function () {
+        var _this = this;
         this._financesAuthenticationService.getToken(this.userName, this.password).subscribe(function (token) {
-            //this._financesService.assignToken(token);
+            _this._financesService.assignToken(token);
             console.log(token);
             alert(token);
         }, function (error) {

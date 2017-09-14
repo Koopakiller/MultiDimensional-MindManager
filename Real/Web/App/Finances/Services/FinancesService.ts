@@ -14,6 +14,12 @@ export class FinancesService {
         private http: Http
     ) { }
 
+    public assignToken(token: string): void {
+        this._token = token;
+    }
+
+    _token: string;
+
     private getListFromResponse<TServerModel extends IViewModelConvert<TViewModel>, TViewModel>(response: Response, serverModelFactory: (() => TServerModel)): TViewModel[] {
         let object: DataContainer<IViewModelConvert<TServerModel>[]> = response.json();
         let lst = object.data;
@@ -38,13 +44,13 @@ export class FinancesService {
         return this.getList<UserServerModel, UserViewModel>(`/api/Finances/GetUsers`, () => new UserServerModel());
     }
 
-    public getUsersFromUserGroup(userGroupId: number): Observable<UserViewModel[]>{
+    public getUsersFromUserGroup(userGroupId: number): Observable<UserViewModel[]> {
         return this.getList<UserServerModel, UserViewModel>(`/api/Finances/GetUsersFromUserGroup?userGroupId=${userGroupId}`, () => new UserServerModel());
     }
 
-    public getUserGroups(userId?: number): Observable<UserGroupViewModel[]>{
+    public getUserGroups(userId?: number): Observable<UserGroupViewModel[]> {
         var url = `/api/Finances/GetUserGroups`;
-        if(userId){
+        if (userId) {
             url = url + `?userId=${userId}`;
         }
         return this.getList<UserGroupServerModel, UserGroupViewModel>(url, () => new UserGroupServerModel());
