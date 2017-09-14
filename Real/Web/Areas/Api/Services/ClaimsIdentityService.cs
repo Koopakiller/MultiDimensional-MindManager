@@ -11,15 +11,22 @@ namespace Koopakiller.Apps.Finances.Authentication
 
     public class ClaimsIdentityService : IClaimsIdentityService
     {
+        public ClaimsIdentityService(string userName, string password)
+        {
+            this._userName = userName;
+            this._password = password;
+        }
+
+        private string _userName;
+        private string _password;
+
         public ClaimsIdentity GetIdentity(string username, string password)
         {
-            // DON'T do this in production, obviously!
-            if (username == "TEST" && password == "TEST123")
+            if (username == this._userName && password == this._password)
             {
                 return new ClaimsIdentity(new System.Security.Principal.GenericIdentity(username, "Token"), new Claim[] { });
             }
 
-            // Credentials are invalid, or account doesn't exist
             return null;
         }
     }

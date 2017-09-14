@@ -40,13 +40,13 @@
             services.AddDbContext<FinancesDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("FinancesDbContext")));
 
-            services.AddTransient<IClaimsIdentityService>((x) => new ClaimsIdentityService());
+            services.AddTransient<IClaimsIdentityService>((x) => new ClaimsIdentityService(Configuration["Finances:Admin:UserName"], Configuration["Finances:Admin:Password"]));
 
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
             var options2 = new Finances.Authentication.FinancesAuthenticationService.ServiceOptions
             {
-                Audience = "ExampleAudience",
-                Issuer = "ExampleIssuer",
+                Audience = Configuration["Finances:Token:Audience"],
+                Issuer = Configuration["Finances:Token:Issuer"],
                 SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
             };
             services.AddTransient<ITokenGenerator>((x) => new Finances.Authentication.FinancesAuthenticationService(options2));
