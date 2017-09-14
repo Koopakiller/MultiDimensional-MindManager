@@ -32,8 +32,25 @@ export class FinancesService {
         });
     }
 
+    private getWithOptions(url: string): Observable<Response> {
+        let headers = new Headers({
+             "Authorization": "Bearer " + this._token
+        });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(url, options);
+    }
+
+    private postWithOptions(url: string, postData: any): Observable<Response> {
+        let headers = new Headers({
+             "Content-Type": "application/json",
+             "Authorization": "Bearer " + this._token
+        });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(url, postData, options);
+    }
+
     private getList<TServerModel extends IViewModelConvert<TViewModel>, TViewModel>(url: string, serverModelFactory: (() => TServerModel)): Observable<TViewModel[]> {
-        return this.http.get(url).map(response => this.getListFromResponse(response, serverModelFactory));
+        return this.getWithOptions(url).map(response => this.getListFromResponse(response, serverModelFactory));
     }
 
     public get persons(): Observable<PersonViewModel[]> {
@@ -102,11 +119,8 @@ export class FinancesService {
     public addTransactions(tvms: TransactionViewModel[]): Observable<TransactionViewModel[]> {
         let data = new DataContainer<TransactionServerModel[]>(tvms.map(x => x.toServerModel()));
         var postData = JSON.stringify(data);
-        console.log(postData);
-        let headers = new Headers({ "Content-Type": "application/json" });
-        let options = new RequestOptions({ headers: headers });
         return Observable.create((observer: Observer<TransactionViewModel[]>) => {
-            this.http.post("/api/Finances/AddTransactions", postData, options).subscribe(
+            this.postWithOptions("/api/Finances/AddTransactions", postData).subscribe(
                 response => {
                     let lst = this.getListFromResponse<TransactionServerModel, TransactionViewModel>(response, () => new TransactionServerModel());
                     observer.next(lst);
@@ -127,10 +141,8 @@ export class FinancesService {
                 userGroupId: userGroupId
             }
         };
-        let headers = new Headers({ "Content-Type": "application/json" });
-        let options = new RequestOptions({ headers: headers });
         return Observable.create((observer: Observer<PersonViewModel>) => {
-            this.http.post("/api/Finances/AddPerson", JSON.stringify(data), options).subscribe(
+            this.postWithOptions("/api/Finances/AddPerson", JSON.stringify(data)).subscribe(
                 response => {
                     let smodc: DataContainer<IViewModelConvert<PersonServerModel>> = response.json();
                     let smo = smodc.data;

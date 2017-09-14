@@ -33,9 +33,24 @@ var FinancesService = (function () {
             return sm.toViewModel();
         });
     };
+    FinancesService.prototype.getWithOptions = function (url) {
+        var headers = new http_1.Headers({
+            "Authorization": "Bearer " + this._token
+        });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.get(url, options);
+    };
+    FinancesService.prototype.postWithOptions = function (url, postData) {
+        var headers = new http_1.Headers({
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + this._token
+        });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(url, postData, options);
+    };
     FinancesService.prototype.getList = function (url, serverModelFactory) {
         var _this = this;
-        return this.http.get(url).map(function (response) { return _this.getListFromResponse(response, serverModelFactory); });
+        return this.getWithOptions(url).map(function (response) { return _this.getListFromResponse(response, serverModelFactory); });
     };
     Object.defineProperty(FinancesService.prototype, "persons", {
         get: function () {
@@ -107,11 +122,8 @@ var FinancesService = (function () {
         var _this = this;
         var data = new DataContainer_js_1.DataContainer(tvms.map(function (x) { return x.toServerModel(); }));
         var postData = JSON.stringify(data);
-        console.log(postData);
-        var headers = new http_1.Headers({ "Content-Type": "application/json" });
-        var options = new http_1.RequestOptions({ headers: headers });
         return Observable_1.Observable.create(function (observer) {
-            _this.http.post("/api/Finances/AddTransactions", postData, options).subscribe(function (response) {
+            _this.postWithOptions("/api/Finances/AddTransactions", postData).subscribe(function (response) {
                 var lst = _this.getListFromResponse(response, function () { return new FinancesServerModels_js_1.TransactionServerModel(); });
                 observer.next(lst);
                 observer.complete();
@@ -129,10 +141,8 @@ var FinancesService = (function () {
                 userGroupId: userGroupId
             }
         };
-        var headers = new http_1.Headers({ "Content-Type": "application/json" });
-        var options = new http_1.RequestOptions({ headers: headers });
         return Observable_1.Observable.create(function (observer) {
-            _this.http.post("/api/Finances/AddPerson", JSON.stringify(data), options).subscribe(function (response) {
+            _this.postWithOptions("/api/Finances/AddPerson", JSON.stringify(data)).subscribe(function (response) {
                 var smodc = response.json();
                 var smo = smodc.data;
                 var sm = new FinancesServerModels_js_1.PersonServerModel();
