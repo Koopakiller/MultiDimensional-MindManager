@@ -42,7 +42,7 @@
 
             services.AddTransient<IClaimsIdentityService>((x) => new ClaimsIdentityService(Configuration["Finances:Admin:UserName"], Configuration["Finances:Admin:Password"]));
 
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Finances:Token:SecretKey"]));
             var options2 = new Finances.Authentication.FinancesAuthenticationService.ServiceOptions
             {
                 Audience = Configuration["Finances:Token:Audience"],
@@ -88,7 +88,7 @@
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Finances:Token:SecretKey"]));
 
             var tokenValidationParameters = new TokenValidationParameters
             {
@@ -98,11 +98,11 @@
 
                 // Validate the JWT Issuer (iss) claim
                 ValidateIssuer = true,
-                ValidIssuer = "ExampleIssuer",
+                ValidIssuer = Configuration["Finances:Token:Issuer"],
 
                 // Validate the JWT Audience (aud) claim
                 ValidateAudience = true,
-                ValidAudience = "ExampleAudience",
+                ValidAudience = Configuration["Finances:Token:Audience"],
 
                 // Validate the token expiry
                 ValidateLifetime = true,
@@ -117,7 +117,6 @@
                 AutomaticChallenge = true,
                 TokenValidationParameters = tokenValidationParameters
             });
-
         }
 
 
