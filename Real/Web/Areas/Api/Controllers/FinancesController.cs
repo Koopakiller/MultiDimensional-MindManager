@@ -9,16 +9,23 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
     using System;
     using System.Diagnostics;
     using Koopakiller;
+    using Koopakiller.Apps.Finances.Authentication;
 
     [Area("Api")]
     public class FinancesController : Controller
     {
         FinancesDbContext _context;
+        ITokenGenerator _authService;
+        IClaimsIdentityService _claimsIdentityService;
 
-        public FinancesController(FinancesDbContext context)
+        public FinancesController(FinancesDbContext context, ITokenGenerator authService, IClaimsIdentityService claimsIdentityService)
         {
             this._context = context;
+            this._authService = authService;
+            this._claimsIdentityService = claimsIdentityService;
         }
+
+        // /api/Finances/GetToken is handled in TokenProvider
 
         public IActionResult GetUsers()
         {
@@ -154,5 +161,20 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
                 return this.StatusCode(500);
             }
         }
+
+        public IActionResult GetToken([FromBody]DataContainer<ApplicationUser> data)
+        {
+
+            var identity = this._claimsIdentityService.GetIdentity(data.Data.UserName, data.Data.Password);
+            if (identity == null)
+            {
+                return this.BadRequest();
+            }
+
+            var token = this._authService.GenerateToken(data.Data.UserName);
+            return this.Json(DataContainer.Create(token));
+        }
+
+
     }
 }

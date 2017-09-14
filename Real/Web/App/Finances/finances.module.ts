@@ -19,11 +19,14 @@ import { IndexComponent as UsersIndexComponent } from "./Components/Users/Index.
 
 import { IndexComponent } from "./Components/Index.js";
 
+import { IndexComponent as AuthenticationIndexComponent } from "./Components/Authentication/Index.js";
+
 import { FinancesService } from "./Services/FinancesService.js";
 import { LocationService } from "../Shared/Services/LocationService.js";
 import { GlobalLoadingIndicatorService } from "../Shared/Services/GlobalLoadingIndicatorService.js";
 import { NavigationService } from "../Shared/Services/NavigationService.js";
 import { SharedModule } from "../Shared/shared.module.js";
+import { FinancesAuthenticationService } from "./Services/FinancesAuthenticationService.js";
 
 const financesRoutes: Routes = [{
     path: "",
@@ -69,6 +72,12 @@ const financesRoutes: Routes = [{
             component: UsersIndexComponent,
             children: [
             ]
+        },
+        {
+            path: "Authentication",
+            component: AuthenticationIndexComponent,
+            children: [
+            ]
         }
     ]
 }];
@@ -92,13 +101,15 @@ const financesRoutes: Routes = [{
         PersonsIndexComponent,
         PersonsAddComponent,
         UserGroupsIndexComponent,
-        UsersIndexComponent
+        UsersIndexComponent,
+        AuthenticationIndexComponent
     ],
     bootstrap: [
         IndexComponent
     ],
     providers: [
         FinancesService,
+        FinancesAuthenticationService,
         LocationService,
         GlobalLoadingIndicatorService,
         NavigationService

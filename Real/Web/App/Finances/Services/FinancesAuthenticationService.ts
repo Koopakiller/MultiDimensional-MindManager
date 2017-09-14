@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Http, RequestOptions, Headers } from "@angular/http";
-import { Observable, Observer } from "rxjs";
 
 import { DataContainer } from "../../Shared/DataContainer.js";
+import { Observable } from "rxjs/Observable";
+import { Observer } from "rxjs/Observer";
 
 
 @Injectable()
@@ -13,11 +14,12 @@ export class FinancesAuthenticationService {
     ) { }
 
     public getToken(userName: string, password: string): Observable<string>{
-        let url = `/api/FinancesAuthentication/GetToken`;
-        let data = {
+        let url = `/api/Finances/GetToken`;
+        let obj = {
             userName: userName,
             password: password,
         }
+        let data = new DataContainer<any>(obj);
         var postData = JSON.stringify(data);
         console.log(postData);
         let headers = new Headers({ "Content-Type": "application/json" });

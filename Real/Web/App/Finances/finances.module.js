@@ -20,11 +20,13 @@ var Add_js_2 = require("./Components/Persons/Add.js");
 var Index_js_4 = require("./Components/UserGroups/Index.js");
 var Index_js_5 = require("./Components/Users/Index.js");
 var Index_js_6 = require("./Components/Index.js");
+var Index_js_7 = require("./Components/Authentication/Index.js");
 var FinancesService_js_1 = require("./Services/FinancesService.js");
 var LocationService_js_1 = require("../Shared/Services/LocationService.js");
 var GlobalLoadingIndicatorService_js_1 = require("../Shared/Services/GlobalLoadingIndicatorService.js");
 var NavigationService_js_1 = require("../Shared/Services/NavigationService.js");
 var shared_module_js_1 = require("../Shared/shared.module.js");
+var FinancesAuthenticationService_js_1 = require("./Services/FinancesAuthenticationService.js");
 var financesRoutes = [{
         path: "",
         component: Index_js_6.IndexComponent,
@@ -66,6 +68,11 @@ var financesRoutes = [{
                 path: "Users",
                 component: Index_js_5.IndexComponent,
                 children: []
+            },
+            {
+                path: "Authentication",
+                component: Index_js_7.IndexComponent,
+                children: []
             }
         ]
     }];
@@ -92,13 +99,15 @@ FinancesModule = __decorate([
             Index_js_3.IndexComponent,
             Add_js_2.AddComponent,
             Index_js_4.IndexComponent,
-            Index_js_5.IndexComponent
+            Index_js_5.IndexComponent,
+            Index_js_7.IndexComponent
         ],
         bootstrap: [
             Index_js_6.IndexComponent
         ],
         providers: [
             FinancesService_js_1.FinancesService,
+            FinancesAuthenticationService_js_1.FinancesAuthenticationService,
             LocationService_js_1.LocationService,
             GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService,
             NavigationService_js_1.NavigationService

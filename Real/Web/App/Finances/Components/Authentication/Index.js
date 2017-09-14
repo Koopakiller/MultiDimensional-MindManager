@@ -24,6 +24,7 @@ var IndexComponent = (function () {
     IndexComponent.prototype.submit = function () {
         this._financesAuthenticationService.getToken(this.userName, this.password).subscribe(function (token) {
             //this._financesService.assignToken(token);
+            console.log(token);
             alert(token);
         }, function (error) {
             alert(error);

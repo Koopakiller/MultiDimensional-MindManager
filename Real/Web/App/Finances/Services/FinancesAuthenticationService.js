@@ -11,23 +11,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var rxjs_1 = require("rxjs");
+var DataContainer_js_1 = require("../../Shared/DataContainer.js");
+var Observable_1 = require("rxjs/Observable");
 var FinancesAuthenticationService = (function () {
     function FinancesAuthenticationService(http) {
         this.http = http;
     }
     FinancesAuthenticationService.prototype.getToken = function (userName, password) {
         var _this = this;
-        var url = "/api/FinancesAuthentication/GetToken";
-        var data = {
+        var url = "/api/Finances/GetToken";
+        var obj = {
             userName: userName,
             password: password,
         };
+        var data = new DataContainer_js_1.DataContainer(obj);
         var postData = JSON.stringify(data);
         console.log(postData);
         var headers = new http_1.Headers({ "Content-Type": "application/json" });
         var options = new http_1.RequestOptions({ headers: headers });
-        return rxjs_1.Observable.create(function (observer) {
+        return Observable_1.Observable.create(function (observer) {
             _this.http.post(url, postData, options).subscribe(function (response) {
                 var token = response.json().data;
                 observer.next(token);

@@ -14,6 +14,7 @@
     using Microsoft.IdentityModel.Tokens;
     using System.Text;
     using Microsoft.Extensions.Options;
+    using Koopakiller.Apps.Finances.Authentication;
 
     public class Startup
     {
@@ -38,6 +39,17 @@
 
             services.AddDbContext<FinancesDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("FinancesDbContext")));
+
+            services.AddTransient<IClaimsIdentityService>((x) => new ClaimsIdentityService());
+
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
+            var options2 = new Finances.Authentication.FinancesAuthenticationService.ServiceOptions
+            {
+                Audience = "ExampleAudience",
+                Issuer = "ExampleIssuer",
+                SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
+            };
+            services.AddTransient<ITokenGenerator>((x) => new Finances.Authentication.FinancesAuthenticationService(options2));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -106,23 +118,15 @@
                 TokenValidationParameters = tokenValidationParameters
             });
 
-            var options = new Finances.Authentication .TokenProviderOptions
-            {
-                Audience = "ExampleAudience",
-                Issuer = "ExampleIssuer",
-                SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
-            };
- 
-            app.UseMiddleware<Finances.Authentication .TokenProviderMiddleware>(Options.Create(options));
         }
 
 
 
-           // The secret key every token will be signed with.
+        // The secret key every token will be signed with.
         // In production, you should store this securely in environment variables
         // or a key management tool. Don't hardcode this into your application!
         private static readonly string secretKey = "mysupersecret_secretkey!123";
- 
+
     }
 
     static class Extensions

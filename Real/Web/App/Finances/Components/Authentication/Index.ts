@@ -22,6 +22,7 @@ export class IndexComponent {
         this._financesAuthenticationService.getToken(this.userName, this.password).subscribe(
             token => {
                 //this._financesService.assignToken(token);
+                console.log(token);
                 alert(token)
             },
             error => {
