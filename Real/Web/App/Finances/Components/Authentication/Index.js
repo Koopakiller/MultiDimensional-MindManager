@@ -25,7 +25,6 @@ var IndexComponent = (function () {
         var _this = this;
         this._financesAuthenticationService.getToken(this.userName, this.password).subscribe(function (token) {
             _this._financesService.assignToken(token);
-            console.log(token);
             alert(token);
         }, function (error) {
             alert(error);
