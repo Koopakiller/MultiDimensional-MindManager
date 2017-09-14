@@ -10,6 +10,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
     using System.Diagnostics;
     using Koopakiller;
     using Koopakiller.Apps.Finances.Authentication;
+    using Microsoft.AspNetCore.Authorization;
 
     [Area("Api")]
     public class FinancesController : Controller
@@ -25,8 +26,8 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             this._claimsIdentityService = claimsIdentityService;
         }
 
-        // /api/Finances/GetToken is handled in TokenProvider
 
+        [Authorize]
         public IActionResult GetUsers()
         {
             try
@@ -41,6 +42,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [Authorize]
         public IActionResult GetUserGroups(int? userId)
         {
             try
@@ -55,6 +57,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [Authorize]
         public IActionResult GetPersons()
         {
             try
@@ -69,6 +72,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [Authorize]
         public IActionResult GetCurrencyAccountsForUser(int userId)
         {
             try
@@ -91,7 +95,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public IActionResult AddTransactions([FromBody]DataContainer<FinanceTransaction[]> data)
         {
             try
@@ -106,6 +110,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [Authorize]
         public IActionResult GetTransactions(int currencyAccountId, int skipCount, int takeCount)
         {
             try
@@ -120,6 +125,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [Authorize]
         public IActionResult GetTransactionOverviewForUserAtTimeStamp(int userId, DateTime timeStamp)
         {
             try
@@ -134,6 +140,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [Authorize]
         public IActionResult AddPerson([FromBody] DataContainer<FinancePerson> data)
         {
             try
@@ -148,6 +155,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [Authorize]
         public IActionResult GetUsersFromUserGroup(int userGroupId)
         {
             try
