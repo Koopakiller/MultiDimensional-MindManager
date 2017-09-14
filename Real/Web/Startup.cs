@@ -88,44 +88,32 @@
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Finances:Token:SecretKey"]));
-
-            var tokenValidationParameters = new TokenValidationParameters
-            {
-                // The signing key must match!
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = signingKey,
-
-                // Validate the JWT Issuer (iss) claim
-                ValidateIssuer = true,
-                ValidIssuer = Configuration["Finances:Token:Issuer"],
-
-                // Validate the JWT Audience (aud) claim
-                ValidateAudience = true,
-                ValidAudience = Configuration["Finances:Token:Audience"],
-
-                // Validate the token expiry
-                ValidateLifetime = true,
-
-                // If you want to allow a certain amount of clock drift, set that here:
-                ClockSkew = TimeSpan.Zero
-            };
-
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true,
-                TokenValidationParameters = tokenValidationParameters
+                TokenValidationParameters = new TokenValidationParameters
+                {
+                    // The signing key must match!
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Finances:Token:SecretKey"])),
+
+                    // Validate the JWT Issuer (iss) claim
+                    ValidateIssuer = true,
+                    ValidIssuer = Configuration["Finances:Token:Issuer"],
+
+                    // Validate the JWT Audience (aud) claim
+                    ValidateAudience = true,
+                    ValidAudience = Configuration["Finances:Token:Audience"],
+
+                    // Validate the token expiry
+                    ValidateLifetime = true,
+
+                    // If you want to allow a certain amount of clock drift, set that here:
+                    ClockSkew = TimeSpan.Zero
+                },                
             });
         }
-
-
-
-        // The secret key every token will be signed with.
-        // In production, you should store this securely in environment variables
-        // or a key management tool. Don't hardcode this into your application!
-        private static readonly string secretKey = "mysupersecret_secretkey!123";
-
     }
 
     static class Extensions
