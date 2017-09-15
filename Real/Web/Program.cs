@@ -17,6 +17,8 @@
                 .UseConfiguration(config)
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseSetting("detailedErrors", "true")
+                .CaptureStartupErrors(true)
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
