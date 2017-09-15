@@ -11,6 +11,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
     using Koopakiller;
     using Koopakiller.Apps.Finances.Authentication;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
 
     [Area("Api")]
     public class FinancesController : Controller
@@ -27,7 +28,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetUsers()
         {
             try
@@ -42,7 +43,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetUserGroups(int? userId)
         {
             try
@@ -57,7 +58,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetPersons()
         {
             try
@@ -72,7 +73,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetCurrencyAccountsForUser(int userId)
         {
             try
@@ -95,7 +96,8 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [HttpPost, Authorize]
+        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost]
         public IActionResult AddTransactions([FromBody]DataContainer<FinanceTransaction[]> data)
         {
             try
@@ -110,7 +112,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetTransactions(int currencyAccountId, int skipCount, int takeCount)
         {
             try
@@ -125,7 +127,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetTransactionOverviewForUserAtTimeStamp(int userId, DateTime timeStamp)
         {
             try
@@ -140,7 +142,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult AddPerson([FromBody] DataContainer<FinancePerson> data)
         {
             try
@@ -155,7 +157,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetUsersFromUserGroup(int userGroupId)
         {
             try
@@ -170,19 +172,25 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [AllowAnonymous]
         public IActionResult GetToken([FromBody]DataContainer<ApplicationUser> data)
         {
-
-            var identity = this._claimsIdentityService.GetIdentity(data.Data.UserName, data.Data.Password);
-            if (identity == null)
+            try
             {
-                return this.BadRequest();
+                var identity = this._claimsIdentityService.GetIdentity(data.Data.UserName, data.Data.Password);
+                if (identity == null)
+                {
+                    return this.BadRequest();
+                }
+
+                var token = this._authService.GenerateToken(data.Data.UserName);
+                return this.Json(DataContainer.Create(token));
             }
-
-            var token = this._authService.GenerateToken(data.Data.UserName);
-            return this.Json(DataContainer.Create(token));
+            catch (Exception ex)
+            {
+                DebugHelper.WriteException(ex);
+                return this.StatusCode(500);
+            }
         }
-
-
     }
 }

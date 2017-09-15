@@ -33,17 +33,19 @@ export class FinancesService {
     }
 
     private getWithOptions(url: string): Observable<Response> {
-        let headers = new Headers({
-             "Authorization": "Bearer " + this._token
-        });
+        let headers = new Headers();
+        headers.append("Authorization", "Bearer " + this._token);
+        headers.append("X-Authorization", "Bearer " + this._token);
+        
         let options = new RequestOptions({ headers: headers });
         return this.http.get(url, options);
     }
 
     private postWithOptions(url: string, postData: any): Observable<Response> {
         let headers = new Headers({
-             "Content-Type": "application/json",
-             "Authorization": "Bearer " + this._token
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + this._token,
+            "X-Authorization": "Bearer " + this._token
         });
         let options = new RequestOptions({ headers: headers });
         return this.http.post(url, postData, options);

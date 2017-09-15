@@ -34,16 +34,17 @@ var FinancesService = (function () {
         });
     };
     FinancesService.prototype.getWithOptions = function (url) {
-        var headers = new http_1.Headers({
-            "Authorization": "Bearer " + this._token
-        });
+        var headers = new http_1.Headers();
+        headers.append("Authorization", "Bearer " + this._token);
+        headers.append("X-Authorization", "Bearer " + this._token);
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.get(url, options);
     };
     FinancesService.prototype.postWithOptions = function (url, postData) {
         var headers = new http_1.Headers({
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + this._token
+            "Authorization": "Bearer " + this._token,
+            "X-Authorization": "Bearer " + this._token
         });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.post(url, postData, options);

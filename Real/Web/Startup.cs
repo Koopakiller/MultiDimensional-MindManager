@@ -15,6 +15,7 @@
     using System.Text;
     using Microsoft.Extensions.Options;
     using Koopakiller.Apps.Finances.Authentication;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
 
     public class Startup
     {
@@ -74,6 +75,33 @@
             app.UseStaticFilesFromFolder("Images");
             app.UseStaticFilesFromFolder("");
 
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                AuthenticationScheme = JwtBearerDefaults.AuthenticationScheme,
+                TokenValidationParameters = new TokenValidationParameters
+                {
+                    // The signing key must match!
+                    ValidateIssuerSigningKey = false,// true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Finances:Token:SecretKey"])),
+
+                    // Validate the JWT Issuer (iss) claim
+                    ValidateIssuer = false,//  true,
+                    ValidIssuer = Configuration["Finances:Token:Issuer"],
+
+                    // Validate the JWT Audience (aud) claim
+                    ValidateAudience = false,// true,
+                    ValidAudience = Configuration["Finances:Token:Audience"],
+
+                    // Validate the token expiry
+                    ValidateLifetime = false,// true,
+
+                    // If you want to allow a certain amount of clock drift, set that here:
+                    ClockSkew = TimeSpan.Zero
+                },
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -86,32 +114,6 @@
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-            });
-
-            app.UseJwtBearerAuthentication(new JwtBearerOptions
-            {
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                TokenValidationParameters = new TokenValidationParameters
-                {
-                    // The signing key must match!
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Finances:Token:SecretKey"])),
-
-                    // Validate the JWT Issuer (iss) claim
-                    ValidateIssuer = true,
-                    ValidIssuer = Configuration["Finances:Token:Issuer"],
-
-                    // Validate the JWT Audience (aud) claim
-                    ValidateAudience = true,
-                    ValidAudience = Configuration["Finances:Token:Audience"],
-
-                    // Validate the token expiry
-                    ValidateLifetime = true,
-
-                    // If you want to allow a certain amount of clock drift, set that here:
-                    ClockSkew = TimeSpan.Zero
-                },                
             });
         }
     }
