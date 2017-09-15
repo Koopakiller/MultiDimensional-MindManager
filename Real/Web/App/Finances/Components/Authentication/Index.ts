@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService.js";
 import { FinancesAuthenticationService } from "../../Services/FinancesAuthenticationService.js";
 import { FinancesService } from "../../Services/FinancesService.js";
@@ -12,6 +12,7 @@ export class IndexComponent {
         private _financesAuthenticationService: FinancesAuthenticationService,
         private _financesService: FinancesService,
         private _router: Router,
+        private _activatedRoute: ActivatedRoute,
         private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
     ) { }
 
@@ -22,6 +23,7 @@ export class IndexComponent {
         this._financesAuthenticationService.getToken(this.userName, this.password).subscribe(
             token => {
                 this._financesService.assignToken(token);
+                this._router.navigate(["../"], { relativeTo: this._activatedRoute });
             },
             error => {
                 alert(error);
