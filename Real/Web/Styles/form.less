@@ -6,9 +6,6 @@ form{
   &:last-of-type{
     margin-bottom: 0;
   }
-  .form-header{
-      .font-header;
-  }
 
   .form-group{
     display: table-row;
@@ -79,7 +76,7 @@ input, select, button{
     border: 1px solid @color-accent-dark;
   }
 }
-input:not([type=button]):not([type=submit]), select{
+input:not([type=button]):not([type=submit]):not([type=checkbox]), select{
   width:100%;
   padding: @padding-tiny @padding-small;
   border: 2px solid @color-light-1;
@@ -100,6 +97,11 @@ button, input[type=button], input[type=submit]{
   vertical-align: middle;
   &:hover{
     background-color: @color-light-1;
+  }
+}
+input[type=checkbox]{
+  &:active, &:focus{
+    border-color: @color-accent-light;
   }
 }
 .button-bar{

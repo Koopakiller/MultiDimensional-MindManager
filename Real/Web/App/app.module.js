@@ -10,25 +10,22 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
-var app_js_1 = require("./Components/app.js");
-var finances_js_1 = require("./Components/finances.js");
-var finances_new_transaction_js_1 = require("./Components/finances-new-transaction.js");
-var FinancesService_js_1 = require("./Services/FinancesService.js");
-var LocationService_js_1 = require("./Services/LocationService.js");
+var app_js_1 = require("./Scaffold/Components/app.js");
 var router_1 = require("@angular/router");
-var style_test_js_1 = require("./Components/style-test.js");
-var home_js_1 = require("./Components/home.js");
-var MediaApplet_js_1 = require("./Components/MediaApplet.js");
-var finances_import_js_1 = require("./Components/finances-import.js");
-var finances_new_person_js_1 = require("./Components/finances-new-person.js");
+var loading_indicator_js_1 = require("./Scaffold/Components/loading-indicator.js");
+var GlobalLoadingIndicatorService_js_1 = require("./Shared/Services/GlobalLoadingIndicatorService.js");
+var error_js_1 = require("./Scaffold/Components/error.js");
+var NavigationService_js_1 = require("./Shared/Services/NavigationService.js");
+var Dashboard_js_1 = require("./Scaffold/Components/Dashboard.js");
+var shared_module_js_1 = require("./Shared/shared.module.js");
 var appRoutes = [
-    { path: 'Home', component: home_js_1.HomeComponent },
-    { path: 'Finances', component: finances_js_1.FinancesComponent },
-    { path: 'Finances/AddTransaction', component: finances_new_transaction_js_1.FinancesNewTransactionComponent },
-    { path: 'Finances/Import', component: finances_import_js_1.FinancesImportComponent },
-    { path: 'StyleTest', component: style_test_js_1.StyleTestComponent },
-    { path: 'Media', component: MediaApplet_js_1.MediaAppletComponent },
-    { path: '', redirectTo: '/Home', pathMatch: 'full' },
+    { path: "Finances", loadChildren: "/App/Finances/finances.module.js#FinancesModule" },
+    { path: "Test", loadChildren: "/App/Test/test.module.js#TestModule" },
+    { path: "Media", loadChildren: "/App/Media/media.module.js#MediaModule" },
+    { path: "Dashboard", component: Dashboard_js_1.DashboardComponent },
+    { path: "Error/:errorId", component: error_js_1.ErrorComponent },
+    { path: "", pathMatch: "full", redirectTo: "Dashboard" },
+    { path: "**", redirectTo: "/Error/http404" }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -38,30 +35,25 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [
-            router_1.RouterModule.forRoot(appRoutes
-            //,{ enableTracing: true } // <-- debugging purposes only
-            ),
+            router_1.RouterModule.forRoot(appRoutes),
             http_1.HttpModule,
             platform_browser_1.BrowserModule,
-            forms_1.FormsModule
+            forms_1.FormsModule,
+            shared_module_js_1.SharedModule
         ],
         declarations: [
             app_js_1.AppComponent,
-            finances_new_transaction_js_1.FinancesNewTransactionComponent,
-            finances_import_js_1.FinancesImportComponent,
-            finances_new_person_js_1.FinancesNewPersonComponent,
-            finances_js_1.FinancesComponent,
-            home_js_1.HomeComponent,
-            MediaApplet_js_1.MediaAppletComponent,
-            style_test_js_1.StyleTestComponent
+            error_js_1.ErrorComponent,
+            loading_indicator_js_1.LoadingIndicatorComponent,
+            Dashboard_js_1.DashboardComponent
         ],
         bootstrap: [
             app_js_1.AppComponent
         ],
         providers: [
-            FinancesService_js_1.FinancesService,
-            LocationService_js_1.LocationService
-        ]
+            GlobalLoadingIndicatorService_js_1.GlobalLoadingIndicatorService,
+            NavigationService_js_1.NavigationService
+        ],
     })
 ], AppModule);
 exports.AppModule = AppModule;

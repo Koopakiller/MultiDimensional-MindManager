@@ -1,0 +1,58 @@
+<section class='section'>
+
+    <span class='section-header'>Finances Overview</span>
+
+    <div class='section-content'>
+        <div class='form-group'>
+            <label for='user'>User:</label>
+            <div class='control-container'>  
+                <select [(ngModel)]='user' name='user'>
+                    <option *ngFor='let user of users' [ngValue]='user.id'>{{user.header}}</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Account Name (Currency)</th>
+                    <th>Value</th>
+                    <th class='action-column'>Actions</th>
+                </tr>
+                <tr *ngFor='let row of transactionOverview'>
+                    <td>{{row.currencyAccountName}}</td>
+                    <td>{{row.value}}</td>
+                    <td class='action-column'><a (click)='showTable(row.currencyAccountId)'>Show Table</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+</section>
+
+<div class='popup' *ngIf='transactionsInTable'>
+    <div class='popup-container'>
+        <div class='popup-content text'>
+            <span class='header'>Table</span>
+            
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Time Stamp</th>
+                    <th>Note</th>
+                    <th>Value</th>
+                    <th>Person Id</th>
+                </tr>
+                <tr *ngFor='let transaction of transactionsInTable'>
+                    <td>{{transaction.id}}</td>
+                    <td>{{transaction.timeStampDate}} <span *ngIf='transaction.timeStampTime'>({{transaction.timeStampTime}})</span></td>
+                    <td>{{transaction.note}}</td>
+                    <td>{{transaction.value}}</td>
+                    <td>{{transaction.personId}}</td>
+                </tr>
+            </table>
+            <div class='button-bar'>
+                <input type='submit' value='Close' (click)='hideTable()' />
+            </div>
+        </div>
+    </div>
+</div>

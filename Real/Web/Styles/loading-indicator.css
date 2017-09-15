@@ -1,0 +1,37 @@
+.font-text {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 400;
+}
+.font-bold {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 400;
+  font-weight: 700;
+}
+.font-input {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12pt;
+  font-weight: 400;
+}
+.loading-indicator {
+  position: relative;
+  opacity: 0.8;
+  display: block;
+}
+.loading-indicator .loading-indicator-background {
+  left: 0;
+  top: 0;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.loading-indicator .loading-indicator-animation {
+  left: 50%;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 128px;
+  max-height: 128px;
+}

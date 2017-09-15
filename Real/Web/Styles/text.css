@@ -1,21 +1,21 @@
 .font-text {
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 400;
 }
 .font-bold {
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 400;
   font-weight: 700;
 }
 .font-input {
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 400;
 }
 .text section {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .text h1,
 .text h2,
@@ -28,7 +28,7 @@
   font-size: 18pt;
   font-weight: 300;
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .text h1 code,
 .text h2 code,
@@ -140,20 +140,20 @@
 }
 .text p {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .text p.justify {
   text-align: justify;
   text-justify: inter-word;
 }
 .text p:last-of-type {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 .text p:last-child {
   margin-bottom: 0;
 }
 .text a {
-  color: #209030;
+  color: #064375;
   text-decoration: none;
 }
 .text a:hover {
@@ -171,7 +171,7 @@
 .text strong {
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 400;
   font-weight: 700;
 }
 .text i,
@@ -199,19 +199,19 @@
 .text table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .text table:last-of-type {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 .text table:last-child {
   margin-bottom: 0;
 }
 .text table tr th,
 .text table tr td {
-  border-bottom: 1px solid #101010;
-  border-right: 1px dotted #101010;
-  padding: 2.5px 5px;
+  border-bottom: 1px solid #202020;
+  border-right: 1px dotted #202020;
+  padding: 2px 4px;
 }
 .text table tr th:last-child,
 .text table tr td:last-child {
@@ -220,7 +220,7 @@
 .text table tr th {
   font-family: 'Quicksand', sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 400;
   font-weight: 700;
   text-align: left;
   vertical-align: bottom;
@@ -229,11 +229,11 @@
   vertical-align: top;
 }
 .text table tr.details-row > td {
-  padding: 10px;
+  padding: 8px;
 }
 .text table tr:last-child > td {
   border-bottom: none;
 }
 .text table tr:last-child.details-row {
-  border-bottom: 1px solid #101010;
+  border-bottom: 1px solid #202020;
 }

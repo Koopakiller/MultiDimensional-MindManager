@@ -1,0 +1,118 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var FinancesServerModels_js_1 = require("../ServerModels/FinancesServerModels.js");
+var UserViewModel = (function () {
+    function UserViewModel(_id, _header) {
+        this._id = _id;
+        this._header = _header;
+    }
+    Object.defineProperty(UserViewModel.prototype, "id", {
+        get: function () {
+            return this._id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UserViewModel.prototype, "header", {
+        get: function () {
+            return this._header;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return UserViewModel;
+}());
+exports.UserViewModel = UserViewModel;
+var UserGroupViewModel = (function () {
+    function UserGroupViewModel(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+    return UserGroupViewModel;
+}());
+exports.UserGroupViewModel = UserGroupViewModel;
+var PersonViewModel = (function () {
+    function PersonViewModel(_id, _header) {
+        this._id = _id;
+        this._header = _header;
+    }
+    Object.defineProperty(PersonViewModel.prototype, "id", {
+        get: function () {
+            return this._id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(PersonViewModel.prototype, "header", {
+        get: function () {
+            return this._header;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return PersonViewModel;
+}());
+exports.PersonViewModel = PersonViewModel;
+var CurrencyAccountViewModel = (function () {
+    function CurrencyAccountViewModel(_id, _header) {
+        this._id = _id;
+        this._header = _header;
+    }
+    Object.defineProperty(CurrencyAccountViewModel.prototype, "id", {
+        get: function () {
+            return this._id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CurrencyAccountViewModel.prototype, "header", {
+        get: function () {
+            return this._header;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return CurrencyAccountViewModel;
+}());
+exports.CurrencyAccountViewModel = CurrencyAccountViewModel;
+var TransactionViewModel = (function () {
+    function TransactionViewModel() {
+        this.includeTimeStampTime = false;
+        this.rawData = [];
+    }
+    TransactionViewModel.prototype.toServerModel = function () {
+        var tvm = new FinancesServerModels_js_1.TransactionServerModel();
+        tvm.currencyAccountId = this.currencyAccountId;
+        tvm.id = this.id;
+        tvm.note = this.note;
+        tvm.personId = this.personId;
+        tvm.rawData = this.rawData;
+        tvm.timeStampDate = this.timeStampDate;
+        if (this.includeTimeStampTime) {
+            tvm.timeStampTime = this.timeStampTime.getHours() + ":" + this.timeStampTime.getMinutes() + ":" + this.timeStampTime.getSeconds() + "." + this.timeStampTime.getMilliseconds();
+        }
+        else {
+            tvm.timeStampTime = null;
+        }
+        tvm.includeTimeStampTime = this.includeTimeStampTime;
+        tvm.userId = this.userId;
+        tvm.value = this.value;
+        return tvm;
+    };
+    return TransactionViewModel;
+}());
+exports.TransactionViewModel = TransactionViewModel;
+var TransactionOverviewViewModel = (function () {
+    function TransactionOverviewViewModel() {
+    }
+    TransactionOverviewViewModel.prototype.toViewModel = function () {
+        var tosm = new FinancesServerModels_js_1.TransactionOverviewServerModel();
+        tosm.accountName = this.accountName;
+        tosm.currencyId = this.currencyId;
+        tosm.currencyAccountId = this.currencyAccountId;
+        tosm.value = this.value;
+        return tosm;
+    };
+    return TransactionOverviewViewModel;
+}());
+exports.TransactionOverviewViewModel = TransactionOverviewViewModel;

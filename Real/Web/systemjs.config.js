@@ -26,15 +26,18 @@
       '@angular/upgrade/static': '/node_modules/@angular/upgrade/bundles/upgrade-static.umd.js',
 
       // other libraries
-      'rxjs':                      '/node_modules/rxjs',
+      'rxjs': '/node_modules/rxjs',
       'angular-in-memory-web-api': '/node_modules/angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-      'lodash':                    '/node_modules/lodash/lodash.js',
-      'papaparse':                 '/node_modules/papaparse/papaparse.js'
+      'lodash': '/node_modules/lodash/lodash.js',
+      'papaparse': '/node_modules/papaparse/papaparse.js',
+      'moment': '/node_modules/moment/moment.js',
+      'moment-timezone': '/node_modules/moment-timezone/moment-timezone.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
-      app: {
+      App: {
         main: './main.js',
+        format: "register",
         defaultExtension: 'js',
         meta: {
           './*.js': {
@@ -43,6 +46,12 @@
         }
       },
       rxjs: {
+        defaultExtension: 'js'
+      },
+      'moment': {
+        defaultExtension: 'js'
+      },
+      'moment-timezone': {
         defaultExtension: 'js'
       }
     }
