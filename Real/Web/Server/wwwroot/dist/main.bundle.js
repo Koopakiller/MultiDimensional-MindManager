@@ -4,6 +4,14 @@ webpackJsonp(["main"],{
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./Finances/finances.module": [
+		"../../../../../src/App/Finances/finances.module.ts",
+		"finances.module"
+	],
+	"./Media/media.module": [
+		"../../../../../src/App/Media/media.module.ts",
+		"media.module"
+	],
 	"./Test/test.module": [
 		"../../../../../src/App/Test/test.module.ts",
 		"test.module"
@@ -196,7 +204,7 @@ var _a;
 /***/ "../../../../../src/App/Scaffold/Components/LoadingIndicator.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class='loading-indicator'><div class='loading-indicator-background'></div><img class='loading-indicator-animation' src='/Images/loading.gif' alt='Loading...'/></div>"
+module.exports = "<div class='loading-indicator'><div class='loading-indicator-background'></div><img class='loading-indicator-animation' src='/Assets/loading.gif' alt='Loading...'/></div>"
 
 /***/ }),
 
@@ -407,9 +415,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var appRoutes = [
-    // { path: "Finances", loadChildren: "./Finances/finances.module#FinancesModule" },
+    { path: "Finances", loadChildren: "./Finances/finances.module#FinancesModule" },
     { path: "Test", loadChildren: "./Test/test.module#TestModule" },
-    // { path: "Media", loadChildren: "./Media/media.module#MediaModule" },
+    { path: "Media", loadChildren: "./Media/media.module#MediaModule" },
     { path: "Dashboard", component: __WEBPACK_IMPORTED_MODULE_10__Scaffold_Components_Dashboard__["a" /* DashboardComponent */] },
     { path: "Error/:errorId", component: __WEBPACK_IMPORTED_MODULE_8__Scaffold_Components_Error__["a" /* ErrorComponent */] },
     { path: "", pathMatch: "full", redirectTo: "Dashboard" },
@@ -424,7 +432,7 @@ AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgModule */])({
         imports: [
             __WEBPACK_IMPORTED_MODULE_5__angular_router__["g" /* RouterModule */].forRoot(appRoutes),
-            __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_11__Shared_shared_module__["a" /* SharedModule */]

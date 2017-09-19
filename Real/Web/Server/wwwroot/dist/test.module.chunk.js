@@ -202,7 +202,7 @@ TestModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgModule */])({
         imports: [
             __WEBPACK_IMPORTED_MODULE_4__angular_router__["g" /* RouterModule */].forChild(financesRoutes),
-            __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_common__["b" /* CommonModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_9__Shared_shared_module__["a" /* SharedModule */]
