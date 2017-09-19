@@ -7,12 +7,12 @@ My Digital Life
 
 ## Web Server
 
-### Ports
+### Addresses/Ports
 
-| Adress          | Usage |
+| Address          | Usage |
 |-----------------|-------|
-| `localhost4200` | Angular 4 Client application /Control |
-| `localhost5000` | MVC Core web application |
+| `localhost:4200` | Angular 4 Client application /Control |
+| `localhost:5000` | MVC Core web application |
 
 ## Code Style
 
