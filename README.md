@@ -5,6 +5,14 @@ My Digital Life
 
 # Development
 
+## Web Server
+
+### Ports
+
+| Adress          | Usage |
+|-----------------|-------|
+| `localhost4200` | Angular 4 Client application /Control |
+| `localhost5000` | MVC Core web application |
 
 ## Code Style
 
@@ -20,3 +28,4 @@ My Digital Life
 ### TypeScript
 
 - Use " for strings
+- Use `const` in preference to `let` in preference to `var` 
