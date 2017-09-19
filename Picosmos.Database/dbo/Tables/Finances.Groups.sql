@@ -1,5 +1,0 @@
-﻿CREATE TABLE [dbo].[Finances.Groups]
-(
-	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Note] NVARCHAR(MAX) NULL
-)
