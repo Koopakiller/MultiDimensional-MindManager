@@ -1,13 +1,13 @@
 ﻿CREATE PROCEDURE [dbo].[GetTransactionOverviewForUserAtTimeStamp]
-	@userId INT,
-	@timeStampDate DATE
+    @userId INT,
+    @timeStampDate DATE
 AS
 BEGIN
-	SELECT a.Name AS [AccountName]
-		 , ca.Id AS [CurrencyAccountId]
-		 , ca.CurrencyId AS [CurrencyId]
-		 , [dbo].[GetValueForDate](@timeStampDate, ca.Id) AS [Value]
-	FROM CurrencyAccounts ca
-	INNER JOIN Accounts a ON a.Id = ca.AccountId
-	WHERE a.UserId = @userId
+    SELECT a.Name AS [AccountName]
+         , ca.Id AS [CurrencyAccountId]
+         , ca.CurrencyId AS [CurrencyId]
+         , [dbo].[GetValueForDate](@timeStampDate, ca.Id) AS [Value]
+    FROM CurrencyAccounts ca
+    INNER JOIN Accounts a ON a.Id = ca.AccountId
+    WHERE a.UserId = @userId
 END
