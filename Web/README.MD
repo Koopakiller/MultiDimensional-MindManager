@@ -36,3 +36,12 @@ My Digital Life
 ### TypeScript
 
 - Use " for strings
+
+
+## Addresses/Ports
+
+| Address          | Usage |
+|-----------------|-------|
+| `localhost:4200` | Angular 4 Client application /Control |
+| `localhost:5000` | MVC Core web application |
+
