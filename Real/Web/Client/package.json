@@ -4,8 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --env=dev --progress",
+    "build": "ng build --env=dev --progress",
+    "build:prod": "ng build --env=prod --progress --output-path \"../Server/wwwroot/dist\"",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
