@@ -5,10 +5,21 @@ import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
 import { QRCodeService } from "./Services/QRCodeService";
 import { AppComponent } from "./Components/App";
-import { IndexComponent } from "./Components/Index";
+import { IndexComponent as InputIndexComponent } from "./Components/InputComponents/Index";
+import { UrlComponent as InputUrlComponent } from "./Components/InputComponents/Url";
 
 const appRoutes: Routes = [
-  { path: "", component: IndexComponent },
+  //Input Components:
+  //{ path: "", outlet: "input", component: InputIndexComponent, pathMatch: "full" },
+  { path: "Index", outlet: "input", component: InputIndexComponent },
+  { path: "Url", outlet: "input", component: InputUrlComponent },
+
+  {
+    path: "",
+    //component: InputIndexComponent,
+    redirectTo: "/(input:Index)",
+    pathMatch: "full"
+  },
 ];
 
 @NgModule({
@@ -22,7 +33,8 @@ const appRoutes: Routes = [
   ],
   declarations: [
     AppComponent,
-    IndexComponent
+    InputIndexComponent,
+    InputUrlComponent
   ],
   bootstrap: [
     AppComponent
@@ -31,5 +43,5 @@ const appRoutes: Routes = [
     QRCodeService
   ],
 })
-export class AppModule { 
+export class AppModule {
 }
