@@ -9,31 +9,14 @@
     <meta charset='utf-8' />
     <title>Picosmos.Real</title>
 
-    <!-- Polyfill(s) for older browsers -->
-    <script src='/node_modules/core-js/client/shim.min.js'></script>
-
-    <!--<script src='/node_modules/lodash/lodash.js'></script>-->
-    <script src='/node_modules/zone.js/dist/zone.js'></script>
-    <script src='/node_modules/systemjs/dist/system.src.js'></script>
-    <script src='/systemjs.config.js'></script>
-
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&amp;subset=latin-ext'>
 
     <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
-
-    <link rel='stylesheet' href='/Styles/main.css'>
-    <link rel='stylesheet' href='/Styles/form.css'>
-    <link rel='stylesheet' href='/Styles/text.css'>
-    <link rel='stylesheet' href='/Styles/loading-indicator.css'>
-
-    <script>
-        System.import('/App/main.js').catch(function(err){ console.error(err); });
-    </script>
 </head>
 <body>    
     <app style='height:1px;'>
         <!-- Equal to loading-indicator-component -->
-        <div class='loading-indicator'><div class='loading-indicator-background'></div><img class='loading-indicator-animation' src='/Images/loading.gif' alt='Loading...'/></div>
+        <div class='loading-indicator'><div class='loading-indicator-background'></div><img class='loading-indicator-animation' src='/Client/Assets/loading.gif' alt='Loading...'/></div>
     </app>
-</body>
+<script type="text/javascript" src="/Client/inline.bundle.js"></script><script type="text/javascript" src="/Client/polyfills.bundle.js"></script><script type="text/javascript" src="/Client/styles.bundle.js"></script><script type="text/javascript" src="/Client/vendor.bundle.js"></script><script type="text/javascript" src="/Client/main.bundle.js"></script></body>
 </html>

@@ -204,7 +204,7 @@ var _a;
 /***/ "../../../../../src/App/Scaffold/Components/LoadingIndicator.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class='loading-indicator'><div class='loading-indicator-background'></div><img class='loading-indicator-animation' src='/Assets/loading.gif' alt='Loading...'/></div>"
+module.exports = "<div class='loading-indicator'><div class='loading-indicator-background'></div><img class='loading-indicator-animation' src='/Client/Assets/loading.gif' alt='Loading...'/></div>"
 
 /***/ }),
 

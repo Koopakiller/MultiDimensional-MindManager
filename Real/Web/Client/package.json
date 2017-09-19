@@ -4,10 +4,10 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "serve": "ng serve --env=dev --progress --base-href \"/Home/\"",
+    "serve": "ng serve --env=dev --progress --base-href \"/Home/\" --deploy-url \"/Client/\"",
     "serve:prod": "ng serve --env=prod --progress",
     "build": "ng build --env=dev --progress",
-    "build:prod": "ng build --env=prod --progress --output-path \"../Server/wwwroot/dist\" --deploy-url \"/dist/\"",
+    "build:prod": "ng build --env=prod --progress --output-path \"../Server/wwwroot/Client\" --deploy-url \"/Client/\"",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
