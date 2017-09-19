@@ -12,9 +12,9 @@ import { DashboardComponent } from "./Scaffold/Components/Dashboard";
 import { SharedModule } from "./Shared/shared.module";
 
 const appRoutes: Routes = [
-  // { path: "Finances", loadChildren: "./Finances/finances.module#FinancesModule" },
+   { path: "Finances", loadChildren: "./Finances/finances.module#FinancesModule" },
    { path: "Test", loadChildren: "./Test/test.module#TestModule" },
-  // { path: "Media", loadChildren: "./Media/media.module#MediaModule" },
+   { path: "Media", loadChildren: "./Media/media.module#MediaModule" },
 
   { path: "Dashboard", component: DashboardComponent },
   { path: "Error/:errorId", component: ErrorComponent },
