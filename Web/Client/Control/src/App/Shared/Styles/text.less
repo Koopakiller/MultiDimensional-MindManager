@@ -1,0 +1,128 @@
+@import "common.less";
+
+.text{
+    section{
+        margin-bottom: @padding;
+    }
+
+    h1, h2, h3, h4, h5, h6, .header{
+        .font-header;
+        margin-top: 0;
+        margin-bottom: @padding;
+    }
+
+    h1{ 
+        .font-header(48pt);
+    }
+    h2{ 
+        .font-header(33pt);
+    }
+    h3{ 
+        .font-header(24pt);
+    }
+    .header{
+        .font-header(18pt);
+    }
+
+    p{
+        margin-top:0;
+        margin-bottom: @padding;
+        &.justify{
+            text-align: justify;
+            text-justify: inter-word;
+        }
+        &:last-of-type{
+            margin-bottom: 2* @padding;
+        }
+        &:last-child{
+            margin-bottom:0;
+        }
+    }
+
+    a{
+        color: @color-accent-dark;
+        text-decoration: none;
+        &:hover{
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        &[href^=http]{  
+            background-image: url('http://placehold.it/16x16');
+            background-position: left center;
+            background-repeat: no-repeat;
+            padding-left: 20px; /* Adjust according to image size to push text across. */
+        }
+    }
+
+    b, strong{
+        .font-bold;
+    }
+
+    i, em{
+        font-style: italic;
+    }
+
+    u, ins{
+        text-decoration-style: underline;
+    }
+
+    s, del{
+        text-decoration-style: line-through;
+    }
+
+    code{
+        .font-code;
+    }
+
+    ul{
+        list-style: circle;
+    }
+
+    ol{
+        list-style-position: inside; 
+    }
+
+    // Special Styles:
+    //  .details-row    - A style for a full-col-span-row with 1 td-child containing details for the row above
+    //  .action-column  - A style for cells containing action links/controls for the row or the header for this kind of column
+    table{
+        width:100%;
+        border-collapse: collapse;
+        margin-bottom: @padding;
+        &:last-of-type{
+            margin-bottom: 2* @padding;
+        }
+        &:last-child{
+            margin-bottom:0;
+        }
+        tr{
+            th, td{
+                border-bottom: 1px  solid @color-dark;
+                border-right: 1px dotted @color-dark;
+                padding: @padding-tiny @padding-small;
+                &:last-child{
+                    border-right:none;
+                }
+            }
+            th{
+                .font-bold;
+                text-align: left;
+                vertical-align: bottom;
+            }
+            td{
+                vertical-align: top;
+            }
+            &.details-row > td {
+                padding: @padding;
+            }
+            &:last-child{
+                &>td{
+                    border-bottom: none;
+                } 
+                &.details-row{
+                    border-bottom: 1px  solid @color-dark;
+                }
+            }
+        }
+    }
+}

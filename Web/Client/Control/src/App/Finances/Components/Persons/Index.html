@@ -1,0 +1,11 @@
+<section class='section'>
+
+    <span class='section-header'>Persons</span>
+
+    <div class='section-content'>
+        <a [routerLink]='[{ outlets: { next: "Add" }}]'>Add</a>
+    </div>
+
+</section>
+
+<router-outlet name='next'></router-outlet>

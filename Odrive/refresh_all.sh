@@ -1,0 +1,1 @@
+find "/home/tl/Odrive" -type d -exec python "/home/tl/.odrive-agent/bin/odrive.py" refresh "{}" \;
