@@ -69,11 +69,7 @@
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFilesFromFolder("node_modules");
-            app.UseStaticFilesFromFolder("App");
-            app.UseStaticFilesFromFolder("Styles");
-            app.UseStaticFilesFromFolder("Images");
-            app.UseStaticFilesFromFolder("");
+            app.UseStaticFiles();
 
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
@@ -114,19 +110,6 @@
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-            });
-        }
-    }
-
-    static class Extensions
-    {
-        public static void UseStaticFilesFromFolder(this IApplicationBuilder app, String relativeDirectory)
-        {
-            relativeDirectory = relativeDirectory.TrimStart('/');
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), relativeDirectory)),
-                RequestPath = new PathString(relativeDirectory == "" ? "" : "/" + relativeDirectory)
             });
         }
     }
