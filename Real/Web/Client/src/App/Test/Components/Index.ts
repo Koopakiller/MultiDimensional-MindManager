@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 
 @Component({
     selector: "home",
-    templateUrl: "/App/Test/Templates/Index.html"
+    templateUrl: "Index.html"
 })
 export class IndexComponent {
 }     

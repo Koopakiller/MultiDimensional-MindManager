@@ -1,19 +1,27 @@
 webpackJsonp(["main"],{
 
 /***/ "../../../../../src/$$_gendir lazy recursive":
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
+var map = {
+	"./Test/test.module": [
+		"../../../../../src/App/Test/test.module.ts",
+		"test.module"
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return __webpack_require__.e(ids[1]).then(function() {
+		return __webpack_require__(ids[0]);
 	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
+module.exports = webpackAsyncContext;
 
 /***/ }),
 
@@ -399,9 +407,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var appRoutes = [
-    // { path: "Finances", loadChildren: "App/Finances/finances.module#FinancesModule" },
-    // { path: "Test", loadChildren: "App/Test/test.module#TestModule" },
-    // { path: "Media", loadChildren: "App/Media/media.module#MediaModule" },
+    // { path: "Finances", loadChildren: "./Finances/finances.module#FinancesModule" },
+    { path: "Test", loadChildren: "./Test/test.module#TestModule" },
+    // { path: "Media", loadChildren: "./Media/media.module#MediaModule" },
     { path: "Dashboard", component: __WEBPACK_IMPORTED_MODULE_10__Scaffold_Components_Dashboard__["a" /* DashboardComponent */] },
     { path: "Error/:errorId", component: __WEBPACK_IMPORTED_MODULE_8__Scaffold_Components_Error__["a" /* ErrorComponent */] },
     { path: "", pathMatch: "full", redirectTo: "Dashboard" },
