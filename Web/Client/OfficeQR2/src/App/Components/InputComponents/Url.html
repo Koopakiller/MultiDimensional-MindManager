@@ -1,15 +1,13 @@
 ﻿<a (click)='goTo("Index")'>Back</a>
-<form (ngSubmit)="submit()">
+<form>
 
     <div class="form-group">
         <label for="url">Url:</label>
         <div class="control-container">
-            <input [(ngModel)]="url" type="url" name="url" required placeholder="https://example.com/" />
+            <input [(ngModel)]="url" type="url" name="url" required 
+                   placeholder="https://example.com/" 
+                   (input)="updateData()"/>
         </div>
-    </div>
-
-    <div class="button-bar">
-        <input type="submit" class="btn btn-success" value="OK" />
     </div>
 
 </form>

@@ -1,3 +1,19 @@
+@color-accent-light: #BC87F1;
+@color-accent-dark: #5E11AA;
+@color-dark: #1f1f1f;
+@color-light: #E0E0E0;
+
 body{
     font-family: sans-serif;
+    background-color: @color-light;
+    color:@color-dark;
+
+    a{
+        color:@color-accent-dark;
+        text-decoration: none;
+        &:hover{
+            color:@color-accent-light;
+            text-decoration: none;
+        }
+    }
 }

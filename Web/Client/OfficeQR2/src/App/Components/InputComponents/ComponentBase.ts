@@ -1,4 +1,5 @@
 import { Router, ActivatedRoute } from "@angular/router";
+import { EventEmitter, Output } from "@angular/core";
 
 export class ComponentBase {
     constructor(
