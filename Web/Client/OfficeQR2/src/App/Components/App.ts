@@ -10,7 +10,7 @@ import {
     Router
 } from "@angular/router";
 import { QRCodeService } from "../Services/QRCodeService";
-import { InputDataService } from "../Services/InputDataService";
+import { InputService } from "../Services/InputService";
 
 @Component({
     selector: "app",
@@ -18,7 +18,7 @@ import { InputDataService } from "../Services/InputDataService";
 })
 export class AppComponent {
     constructor(
-        private _inputDataService: InputDataService
+        private _inputDataService: InputService
     ) {
         this._inputDataService.dataSourceObservable.subscribe((data) => {
             setTimeout(() => {

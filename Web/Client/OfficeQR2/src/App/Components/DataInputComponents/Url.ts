@@ -3,7 +3,7 @@ import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
 import { DataInputComponentBase } from "./DataInputComponentBase";
 import { Router, ActivatedRoute } from "@angular/router";
-import { InputDataService } from "../../Services/InputDataService";
+import { InputService } from "../../Services/InputService";
 
 @Component({
     templateUrl: "Url.html"
@@ -12,17 +12,17 @@ export class UrlComponent extends DataInputComponentBase implements OnInit{
     constructor(
         router: Router,
         activatedRoute: ActivatedRoute,
-        inputDataService: InputDataService
+        inputService: InputService
     ) {
-        super(router, activatedRoute, inputDataService);
+        super(router, activatedRoute, inputService);
     }
     public url: string;
 
     public updateData(){
-        this._inputDataService.provide(this.url); 
+        this._inputService.provideDataString(this.url); 
     }
 
     public ngOnInit(): void {
-        this._inputDataService.provide(this.url); 
+        this._inputService.provideDataString(this.url); 
     }
 }

@@ -1,11 +1,17 @@
 ﻿<div id='header'>
-   Office QR 2
+    Office QR 2
 </div>
 
-<section id='section-input'>
+<section id='section-data-input'>
     <h1>Input</h1>
-    
     <router-outlet name="data-input"></router-outlet>
 </section>
 
-<code-preview *ngIf="dataString" [dataString]="dataString"></code-preview>
+<section id="section-common-input">
+    <h1>Settings</h1>
+    <settings-input></settings-input>
+</section>
+
+<section id="section-preview">
+    <code-preview *ngIf="dataString" [dataString]="dataString"></code-preview>
+</section>

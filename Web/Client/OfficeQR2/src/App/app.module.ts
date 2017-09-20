@@ -7,8 +7,9 @@ import { QRCodeService } from "./Services/QRCodeService";
 import { AppComponent } from "./Components/App";
 import { IndexComponent as InputIndexComponent } from "./Components/DataInputComponents/Index";
 import { UrlComponent as InputUrlComponent } from "./Components/DataInputComponents/Url";
-import { InputDataService } from "./Services/InputDataService";
+import { InputService } from "./Services/InputService";
 import { CodePreviewComponent } from "./Components/CodePreview";
+import { SettingsInputComponent } from "./Components/SettingsInput";
 
 const appRoutes: Routes = [
   //Input Components:
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
   ],
   declarations: [
     AppComponent,
+    SettingsInputComponent,
     InputIndexComponent,
     InputUrlComponent,
     CodePreviewComponent
@@ -42,7 +44,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     QRCodeService,
-    InputDataService
+    InputService
   ],
 })
 export class AppModule {

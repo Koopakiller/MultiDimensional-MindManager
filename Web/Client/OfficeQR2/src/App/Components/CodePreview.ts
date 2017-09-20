@@ -1,16 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
-import {
-    Event as RouterEvent,
-    NavigationStart,
-    NavigationEnd,
-    NavigationCancel,
-    NavigationError,
-    Router
-} from "@angular/router";
 import { QRCodeService } from "../Services/QRCodeService";
-import { InputDataService } from "../Services/InputDataService";
+import { InputService } from "../Services/InputService";
 
 @Component({
     selector: "code-preview",
