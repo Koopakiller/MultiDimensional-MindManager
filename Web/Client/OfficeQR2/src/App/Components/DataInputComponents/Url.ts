@@ -1,15 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
-import { QRCodeService } from "../../Services/QRCodeService";
+import { DataInputComponentBase } from "./DataInputComponentBase";
 import { Router, ActivatedRoute } from "@angular/router";
-import { ComponentBase } from "./ComponentBase";
 import { InputDataService } from "../../Services/InputDataService";
 
 @Component({
-    templateUrl: "Index.html"
+    templateUrl: "Url.html"
 })
-export class IndexComponent extends ComponentBase implements OnInit{
+export class UrlComponent extends DataInputComponentBase implements OnInit{
     constructor(
         router: Router,
         activatedRoute: ActivatedRoute,
@@ -17,8 +16,13 @@ export class IndexComponent extends ComponentBase implements OnInit{
     ) {
         super(router, activatedRoute, inputDataService);
     }
+    public url: string;
 
-    ngOnInit(): void {
-        this._inputDataService.provide(null); 
+    public updateData(){
+        this._inputDataService.provide(this.url); 
+    }
+
+    public ngOnInit(): void {
+        this._inputDataService.provide(this.url); 
     }
 }

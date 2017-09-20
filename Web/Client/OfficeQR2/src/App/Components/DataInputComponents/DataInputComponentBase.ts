@@ -2,7 +2,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { EventEmitter, Output } from "@angular/core";
 import { InputDataService } from "../../Services/InputDataService";
 
-export class ComponentBase {
+export class DataInputComponentBase {
     constructor(
         protected _router: Router,
         protected _activatedRoute: ActivatedRoute,
@@ -11,6 +11,6 @@ export class ComponentBase {
     }
 
     public goTo(name: string) {
-        this._router.navigate([{ outlets: { input: name } }], { relativeTo: this._activatedRoute.parent })
+        this._router.navigate([{ outlets: { "data-input": name } }], { relativeTo: this._activatedRoute.parent })
     }
 }
