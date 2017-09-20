@@ -8,6 +8,7 @@ import { AppComponent } from "./Components/App";
 import { IndexComponent as InputIndexComponent } from "./Components/InputComponents/Index";
 import { UrlComponent as InputUrlComponent } from "./Components/InputComponents/Url";
 import { InputDataService } from "./Services/InputDataService";
+import { CodePreviewComponent } from "./Components/CodePreview";
 
 const appRoutes: Routes = [
   //Input Components:
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     InputIndexComponent,
-    InputUrlComponent
+    InputUrlComponent,
+    CodePreviewComponent
   ],
   bootstrap: [
     AppComponent

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
 import {
@@ -13,19 +13,19 @@ import { QRCodeService } from "../Services/QRCodeService";
 import { InputDataService } from "../Services/InputDataService";
 
 @Component({
-    selector: "app",
-    templateUrl: "App.html"
+    selector: "code-preview",
+    templateUrl: "CodePreview.html"
 })
-export class AppComponent {
+export class CodePreviewComponent implements OnInit{
     constructor(
-        private _inputDataService: InputDataService
+        private _navigationService: QRCodeService
     ) {
-        this._inputDataService.dataSourceObservable.subscribe((data) => {
-            setTimeout(() => {
-                this.dataString = data;
-            })
-        })
     }
 
+    @Input()
     public dataString: string;
+
+    ngOnInit(): void {
+
+    }
 }
