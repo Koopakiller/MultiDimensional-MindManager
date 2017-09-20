@@ -12,13 +12,11 @@ import { CodePreviewComponent } from "./Components/CodePreview";
 
 const appRoutes: Routes = [
   //Input Components:
-  //{ path: "", outlet: "input", component: InputIndexComponent, pathMatch: "full" },
   { path: "Index", outlet: "input", component: InputIndexComponent },
   { path: "Url", outlet: "input", component: InputUrlComponent },
 
   {
     path: "",
-    //component: InputIndexComponent,
     redirectTo: "/(input:Index)",
     pathMatch: "full"
   },
