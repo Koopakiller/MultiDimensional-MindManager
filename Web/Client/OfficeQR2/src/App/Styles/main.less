@@ -1,19 +1,70 @@
 @color-accent-light: #BC87F1;
 @color-accent-dark: #5E11AA;
+@color-dark-1: #000000;
 @color-dark: #1f1f1f;
 @color-light: #E0E0E0;
+@color-light-1: #FFFFFF;
 
-body{
+@padding: 12px;
+
+@font-size: 10pt;
+@font-size-h1: 16pt;
+
+body {
     font-family: sans-serif;
     background-color: @color-light;
-    color:@color-dark;
+    color: @color-dark;
+    margin: 0;
+    font-size: @font-size;
 
-    a{
-        color:@color-accent-dark;
-        text-decoration: none;
-        &:hover{
-            color:@color-accent-light;
+    header {
+        display: block;
+        background: @color-accent-dark;
+        color: @color-light;
+        padding: @padding;
+        font-size: @font-size-h1;
+    }
+
+    section {
+        display: block;
+        margin: 0;
+        padding:0;
+        padding-top: @padding;
+
+        h1 {
+            font-size: 16pt;
+            font-weight: 100;
+            font-size: @font-size-h1;
+            padding-left: @padding;
+            padding-right: @padding;
+            margin:0;
+        }
+
+        a {
+            display: block;
+            background: @color-light;
+            color: @color-dark;
+            padding: @padding;
             text-decoration: none;
+            cursor: default;
+
+            &:hover {
+                background-color: @color-accent-light;
+                color: @color-dark;
+                text-decoration: none;
+            }
+
+            .header {
+                font-weight: 800;
+            }
+
+            .description {              
+            }
+        }
+
+        form{
+            padding-left: @padding;
+            padding-right: @padding;
         }
     }
 }

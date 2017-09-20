@@ -1,6 +1,6 @@
-﻿<div id='header'>
+﻿<header>
     Office QR 2
-</div>
+</header>
 
 <section id='section-data-input'>
     <h1>Input</h1>
@@ -12,6 +12,7 @@
     <settings-input></settings-input>
 </section>
 
-<section id="section-preview">
-    <code-preview *ngIf="dataString" [dataString]="dataString"></code-preview>
+<section id="section-preview" *ngIf="dataString">
+    <h1>Preview</h1>
+    <code-preview [dataString]="dataString"></code-preview>
 </section>
