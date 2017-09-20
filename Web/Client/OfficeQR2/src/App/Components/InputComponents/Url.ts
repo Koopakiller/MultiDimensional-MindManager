@@ -12,9 +12,9 @@ export class UrlComponent extends ComponentBase implements OnInit{
     constructor(
         router: Router,
         activatedRoute: ActivatedRoute,
-        private _inputDataService: InputDataService
+        inputDataService: InputDataService
     ) {
-        super(router, activatedRoute);
+        super(router, activatedRoute, inputDataService);
     }
     public url: string;
 
