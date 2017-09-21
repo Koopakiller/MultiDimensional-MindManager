@@ -1,0 +1,21 @@
+﻿<a (click)='goTo("Index")'>Back</a>
+<form>
+
+    <div class="form-group">
+        <label for="text">Text:</label>
+        <div class="control-container">
+            <textarea [(ngModel)]="text" name="text" required 
+                      placeholder="https://example.com/" 
+                      (input)="updateData()"/>
+        </div>
+    </div>
+    <div>
+        <span>{{text.length}}</span>&nbsp;<span [ngSwitch]="messageKey" [style.color]="{{messageColor}}">
+            <span *ngSwitchCase="good">Good Length</span>
+            <span *ngSwitchCase="ok">Length should be no problem</span>
+            <span *ngSwitchCase="warning">Pretty long text</span>
+            <span *ngSwitchCase="problem">Text could be to long for some scanner</span>
+        </span>
+    </div>
+
+</form>
