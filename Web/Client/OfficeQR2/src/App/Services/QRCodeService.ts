@@ -22,7 +22,7 @@ export class QRCodeService {
 
         let url = `https://api.qrserver.com/v1/create-qr-code/`;
         url += `?size=${size}x${size}`;
-        url += `&data=${encodeURI(config.dataString)}`;
+        url += `&data=${encodeURI(config.dataString ? config.dataString : "")}`;
         url += `&ecc=${config.settings.ecc}`;
         url += `&color=${config.settings.color.replace("#", "")}`;
         url += `&bgcolor=${config.settings.bgcolor.replace("#", "")}`;
