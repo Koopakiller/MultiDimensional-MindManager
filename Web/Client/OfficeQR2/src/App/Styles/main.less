@@ -14,7 +14,7 @@ body {
     color: @color-dark;
     margin: 0;
 
-    header {
+    header.app-header {
         display: block;
         background: @color-accent-dark;
         color: @color-light;
@@ -25,7 +25,7 @@ body {
     section {
         display: block;
         margin: 0;
-        padding:0;
+        padding: 0;
         padding-top: @padding;
 
         h1 {
@@ -33,7 +33,7 @@ body {
             font-size: x-large;
             padding-left: @padding;
             padding-right: @padding;
-            margin:0;
+            margin: 0;
         }
 
         a {
@@ -54,27 +54,51 @@ body {
                 font-weight: 800;
             }
 
-            .description {              
-            }
+            .description {}
 
-            .icon{
-                float:left;
-                height:46px;
-                width:46px;
-                margin-right:@padding-small;
+            .icon {
+                float: left;
+                height: 46px;
+                width: 46px;
+                margin-right: @padding-small;
                 font-size: 40px;
             }
 
-            .icon-inline{
+            .icon-inline {
                 height: 12pt;
-                width:12pt;
+                width: 12pt;
                 vertical-align: top;
             }
         }
 
-        form{
+        form {
             padding-left: @padding;
             padding-right: @padding;
+
+            header {
+                font-weight: bold;
+            }
+
+            .form-group {
+                label {
+                    margin-top: @padding-small;
+                    display: block;
+                }
+                textarea {
+                    height: 4em;
+                }
+                textarea,
+                input,
+                select {
+                    width: 100%;
+                    max-width: 300px;
+                    padding: @padding-small;
+                    box-sizing: border-box;
+                }
+                input[type=color] {
+                    padding: 0;
+                }
+            }
         }
     }
 }

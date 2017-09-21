@@ -1,6 +1,7 @@
 ﻿<a (click)='goTo("Index")'><img class="icon-inline" src="Assets/Icons/Google/Material/ic_keyboard_backspace_black_24px.svg"/> Back</a>
 <form>
     <section>
+        <header>Person Name</header>
         <div class="form-group">
             <label for="title">Title:</label>
             <div class="control-container">
@@ -27,6 +28,7 @@
         </div>
     </section>
     <section>
+        <header>Company</header>
         <div class="form-group">
             <label for="company">Company:</label>
             <div class="control-container">
@@ -47,6 +49,7 @@
         </div>
     </section>
     <section>
+        <header>Phone</header>
         <div class="form-group">
             <label for="phoneNumberWork">Phone (Work):</label>
             <div class="control-container">
@@ -63,6 +66,7 @@
         </div>
     </section>
     <section>
+        <header>Address</header>
         <div class="form-group">
             <label for="addressStreetAndNumber">Street Name and Number:</label>
             <div class="control-container">
@@ -85,11 +89,13 @@
         <div class="form-group">
             <label for="addressCountry">Country:</label>
             <div class="control-container">
-                <input [(ngModel)]="data.addressCountry" type="text" name="addressCountry" placeholder="Germany" (input)="dataChanged()" />
+                <input [(ngModel)]="data.addressCountry" type="text" name="addressCountry" placeholder="Germany" (input)="dataChanged()"
+                />
             </div>
         </div>
     </section>
     <section>
+        <header>Internet</header>
         <div class="form-group">
             <label for="email">Email:</label>
             <div class="control-container">
