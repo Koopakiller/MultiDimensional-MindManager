@@ -26,13 +26,17 @@ export class TextComponent extends DataInputComponentBase implements OnInit {
         this.updateMessage();
     }
 
+    public get textLength(): number {
+        return (this.text ? this.text : "").length;
+    }
+
     public messageKey: string;
     public messageColor: string;
 
     private updateMessage(): void {
-        
+
         // green -> yellow -> red
-        
+
         if (this.text.length < 20) {
             this.messageKey = "good";
             this.messageColor = "#009020";
