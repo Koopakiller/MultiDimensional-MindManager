@@ -8,14 +8,21 @@ import { InputService } from "../Services/InputService";
     selector: "code-preview",
     templateUrl: "CodePreview.html"
 })
-export class CodePreviewComponent implements OnInit{
+export class CodePreviewComponent implements OnInit {
     constructor(
         private _navigationService: QRCodeService
     ) {
     }
 
+    private _dataString: string;
     @Input()
-    public dataString: string;
+    public set dataString(value: string) {
+        this._dataString = value;
+    }
+
+    public get dataString(): string {
+        return this._dataString;
+    }
 
     ngOnInit(): void {
 

@@ -20,7 +20,7 @@ export class AppComponent {
     constructor(
         private _inputDataService: InputService
     ) {
-        this._inputDataService.dataSourceObservable.subscribe((data) => {
+        this._inputDataService.dataSourceObservable.debounceTime(500).subscribe((data) => {
             setTimeout(() => {
                 this.dataString = data;
             })
