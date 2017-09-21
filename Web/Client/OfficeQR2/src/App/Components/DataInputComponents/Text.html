@@ -1,22 +1,22 @@
-﻿<a (click)='goTo("Index")'><img class="icon-inline" src="Assets/Icons/Google/Material/ic_keyboard_backspace_black_24px.svg"/> Back</a>
+﻿<a (click)='goTo("Index")'><img class="icon-inline" src="Assets/Icons/Google/Material/ic_keyboard_backspace_black_24px.svg" i18n="@@Common-NavigateBack"/> Back</a>
 <form>
 
     <div class='form-group'>
-        <label for='text'>Text:</label>
+        <label for='text' i18n="@@Input-Text-Text-Label">Text:</label>
         <div class='control-container'>
             <textarea [(ngModel)]='data.text' name='text' 
-                      placeholder='' 
+                      placeholder='' i18n-placeholder="@@Input-Text-Text-Placeholder"
                       (input)='dataChanged()'></textarea>
         </div>
     </div>
     <div>
-        <span>{{textLength}} Characters - </span>
+        <span>{{textLength}} <span i18n="@@Input-Text-LengthMessage-Characters">{characters, plural, =1 {Character} other {Characters}}</span> - </span>
         <span [ngSwitch]='messageKey' [style.color]='messageColor'>
-            <span *ngSwitchCase='"empty"'>Empty</span>
-            <span *ngSwitchCase='"good"'>Good Length</span>
-            <span *ngSwitchCase='"ok"'>Length should be no problem</span>
-            <span *ngSwitchCase='"warning"'>Pretty long text</span>
-            <span *ngSwitchCase='"problem"'>Text could be too long for some scanner</span>
+            <span *ngSwitchCase='"empty"' i18n="@@Input-Text-LengthMessage-Empty">Empty</span>
+            <span *ngSwitchCase='"good"' i18n="@@Input-Text-LengthMessage-Good">Good Length</span>
+            <span *ngSwitchCase='"ok"' i18n="@@Input-Text-LengthMessage-Ok">Length should be no problem</span>
+            <span *ngSwitchCase='"warning"' i18n="@@Input-Text-LengthMessage-Warning">Pretty long text</span>
+            <span *ngSwitchCase='"problem"' i18n="@@Input-Text-LengthMessage-Problem">Text could be too long for some scanner</span>
         </span>
     </div>
 

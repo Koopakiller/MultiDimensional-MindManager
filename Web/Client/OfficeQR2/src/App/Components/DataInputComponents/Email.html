@@ -1,11 +1,11 @@
-﻿<a (click)='goTo("Index")'><img class="icon-inline" src="Assets/Icons/Google/Material/ic_keyboard_backspace_black_24px.svg"/> Back</a>
+﻿<a (click)='goTo("Index")'><img class="icon-inline" i18n="@@Common-NavigateBack" src="Assets/Icons/Google/Material/ic_keyboard_backspace_black_24px.svg"/> Back</a>
 <form>
 
     <div class="form-group">
-        <label for="email">Email:</label>
+        <label for="email" i18n="@@Input-Email-Email-Label">Email:</label>
         <div class="control-container">
             <input [(ngModel)]="data.email" type="email" name="email" required 
-                   placeholder="someone@example.com" 
+                   placeholder="someone@example.com" i18n-placeholder="@@Input-Email-Email-Placeholder"
                    (input)="dataChanged()"/>
         </div>
     </div>

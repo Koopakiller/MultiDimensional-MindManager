@@ -1,111 +1,111 @@
-﻿<a (click)='goTo("Index")'><img class="icon-inline" src="Assets/Icons/Google/Material/ic_keyboard_backspace_black_24px.svg"/> Back</a>
+﻿<a (click)='goTo("Index")'><img class="icon-inline" src="Assets/Icons/Google/Material/ic_keyboard_backspace_black_24px.svg" i18n="@@Common-NavigateBack"/> Back</a>
 <form>
     <section>
-        <header>Person Name</header>
+        <header i18n="@@Input-VCard-PersonName-Header">Person Name</header>
         <div class="form-group">
-            <label for="title">Title:</label>
+            <label for="title" i18n="@@Input-VCard-PersonName-Title-Label">Title:</label>
             <div class="control-container">
-                <input [(ngModel)]="data.title" type="text" name="title" placeholder="" (input)="dataChanged()" />
+                <input [(ngModel)]="data.title" type="text" name="title" placeholder="" i18n-placeholder="@@Input-VCard-PersonName-Title-Placeholder" (input)="dataChanged()" />
             </div>
         </div>
         <div class="form-group">
-            <label for="firstName">First Name:</label>
+            <label for="firstName" i18n="@@Input-VCard-PersonName-FirstName-Label">First Name:</label>
             <div class="control-container">
-                <input [(ngModel)]="data.firstName" type="text" name="firstName" placeholder="John" (input)="dataChanged()" />
+                <input [(ngModel)]="data.firstName" type="text" name="firstName" placeholder="John" i18n-placeholder="@@Input-VCard-PersonName-FirstName-Placeholder" (input)="dataChanged()" />
             </div>
         </div>
         <div class="form-group">
-            <label for="middleName">Middle Name:</label>
+            <label for="middleName" i18n="@@Input-VCard-PersonName-MiddleName-Label">Middle Name:</label>
             <div class="control-container">
-                <input [(ngModel)]="data.middleName" type="text" name="middleName" placeholder="" (input)="dataChanged()" />
+                <input [(ngModel)]="data.middleName" type="text" name="middleName" placeholder="" i18n-placeholder="@@Input-VCard-PersonName-MiddleName-Placeholder" (input)="dataChanged()" />
             </div>
         </div>
         <div class="form-group">
-            <label for="lastName">Last Name:</label>
+            <label for="lastName" i18n="@@Input-VCard-PersonName-LastName-Label">Last Name:</label>
             <div class="control-container">
-                <input [(ngModel)]="data.lastName" type="text" name="lastName" placeholder="Doe" (input)="dataChanged()" />
-            </div>
-        </div>
-    </section>
-    <section>
-        <header>Company</header>
-        <div class="form-group">
-            <label for="company">Company:</label>
-            <div class="control-container">
-                <input [(ngModel)]="data.company" type="text" name="company" placeholder="My Company" (input)="dataChanged()" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="jobRole">Job Role:</label>
-            <div class="control-container">
-                <input [(ngModel)]="data.jobRole" type="text" name="jobRole" placeholder="CEO" (input)="dataChanged()" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="jobTitle">Job Title:</label>
-            <div class="control-container">
-                <input [(ngModel)]="data.jobTitle" type="text" name="jobTitle" placeholder="CEO" (input)="dataChanged()" />
+                <input [(ngModel)]="data.lastName" type="text" name="lastName" placeholder="Doe" i18n-placeholder="@@Input-VCard-PersonName-LastName-Placeholder" (input)="dataChanged()" />
             </div>
         </div>
     </section>
     <section>
-        <header>Phone</header>
+        <header i18n="@@Input-VCard-Company-Header">Company</header>
         <div class="form-group">
-            <label for="phoneNumberWork">Phone (Work):</label>
+            <label for="company" i18n="@@Input-VCard-Company-Company-Label">Company:</label>
             <div class="control-container">
-                <input [(ngModel)]="data.phoneNumberWork" type="tel" name="phoneNumberWork" placeholder="+49 01234 567890" (input)="dataChanged()"
-                />
+                <input [(ngModel)]="data.company" type="text" name="company" placeholder="My Company" i18n-placeholder="@@Input-VCard-Company-Company-Placeholder" (input)="dataChanged()" />
             </div>
         </div>
         <div class="form-group">
-            <label for="phoneNumberHome">Phone (Work):</label>
+            <label for="jobRole" i18n="@@Input-VCard-Company-JobRole-Label">Job Role:</label>
             <div class="control-container">
-                <input [(ngModel)]="data.phoneNumberHome" type="tel" name="phoneNumberHome" placeholder="+49 01234 567890" (input)="dataChanged()"
-                />
+                <input [(ngModel)]="data.jobRole" type="text" name="jobRole" placeholder="CEO" i18n-placeholder="@@Input-VCard-Company-JobRole-Placeholder" (input)="dataChanged()" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="jobTitle" i18n="@@Input-VCard-Company-JobTitle-Label">Job Title:</label>
+            <div class="control-container">
+                <input [(ngModel)]="data.jobTitle" type="text" name="jobTitle" placeholder="CEO" i18n-placeholder="@@Input-VCard-Company-JobTitle-Placeholder" (input)="dataChanged()" />
             </div>
         </div>
     </section>
     <section>
-        <header>Address</header>
+        <header i18n="@@Input-VCard-Phone-Header">Phone</header>
         <div class="form-group">
-            <label for="addressStreetAndNumber">Street Name and Number:</label>
+            <label for="phoneNumberWork" i18n="@@Input-VCard-Phone-Work-Label">Phone (Work):</label>
             <div class="control-container">
-                <input [(ngModel)]="data.addressStreetAndNumber" type="text" name="addressStreetAndNumber" placeholder="X-Street 1" (input)="dataChanged()"
+                <input [(ngModel)]="data.phoneNumberWork" type="tel" name="phoneNumberWork" placeholder="+49 01234 567890" i18n-placeholder="@@Input-VCard-Phone-Work-Placeholder" (input)="dataChanged()"
                 />
             </div>
         </div>
         <div class="form-group">
-            <label for="addressZip">ZIP:</label>
+            <label for="phoneNumberHome" i18n="@@Input-VCard-Phone-Home-Label">Phone (Home):</label>
             <div class="control-container">
-                <input [(ngModel)]="data.addressZip" type="text" name="addressZip" placeholder="12627" (input)="dataChanged()" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="addressCity">City:</label>
-            <div class="control-container">
-                <input [(ngModel)]="data.addressCity" type="text" name="addressCity" placeholder="Berlin" (input)="dataChanged()" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="addressCountry">Country:</label>
-            <div class="control-container">
-                <input [(ngModel)]="data.addressCountry" type="text" name="addressCountry" placeholder="Germany" (input)="dataChanged()"
+                <input [(ngModel)]="data.phoneNumberHome" type="tel" name="phoneNumberHome" placeholder="+49 01234 567890" i18n-placeholder="@@Input-VCard-Phone-Home-Placeholder" (input)="dataChanged()"
                 />
             </div>
         </div>
     </section>
     <section>
-        <header>Internet</header>
+        <header i18n="@@Input-VCard-Address-Header">Address</header>
         <div class="form-group">
-            <label for="email">Email:</label>
+            <label for="addressStreetAndNumber" i18n="@@Input-VCard-Address-StreetNameAndNumber-Label">Street Name and Number:</label>
             <div class="control-container">
-                <input [(ngModel)]="data.email" type="email" name="email" placeholder="me@example.com" (input)="dataChanged()" />
+                <input [(ngModel)]="data.addressStreetAndNumber" type="text" name="addressStreetAndNumber" placeholder="X-Street 1" i18n-placeholder="@@Input-VCard-Address-StreetNameAndNumber-Placeholder" (input)="dataChanged()"
+                />
             </div>
         </div>
         <div class="form-group">
-            <label for="url">Url:</label>
+            <label for="addressZip" i18n="@@Input-VCard-Address-ZIP-Label">ZIP:</label>
             <div class="control-container">
-                <input [(ngModel)]="data.url" type="url" name="url" required placeholder="https://example.com/" (input)="dataChanged()" />
+                <input [(ngModel)]="data.addressZip" type="text" name="addressZip" placeholder="12627" i18n-placeholder="@@Input-VCard-Address-ZIP-Placeholder" (input)="dataChanged()" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="addressCity" i18n="@@Input-VCard-Address-City-Label">City:</label>
+            <div class="control-container">
+                <input [(ngModel)]="data.addressCity" type="text" name="addressCity" placeholder="Berlin" i18n-placeholder="@@Input-VCard-Address-City-Placeholder" (input)="dataChanged()" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="addressCountry" i18n="@@Input-VCard-Address-Country-Label">Country:</label>
+            <div class="control-container">
+                <input [(ngModel)]="data.addressCountry" type="text" name="addressCountry" placeholder="Germany" i18n-placeholder="@@Input-VCard-Address-Country-Placeholder" (input)="dataChanged()"
+                />
+            </div>
+        </div>
+    </section>
+    <section>
+        <header i18n="@@Input-VCard-Internet-Header">Internet</header>
+        <div class="form-group">
+            <label for="email" i18n="@@Input-VCard-Internet-Email-Label">Email:</label>
+            <div class="control-container">
+                <input [(ngModel)]="data.email" type="email" name="email" placeholder="me@example.com" i18n-placeholder="@@Input-VCard-Internet-Email-Placeholder" (input)="dataChanged()" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="url" i18n="@@Input-VCard-Internet-Url-Label">Url:</label>
+            <div class="control-container">
+                <input [(ngModel)]="data.url" type="url" name="url" required placeholder="https://example.com/" i18n-placeholder="@@Input-VCard-Internet-Url-Placeholder" (input)="dataChanged()" />
             </div>
         </div>
     </section>

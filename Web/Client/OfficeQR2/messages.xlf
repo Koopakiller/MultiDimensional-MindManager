@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="app-header" datatype="html">
+        <source>
+    Office QR 2
+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/App.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="app-section-DataInput-header" datatype="html">
+        <source>Data Input</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/App.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="app-section-CommonSettings-header" datatype="html">
+        <source>Common Settings</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/App.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="app-section-Preview-header" datatype="html">
+        <source>Preview</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/App.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Index-Link-Url-Header" datatype="html">
+        <source>Web Address (Url)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Index.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Index-Link-Url-Description" datatype="html">
+        <source>To call a specific web page.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Index.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Index-Link-Email-Header" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Index.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Index-Link-Email-Description" datatype="html">
+        <source>To open the default e-mail program and set default values.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Index.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Index-Link-Text-Header" datatype="html">
+        <source>Text</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Index.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Index-Link-Text-Description" datatype="html">
+        <source>Define your own text.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Index.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Index-Link-VCard-Header" datatype="html">
+        <source>vCard</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Index.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Index-Link-VCard-Description" datatype="html">
+        <source>Create a vCard with a formular.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Index.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Index-Link-File-Header" datatype="html">
+        <source>File</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Index.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Index-Link-File-Description" datatype="html">
+        <source>Import the content of a file (text, vCard, ...).</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Index.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Url-Url-Label" datatype="html">
+        <source>Url:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Url.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Url-Url-Placeholder" datatype="html">
+        <source>https://example.com/</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Url.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Email-Email-Label" datatype="html">
+        <source>Email:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Email.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Email-Email-Placeholder" datatype="html">
+        <source>someone@example.com</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Email.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Text-Text-Label" datatype="html">
+        <source>Text:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Text.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Text-LengthMessage-Characters" datatype="html">
+        <source>{VAR_PLURAL, plural, =1 {Character} other {Characters} }</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Text.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Text-LengthMessage-Empty" datatype="html">
+        <source>Empty</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Text.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Text-LengthMessage-Good" datatype="html">
+        <source>Good Length</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Text.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Text-LengthMessage-Ok" datatype="html">
+        <source>Length should be no problem</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Text.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Text-LengthMessage-Warning" datatype="html">
+        <source>Pretty long text</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Text.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-Text-LengthMessage-Problem" datatype="html">
+        <source>Text could be too long for some scanner</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/Text.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-PersonName-Header" datatype="html">
+        <source>Person Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-PersonName-Title-Label" datatype="html">
+        <source>Title:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-PersonName-FirstName-Label" datatype="html">
+        <source>First Name:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-PersonName-FirstName-Placeholder" datatype="html">
+        <source>John</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-PersonName-MiddleName-Label" datatype="html">
+        <source>Middle Name:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-PersonName-LastName-Label" datatype="html">
+        <source>Last Name:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-PersonName-LastName-Placeholder" datatype="html">
+        <source>Doe</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Company-Header" datatype="html">
+        <source>Company</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Company-Company-Label" datatype="html">
+        <source>Company:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Company-Company-Placeholder" datatype="html">
+        <source>My Company</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Company-JobRole-Label" datatype="html">
+        <source>Job Role:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Company-JobRole-Placeholder" datatype="html">
+        <source>CEO</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Company-JobTitle-Label" datatype="html">
+        <source>Job Title:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Company-JobTitle-Placeholder" datatype="html">
+        <source>CEO</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Phone-Header" datatype="html">
+        <source>Phone</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Phone-Work-Label" datatype="html">
+        <source>Phone (Work):</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Phone-Work-Placeholder" datatype="html">
+        <source>+49 01234 567890</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Phone-Home-Label" datatype="html">
+        <source>Phone (Home):</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Phone-Home-Placeholder" datatype="html">
+        <source>+49 01234 567890</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Address-Header" datatype="html">
+        <source>Address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Address-StreetNameAndNumber-Label" datatype="html">
+        <source>Street Name and Number:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Address-StreetNameAndNumber-Placeholder" datatype="html">
+        <source>X-Street 1</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Address-ZIP-Label" datatype="html">
+        <source>ZIP:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Address-ZIP-Placeholder" datatype="html">
+        <source>12627</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Address-City-Label" datatype="html">
+        <source>City:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Address-City-Placeholder" datatype="html">
+        <source>Berlin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Address-Country-Label" datatype="html">
+        <source>Country:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Address-Country-Placeholder" datatype="html">
+        <source>Germany</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Internet-Header" datatype="html">
+        <source>Internet</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Internet-Email-Label" datatype="html">
+        <source>Email:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Internet-Email-Placeholder" datatype="html">
+        <source>me@example.com</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Internet-Url-Label" datatype="html">
+        <source>Url:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">106</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-VCard-Internet-Url-Placeholder" datatype="html">
+        <source>https://example.com/</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/VCard.ts</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Input-File-File-Label" datatype="html">
+        <source>File:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/DataInputComponents/File.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CodePreview-NoDataInfoText" datatype="html">
+        <source>Please set some data to generate a QR code.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/CodePreview.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CommonSettings-Color-Label" datatype="html">
+        <source>Color:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/SettingsInput.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CommonSettings-BackgroundColor-Label" datatype="html">
+        <source>Background color:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/SettingsInput.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CommonSettings-ECC-Label" datatype="html">
+        <source>Error Correction Code:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/SettingsInput.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CommonSettings-ECC-Option-Low" datatype="html">
+        <source>Low</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/SettingsInput.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CommonSettings-ECC-Option-Middle" datatype="html">
+        <source>Middle</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/SettingsInput.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CommonSettings-ECC-Option-Quality" datatype="html">
+        <source>Quality</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/SettingsInput.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CommonSettings-ECC-Option-High" datatype="html">
+        <source>High</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/App/Components/SettingsInput.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

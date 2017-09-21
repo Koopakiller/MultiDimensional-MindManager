@@ -1,11 +1,11 @@
-﻿<a (click)='goTo("Index")'><img class="icon-inline" src="Assets/Icons/Google/Material/ic_keyboard_backspace_black_24px.svg"/> Back</a>
+﻿<a (click)='goTo("Index")'><img class="icon-inline" src="Assets/Icons/Google/Material/ic_keyboard_backspace_black_24px.svg" i18n="@@Common-NavigateBack"/> Back</a>
 <form>
 
     <div class="form-group">
-        <label for="url">Url:</label>
+        <label for="url" i18n="@@Input-Url-Url-Label">Url:</label>
         <div class="control-container">
             <input [(ngModel)]="data.url" type="url" name="url" required 
-                   placeholder="https://example.com/" 
+                   placeholder="https://example.com/" i18n-placeholder="@@Input-Url-Url-Placeholder"
                    (input)="dataChanged()"/>
         </div>
     </div>
