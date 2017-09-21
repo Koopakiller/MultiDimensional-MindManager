@@ -24,7 +24,12 @@ export class CodePreviewComponent {
     public config: QRCodeConfig;
 
     updateCode(): void {
-        this.imageUrl = this._qrCodeService.getCodeUrl(this.config);
+        if (this.config && this.config.dataString && this.config.dataString.length > 0) {
+            this.imageUrl = this._qrCodeService.getCodeUrl(this.config);
+        }
+        else {
+            this.imageUrl = null;
+        }
     }
 
     public imageUrl: string;

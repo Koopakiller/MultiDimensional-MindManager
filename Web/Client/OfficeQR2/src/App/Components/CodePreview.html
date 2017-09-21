@@ -1,1 +1,4 @@
-<img src="{{imageUrl}}" alt="QR Code" />
+<div class="preview">
+    <img *ngIf="imageUrl" src="{{imageUrl}}" alt="QR Code" />
+    <span *ngIf="!imageUrl">Please set some data to generate a QR code.</span>
+</div>

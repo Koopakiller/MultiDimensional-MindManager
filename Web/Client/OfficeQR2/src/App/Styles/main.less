@@ -28,11 +28,15 @@ body {
         padding: 0;
         padding-top: @padding;
 
+        .padding {
+            padding-left: @padding;
+            padding-right: @padding;
+        }
+
         h1 {
             font-weight: 100;
             font-size: x-large;
-            padding-left: @padding;
-            padding-right: @padding;
+            .padding;
             margin: 0;
         }
 
@@ -72,8 +76,7 @@ body {
         }
 
         form {
-            padding-left: @padding;
-            padding-right: @padding;
+            .padding;
 
             header {
                 font-weight: bold;
@@ -99,6 +102,11 @@ body {
                     padding: 0;
                 }
             }
+        }
+
+        .preview {
+            .padding;
+            margin-top: @padding-small;
         }
     }
 }
