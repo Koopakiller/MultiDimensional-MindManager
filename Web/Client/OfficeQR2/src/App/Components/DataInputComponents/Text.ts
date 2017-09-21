@@ -26,24 +26,26 @@ export class TextComponent extends GenericDataInputComponentBase<TextDataContain
         return (this.data.text ? this.data.text : "").length;
     }
 
-    public messageKey: string;
-    public messageColor: string;
+    public messageKey: string = "empty";
+    public messageColor: string = "#C00000";
 
     private updateMessage(): void {
-
-        // green -> yellow -> red
-
-        if (this.data.text.length < 20) {
+        if (this.data.text.length == 0) {
+            this.messageKey = "empty";
+            this.messageColor = "#C00000";
+            return;
+        }
+        if (this.data.text.length <= 64) {
             this.messageKey = "good";
             this.messageColor = "#009020";
             return;
         }
-        if (this.data.text.length < 80) {
+        if (this.data.text.length <= 128) {
             this.messageKey = "ok";
             this.messageColor = "#808000";
             return;
         }
-        if (this.data.text.length < 300) {
+        if (this.data.text.length < 256) {
             this.messageKey = "warning";
             this.messageColor = "#C00000";
             return;

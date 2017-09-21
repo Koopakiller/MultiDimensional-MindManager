@@ -12,10 +12,11 @@
     <div>
         <span>{{textLength}} Characters - </span>
         <span [ngSwitch]='messageKey' [style.color]='messageColor'>
+            <span *ngSwitchCase='"empty"'>Empty</span>
             <span *ngSwitchCase='"good"'>Good Length</span>
             <span *ngSwitchCase='"ok"'>Length should be no problem</span>
             <span *ngSwitchCase='"warning"'>Pretty long text</span>
-            <span *ngSwitchCase='"problem"'>Text could be to long for some scanner</span>
+            <span *ngSwitchCase='"problem"'>Text could be too long for some scanner</span>
         </span>
     </div>
 
