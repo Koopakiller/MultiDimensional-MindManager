@@ -59,9 +59,12 @@ export class TextComponent extends DataInputComponentBase implements OnInit {
 
     public updateData() {
         this._inputService.provideDataString(this.text);
+        this._inputService.setDataObject("text", { text: this.text });
     }
 
     public ngOnInit(): void {
-        this._inputService.provideDataString(this.text);
+        let obj = this._inputService.getDataObject("text");
+        this.text = obj ? obj.text : "";
+        this.updateData();
     }
 }

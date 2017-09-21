@@ -10,6 +10,7 @@ import { UrlComponent as InputUrlComponent } from "./Components/DataInputCompone
 import { EmailComponent as InputEmailComponent } from "./Components/DataInputComponents/Email";
 import { TextComponent as InputTextComponent } from "./Components/DataInputComponents/Text";
 import { VCardFormComponent as InputVCardFormComponent } from "./Components/DataInputComponents/VCardForm";
+import { FileComponent as InputFileComponent } from "./Components/DataInputComponents/File";
 import { InputService } from "./Services/InputService";
 import { CodePreviewComponent } from "./Components/CodePreview";
 import { SettingsInputComponent } from "./Components/SettingsInput";
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   { path: "Email", outlet: "data-input", component: InputEmailComponent },
   { path: "Text", outlet: "data-input", component: InputTextComponent },
   { path: "VCardForm", outlet: "data-input", component: InputVCardFormComponent },
+  { path: "File", outlet: "data-input", component: InputFileComponent },
 
   {
     path: "",
@@ -46,6 +48,7 @@ const appRoutes: Routes = [
     InputEmailComponent,
     InputTextComponent,
     InputVCardFormComponent,
+    InputFileComponent,
     CodePreviewComponent
   ],
   bootstrap: [
