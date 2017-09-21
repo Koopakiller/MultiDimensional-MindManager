@@ -1,0 +1,13 @@
+﻿<a (click)='goTo("Index")'>Back</a>
+<form>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <div class="control-container">
+            <input [(ngModel)]="email" type="email" name="email" required 
+                   placeholder="someone@example.com" 
+                   (input)="updateData()"/>
+        </div>
+    </div>
+
+</form>
