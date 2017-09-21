@@ -13,10 +13,9 @@ export class SettingsInputComponent {
     constructor(
         private _inputService: InputService
     ) {
-
     }
 
-    public data: QRCodeSettings = new QRCodeSettings();
+    public data: QRCodeSettings = QRCodeSettings.Default();
 
     public dataChanged() {
         this._inputService.provideSettings(this.data);

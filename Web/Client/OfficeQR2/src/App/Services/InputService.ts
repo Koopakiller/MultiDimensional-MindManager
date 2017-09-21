@@ -8,7 +8,7 @@ import { QRCodeSettings } from "../Model/QRCodeSettings";
 export class InputService {
 
     private _lastDataString: string = null;
-    private _lastSettings: QRCodeSettings = null;
+    private _lastSettings: QRCodeSettings = QRCodeSettings.Default();
 
     public provideDataString(data: string): void {
         this._lastDataString = data;

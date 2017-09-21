@@ -18,10 +18,10 @@
         <label for="ecc">Error Correction Code:</label>
         <div class="control-container">
             <select [(ngModel)]="data.ecc" name="ecc" (input)="dataChanged()">
-                <option value="0">Low</option>
-                <option value="1">Middle</option>
-                <option value="2">Quality</option>
-                <option value="3">Hight</option>
+                <option value="L" [selected]="1==1">Low</option>
+                <option value="M">Middle</option>
+                <option value="Q">Quality</option>
+                <option value="H">High</option>
             </select>
         </div>
     </div>
