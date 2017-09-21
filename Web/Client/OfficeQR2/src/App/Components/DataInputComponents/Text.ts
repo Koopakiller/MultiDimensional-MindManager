@@ -53,6 +53,7 @@ export class TextComponent extends GenericDataInputComponentBase<TextDataContain
     }
 
     public static readonly DataObjectKey: string = "text";
+    public static readonly PathPart: string = "Text";
 
     protected initializeData(): void {
         this.data = new TextDataContainer();

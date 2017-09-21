@@ -9,7 +9,7 @@ import { IndexComponent as InputIndexComponent } from "./Components/DataInputCom
 import { UrlComponent as InputUrlComponent } from "./Components/DataInputComponents/Url";
 import { EmailComponent as InputEmailComponent } from "./Components/DataInputComponents/Email";
 import { TextComponent as InputTextComponent } from "./Components/DataInputComponents/Text";
-import { VCardFormComponent as InputVCardFormComponent } from "./Components/DataInputComponents/VCardForm";
+import { VCardComponent as InputVCardComponent } from "./Components/DataInputComponents/VCard";
 import { FileComponent as InputFileComponent } from "./Components/DataInputComponents/File";
 import { InputService } from "./Services/InputService";
 import { CodePreviewComponent } from "./Components/CodePreview";
@@ -17,12 +17,12 @@ import { SettingsInputComponent } from "./Components/SettingsInput";
 
 const appRoutes: Routes = [
   //Input Components:
-  { path: "Index", outlet: "data-input", component: InputIndexComponent },
-  { path: "Url", outlet: "data-input", component: InputUrlComponent },
-  { path: "Email", outlet: "data-input", component: InputEmailComponent },
-  { path: "Text", outlet: "data-input", component: InputTextComponent },
-  { path: "VCardForm", outlet: "data-input", component: InputVCardFormComponent },
-  { path: "File", outlet: "data-input", component: InputFileComponent },
+  { path: InputIndexComponent.PathPart, outlet: "data-input", component: InputIndexComponent },
+  { path: InputUrlComponent.PathPart, outlet: "data-input", component: InputUrlComponent },
+  { path: InputEmailComponent.PathPart, outlet: "data-input", component: InputEmailComponent },
+  { path: InputTextComponent.PathPart, outlet: "data-input", component: InputTextComponent },
+  { path: InputVCardComponent.PathPart, outlet: "data-input", component: InputVCardComponent },
+  { path: InputFileComponent.PathPart, outlet: "data-input", component: InputFileComponent },
 
   {
     path: "",
@@ -47,7 +47,7 @@ const appRoutes: Routes = [
     InputUrlComponent,
     InputEmailComponent,
     InputTextComponent,
-    InputVCardFormComponent,
+    InputVCardComponent,
     InputFileComponent,
     CodePreviewComponent
   ],

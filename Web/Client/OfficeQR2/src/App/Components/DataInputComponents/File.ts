@@ -25,7 +25,9 @@ export class FileComponent extends DataInputComponentBase {
             let data = new TextDataContainer();
             data.text = reader.result;
             this.updateInputService(data, TextComponent.DataObjectKey);
-            this.goTo("Text");
+            this.goTo(TextComponent.PathPart);
         };
     }
+
+    public static readonly PathPart: string = "File";
 }

@@ -6,25 +6,26 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { InputService } from "../../Services/InputService";
 
 @Component({
-    templateUrl: "VCardForm.html"
+    templateUrl: "VCard.html"
 })
-export class VCardFormComponent extends GenericDataInputComponentBase<VCardFormDataContainer> {
+export class VCardComponent extends GenericDataInputComponentBase<VCardDataContainer> {
     constructor(
         router: Router,
         activatedRoute: ActivatedRoute,
         inputService: InputService
     ) {
-        super(router, activatedRoute, inputService, VCardFormComponent.DataObjectKey);
+        super(router, activatedRoute, inputService, VCardComponent.DataObjectKey);
     }
 
     public static readonly DataObjectKey: string = "vcard";
+    public static readonly PathPart: string = "VCard";
 
     protected initializeData(): void {
-        this.data = new VCardFormDataContainer();
+        this.data = new VCardDataContainer();
     }
 }
 
-export class VCardFormDataContainer implements DataContainer {
+export class VCardDataContainer implements DataContainer {
     public title: string;
     public firstName: string;
     public middleName: string;

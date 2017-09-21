@@ -21,4 +21,6 @@ export class IndexComponent extends InputRoutingComponentBase {
     ngOnInit(): void {
         this._inputService.resetDataString();
     }
+
+    public static readonly PathPart: string = "Index";
 }

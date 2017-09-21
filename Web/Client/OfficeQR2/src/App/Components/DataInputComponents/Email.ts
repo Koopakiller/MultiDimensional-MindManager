@@ -18,6 +18,7 @@ export class EmailComponent extends GenericDataInputComponentBase<EmailDataConta
     }
 
     public static readonly DataObjectKey: string = "email";
+    public static readonly PathPart: string = "Email";
 
     protected initializeData(): void {
         this.data = new EmailDataContainer();

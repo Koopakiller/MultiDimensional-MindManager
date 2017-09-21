@@ -18,6 +18,7 @@ export class UrlComponent extends GenericDataInputComponentBase<UrlDataContainer
     }
 
     public static readonly DataObjectKey: string = "url";
+    public static readonly PathPart: string = "Url";
 
     protected initializeData(): void{
         this.data = new UrlDataContainer();
