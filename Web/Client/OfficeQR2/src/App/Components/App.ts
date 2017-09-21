@@ -19,15 +19,4 @@ import { InputService } from "../Services/InputService";
     templateUrl: "App.html"
 })
 export class AppComponent {
-    constructor(
-        private _inputDataService: InputService
-    ) {
-        this._inputDataService.dataSourceObservable.debounceTime(500).subscribe((data) => {
-            setTimeout(() => {
-                this.dataString = data;
-            })
-        })
-    }
-
-    public dataString: string;
 }

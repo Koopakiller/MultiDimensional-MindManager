@@ -3,6 +3,9 @@ import { Observer } from "rxjs/Observer";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Http } from "@angular/http";
+import { QRCodeConfig } from "./InputService";
+import { QRCodeFileFormat } from "../Model/QRCodeFileFormat";
+
 
 @Injectable()
 export class QRCodeService {
@@ -11,31 +14,21 @@ export class QRCodeService {
     ){        
     }
 
-    public getCodeUrl(dataString: string, size: number, ecc: QRCodeErrorCorrectionCodes, color: string, bgcolor: string, margin: number, qzone: number, fileFormat: QRCodeFileFormat){
+    public getCodeUrl(config: QRCodeConfig){
+        const size: number = 150;
+        const margin: number = 0;
+        const qzone: number = 0;
+        const fileFormat: QRCodeFileFormat = QRCodeFileFormat.png;
+
         let url = `https://api.qrserver.com/v1/create-qr-code/`;
         url += `?size=${size}x${size}`;
-        url += `&data=${encodeURI(dataString)}`;
-        url += `&ecc=${ecc}`;
-        url += `&color=${color}`;
-        url += `&bgcolor=${bgcolor}`;
+        url += `&data=${encodeURI(config.dataString)}`;
+        url += `&ecc=${config.settings.ecc}`;
+        url += `&color=${config.settings.color.replace("#", "")}`;
+        url += `&bgcolor=${config.settings.bgcolor.replace("#", "")}`;
         url += `&margin=${margin}`;
         url += `&qzone=${qzone}`;
         url += `&fileFormat=${fileFormat}`;
         return url;
     }
-}
-
-export enum QRCodeErrorCorrectionCodes{
-    L,
-    M,
-    Q,
-    H
-}
-
-export enum QRCodeFileFormat{
-    eps,
-    svg,
-    jpeg, jpg,
-    png,
-    gif
 }
