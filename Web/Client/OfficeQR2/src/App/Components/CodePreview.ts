@@ -1,16 +1,16 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
-import { QRCodeService } from "../Services/QRCodeService";
+import { QRCodeService, QRCodeErrorCorrectionCodes, QRCodeFileFormat } from "../Services/QRCodeService";
 import { InputService } from "../Services/InputService";
 
 @Component({
     selector: "code-preview",
     templateUrl: "CodePreview.html"
 })
-export class CodePreviewComponent implements OnInit {
+export class CodePreviewComponent {
     constructor(
-        private _navigationService: QRCodeService
+        private _qrCodeService: QRCodeService
     ) {
     }
 
@@ -18,13 +18,15 @@ export class CodePreviewComponent implements OnInit {
     @Input()
     public set dataString(value: string) {
         this._dataString = value;
+        this.updateCode();
     }
-
     public get dataString(): string {
         return this._dataString;
     }
 
-    ngOnInit(): void {
-
+    updateCode(): void{
+        this.imageUrl = this._qrCodeService.getCodeUrl(this.dataString, 150, QRCodeErrorCorrectionCodes.H, "#000000", "#FFFFFF", 0, 0, QRCodeFileFormat.png);
     }
+
+    public imageUrl: string;
 }
