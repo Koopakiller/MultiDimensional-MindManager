@@ -1,14 +1,15 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
-import { DataInputComponentBase } from "./DataInputComponentBase";
+import { DataInputComponentBase } from "./ComponentBase";
 import { Router, ActivatedRoute } from "@angular/router";
 import { InputService } from "../../Services/InputService";
+import { TextComponent, TextDataContainer } from "./Text";
 
 @Component({
     templateUrl: "File.html"
 })
-export class FileComponent extends DataInputComponentBase implements OnInit {
+export class FileComponent extends DataInputComponentBase {
     constructor(
         router: Router,
         activatedRoute: ActivatedRoute,
@@ -21,13 +22,10 @@ export class FileComponent extends DataInputComponentBase implements OnInit {
         let reader: FileReader = new FileReader();
         reader.readAsText($event.target.files[0]);
         reader.onloadend = (e) => {
-            this._inputService.provideDataString(reader.result);
-            this._inputService.setDataObject("text", { text: reader.result });
+            let data = new TextDataContainer();
+            data.text = reader.result;
+            this.updateInputService(data, TextComponent.DataObjectKey);
             this.goTo("Text");
         };
-    }
-
-    public ngOnInit(): void {
-        this._inputService.provideDataString(null);
     }
 }

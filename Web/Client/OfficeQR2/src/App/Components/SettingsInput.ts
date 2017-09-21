@@ -14,7 +14,7 @@ export class SettingsInputComponent implements OnInit{
     ) {
     }
 
-    public updateData(){
+    public dataChanged(){
     }
 
     public ngOnInit(): void {

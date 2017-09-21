@@ -1,22 +1,30 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
-import { DataInputComponentBase } from "./DataInputComponentBase";
+import { DataContainer, GenericDataInputComponentBase } from "./ComponentBase";
 import { Router, ActivatedRoute } from "@angular/router";
 import { InputService } from "../../Services/InputService";
 
 @Component({
     templateUrl: "VCardForm.html"
 })
-export class VCardFormComponent extends DataInputComponentBase implements OnInit {
+export class VCardFormComponent extends GenericDataInputComponentBase<VCardFormDataContainer> {
     constructor(
         router: Router,
         activatedRoute: ActivatedRoute,
         inputService: InputService
     ) {
-        super(router, activatedRoute, inputService);
+        super(router, activatedRoute, inputService, VCardFormComponent.DataObjectKey);
     }
 
+    public static readonly DataObjectKey: string = "vcard";
+
+    protected initializeData(): void {
+        this.data = new VCardFormDataContainer();
+    }
+}
+
+export class VCardFormDataContainer implements DataContainer {
     public title: string;
     public firstName: string;
     public middleName: string;
@@ -37,7 +45,7 @@ export class VCardFormComponent extends DataInputComponentBase implements OnInit
     public email: string;
     public url: string;
 
-    public updateData() {
+    generateDataString(): string {
         let data = "";
         data += `BEGIN:VCARD\n`;
         data += `VERSION:4.0\n`;
@@ -76,7 +84,7 @@ export class VCardFormComponent extends DataInputComponentBase implements OnInit
         data += `REV:${this.getTimeStamp(new Date())}\n`
         data += `END:VCARD`
 
-        this._inputService.provideDataString(data);
+        return data;
     }
 
     private concat(parts: string[], seperator: string): string {
@@ -92,9 +100,5 @@ export class VCardFormComponent extends DataInputComponentBase implements OnInit
     private getTimeStamp(date: Date) {
         return `${date.getUTCFullYear()}${date.getUTCMonth()}${date.getUTCDate()}T`
             + `${date.getUTCHours()}${date.getUTCMinutes()}${date.getUTCSeconds()}Z`
-    }
-
-    public ngOnInit(): void {
-        this.updateData();
     }
 }

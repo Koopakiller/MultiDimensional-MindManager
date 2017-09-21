@@ -1,28 +1,36 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
-import { DataInputComponentBase } from "./DataInputComponentBase";
+import { DataContainer, GenericDataInputComponentBase } from "./ComponentBase";
 import { Router, ActivatedRoute } from "@angular/router";
 import { InputService } from "../../Services/InputService";
 
 @Component({
     templateUrl: "Email.html"
 })
-export class EmailComponent extends DataInputComponentBase implements OnInit{
+export class EmailComponent extends GenericDataInputComponentBase<EmailDataContainer> {
     constructor(
         router: Router,
         activatedRoute: ActivatedRoute,
         inputService: InputService
     ) {
-        super(router, activatedRoute, inputService);
+        super(router, activatedRoute, inputService, EmailComponent.DataObjectKey);
     }
+
+    public static readonly DataObjectKey: string = "email";
+
+    protected initializeData(): void {
+        this.data = new EmailDataContainer();
+    }
+}
+
+export class EmailDataContainer implements DataContainer {
     public email: string;
 
-    public updateData(){
-        this._inputService.provideDataString(this.email); 
-    }
-
-    public ngOnInit(): void {
-        this._inputService.provideDataString(this.email); 
+    generateDataString(): string {
+        if (this.email) {
+            return "mailto:" + this.email;
+        }
+        return null;
     }
 }

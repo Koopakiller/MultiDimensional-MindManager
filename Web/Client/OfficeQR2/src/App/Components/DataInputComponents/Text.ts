@@ -1,33 +1,29 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
-import { DataInputComponentBase } from "./DataInputComponentBase";
+import { DataContainer, GenericDataInputComponentBase } from "./ComponentBase";
 import { Router, ActivatedRoute } from "@angular/router";
 import { InputService } from "../../Services/InputService";
 
 @Component({
     templateUrl: "Text.html"
 })
-export class TextComponent extends DataInputComponentBase implements OnInit {
+export class TextComponent extends GenericDataInputComponentBase<TextDataContainer> {
     constructor(
         router: Router,
         activatedRoute: ActivatedRoute,
         inputService: InputService
     ) {
-        super(router, activatedRoute, inputService);
+        super(router, activatedRoute, inputService, TextComponent.DataObjectKey);
     }
 
-    private _text: string;
-    public get text(): string {
-        return this._text;
-    }
-    public set text(value: string) {
-        this._text = value;
+    public dataChanged(): void {
+        super.dataChanged();
         this.updateMessage();
     }
 
     public get textLength(): number {
-        return (this.text ? this.text : "").length;
+        return (this.data.text ? this.data.text : "").length;
     }
 
     public messageKey: string;
@@ -37,17 +33,17 @@ export class TextComponent extends DataInputComponentBase implements OnInit {
 
         // green -> yellow -> red
 
-        if (this.text.length < 20) {
+        if (this.data.text.length < 20) {
             this.messageKey = "good";
             this.messageColor = "#009020";
             return;
         }
-        if (this.text.length < 80) {
+        if (this.data.text.length < 80) {
             this.messageKey = "ok";
             this.messageColor = "#808000";
             return;
         }
-        if (this.text.length < 300) {
+        if (this.data.text.length < 300) {
             this.messageKey = "warning";
             this.messageColor = "#C00000";
             return;
@@ -56,15 +52,17 @@ export class TextComponent extends DataInputComponentBase implements OnInit {
         this.messageKey = "problem";
     }
 
+    public static readonly DataObjectKey: string = "text";
 
-    public updateData() {
-        this._inputService.provideDataString(this.text);
-        this._inputService.setDataObject("text", { text: this.text });
+    protected initializeData(): void {
+        this.data = new TextDataContainer();
     }
+}
 
-    public ngOnInit(): void {
-        let obj = this._inputService.getDataObject("text");
-        this.text = obj ? obj.text : "";
-        this.updateData();
+export class TextDataContainer implements DataContainer {
+    public text: string;
+
+    generateDataString(): string {
+        return this.text;
     }
 }

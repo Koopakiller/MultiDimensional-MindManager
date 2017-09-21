@@ -4,9 +4,9 @@
     <div class='form-group'>
         <label for='text'>Text:</label>
         <div class='control-container'>
-            <textarea [(ngModel)]='text' name='text' 
-                      placeholder='https://example.com/' 
-                      (input)='updateData()'></textarea>
+            <textarea [(ngModel)]='data.text' name='text' 
+                      placeholder='' 
+                      (input)='dataChanged()'></textarea>
         </div>
     </div>
     <div>

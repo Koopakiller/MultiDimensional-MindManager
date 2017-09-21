@@ -4,9 +4,9 @@
     <div class="form-group">
         <label for="url">Url:</label>
         <div class="control-container">
-            <input [(ngModel)]="url" type="url" name="url" required 
+            <input [(ngModel)]="data.url" type="url" name="url" required 
                    placeholder="https://example.com/" 
-                   (input)="updateData()"/>
+                   (input)="dataChanged()"/>
         </div>
     </div>
 

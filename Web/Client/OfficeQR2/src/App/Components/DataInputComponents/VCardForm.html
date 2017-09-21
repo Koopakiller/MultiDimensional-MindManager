@@ -4,25 +4,25 @@
         <div class="form-group">
             <label for="title">Title:</label>
             <div class="control-container">
-                <input [(ngModel)]="title" type="text" name="title" placeholder="" (input)="updateData()" />
+                <input [(ngModel)]="data.title" type="text" name="title" placeholder="" (input)="dataChanged()" />
             </div>
         </div>
         <div class="form-group">
             <label for="firstName">First Name:</label>
             <div class="control-container">
-                <input [(ngModel)]="firstName" type="text" name="firstName" placeholder="John" (input)="updateData()" />
+                <input [(ngModel)]="data.firstName" type="text" name="firstName" placeholder="John" (input)="dataChanged()" />
             </div>
         </div>
         <div class="form-group">
             <label for="middleName">Middle Name:</label>
             <div class="control-container">
-                <input [(ngModel)]="middleName" type="text" name="middleName" placeholder="" (input)="updateData()" />
+                <input [(ngModel)]="data.middleName" type="text" name="middleName" placeholder="" (input)="dataChanged()" />
             </div>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name:</label>
             <div class="control-container">
-                <input [(ngModel)]="lastName" type="text" name="lastName" placeholder="Doe" (input)="updateData()" />
+                <input [(ngModel)]="data.lastName" type="text" name="lastName" placeholder="Doe" (input)="dataChanged()" />
             </div>
         </div>
     </section>
@@ -30,19 +30,19 @@
         <div class="form-group">
             <label for="company">Company:</label>
             <div class="control-container">
-                <input [(ngModel)]="company" type="text" name="company" placeholder="My Company" (input)="updateData()" />
+                <input [(ngModel)]="data.company" type="text" name="company" placeholder="My Company" (input)="dataChanged()" />
             </div>
         </div>
         <div class="form-group">
             <label for="jobRole">Job Role:</label>
             <div class="control-container">
-                <input [(ngModel)]="jobRole" type="text" name="jobRole" placeholder="CEO" (input)="updateData()" />
+                <input [(ngModel)]="data.jobRole" type="text" name="jobRole" placeholder="CEO" (input)="dataChanged()" />
             </div>
         </div>
         <div class="form-group">
             <label for="jobTitle">Job Title:</label>
             <div class="control-container">
-                <input [(ngModel)]="jobTitle" type="text" name="jobTitle" placeholder="CEO" (input)="updateData()" />
+                <input [(ngModel)]="data.jobTitle" type="text" name="jobTitle" placeholder="CEO" (input)="dataChanged()" />
             </div>
         </div>
     </section>
@@ -50,14 +50,14 @@
         <div class="form-group">
             <label for="phoneNumberWork">Phone (Work):</label>
             <div class="control-container">
-                <input [(ngModel)]="phoneNumberWork" type="tel" name="phoneNumberWork" placeholder="+49 01234 567890" (input)="updateData()"
+                <input [(ngModel)]="data.phoneNumberWork" type="tel" name="phoneNumberWork" placeholder="+49 01234 567890" (input)="dataChanged()"
                 />
             </div>
         </div>
         <div class="form-group">
             <label for="phoneNumberHome">Phone (Work):</label>
             <div class="control-container">
-                <input [(ngModel)]="phoneNumberHome" type="tel" name="phoneNumberHome" placeholder="+49 01234 567890" (input)="updateData()"
+                <input [(ngModel)]="data.phoneNumberHome" type="tel" name="phoneNumberHome" placeholder="+49 01234 567890" (input)="dataChanged()"
                 />
             </div>
         </div>
@@ -66,26 +66,26 @@
         <div class="form-group">
             <label for="addressStreetAndNumber">Street Name and Number:</label>
             <div class="control-container">
-                <input [(ngModel)]="addressStreetAndNumber" type="text" name="addressStreetAndNumber" placeholder="X-Street 1" (input)="updateData()"
+                <input [(ngModel)]="data.addressStreetAndNumber" type="text" name="addressStreetAndNumber" placeholder="X-Street 1" (input)="dataChanged()"
                 />
             </div>
         </div>
         <div class="form-group">
             <label for="addressZip">ZIP:</label>
             <div class="control-container">
-                <input [(ngModel)]="addressZip" type="text" name="addressZip" placeholder="12627" (input)="updateData()" />
+                <input [(ngModel)]="data.addressZip" type="text" name="addressZip" placeholder="12627" (input)="dataChanged()" />
             </div>
         </div>
         <div class="form-group">
             <label for="addressCity">City:</label>
             <div class="control-container">
-                <input [(ngModel)]="addressCity" type="text" name="addressCity" placeholder="Berlin" (input)="updateData()" />
+                <input [(ngModel)]="data.addressCity" type="text" name="addressCity" placeholder="Berlin" (input)="dataChanged()" />
             </div>
         </div>
         <div class="form-group">
             <label for="addressCountry">Country:</label>
             <div class="control-container">
-                <input [(ngModel)]="addressCountry" type="text" name="addressCountry" placeholder="Germany" (input)="updateData()" />
+                <input [(ngModel)]="data.addressCountry" type="text" name="addressCountry" placeholder="Germany" (input)="dataChanged()" />
             </div>
         </div>
     </section>
@@ -93,13 +93,13 @@
         <div class="form-group">
             <label for="email">Email:</label>
             <div class="control-container">
-                <input [(ngModel)]="email" type="email" name="email" placeholder="me@example.com" (input)="updateData()" />
+                <input [(ngModel)]="data.email" type="email" name="email" placeholder="me@example.com" (input)="dataChanged()" />
             </div>
         </div>
         <div class="form-group">
             <label for="url">Url:</label>
             <div class="control-container">
-                <input [(ngModel)]="url" type="url" name="url" required placeholder="https://example.com/" (input)="updateData()" />
+                <input [(ngModel)]="data.url" type="url" name="url" required placeholder="https://example.com/" (input)="dataChanged()" />
             </div>
         </div>
     </section>

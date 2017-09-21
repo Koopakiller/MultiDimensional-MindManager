@@ -3,13 +3,13 @@ import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
 import { QRCodeService } from "../../Services/QRCodeService";
 import { Router, ActivatedRoute } from "@angular/router";
-import { DataInputComponentBase } from "./DataInputComponentBase";
+import { InputRoutingComponentBase } from "./ComponentBase";
 import { InputService } from "../../Services/InputService";
 
 @Component({
     templateUrl: "Index.html"
 })
-export class IndexComponent extends DataInputComponentBase implements OnInit{
+export class IndexComponent extends InputRoutingComponentBase {
     constructor(
         router: Router,
         activatedRoute: ActivatedRoute,
@@ -19,6 +19,6 @@ export class IndexComponent extends DataInputComponentBase implements OnInit{
     }
 
     ngOnInit(): void {
-        this._inputService.resetDataString(); 
+        this._inputService.resetDataString();
     }
 }

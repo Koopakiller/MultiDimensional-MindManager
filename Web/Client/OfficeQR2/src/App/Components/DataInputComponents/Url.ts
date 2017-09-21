@@ -1,28 +1,33 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
-import { DataInputComponentBase } from "./DataInputComponentBase";
+import { DataContainer, GenericDataInputComponentBase } from "./ComponentBase";
 import { Router, ActivatedRoute } from "@angular/router";
 import { InputService } from "../../Services/InputService";
 
 @Component({
     templateUrl: "Url.html"
 })
-export class UrlComponent extends DataInputComponentBase implements OnInit{
+export class UrlComponent extends GenericDataInputComponentBase<UrlDataContainer> {
     constructor(
         router: Router,
         activatedRoute: ActivatedRoute,
         inputService: InputService
     ) {
-        super(router, activatedRoute, inputService);
+        super(router, activatedRoute, inputService, UrlComponent.DataObjectKey);
     }
+
+    public static readonly DataObjectKey: string = "url";
+
+    protected initializeData(): void{
+        this.data = new UrlDataContainer();
+    }
+}
+
+export class UrlDataContainer implements DataContainer{
     public url: string;
 
-    public updateData(){
-        this._inputService.provideDataString(this.url); 
-    }
-
-    public ngOnInit(): void {
-        this._inputService.provideDataString(this.url); 
+    generateDataString(): string {
+        return this.url;
     }
 }
