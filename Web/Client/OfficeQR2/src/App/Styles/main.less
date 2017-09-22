@@ -1,3 +1,5 @@
+@import "shared.less";
+
 @color-accent-light: #BC87F1;
 @color-accent-dark: #5E11AA;
 @color-dark-1: #000000;
@@ -105,7 +107,7 @@ body {
                 input,
                 select {
                     width: 100%;
-                    max-width: 300px;
+                    max-width: @control-width;
                     padding: @padding-small;
                     box-sizing: border-box;
                 }

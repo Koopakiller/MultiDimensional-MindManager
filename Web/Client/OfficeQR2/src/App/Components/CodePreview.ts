@@ -6,7 +6,10 @@ import { InputService, QRCodeConfig } from "../Services/InputService";
 
 @Component({
     selector: "code-preview",
-    templateUrl: "CodePreview.html"
+    templateUrl: "CodePreview.html",
+    styleUrls:[
+        "CodePreview.less"
+    ]
 })
 export class CodePreviewComponent {
     constructor(

@@ -15,10 +15,10 @@ export class QRCodeService {
     }
 
     public getCodeUrl(config: QRCodeConfig){
-        const size: number = 150;
+        const size: number = 1000;
         const margin: number = 0;
         const qzone: number = 0;
-        const fileFormat: QRCodeFileFormat = QRCodeFileFormat.png;
+        const fileFormat: QRCodeFileFormat = QRCodeFileFormat.svg;
 
         let url = `https://api.qrserver.com/v1/create-qr-code/`;
         url += `?size=${size}x${size}`;
