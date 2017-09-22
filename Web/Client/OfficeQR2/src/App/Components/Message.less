@@ -3,30 +3,35 @@
 .background {
     background-color: fade(@color-light, 70%);
     padding: @padding;
-    height: 100%;
+    max-height: 250px;
     width: 100%;
     left: 0;
-    top: 0;
+    bottom: 0;
     position: absolute;
     box-sizing: border-box;
+    background-color: @color-accent-dark;
+    color: @color-light;
+
     .container {
-        background-color: @color-light-1;
-        border: @border-size @color-accent-dark solid;
+
         .header {
             margin-bottom: @padding;
-            background-color: @color-accent-dark;
-            color: @color-light;
             padding: @padding;
+            font-size:x-large;
         }
+
         .text {
             padding-left: @padding;
             padding-right: @padding;
             display: block;
         }
 
-        .buttons {
+        .links {
             padding: @padding;
             text-align: right;
+            a{
+                color:@color-accent-light;
+            }
         }
     }
 }
