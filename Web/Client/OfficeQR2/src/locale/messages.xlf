@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
   <file original="ng.template" id="ngi18n">
-    <unit id="app-header">
-      <notes>
-        <note category="location">src/App/Components/App.ts:1,3</note>
-      </notes>
-      <segment>
-        <source>
-    Office QR 2
-</source>
-      </segment>
-    </unit>
     <unit id="app-section-DataInput-header">
       <notes>
-        <note category="location">src/App/Components/App.ts:6</note>
+        <note category="location">src/App/Components/App.ts:2</note>
       </notes>
       <segment>
         <source>Data Input</source>
@@ -21,7 +11,7 @@
     </unit>
     <unit id="app-section-CommonSettings-header">
       <notes>
-        <note category="location">src/App/Components/App.ts:11</note>
+        <note category="location">src/App/Components/App.ts:7</note>
       </notes>
       <segment>
         <source>Common Settings</source>
@@ -29,7 +19,7 @@
     </unit>
     <unit id="app-section-Preview-header">
       <notes>
-        <note category="location">src/App/Components/App.ts:16</note>
+        <note category="location">src/App/Components/App.ts:12</note>
       </notes>
       <segment>
         <source>Preview</source>
@@ -131,51 +121,33 @@
         <source>Import the content of a file (text, vCard, ...).</source>
       </segment>
     </unit>
-    <unit id="Input-Url-Url-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/Url.ts:5</note>
-      </notes>
-      <segment>
-        <source>Url:</source>
-      </segment>
-    </unit>
     <unit id="Input-Url-Url-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/Url.ts:8</note>
+        <note category="location">src/App/Components/DataInputComponents/Url.ts:14</note>
       </notes>
       <segment>
-        <source>https://example.com/</source>
-      </segment>
-    </unit>
-    <unit id="Input-Email-Email-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/Email.ts:5</note>
-        <note category="location">src/App/Components/DataInputComponents/Phone.ts:5</note>
-      </notes>
-      <segment>
-        <source>Email:</source>
+        <source>Url</source>
       </segment>
     </unit>
     <unit id="Input-Email-Email-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/Email.ts:8</note>
-        <note category="location">src/App/Components/DataInputComponents/Phone.ts:8</note>
+        <note category="location">src/App/Components/DataInputComponents/Email.ts:14</note>
       </notes>
       <segment>
-        <source>someone@example.com</source>
+        <source>Email</source>
       </segment>
     </unit>
-    <unit id="Input-Text-Text-Label">
+    <unit id="Input-Text-Text-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/Text.ts:5</note>
+        <note category="location">src/App/Components/DataInputComponents/Text.ts:14</note>
       </notes>
       <segment>
-        <source>Text:</source>
+        <source>Text</source>
       </segment>
     </unit>
     <unit id="Input-Text-LengthMessage-Characters">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/Text.ts:13</note>
+        <note category="location">src/App/Components/DataInputComponents/Text.ts:19</note>
       </notes>
       <segment>
         <source>{VAR_PLURAL, plural, =1 {Character} other {Characters} }</source>
@@ -183,7 +155,7 @@
     </unit>
     <unit id="Input-Text-LengthMessage-Empty">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/Text.ts:15</note>
+        <note category="location">src/App/Components/DataInputComponents/Text.ts:21</note>
       </notes>
       <segment>
         <source>Empty</source>
@@ -191,7 +163,7 @@
     </unit>
     <unit id="Input-Text-LengthMessage-Good">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/Text.ts:16</note>
+        <note category="location">src/App/Components/DataInputComponents/Text.ts:22</note>
       </notes>
       <segment>
         <source>Good Length</source>
@@ -199,7 +171,7 @@
     </unit>
     <unit id="Input-Text-LengthMessage-Ok">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/Text.ts:17</note>
+        <note category="location">src/App/Components/DataInputComponents/Text.ts:23</note>
       </notes>
       <segment>
         <source>Length should be no problem</source>
@@ -207,7 +179,7 @@
     </unit>
     <unit id="Input-Text-LengthMessage-Warning">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/Text.ts:18</note>
+        <note category="location">src/App/Components/DataInputComponents/Text.ts:24</note>
       </notes>
       <segment>
         <source>Pretty long text</source>
@@ -215,7 +187,7 @@
     </unit>
     <unit id="Input-Text-LengthMessage-Problem">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/Text.ts:19</note>
+        <note category="location">src/App/Components/DataInputComponents/Text.ts:25</note>
       </notes>
       <segment>
         <source>Text could be too long for some scanner</source>
@@ -223,106 +195,66 @@
     </unit>
     <unit id="Input-VCard-PersonName-Header">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:4</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:11</note>
       </notes>
       <segment>
         <source>Person Name</source>
       </segment>
     </unit>
-    <unit id="Input-VCard-PersonName-Title-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:6</note>
-      </notes>
-      <segment>
-        <source>Title:</source>
-      </segment>
-    </unit>
-    <unit id="Input-VCard-PersonName-FirstName-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:12</note>
-      </notes>
-      <segment>
-        <source>First Name:</source>
-      </segment>
-    </unit>
-    <unit id="Input-VCard-PersonName-FirstName-Placeholder">
+    <unit id="Input-VCard-PersonName-Title-Placeholder">
       <notes>
         <note category="location">src/App/Components/DataInputComponents/VCard.ts:14</note>
       </notes>
       <segment>
-        <source>John</source>
+        <source>Title</source>
       </segment>
     </unit>
-    <unit id="Input-VCard-PersonName-MiddleName-Label">
+    <unit id="Input-VCard-PersonName-FirstName-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:18</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:19</note>
       </notes>
       <segment>
-        <source>Middle Name:</source>
+        <source>First Name</source>
       </segment>
     </unit>
-    <unit id="Input-VCard-PersonName-LastName-Label">
+    <unit id="Input-VCard-PersonName-MiddleName-Placeholder">
       <notes>
         <note category="location">src/App/Components/DataInputComponents/VCard.ts:24</note>
       </notes>
       <segment>
-        <source>Last Name:</source>
+        <source>Middle Name</source>
       </segment>
     </unit>
     <unit id="Input-VCard-PersonName-LastName-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:26</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:29</note>
       </notes>
       <segment>
-        <source>Doe</source>
+        <source>Last Name</source>
       </segment>
     </unit>
     <unit id="Input-VCard-Company-Header">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:31</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:34</note>
       </notes>
       <segment>
         <source>Company</source>
       </segment>
     </unit>
-    <unit id="Input-VCard-Company-Company-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:33</note>
-      </notes>
-      <segment>
-        <source>Company:</source>
-      </segment>
-    </unit>
     <unit id="Input-VCard-Company-Company-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:35</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:37</note>
       </notes>
       <segment>
-        <source>My Company</source>
-      </segment>
-    </unit>
-    <unit id="Input-VCard-Company-JobRole-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:39</note>
-      </notes>
-      <segment>
-        <source>Job Role:</source>
+        <source>Company</source>
       </segment>
     </unit>
     <unit id="Input-VCard-Company-JobRole-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:41</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:42</note>
       </notes>
       <segment>
-        <source>CEO</source>
-      </segment>
-    </unit>
-    <unit id="Input-VCard-Company-JobTitle-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:45</note>
-      </notes>
-      <segment>
-        <source>Job Title:</source>
+        <source>Job Role</source>
       </segment>
     </unit>
     <unit id="Input-VCard-Company-JobTitle-Placeholder">
@@ -330,7 +262,7 @@
         <note category="location">src/App/Components/DataInputComponents/VCard.ts:47</note>
       </notes>
       <segment>
-        <source>CEO</source>
+        <source>Job Title</source>
       </segment>
     </unit>
     <unit id="Input-VCard-Phone-Header">
@@ -341,156 +273,100 @@
         <source>Phone</source>
       </segment>
     </unit>
-    <unit id="Input-VCard-Phone-Work-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:54</note>
-      </notes>
-      <segment>
-        <source>Phone (Work):</source>
-      </segment>
-    </unit>
     <unit id="Input-VCard-Phone-Work-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:56</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:55</note>
       </notes>
       <segment>
-        <source>+49 01234 567890</source>
-      </segment>
-    </unit>
-    <unit id="Input-VCard-Phone-Home-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:61</note>
-      </notes>
-      <segment>
-        <source>Phone (Home):</source>
+        <source>Phone (Work)</source>
       </segment>
     </unit>
     <unit id="Input-VCard-Phone-Home-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:63</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:61</note>
       </notes>
       <segment>
-        <source>+49 01234 567890</source>
+        <source>Phone (Home)</source>
       </segment>
     </unit>
     <unit id="Input-VCard-Address-Header">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:69</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:67</note>
       </notes>
       <segment>
         <source>Address</source>
       </segment>
     </unit>
-    <unit id="Input-VCard-Address-StreetNameAndNumber-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:71</note>
-      </notes>
-      <segment>
-        <source>Street Name and Number:</source>
-      </segment>
-    </unit>
     <unit id="Input-VCard-Address-StreetNameAndNumber-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:73</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:70</note>
       </notes>
       <segment>
-        <source>X-Street 1</source>
-      </segment>
-    </unit>
-    <unit id="Input-VCard-Address-ZIP-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:78</note>
-      </notes>
-      <segment>
-        <source>ZIP:</source>
+        <source>Street Name and Number</source>
       </segment>
     </unit>
     <unit id="Input-VCard-Address-ZIP-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:80</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:76</note>
       </notes>
       <segment>
-        <source>12627</source>
-      </segment>
-    </unit>
-    <unit id="Input-VCard-Address-City-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:84</note>
-      </notes>
-      <segment>
-        <source>City:</source>
+        <source>ZIP</source>
       </segment>
     </unit>
     <unit id="Input-VCard-Address-City-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:86</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:81</note>
       </notes>
       <segment>
-        <source>Berlin</source>
-      </segment>
-    </unit>
-    <unit id="Input-VCard-Address-Country-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:90</note>
-      </notes>
-      <segment>
-        <source>Country:</source>
+        <source>City</source>
       </segment>
     </unit>
     <unit id="Input-VCard-Address-Country-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:92</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:86</note>
       </notes>
       <segment>
-        <source>Germany</source>
+        <source>Country</source>
       </segment>
     </unit>
     <unit id="Input-VCard-Internet-Header">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:98</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:92</note>
       </notes>
       <segment>
         <source>Internet</source>
       </segment>
     </unit>
-    <unit id="Input-VCard-Internet-Email-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:100</note>
-      </notes>
-      <segment>
-        <source>Email:</source>
-      </segment>
-    </unit>
     <unit id="Input-VCard-Internet-Email-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:102</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:95</note>
       </notes>
       <segment>
-        <source>me@example.com</source>
-      </segment>
-    </unit>
-    <unit id="Input-VCard-Internet-Url-Label">
-      <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:106</note>
-      </notes>
-      <segment>
-        <source>Url:</source>
+        <source>Email</source>
       </segment>
     </unit>
     <unit id="Input-VCard-Internet-Url-Placeholder">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/VCard.ts:108</note>
+        <note category="location">src/App/Components/DataInputComponents/VCard.ts:100</note>
       </notes>
       <segment>
-        <source>https://example.com/</source>
+        <source>Url</source>
       </segment>
     </unit>
     <unit id="Input-File-File-Label">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/File.ts:5</note>
+        <note category="location">src/App/Components/DataInputComponents/File.ts:12</note>
       </notes>
       <segment>
         <source>File:</source>
+      </segment>
+    </unit>
+    <unit id="Input-Phone-Phone-Placeholder">
+      <notes>
+        <note category="location">src/App/Components/DataInputComponents/Phone.ts:14</note>
+      </notes>
+      <segment>
+        <source>Phone</source>
       </segment>
     </unit>
     <unit id="CodePreview-NoDataInfoText">
