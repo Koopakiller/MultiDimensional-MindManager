@@ -1,20 +1,26 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
+import { Router } from "@angular/router";
 
 @Component({
-    selector: "notification",
-    templateUrl: "Notification.html",
+    templateUrl: "Message.html",
     styleUrls: [
-        "Notification.less"
+        "Message.less"
     ]
 })
-export class NotificationComponent {
+export class MessageComponent {
+
+    constructor(
+        private _router: Router
+    ) {
+    }
+
     public text: string = "Lorem Ipsum dolor sit amet";
     public header: string = "Info";
     public isVisible: boolean = true;
 
-    public close(){
-        this.isVisible = false;
+    public close() {
+        this._router.navigate([{ outlets: { popup: null } }]);
     }
 }

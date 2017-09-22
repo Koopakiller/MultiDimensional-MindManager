@@ -15,7 +15,7 @@ import { PhoneComponent as InputPhoneComponent } from "./Components/DataInputCom
 import { InputService } from "./Services/InputService";
 import { CodePreviewComponent } from "./Components/CodePreview";
 import { SettingsInputComponent } from "./Components/SettingsInput";
-import { NotificationComponent } from "./Components/Notification";
+import { MessageComponent } from "./Components/Message";
 
 const appRoutes: Routes = [
   //Input Components:
@@ -26,6 +26,8 @@ const appRoutes: Routes = [
   { path: InputVCardComponent.PathPart, outlet: "data-input", component: InputVCardComponent },
   { path: InputFileComponent.PathPart, outlet: "data-input", component: InputFileComponent },
   { path: InputPhoneComponent.PathPart, outlet: "data-input", component: InputPhoneComponent },
+
+  { path: "Message", outlet: "popup", component: MessageComponent },
 
   {
     path: "",
@@ -53,7 +55,7 @@ const appRoutes: Routes = [
     InputVCardComponent,
     InputFileComponent,
     InputPhoneComponent,
-    NotificationComponent,
+    MessageComponent,
     CodePreviewComponent
   ],
   bootstrap: [
