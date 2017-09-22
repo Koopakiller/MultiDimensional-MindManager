@@ -10,7 +10,7 @@
         </div>
     </div>
     <div>
-        <span>{{textLength}} <span i18n="@@Input-Text-LengthMessage-Characters">{characters, plural, =1 {Character} other {Characters}}</span> - </span>
+        <span>{{textLength}} <span i18n="@@Input-Text-LengthMessage-Characters">{textLength, plural, =1 {Character} other {Characters}}</span> - </span>
         <span [ngSwitch]='messageKey' [style.color]='messageColor'>
             <span *ngSwitchCase='"empty"' i18n="@@Input-Text-LengthMessage-Empty">Empty</span>
             <span *ngSwitchCase='"good"' i18n="@@Input-Text-LengthMessage-Good">Good Length</span>
