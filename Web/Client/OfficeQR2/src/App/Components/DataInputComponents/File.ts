@@ -9,7 +9,8 @@ import { TextComponent, TextDataContainer } from "./Text";
 @Component({
     templateUrl: "File.html",
     styleUrls:[
-        "Shared.less"
+        "Shared.less",
+        "../../Styles/Form.less"
     ]
 })
 export class FileComponent extends DataInputComponentBase {

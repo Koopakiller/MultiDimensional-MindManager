@@ -8,7 +8,8 @@ import { InputService } from "../../Services/InputService";
 @Component({
     templateUrl: "Text.html",
     styleUrls: [
-        "Shared.less"
+        "Shared.less",
+        "../../Styles/Form.less"
     ]
 })
 export class TextComponent extends GenericDataInputComponentBase<TextDataContainer> {

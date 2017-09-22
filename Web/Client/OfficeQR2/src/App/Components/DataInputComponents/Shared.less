@@ -1,16 +1,23 @@
 @import "../../Styles/shared.less";
 
 .back-link {
-    margin-left: @padding;
     color: @color-accent-dark;
+    margin-left: @padding;
+    margin-top: @padding-small;
+    display: inline-block;
 
-    &:hover {
-        color: @color-accent-light;
-    }
-
-    img {
+    svg{
+        fill:@color-accent-dark;
         height: 12pt;
         width: 12pt;
         vertical-align: top;
+    }
+
+    &:hover {
+        color: @color-accent-light;
+
+        svg{
+            fill:@color-accent-light;
+        }
     }
 }

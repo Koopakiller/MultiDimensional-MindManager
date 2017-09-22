@@ -7,7 +7,10 @@ import { QRCodeSettings } from "../Model/QRCodeSettings";
 
 @Component({
     selector: "settings-input",
-    templateUrl: "SettingsInput.html"
+    templateUrl: "SettingsInput.html",
+    styleUrls:[
+        "../Styles/Form.less"
+    ]
 })
 export class SettingsInputComponent {
     constructor(

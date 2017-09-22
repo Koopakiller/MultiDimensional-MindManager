@@ -8,7 +8,8 @@ import { InputService } from "../../Services/InputService";
 @Component({
     templateUrl: "VCard.html",
     styleUrls: [
-        "Shared.less"
+        "Shared.less",
+        "../../Styles/Form.less"
     ]
 })
 export class VCardComponent extends GenericDataInputComponentBase<VCardDataContainer> {
