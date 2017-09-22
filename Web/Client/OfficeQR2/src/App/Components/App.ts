@@ -16,7 +16,10 @@ import { InputService } from "../Services/InputService";
 
 @Component({
     selector: "app",
-    templateUrl: "App.html"
+    templateUrl: "App.html",
+    styleUrls: [
+        "App.less"
+    ]
 })
 export class AppComponent {
 }

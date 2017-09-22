@@ -5,14 +5,7 @@ body {
     background-color: @color-light;
     color: @color-dark;
     margin: 0;
-
-    header.app-header {
-        display: block;
-        background: @color-accent-dark;
-        color: @color-light;
-        padding: @padding;
-        font-size: xx-large;
-    }
+    cursor: default;
 
     section {
         display: block;
@@ -25,70 +18,18 @@ body {
             padding-right: @padding;
         }
 
-        h1 {
-            font-weight: 100;
-            font-size: x-large;
-            .padding;
-            margin: 0;
-        }
-
-        a {
-            display: block;
-            background: @color-light;
-            color: @color-dark;
-            padding: @padding;
-            text-decoration: none;
-            cursor: default;
-
-            &:hover {
-                background-color: @color-accent-light;
-                color: @color-dark;
-                text-decoration: none;
-            }
-
-            .header {
-                font-weight: 800;
-                display: block;
-            }
-
-            .description {
-                display: block;
-            }
-
-            .icon {
-                float: left;
-                height: 46px;
-                width: 46px;
-                margin-right: @padding-small;
-                margin-bottom: @padding;
-                display: block;
-                font-size: 40px;
-            }
-
-            .clear {
-                clear: both;
-                display: block;
-                font-size: 0;
-            }
-
-            .icon-inline {
-                height: 12pt;
-                width: 12pt;
-                vertical-align: top;
-            }
-        }
-
         form {
             .padding;
 
             header {
-                font-weight: bold;
+                font-size: large;
             }
 
             .form-group {
                 label {
                     margin-top: @padding-small;
                     display: block;
+                    font-size: smaller;
                 }
                 textarea {
                     height: 4em;

@@ -6,7 +6,10 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { InputService } from "../../Services/InputService";
 
 @Component({
-    templateUrl: "Email.html"
+    templateUrl: "Email.html",
+    styleUrls: [
+        "Shared.less"
+    ]
 })
 export class EmailComponent extends GenericDataInputComponentBase<EmailDataContainer> {
     constructor(

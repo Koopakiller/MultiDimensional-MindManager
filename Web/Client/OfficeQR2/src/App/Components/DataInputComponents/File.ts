@@ -7,7 +7,10 @@ import { InputService } from "../../Services/InputService";
 import { TextComponent, TextDataContainer } from "./Text";
 
 @Component({
-    templateUrl: "File.html"
+    templateUrl: "File.html",
+    styleUrls:[
+        "Shared.less"
+    ]
 })
 export class FileComponent extends DataInputComponentBase {
     constructor(

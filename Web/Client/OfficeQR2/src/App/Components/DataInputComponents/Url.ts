@@ -6,7 +6,10 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { InputService } from "../../Services/InputService";
 
 @Component({
-    templateUrl: "Url.html"
+    templateUrl: "Url.html",
+    styleUrls: [
+        "Shared.less"
+    ]
 })
 export class UrlComponent extends GenericDataInputComponentBase<UrlDataContainer> {
     constructor(
@@ -20,12 +23,12 @@ export class UrlComponent extends GenericDataInputComponentBase<UrlDataContainer
     public static readonly DataObjectKey: string = "url";
     public static readonly PathPart: string = "Url";
 
-    protected initializeData(): void{
+    protected initializeData(): void {
         this.data = new UrlDataContainer();
     }
 }
 
-export class UrlDataContainer implements DataContainer{
+export class UrlDataContainer implements DataContainer {
     public url: string;
 
     generateDataString(): string {

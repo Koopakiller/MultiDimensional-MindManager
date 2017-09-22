@@ -6,7 +6,10 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { InputService } from "../../Services/InputService";
 
 @Component({
-    templateUrl: "Phone.html"
+    templateUrl: "Phone.html",
+    styleUrls: [
+        "Shared.less"
+    ]
 })
 export class PhoneComponent extends GenericDataInputComponentBase<PhoneDataContainer> {
     constructor(

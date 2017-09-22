@@ -7,7 +7,11 @@ import { InputRoutingComponentBase } from "./ComponentBase";
 import { InputService } from "../../Services/InputService";
 
 @Component({
-    templateUrl: "Index.html"
+    templateUrl: "Index.html",
+    styleUrls: [
+        "Shared.less",
+        "Index.less"
+    ]
 })
 export class IndexComponent extends InputRoutingComponentBase {
     constructor(

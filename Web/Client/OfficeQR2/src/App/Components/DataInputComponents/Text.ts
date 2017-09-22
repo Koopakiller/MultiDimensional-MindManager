@@ -6,7 +6,10 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { InputService } from "../../Services/InputService";
 
 @Component({
-    templateUrl: "Text.html"
+    templateUrl: "Text.html",
+    styleUrls: [
+        "Shared.less"
+    ]
 })
 export class TextComponent extends GenericDataInputComponentBase<TextDataContainer> {
     constructor(
