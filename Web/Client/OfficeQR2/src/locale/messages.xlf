@@ -67,9 +67,25 @@
         <source>To open the default e-mail program and set default values.</source>
       </segment>
     </unit>
-    <unit id="Input-Index-Link-Text-Header">
+    <unit id="Input-Index-Link-Phone-Header">
       <notes>
         <note category="location">src/App/Components/DataInputComponents/Index.ts:15</note>
+      </notes>
+      <segment>
+        <source>Phone</source>
+      </segment>
+    </unit>
+    <unit id="Input-Index-Link-Phone-Description">
+      <notes>
+        <note category="location">src/App/Components/DataInputComponents/Index.ts:16</note>
+      </notes>
+      <segment>
+        <source>To call a phone number.</source>
+      </segment>
+    </unit>
+    <unit id="Input-Index-Link-Text-Header">
+      <notes>
+        <note category="location">src/App/Components/DataInputComponents/Index.ts:21</note>
       </notes>
       <segment>
         <source>Text</source>
@@ -77,7 +93,7 @@
     </unit>
     <unit id="Input-Index-Link-Text-Description">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/Index.ts:16</note>
+        <note category="location">src/App/Components/DataInputComponents/Index.ts:22</note>
       </notes>
       <segment>
         <source>Define your own text.</source>
@@ -85,7 +101,7 @@
     </unit>
     <unit id="Input-Index-Link-VCard-Header">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/Index.ts:21</note>
+        <note category="location">src/App/Components/DataInputComponents/Index.ts:27</note>
       </notes>
       <segment>
         <source>vCard</source>
@@ -93,7 +109,7 @@
     </unit>
     <unit id="Input-Index-Link-VCard-Description">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/Index.ts:22</note>
+        <note category="location">src/App/Components/DataInputComponents/Index.ts:28</note>
       </notes>
       <segment>
         <source>Create a vCard with a formular.</source>
@@ -101,7 +117,7 @@
     </unit>
     <unit id="Input-Index-Link-File-Header">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/Index.ts:27</note>
+        <note category="location">src/App/Components/DataInputComponents/Index.ts:33</note>
       </notes>
       <segment>
         <source>File</source>
@@ -109,7 +125,7 @@
     </unit>
     <unit id="Input-Index-Link-File-Description">
       <notes>
-        <note category="location">src/App/Components/DataInputComponents/Index.ts:28</note>
+        <note category="location">src/App/Components/DataInputComponents/Index.ts:34</note>
       </notes>
       <segment>
         <source>Import the content of a file (text, vCard, ...).</source>
@@ -134,6 +150,7 @@
     <unit id="Input-Email-Email-Label">
       <notes>
         <note category="location">src/App/Components/DataInputComponents/Email.ts:5</note>
+        <note category="location">src/App/Components/DataInputComponents/Phone.ts:5</note>
       </notes>
       <segment>
         <source>Email:</source>
@@ -142,6 +159,7 @@
     <unit id="Input-Email-Email-Placeholder">
       <notes>
         <note category="location">src/App/Components/DataInputComponents/Email.ts:8</note>
+        <note category="location">src/App/Components/DataInputComponents/Phone.ts:8</note>
       </notes>
       <segment>
         <source>someone@example.com</source>

@@ -11,6 +11,7 @@ import { EmailComponent as InputEmailComponent } from "./Components/DataInputCom
 import { TextComponent as InputTextComponent } from "./Components/DataInputComponents/Text";
 import { VCardComponent as InputVCardComponent } from "./Components/DataInputComponents/VCard";
 import { FileComponent as InputFileComponent } from "./Components/DataInputComponents/File";
+import { PhoneComponent as InputPhoneComponent } from "./Components/DataInputComponents/Phone";
 import { InputService } from "./Services/InputService";
 import { CodePreviewComponent } from "./Components/CodePreview";
 import { SettingsInputComponent } from "./Components/SettingsInput";
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
   { path: InputTextComponent.PathPart, outlet: "data-input", component: InputTextComponent },
   { path: InputVCardComponent.PathPart, outlet: "data-input", component: InputVCardComponent },
   { path: InputFileComponent.PathPart, outlet: "data-input", component: InputFileComponent },
+  { path: InputPhoneComponent.PathPart, outlet: "data-input", component: InputPhoneComponent },
 
   {
     path: "",
@@ -49,6 +51,7 @@ const appRoutes: Routes = [
     InputTextComponent,
     InputVCardComponent,
     InputFileComponent,
+    InputPhoneComponent,
     CodePreviewComponent
   ],
   bootstrap: [

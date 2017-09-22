@@ -1,0 +1,13 @@
+﻿<a (click)='goTo("Index")'><img class="icon-inline" i18n="@@Common-NavigateBack" src="Assets/Icons/Google/Material/ic_keyboard_backspace_black_24px.svg"/> Back</a>
+<form>
+
+    <div class="form-group">
+        <label for="phone" i18n="@@Input-Phone-Phone-Label">Phone:</label>
+        <div class="control-container">
+            <input [(ngModel)]="data.phone" type="tel" name="phone" required 
+                   placeholder="+49 01234 567890" i18n-placeholder="@@Input-Phone-Phone-Placeholder"
+                   (input)="dataChanged()"/>
+        </div>
+    </div>
+
+</form>
