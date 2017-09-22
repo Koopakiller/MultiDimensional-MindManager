@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "serve": "ng serve --env=dev --progress --base-href \"/OfficeQR2/\" --deploy-url \"/OfficeQR2/\"",
-    "serve:prod": "ng serve --env=prod --progress",
+    "serve": "ng serve --env=dev --progress --base-href \"/OfficeQR2/\" --deploy-url \"/OfficeQR2/\" --ssl 1 --ssl-key \"dev/ssl/cert.key\" --ssl-cert \"dev/ssl/cert.crt\"",
+    "serve:prod": "ng serve --env=prod --progress --base-href \"/OfficeQR2/\" --deploy-url \"/OfficeQR2/\" --ssl 1 --ssl-key \"dev/ssl/cert.key\" --ssl-cert \"dev/ssl/cert.crt\"",
     "build": "ng build --env=dev --progress",
     "build:prod": "ng build --env=prod --progress --output-path \"../../Server/wwwroot/OfficeQR2\" --deploy-url \"/OfficeQR2/\"",
     "test": "ng test",
