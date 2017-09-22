@@ -1,0 +1,32 @@
+@import "../Styles/shared.less";
+
+.background {
+    background-color: fade(@color-light, 70%);
+    padding: @padding;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    box-sizing: border-box;
+    .container {
+        background-color: @color-light-1;
+        border: @border-size @color-accent-dark solid;
+        .header {
+            margin-bottom: @padding;
+            background-color: @color-accent-dark;
+            color: @color-light;
+            padding: @padding;
+        }
+        .text {
+            padding-left: @padding;
+            padding-right: @padding;
+            display: block;
+        }
+
+        .buttons {
+            padding: @padding;
+            text-align: right;
+        }
+    }
+}
