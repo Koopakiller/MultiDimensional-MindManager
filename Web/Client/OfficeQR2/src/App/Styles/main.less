@@ -7,6 +7,27 @@ body {
     margin: 0;
     cursor: default;
 
+
+    .loading-indicator {
+        position: relative;
+        display: block;
+        .loading-indicator-background {
+            left: 0;
+            top: 0;
+            position: fixed;
+            right: 0;
+            bottom: 0;
+        }
+        .loading-indicator-animation {
+            left: 50%;
+            position: fixed;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 128px;
+            max-height: 128px;
+        }
+    }
+
     section {
         display: block;
         margin: 0;
