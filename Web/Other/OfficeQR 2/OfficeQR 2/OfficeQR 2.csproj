@@ -21,7 +21,6 @@
     <ProjectMode>OfficeApp</ProjectMode>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <MinimumOfficeToolsVersion>14.0</MinimumOfficeToolsVersion>
-    <IsPackaging>True</IsPackaging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,7 +31,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <RemoteAppUrl>https://localhost:4200/OfficeQR2</RemoteAppUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,7 +40,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <RemoteAppUrl>https://picosmos.de/OfficeQR</RemoteAppUrl>
   </PropertyGroup>
   <ItemGroup>
     <None Include="OfficeQR 2Manifest\SharePointProjectItem.spdata">
