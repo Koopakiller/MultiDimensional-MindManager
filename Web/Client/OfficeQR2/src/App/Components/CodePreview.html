@@ -1,9 +1,14 @@
 <div class="preview">
 
-    <input type="button" (click)="insertIntoDocument()" 
-           value="Insert Code into your Document" i18n-value="@@CodePreview-InsertButtonText"
-           *ngIf="isHostedInOffice && imageUrl"/>
+    <div>
+        <input type="button" 
+               (click)="insertIntoDocument()" 
+               value="Insert Code into your Document" 
+               i18n-value="@@CodePreview-InsertButtonText"
+               *ngIf="isHostedInOffice && imageUrl" />
+    </div>
 
     <img *ngIf="imageUrl" src="{{imageUrl}}" alt="QR Code" />
     <span *ngIf="!imageUrl" i18n="@@CodePreview-NoDataInfoText">Please set some data to generate a QR code.</span>
+
 </div>
