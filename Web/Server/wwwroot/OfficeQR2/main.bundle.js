@@ -81,7 +81,7 @@ var AppComponent = (function () {
 /***/ "../../../../../src/App/Components/CodePreview.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"preview\">\n\n    <input type=\"button\" *ngIf=\"isHostedInOffice\" (click)=\"insertIntoDocument()\" value=\"Insert Code into your Document\" i18n-value=\"@@CodePreview-InsertButtonText\" />\n\n    <img *ngIf=\"imageUrl\" src=\"{{imageUrl}}\" alt=\"QR Code\" />\n    <span *ngIf=\"!imageUrl\" i18n=\"@@CodePreview-NoDataInfoText\">Please set some data to generate a QR code.</span>\n</div>"
+module.exports = "<div class=\"preview\">\n\n    <div>\n        <input type=\"button\" \n               (click)=\"insertIntoDocument()\" \n               value=\"Insert Code into your Document\" \n               i18n-value=\"@@CodePreview-InsertButtonText\"\n               *ngIf=\"isHostedInOffice && imageUrl\" />\n    </div>\n\n    <img *ngIf=\"imageUrl\" src=\"{{imageUrl}}\" alt=\"QR Code\" />\n    <span *ngIf=\"!imageUrl\" i18n=\"@@CodePreview-NoDataInfoText\">Please set some data to generate a QR code.</span>\n\n</div>"
 
 /***/ }),
 
@@ -93,7 +93,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "img {\n  max-width: 100%;\n  max-height: 320px;\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, ".preview {\n  text-align: center;\n}\n.preview img {\n  max-width: 100%;\n  max-height: 320px;\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -148,7 +148,7 @@ var CodePreviewComponent = (function () {
         else {
             this.imageUrl = null;
         }
-        this.isHostedInOffice = window.hasOwnProperty("Office");
+        this.isHostedInOffice = this._officeService.isHostedInOffice;
     };
     CodePreviewComponent.prototype.insertIntoDocument = function () {
         var url = this._qrCodeService.getCodeUrl(this.config, __WEBPACK_IMPORTED_MODULE_4__Model_QRCodeFileFormat__["a" /* QRCodeFileFormat */].png);
@@ -158,7 +158,7 @@ var CodePreviewComponent = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
             selector: "code-preview",
             template: __webpack_require__("../../../../../src/App/Components/CodePreview.html"),
-            styles: [__webpack_require__("../../../../../src/App/Components/CodePreview.less")]
+            styles: [__webpack_require__("../../../../../src/App/Components/CodePreview.less"), __webpack_require__("../../../../../src/App/Styles/Form.less")]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__Services_InputService__["a" /* InputService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__Services_InputService__["a" /* InputService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__Services_QRCodeService__["a" /* QRCodeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__Services_QRCodeService__["a" /* QRCodeService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__Services_OfficeService__["a" /* OfficeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__Services_OfficeService__["a" /* OfficeService */]) === "function" && _c || Object])
     ], CodePreviewComponent);
@@ -414,7 +414,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "form {\n  padding-left: 12px;\n  padding-right: 12px;\n}\nform header {\n  font-size: large;\n}\nform .form-group {\n  margin-top: 6px;\n}\nform .form-group label {\n  margin-top: 6px;\n  display: block;\n}\nform .form-group textarea {\n  height: 4em;\n}\nform .form-group textarea,\nform .form-group input,\nform .form-group select {\n  width: 100%;\n  max-width: 320px;\n  padding: 6px;\n  box-sizing: border-box;\n}\nform .form-group input[type=color] {\n  padding: 0;\n}\na {\n  display: block;\n  background: #E0E0E0;\n  color: #1f1f1f;\n  padding: 12px;\n  text-decoration: none;\n  cursor: default;\n}\na:hover {\n  background-color: #BC87F1;\n  color: #1f1f1f;\n  text-decoration: none;\n}\na .header {\n  font-weight: 800;\n  display: block;\n}\na .description {\n  display: block;\n}\na .icon {\n  float: left;\n  height: 46px;\n  width: 46px;\n  margin-right: 6px;\n  margin-bottom: 12px;\n  display: block;\n  font-size: 40px;\n}\na .clear {\n  clear: both;\n  display: block;\n  font-size: 0;\n}\n", ""]);
+exports.push([module.i, "form {\n  padding-left: 12px;\n  padding-right: 12px;\n}\nform header {\n  font-size: large;\n}\nform .form-group {\n  margin-top: 6px;\n}\nform .form-group label {\n  margin-top: 6px;\n  display: block;\n}\nform .form-group textarea {\n  height: 4em;\n}\nform .form-group textarea,\nform .form-group input,\nform .form-group select {\n  width: 100%;\n  max-width: 320px;\n  padding: 6px;\n  box-sizing: border-box;\n}\nform .form-group input[type=color] {\n  padding: 0;\n}\nbutton,\ninput[type=button] {\n  border: 2px solid #5E11AA;\n  background-color: #FFFFFF;\n  color: #1f1f1f;\n  padding: 6px 12px 6px 12px;\n  margin-bottom: 6px;\n}\nbutton:hover,\ninput[type=button]:hover {\n  background-color: #BC87F1;\n}\nbutton:active,\ninput[type=button]:active {\n  background-color: #5E11AA;\n  color: #FFFFFF;\n}\na {\n  display: block;\n  background: #E0E0E0;\n  color: #1f1f1f;\n  padding: 12px;\n  text-decoration: none;\n  cursor: default;\n}\na:hover {\n  background-color: #BC87F1;\n  color: #1f1f1f;\n  text-decoration: none;\n}\na .header {\n  font-weight: 800;\n  display: block;\n}\na .description {\n  display: block;\n}\na .icon {\n  float: left;\n  height: 46px;\n  width: 46px;\n  margin-right: 6px;\n  margin-bottom: 12px;\n  display: block;\n  font-size: 40px;\n}\na .clear {\n  clear: both;\n  display: block;\n  font-size: 0;\n}\n", ""]);
 
 // exports
 
@@ -887,7 +887,7 @@ var VCardDataContainer = (function () {
 /***/ "../../../../../src/App/Components/Message.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"isVisible\">\n\n    <div class=\"background\">\n        <div class=\"outer-container\">\n\n            <div class=\"container\">\n\n                <div class=\"header\" *ngIf=\"header\">{{header}}</div>\n\n                <div class=\"text\" *ngIf=\"text\">{{text}}</div>\n\n                <div class=\"links\">\n                    <a (click)=\"close()\">Close</a>\n                </div>\n\n            </div>\n        </div>\n\n    </div>\n</div>"
+module.exports = "<div *ngIf=\"isVisible\">\n\n    <div class=\"background\">\n        <div class=\"outer-container\">\n\n            <div class=\"container\">\n\n                <div class=\"header\" *ngIf=\"header\">{{header}}</div>\n\n                <div class=\"text\" *ngIf=\"text\">{{text}}</div>\n\n                <div class=\"links\">\n                    <a (click)=\"close()\">Close</a>\n                </div>\n\n            </div>\n\n        </div>\n    </div>\n    \n</div>"
 
 /***/ }),
 
@@ -1162,6 +1162,13 @@ var OfficeService = (function () {
             console.log("Your office does not support inserting images bei this app. copy it manual.");
         }
     };
+    Object.defineProperty(OfficeService.prototype, "isHostedInOffice", {
+        get: function () {
+            return !!(Office);
+        },
+        enumerable: true,
+        configurable: true
+    });
     OfficeService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])()
     ], OfficeService);
@@ -1232,7 +1239,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "form {\n  padding-left: 12px;\n  padding-right: 12px;\n}\nform header {\n  font-size: large;\n}\nform .form-group {\n  margin-top: 6px;\n}\nform .form-group label {\n  margin-top: 6px;\n  display: block;\n}\nform .form-group textarea {\n  height: 4em;\n}\nform .form-group textarea,\nform .form-group input,\nform .form-group select {\n  width: 100%;\n  max-width: 320px;\n  padding: 6px;\n  box-sizing: border-box;\n}\nform .form-group input[type=color] {\n  padding: 0;\n}\n", ""]);
+exports.push([module.i, "form {\n  padding-left: 12px;\n  padding-right: 12px;\n}\nform header {\n  font-size: large;\n}\nform .form-group {\n  margin-top: 6px;\n}\nform .form-group label {\n  margin-top: 6px;\n  display: block;\n}\nform .form-group textarea {\n  height: 4em;\n}\nform .form-group textarea,\nform .form-group input,\nform .form-group select {\n  width: 100%;\n  max-width: 320px;\n  padding: 6px;\n  box-sizing: border-box;\n}\nform .form-group input[type=color] {\n  padding: 0;\n}\nbutton,\ninput[type=button] {\n  border: 2px solid #5E11AA;\n  background-color: #FFFFFF;\n  color: #1f1f1f;\n  padding: 6px 12px 6px 12px;\n  margin-bottom: 6px;\n}\nbutton:hover,\ninput[type=button]:hover {\n  background-color: #BC87F1;\n}\nbutton:active,\ninput[type=button]:active {\n  background-color: #5E11AA;\n  color: #FFFFFF;\n}\n", ""]);
 
 // exports
 
