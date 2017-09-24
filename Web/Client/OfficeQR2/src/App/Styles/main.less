@@ -1,0 +1,103 @@
+@import "shared.less";
+
+body {
+    font-family: sans-serif;
+    background-color: @color-light;
+    color: @color-dark;
+    margin: 0;
+    cursor: default;
+
+    .loading-indicator {
+        position: relative;
+        display: block;
+        .loading-indicator-background {
+            left: 0;
+            top: 0;
+            position: fixed;
+            right: 0;
+            bottom: 0;
+        }
+        .loading-indicator-animation {
+            left: 50%;
+            position: fixed;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
+            @keyframes anim {
+                0% {
+                    background-color: transparent;
+                }
+                6.25% {
+                    background-color: transparent;
+                }
+                12.5% {
+                    background-color: @color-accent-dark;
+                }
+                100% {
+                    background-color: @color-accent-dark;
+                }
+            }
+
+            .anim(@tileNumber) {
+                @duration: 1s;
+                animation-delay: @duration / 8 * @tileNumber;
+                animation-name: anim;
+                animation-duration: @duration;
+                animation-iteration-count: infinite;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            .tile {
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+            }
+
+            .t1 {
+                .anim(0);
+            }
+            .t2 {
+                .anim(1);
+            }
+            .t3 {
+                .anim(2);
+            }
+            .t4 {
+                .anim(3);
+            }
+            .t5 {
+                .anim(4);
+            }
+            .t6 {
+                .anim(5);
+            }
+            .t7 {
+                .anim(6);
+            }
+            .t8 {
+                .anim(7);
+            }
+        }
+    }
+
+    section {
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding-top: @padding;
+
+        .padding {
+            padding-left: @padding;
+            padding-right: @padding;
+        }
+
+        .preview {
+            .padding;
+            margin-top: @padding-small;
+        }
+    }
+}

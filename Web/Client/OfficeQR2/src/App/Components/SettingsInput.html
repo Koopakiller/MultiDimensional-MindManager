@@ -1,0 +1,29 @@
+﻿<form>
+
+    <div class="form-group">
+        <label for="color" i18n="@@CommonSettings-Color-Label">Color:</label>
+        <div class="control-container">
+            <input [(ngModel)]="data.color" type="color" name="color" required 
+                   (input)="dataChanged()"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="bgcolor" i18n="@@CommonSettings-BackgroundColor-Label">Background color:</label>
+        <div class="control-container">
+            <input [(ngModel)]="data.bgcolor" type="color" name="bgcolor" required 
+                   (input)="dataChanged()"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ecc" i18n="@@CommonSettings-ECC-Label">Error Correction Code:</label>
+        <div class="control-container">
+            <select [(ngModel)]="data.ecc" name="ecc" (input)="dataChanged()">
+                <option value="L" [selected]="1==1" i18n="@@CommonSettings-ECC-Option-Low">Low</option>
+                <option value="M" i18n="@@CommonSettings-ECC-Option-Middle">Middle</option>
+                <option value="Q" i18n="@@CommonSettings-ECC-Option-Quality">Quality</option>
+                <option value="H" i18n="@@CommonSettings-ECC-Option-High">High</option>
+            </select>
+        </div>
+    </div>
+
+</form>

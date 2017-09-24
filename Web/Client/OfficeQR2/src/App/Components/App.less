@@ -1,0 +1,18 @@
+@import "../Styles/shared.less";
+
+section {
+    &>header {
+        font-size: x-large;
+        padding-left: @padding;
+        padding-right: @padding;
+        margin: 0;
+        border-top: 1px solid @color-neutral;
+        padding-top: @padding-small;
+    }
+
+    &:first-of-type {
+        &>header {
+            border-top: none;
+        }
+    }
+}

@@ -1,0 +1,42 @@
+@import "../../Styles/shared.less";
+@import "../../Styles/Form.less";
+
+a {
+    display: block;
+    background: @color-light;
+    color: @color-dark;
+    padding: @padding;
+    text-decoration: none;
+    cursor: default;
+
+    &:hover {
+        background-color: @color-accent-light;
+        color: @color-dark;
+        text-decoration: none;
+    }
+
+    .header {
+        font-weight: 800;
+        display: block;
+    }
+
+    .description {
+        display: block;
+    }
+
+    .icon {
+        float: left;
+        height: 46px;
+        width: 46px;
+        margin-right: @padding-small;
+        margin-bottom: @padding;
+        display: block;
+        font-size: 40px;
+    }
+
+    .clear {
+        clear: both;
+        display: block;
+        font-size: 0;
+    }
+}
