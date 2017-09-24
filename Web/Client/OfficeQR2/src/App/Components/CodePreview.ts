@@ -37,7 +37,7 @@ export class CodePreviewComponent {
             this.imageUrl = null;
         }
 
-        this.isHostedInOffice = window.hasOwnProperty("Office");
+        this.isHostedInOffice = this._officeService.isHostedInOffice;
     }
 
     public imageUrl: string;
