@@ -13,6 +13,7 @@ import { VCardComponent as InputVCardComponent } from "./Components/DataInputCom
 import { FileComponent as InputFileComponent } from "./Components/DataInputComponents/File";
 import { PhoneComponent as InputPhoneComponent } from "./Components/DataInputComponents/Phone";
 import { InputService } from "./Services/InputService";
+import { OfficeService } from "./Services/OfficeService";
 import { CodePreviewComponent } from "./Components/CodePreview";
 import { SettingsInputComponent } from "./Components/SettingsInput";
 import { MessageComponent } from "./Components/Message";
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     QRCodeService,
-    InputService
+    InputService,
+    OfficeService
   ],
 })
 export class AppModule {

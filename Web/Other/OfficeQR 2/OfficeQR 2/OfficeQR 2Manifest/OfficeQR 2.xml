@@ -301,7 +301,7 @@
         <bt:Image id="Koopakiller.OfficeQR.Icon_80x80" DefaultValue="https://localhost:4200/OfficeQR2/Assets/Icons/AddIn/80x80.png" />
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="OfficeQR.MainTaskpane.Url" DefaultValue="https://localhost:4200/OfficeQR2/Client" />
+        <bt:Url id="OfficeQR.MainTaskpane.Url" DefaultValue="https://localhost:4200/OfficeQR2/Client#/(data-input:Index)" />
       </bt:Urls>
       <!-- ShortStrings max characters==125. -->
       <bt:ShortStrings>
