@@ -25,7 +25,7 @@ export class OfficeService {
         }
     }
 
-    public get isHostedInOffice(): boolean{
-        return  !!(Office);
+    public get isHostedInOffice(): boolean {
+        return window.hasOwnProperty("Word") || window.hasOwnProperty("Excel") || window.hasOwnProperty("PowerPoint");
     }
 }
