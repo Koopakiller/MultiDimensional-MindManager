@@ -10,7 +10,8 @@ import { QRCodeFileFormat } from "../Model/QRCodeFileFormat";
     selector: "code-preview",
     templateUrl: "CodePreview.html",
     styleUrls: [
-        "CodePreview.less"
+        "CodePreview.less",
+        "../Styles/Form.less"
     ]
 })
 export class CodePreviewComponent {

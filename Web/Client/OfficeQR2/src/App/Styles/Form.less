@@ -31,3 +31,21 @@ form {
         }
     }
 }
+
+button,
+input[type=button] {
+    border: 2px solid @color-accent-dark;
+    background-color: @color-light-1;
+    color: @color-dark;
+    padding: @padding-small @padding @padding-small @padding;
+    margin-bottom: @padding-small;
+
+    &:hover {
+        background-color: @color-accent-light;
+    }
+
+    &:active {
+        background-color: @color-accent-dark;
+        color: @color-light-1;
+    }
+}
