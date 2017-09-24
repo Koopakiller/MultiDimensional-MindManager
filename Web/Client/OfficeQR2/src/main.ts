@@ -15,8 +15,6 @@ function launch() {
     .catch(err => console.log(err));
 }
 
-let flag :boolean;
-
 if (window.hasOwnProperty("Office") && (window.hasOwnProperty("Word") || window.hasOwnProperty("Excel") || window.hasOwnProperty("PowerPoint"))) {
   Office.initialize = (reason) => {
     launch();
