@@ -5,7 +5,7 @@
                (click)="insertIntoDocument()" 
                value="Insert Code into your Document" 
                i18n-value="@@CodePreview-InsertButtonText"
-               *ngIf=" imageUrl" />
+               *ngIf="isHostedInOffice && imageUrl" />
     </div>
 
     <img *ngIf="imageUrl" src="{{imageUrl}}" alt="QR Code" />
