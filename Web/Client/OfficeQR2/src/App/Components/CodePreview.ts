@@ -10,7 +10,8 @@ import { QRCodeFileFormat } from "../Model/QRCodeFileFormat";
     selector: "code-preview",
     templateUrl: "CodePreview.html",
     styleUrls: [
-        "CodePreview.less"
+        "CodePreview.less",
+        "../Styles/Form.less"
     ]
 })
 export class CodePreviewComponent {
@@ -37,7 +38,7 @@ export class CodePreviewComponent {
             this.imageUrl = null;
         }
 
-        this.isHostedInOffice = window.hasOwnProperty("Office");
+        this.isHostedInOffice = this._officeService.isHostedInOffice;
     }
 
     public imageUrl: string;

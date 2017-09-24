@@ -2,9 +2,9 @@
 
 import { Injectable } from "@angular/core";
 
+
 @Injectable()
 export class OfficeService {
-
     insertQRCode(url: string) {
         console.log("Inserting code...");
         if (Office.CoercionType.Ooxml) {
@@ -25,4 +25,7 @@ export class OfficeService {
         }
     }
 
+    public get isHostedInOffice(): boolean{
+        return  !!(Office);
+    }
 }
