@@ -14,7 +14,7 @@ export class QRCodeService {
     ){        
     }
 
-    public getCodeUrl(config: QRCodeConfig){
+    public getCodeUrl(config: QRCodeConfig, format: QRCodeFileFormat){
         const size: number = 1000;
         const margin: number = 0;
         const qzone: number = 0;
