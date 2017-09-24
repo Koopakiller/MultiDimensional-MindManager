@@ -1164,7 +1164,7 @@ var OfficeService = (function () {
     };
     Object.defineProperty(OfficeService.prototype, "isHostedInOffice", {
         get: function () {
-            return !!(Office);
+            return window.hasOwnProperty("Word") || window.hasOwnProperty("Excel") || window.hasOwnProperty("PowerPoint");
         },
         enumerable: true,
         configurable: true
@@ -1392,7 +1392,7 @@ function launch() {
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__App_app_module__["a" /* AppModule */])
         .catch(function (err) { return console.log(err); });
 }
-if (window.hasOwnProperty("Office") && (window.hasOwnProperty("Word")) || window.hasOwnProperty("Excel") || window.hasOwnProperty("PowerPoint")) {
+if (window.hasOwnProperty("Office") && (window.hasOwnProperty("Word") || window.hasOwnProperty("Excel") || window.hasOwnProperty("PowerPoint"))) {
     Office.initialize = function (reason) {
         launch();
     };
