@@ -47,6 +47,9 @@ export class OverviewComponent implements OnInit {
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.getTransactions(currencyAccountId, 0, 25).subscribe(x => {
             this.transactionsInTable = x;
+            console.log(x[0].timeStampTime);
+            console.log(x[1].timeStampTime);
+            console.log(x[2].timeStampTime);
             this._globalLoadingIndicatorService.removeLoadingProcess();
         })
     }
