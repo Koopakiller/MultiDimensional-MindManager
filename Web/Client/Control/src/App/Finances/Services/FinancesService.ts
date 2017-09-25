@@ -10,6 +10,8 @@ import { DataContainer } from "../../Shared/DataContainer";
 @Injectable()
 export class FinancesService {
 
+    private _apiUrl: string = "http://picosmos.de/api/Finances"; 
+
     constructor(
         private http: Http
     ) { }
@@ -56,19 +58,19 @@ export class FinancesService {
     }
 
     public get persons(): Observable<PersonViewModel[]> {
-        return this.getList<PersonServerModel, PersonViewModel>(`/api/Finances/GetPersons`, () => new PersonServerModel());
+        return this.getList<PersonServerModel, PersonViewModel>(`${this._apiUrl}/GetPersons`, () => new PersonServerModel());
     }
 
     public get users(): Observable<UserViewModel[]> {
-        return this.getList<UserServerModel, UserViewModel>(`/api/Finances/GetUsers`, () => new UserServerModel());
+        return this.getList<UserServerModel, UserViewModel>(`${this._apiUrl}/GetUsers`, () => new UserServerModel());
     }
 
     public getUsersFromUserGroup(userGroupId: number): Observable<UserViewModel[]> {
-        return this.getList<UserServerModel, UserViewModel>(`/api/Finances/GetUsersFromUserGroup?userGroupId=${userGroupId}`, () => new UserServerModel());
+        return this.getList<UserServerModel, UserViewModel>(`${this._apiUrl}/GetUsersFromUserGroup?userGroupId=${userGroupId}`, () => new UserServerModel());
     }
 
     public getUserGroups(userId?: number): Observable<UserGroupViewModel[]> {
-        var url = `/api/Finances/GetUserGroups`;
+        var url = `${this._apiUrl}/GetUserGroups`;
         if (userId) {
             url = url + `?userId=${userId}`;
         }
@@ -76,16 +78,16 @@ export class FinancesService {
     }
 
     public getCurrencyAccounts(userId: number): Observable<CurrencyAccountViewModel[]> {
-        return this.getList<CurrencyAccountServerModel, CurrencyAccountViewModel>(`/api/Finances/GetCurrencyAccountsForUser?userId=${userId}`, () => new CurrencyAccountServerModel());
+        return this.getList<CurrencyAccountServerModel, CurrencyAccountViewModel>(`${this._apiUrl}/GetCurrencyAccountsForUser?userId=${userId}`, () => new CurrencyAccountServerModel());
     }
 
     public getTransactions(currencyAccountId: number, skipCount: number, takeCount: number): Observable<TransactionViewModel[]> {
-        let url = `/api/Finances/GetTransactions?currencyAccountId=${currencyAccountId}&skipCount=${skipCount}&takeCount=${takeCount}`;
+        let url = `${this._apiUrl}/GetTransactions?currencyAccountId=${currencyAccountId}&skipCount=${skipCount}&takeCount=${takeCount}`;
         return this.getList<TransactionServerModel, TransactionViewModel>(url, () => new TransactionServerModel());
     }
 
     public getTransactionOverviewForUserAtTimeStamp(userId: number, timeStamp: Date): Observable<TransactionOverviewViewModel[]> {
-        let url = `/api/Finances/GetTransactionOverviewForUserAtTimeStamp?userId=${userId}&timeStamp=${timeStamp.toUTCString()}`;
+        let url = `${this._apiUrl}/GetTransactionOverviewForUserAtTimeStamp?userId=${userId}&timeStamp=${timeStamp.toUTCString()}`;
         return Observable.create((observer: Observer<TransactionOverviewViewModel[]>) => {
             var readyCounter = 0;
             var items: TransactionOverviewViewModel[];
@@ -122,7 +124,7 @@ export class FinancesService {
         let data = new DataContainer<TransactionServerModel[]>(tvms.map(x => x.toServerModel()));
         var postData = JSON.stringify(data);
         return Observable.create((observer: Observer<TransactionViewModel[]>) => {
-            this.postWithOptions("/api/Finances/AddTransactions", postData).subscribe(
+            this.postWithOptions(`${this._apiUrl}/AddTransactions`, postData).subscribe(
                 response => {
                     let lst = this.getListFromResponse<TransactionServerModel, TransactionViewModel>(response, () => new TransactionServerModel());
                     observer.next(lst);
@@ -144,7 +146,7 @@ export class FinancesService {
             }
         };
         return Observable.create((observer: Observer<PersonViewModel>) => {
-            this.postWithOptions("/api/Finances/AddPerson", JSON.stringify(data)).subscribe(
+            this.postWithOptions(`${this._apiUrl}/AddPerson`, JSON.stringify(data)).subscribe(
                 response => {
                     let smodc: DataContainer<IViewModelConvert<PersonServerModel>> = response.json();
                     let smo = smodc.data;
