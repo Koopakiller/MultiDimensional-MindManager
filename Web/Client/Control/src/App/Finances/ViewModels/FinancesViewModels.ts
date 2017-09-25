@@ -66,6 +66,7 @@ export class TransactionViewModel implements IServerModelConvert<TransactionServ
         tvm.rawData = this.rawData;
         tvm.timeStampDate = this.timeStampDate;
         if (this.includeTimeStampTime) {
+            console.warn(this.timeStampTime);
             tvm.timeStampTime = `${this.timeStampTime.getHours()}:${this.timeStampTime.getMinutes()}:${this.timeStampTime.getSeconds()}.${this.timeStampTime.getMilliseconds()}`
         }
         else {

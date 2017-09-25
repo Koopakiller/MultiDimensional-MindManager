@@ -37,7 +37,7 @@ export class AddComponent implements OnInit {
         });
         this.timeStampDate = new Date();
         this.timeStampDate.setHours(0, 0, 0, 0);
-        this.timeStampTime = new Date("12:34 AM");
+        this.timeStampTimeStr = "00:00:00";
         this.value = 0;
     }
 
@@ -53,7 +53,7 @@ export class AddComponent implements OnInit {
     currencyAccount: number;
     _user: number;
     timeStampDate: Date;
-    timeStampTime: Date;
+    timeStampTimeStr: string;
     includeTimeStampTime: boolean = false;
 
     get user() {
@@ -77,7 +77,17 @@ export class AddComponent implements OnInit {
         tvm.personId = this.person;
         tvm.userId = this.user;
         tvm.timeStampDate = this.timeStampDate;
-        tvm.timeStampTime = this.timeStampTime;
+
+        var parts = this.timeStampTimeStr.split(":");
+        if (tvm.includeTimeStampTime &&
+            (parts.length != 3 || this.timeStampTimeStr.length != 8 || isNaN(+parts[0]) || isNaN(+parts[1]) || isNaN(+parts[2]))) {
+            alert("TimeStamp is not valid. It must be in format 'HH:mm:ss'!");
+            return;
+        }
+        else {
+            tvm.timeStampTime = new Date(0, 0, 0, +parts[0], +parts[1], +parts[2], 0);
+        }
+
         tvm.includeTimeStampTime = this.includeTimeStampTime;
         tvm.note = this.name;
         tvm.value = this.value;
@@ -101,6 +111,6 @@ export class AddComponent implements OnInit {
     }
 
     public addPerson(): void {
-        this._router.navigate([{ outlets: { next: "/Persons/Add" }}]).then(() => { });
+        this._router.navigate([{ outlets: { next: "/Persons/Add" } }]).then(() => { });
     }
 }
