@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
-import { PersonServerModel, UserServerModel, CurrencyAccountServerModel, TransactionServerModel, TransactionOverviewServerModel, UserGroupServerModel } from "../ServerModels/FinancesServerModels";
 import { Http, Response, RequestOptions, Headers } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
-import { PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel, TransactionOverviewViewModel, UserGroupViewModel } from "../ViewModels/FinancesViewModels";
+import { PersonServerModel, UserServerModel, CurrencyAccountServerModel, TransactionServerModel, TransactionOverviewServerModel, UserGroupServerModel, PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel, TransactionOverviewViewModel, UserGroupViewModel } from "../Models/FinancesModels";
 import { Observer } from "rxjs/Observer";
 import { DataContainer } from "../../Shared/DataContainer";
 

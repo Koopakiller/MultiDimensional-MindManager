@@ -3,7 +3,7 @@ import * as _ from "lodash";
 import { FinancesService } from "../../Services/FinancesService";
 import { Router } from "@angular/router";
 import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
-import { UserViewModel, UserGroupViewModel } from "../../ViewModels/FinancesViewModels";
+import { UserViewModel, UserGroupViewModel } from "../../Models/FinancesModels";
 
 @Component({
     selector: "finances-usergroups",
