@@ -124,7 +124,7 @@ export class FinancesService {
         let data = new DataContainer<TransactionServerModel[]>(tvms.map(x => x.toServerModel()));
         var postData = JSON.stringify(data);
         return Observable.create((observer: Observer<TransactionViewModel[]>) => {
-            this.postWithOptions("${this._apiUrl}/AddTransactions", postData).subscribe(
+            this.postWithOptions(`${this._apiUrl}/AddTransactions`, postData).subscribe(
                 response => {
                     let lst = this.getListFromResponse<TransactionServerModel, TransactionViewModel>(response, () => new TransactionServerModel());
                     observer.next(lst);
@@ -146,7 +146,7 @@ export class FinancesService {
             }
         };
         return Observable.create((observer: Observer<PersonViewModel>) => {
-            this.postWithOptions("${this._apiUrl}/AddPerson", JSON.stringify(data)).subscribe(
+            this.postWithOptions(`${this._apiUrl}/AddPerson`, JSON.stringify(data)).subscribe(
                 response => {
                     let smodc: DataContainer<IViewModelConvert<PersonServerModel>> = response.json();
                     let smo = smodc.data;
