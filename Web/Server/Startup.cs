@@ -35,6 +35,17 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("ApiCORSPolicy",
+                        builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+                    });
+            });
+
             // Add framework servcices.
             services.AddMvc();
 
@@ -55,7 +66,7 @@
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
+        { 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
@@ -70,6 +81,8 @@
             }
 
             app.UseStaticFiles();
+
+            app.UseCors("ApiCORSPolicy");            
 
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {

@@ -12,8 +12,10 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
     using Koopakiller.Apps.Finances.Authentication;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.AspNetCore.Cors;
 
     [Area("Api")]
+    [EnableCors("ApiCORSPolicy")]
     public class FinancesController : Controller
     {
         FinancesDbContext _context;
