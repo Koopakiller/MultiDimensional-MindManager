@@ -6,9 +6,11 @@ import { Router } from "@angular/router";
 import { KeyValuePair } from "../../../Shared/KeyValuePair";
 import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
 import { Observable } from "rxjs/Rx";
-import { PayPalAccountStatementImporter, FinanceAccountStatementImporter, 
-    CommerzbankCreditCardStatementImporter, CommerzbankGiroAccountStatementImporter, 
-    FinancesCsvImporter } from "../../Helper/Importer";
+import {
+    PayPalAccountStatementImporter, FinanceAccountStatementImporter,
+    CommerzbankCreditCardStatementImporter, CommerzbankGiroAccountStatementImporter,
+    FinancesCsvImporter
+} from "../../Helper/Importer";
 import { GermanDataParser } from "../../Helper/Parser";
 import { DBValueProvider } from "../../Helper/DBValueProvider";
 
@@ -17,11 +19,21 @@ import { DBValueProvider } from "../../Helper/DBValueProvider";
     templateUrl: "Index.html"
 })
 export class IndexComponent implements OnInit {
+
     constructor(
         private _financesService: FinancesService,
         private _router: Router,
         private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
     ) { }
+
+    public static RoutingInformation(path: string = "Import") {
+        return {
+            path: path,
+            component: IndexComponent,
+            children: [
+            ]
+        };
+    }
 
     ngOnInit(): void {
         this.initCurrentStep();
@@ -130,16 +142,16 @@ export class IndexComponent implements OnInit {
 
     transactions: TransactionViewModel[] = [];
 
-    public get transactionsHasErrors(): boolean{
-        for(let t of this.transactions){
-            if(!t.currencyAccountId || !t.personId){
+    public get transactionsHasErrors(): boolean {
+        for (let t of this.transactions) {
+            if (!t.currencyAccountId || !t.personId) {
                 return true;
             }
         }
         return false;
     }
 
-    public submitData(){
+    public submitData() {
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.addTransactions(this.transactions).subscribe(() => {
             this._router.navigateByUrl("/Finances");

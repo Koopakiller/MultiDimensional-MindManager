@@ -5,17 +5,31 @@ import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionVi
 import { Router } from "@angular/router";
 import { KeyValuePair } from "../../../Shared/KeyValuePair";
 import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
+import { AddComponent as PersonAddComponent } from "../Persons/Add";
+
 
 @Component({
     templateUrl: "Add.html"
 })
 export class AddComponent implements OnInit {
+
     constructor(
         private _financesService: FinancesService,
         private _locationService: LocationService,
         private _router: Router,
         private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
     ) { }
+
+    public static RoutingInformation(path: string = "Add") {
+        return {
+            path: path,
+            outlet: "next",
+            component: AddComponent,
+            children: [
+                PersonAddComponent.RoutingInformation("AddPerson")
+            ]
+        };
+    }
 
     ngOnInit(): void {
         this._globalLoadingIndicatorService.addLoadingProcess();
@@ -108,9 +122,5 @@ export class AddComponent implements OnInit {
 
     public cancel(): void {
         this._router.navigateByUrl("/Finances");
-    }
-
-    public addPerson(): void {
-        this._router.navigate([{ outlets: { next: "/Persons/Add" } }]).then(() => { });
     }
 }

@@ -9,11 +9,20 @@ import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLo
     templateUrl: "Overview.html"
 })
 export class OverviewComponent implements OnInit {
+
     constructor(
         private _financesService: FinancesService,
         private _router: Router,
         private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
     ) { }
+
+    public static RoutingInformation(path: string = "Overview") {
+        return {
+            path: path,
+            outlet: "next",
+            component: OverviewComponent
+        };
+    };
 
     ngOnInit(): void {
         this._financesService.users.subscribe(x => { this.users = x; this.user = x.length > 0 ? x[0].id : null; });

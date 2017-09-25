@@ -17,6 +17,15 @@ export class IndexComponent implements OnInit {
         private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
     ) { }
 
+    public static RoutingInformation(path: string = "UserGroups") {
+        return {
+            path: path,
+            component: IndexComponent,
+            children: [
+            ]
+        };
+    }
+
     ngOnInit(): void {
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.getUserGroups().subscribe(

@@ -16,6 +16,15 @@ export class IndexComponent {
         private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
     ) { }
 
+    public static RoutingInformation(path: string = "Authentication") {
+        return {
+            path: path,
+            component: IndexComponent,
+            children: [
+            ]
+        };
+    }
+
     public userName: string;
     public password: string;
 

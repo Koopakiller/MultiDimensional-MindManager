@@ -15,6 +15,15 @@ export class IndexComponent implements OnInit {
         private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
     ) { }
 
+    public static RoutingInformation(path: string = "Users") {
+        return {
+            path: path,
+            component: IndexComponent,
+            children: [
+            ]
+        };
+    }
+
     ngOnInit(): void {
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.users.subscribe(
@@ -25,7 +34,7 @@ export class IndexComponent implements OnInit {
             error => {
                 alert(error);
             }
-        );  
+        );
     }
 
     users: UserViewModel[];

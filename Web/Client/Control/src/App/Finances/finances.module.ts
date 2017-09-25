@@ -28,59 +28,9 @@ import { NavigationService } from "../Shared/Services/NavigationService";
 import { SharedModule } from "../Shared/shared.module";
 import { FinancesAuthenticationService } from "./Services/FinancesAuthenticationService";
 
-const financesRoutes: Routes = [{
-    path: "",
-    component: IndexComponent,
-    children: [
-        {
-            path: "Transactions",
-            component: TransactionIndexComponent,
-            children: [
-                {
-                    path: "Add",
-                    outlet: "next",
-                    component: TransactionAddComponent
-                },
-                {
-                    path: "Overview",
-                    outlet: "next",
-                    component: TransactionOverviewComponent
-                },
-            ]
-        },
-        {
-            path: "Import",
-            component: ImportIndexComponent,
-            children: [
-            ]
-        },
-        {
-            path: "Persons",
-            component: PersonsIndexComponent,
-            children: [
-                { path: "Add", component: PersonsAddComponent, outlet: "next" },
-            ]
-        },
-        {
-            path: "UserGroups",
-            component: UserGroupsIndexComponent,
-            children: [
-            ]
-        },
-        {
-            path: "Users",
-            component: UsersIndexComponent,
-            children: [
-            ]
-        },
-        {
-            path: "Authentication",
-            component: AuthenticationIndexComponent,
-            children: [
-            ]
-        }
-    ]
-}];
+const financesRoutes: Routes = [
+    IndexComponent.RoutingInformation()
+];
 
 @NgModule({
     imports: [
