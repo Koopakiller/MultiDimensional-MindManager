@@ -6,11 +6,12 @@ import { PersonServerModel, UserServerModel, CurrencyAccountServerModel, Transac
 import { Observer } from "rxjs/Observer";
 import { DataContainer } from "../../Shared/DataContainer";
 import { FinancesAuthenticationService } from "./FinancesAuthenticationService";
+import { Environment } from "../../../Environments/Environment";
 
 @Injectable()
 export class FinancesService {
 
-    private _apiUrl: string = "http://picosmos.azurewebsites.net/api/Finances"; 
+    private _apiUrl: string = Environment.ApiUrl + "Finances";
 
     constructor(
         private http: Http,
@@ -36,7 +37,7 @@ export class FinancesService {
             "Authorization": "Bearer " + token,
             "X-Authorization": "Bearer " + token
         });
-        
+
         let options = new RequestOptions({ headers: headers });
         return this.http.get(url, options);
     }

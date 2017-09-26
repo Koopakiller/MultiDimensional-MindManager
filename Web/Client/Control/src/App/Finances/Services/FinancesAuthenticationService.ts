@@ -5,6 +5,7 @@ import { DataContainer } from "../../Shared/DataContainer";
 import { Observable } from "rxjs/Observable";
 import { Observer } from "rxjs/Observer";
 import { CookieService } from "../../Shared/Services/CookieService";
+import { Environment } from "../../../Environments/Environment";
 
 
 @Injectable()
@@ -19,7 +20,7 @@ export class FinancesAuthenticationService {
     private static FinancesAuthCookieName = "FinancesAuthCookie";
 
     public requestToken(userName: string, password: string): Observable<undefined> {
-        let url = `http://picosmos.azurewebsites.net/api/Finances/GetToken`;
+        let url = `${Environment.ApiUrl}Finances/GetToken`;
         let obj = {
             userName: userName,
             password: password,
