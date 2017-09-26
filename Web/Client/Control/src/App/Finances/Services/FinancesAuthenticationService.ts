@@ -27,7 +27,6 @@ export class FinancesAuthenticationService {
         }
         let data = new DataContainer<any>(obj);
         var postData = JSON.stringify(data);
-        console.log(postData);
         let headers = new Headers({ "Content-Type": "application/json" });
         let options = new RequestOptions({ headers: headers });
         return Observable.create((observer: Observer<undefined>) => {
