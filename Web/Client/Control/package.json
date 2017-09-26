@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "serve": "ng serve --env=dev --progress --base-href \"/Control/\" --deploy-url \"/Control/\"",
-    "serve:prod": "ng serve --env=prod --progress",
+    "serve:prod": "ng serve --env=prod --progress --base-href \"/Control/\" --deploy-url \"/Control/\"",
     "build": "ng build --env=dev --progress",
     "build:prod": "ng build --env=prod --progress --output-path \"../../Server/wwwroot/Control\" --deploy-url \"/Control/\"",
     "test": "ng test",
