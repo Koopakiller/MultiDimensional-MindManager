@@ -29,21 +29,21 @@ export class ListComponent implements OnInit, OnDestroy {
                 component: ListComponent,
                 children: [
                 ]
-            }// },
-            // {
-            //     path: path + "/:caId/:page",
-            //     outlet: "next",
-            //     component: ListComponent,
-            //     children: [
-            //     ]
-            // },
-            // {
-            //     path: path + "/:caId/:page/:count",
-            //     outlet: "next",
-            //     component: ListComponent,
-            //     children: [
-            //     ]
-            // }
+            },
+            {
+                path: path + "/:caId/:page",
+                outlet: "next",
+                component: ListComponent,
+                children: [
+                ]
+            },
+            {
+                path: path + "/:caId/:page/:count",
+                outlet: "next",
+                component: ListComponent,
+                children: [
+                ]
+            }
         ];
     }
 
