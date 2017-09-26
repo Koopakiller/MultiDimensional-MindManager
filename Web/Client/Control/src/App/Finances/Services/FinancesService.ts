@@ -5,6 +5,7 @@ import "rxjs/add/operator/map";
 import { PersonServerModel, UserServerModel, CurrencyAccountServerModel, TransactionServerModel, TransactionOverviewServerModel, UserGroupServerModel, PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel, TransactionOverviewViewModel, UserGroupViewModel } from "../Models/FinancesModels";
 import { Observer } from "rxjs/Observer";
 import { DataContainer } from "../../Shared/DataContainer";
+import { FinancesAuthenticationService } from "./FinancesAuthenticationService";
 
 @Injectable()
 export class FinancesService {
@@ -12,14 +13,9 @@ export class FinancesService {
     private _apiUrl: string = "http://picosmos.azurewebsites.net/api/Finances"; 
 
     constructor(
-        private http: Http
+        private http: Http,
+        private _financesAuthenticationService: FinancesAuthenticationService
     ) { }
-
-    public assignToken(token: string): void {
-        this._token = token;
-    }
-
-    _token: string;
 
     private getListFromResponse<TServerModel extends IViewModelConvert<TViewModel>, TViewModel>(response: Response, serverModelFactory: (() => TServerModel)): TViewModel[] {
         let object: DataContainer<IViewModelConvert<TServerModel>[]> = response.json();
@@ -34,19 +30,23 @@ export class FinancesService {
     }
 
     private getWithOptions(url: string): Observable<Response> {
-        let headers = new Headers();
-        headers.append("Authorization", "Bearer " + this._token);
-        headers.append("X-Authorization", "Bearer " + this._token);
+        let token = this._financesAuthenticationService.getCachedToken();
+        let headers = new Headers({
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token,
+            "X-Authorization": "Bearer " + token
+        });
         
         let options = new RequestOptions({ headers: headers });
         return this.http.get(url, options);
     }
 
     private postWithOptions(url: string, postData: any): Observable<Response> {
+        let token = this._financesAuthenticationService.getCachedToken();
         let headers = new Headers({
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + this._token,
-            "X-Authorization": "Bearer " + this._token
+            "Authorization": "Bearer " + token,
+            "X-Authorization": "Bearer " + token
         });
         let options = new RequestOptions({ headers: headers });
         return this.http.post(url, postData, options);

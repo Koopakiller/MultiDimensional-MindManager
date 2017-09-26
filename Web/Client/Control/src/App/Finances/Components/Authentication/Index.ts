@@ -29,9 +29,8 @@ export class IndexComponent {
     public password: string;
 
     public submit(): void {
-        this._financesAuthenticationService.getToken(this.userName, this.password).subscribe(
+        this._financesAuthenticationService.requestToken(this.userName, this.password).subscribe(
             token => {
-                this._financesService.assignToken(token);
                 this._router.navigate(["../"], { relativeTo: this._activatedRoute });
             },
             error => {
