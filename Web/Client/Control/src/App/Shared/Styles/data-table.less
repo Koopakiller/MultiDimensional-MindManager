@@ -1,0 +1,32 @@
+@import "common.less";
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    tr {
+        td,
+        th {
+            padding: @padding-tiny;
+            border-bottom: 1px solid @color-light-2;
+            border-right: 1px solid @color-light-2;
+
+            &:last-child {
+                border-right: none;
+            }
+        }
+
+        th {
+            background-color: @color-dark;
+        }
+
+        &:last-child td {
+            // always show border at th
+            border-bottom: none;
+        }
+
+        &:hover {
+            background-color: @color-dark-1;
+        }
+    }
+}

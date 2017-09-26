@@ -7,7 +7,10 @@ import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLo
 import { ListComponent } from "./List";
 
 @Component({
-    templateUrl: "Overview.html"
+    templateUrl: "Overview.html",
+    styleUrls:[
+        "../../../Shared/Styles/data-table.less"
+    ]
 })
 export class OverviewComponent implements OnInit {
 

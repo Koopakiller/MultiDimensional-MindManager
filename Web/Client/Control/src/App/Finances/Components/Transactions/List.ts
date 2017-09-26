@@ -10,7 +10,10 @@ import { Subscription } from "rxjs";
 
 
 @Component({
-    templateUrl: "List.html"
+    templateUrl: "List.html",
+    styleUrls:[
+        "../../../Shared/Styles/data-table.less"
+    ]
 })
 export class ListComponent implements OnInit, OnDestroy {
 
