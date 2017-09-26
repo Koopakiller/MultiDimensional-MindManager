@@ -3,7 +3,13 @@
     <span class='section-header'>Transactions List</span>
 
     <div class='section-content'>
-        
+
+        <div class="paging-links">
+            <a *ngIf="previousPage" (click)="navigateToPage(previousPage)">Previous</a>
+            <a *ngFor="let i of pageLinks" (click)="navigateToPage(i)">{{i}}</a>
+            <a *ngIf="nextPage" (click)="navigateToPage(nextPage)">Next</a>
+        </div>
+
         <table>
             <tr>
                 <th>Id</th>

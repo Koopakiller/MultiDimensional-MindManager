@@ -18,7 +18,7 @@ export class ListComponent implements OnInit, OnDestroy {
         private _financesService: FinancesService,
         private _locationService: LocationService,
         private _router: Router,
-        private _activedRoute: ActivatedRoute
+        private _activedRoute: ActivatedRoute,
     ) { }
 
     public static RoutingInformation(path: string = "List") {
@@ -36,13 +36,6 @@ export class ListComponent implements OnInit, OnDestroy {
                 component: ListComponent,
                 children: [
                 ]
-            },
-            {
-                path: path + "/:caId/:page/:count",
-                outlet: "next",
-                component: ListComponent,
-                children: [
-                ]
             }
         ];
     }
@@ -50,32 +43,43 @@ export class ListComponent implements OnInit, OnDestroy {
     private _parameterSubscription: Subscription;
     public displayList: TransactionViewModel[];
 
+    public currentPage: number;
+    public currencyAccountId: number;
+
+    public pageLinks: number[];
+    public previousPage: number;
+    public nextPage: number;
+
     public ngOnInit(): void {
         this._parameterSubscription = this._activedRoute.params.subscribe(params => {
-            let caId = params["caId"];
-            let page = +params["page"];
-            if (!page) {
-                page = 1;
-            }
-            let count = +params["count"];
-            if (!count) {
-                count = 10;
-            }
+            this.currencyAccountId = params["caId"];
+            this.currentPage = +params["page"];
+            if (!this.currentPage) {
+                setTimeout(() => this.navigateToPage(1));
+            } else {
+                let count = 10; // number of entries per page
 
-            console.log(`caId=${caId}, page=${page}, count=${count}`);
+                this._financesService.getTransactions(this.currencyAccountId, (this.currentPage - 1) * count, count).subscribe(
+                    result => {
+                        this.displayList = result;
 
-            this._financesService.getTransactions(caId, (page - 1) * count, count).subscribe(
-                result => {
-                    this.displayList = result;
-                },
-                error => {
-                    alert(error);
-                }
-            );
+                        this.pageLinks = new Array(7).fill(0).map((x, i) => i + this.currentPage).filter(i => i > 0/*&&i<<maxPageCount*/);
+                        this.previousPage = this.currentPage > 0 ? this.currentPage - 1 : null;
+                        this.nextPage = this.currentPage + 1;//TODO
+                    },
+                    error => {
+                        alert(error);
+                    }
+                );
+            }
         });
     }
 
     public ngOnDestroy(): void {
         this._parameterSubscription.unsubscribe();
+    }
+
+    public navigateToPage(page: number) {
+        this._router.navigate([{ outlets: { next: ["List", this.currencyAccountId, page] } }], { relativeTo: this._activedRoute.parent });
     }
 }
