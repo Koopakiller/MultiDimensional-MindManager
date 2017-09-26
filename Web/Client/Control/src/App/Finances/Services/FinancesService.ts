@@ -9,7 +9,7 @@ import { DataContainer } from "../../Shared/DataContainer";
 @Injectable()
 export class FinancesService {
 
-    private _apiUrl: string = "http://picosmos.de/api/Finances"; 
+    private _apiUrl: string = "http://picosmos.azurewebsites.net/api/Finances"; 
 
     constructor(
         private http: Http

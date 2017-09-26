@@ -7,6 +7,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { IndexComponent as TransactionIndexComponent } from "./Components/Transactions/Index";
 import { AddComponent as TransactionAddComponent } from "./Components/Transactions/Add";
 import { OverviewComponent as TransactionOverviewComponent } from "./Components/Transactions/Overview";
+import { ListComponent as TransactionListComponent } from "./Components/Transactions/List";
 
 import { IndexComponent as ImportIndexComponent } from "./Components/Import/Index";
 
@@ -47,6 +48,7 @@ const financesRoutes: Routes = [
         TransactionIndexComponent,
         TransactionAddComponent,
         TransactionOverviewComponent,
+        TransactionListComponent,
         ImportIndexComponent,
         PersonsIndexComponent,
         PersonsAddComponent,

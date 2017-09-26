@@ -14,7 +14,7 @@ export class FinancesAuthenticationService {
     ) { }
 
     public getToken(userName: string, password: string): Observable<string>{
-        let url = `http://picosmos.de/api/Finances/GetToken`;
+        let url = `http://picosmos.azurewebsites.net/api/Finances/GetToken`;
         let obj = {
             userName: userName,
             password: password,
