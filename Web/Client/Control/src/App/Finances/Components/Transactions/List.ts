@@ -63,7 +63,11 @@ export class ListComponent implements OnInit, OnDestroy {
                     result => {
                         this.displayList = result;
 
-                        this.pageLinks = new Array(7).fill(0).map((x, i) => i + this.currentPage).filter(i => i > 0/*&&i<<maxPageCount*/);
+                        let maxLinkCountPerSide = 3;
+                        this.pageLinks = new Array(2 * maxLinkCountPerSide + 1)
+                            .fill(0)
+                            .map((x, i) => i + this.currentPage - maxLinkCountPerSide)
+                            .filter(i => i > 0/*&&i<<maxPageCount*/);
                         this.previousPage = this.currentPage > 0 ? this.currentPage - 1 : null;
                         this.nextPage = this.currentPage + 1;//TODO
                     },

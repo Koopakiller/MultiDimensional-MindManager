@@ -6,7 +6,10 @@
 
         <div class="paging-links">
             <a *ngIf="previousPage" (click)="navigateToPage(previousPage)">Previous</a>
-            <a *ngFor="let i of pageLinks" (click)="navigateToPage(i)">{{i}}</a>
+            <ng-container *ngFor="let i of pageLinks" (click)="navigateToPage(i)">
+                <a *ngIf="currentPage != i">{{i}}</a>
+                <span *ngIf="currentPage == i">{{i}}</span>
+            </ng-container>
             <a *ngIf="nextPage" (click)="navigateToPage(nextPage)">Next</a>
         </div>
 
