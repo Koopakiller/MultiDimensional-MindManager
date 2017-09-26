@@ -31,7 +31,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var IndexComponent = (function () {
+var IndexComponent = IndexComponent_1 = (function () {
     function IndexComponent(_financesAuthenticationService, _financesService, _router, _activatedRoute, _globalLoadingIndicatorService) {
         this._financesAuthenticationService = _financesAuthenticationService;
         this._financesService = _financesService;
@@ -39,10 +39,17 @@ var IndexComponent = (function () {
         this._activatedRoute = _activatedRoute;
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
     }
+    IndexComponent.RoutingInformation = function (path) {
+        if (path === void 0) { path = "Authentication"; }
+        return {
+            path: path,
+            component: IndexComponent_1,
+            children: []
+        };
+    };
     IndexComponent.prototype.submit = function () {
         var _this = this;
-        this._financesAuthenticationService.getToken(this.userName, this.password).subscribe(function (token) {
-            _this._financesService.assignToken(token);
+        this._financesAuthenticationService.requestToken(this.userName, this.password).subscribe(function (token) {
             _this._router.navigate(["../"], { relativeTo: _this._activatedRoute });
         }, function (error) {
             alert(error);
@@ -50,14 +57,14 @@ var IndexComponent = (function () {
     };
     return IndexComponent;
 }());
-IndexComponent = __decorate([
+IndexComponent = IndexComponent_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         template: __webpack_require__("../../../../../src/App/Finances/Components/Authentication/Index.html")
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__Services_FinancesAuthenticationService__["a" /* FinancesAuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__Services_FinancesAuthenticationService__["a" /* FinancesAuthenticationService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__Services_FinancesService__["a" /* FinancesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__Services_FinancesService__["a" /* FinancesService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["f" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["f" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */]) === "function" && _e || Object])
 ], IndexComponent);
 
-var _a, _b, _c, _d, _e;
+var IndexComponent_1, _a, _b, _c, _d, _e;
 //# sourceMappingURL=Index.js.map
 
 /***/ }),
@@ -100,7 +107,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var IndexComponent = (function () {
+var IndexComponent = IndexComponent_1 = (function () {
     function IndexComponent(_financesService, _router, _globalLoadingIndicatorService) {
         this._financesService = _financesService;
         this._router = _router;
@@ -116,6 +123,14 @@ var IndexComponent = (function () {
         this.showAddPersonPopup = false;
         this.suggestedNewPersonName = "";
     }
+    IndexComponent.RoutingInformation = function (path) {
+        if (path === void 0) { path = "Import"; }
+        return {
+            path: path,
+            component: IndexComponent_1,
+            children: []
+        };
+    };
     IndexComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.initCurrentStep();
@@ -275,7 +290,7 @@ var IndexComponent = (function () {
     };
     return IndexComponent;
 }());
-IndexComponent = __decorate([
+IndexComponent = IndexComponent_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: "finances-import",
         template: __webpack_require__("../../../../../src/App/Finances/Components/Import/Index.html")
@@ -283,7 +298,7 @@ IndexComponent = __decorate([
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["f" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["f" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */]) === "function" && _c || Object])
 ], IndexComponent);
 
-var _a, _b, _c;
+var IndexComponent_1, _a, _b, _c;
 //# sourceMappingURL=Index.js.map
 
 /***/ }),
@@ -301,6 +316,12 @@ module.exports = "<section class='section form'>\n\n    <span class='section-hea
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IndexComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Transactions_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Transactions/Index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Import_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Import/Index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Persons_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Persons/Index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UserGroups_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/UserGroups/Index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Users_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Users/Index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Authentication_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Authentication/Index.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -308,17 +329,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
-var IndexComponent = (function () {
+
+
+
+
+
+
+var IndexComponent = IndexComponent_1 = (function () {
     function IndexComponent() {
     }
+    IndexComponent.RoutingInformation = function (path) {
+        if (path === void 0) { path = ""; }
+        return {
+            path: path,
+            component: IndexComponent_1,
+            children: [
+                __WEBPACK_IMPORTED_MODULE_1__Transactions_Index__["a" /* IndexComponent */].RoutingInformation(),
+                __WEBPACK_IMPORTED_MODULE_2__Import_Index__["a" /* IndexComponent */].RoutingInformation(),
+                __WEBPACK_IMPORTED_MODULE_3__Persons_Index__["a" /* IndexComponent */].RoutingInformation(),
+                __WEBPACK_IMPORTED_MODULE_4__UserGroups_Index__["a" /* IndexComponent */].RoutingInformation(),
+                __WEBPACK_IMPORTED_MODULE_5__Users_Index__["a" /* IndexComponent */].RoutingInformation(),
+                __WEBPACK_IMPORTED_MODULE_6__Authentication_Index__["a" /* IndexComponent */].RoutingInformation()
+            ]
+        };
+    };
     return IndexComponent;
 }());
-IndexComponent = __decorate([
+IndexComponent = IndexComponent_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         template: __webpack_require__("../../../../../src/App/Finances/Components/Index.html")
     })
 ], IndexComponent);
 
+var IndexComponent_1;
 //# sourceMappingURL=Index.js.map
 
 /***/ }),
@@ -352,7 +395,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AddComponent = (function () {
+var AddComponent = AddComponent_1 = (function () {
     function AddComponent(_financesService, _router, _globalLoadingIndicatorService) {
         this._financesService = _financesService;
         this._router = _router;
@@ -360,6 +403,14 @@ var AddComponent = (function () {
         this._isInitialized = false;
         this.close = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
     }
+    AddComponent.RoutingInformation = function (path) {
+        if (path === void 0) { path = "Add"; }
+        return {
+            path: path,
+            component: AddComponent_1,
+            outlet: "next"
+        };
+    };
     AddComponent.prototype.ngOnInit = function () {
         this._isInitialized = true;
         this.updateUserGroups();
@@ -419,14 +470,14 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
     __metadata("design:type", Object)
 ], AddComponent.prototype, "close", void 0);
-AddComponent = __decorate([
+AddComponent = AddComponent_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         template: __webpack_require__("../../../../../src/App/Finances/Components/Persons/Add.html")
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["f" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["f" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */]) === "function" && _c || Object])
 ], AddComponent);
 
-var _a, _b, _c;
+var AddComponent_1, _a, _b, _c;
 //# sourceMappingURL=Add.js.map
 
 /***/ }),
@@ -444,6 +495,7 @@ module.exports = "<section class='section'>\n\n    <span class='section-header'>
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IndexComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Add__ = __webpack_require__("../../../../../src/App/Finances/Components/Persons/Add.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -451,17 +503,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
-var IndexComponent = (function () {
+
+var IndexComponent = IndexComponent_1 = (function () {
     function IndexComponent() {
     }
+    IndexComponent.RoutingInformation = function (path) {
+        if (path === void 0) { path = "Persons"; }
+        return {
+            path: path,
+            component: IndexComponent_1,
+            children: [
+                __WEBPACK_IMPORTED_MODULE_1__Add__["a" /* AddComponent */].RoutingInformation()
+            ]
+        };
+    };
     return IndexComponent;
 }());
-IndexComponent = __decorate([
+IndexComponent = IndexComponent_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         template: __webpack_require__("../../../../../src/App/Finances/Components/Persons/Index.html")
     })
 ], IndexComponent);
 
+var IndexComponent_1;
 //# sourceMappingURL=Index.js.map
 
 /***/ }),
@@ -469,7 +533,7 @@ IndexComponent = __decorate([
 /***/ "../../../../../src/App/Finances/Components/Transactions/Add.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class='section'>\n\n    <span class='section-header'>Add Transaction</span>\n\n    <!--TODO <form (ngSubmit)='submitNewPerson()' *ngIf='showAddPersonForm' class='inner-form'>\n        <div class='form-header'>\n            Add new person\n        </div>\n        <div class='form-group'>\n            <label for='name'>Name:</label>\n            <div class='control-container'>\n                <input type='text' class='form-control' id='new-person-name' [(ngModel)]='addNewPersonName' name='newPersonName' />\n            </div>\n        </div>\n        <div class='button-bar'>\n            <input type='button' class='btn btn-cancel' (click)='showAddPersonForm=false' value='Cancel'/>\n            <button type='submit' class='btn btn-success'>Submit</button>\n        </div>\n    </form> -->\n\n    <div class='section-content'>\n        <form (ngSubmit)='submit()'>\n            <div class='form-group'>\n                <label for='name'>Name:</label>\n                <div class='control-container'>\n                    <input type='text' class='form-control' id='name' [(ngModel)]='name' name='name' required />\n                </div>\n                <div class='additional-controls'>  \n                    <input type='button' class='form-control' (click)='name=\"\"' value='Clear' *ngIf='name != \"\" && name != null'/>\n                </div> \n            </div>\n            <div class='form-group'>\n                <label for='value'>Value:</label>\n                <div class='control-container'>  \n                    <input type='number' class='form-control' id='value' [(ngModel)]='value' name='value' required />\n                </div> \n            </div>\n            <div class='form-group'>\n                <label for='currencyAccount'>Currency Account:</label>\n                <div class='control-container'>  \n                    <select [(ngModel)]='currencyAccount' name='currencyAccount'>\n                        <option *ngFor='let currencyAccount of currencyAccounts' [ngValue]='currencyAccount.id'>{{currencyAccount.header}}</option>\n                    </select>\n                </div>\n            </div>\n            <div class='form-group'>\n                <label for='user'>User:</label>\n                <div class='control-container'>  \n                    <select [(ngModel)]='user' name='user'>\n                        <option *ngFor='let user of users' [ngValue]='user.id'>{{user.header}}</option>\n                    </select>\n                </div>\n            </div>\n            <div class='form-group'>\n                <label for='person'>Person:</label>\n                <div class='control-container'>  \n                    <select [(ngModel)]='person' name='person'>\n                        <option *ngFor='let person of persons' [ngValue]='person.id'>{{person.header}}</option>\n                    </select>\n                </div>\n                <div class='additional-controls'>  \n                    <a class='form-control' (click)='addPerson()'>Add</a>\n                </div>  \n            </div>\n            <div class='form-group'>\n                <label for='timeStampDate'>Time Stamp Date:</label>\n                <div class='control-container'>  \n                    <input type='date' class='form-control' id='timeStampDate' \n                            [ngModel]='timeStampDate | date:\"yyyy-MM-dd\"'\n                            (ngModelChange)='timeStampDate = $event'\n                            name='timeStampDate' required />\n                </div> \n            </div>\n            <div class='form-group'>\n                <label for='includeTimeStampTime'>Add Time</label>\n                <div class='control-container'>  \n                    <input type='checkbox' class='form-control' id='includeTimeStampTime' [(ngModel)]='includeTimeStampTime' name='includeTimeStampTime' required />\n                </div>\n            </div>\n            <div class='form-group' *ngIf='includeTimeStampTime'>\n                <label for='timeStampTime'>Time Stamp Time:</label>\n                <div class='control-container'>  \n                    <input type='time' class='form-control' id='timeStampTime' [(ngModel)]='timeStampTime' name='timeStampTime' required          \n                            [ngModel]='timeStampTime | date:\"mm-ss\"'\n                            (ngModelChange)='timeStampTime = $event' />\n                </div> \n            </div>\n            <div>\n                <div *ngIf='coordinates'>\n                    <table>\n                        <tbody>\n                            <tr><td>Latitude:</td><td>{{coordinates.latitude}}</td></tr>\n                            <tr><td>Longitude:</td><td>{{coordinates.longitude}}</td></tr> \n                            <tr><td>Accuracy:</td><td>{{coordinates.accuracy}}</td></tr>     \n                        </tbody>\n                        <tbody>\n                            <tr><td>Altitude:</td><td>{{coordinates.altitude}}</td></tr>        \n                            <tr><td>Altitude Accuracy:</td><td>{{coordinates.altitudeAccuracy}}</td></tr>\n                        </tbody>\n                        <tbody>\n                            <tr><td>Heading:</td><td>{{coordinates.heading}}</td></tr>       \n                            <tr><td>Speed:</td><td>{{coordinates.speed}}</td></tr>       \n                        </tbody>\n                    </table>\n                </div>\n                <div *ngIf='!coordinates'>\n                    Unable to get coordinates from your browser.\n                </div>\n            </div>\n\n            <div class='button-bar' >\n                <input type='button' class='btn btn-cancel' (click)='cancel()' value='Cancel'/>\n                <button type='submit' class='btn btn-success' >Submit</button>\n            </div>\n        </form>\n    </div>\n\n</section>\n\n<router-outlet name='next'></router-outlet>"
+module.exports = "<section class='section'>\n\n    <span class='section-header'>Add Transaction</span>\n\n    <!--TODO <form (ngSubmit)='submitNewPerson()' *ngIf='showAddPersonForm' class='inner-form'>\n        <div class='form-header'>\n            Add new person\n        </div>\n        <div class='form-group'>\n            <label for='name'>Name:</label>\n            <div class='control-container'>\n                <input type='text' class='form-control' id='new-person-name' [(ngModel)]='addNewPersonName' name='newPersonName' />\n            </div>\n        </div>\n        <div class='button-bar'>\n            <input type='button' class='btn btn-cancel' (click)='showAddPersonForm=false' value='Cancel'/>\n            <button type='submit' class='btn btn-success'>Submit</button>\n        </div>\n    </form> -->\n\n    <div class='section-content'>\n        <form (ngSubmit)='submit()'>\n            <div class='form-group'>\n                <label for='name'>Name:</label>\n                <div class='control-container'>\n                    <input type='text' class='form-control' id='name' [(ngModel)]='name' name='name' required />\n                </div>\n                <div class='additional-controls'>  \n                    <input type='button' class='form-control' (click)='name=\"\"' value='Clear' *ngIf='name != \"\" && name != null'/>\n                </div> \n            </div>\n            <div class='form-group'>\n                <label for='value'>Value:</label>\n                <div class='control-container'>  \n                    <input type='number' class='form-control' id='value' [(ngModel)]='value' name='value' required />\n                </div> \n            </div>\n            <div class='form-group'>\n                <label for='currencyAccount'>Currency Account:</label>\n                <div class='control-container'>  \n                    <select [(ngModel)]='currencyAccount' name='currencyAccount'>\n                        <option *ngFor='let currencyAccount of currencyAccounts' [ngValue]='currencyAccount.id'>{{currencyAccount.header}}</option>\n                    </select>\n                </div>\n            </div>\n            <div class='form-group'>\n                <label for='user'>User:</label>\n                <div class='control-container'>  \n                    <select [(ngModel)]='user' name='user'>\n                        <option *ngFor='let user of users' [ngValue]='user.id'>{{user.header}}</option>\n                    </select>\n                </div>\n            </div>\n            <div class='form-group'>\n                <label for='person'>Person:</label>\n                <div class='control-container'>  \n                    <select [(ngModel)]='person' name='person'>\n                        <option *ngFor='let person of persons' [ngValue]='person.id'>{{person.header}}</option>\n                    </select>\n                </div>\n                <div class='additional-controls'>  \n                    <a class='form-control' [routerLink]='[{ outlets: { next: \"AddPerson\" }}]'>Add</a>\n                </div>  \n            </div>\n            <div class='form-group'>\n                <label for='timeStampDate'>Time Stamp Date:</label>\n                <div class='control-container'>  \n                    <input type='date' class='form-control' id='timeStampDate' \n                            [ngModel]='timeStampDate | date:\"yyyy-MM-dd\"'\n                            (ngModelChange)='timeStampDate = $event'\n                            name='timeStampDate' required />\n                </div> \n            </div>\n            <div class='form-group'>\n                <label for='includeTimeStampTime'>Add Time</label>\n                <div class='control-container'>  \n                    <input type='checkbox' class='form-control' id='includeTimeStampTime' [(ngModel)]='includeTimeStampTime' name='includeTimeStampTime' required />\n                </div>\n            </div>\n            <div class='form-group' *ngIf='includeTimeStampTime'>\n                <label for='timeStampTime'>Time Stamp Time:</label>\n                <div class='control-container'>  \n                    <input type='text' class='form-control' id='timeStampTime' name='timeStampTime' required          \n                           [(ngModel)]='timeStampTimeStr'/>\n                </div> \n            </div>\n            <div>\n                <div *ngIf='coordinates'>\n                    <table>\n                        <tbody>\n                            <tr><td>Latitude:</td><td>{{coordinates.latitude}}</td></tr>\n                            <tr><td>Longitude:</td><td>{{coordinates.longitude}}</td></tr> \n                            <tr><td>Accuracy:</td><td>{{coordinates.accuracy}}</td></tr>     \n                        </tbody>\n                        <tbody>  \n                            <tr><td>Altitude:</td><td>{{coordinates.altitude}}</td></tr>        \n                            <tr><td>Altitude Accuracy:</td><td>{{coordinates.altitudeAccuracy}}</td></tr>\n                        </tbody>\n                        <tbody>\n                            <tr><td>Heading:</td><td>{{coordinates.heading}}</td></tr>       \n                            <tr><td>Speed:</td><td>{{coordinates.speed}}</td></tr>       \n                        </tbody>\n                    </table>\n                </div>\n                <div *ngIf='!coordinates'>\n                    Unable to get coordinates from your browser.\n                </div>\n            </div>\n\n            <div class='button-bar' >\n                <input type='button' class='btn btn-cancel' (click)='cancel()' value='Cancel'/>\n                <button type='submit' class='btn btn-success' >Submit</button>\n            </div>\n        </form>\n    </div>\n\n</section>\n\n<router-outlet name='next'></router-outlet>"
 
 /***/ }),
 
@@ -481,10 +545,11 @@ module.exports = "<section class='section'>\n\n    <span class='section-header'>
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__ = __webpack_require__("../../../../../src/App/Finances/Services/FinancesService.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Services_LocationService__ = __webpack_require__("../../../../../src/App/Shared/Services/LocationService.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ViewModels_FinancesViewModels__ = __webpack_require__("../../../../../src/App/Finances/ViewModels/FinancesViewModels.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Models_FinancesModels__ = __webpack_require__("../../../../../src/App/Finances/Models/FinancesModels.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Shared_KeyValuePair__ = __webpack_require__("../../../../../src/App/Shared/KeyValuePair.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Shared_Services_GlobalLoadingIndicatorService__ = __webpack_require__("../../../../../src/App/Shared/Services/GlobalLoadingIndicatorService.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Persons_Add__ = __webpack_require__("../../../../../src/App/Finances/Components/Persons/Add.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -501,7 +566,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AddComponent = (function () {
+
+var AddComponent = AddComponent_1 = (function () {
     function AddComponent(_financesService, _locationService, _router, _globalLoadingIndicatorService) {
         this._financesService = _financesService;
         this._locationService = _locationService;
@@ -509,6 +575,17 @@ var AddComponent = (function () {
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
         this.includeTimeStampTime = false;
     }
+    AddComponent.RoutingInformation = function (path) {
+        if (path === void 0) { path = "Add"; }
+        return {
+            path: path,
+            outlet: "next",
+            component: AddComponent_1,
+            children: [
+                __WEBPACK_IMPORTED_MODULE_7__Persons_Add__["a" /* AddComponent */].RoutingInformation("AddPerson")
+            ]
+        };
+    };
     AddComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
@@ -530,7 +607,7 @@ var AddComponent = (function () {
         });
         this.timeStampDate = new Date();
         this.timeStampDate.setHours(0, 0, 0, 0);
-        this.timeStampTime = new Date("12:34 AM");
+        this.timeStampTimeStr = "00:00:00";
         this.value = 0;
     };
     Object.defineProperty(AddComponent.prototype, "user", {
@@ -553,12 +630,20 @@ var AddComponent = (function () {
     AddComponent.prototype.submit = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
-        var tvm = new __WEBPACK_IMPORTED_MODULE_3__ViewModels_FinancesViewModels__["d" /* TransactionViewModel */]();
+        var tvm = new __WEBPACK_IMPORTED_MODULE_3__Models_FinancesModels__["e" /* TransactionViewModel */]();
         tvm.currencyAccountId = this.currencyAccount;
         tvm.personId = this.person;
         tvm.userId = this.user;
         tvm.timeStampDate = this.timeStampDate;
-        tvm.timeStampTime = this.timeStampTime;
+        var parts = this.timeStampTimeStr.split(":");
+        if (tvm.includeTimeStampTime &&
+            (parts.length != 3 || this.timeStampTimeStr.length != 8 || isNaN(+parts[0]) || isNaN(+parts[1]) || isNaN(+parts[2]))) {
+            alert("TimeStamp is not valid. It must be in format 'HH:mm:ss'!");
+            return;
+        }
+        else {
+            tvm.timeStampTime = new Date(0, 0, 0, +parts[0], +parts[1], +parts[2], 0);
+        }
         tvm.includeTimeStampTime = this.includeTimeStampTime;
         tvm.note = this.name;
         tvm.value = this.value;
@@ -578,19 +663,16 @@ var AddComponent = (function () {
     AddComponent.prototype.cancel = function () {
         this._router.navigateByUrl("/Finances");
     };
-    AddComponent.prototype.addPerson = function () {
-        this._router.navigate([{ outlets: { next: "/Persons/Add" } }]).then(function () { });
-    };
     return AddComponent;
 }());
-AddComponent = __decorate([
+AddComponent = AddComponent_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         template: __webpack_require__("../../../../../src/App/Finances/Components/Transactions/Add.html")
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__Shared_Services_LocationService__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__Shared_Services_LocationService__["a" /* LocationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["f" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["f" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */]) === "function" && _d || Object])
 ], AddComponent);
 
-var _a, _b, _c, _d;
+var AddComponent_1, _a, _b, _c, _d;
 //# sourceMappingURL=Add.js.map
 
 /***/ }),
@@ -608,6 +690,8 @@ module.exports = "<section class='section'>\n\n    <span class='section-header'>
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IndexComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Overview__ = __webpack_require__("../../../../../src/App/Finances/Components/Transactions/Overview.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Add__ = __webpack_require__("../../../../../src/App/Finances/Components/Transactions/Add.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -615,37 +699,52 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
-var IndexComponent = (function () {
+
+
+var IndexComponent = IndexComponent_1 = (function () {
     function IndexComponent() {
     }
+    IndexComponent.RoutingInformation = function (path) {
+        if (path === void 0) { path = "Transactions"; }
+        return {
+            path: path,
+            component: IndexComponent_1,
+            children: [
+                __WEBPACK_IMPORTED_MODULE_1__Overview__["a" /* OverviewComponent */].RoutingInformation(),
+                __WEBPACK_IMPORTED_MODULE_2__Add__["a" /* AddComponent */].RoutingInformation()
+            ]
+        };
+    };
+    ;
     return IndexComponent;
 }());
-IndexComponent = __decorate([
+IndexComponent = IndexComponent_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         template: __webpack_require__("../../../../../src/App/Finances/Components/Transactions/Index.html")
     })
 ], IndexComponent);
 
+var IndexComponent_1;
 //# sourceMappingURL=Index.js.map
 
 /***/ }),
 
-/***/ "../../../../../src/App/Finances/Components/Transactions/Overview.html":
+/***/ "../../../../../src/App/Finances/Components/Transactions/List.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class='section'>\n\n    <span class='section-header'>Finances Overview</span>\n\n    <div class='section-content'>\n        <div class='form-group'>\n            <label for='user'>User:</label>\n            <div class='control-container'>  \n                <select [(ngModel)]='user' name='user'>\n                    <option *ngFor='let user of users' [ngValue]='user.id'>{{user.header}}</option>\n                </select>\n            </div>\n        </div>\n        <div>\n            <table>\n                <tr>\n                    <th>Account Name (Currency)</th>\n                    <th>Value</th>\n                    <th class='action-column'>Actions</th>\n                </tr>\n                <tr *ngFor='let row of transactionOverview'>\n                    <td>{{row.currencyAccountName}}</td>\n                    <td>{{row.value}}</td>\n                    <td class='action-column'><a (click)='showTable(row.currencyAccountId)'>Show Table</a></td>\n                </tr>\n            </table>\n        </div>\n    </div>\n    \n</section>\n\n<div class='popup' *ngIf='transactionsInTable'>\n    <div class='popup-container'>\n        <div class='popup-content text'>\n            <span class='header'>Table</span>\n            \n            <table>\n                <tr>\n                    <th>Id</th>\n                    <th>Time Stamp</th>\n                    <th>Note</th>\n                    <th>Value</th>\n                    <th>Person Id</th>\n                </tr>\n                <tr *ngFor='let transaction of transactionsInTable'>\n                    <td>{{transaction.id}}</td>\n                    <td>{{transaction.timeStampDate}} <span *ngIf='transaction.timeStampTime'>({{transaction.timeStampTime}})</span></td>\n                    <td>{{transaction.note}}</td>\n                    <td>{{transaction.value}}</td>\n                    <td>{{transaction.personId}}</td>\n                </tr>\n            </table>\n            <div class='button-bar'>\n                <input type='submit' value='Close' (click)='hideTable()' />\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<section class='section'>\n\n    <span class='section-header'>Transactions List</span>\n\n    <div class='section-content'>\n\n        <div class=\"paging-links\">\n            <a *ngIf=\"previousPage\" (click)=\"navigateToPage(previousPage)\">Previous</a>\n            <ng-container *ngFor=\"let i of pageLinks\">\n                <a *ngIf=\"currentPage != i\" (click)=\"navigateToPage(i)\">{{i}}</a>\n                <span *ngIf=\"currentPage == i\">{{i}}</span>\n            </ng-container>\n            <a *ngIf=\"nextPage\" (click)=\"navigateToPage(nextPage)\">Next</a>\n        </div>\n\n        <table class=\"data-table\">\n            <tr>\n                <th>Id</th>\n                <th>Time Stamp</th>\n                <th>Note</th>\n                <th>Value</th>\n                <th>Person Id</th>\n            </tr>\n            <tr *ngFor='let transaction of displayList'>\n                <td>{{transaction.id}}</td>\n                <td>{{transaction.timeStampDate}} <span *ngIf='transaction.timeStampTime'>({{transaction.timeStampTime}})</span></td>\n                <td>{{transaction.note}}</td>\n                <td>{{transaction.value}}</td>\n                <td>{{transaction.personId}}</td>\n            </tr>\n        </table>\n\n    </div>\n\n</section>\n\n<router-outlet name='next'></router-outlet>"
 
 /***/ }),
 
-/***/ "../../../../../src/App/Finances/Components/Transactions/Overview.ts":
+/***/ "../../../../../src/App/Finances/Components/Transactions/List.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OverviewComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__ = __webpack_require__("../../../../../src/App/Finances/Services/FinancesService.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Services_GlobalLoadingIndicatorService__ = __webpack_require__("../../../../../src/App/Shared/Services/GlobalLoadingIndicatorService.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Services_LocationService__ = __webpack_require__("../../../../../src/App/Shared/Services/LocationService.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -659,12 +758,124 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var OverviewComponent = (function () {
-    function OverviewComponent(_financesService, _router, _globalLoadingIndicatorService) {
+var ListComponent = ListComponent_1 = (function () {
+    function ListComponent(_financesService, _locationService, _router, _activedRoute) {
+        this._financesService = _financesService;
+        this._locationService = _locationService;
+        this._router = _router;
+        this._activedRoute = _activedRoute;
+    }
+    ListComponent.RoutingInformation = function (path) {
+        if (path === void 0) { path = "List"; }
+        return [
+            {
+                path: path + "/:caId",
+                outlet: "next",
+                component: ListComponent_1,
+                children: []
+            },
+            {
+                path: path + "/:caId/:page",
+                outlet: "next",
+                component: ListComponent_1,
+                children: []
+            }
+        ];
+    };
+    ListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._parameterSubscription = this._activedRoute.params.subscribe(function (params) {
+            _this.currencyAccountId = params["caId"];
+            _this.currentPage = +params["page"];
+            if (!_this.currentPage) {
+                setTimeout(function () { return _this.navigateToPage(1); });
+            }
+            else {
+                var count = 10; // number of entries per page
+                _this._financesService.getTransactions(_this.currencyAccountId, (_this.currentPage - 1) * count, count).subscribe(function (result) {
+                    _this.displayList = result;
+                    var maxLinkCountPerSide = 3;
+                    _this.pageLinks = new Array(2 * maxLinkCountPerSide + 1)
+                        .fill(0)
+                        .map(function (x, i) { return i + _this.currentPage - maxLinkCountPerSide; })
+                        .filter(function (i) { return i > 0; } /*&&i<<maxPageCount*/);
+                    _this.previousPage = _this.currentPage > 0 ? _this.currentPage - 1 : null;
+                    _this.nextPage = _this.currentPage + 1; //TODO
+                }, function (error) {
+                    alert(error);
+                });
+            }
+        });
+    };
+    ListComponent.prototype.ngOnDestroy = function () {
+        this._parameterSubscription.unsubscribe();
+    };
+    ListComponent.prototype.navigateToPage = function (page) {
+        this._router.navigate([{ outlets: { next: ["List", this.currencyAccountId, page] } }], { relativeTo: this._activedRoute.parent });
+    };
+    return ListComponent;
+}());
+ListComponent = ListComponent_1 = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        template: __webpack_require__("../../../../../src/App/Finances/Components/Transactions/List.html"),
+        styles: [__webpack_require__("../../../../../src/App/Shared/Styles/data-table.less")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__Shared_Services_LocationService__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__Shared_Services_LocationService__["a" /* LocationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["f" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["f" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */]) === "function" && _d || Object])
+], ListComponent);
+
+var ListComponent_1, _a, _b, _c, _d;
+//# sourceMappingURL=List.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/App/Finances/Components/Transactions/Overview.html":
+/***/ (function(module, exports) {
+
+module.exports = "<section class='section'>\n\n    <span class='section-header'>Finances Overview</span>\n\n    <div class='section-content'>\n        <div class='form-group'>\n            <label for='user'>User:</label>\n            <div class='control-container'>  \n                <select [(ngModel)]='user' name='user'>\n                    <option *ngFor='let user of users' [ngValue]='user.id'>{{user.header}}</option>\n                </select>\n            </div>\n        </div>\n        <div>\n            <table class=\"data-table\">\n                <tr>\n                    <th>Account Name (Currency)</th>\n                    <th>Value</th>\n                    <th class='action-column'>Actions</th>\n                </tr>\n                <tr *ngFor='let row of transactionOverview'>\n                    <td>{{row.currencyAccountName}}</td>\n                    <td>{{row.value}}</td>\n                    <td class='action-column'><a (click)='showTable(row.currencyAccountId)'>Show Table</a></td>\n                </tr>\n            </table>\n        </div>\n    </div>\n    \n</section>\n\n<router-outlet name=\"next\"></router-outlet>"
+
+/***/ }),
+
+/***/ "../../../../../src/App/Finances/Components/Transactions/Overview.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OverviewComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__ = __webpack_require__("../../../../../src/App/Finances/Services/FinancesService.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Services_GlobalLoadingIndicatorService__ = __webpack_require__("../../../../../src/App/Shared/Services/GlobalLoadingIndicatorService.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__List__ = __webpack_require__("../../../../../src/App/Finances/Components/Transactions/List.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var OverviewComponent = OverviewComponent_1 = (function () {
+    function OverviewComponent(_financesService, _router, _globalLoadingIndicatorService, _activatedRoute) {
         this._financesService = _financesService;
         this._router = _router;
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
+        this._activatedRoute = _activatedRoute;
     }
+    OverviewComponent.RoutingInformation = function (path) {
+        if (path === void 0) { path = "Overview"; }
+        return {
+            path: path,
+            outlet: "next",
+            component: OverviewComponent_1,
+            children: __WEBPACK_IMPORTED_MODULE_4__List__["a" /* ListComponent */].RoutingInformation()
+        };
+    };
+    ;
     OverviewComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._financesService.users.subscribe(function (x) { _this.users = x; _this.user = x.length > 0 ? x[0].id : null; });
@@ -683,31 +894,25 @@ var OverviewComponent = (function () {
                 _this._globalLoadingIndicatorService.removeLoadingProcess();
             });
             this._financesService.getTransactionOverviewForUserAtTimeStamp(value, new Date()).subscribe(function (x) { _this.transactionOverview = x; });
+            this._router.navigate([{ outlets: { next: null } }], { relativeTo: this._activatedRoute });
         },
         enumerable: true,
         configurable: true
     });
     OverviewComponent.prototype.showTable = function (currencyAccountId) {
-        var _this = this;
-        this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.getTransactions(currencyAccountId, 0, 25).subscribe(function (x) {
-            _this.transactionsInTable = x;
-            _this._globalLoadingIndicatorService.removeLoadingProcess();
-        });
-    };
-    OverviewComponent.prototype.hideTable = function () {
-        this.transactionsInTable = null;
+        this._router.navigate([{ outlets: { next: ["List", currencyAccountId] } }], { relativeTo: this._activatedRoute });
     };
     return OverviewComponent;
 }());
-OverviewComponent = __decorate([
+OverviewComponent = OverviewComponent_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-        template: __webpack_require__("../../../../../src/App/Finances/Components/Transactions/Overview.html")
+        template: __webpack_require__("../../../../../src/App/Finances/Components/Transactions/Overview.html"),
+        styles: [__webpack_require__("../../../../../src/App/Shared/Styles/data-table.less")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["f" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["f" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["f" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["f" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _d || Object])
 ], OverviewComponent);
 
-var _a, _b, _c;
+var OverviewComponent_1, _a, _b, _c, _d;
 //# sourceMappingURL=Overview.js.map
 
 /***/ }),
@@ -741,12 +946,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var IndexComponent = (function () {
+var IndexComponent = IndexComponent_1 = (function () {
     function IndexComponent(_financesService, _router, _globalLoadingIndicatorService) {
         this._financesService = _financesService;
         this._router = _router;
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
     }
+    IndexComponent.RoutingInformation = function (path) {
+        if (path === void 0) { path = "UserGroups"; }
+        return {
+            path: path,
+            component: IndexComponent_1,
+            children: []
+        };
+    };
     IndexComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
@@ -778,7 +991,7 @@ var IndexComponent = (function () {
     };
     return IndexComponent;
 }());
-IndexComponent = __decorate([
+IndexComponent = IndexComponent_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: "finances-usergroups",
         template: __webpack_require__("../../../../../src/App/Finances/Components/UserGroups/Index.html")
@@ -786,7 +999,7 @@ IndexComponent = __decorate([
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["f" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["f" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */]) === "function" && _c || Object])
 ], IndexComponent);
 
-var _a, _b, _c;
+var IndexComponent_1, _a, _b, _c;
 //# sourceMappingURL=Index.js.map
 
 /***/ }),
@@ -820,12 +1033,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var IndexComponent = (function () {
+var IndexComponent = IndexComponent_1 = (function () {
     function IndexComponent(_financesService, _router, _globalLoadingIndicatorService) {
         this._financesService = _financesService;
         this._router = _router;
         this._globalLoadingIndicatorService = _globalLoadingIndicatorService;
     }
+    IndexComponent.RoutingInformation = function (path) {
+        if (path === void 0) { path = "Users"; }
+        return {
+            path: path,
+            component: IndexComponent_1,
+            children: []
+        };
+    };
     IndexComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._globalLoadingIndicatorService.addLoadingProcess();
@@ -838,14 +1059,14 @@ var IndexComponent = (function () {
     };
     return IndexComponent;
 }());
-IndexComponent = __decorate([
+IndexComponent = IndexComponent_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         template: __webpack_require__("../../../../../src/App/Finances/Components/Users/Index.html")
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__Services_FinancesService__["a" /* FinancesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["f" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["f" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */]) === "function" && _c || Object])
 ], IndexComponent);
 
-var _a, _b, _c;
+var IndexComponent_1, _a, _b, _c;
 //# sourceMappingURL=Index.js.map
 
 /***/ }),
@@ -917,7 +1138,7 @@ var DBValueProvider = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CommerzbankGiroAccountStatementImporter; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return PayPalAccountStatementImporter; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FinancesCsvImporter; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewModels_FinancesViewModels__ = __webpack_require__("../../../../../src/App/Finances/ViewModels/FinancesViewModels.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Models_FinancesModels__ = __webpack_require__("../../../../../src/App/Finances/Models/FinancesModels.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_KeyValuePair__ = __webpack_require__("../../../../../src/App/Shared/KeyValuePair.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_papaparse__ = __webpack_require__("../../../../papaparse/papaparse.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_papaparse___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_papaparse__);
@@ -985,7 +1206,7 @@ var CommerzbankCreditCardStatementImporter = (function (_super) {
                 // Number format: xxx,xx
                 for (var _i = 0, _a = result.data; _i < _a.length; _i++) {
                     var row = _a[_i];
-                    var tvm = new __WEBPACK_IMPORTED_MODULE_0__ViewModels_FinancesViewModels__["d" /* TransactionViewModel */]();
+                    var tvm = new __WEBPACK_IMPORTED_MODULE_0__Models_FinancesModels__["e" /* TransactionViewModel */]();
                     var timeStamp = _this.dataParser.parseTimeStamp(row["Buchungstag"], "DD.MM.YYYY");
                     tvm = _this.assignTimeStamp(tvm, timeStamp, false);
                     tvm.note = row["Unternehmen"];
@@ -1021,7 +1242,7 @@ var CommerzbankGiroAccountStatementImporter = (function (_super) {
                 // Number format: xxx,xx
                 for (var _i = 0, _a = result.data; _i < _a.length; _i++) {
                     var row = _a[_i];
-                    var tvm = new __WEBPACK_IMPORTED_MODULE_0__ViewModels_FinancesViewModels__["d" /* TransactionViewModel */]();
+                    var tvm = new __WEBPACK_IMPORTED_MODULE_0__Models_FinancesModels__["e" /* TransactionViewModel */]();
                     var timeStamp = _this.dataParser.parseTimeStamp(row["Wertstellung"], "DD.MM.YYYY");
                     tvm = _this.assignTimeStamp(tvm, timeStamp, false);
                     tvm.note = row["Buchungstext"];
@@ -1061,7 +1282,7 @@ var PayPalAccountStatementImporter = (function (_super) {
                     if (!row[" Netto"] || row[" Netto"] == "") {
                         continue;
                     }
-                    var tvm = new __WEBPACK_IMPORTED_MODULE_0__ViewModels_FinancesViewModels__["d" /* TransactionViewModel */]();
+                    var tvm = new __WEBPACK_IMPORTED_MODULE_0__Models_FinancesModels__["e" /* TransactionViewModel */]();
                     var timeStampString = row["Datum"] + (row[" Zeit"] ? " " + row[" Zeit"] : "");
                     var timeStampFormat = "DD.MM.YYYY" + (row[" Zeit"] ? " HH:mm:ss" : "");
                     var timeStamp = _this.dataParser.parseTimeStamp(timeStampString, timeStampFormat);
@@ -1107,7 +1328,7 @@ var FinancesCsvImporter = (function (_super) {
                 // Number format: xxx,xx
                 for (var _i = 0, _a = result.data; _i < _a.length; _i++) {
                     var row = _a[_i];
-                    var tvm = new __WEBPACK_IMPORTED_MODULE_0__ViewModels_FinancesViewModels__["d" /* TransactionViewModel */]();
+                    var tvm = new __WEBPACK_IMPORTED_MODULE_0__Models_FinancesModels__["e" /* TransactionViewModel */]();
                     var timeStampString = row["Date"] + (row["Time"] ? " " + row["Time"] : "");
                     var timeStampFormat = "MM/DD/YYYY" + (row["Time"] ? " hh:mm:ss A" : "");
                     var timeStamp = _this.dataParser.parseTimeStamp(timeStampString, timeStampFormat);
@@ -1168,24 +1389,28 @@ var GermanDataParser = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/App/Finances/ServerModels/FinancesServerModels.ts":
+/***/ "../../../../../src/App/Finances/Models/FinancesModels.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return PersonServerModel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return UserServerModel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return UserGroupServerModel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return UserServerModel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return UserGroupServerModel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CurrencyAccountServerModel; });
 /* unused harmony export CurrencySymbolServerModel */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return TransactionServerModel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return TransactionOverviewServerModel; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewModels_FinancesViewModels__ = __webpack_require__("../../../../../src/App/Finances/ViewModels/FinancesViewModels.ts");
-
+/* unused harmony export UserViewModel */
+/* unused harmony export UserGroupViewModel */
+/* unused harmony export PersonViewModel */
+/* unused harmony export CurrencyAccountViewModel */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return TransactionViewModel; });
+/* unused harmony export TransactionOverviewViewModel */
 var PersonServerModel = (function () {
     function PersonServerModel() {
     }
     PersonServerModel.prototype.toViewModel = function () {
-        return new __WEBPACK_IMPORTED_MODULE_0__ViewModels_FinancesViewModels__["b" /* PersonViewModel */](this.id, this.name);
+        return new PersonViewModel(this.id, this.name);
     };
     return PersonServerModel;
 }());
@@ -1194,7 +1419,7 @@ var UserServerModel = (function () {
     function UserServerModel() {
     }
     UserServerModel.prototype.toViewModel = function () {
-        return new __WEBPACK_IMPORTED_MODULE_0__ViewModels_FinancesViewModels__["f" /* UserViewModel */](this.id, this.name);
+        return new UserViewModel(this.id, this.name);
     };
     return UserServerModel;
 }());
@@ -1203,7 +1428,7 @@ var UserGroupServerModel = (function () {
     function UserGroupServerModel() {
     }
     UserGroupServerModel.prototype.toViewModel = function () {
-        return new __WEBPACK_IMPORTED_MODULE_0__ViewModels_FinancesViewModels__["e" /* UserGroupViewModel */](this.id, this.name);
+        return new UserGroupViewModel(this.id, this.name);
     };
     return UserGroupServerModel;
 }());
@@ -1213,7 +1438,7 @@ var CurrencyAccountServerModel = (function () {
     }
     CurrencyAccountServerModel.prototype.toViewModel = function () {
         var currencyNames = this.currencyNames.map(function (x) { return x.symbol; }).join(", ");
-        var cavm = new __WEBPACK_IMPORTED_MODULE_0__ViewModels_FinancesViewModels__["a" /* CurrencyAccountViewModel */](this.currencyAccountId, this.accountName + " (" + currencyNames + ")");
+        var cavm = new CurrencyAccountViewModel(this.currencyAccountId, this.accountName + " (" + currencyNames + ")");
         cavm.currencySymbols = this.currencyNames.map(function (x) { return x.symbol; });
         cavm.accountName = this.accountName;
         return cavm;
@@ -1232,7 +1457,7 @@ var TransactionServerModel = (function () {
         this.rawData = [];
     }
     TransactionServerModel.prototype.toViewModel = function () {
-        var tvm = new __WEBPACK_IMPORTED_MODULE_0__ViewModels_FinancesViewModels__["d" /* TransactionViewModel */]();
+        var tvm = new TransactionViewModel();
         tvm.currencyAccountId = this.currencyAccountId;
         tvm.id = this.id;
         tvm.note = this.note;
@@ -1251,7 +1476,7 @@ var TransactionOverviewServerModel = (function () {
     function TransactionOverviewServerModel() {
     }
     TransactionOverviewServerModel.prototype.toViewModel = function () {
-        var tovm = new __WEBPACK_IMPORTED_MODULE_0__ViewModels_FinancesViewModels__["c" /* TransactionOverviewViewModel */]();
+        var tovm = new TransactionOverviewViewModel();
         tovm.accountName = this.accountName;
         tovm.currencyId = this.currencyId;
         tovm.currencyAccountId = this.currencyAccountId;
@@ -1260,264 +1485,6 @@ var TransactionOverviewServerModel = (function () {
     };
     return TransactionOverviewServerModel;
 }());
-
-//# sourceMappingURL=FinancesServerModels.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/App/Finances/Services/FinancesAuthenticationService.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FinancesAuthenticationService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_DataContainer__ = __webpack_require__("../../../../../src/App/Shared/DataContainer.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var FinancesAuthenticationService = (function () {
-    function FinancesAuthenticationService(http) {
-        this.http = http;
-    }
-    FinancesAuthenticationService.prototype.getToken = function (userName, password) {
-        var _this = this;
-        var url = "/api/Finances/GetToken";
-        var obj = {
-            userName: userName,
-            password: password,
-        };
-        var data = new __WEBPACK_IMPORTED_MODULE_2__Shared_DataContainer__["a" /* DataContainer */](obj);
-        var postData = JSON.stringify(data);
-        console.log(postData);
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ "Content-Type": "application/json" });
-        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
-        return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].create(function (observer) {
-            _this.http.post(url, postData, options).subscribe(function (response) {
-                var token = response.json().data;
-                observer.next(token);
-            }, function (error) {
-                observer.error(error);
-                observer.complete();
-            });
-        });
-    };
-    return FinancesAuthenticationService;
-}());
-FinancesAuthenticationService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
-], FinancesAuthenticationService);
-
-var _a;
-//# sourceMappingURL=FinancesAuthenticationService.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/App/Finances/Services/FinancesService.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FinancesService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ServerModels_FinancesServerModels__ = __webpack_require__("../../../../../src/App/Finances/ServerModels/FinancesServerModels.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Shared_DataContainer__ = __webpack_require__("../../../../../src/App/Shared/DataContainer.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var FinancesService = (function () {
-    function FinancesService(http) {
-        this.http = http;
-    }
-    FinancesService.prototype.assignToken = function (token) {
-        this._token = token;
-    };
-    FinancesService.prototype.getListFromResponse = function (response, serverModelFactory) {
-        var object = response.json();
-        var lst = object.data;
-        return lst.map(function (smo) {
-            // Object.assign is neccessary because assigning does not "transfer" methods too.
-            // see: https://stackoverflow.com/a/40063179/1623754
-            var sm = serverModelFactory();
-            Object.assign(sm, smo);
-            return sm.toViewModel();
-        });
-    };
-    FinancesService.prototype.getWithOptions = function (url) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]();
-        headers.append("Authorization", "Bearer " + this._token);
-        headers.append("X-Authorization", "Bearer " + this._token);
-        var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: headers });
-        return this.http.get(url, options);
-    };
-    FinancesService.prototype.postWithOptions = function (url, postData) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + this._token,
-            "X-Authorization": "Bearer " + this._token
-        });
-        var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: headers });
-        return this.http.post(url, postData, options);
-    };
-    FinancesService.prototype.getList = function (url, serverModelFactory) {
-        var _this = this;
-        return this.getWithOptions(url).map(function (response) { return _this.getListFromResponse(response, serverModelFactory); });
-    };
-    Object.defineProperty(FinancesService.prototype, "persons", {
-        get: function () {
-            return this.getList("/api/Finances/GetPersons", function () { return new __WEBPACK_IMPORTED_MODULE_1__ServerModels_FinancesServerModels__["b" /* PersonServerModel */](); });
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(FinancesService.prototype, "users", {
-        get: function () {
-            return this.getList("/api/Finances/GetUsers", function () { return new __WEBPACK_IMPORTED_MODULE_1__ServerModels_FinancesServerModels__["f" /* UserServerModel */](); });
-        },
-        enumerable: true,
-        configurable: true
-    });
-    FinancesService.prototype.getUsersFromUserGroup = function (userGroupId) {
-        return this.getList("/api/Finances/GetUsersFromUserGroup?userGroupId=" + userGroupId, function () { return new __WEBPACK_IMPORTED_MODULE_1__ServerModels_FinancesServerModels__["f" /* UserServerModel */](); });
-    };
-    FinancesService.prototype.getUserGroups = function (userId) {
-        var url = "/api/Finances/GetUserGroups";
-        if (userId) {
-            url = url + ("?userId=" + userId);
-        }
-        return this.getList(url, function () { return new __WEBPACK_IMPORTED_MODULE_1__ServerModels_FinancesServerModels__["e" /* UserGroupServerModel */](); });
-    };
-    FinancesService.prototype.getCurrencyAccounts = function (userId) {
-        return this.getList("/api/Finances/GetCurrencyAccountsForUser?userId=" + userId, function () { return new __WEBPACK_IMPORTED_MODULE_1__ServerModels_FinancesServerModels__["a" /* CurrencyAccountServerModel */](); });
-    };
-    FinancesService.prototype.getTransactions = function (currencyAccountId, skipCount, takeCount) {
-        var url = "/api/Finances/GetTransactions?currencyAccountId=" + currencyAccountId + "&skipCount=" + skipCount + "&takeCount=" + takeCount;
-        return this.getList(url, function () { return new __WEBPACK_IMPORTED_MODULE_1__ServerModels_FinancesServerModels__["d" /* TransactionServerModel */](); });
-    };
-    FinancesService.prototype.getTransactionOverviewForUserAtTimeStamp = function (userId, timeStamp) {
-        var _this = this;
-        var url = "/api/Finances/GetTransactionOverviewForUserAtTimeStamp?userId=" + userId + "&timeStamp=" + timeStamp.toUTCString();
-        return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].create(function (observer) {
-            var readyCounter = 0;
-            var items;
-            var cas;
-            function tryAddToObserver() {
-                if (readyCounter != 2) {
-                    return; // not ready yet
-                }
-                //assign currency names
-                for (var itemIndex in items) {
-                    for (var _i = 0, cas_1 = cas; _i < cas_1.length; _i++) {
-                        var ca = cas_1[_i];
-                        if (ca.id === items[itemIndex].currencyAccountId) {
-                            items[itemIndex].currencyAccountName = ca.header;
-                        }
-                    }
-                }
-                observer.next(items);
-                observer.complete();
-            }
-            _this.getList(url, function () { return new __WEBPACK_IMPORTED_MODULE_1__ServerModels_FinancesServerModels__["c" /* TransactionOverviewServerModel */](); }).subscribe(function (x) {
-                readyCounter += 1;
-                tryAddToObserver();
-                items = x;
-            });
-            _this.getCurrencyAccounts(userId).subscribe(function (x) {
-                readyCounter += 1;
-                cas = x;
-                tryAddToObserver();
-            });
-        });
-    };
-    FinancesService.prototype.addTransactions = function (tvms) {
-        var _this = this;
-        var data = new __WEBPACK_IMPORTED_MODULE_5__Shared_DataContainer__["a" /* DataContainer */](tvms.map(function (x) { return x.toServerModel(); }));
-        var postData = JSON.stringify(data);
-        return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].create(function (observer) {
-            _this.postWithOptions("/api/Finances/AddTransactions", postData).subscribe(function (response) {
-                var lst = _this.getListFromResponse(response, function () { return new __WEBPACK_IMPORTED_MODULE_1__ServerModels_FinancesServerModels__["d" /* TransactionServerModel */](); });
-                observer.next(lst);
-                observer.complete();
-            }, function (error) {
-                observer.error(error);
-                observer.complete();
-            });
-        });
-    };
-    FinancesService.prototype.addPerson = function (name, userGroupId) {
-        var _this = this;
-        var data = {
-            data: {
-                name: name,
-                userGroupId: userGroupId
-            }
-        };
-        return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].create(function (observer) {
-            _this.postWithOptions("/api/Finances/AddPerson", JSON.stringify(data)).subscribe(function (response) {
-                var smodc = response.json();
-                var smo = smodc.data;
-                var sm = new __WEBPACK_IMPORTED_MODULE_1__ServerModels_FinancesServerModels__["b" /* PersonServerModel */]();
-                Object.assign(sm, smo);
-                observer.next(sm.toViewModel());
-                observer.complete();
-            }, function (error) {
-                observer.error(error);
-                observer.complete();
-            });
-        });
-    };
-    return FinancesService;
-}());
-FinancesService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object])
-], FinancesService);
-
-var _a;
-//# sourceMappingURL=FinancesService.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/App/Finances/ViewModels/FinancesViewModels.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return UserViewModel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return UserGroupViewModel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return PersonViewModel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CurrencyAccountViewModel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return TransactionViewModel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return TransactionOverviewViewModel; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ServerModels_FinancesServerModels__ = __webpack_require__("../../../../../src/App/Finances/ServerModels/FinancesServerModels.ts");
 
 var UserViewModel = (function () {
     function UserViewModel(_id, _header) {
@@ -1599,7 +1566,7 @@ var TransactionViewModel = (function () {
         this.rawData = [];
     }
     TransactionViewModel.prototype.toServerModel = function () {
-        var tvm = new __WEBPACK_IMPORTED_MODULE_0__ServerModels_FinancesServerModels__["d" /* TransactionServerModel */]();
+        var tvm = new TransactionServerModel();
         tvm.currencyAccountId = this.currencyAccountId;
         tvm.id = this.id;
         tvm.note = this.note;
@@ -1607,6 +1574,7 @@ var TransactionViewModel = (function () {
         tvm.rawData = this.rawData;
         tvm.timeStampDate = this.timeStampDate;
         if (this.includeTimeStampTime) {
+            console.warn(this.timeStampTime);
             tvm.timeStampTime = this.timeStampTime.getHours() + ":" + this.timeStampTime.getMinutes() + ":" + this.timeStampTime.getSeconds() + "." + this.timeStampTime.getMilliseconds();
         }
         else {
@@ -1624,7 +1592,7 @@ var TransactionOverviewViewModel = (function () {
     function TransactionOverviewViewModel() {
     }
     TransactionOverviewViewModel.prototype.toViewModel = function () {
-        var tosm = new __WEBPACK_IMPORTED_MODULE_0__ServerModels_FinancesServerModels__["c" /* TransactionOverviewServerModel */]();
+        var tosm = new TransactionOverviewServerModel();
         tosm.accountName = this.accountName;
         tosm.currencyId = this.currencyId;
         tosm.currencyAccountId = this.currencyAccountId;
@@ -1634,7 +1602,269 @@ var TransactionOverviewViewModel = (function () {
     return TransactionOverviewViewModel;
 }());
 
-//# sourceMappingURL=FinancesViewModels.js.map
+//# sourceMappingURL=FinancesModels.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/App/Finances/Services/FinancesAuthenticationService.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FinancesAuthenticationService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_DataContainer__ = __webpack_require__("../../../../../src/App/Shared/DataContainer.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shared_Services_CookieService__ = __webpack_require__("../../../../../src/App/Shared/Services/CookieService.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Environments_Environment__ = __webpack_require__("../../../../../src/Environments/Environment.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var FinancesAuthenticationService = FinancesAuthenticationService_1 = (function () {
+    function FinancesAuthenticationService(http, _cookieService) {
+        this.http = http;
+        this._cookieService = _cookieService;
+    }
+    FinancesAuthenticationService.prototype.requestToken = function (userName, password) {
+        var _this = this;
+        var url = __WEBPACK_IMPORTED_MODULE_5__Environments_Environment__["a" /* Environment */].ApiUrl + "Finances/GetToken";
+        var obj = {
+            userName: userName,
+            password: password,
+        };
+        var data = new __WEBPACK_IMPORTED_MODULE_2__Shared_DataContainer__["a" /* DataContainer */](obj);
+        var postData = JSON.stringify(data);
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ "Content-Type": "application/json" });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].create(function (observer) {
+            _this.http.post(url, postData, options).subscribe(function (response) {
+                _this._cachedToken = response.json().data;
+                _this._cookieService.setCookie(FinancesAuthenticationService_1.FinancesAuthCookieName, _this._cachedToken, 2 * 60);
+                observer.next(undefined);
+                observer.complete();
+            }, function (error) {
+                observer.error(error);
+                observer.complete();
+            });
+        });
+    };
+    FinancesAuthenticationService.prototype.getCachedToken = function () {
+        if (!this._cachedToken) {
+            this._cachedToken = this._cookieService.getCookie(FinancesAuthenticationService_1.FinancesAuthCookieName);
+        }
+        return this._cachedToken;
+    };
+    return FinancesAuthenticationService;
+}());
+FinancesAuthenticationService.FinancesAuthCookieName = "FinancesAuthCookie";
+FinancesAuthenticationService = FinancesAuthenticationService_1 = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__Shared_Services_CookieService__["a" /* CookieService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__Shared_Services_CookieService__["a" /* CookieService */]) === "function" && _b || Object])
+], FinancesAuthenticationService);
+
+var FinancesAuthenticationService_1, _a, _b;
+//# sourceMappingURL=FinancesAuthenticationService.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/App/Finances/Services/FinancesService.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FinancesService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Models_FinancesModels__ = __webpack_require__("../../../../../src/App/Finances/Models/FinancesModels.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Shared_DataContainer__ = __webpack_require__("../../../../../src/App/Shared/DataContainer.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__FinancesAuthenticationService__ = __webpack_require__("../../../../../src/App/Finances/Services/FinancesAuthenticationService.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Environments_Environment__ = __webpack_require__("../../../../../src/Environments/Environment.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+var FinancesService = (function () {
+    function FinancesService(http, _financesAuthenticationService) {
+        this.http = http;
+        this._financesAuthenticationService = _financesAuthenticationService;
+        this._apiUrl = __WEBPACK_IMPORTED_MODULE_7__Environments_Environment__["a" /* Environment */].ApiUrl + "Finances";
+    }
+    FinancesService.prototype.getListFromResponse = function (response, serverModelFactory) {
+        var object = response.json();
+        var lst = object.data;
+        return lst.map(function (smo) {
+            // Object.assign is neccessary because assigning does not "transfer" methods too.
+            // see: https://stackoverflow.com/a/40063179/1623754
+            var sm = serverModelFactory();
+            Object.assign(sm, smo);
+            return sm.toViewModel();
+        });
+    };
+    FinancesService.prototype.getWithOptions = function (url) {
+        var token = this._financesAuthenticationService.getCachedToken();
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token,
+            "X-Authorization": "Bearer " + token
+        });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        return this.http.get(url, options);
+    };
+    FinancesService.prototype.postWithOptions = function (url, postData) {
+        var token = this._financesAuthenticationService.getCachedToken();
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token,
+            "X-Authorization": "Bearer " + token
+        });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        return this.http.post(url, postData, options);
+    };
+    FinancesService.prototype.getList = function (url, serverModelFactory) {
+        var _this = this;
+        return this.getWithOptions(url).map(function (response) { return _this.getListFromResponse(response, serverModelFactory); });
+    };
+    Object.defineProperty(FinancesService.prototype, "persons", {
+        get: function () {
+            return this.getList(this._apiUrl + "/GetPersons", function () { return new __WEBPACK_IMPORTED_MODULE_4__Models_FinancesModels__["b" /* PersonServerModel */](); });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FinancesService.prototype, "users", {
+        get: function () {
+            return this.getList(this._apiUrl + "/GetUsers", function () { return new __WEBPACK_IMPORTED_MODULE_4__Models_FinancesModels__["g" /* UserServerModel */](); });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    FinancesService.prototype.getUsersFromUserGroup = function (userGroupId) {
+        return this.getList(this._apiUrl + "/GetUsersFromUserGroup?userGroupId=" + userGroupId, function () { return new __WEBPACK_IMPORTED_MODULE_4__Models_FinancesModels__["g" /* UserServerModel */](); });
+    };
+    FinancesService.prototype.getUserGroups = function (userId) {
+        var url = this._apiUrl + "/GetUserGroups";
+        if (userId) {
+            url = url + ("?userId=" + userId);
+        }
+        return this.getList(url, function () { return new __WEBPACK_IMPORTED_MODULE_4__Models_FinancesModels__["f" /* UserGroupServerModel */](); });
+    };
+    FinancesService.prototype.getCurrencyAccounts = function (userId) {
+        return this.getList(this._apiUrl + "/GetCurrencyAccountsForUser?userId=" + userId, function () { return new __WEBPACK_IMPORTED_MODULE_4__Models_FinancesModels__["a" /* CurrencyAccountServerModel */](); });
+    };
+    FinancesService.prototype.getTransactions = function (currencyAccountId, skipCount, takeCount) {
+        var url = this._apiUrl + "/GetTransactions?currencyAccountId=" + currencyAccountId + "&skipCount=" + skipCount + "&takeCount=" + takeCount;
+        return this.getList(url, function () { return new __WEBPACK_IMPORTED_MODULE_4__Models_FinancesModels__["d" /* TransactionServerModel */](); });
+    };
+    FinancesService.prototype.getTransactionOverviewForUserAtTimeStamp = function (userId, timeStamp) {
+        var _this = this;
+        var url = this._apiUrl + "/GetTransactionOverviewForUserAtTimeStamp?userId=" + userId + "&timeStamp=" + timeStamp.toUTCString();
+        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].create(function (observer) {
+            var readyCounter = 0;
+            var items;
+            var cas;
+            function tryAddToObserver() {
+                if (readyCounter != 2) {
+                    return; // not ready yet
+                }
+                //assign currency names
+                for (var itemIndex in items) {
+                    for (var _i = 0, cas_1 = cas; _i < cas_1.length; _i++) {
+                        var ca = cas_1[_i];
+                        if (ca.id === items[itemIndex].currencyAccountId) {
+                            items[itemIndex].currencyAccountName = ca.header;
+                        }
+                    }
+                }
+                observer.next(items);
+                observer.complete();
+            }
+            _this.getList(url, function () { return new __WEBPACK_IMPORTED_MODULE_4__Models_FinancesModels__["c" /* TransactionOverviewServerModel */](); }).subscribe(function (x) {
+                readyCounter += 1;
+                tryAddToObserver();
+                items = x;
+            });
+            _this.getCurrencyAccounts(userId).subscribe(function (x) {
+                readyCounter += 1;
+                cas = x;
+                tryAddToObserver();
+            });
+        });
+    };
+    FinancesService.prototype.addTransactions = function (tvms) {
+        var _this = this;
+        var data = new __WEBPACK_IMPORTED_MODULE_5__Shared_DataContainer__["a" /* DataContainer */](tvms.map(function (x) { return x.toServerModel(); }));
+        var postData = JSON.stringify(data);
+        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].create(function (observer) {
+            _this.postWithOptions(_this._apiUrl + "/AddTransactions", postData).subscribe(function (response) {
+                var lst = _this.getListFromResponse(response, function () { return new __WEBPACK_IMPORTED_MODULE_4__Models_FinancesModels__["d" /* TransactionServerModel */](); });
+                observer.next(lst);
+                observer.complete();
+            }, function (error) {
+                observer.error(error);
+                observer.complete();
+            });
+        });
+    };
+    FinancesService.prototype.addPerson = function (name, userGroupId) {
+        var _this = this;
+        var data = {
+            data: {
+                name: name,
+                userGroupId: userGroupId
+            }
+        };
+        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].create(function (observer) {
+            _this.postWithOptions(_this._apiUrl + "/AddPerson", JSON.stringify(data)).subscribe(function (response) {
+                var smodc = response.json();
+                var smo = smodc.data;
+                var sm = new __WEBPACK_IMPORTED_MODULE_4__Models_FinancesModels__["b" /* PersonServerModel */]();
+                Object.assign(sm, smo);
+                observer.next(sm.toViewModel());
+                observer.complete();
+            }, function (error) {
+                observer.error(error);
+                observer.complete();
+            });
+        });
+    };
+    return FinancesService;
+}());
+FinancesService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__FinancesAuthenticationService__["a" /* FinancesAuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__FinancesAuthenticationService__["a" /* FinancesAuthenticationService */]) === "function" && _b || Object])
+], FinancesService);
+
+var _a, _b;
+//# sourceMappingURL=FinancesService.js.map
 
 /***/ }),
 
@@ -1652,19 +1882,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Components_Transactions_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Transactions/Index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Components_Transactions_Add__ = __webpack_require__("../../../../../src/App/Finances/Components/Transactions/Add.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Components_Transactions_Overview__ = __webpack_require__("../../../../../src/App/Finances/Components/Transactions/Overview.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Components_Import_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Import/Index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Components_Persons_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Persons/Index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Components_Persons_Add__ = __webpack_require__("../../../../../src/App/Finances/Components/Persons/Add.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Components_UserGroups_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/UserGroups/Index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Components_Users_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Users/Index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Components_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Components_Authentication_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Authentication/Index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Services_FinancesService__ = __webpack_require__("../../../../../src/App/Finances/Services/FinancesService.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__Shared_Services_LocationService__ = __webpack_require__("../../../../../src/App/Shared/Services/LocationService.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__Shared_Services_GlobalLoadingIndicatorService__ = __webpack_require__("../../../../../src/App/Shared/Services/GlobalLoadingIndicatorService.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__Shared_Services_NavigationService__ = __webpack_require__("../../../../../src/App/Shared/Services/NavigationService.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__Shared_shared_module__ = __webpack_require__("../../../../../src/App/Shared/shared.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__Services_FinancesAuthenticationService__ = __webpack_require__("../../../../../src/App/Finances/Services/FinancesAuthenticationService.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Components_Transactions_List__ = __webpack_require__("../../../../../src/App/Finances/Components/Transactions/List.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Components_Import_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Import/Index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Components_Persons_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Persons/Index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Components_Persons_Add__ = __webpack_require__("../../../../../src/App/Finances/Components/Persons/Add.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Components_UserGroups_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/UserGroups/Index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Components_Users_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Users/Index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Components_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Components_Authentication_Index__ = __webpack_require__("../../../../../src/App/Finances/Components/Authentication/Index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__Services_FinancesService__ = __webpack_require__("../../../../../src/App/Finances/Services/FinancesService.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__Shared_Services_LocationService__ = __webpack_require__("../../../../../src/App/Shared/Services/LocationService.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__Shared_Services_GlobalLoadingIndicatorService__ = __webpack_require__("../../../../../src/App/Shared/Services/GlobalLoadingIndicatorService.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__Shared_Services_NavigationService__ = __webpack_require__("../../../../../src/App/Shared/Services/NavigationService.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__Shared_shared_module__ = __webpack_require__("../../../../../src/App/Shared/shared.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__Services_FinancesAuthenticationService__ = __webpack_require__("../../../../../src/App/Finances/Services/FinancesAuthenticationService.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1692,55 +1923,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var financesRoutes = [{
-        path: "",
-        component: __WEBPACK_IMPORTED_MODULE_13__Components_Index__["a" /* IndexComponent */],
-        children: [
-            {
-                path: "Transactions",
-                component: __WEBPACK_IMPORTED_MODULE_5__Components_Transactions_Index__["a" /* IndexComponent */],
-                children: [
-                    {
-                        path: "Add",
-                        outlet: "next",
-                        component: __WEBPACK_IMPORTED_MODULE_6__Components_Transactions_Add__["a" /* AddComponent */]
-                    },
-                    {
-                        path: "Overview",
-                        outlet: "next",
-                        component: __WEBPACK_IMPORTED_MODULE_7__Components_Transactions_Overview__["a" /* OverviewComponent */]
-                    },
-                ]
-            },
-            {
-                path: "Import",
-                component: __WEBPACK_IMPORTED_MODULE_8__Components_Import_Index__["a" /* IndexComponent */],
-                children: []
-            },
-            {
-                path: "Persons",
-                component: __WEBPACK_IMPORTED_MODULE_9__Components_Persons_Index__["a" /* IndexComponent */],
-                children: [
-                    { path: "Add", component: __WEBPACK_IMPORTED_MODULE_10__Components_Persons_Add__["a" /* AddComponent */], outlet: "next" },
-                ]
-            },
-            {
-                path: "UserGroups",
-                component: __WEBPACK_IMPORTED_MODULE_11__Components_UserGroups_Index__["a" /* IndexComponent */],
-                children: []
-            },
-            {
-                path: "Users",
-                component: __WEBPACK_IMPORTED_MODULE_12__Components_Users_Index__["a" /* IndexComponent */],
-                children: []
-            },
-            {
-                path: "Authentication",
-                component: __WEBPACK_IMPORTED_MODULE_14__Components_Authentication_Index__["a" /* IndexComponent */],
-                children: []
-            }
-        ]
-    }];
+
+var financesRoutes = [
+    __WEBPACK_IMPORTED_MODULE_14__Components_Index__["a" /* IndexComponent */].RoutingInformation()
+];
 var FinancesModule = (function () {
     function FinancesModule() {
     }
@@ -1751,31 +1937,32 @@ FinancesModule = __decorate([
         imports: [
             __WEBPACK_IMPORTED_MODULE_4__angular_router__["g" /* RouterModule */].forChild(financesRoutes),
             __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_19__Shared_shared_module__["a" /* SharedModule */],
+            __WEBPACK_IMPORTED_MODULE_20__Shared_shared_module__["a" /* SharedModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_common__["b" /* CommonModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */]
         ],
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_13__Components_Index__["a" /* IndexComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__Components_Index__["a" /* IndexComponent */],
             __WEBPACK_IMPORTED_MODULE_5__Components_Transactions_Index__["a" /* IndexComponent */],
             __WEBPACK_IMPORTED_MODULE_6__Components_Transactions_Add__["a" /* AddComponent */],
             __WEBPACK_IMPORTED_MODULE_7__Components_Transactions_Overview__["a" /* OverviewComponent */],
-            __WEBPACK_IMPORTED_MODULE_8__Components_Import_Index__["a" /* IndexComponent */],
-            __WEBPACK_IMPORTED_MODULE_9__Components_Persons_Index__["a" /* IndexComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__Components_Persons_Add__["a" /* AddComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__Components_UserGroups_Index__["a" /* IndexComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__Components_Users_Index__["a" /* IndexComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__Components_Authentication_Index__["a" /* IndexComponent */]
+            __WEBPACK_IMPORTED_MODULE_8__Components_Transactions_List__["a" /* ListComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__Components_Import_Index__["a" /* IndexComponent */],
+            __WEBPACK_IMPORTED_MODULE_10__Components_Persons_Index__["a" /* IndexComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__Components_Persons_Add__["a" /* AddComponent */],
+            __WEBPACK_IMPORTED_MODULE_12__Components_UserGroups_Index__["a" /* IndexComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__Components_Users_Index__["a" /* IndexComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__Components_Authentication_Index__["a" /* IndexComponent */]
         ],
         bootstrap: [
-            __WEBPACK_IMPORTED_MODULE_13__Components_Index__["a" /* IndexComponent */]
+            __WEBPACK_IMPORTED_MODULE_14__Components_Index__["a" /* IndexComponent */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_15__Services_FinancesService__["a" /* FinancesService */],
-            __WEBPACK_IMPORTED_MODULE_20__Services_FinancesAuthenticationService__["a" /* FinancesAuthenticationService */],
-            __WEBPACK_IMPORTED_MODULE_16__Shared_Services_LocationService__["a" /* LocationService */],
-            __WEBPACK_IMPORTED_MODULE_17__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */],
-            __WEBPACK_IMPORTED_MODULE_18__Shared_Services_NavigationService__["a" /* NavigationService */]
+            __WEBPACK_IMPORTED_MODULE_16__Services_FinancesService__["a" /* FinancesService */],
+            __WEBPACK_IMPORTED_MODULE_21__Services_FinancesAuthenticationService__["a" /* FinancesAuthenticationService */],
+            __WEBPACK_IMPORTED_MODULE_17__Shared_Services_LocationService__["a" /* LocationService */],
+            __WEBPACK_IMPORTED_MODULE_18__Shared_Services_GlobalLoadingIndicatorService__["a" /* GlobalLoadingIndicatorService */],
+            __WEBPACK_IMPORTED_MODULE_19__Shared_Services_NavigationService__["a" /* NavigationService */]
         ],
     })
 ], FinancesModule);
@@ -1858,6 +2045,107 @@ LocationService = __decorate([
 ], LocationService);
 
 //# sourceMappingURL=LocationService.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/App/Shared/Styles/data-table.less":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".font-text {\n  font-family: 'Quicksand', sans-serif;\n  font-size: 12pt;\n  font-weight: 400;\n}\n.font-bold {\n  font-family: 'Quicksand', sans-serif;\n  font-size: 12pt;\n  font-weight: 400;\n  font-weight: 700;\n}\n.font-input {\n  font-family: 'Quicksand', sans-serif;\n  font-size: 12pt;\n  font-weight: 400;\n}\n.data-table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.data-table tr td,\n.data-table tr th {\n  padding: 2px;\n  border-bottom: 1px solid #909090;\n  border-right: 1px solid #909090;\n}\n.data-table tr td:last-child,\n.data-table tr th:last-child {\n  border-right: none;\n}\n.data-table tr th {\n  background-color: #202020;\n}\n.data-table tr:last-child td {\n  border-bottom: none;\n}\n.data-table tr:hover {\n  background-color: #303030;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../css-loader/lib/css-base.js":
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
 
 /***/ }),
 
