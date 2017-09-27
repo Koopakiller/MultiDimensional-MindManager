@@ -1,19 +1,34 @@
 import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../../Services/FinancesService";
-import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel, TransactionOverviewViewModel } from "../../ViewModels/FinancesViewModels";
-import { Router } from "@angular/router";
+import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel, TransactionOverviewViewModel } from "../../Models/FinancesModels";
+import { Router, ActivatedRoute } from "@angular/router";
 import { KeyValuePair } from "../../../Shared/KeyValuePair";
 import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
+import { ListComponent } from "./List";
 
 @Component({
-    templateUrl: "Overview.html"
+    templateUrl: "Overview.html",
+    styleUrls:[
+        "../../../Shared/Styles/data-table.less"
+    ]
 })
 export class OverviewComponent implements OnInit {
+
     constructor(
         private _financesService: FinancesService,
         private _router: Router,
-        private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
+        private _globalLoadingIndicatorService: GlobalLoadingIndicatorService,
+        private _activatedRoute: ActivatedRoute
     ) { }
+
+    public static RoutingInformation(path: string = "Overview") {
+        return {
+            path: path,
+            outlet: "next",
+            component: OverviewComponent,
+            children: ListComponent.RoutingInformation()
+        };
+    };
 
     ngOnInit(): void {
         this._financesService.users.subscribe(x => { this.users = x; this.user = x.length > 0 ? x[0].id : null; });
@@ -39,22 +54,10 @@ export class OverviewComponent implements OnInit {
             this._globalLoadingIndicatorService.removeLoadingProcess();
         });
         this._financesService.getTransactionOverviewForUserAtTimeStamp(value, new Date()).subscribe(x => { this.transactionOverview = x; });
+        this._router.navigate([{ outlets: { next: null } }], { relativeTo: this._activatedRoute })
     }
-
-    transactionsInTable: TransactionViewModel[];
 
     public showTable(currencyAccountId: number) {
-        this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.getTransactions(currencyAccountId, 0, 25).subscribe(x => {
-            this.transactionsInTable = x;
-            console.log(x[0].timeStampTime);
-            console.log(x[1].timeStampTime);
-            console.log(x[2].timeStampTime);
-            this._globalLoadingIndicatorService.removeLoadingProcess();
-        })
-    }
-
-    public hideTable() {
-        this.transactionsInTable = null;
+        this._router.navigate([{ outlets: { next: ["List", currencyAccountId] } }], { relativeTo: this._activatedRoute })
     }
 }

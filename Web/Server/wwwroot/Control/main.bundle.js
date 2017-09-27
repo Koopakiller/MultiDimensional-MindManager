@@ -267,6 +267,53 @@ UtcPipe = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/App/Shared/Services/CookieService.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CookieService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var CookieService = (function () {
+    function CookieService() {
+    }
+    CookieService.prototype.getCookie = function (name) {
+        var cookieName = name + "=";
+        for (var _i = 0, _a = document.cookie.split(/;\s*/); _i < _a.length; _i++) {
+            var cookie = _a[_i];
+            if (cookie.indexOf(cookieName) == 0) {
+                return cookie.substring(cookieName.length);
+            }
+        }
+        return null;
+    };
+    CookieService.prototype.deleteCookie = function (name) {
+        this.setCookie(name, "", -1);
+    };
+    CookieService.prototype.setCookie = function (name, value, expireSeconds, path) {
+        if (path === void 0) { path = ""; }
+        var expiration = new Date();
+        expiration.setTime(expiration.getTime() + expireSeconds * 1000);
+        var expires = "expires=" + expiration.toUTCString();
+        var cpath = path ? "; path=" + path : '';
+        document.cookie = name + "=" + value + "; " + expires + cpath;
+    };
+    return CookieService;
+}());
+CookieService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])()
+], CookieService);
+
+//# sourceMappingURL=CookieService.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/App/Shared/Services/GlobalLoadingIndicatorService.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -350,12 +397,14 @@ NavigationService = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SharedModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Pipes_UtcPipe__ = __webpack_require__("../../../../../src/App/Shared/Pipes/UtcPipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Services_CookieService__ = __webpack_require__("../../../../../src/App/Shared/Services/CookieService.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 var SharedModule = (function () {
@@ -368,6 +417,9 @@ SharedModule = __decorate([
         imports: [],
         declarations: [
             __WEBPACK_IMPORTED_MODULE_1__Shared_Pipes_UtcPipe__["a" /* UtcPipe */]
+        ],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_2__Services_CookieService__["a" /* CookieService */]
         ],
         exports: [
             __WEBPACK_IMPORTED_MODULE_1__Shared_Pipes_UtcPipe__["a" /* UtcPipe */]
@@ -457,20 +509,41 @@ AppModule = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/Environments/Environment.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Environment; });
+var Environment = (function () {
+    function Environment() {
+    }
+    return Environment;
+}());
+
+Environment.IsProduction = true;
+Environment.ApiUrl = "https://picosmos.azurewebsites.net/api/";
+;
+//# sourceMappingURL=Environment.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/main.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__("../../../platform-browser-dynamic/@angular/platform-browser-dynamic.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App_app_module__ = __webpack_require__("../../../../../src/App/app.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__("../../../platform-browser-dynamic/@angular/platform-browser-dynamic.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__App_app_module__ = __webpack_require__("../../../../../src/App/app.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Environments_Environment__ = __webpack_require__("../../../../../src/Environments/Environment.ts");
 
 
-// import { environment } from './Environments/environment';
-// if (environment.production) {
-//   enableProdMode();
-// }
-Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__App_app_module__["a" /* AppModule */])
+
+
+if (__WEBPACK_IMPORTED_MODULE_3__Environments_Environment__["a" /* Environment */].IsProduction) {
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_23" /* enableProdMode */])();
+}
+Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__App_app_module__["a" /* AppModule */])
     .catch(function (err) { return console.log(err); });
 //# sourceMappingURL=main.js.map
 

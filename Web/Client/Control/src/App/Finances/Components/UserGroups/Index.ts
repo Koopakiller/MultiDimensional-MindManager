@@ -3,7 +3,7 @@ import * as _ from "lodash";
 import { FinancesService } from "../../Services/FinancesService";
 import { Router } from "@angular/router";
 import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
-import { UserViewModel, UserGroupViewModel } from "../../ViewModels/FinancesViewModels";
+import { UserViewModel, UserGroupViewModel } from "../../Models/FinancesModels";
 
 @Component({
     selector: "finances-usergroups",
@@ -16,6 +16,15 @@ export class IndexComponent implements OnInit {
         private _router: Router,
         private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
     ) { }
+
+    public static RoutingInformation(path: string = "UserGroups") {
+        return {
+            path: path,
+            component: IndexComponent,
+            children: [
+            ]
+        };
+    }
 
     ngOnInit(): void {
         this._globalLoadingIndicatorService.addLoadingProcess();

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output, OnDestroy } from "@angular/core";
 import { FinancesService } from "../../Services/FinancesService";
 import { LocationService } from "../../../Shared/Services/LocationService";
-import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, UserGroupViewModel } from "../../ViewModels/FinancesViewModels";
+import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, UserGroupViewModel } from "../../Models/FinancesModels";
 import { Router } from "@angular/router";
 import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
 
@@ -9,11 +9,20 @@ import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLo
     templateUrl: "Add.html"
 })
 export class AddComponent implements OnInit, OnDestroy {
+
     constructor(
         private _financesService: FinancesService,
         private _router: Router,
         private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
     ) { }
+
+    public static RoutingInformation(path: string = "Add") {
+        return {
+            path: path,
+            component: AddComponent,
+            outlet: "next"
+        };
+    }
 
     ngOnInit(): void {
         this._isInitialized = true;
