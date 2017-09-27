@@ -1,5 +1,5 @@
 import { DBValueProvider } from "./DBValueProvider";
-import { TransactionViewModel } from "../ViewModels/FinancesViewModels";
+import { TransactionViewModel } from "../Models/FinancesModels";
 import { KeyValuePair } from "../../Shared/KeyValuePair";
 import { IDataParser } from "./Parser";
 import * as Papa from "papaparse";
