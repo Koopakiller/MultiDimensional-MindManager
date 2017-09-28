@@ -6,6 +6,6 @@
 export class Environment {
 
   public static IsProduction: boolean = false;
-  public static ApiUrl: string = "https://picosmos.azurewebsites.net/api/";
+  public static ApiUrl: string = "https://localhost:5000/api/";
 
 };
