@@ -30,7 +30,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
         }
 
 
-        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetUsers()
         {
             try
@@ -45,7 +45,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetUserGroups(int? userId)
         {
             try
@@ -60,7 +60,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetPersons()
         {
             try
@@ -75,7 +75,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetCurrencyAccountsForUser(int userId)
         {
             try
@@ -98,7 +98,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
         public IActionResult AddTransactions([FromBody]DataContainer<FinanceTransaction[]> data)
         {
@@ -114,7 +114,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetTransactions(int currencyAccountId, int skipCount, int takeCount)
         {
             try
@@ -129,7 +129,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetTransactionOverviewForUserAtTimeStamp(int userId, DateTime timeStamp)
         {
             try
@@ -144,7 +144,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult AddPerson([FromBody] DataContainer<FinancePerson> data)
         {
             try
@@ -159,7 +159,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
-        [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetUsersFromUserGroup(int userGroupId)
         {
             try
