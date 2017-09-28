@@ -46,6 +46,34 @@
                     });
             });
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(Options =>
+            {
+
+                // AutomaticAuthenticate = true,
+                // AutomaticChallenge = true,
+                // AuthenticationScheme = JwtBearerDefaults.AuthenticationScheme,
+                Options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    // The signing key must match!
+                    ValidateIssuerSigningKey = false,// true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Finances:Token:SecretKey"])),
+
+                    // Validate the JWT Issuer (iss) claim
+                    ValidateIssuer = false,//  true,
+                    ValidIssuer = Configuration["Finances:Token:Issuer"],
+
+                    // Validate the JWT Audience (aud) claim
+                    ValidateAudience = false,// true,
+                    ValidAudience = Configuration["Finances:Token:Audience"],
+
+                    // Validate the token expiry
+                    ValidateLifetime = false,// true,
+
+                    // If you want to allow a certain amount of clock drift, set that here:
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
+
             // Add framework servcices.
             services.AddMvc();
 
@@ -66,7 +94,7 @@
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        { 
+        {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
@@ -82,34 +110,7 @@
 
             app.UseStaticFiles();
 
-            app.UseCors("ApiCORSPolicy");            
-
-            app.UseJwtBearerAuthentication(new JwtBearerOptions
-            {
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                AuthenticationScheme = JwtBearerDefaults.AuthenticationScheme,
-                TokenValidationParameters = new TokenValidationParameters
-                {
-                    // The signing key must match!
-                    ValidateIssuerSigningKey = false,// true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Finances:Token:SecretKey"])),
-
-                    // Validate the JWT Issuer (iss) claim
-                    ValidateIssuer = false,//  true,
-                    ValidIssuer = Configuration["Finances:Token:Issuer"],
-
-                    // Validate the JWT Audience (aud) claim
-                    ValidateAudience = false,// true,
-                    ValidAudience = Configuration["Finances:Token:Audience"],
-
-                    // Validate the token expiry
-                    ValidateLifetime = false,// true,
-
-                    // If you want to allow a certain amount of clock drift, set that here:
-                    ClockSkew = TimeSpan.Zero
-                },
-            });
+            app.UseCors("ApiCORSPolicy");
 
             app.UseMvc(routes =>
             {
