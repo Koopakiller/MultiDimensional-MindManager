@@ -20,7 +20,7 @@ export class FinancesAuthenticationService {
     private static FinancesAuthCookieName = "FinancesAuthCookie";
 
     public requestToken(userName: string, password: string): Observable<undefined> {
-        let url = `${Environment.ApiUrl}Finances/GetToken`;
+        let url = `${Environment.ApiUrl}Finances/v1/GetToken`;
         let obj = {
             userName: userName,
             password: password,

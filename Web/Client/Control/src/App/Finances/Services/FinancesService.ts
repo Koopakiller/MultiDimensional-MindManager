@@ -11,7 +11,7 @@ import { Environment } from "../../../Environments/Environment";
 @Injectable()
 export class FinancesService {
 
-    private _apiUrl: string = Environment.ApiUrl + "Finances";
+    private _apiUrl: string = Environment.ApiUrl + "Finances/v1";
 
     constructor(
         private http: Http,
@@ -39,7 +39,7 @@ export class FinancesService {
         });
 
         let options = new RequestOptions({ headers: headers });
-        return this.http.get(url, options);
+        return this.http.post(url, options);
     }
 
     private postWithOptions(url: string, postData: any): Observable<Response> {
