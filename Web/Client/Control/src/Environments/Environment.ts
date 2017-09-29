@@ -6,6 +6,6 @@
 export class Environment {
 
   public static IsProduction: boolean = false;
-  public static ApiUrl: string = "https://localhost:5000/api/";
+  public static ApiUrl: string = "http://localhost:5000/api/";
 
 };
