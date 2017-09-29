@@ -99,16 +99,7 @@
 
             //app.UseCors("ApiCORSPolicy");
 
-            app.UseMvc(routes =>
-            {
-                // routes.MapRoute(
-                //     name: "areaRoute",
-                //     template: "{area:exists}/{controller=Home}/{action=Index}");
-
-                routes.MapRoute(
-                    name: "defaultClientRoute",
-                    template: "{controller=Home}/{action=Index}");
-            });
+            app.UseMvc();
         }
     }
 }

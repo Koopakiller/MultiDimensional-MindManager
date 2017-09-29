@@ -14,8 +14,8 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Cors;
 
-    [Area("Api")]
     [EnableCors("ApiCORSPolicy")]
+    [Route("api/Finances/v1")]
     public class FinancesController : Controller
     {
         FinancesDbContext _context;
@@ -29,7 +29,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             this._claimsIdentityService = claimsIdentityService;
         }
 
-
+        [HttpPost("GetUsers")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetUsers()
         {
@@ -45,6 +45,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [HttpPost("GetUserGroups")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetUserGroups(int? userId)
         {
@@ -60,6 +61,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [HttpPost("GetPersons")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetPersons()
         {
@@ -75,6 +77,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [HttpPost("GetCurrencyAccountsForUser")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetCurrencyAccountsForUser(int userId)
         {
@@ -98,8 +101,8 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [HttpPost("AddTransactions")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [HttpPost]
         public IActionResult AddTransactions([FromBody]DataContainer<FinanceTransaction[]> data)
         {
             try
@@ -114,6 +117,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [HttpPost("GetTransactions")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetTransactions(int currencyAccountId, int skipCount, int takeCount)
         {
@@ -129,6 +133,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [HttpPost("GetTransactionOverviewForUserAtTimeStamp")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetTransactionOverviewForUserAtTimeStamp(int userId, DateTime timeStamp)
         {
@@ -144,6 +149,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [HttpPost("AddPerson")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult AddPerson([FromBody] DataContainer<FinancePerson> data)
         {
@@ -159,6 +165,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [HttpPost("GetUsersFromUserGroup")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetUsersFromUserGroup(int userGroupId)
         {
@@ -174,6 +181,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [HttpPost("GetToken")]
         [AllowAnonymous]
         public IActionResult GetToken([FromBody]DataContainer<ApplicationUser> data)
         {

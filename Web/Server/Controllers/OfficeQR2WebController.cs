@@ -5,6 +5,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Controller
     using System.Runtime.CompilerServices;
     using System;
 
+    [Route("[controller]")]
     public class OfficeQR2WebController : Controller
     {
         protected IActionResult MyView([CallerMemberName] String name = null)
@@ -12,11 +13,13 @@ namespace Koopakiller.Apps.Picosmos.Real.Controller
             return base.View($@"~/Views/OfficeQR/v2/Web/{name}.cshtml");
         }
 
+        [Route("")]
         public IActionResult Index()
         {
             return null; //TODO: Reditrect to store or show a ad-page
         }
 
+        [Route("Support")]
         public IActionResult Support()
         {
             return this.MyView();
