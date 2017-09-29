@@ -16,7 +16,7 @@ namespace Koopakiller.Apps.Picosmos.Real.Controller
         [Route("")]
         public IActionResult Index()
         {
-            return null; //TODO: Reditrect to store or show a ad-page
+            return Content("Index"); //TODO: Reditrect to store or show a ad-page
         }
 
         [Route("Support")]

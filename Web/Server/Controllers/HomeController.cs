@@ -16,10 +16,28 @@ namespace Koopakiller.Apps.Picosmos.Real.Controllers
             return View();
         }
 
-        [Route("Home/Error")]
+        [Route("Error")]
         public IActionResult Error()
         {
             return Content(Activity.Current?.Id?.ToString() ?? HttpContext.TraceIdentifier.ToString());
+        }
+
+        [Route("{client}/{*tail}")]
+        [Produces("text/html")]
+        public IActionResult ClientApp(string client, string tail)
+        {
+            try
+            {
+                return new ContentResult()
+                {
+                    Content = System.IO.File.ReadAllText($"./wwwroot/{client}/index.html"),
+                    ContentType = "text/html"
+                };
+            }
+            catch
+            {
+                return RedirectToAction("/Error");
+            }
         }
     }
 }
