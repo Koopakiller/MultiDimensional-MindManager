@@ -259,5 +259,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
-/Real/Web/appsettings.database.json
-**/appsettings.livedb.json
+
+Web/Server/appsettings.secrets.live.json
