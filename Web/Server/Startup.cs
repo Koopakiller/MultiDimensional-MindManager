@@ -35,8 +35,8 @@
                         builder =>
                     {
                         builder.AllowAnyOrigin()
-                                .AllowAnyHeader()
-                                .AllowAnyMethod();
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
                     });
             });
 
@@ -48,7 +48,7 @@
                     ValidateIssuerSigningKey = false,// true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Finances:Token:SecretKey"])),
 
-                    // Validate the JWT Issuer (iss) claim
+                    // Validate the JWT Issuer (iss) claim //TODO
                     ValidateIssuer = false,//  true,
                     ValidIssuer = Configuration["Finances:Token:Issuer"],
 
@@ -68,7 +68,10 @@
             services.AddMvc();
 
             services.AddDbContext<FinancesDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("FinancesDbContext")));
+            {
+                var connectionString = Configuration.GetConnectionString("FinancesDbContext");
+                options.UseSqlServer(connectionString);
+            });
 
             services.AddTransient<IClaimsIdentityService>((x) => new ClaimsIdentityService(Configuration["Finances:Admin:UserName"], Configuration["Finances:Admin:Password"]));
 
