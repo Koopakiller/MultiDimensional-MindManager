@@ -24,7 +24,6 @@ export class OverviewComponent implements OnInit {
     public static RoutingInformation(path: string = "Overview") {
         return {
             path: path,
-            outlet: "next",
             component: OverviewComponent,
             children: ListComponent.RoutingInformation()
         };
@@ -54,10 +53,10 @@ export class OverviewComponent implements OnInit {
             this._globalLoadingIndicatorService.removeLoadingProcess();
         });
         this._financesService.getTransactionOverviewForUserAtTimeStamp(value, new Date()).subscribe(x => { this.transactionOverview = x; });
-        this._router.navigate([{ outlets: { next: null } }], { relativeTo: this._activatedRoute })
+        this._router.navigate([{ outlets: { primary: null } }], { relativeTo: this._activatedRoute })
     }
 
     public showTable(currencyAccountId: number) {
-        this._router.navigate([{ outlets: { next: ["List", currencyAccountId] } }], { relativeTo: this._activatedRoute })
+        this._router.navigate(["List", currencyAccountId], { relativeTo: this._activatedRoute })
     }
 }

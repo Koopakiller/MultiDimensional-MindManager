@@ -19,8 +19,7 @@ export class AddComponent implements OnInit, OnDestroy {
     public static RoutingInformation(path: string = "Add") {
         return {
             path: path,
-            component: AddComponent,
-            outlet: "next"
+            component: AddComponent
         };
     }
 
