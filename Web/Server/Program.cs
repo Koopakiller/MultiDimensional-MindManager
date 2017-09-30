@@ -17,7 +17,7 @@
         {
             var config = new ConfigurationBuilder()
                             .SetBasePath(Directory.GetCurrentDirectory())
-                            .AddJsonFile("appsettings.secrets.debug.json", optional: true)
+                            .AddJsonFile("appsettings.secrets.live.json", optional: true)
                             .AddCommandLine(args)
                             .Build();
 

@@ -27,8 +27,6 @@ namespace Koopakiller.Apps.Finances.Authentication
             var unixTicks = new TimeSpan(now.Ticks) - epochTicks;
             var unixTime = unixTicks.TotalSeconds;
 
-            // Specifically add the jti (random nonce), iat (issued timestamp), and sub (subject/user) claims.
-            // You can add other claims here, if you want:
             var claims = new Claim[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, username),
@@ -52,11 +50,8 @@ namespace Koopakiller.Apps.Finances.Authentication
         public class ServiceOptions
         {
             public string Issuer { get; set; }
-
             public string Audience { get; set; }
-
             public TimeSpan Expiration { get; set; } = TimeSpan.FromMinutes(5);
-
             public SigningCredentials SigningCredentials { get; set; }
         }
     }

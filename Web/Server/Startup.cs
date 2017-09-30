@@ -16,6 +16,7 @@
     using Microsoft.Extensions.Options;
     using Koopakiller.Apps.Finances.Authentication;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.AspNetCore.Authorization;
 
     public class Startup
     {
@@ -26,46 +27,48 @@
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
             {
-                options.AddPolicy("ApiCORSPolicy",
-                        builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                               .AllowAnyHeader()
-                               .AllowAnyMethod();
-                    });
+                options.AddPolicy("ApiCORSPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
             });
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            var tokenSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Finances:Token:SecretKey"]));
+
+            services.AddTransient<IClaimsIdentityService>((x) => new ClaimsIdentityService(Configuration["Finances:Admin:UserName"], Configuration["Finances:Admin:Password"]));
+
+            services.AddTransient<ITokenGenerator>((x) => new Finances.Authentication.FinancesAuthenticationService(
+                new Finances.Authentication.FinancesAuthenticationService.ServiceOptions
+                {
+                    Audience = Configuration["Finances:Token:Audience"],
+                    Issuer = Configuration["Finances:Token:Issuer"],
+                    SigningCredentials = new SigningCredentials(tokenSigningKey, SecurityAlgorithms.HmacSha256),
+                }
+            ));
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
             {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    // The signing key must match!
-                    ValidateIssuerSigningKey = false,// true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Finances:Token:SecretKey"])),
-
-                    // Validate the JWT Issuer (iss) claim //TODO
-                    ValidateIssuer = false,//  true,
                     ValidIssuer = Configuration["Finances:Token:Issuer"],
-
-                    // Validate the JWT Audience (aud) claim
-                    ValidateAudience = false,// true,
                     ValidAudience = Configuration["Finances:Token:Audience"],
-
-                    // Validate the token expiry
-                    ValidateLifetime = false,// true,
-
-                    // If you want to allow a certain amount of clock drift, set that here:
+                    IssuerSigningKey = tokenSigningKey,
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
                     ClockSkew = TimeSpan.Zero
                 };
             });
-
-            // Add framework servcices.
-            services.AddMvc();
 
             services.AddDbContext<FinancesDbContext>(options =>
             {
@@ -73,25 +76,15 @@
                 options.UseSqlServer(connectionString);
             });
 
-            services.AddTransient<IClaimsIdentityService>((x) => new ClaimsIdentityService(Configuration["Finances:Admin:UserName"], Configuration["Finances:Admin:Password"]));
-
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Finances:Token:SecretKey"]));
-            var options2 = new Finances.Authentication.FinancesAuthenticationService.ServiceOptions
-            {
-                Audience = Configuration["Finances:Token:Audience"],
-                Issuer = Configuration["Finances:Token:Issuer"],
-                SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
-            };
-            services.AddTransient<ITokenGenerator>((x) => new Finances.Authentication.FinancesAuthenticationService(options2));
+            services.AddMvc();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            //    app.UseBrowserLink();
+                app.UseBrowserLink();
             }
             else
             {
@@ -101,6 +94,8 @@
             app.UseStaticFiles();
 
             app.UseCors("ApiCORSPolicy");
+
+            app.UseAuthentication();
 
             app.UseMvc();
         }

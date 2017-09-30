@@ -47,7 +47,12 @@ export class FinancesAuthenticationService {
 
     public getCachedToken(): string {
         if (!this._cachedToken) {
-            this._cachedToken = this._cookieService.getCookie(FinancesAuthenticationService.FinancesAuthCookieName);
+            try {
+                this._cachedToken = this._cookieService.getCookie(FinancesAuthenticationService.FinancesAuthCookieName);
+            }
+            catch(ex){
+                return this._cachedToken;
+            }
         }
 
         return this._cachedToken;

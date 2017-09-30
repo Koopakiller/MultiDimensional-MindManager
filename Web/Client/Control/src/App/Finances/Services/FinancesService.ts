@@ -30,19 +30,7 @@ export class FinancesService {
         });
     }
 
-    private getWithOptions(url: string): Observable<Response> {
-        let token = this._financesAuthenticationService.getCachedToken();
-        let headers = new Headers({
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + token,
-            "X-Authorization": "Bearer " + token
-        });
-
-        let options = new RequestOptions({ headers: headers });
-        return this.http.post(url, options);
-    }
-
-    private postWithOptions(url: string, postData: any): Observable<Response> {
+    private postWithOptions(url: string, postData?: any): Observable<Response> {
         let token = this._financesAuthenticationService.getCachedToken();
         let headers = new Headers({
             "Content-Type": "application/json",
@@ -54,7 +42,7 @@ export class FinancesService {
     }
 
     private getList<TServerModel extends IViewModelConvert<TViewModel>, TViewModel>(url: string, serverModelFactory: (() => TServerModel)): Observable<TViewModel[]> {
-        return this.getWithOptions(url).map(response => this.getListFromResponse(response, serverModelFactory));
+        return this.postWithOptions(url).map(response => this.getListFromResponse(response, serverModelFactory));
     }
 
     public get persons(): Observable<PersonViewModel[]> {
