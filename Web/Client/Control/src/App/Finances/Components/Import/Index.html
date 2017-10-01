@@ -31,16 +31,17 @@
             <div *ngSwitchCase='"fileTypeSelect"'>
                 <div class='tile text'>
                     <p>Please choose the file type:</p>
-                </div>         
-                <a *ngFor='let type of possibleFileTypes; let i = index' class='text link-tile' (click)='import(i)'>
-                    <img class='tile-image' src='http://placehold.it/64x64/000000/ffffff' alt='$'/>
-                    <span class='tile-header'>{{type.provider}}</span><br/>
-                    <span class='tile-description'>{{type.description}}</span>
-                </a>
+                </div>      
+                <div class='tiles'>   
+                <a *ngFor='let type of possibleFileTypes; let i = index' class='tile' (click)='import(i)'>
+                    <img class='icon' src='http://placehold.it/64x64/000000/ffffff'/>
+                    <span class='header'>{{type.provider}}</span><br/>
+                    <span class='description'>{{type.description}}</span>
+                </a></div>
             </div>
             <div *ngSwitchCase='"showAndFitData"'>
                 <div class='tile text'>
-                    <table class='form-table'>
+                    <table class='data-table'>
                         <tr>
                             <th>Time Stamp</th>
                             <th>Note</th>
@@ -92,7 +93,7 @@
                         <div class='popup-content text'>
                             <span class='header'>Details</span>
                             
-                            <table>
+                            <table class="data-table">
                                 <tr>
                                     <th>Key</th>
                                     <th>Value</th>

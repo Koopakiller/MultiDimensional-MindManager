@@ -16,7 +16,10 @@ import { DBValueProvider } from "../../Helper/DBValueProvider";
 
 @Component({
     selector: "finances-import",
-    templateUrl: "Index.html"
+    templateUrl: "Index.html",
+    styleUrls:[
+        "../../../Shared/Styles/data-table.less"
+    ]
 })
 export class IndexComponent implements OnInit {
 
@@ -30,6 +33,9 @@ export class IndexComponent implements OnInit {
         return {
             path: path,
             component: IndexComponent,
+            styleUrls:[
+                "../../../Shared/Styles/data-table.less"
+            ],
             children: [
             ]
         };
