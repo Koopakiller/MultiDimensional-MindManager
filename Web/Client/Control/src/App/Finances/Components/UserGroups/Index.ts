@@ -19,7 +19,7 @@ export class IndexComponent implements OnInit {
         private _financesService: FinancesService,
         private _router: Router,
         private _globalLoadingIndicatorService: GlobalLoadingIndicatorService,
-        private _activedRoute: ActivatedRoute
+        private _activatedRoute: ActivatedRoute
     ) { }
 
     public static RoutingInformation(path: string = "UserGroups") {
@@ -49,6 +49,6 @@ export class IndexComponent implements OnInit {
     public userGroups: UserGroupViewModel[];
 
     public manageUsers(ugId: number){
-        this._router.navigate(["ManageUsers", ugId], { relativeTo: this._activedRoute });
+        this._router.navigate(["ManageUsers", ugId], { relativeTo: this._activatedRoute });
     }
 }

@@ -18,7 +18,7 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
         private _financesService: FinancesService,
         private _router: Router,
         private _globalLoadingIndicatorService: GlobalLoadingIndicatorService,
-        private _activedRoute: ActivatedRoute,
+        private _activatedRoute: ActivatedRoute,
     ) { }
 
     private _parameterSubscription: Subscription;
@@ -33,7 +33,7 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this._parameterSubscription = this._activedRoute.params.subscribe(params => {
+        this._parameterSubscription = this._activatedRoute.params.subscribe(params => {
             let ugId = +params["userGroupId"];
             this._financesService.getUsersFromUserGroup(ugId).subscribe(
                 list => {
