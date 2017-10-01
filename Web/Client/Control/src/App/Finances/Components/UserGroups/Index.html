@@ -3,18 +3,18 @@
     <span class='section-header'>Finances: UserGroups</span>
     
     <div class='section-content'>
-        <table>
+        <table class="data-table">
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th class='action-column'>Actions</th>
             </tr>
-            <ng-template ngFor let-userGroup [ngForOf]='userGroups' let-index='index'>
+            <ng-template ngFor let-userGroup [ngForOf]='userGroups'>
                 <tr>
                     <td>{{userGroup.id}}</td>
                     <td>{{userGroup.name}}</td>
                     <td class='action-column'>
-                        <a (click)='toggleManageUsers(index)'>Manage Users</a>
+                        <a (click)='manageUsers(userGroup.id)'>Manage Users</a>
                     </td>
                 </tr>
             </ng-template>
@@ -22,18 +22,5 @@
     </div>
     
 </section>
-<div class='popup' *ngIf='selectedUserGroup'>
-    <div class='popup-container'>
-        <div class='popup-content text'>
-            <span class='header'>Manage Users in '{{selectedUserGroup.name}}'</span>
-            
-            <section>
-                <!--TODO <finances-users-list [users]='usersInSelectedGroup'></finances-users-list> -->
-            </section>
 
-            <div class='button-bar'>
-                <input type='submit' value='Close' (click)='toggleManageUsers()' />
-            </div>
-        </div>
-    </div>
-</div>
+<router-outlet></router-outlet>

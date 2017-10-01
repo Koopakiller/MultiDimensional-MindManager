@@ -1,0 +1,20 @@
+<section class='section'>
+
+    <span class='section-header'>Users</span>
+
+    <div class='section-content'>
+
+        <table class="data-table">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+            <tr *ngFor='let user of users'>
+                <td>{{user.id}}</td>
+                <td>{{user.header}}</td>
+            </tr>
+        </table>
+
+    </div>
+
+</section>
