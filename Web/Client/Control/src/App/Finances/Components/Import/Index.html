@@ -46,9 +46,9 @@
                             <th>Time Stamp</th>
                             <th>Note</th>
                             <th>Value</th>
-                            <th>Person <a (click)='addPerson()'>Add</a></th>
+                            <th>Person <a routerLink='AddPerson'>Add</a></th>
                             <th>Currency Account</th>
-                            <th class='action-column'></th>
+                            <!-- <th class='action-column'></th> -->
                         </tr>
                         <ng-template ngFor [ngForOf]='transactions' let-transaction let-i='index'>
                             <tr>
@@ -62,19 +62,20 @@
                                     <select [(ngModel)]='transaction.personId' >
                                         <option *ngFor='let person of persons' [ngValue]='person.id'>{{person.header}}</option>
                                     </select>
-                                    <a *ngIf='!transaction.personId' (click)='addPerson(transaction.suggestedPersonName)'>Add {{transaction.suggestedPersonName}}</a>
+                                    <a *ngIf='!transaction.personId' routerLink='AddPerson'>Add</a>
                                 </td>
                                 <td class='{{transaction.currencyAccountId ? "" : "error-cell"}}'>
                                     <select [(ngModel)]='transaction.currencyAccountId' >
                                         <option *ngFor='let currencyAccount of currencyAccounts' [ngValue]='currencyAccount.id'>{{currencyAccount.header}}</option>
                                     </select>
                                 </td>
-                                <td class='action-column'>
+                                <!-- <td class='action-column'>
+                                    TODO
                                     <a (click)='toggleDetails(i)' 
                                     *ngIf='transaction.rawData.length > 0'>
                                     <span *ngIf='transaction.showDetails'>Hide</span><span *ngIf='!transaction.showDetails'>Show</span> Details
                                     </a>
-                                </td>
+                                </td> -->
                             </tr>
                         </ng-template>
                     </table>
@@ -109,19 +110,10 @@
                         </div>
                     </div>
                 </div>
-                <div class='popup' *ngIf='showAddPersonPopup'>
-                    <div class='popup-container'>
-                        <div class='popup-content text'>
-                            <span class='header'>Add Person</span>
-                            
-                            <!-- TODO <finances-person-add [personName]='suggestedNewPersonName'
-                                                [userId]='selectedUser'
-                                                (close)='closeAddPersonPopup($event)'></finances-person-add> -->
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
     
 </section>
+
+<router-outlet></router-outlet>
