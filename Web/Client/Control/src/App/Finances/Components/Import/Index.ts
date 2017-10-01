@@ -40,7 +40,7 @@ export class IndexComponent implements OnInit {
 
         this._globalLoadingIndicatorService.addLoadingProcess();
 
-        Observable.zip(this._financesService.persons, this._financesService.users)
+        Observable.zip(this._financesService.getPersons(), this._financesService.getUsers())
             //.catch(error => alert(error))
             .subscribe(([persons, users]) => {
                 this.persons = persons;

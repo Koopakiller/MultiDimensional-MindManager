@@ -45,11 +45,11 @@ export class FinancesService {
         return this.postWithOptions(url).map(response => this.getListFromResponse(response, serverModelFactory));
     }
 
-    public get persons(): Observable<PersonViewModel[]> {
+    public getPersons(): Observable<PersonViewModel[]> {
         return this.getList<PersonServerModel, PersonViewModel>(`${this._apiUrl}/GetPersons`, () => new PersonServerModel());
     }
 
-    public get users(): Observable<UserViewModel[]> {
+    public getUsers(): Observable<UserViewModel[]> {
         return this.getList<UserServerModel, UserViewModel>(`${this._apiUrl}/GetUsers`, () => new UserServerModel());
     }
 

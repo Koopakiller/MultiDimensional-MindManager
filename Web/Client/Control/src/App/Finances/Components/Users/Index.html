@@ -3,8 +3,18 @@
     <span class='section-header'>Finances: Users</span>
 
     <div class='section-content'>
-<!-- TODO
-<finances-users-list [users]='users'></finances-users-list> -->
+
+        <table class="data-table">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+            <tr *ngFor='let user of users'>
+                <td>{{user.id}}</td>
+                <td>{{user.header}}</td>
+            </tr>
+        </table>
+
     </div>
 
 </section>

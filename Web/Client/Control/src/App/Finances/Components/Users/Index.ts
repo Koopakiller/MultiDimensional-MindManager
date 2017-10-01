@@ -6,7 +6,10 @@ import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLo
 import { UserViewModel } from "../../Models/FinancesModels";
 
 @Component({
-    templateUrl: "Index.html"
+    templateUrl: "Index.html",
+    styleUrls:[
+        "../../../Shared/Styles/data-table.less"
+    ]
 })
 export class IndexComponent implements OnInit {
     constructor(
@@ -24,9 +27,9 @@ export class IndexComponent implements OnInit {
         };
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.users.subscribe(
+        this._financesService.getUsers().subscribe(
             x => {
                 this.users = x;
                 this._globalLoadingIndicatorService.removeLoadingProcess();
@@ -37,5 +40,5 @@ export class IndexComponent implements OnInit {
         );
     }
 
-    users: UserViewModel[];
+    public users: UserViewModel[];
 }

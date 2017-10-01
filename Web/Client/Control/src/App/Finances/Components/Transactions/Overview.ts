@@ -30,7 +30,7 @@ export class OverviewComponent implements OnInit {
     };
 
     ngOnInit(): void {
-        this._financesService.users.subscribe(x => { this.users = x; this.user = x.length > 0 ? x[0].id : null; });
+        this._financesService.getUsers().subscribe(x => { this.users = x; this.user = x.length > 0 ? x[0].id : null; });
     }
 
     currencyAccounts: CurrencyAccountViewModel[];
