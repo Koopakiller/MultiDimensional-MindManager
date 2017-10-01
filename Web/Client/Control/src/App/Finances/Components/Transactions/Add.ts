@@ -23,7 +23,6 @@ export class AddComponent implements OnInit {
     public static RoutingInformation(path: string = "Add") {
         return {
             path: path,
-            outlet: "next",
             component: AddComponent,
             children: [
                 PersonAddComponent.RoutingInformation("AddPerson")

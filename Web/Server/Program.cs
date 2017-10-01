@@ -1,29 +1,32 @@
 ﻿namespace Koopakiller.Apps.Picosmos.Real
 {
+    using System;
+    using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
+    using System.Reflection;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Logging;
 
     public class Program
     {
         public static void Main(string[] args)
         {
             var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("hosting.json", optional: true, reloadOnChange: true)
-                .Build();
+                            .SetBasePath(Directory.GetCurrentDirectory())
+                            .AddJsonFile("appsettings.secrets.live.json", optional: true)
+                            .AddCommandLine(args)
+                            .Build();
 
-            var host = new WebHostBuilder()
-                .UseConfiguration(config)
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseSetting("detailedErrors", "true")
-                .CaptureStartupErrors(true)
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
+            WebHost.CreateDefaultBuilder(args)
+                   .UseSetting(WebHostDefaults.ApplicationKey, typeof(Startup).GetTypeInfo().Assembly.FullName)
+                   .UseConfiguration(config)
+                   .UseStartup<Startup>()
+                   .Build()
+                   .Run();
         }
     }
 }

@@ -1,2 +1,2 @@
-kill -9 $(ps aux | grep 'Picosmos.Real.dll' | awk '{print $2}')
+kill -9 $(ps aux | grep 'Real.dll' | awk '{print $2}')
 

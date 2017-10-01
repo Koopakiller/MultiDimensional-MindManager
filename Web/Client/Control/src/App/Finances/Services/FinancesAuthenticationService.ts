@@ -20,7 +20,7 @@ export class FinancesAuthenticationService {
     private static FinancesAuthCookieName = "FinancesAuthCookie";
 
     public requestToken(userName: string, password: string): Observable<undefined> {
-        let url = `${Environment.ApiUrl}Finances/GetToken`;
+        let url = `${Environment.ApiUrl}Finances/v1/GetToken`;
         let obj = {
             userName: userName,
             password: password,
@@ -47,7 +47,12 @@ export class FinancesAuthenticationService {
 
     public getCachedToken(): string {
         if (!this._cachedToken) {
-            this._cachedToken = this._cookieService.getCookie(FinancesAuthenticationService.FinancesAuthCookieName);
+            try {
+                this._cachedToken = this._cookieService.getCookie(FinancesAuthenticationService.FinancesAuthCookieName);
+            }
+            catch(ex){
+                return this._cachedToken;
+            }
         }
 
         return this._cachedToken;

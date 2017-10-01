@@ -28,14 +28,12 @@ export class ListComponent implements OnInit, OnDestroy {
         return [
             {
                 path: path + "/:caId",
-                outlet: "next",
                 component: ListComponent,
                 children: [
                 ]
             },
             {
                 path: path + "/:caId/:page",
-                outlet: "next",
                 component: ListComponent,
                 children: [
                 ]
@@ -87,6 +85,6 @@ export class ListComponent implements OnInit, OnDestroy {
     }
 
     public navigateToPage(page: number) {
-        this._router.navigate([{ outlets: { next: ["List", this.currencyAccountId, page] } }], { relativeTo: this._activedRoute.parent });
+        this._router.navigate(["List", this.currencyAccountId, page], { relativeTo: this._activedRoute.parent });
     }
 }
