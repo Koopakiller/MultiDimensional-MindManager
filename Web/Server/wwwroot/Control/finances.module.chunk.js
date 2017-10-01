@@ -407,8 +407,7 @@ var AddComponent = AddComponent_1 = (function () {
         if (path === void 0) { path = "Add"; }
         return {
             path: path,
-            component: AddComponent_1,
-            outlet: "next"
+            component: AddComponent_1
         };
     };
     AddComponent.prototype.ngOnInit = function () {
@@ -485,7 +484,7 @@ var AddComponent_1, _a, _b, _c;
 /***/ "../../../../../src/App/Finances/Components/Persons/Index.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class='section'>\n\n    <span class='section-header'>Persons</span>\n\n    <div class='section-content'>\n        <a [routerLink]='[{ outlets: { next: \"Add\" }}]'>Add</a>\n    </div>\n\n</section>\n\n<router-outlet name='next'></router-outlet>"
+module.exports = "<section class='section'>\n\n    <span class='section-header'>Persons</span>\n\n    <div class='section-content'>\n        <a routerLink='Add'>Add</a>\n    </div>\n\n</section>\n\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -533,7 +532,7 @@ var IndexComponent_1;
 /***/ "../../../../../src/App/Finances/Components/Transactions/Add.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class='section'>\n\n    <span class='section-header'>Add Transaction</span>\n\n    <!--TODO <form (ngSubmit)='submitNewPerson()' *ngIf='showAddPersonForm' class='inner-form'>\n        <div class='form-header'>\n            Add new person\n        </div>\n        <div class='form-group'>\n            <label for='name'>Name:</label>\n            <div class='control-container'>\n                <input type='text' class='form-control' id='new-person-name' [(ngModel)]='addNewPersonName' name='newPersonName' />\n            </div>\n        </div>\n        <div class='button-bar'>\n            <input type='button' class='btn btn-cancel' (click)='showAddPersonForm=false' value='Cancel'/>\n            <button type='submit' class='btn btn-success'>Submit</button>\n        </div>\n    </form> -->\n\n    <div class='section-content'>\n        <form (ngSubmit)='submit()'>\n            <div class='form-group'>\n                <label for='name'>Name:</label>\n                <div class='control-container'>\n                    <input type='text' class='form-control' id='name' [(ngModel)]='name' name='name' required />\n                </div>\n                <div class='additional-controls'>  \n                    <input type='button' class='form-control' (click)='name=\"\"' value='Clear' *ngIf='name != \"\" && name != null'/>\n                </div> \n            </div>\n            <div class='form-group'>\n                <label for='value'>Value:</label>\n                <div class='control-container'>  \n                    <input type='number' class='form-control' id='value' [(ngModel)]='value' name='value' required />\n                </div> \n            </div>\n            <div class='form-group'>\n                <label for='currencyAccount'>Currency Account:</label>\n                <div class='control-container'>  \n                    <select [(ngModel)]='currencyAccount' name='currencyAccount'>\n                        <option *ngFor='let currencyAccount of currencyAccounts' [ngValue]='currencyAccount.id'>{{currencyAccount.header}}</option>\n                    </select>\n                </div>\n            </div>\n            <div class='form-group'>\n                <label for='user'>User:</label>\n                <div class='control-container'>  \n                    <select [(ngModel)]='user' name='user'>\n                        <option *ngFor='let user of users' [ngValue]='user.id'>{{user.header}}</option>\n                    </select>\n                </div>\n            </div>\n            <div class='form-group'>\n                <label for='person'>Person:</label>\n                <div class='control-container'>  \n                    <select [(ngModel)]='person' name='person'>\n                        <option *ngFor='let person of persons' [ngValue]='person.id'>{{person.header}}</option>\n                    </select>\n                </div>\n                <div class='additional-controls'>  \n                    <a class='form-control' [routerLink]='[{ outlets: { next: \"AddPerson\" }}]'>Add</a>\n                </div>  \n            </div>\n            <div class='form-group'>\n                <label for='timeStampDate'>Time Stamp Date:</label>\n                <div class='control-container'>  \n                    <input type='date' class='form-control' id='timeStampDate' \n                            [ngModel]='timeStampDate | date:\"yyyy-MM-dd\"'\n                            (ngModelChange)='timeStampDate = $event'\n                            name='timeStampDate' required />\n                </div> \n            </div>\n            <div class='form-group'>\n                <label for='includeTimeStampTime'>Add Time</label>\n                <div class='control-container'>  \n                    <input type='checkbox' class='form-control' id='includeTimeStampTime' [(ngModel)]='includeTimeStampTime' name='includeTimeStampTime' required />\n                </div>\n            </div>\n            <div class='form-group' *ngIf='includeTimeStampTime'>\n                <label for='timeStampTime'>Time Stamp Time:</label>\n                <div class='control-container'>  \n                    <input type='text' class='form-control' id='timeStampTime' name='timeStampTime' required          \n                           [(ngModel)]='timeStampTimeStr'/>\n                </div> \n            </div>\n            <div>\n                <div *ngIf='coordinates'>\n                    <table>\n                        <tbody>\n                            <tr><td>Latitude:</td><td>{{coordinates.latitude}}</td></tr>\n                            <tr><td>Longitude:</td><td>{{coordinates.longitude}}</td></tr> \n                            <tr><td>Accuracy:</td><td>{{coordinates.accuracy}}</td></tr>     \n                        </tbody>\n                        <tbody>  \n                            <tr><td>Altitude:</td><td>{{coordinates.altitude}}</td></tr>        \n                            <tr><td>Altitude Accuracy:</td><td>{{coordinates.altitudeAccuracy}}</td></tr>\n                        </tbody>\n                        <tbody>\n                            <tr><td>Heading:</td><td>{{coordinates.heading}}</td></tr>       \n                            <tr><td>Speed:</td><td>{{coordinates.speed}}</td></tr>       \n                        </tbody>\n                    </table>\n                </div>\n                <div *ngIf='!coordinates'>\n                    Unable to get coordinates from your browser.\n                </div>\n            </div>\n\n            <div class='button-bar' >\n                <input type='button' class='btn btn-cancel' (click)='cancel()' value='Cancel'/>\n                <button type='submit' class='btn btn-success' >Submit</button>\n            </div>\n        </form>\n    </div>\n\n</section>\n\n<router-outlet name='next'></router-outlet>"
+module.exports = "<section class='section'>\n\n    <span class='section-header'>Add Transaction</span>\n\n    <!--TODO <form (ngSubmit)='submitNewPerson()' *ngIf='showAddPersonForm' class='inner-form'>\n        <div class='form-header'>\n            Add new person\n        </div>\n        <div class='form-group'>\n            <label for='name'>Name:</label>\n            <div class='control-container'>\n                <input type='text' class='form-control' id='new-person-name' [(ngModel)]='addNewPersonName' name='newPersonName' />\n            </div>\n        </div>\n        <div class='button-bar'>\n            <input type='button' class='btn btn-cancel' (click)='showAddPersonForm=false' value='Cancel'/>\n            <button type='submit' class='btn btn-success'>Submit</button>\n        </div>\n    </form> -->\n\n    <div class='section-content'>\n        <form (ngSubmit)='submit()'>\n            <div class='form-group'>\n                <label for='name'>Name:</label>\n                <div class='control-container'>\n                    <input type='text' class='form-control' id='name' [(ngModel)]='name' name='name' required />\n                </div>\n                <div class='additional-controls'>  \n                    <input type='button' class='form-control' (click)='name=\"\"' value='Clear' *ngIf='name != \"\" && name != null'/>\n                </div> \n            </div>\n            <div class='form-group'>\n                <label for='value'>Value:</label>\n                <div class='control-container'>  \n                    <input type='number' class='form-control' id='value' [(ngModel)]='value' name='value' required />\n                </div> \n            </div>\n            <div class='form-group'>\n                <label for='currencyAccount'>Currency Account:</label>\n                <div class='control-container'>  \n                    <select [(ngModel)]='currencyAccount' name='currencyAccount'>\n                        <option *ngFor='let currencyAccount of currencyAccounts' [ngValue]='currencyAccount.id'>{{currencyAccount.header}}</option>\n                    </select>\n                </div>\n            </div>\n            <div class='form-group'>\n                <label for='user'>User:</label>\n                <div class='control-container'>  \n                    <select [(ngModel)]='user' name='user'>\n                        <option *ngFor='let user of users' [ngValue]='user.id'>{{user.header}}</option>\n                    </select>\n                </div>\n            </div>\n            <div class='form-group'>\n                <label for='person'>Person:</label>\n                <div class='control-container'>  \n                    <select [(ngModel)]='person' name='person'>\n                        <option *ngFor='let person of persons' [ngValue]='person.id'>{{person.header}}</option>\n                    </select>\n                </div>\n                <div class='additional-controls'>  \n                    <a class='form-control' routerLink='AddPerson'>Add</a>\n                </div>  \n            </div>\n            <div class='form-group'>\n                <label for='timeStampDate'>Time Stamp Date:</label>\n                <div class='control-container'>  \n                    <input type='date' class='form-control' id='timeStampDate' \n                            [ngModel]='timeStampDate | date:\"yyyy-MM-dd\"'\n                            (ngModelChange)='timeStampDate = $event'\n                            name='timeStampDate' required />\n                </div> \n            </div>\n            <div class='form-group'>\n                <label for='includeTimeStampTime'>Add Time</label>\n                <div class='control-container'>  \n                    <input type='checkbox' class='form-control' id='includeTimeStampTime' [(ngModel)]='includeTimeStampTime' name='includeTimeStampTime' required />\n                </div>\n            </div>\n            <div class='form-group' *ngIf='includeTimeStampTime'>\n                <label for='timeStampTime'>Time Stamp Time:</label>\n                <div class='control-container'>  \n                    <input type='text' class='form-control' id='timeStampTime' name='timeStampTime' required          \n                           [(ngModel)]='timeStampTimeStr'/>\n                </div> \n            </div>\n            <div>\n                <div *ngIf='coordinates'>\n                    <table>\n                        <tbody>\n                            <tr><td>Latitude:</td><td>{{coordinates.latitude}}</td></tr>\n                            <tr><td>Longitude:</td><td>{{coordinates.longitude}}</td></tr> \n                            <tr><td>Accuracy:</td><td>{{coordinates.accuracy}}</td></tr>     \n                        </tbody>\n                        <tbody>  \n                            <tr><td>Altitude:</td><td>{{coordinates.altitude}}</td></tr>        \n                            <tr><td>Altitude Accuracy:</td><td>{{coordinates.altitudeAccuracy}}</td></tr>\n                        </tbody>\n                        <tbody>\n                            <tr><td>Heading:</td><td>{{coordinates.heading}}</td></tr>       \n                            <tr><td>Speed:</td><td>{{coordinates.speed}}</td></tr>       \n                        </tbody>\n                    </table>\n                </div>\n                <div *ngIf='!coordinates'>\n                    Unable to get coordinates from your browser.\n                </div>\n            </div>\n\n            <div class='button-bar' >\n                <input type='button' class='btn btn-cancel' (click)='cancel()' value='Cancel'/>\n                <button type='submit' class='btn btn-success' >Submit</button>\n            </div>\n        </form>\n    </div>\n\n</section>\n\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -579,7 +578,6 @@ var AddComponent = AddComponent_1 = (function () {
         if (path === void 0) { path = "Add"; }
         return {
             path: path,
-            outlet: "next",
             component: AddComponent_1,
             children: [
                 __WEBPACK_IMPORTED_MODULE_7__Persons_Add__["a" /* AddComponent */].RoutingInformation("AddPerson")
@@ -680,7 +678,7 @@ var AddComponent_1, _a, _b, _c, _d;
 /***/ "../../../../../src/App/Finances/Components/Transactions/Index.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class='section'>\n\n    <span class='section-header'>Transactions</span>\n\n    <div class='section-content'>\n\n            <div class='tiles'>\n                <a [routerLink]='[{ outlets: { next: \"Add\" }}]' class='tile'>\n                    <i class='material-icons icon'>add</i>\n                    <div class='header'>Add</div>\n                </a>\n                <a [routerLink]='[{ outlets: { next: \"Overview\" }}]' class='tile'>\n                    <i class='material-icons icon'>view_list</i>\n                    <div class='header'>Overview</div>\n                </a>\n            </div>\n\n        </div>\n\n    </section>\n\n    <router-outlet name='next'></router-outlet>"
+module.exports = "<section class='section'>\n\n    <span class='section-header'>Transactions</span>\n\n    <div class='section-content'>\n\n            <div class='tiles'>\n                <a routerLink='Add' class='tile'>\n                    <i class='material-icons icon'>add</i>\n                    <div class='header'>Add</div>\n                </a>\n                <a routerLink='Overview' class='tile'>\n                    <i class='material-icons icon'>view_list</i>\n                    <div class='header'>Overview</div>\n                </a>\n            </div>\n\n        </div>\n\n    </section>\n\n    <router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -732,7 +730,7 @@ var IndexComponent_1;
 /***/ "../../../../../src/App/Finances/Components/Transactions/List.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class='section'>\n\n    <span class='section-header'>Transactions List</span>\n\n    <div class='section-content'>\n\n        <div class=\"paging-links\">\n            <a *ngIf=\"previousPage\" (click)=\"navigateToPage(previousPage)\">Previous</a>\n            <ng-container *ngFor=\"let i of pageLinks\">\n                <a *ngIf=\"currentPage != i\" (click)=\"navigateToPage(i)\">{{i}}</a>\n                <span *ngIf=\"currentPage == i\">{{i}}</span>\n            </ng-container>\n            <a *ngIf=\"nextPage\" (click)=\"navigateToPage(nextPage)\">Next</a>\n        </div>\n\n        <table class=\"data-table\">\n            <tr>\n                <th>Id</th>\n                <th>Time Stamp</th>\n                <th>Note</th>\n                <th>Value</th>\n                <th>Person Id</th>\n            </tr>\n            <tr *ngFor='let transaction of displayList'>\n                <td>{{transaction.id}}</td>\n                <td>{{transaction.timeStampDate}} <span *ngIf='transaction.timeStampTime'>({{transaction.timeStampTime}})</span></td>\n                <td>{{transaction.note}}</td>\n                <td>{{transaction.value}}</td>\n                <td>{{transaction.personId}}</td>\n            </tr>\n        </table>\n\n    </div>\n\n</section>\n\n<router-outlet name='next'></router-outlet>"
+module.exports = "<section class='section'>\n\n    <span class='section-header'>Transactions List</span>\n\n    <div class='section-content'>\n\n        <div class=\"paging-links\">\n            <a *ngIf=\"previousPage\" (click)=\"navigateToPage(previousPage)\">Previous</a>\n            <ng-container *ngFor=\"let i of pageLinks\">\n                <a *ngIf=\"currentPage != i\" (click)=\"navigateToPage(i)\">{{i}}</a>\n                <span *ngIf=\"currentPage == i\">{{i}}</span>\n            </ng-container>\n            <a *ngIf=\"nextPage\" (click)=\"navigateToPage(nextPage)\">Next</a>\n        </div>\n\n        <table class=\"data-table\">\n            <tr>\n                <th>Id</th>\n                <th>Time Stamp</th>\n                <th>Note</th>\n                <th>Value</th>\n                <th>Person Id</th>\n            </tr>\n            <tr *ngFor='let transaction of displayList'>\n                <td>{{transaction.id}}</td>\n                <td>{{transaction.timeStampDate}} <span *ngIf='transaction.timeStampTime'>({{transaction.timeStampTime}})</span></td>\n                <td>{{transaction.note}}</td>\n                <td>{{transaction.value}}</td>\n                <td>{{transaction.personId}}</td>\n            </tr>\n        </table>\n\n    </div>\n\n</section>\n\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -770,13 +768,11 @@ var ListComponent = ListComponent_1 = (function () {
         return [
             {
                 path: path + "/:caId",
-                outlet: "next",
                 component: ListComponent_1,
                 children: []
             },
             {
                 path: path + "/:caId/:page",
-                outlet: "next",
                 component: ListComponent_1,
                 children: []
             }
@@ -811,7 +807,7 @@ var ListComponent = ListComponent_1 = (function () {
         this._parameterSubscription.unsubscribe();
     };
     ListComponent.prototype.navigateToPage = function (page) {
-        this._router.navigate([{ outlets: { next: ["List", this.currencyAccountId, page] } }], { relativeTo: this._activedRoute.parent });
+        this._router.navigate(["List", this.currencyAccountId, page], { relativeTo: this._activedRoute.parent });
     };
     return ListComponent;
 }());
@@ -831,7 +827,7 @@ var ListComponent_1, _a, _b, _c, _d;
 /***/ "../../../../../src/App/Finances/Components/Transactions/Overview.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class='section'>\n\n    <span class='section-header'>Finances Overview</span>\n\n    <div class='section-content'>\n        <div class='form-group'>\n            <label for='user'>User:</label>\n            <div class='control-container'>  \n                <select [(ngModel)]='user' name='user'>\n                    <option *ngFor='let user of users' [ngValue]='user.id'>{{user.header}}</option>\n                </select>\n            </div>\n        </div>\n        <div>\n            <table class=\"data-table\">\n                <tr>\n                    <th>Account Name (Currency)</th>\n                    <th>Value</th>\n                    <th class='action-column'>Actions</th>\n                </tr>\n                <tr *ngFor='let row of transactionOverview'>\n                    <td>{{row.currencyAccountName}}</td>\n                    <td>{{row.value}}</td>\n                    <td class='action-column'><a (click)='showTable(row.currencyAccountId)'>Show Table</a></td>\n                </tr>\n            </table>\n        </div>\n    </div>\n    \n</section>\n\n<router-outlet name=\"next\"></router-outlet>"
+module.exports = "<section class='section'>\n\n    <span class='section-header'>Finances Overview</span>\n\n    <div class='section-content'>\n        <div class='form-group'>\n            <label for='user'>User:</label>\n            <div class='control-container'>  \n                <select [(ngModel)]='user' name='user'>\n                    <option *ngFor='let user of users' [ngValue]='user.id'>{{user.header}}</option>\n                </select>\n            </div>\n        </div>\n        <div>\n            <table class=\"data-table\">\n                <tr>\n                    <th>Account Name (Currency)</th>\n                    <th>Value</th>\n                    <th class='action-column'>Actions</th>\n                </tr>\n                <tr *ngFor='let row of transactionOverview'>\n                    <td>{{row.currencyAccountName}}</td>\n                    <td>{{row.value}}</td>\n                    <td class='action-column'><a (click)='showTable(row.currencyAccountId)'>Show Table</a></td>\n                </tr>\n            </table>\n        </div>\n    </div>\n    \n</section>\n\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -870,7 +866,6 @@ var OverviewComponent = OverviewComponent_1 = (function () {
         if (path === void 0) { path = "Overview"; }
         return {
             path: path,
-            outlet: "next",
             component: OverviewComponent_1,
             children: __WEBPACK_IMPORTED_MODULE_4__List__["a" /* ListComponent */].RoutingInformation()
         };
@@ -894,13 +889,13 @@ var OverviewComponent = OverviewComponent_1 = (function () {
                 _this._globalLoadingIndicatorService.removeLoadingProcess();
             });
             this._financesService.getTransactionOverviewForUserAtTimeStamp(value, new Date()).subscribe(function (x) { _this.transactionOverview = x; });
-            this._router.navigate([{ outlets: { next: null } }], { relativeTo: this._activatedRoute });
+            this._router.navigate([{ outlets: { primary: null } }], { relativeTo: this._activatedRoute });
         },
         enumerable: true,
         configurable: true
     });
     OverviewComponent.prototype.showTable = function (currencyAccountId) {
-        this._router.navigate([{ outlets: { next: ["List", currencyAccountId] } }], { relativeTo: this._activatedRoute });
+        this._router.navigate(["List", currencyAccountId], { relativeTo: this._activatedRoute });
     };
     return OverviewComponent;
 }());
@@ -1640,7 +1635,7 @@ var FinancesAuthenticationService = FinancesAuthenticationService_1 = (function 
     }
     FinancesAuthenticationService.prototype.requestToken = function (userName, password) {
         var _this = this;
-        var url = __WEBPACK_IMPORTED_MODULE_5__Environments_Environment__["a" /* Environment */].ApiUrl + "Finances/GetToken";
+        var url = __WEBPACK_IMPORTED_MODULE_5__Environments_Environment__["a" /* Environment */].ApiUrl + "Finances/v1/GetToken";
         var obj = {
             userName: userName,
             password: password,
@@ -1663,7 +1658,12 @@ var FinancesAuthenticationService = FinancesAuthenticationService_1 = (function 
     };
     FinancesAuthenticationService.prototype.getCachedToken = function () {
         if (!this._cachedToken) {
-            this._cachedToken = this._cookieService.getCookie(FinancesAuthenticationService_1.FinancesAuthCookieName);
+            try {
+                this._cachedToken = this._cookieService.getCookie(FinancesAuthenticationService_1.FinancesAuthCookieName);
+            }
+            catch (ex) {
+                return this._cachedToken;
+            }
         }
         return this._cachedToken;
     };
@@ -1716,7 +1716,7 @@ var FinancesService = (function () {
     function FinancesService(http, _financesAuthenticationService) {
         this.http = http;
         this._financesAuthenticationService = _financesAuthenticationService;
-        this._apiUrl = __WEBPACK_IMPORTED_MODULE_7__Environments_Environment__["a" /* Environment */].ApiUrl + "Finances";
+        this._apiUrl = __WEBPACK_IMPORTED_MODULE_7__Environments_Environment__["a" /* Environment */].ApiUrl + "Finances/v1";
     }
     FinancesService.prototype.getListFromResponse = function (response, serverModelFactory) {
         var object = response.json();
@@ -1728,16 +1728,6 @@ var FinancesService = (function () {
             Object.assign(sm, smo);
             return sm.toViewModel();
         });
-    };
-    FinancesService.prototype.getWithOptions = function (url) {
-        var token = this._financesAuthenticationService.getCachedToken();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + token,
-            "X-Authorization": "Bearer " + token
-        });
-        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
-        return this.http.get(url, options);
     };
     FinancesService.prototype.postWithOptions = function (url, postData) {
         var token = this._financesAuthenticationService.getCachedToken();
@@ -1751,7 +1741,7 @@ var FinancesService = (function () {
     };
     FinancesService.prototype.getList = function (url, serverModelFactory) {
         var _this = this;
-        return this.getWithOptions(url).map(function (response) { return _this.getListFromResponse(response, serverModelFactory); });
+        return this.postWithOptions(url).map(function (response) { return _this.getListFromResponse(response, serverModelFactory); });
     };
     Object.defineProperty(FinancesService.prototype, "persons", {
         get: function () {
