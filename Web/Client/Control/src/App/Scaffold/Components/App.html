@@ -5,6 +5,9 @@
 
 <div id='routing-content' #paneContainer>
     <router-outlet></router-outlet>
+    <div class="routing-section-scroll-buttons" *ngIf='usesRoutingSections'>
+        <a (click)='scrollDownToNextRoutingSection()'>Down</a> <a (click)='scrollUpToNextRoutingSection()'>Up</a>
+    </div>
 </div>
 
 <loading-indicator *ngIf='isLoading'>Loading...</loading-indicator>
