@@ -1,0 +1,25 @@
+@import "../Styles/common.less";
+
+
+.section {
+    margin-bottom: @padding-tiny;
+    max-height: 100%;
+
+    .header {
+        display: block;
+        background-color: @color-accent-dark;
+        color: @color-light;
+        padding: @padding;
+        .font-header(24pt);
+    }
+    .content-scroll {
+        overflow: auto;
+
+        .content {
+            display: block;
+            background-color: @color-dark;
+            color: @color-light;
+            padding: @padding;
+        }
+    }
+}
