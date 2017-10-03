@@ -6,7 +6,7 @@
 <div id='routing-content' #paneContainer>
     <router-outlet></router-outlet>
     <div class="routing-section-scroll-buttons" *ngIf='usesRoutingSections'>
-        <a (click)='scrollDownToNextRoutingSection()'>Down</a> <a (click)='scrollUpToNextRoutingSection()'>Up</a>
+        <a (click)='scrollDownToNextRoutingSection()'><i class="material-icons icon">keyboard_arrow_down</i></a><a (click)='scrollUpToNextRoutingSection()'><i class="material-icons icon">keyboard_arrow_up</i></a>
     </div>
 </div>
 
