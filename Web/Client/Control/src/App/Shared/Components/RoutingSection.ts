@@ -18,27 +18,9 @@ export class RoutingSectionComponent implements OnInit {
   ) {
   }
 
-  private _paneContainerSize: Size = new Size(NaN, NaN);
-
-  public ngOnInit(): void {
-    this._service.size.subscribe(size => {
-      this._paneContainerSize = size;
-      this.updatePaneSize();
-    });
-    this.updatePaneSize();
+  ngOnInit(): void {
   }
 
   @Input()
   public header: string;
-
-  updatePaneSize() {
-    let size = new Size(this.headerElement.nativeElement.offsetWidth, this.headerElement.nativeElement.offsetHeight);
-    let h = this._paneContainerSize.height - size.height;
-    this.sectionContentHeight = h;
-  }
-
-  public sectionContentHeight: number;
-
-  @ViewChild("headerElement")
-  private headerElement: ElementRef;
 }
