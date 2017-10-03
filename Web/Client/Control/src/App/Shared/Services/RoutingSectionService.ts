@@ -45,21 +45,27 @@ export class RoutingSectionService {
         if(this._scrollPositions.length == 0){
             return null;
         }
-
-        let resultIndex: number = 0;
-        console.log("Item " + 0 + " = " + this._scrollPositions[0].position);
-        for (let index = 1; index < this._scrollPositions.length; ++index) {
-            console.log("Item " + index + " = " + this._scrollPositions[index].position);
-            if (direction === VerticalDirection.Down &&
+        
+        let resultPosition: number = direction == VerticalDirection.Up ? -1 : Number.MAX_VALUE;
+        let resultIndex: number = -1;
+        for (let index = 0; index < this._scrollPositions.length; ++index) {
+            if (direction == VerticalDirection.Down &&
                 this._scrollPositions[index].position > pos &&
-                this._scrollPositions[index].position < this._scrollPositions[resultIndex].position) {
+                this._scrollPositions[index].position < resultPosition) {
                 resultIndex = index;
+                resultPosition = this._scrollPositions[resultIndex].position;
             }
-            if (direction === VerticalDirection.Up &&
+
+            if (direction == VerticalDirection.Up &&
                 this._scrollPositions[index].position < pos &&
-                this._scrollPositions[index].position > this._scrollPositions[resultIndex].position) {
+                this._scrollPositions[index].position > resultPosition) {
                 resultIndex = index;
+                resultPosition = this._scrollPositions[resultIndex].position;
             }
+        }
+
+        if(resultIndex == -1){
+            return null;
         }
 
         return this._scrollPositions[resultIndex].position;

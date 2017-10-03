@@ -57,13 +57,17 @@ export class AppComponent implements OnInit {
 
     public scrollDownToNextRoutingSection(): void {
         let sPos = this._routingSectionService.getNextScrollPosition(this.paneContainer.nativeElement.scrollTop, VerticalDirection.Down);
-        this.paneContainer.nativeElement.scrollTop = sPos;
+        if (sPos) {
+            this.paneContainer.nativeElement.scrollTop = sPos;
+        }
     }
 
     public scrollUpToNextRoutingSection(): void {
         let sPos = this._routingSectionService.getNextScrollPosition(this.paneContainer.nativeElement.scrollTop, VerticalDirection.Up);
-        this.paneContainer.nativeElement.scrollTop = sPos;
+        if (sPos) {
+            this.paneContainer.nativeElement.scrollTop = sPos;
+        }
     }
-    
+
     public readonly usesRoutingSections: boolean = true;
 }
