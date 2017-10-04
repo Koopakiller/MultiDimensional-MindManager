@@ -1,7 +1,4 @@
-<section class='section'>
-
-    <span class='section-header'>Add Transaction</span>
-
+<routing-section header="Add Transaction">
     <!--TODO <form (ngSubmit)='submitNewPerson()' *ngIf='showAddPersonForm' class='inner-form'>
         <div class='form-header'>
             Add new person
@@ -18,26 +15,26 @@
         </div>
     </form> -->
 
-    <div class='section-content'>
+    <div>
         <form (ngSubmit)='submit()'>
             <div class='form-group'>
                 <label for='name'>Name:</label>
                 <div class='control-container'>
                     <input type='text' class='form-control' id='name' [(ngModel)]='name' name='name' required />
                 </div>
-                <div class='additional-controls'>  
-                    <input type='button' class='form-control' (click)='name=""' value='Clear' *ngIf='name != "" && name != null'/>
-                </div> 
+                <div class='additional-controls'>
+                    <input type='button' class='form-control' (click)='name=""' value='Clear' *ngIf='name != "" && name != null' />
+                </div>
             </div>
             <div class='form-group'>
                 <label for='value'>Value:</label>
-                <div class='control-container'>  
+                <div class='control-container'>
                     <input type='number' class='form-control' id='value' [(ngModel)]='value' name='value' required />
-                </div> 
+                </div>
             </div>
             <div class='form-group'>
                 <label for='currencyAccount'>Currency Account:</label>
-                <div class='control-container'>  
+                <div class='control-container'>
                     <select [(ngModel)]='currencyAccount' name='currencyAccount'>
                         <option *ngFor='let currencyAccount of currencyAccounts' [ngValue]='currencyAccount.id'>{{currencyAccount.header}}</option>
                     </select>
@@ -45,7 +42,7 @@
             </div>
             <div class='form-group'>
                 <label for='user'>User:</label>
-                <div class='control-container'>  
+                <div class='control-container'>
                     <select [(ngModel)]='user' name='user'>
                         <option *ngFor='let user of users' [ngValue]='user.id'>{{user.header}}</option>
                     </select>
@@ -53,52 +50,71 @@
             </div>
             <div class='form-group'>
                 <label for='person'>Person:</label>
-                <div class='control-container'>  
+                <div class='control-container'>
                     <select [(ngModel)]='person' name='person'>
                         <option *ngFor='let person of persons' [ngValue]='person.id'>{{person.header}}</option>
                     </select>
                 </div>
-                <div class='additional-controls'>  
+                <div class='additional-controls'>
                     <a class='form-control' routerLink='AddPerson'>Add</a>
-                </div>  
+                </div>
             </div>
             <div class='form-group'>
                 <label for='timeStampDate'>Time Stamp Date:</label>
-                <div class='control-container'>  
-                    <input type='date' class='form-control' id='timeStampDate' 
-                            [ngModel]='timeStampDate | date:"yyyy-MM-dd"'
-                            (ngModelChange)='timeStampDate = $event'
-                            name='timeStampDate' required />
-                </div> 
+                <div class='control-container'>
+                    <input type='date' class='form-control' id='timeStampDate' [ngModel]='timeStampDate | date:"yyyy-MM-dd"' (ngModelChange)='timeStampDate = $event'
+                        name='timeStampDate' required />
+                </div>
             </div>
             <div class='form-group'>
                 <label for='includeTimeStampTime'>Add Time</label>
-                <div class='control-container'>  
-                    <input type='checkbox' class='form-control' id='includeTimeStampTime' [(ngModel)]='includeTimeStampTime' name='includeTimeStampTime' required />
+                <div class='control-container'>
+                    <input type='checkbox' class='form-control' id='includeTimeStampTime' [(ngModel)]='includeTimeStampTime' name='includeTimeStampTime'
+                        required />
                 </div>
             </div>
             <div class='form-group' *ngIf='includeTimeStampTime'>
                 <label for='timeStampTime'>Time Stamp Time:</label>
-                <div class='control-container'>  
-                    <input type='text' class='form-control' id='timeStampTime' name='timeStampTime' required          
-                           [(ngModel)]='timeStampTimeStr'/>
-                </div> 
+                <div class='control-container'>
+                    <input type='text' class='form-control' id='timeStampTime' name='timeStampTime' required [(ngModel)]='timeStampTimeStr' />
+                </div>
             </div>
             <div>
                 <div *ngIf='coordinates'>
                     <table>
                         <tbody>
-                            <tr><td>Latitude:</td><td>{{coordinates.latitude}}</td></tr>
-                            <tr><td>Longitude:</td><td>{{coordinates.longitude}}</td></tr> 
-                            <tr><td>Accuracy:</td><td>{{coordinates.accuracy}}</td></tr>     
-                        </tbody>
-                        <tbody>  
-                            <tr><td>Altitude:</td><td>{{coordinates.altitude}}</td></tr>        
-                            <tr><td>Altitude Accuracy:</td><td>{{coordinates.altitudeAccuracy}}</td></tr>
+                            <tr>
+                                <td>Latitude:</td>
+                                <td>{{coordinates.latitude}}</td>
+                            </tr>
+                            <tr>
+                                <td>Longitude:</td>
+                                <td>{{coordinates.longitude}}</td>
+                            </tr>
+                            <tr>
+                                <td>Accuracy:</td>
+                                <td>{{coordinates.accuracy}}</td>
+                            </tr>
                         </tbody>
                         <tbody>
-                            <tr><td>Heading:</td><td>{{coordinates.heading}}</td></tr>       
-                            <tr><td>Speed:</td><td>{{coordinates.speed}}</td></tr>       
+                            <tr>
+                                <td>Altitude:</td>
+                                <td>{{coordinates.altitude}}</td>
+                            </tr>
+                            <tr>
+                                <td>Altitude Accuracy:</td>
+                                <td>{{coordinates.altitudeAccuracy}}</td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td>Heading:</td>
+                                <td>{{coordinates.heading}}</td>
+                            </tr>
+                            <tr>
+                                <td>Speed:</td>
+                                <td>{{coordinates.speed}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -107,13 +123,13 @@
                 </div>
             </div>
 
-            <div class='button-bar' >
-                <input type='button' class='btn btn-cancel' (click)='cancel()' value='Cancel'/>
-                <button type='submit' class='btn btn-success' >Submit</button>
+            <div class='button-bar'>
+                <input type='button' class='btn btn-cancel' (click)='cancel()' value='Cancel' />
+                <button type='submit' class='btn btn-success'>Submit</button>
             </div>
         </form>
     </div>
 
-</section>
+</routing-section>
 
 <router-outlet></router-outlet>

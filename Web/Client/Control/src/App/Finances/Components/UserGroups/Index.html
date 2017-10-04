@@ -1,26 +1,20 @@
-<section class='section'>
-
-    <span class='section-header'>Finances: UserGroups</span>
-    
-    <div class='section-content'>
-        <table class="data-table">
+<routing-section header="UserGroups">
+    <table class="data-table">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th class='action-column'>Actions</th>
+        </tr>
+        <ng-template ngFor let-userGroup [ngForOf]='userGroups'>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th class='action-column'>Actions</th>
+                <td>{{userGroup.id}}</td>
+                <td>{{userGroup.name}}</td>
+                <td class='action-column'>
+                    <a (click)='manageUsers(userGroup.id)'>Manage Users</a>
+                </td>
             </tr>
-            <ng-template ngFor let-userGroup [ngForOf]='userGroups'>
-                <tr>
-                    <td>{{userGroup.id}}</td>
-                    <td>{{userGroup.name}}</td>
-                    <td class='action-column'>
-                        <a (click)='manageUsers(userGroup.id)'>Manage Users</a>
-                    </td>
-                </tr>
-            </ng-template>
-        </table>
-    </div>
-    
-</section>
+        </ng-template>
+    </table>
+</routing-section>
 
 <router-outlet></router-outlet>

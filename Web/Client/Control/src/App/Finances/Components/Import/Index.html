@@ -1,119 +1,113 @@
-<section class='section'>
-
-    <span class='section-header'>Finances: Import</span> 
-
-    <div class='section-content'>
-        <div [ngSwitch]='currentStep'>
-            <div *ngSwitchCase='"userSelect"'>
-                <div class='tile text'>
-                    <form (ngSubmit)='nextStep()'>
-                        <div class='form-group'>
-                            <label for='user'>User:</label>
-                            <div class='control-container'>  
-                                <select [(ngModel)]='selectedUser' name='user'>
+<routing-section header="Import">
+    <div [ngSwitch]='currentStep'>
+        <div *ngSwitchCase='"userSelect"'>
+            <div class='tile text'>
+                <form (ngSubmit)='nextStep()'>
+                    <div class='form-group'>
+                        <label for='user'>User:</label>
+                        <div class='control-container'>
+                            <select [(ngModel)]='selectedUser' name='user'>
                                     <option *ngFor='let user of users' [ngValue]='user.id'>{{user.header}}</option>
                                 </select>
-                            </div>
-                            <div class='button-bar' >
-                                <button type='submit' class='btn btn-success' *ngIf='selectedUser'>Next</button>
-                            </div>
                         </div>
-                    </form>
-                </div>
+                        <div class='button-bar'>
+                            <button type='submit' class='btn btn-success' *ngIf='selectedUser'>Next</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div *ngSwitchCase='"fileSelect"'>
-                <div class='tile text'>
-                    <form>
-                        <input type='file' (change)='processFileInputChange($event)' value='Choose file' />
-                    </form>
-                </div>
+        </div>
+        <div *ngSwitchCase='"fileSelect"'>
+            <div class='tile text'>
+                <form>
+                    <input type='file' (change)='processFileInputChange($event)' value='Choose file' />
+                </form>
             </div>
-            <div *ngSwitchCase='"fileTypeSelect"'>
-                <div class='tile text'>
-                    <p>Please choose the file type:</p>
-                </div>      
-                <div class='tiles'>   
+        </div>
+        <div *ngSwitchCase='"fileTypeSelect"'>
+            <div class='tile text'>
+                <p>Please choose the file type:</p>
+            </div>
+            <div class='tiles'>
                 <a *ngFor='let type of possibleFileTypes; let i = index' class='tile' (click)='import(i)'>
                     <img class='icon' src='http://placehold.it/64x64/000000/ffffff'/>
                     <span class='header'>{{type.provider}}</span><br/>
                     <span class='description'>{{type.description}}</span>
                 </a></div>
-            </div>
-            <div *ngSwitchCase='"showAndFitData"'>
-                <div class='tile text'>
-                    <table class='data-table'>
+        </div>
+        <div *ngSwitchCase='"showAndFitData"'>
+            <div class='tile text'>
+                <table class='data-table'>
+                    <tr>
+                        <th>Time Stamp</th>
+                        <th>Note</th>
+                        <th>Value</th>
+                        <th>Person <a routerLink='AddPerson'>Add</a></th>
+                        <th>Currency Account</th>
+                        <!-- <th class='action-column'></th> -->
+                    </tr>
+                    <ng-template ngFor [ngForOf]='transactions' let-transaction let-i='index'>
                         <tr>
-                            <th>Time Stamp</th>
-                            <th>Note</th>
-                            <th>Value</th>
-                            <th>Person <a routerLink='AddPerson'>Add</a></th>
-                            <th>Currency Account</th>
-                            <!-- <th class='action-column'></th> -->
-                        </tr>
-                        <ng-template ngFor [ngForOf]='transactions' let-transaction let-i='index'>
-                            <tr>
-                                <td>
-                                    <span>{{transaction.timeStampDate | utc | date: 'dd/MM/yyyy'}}</span>
-                                    <span *ngIf='transaction.includeTimeStampTime'>&nbsp;{{transaction.timeStampTime | utc | date: 'HH:mm:ss'}}</span>
-                                </td>
-                                <td>{{transaction.note}}</td>
-                                <td>{{transaction.value}}</td>
-                                <td class='{{transaction.personId ? "" : "error-cell"}}'>
-                                    <select [(ngModel)]='transaction.personId' >
+                            <td>
+                                <span>{{transaction.timeStampDate | utc | date: 'dd/MM/yyyy'}}</span>
+                                <span *ngIf='transaction.includeTimeStampTime'>&nbsp;{{transaction.timeStampTime | utc | date: 'HH:mm:ss'}}</span>
+                            </td>
+                            <td>{{transaction.note}}</td>
+                            <td>{{transaction.value}}</td>
+                            <td class='{{transaction.personId ? "" : "error-cell"}}'>
+                                <select [(ngModel)]='transaction.personId'>
                                         <option *ngFor='let person of persons' [ngValue]='person.id'>{{person.header}}</option>
                                     </select>
-                                    <a *ngIf='!transaction.personId' routerLink='AddPerson'>Add</a>
-                                </td>
-                                <td class='{{transaction.currencyAccountId ? "" : "error-cell"}}'>
-                                    <select [(ngModel)]='transaction.currencyAccountId' >
+                                <a *ngIf='!transaction.personId' routerLink='AddPerson'>Add</a>
+                            </td>
+                            <td class='{{transaction.currencyAccountId ? "" : "error-cell"}}'>
+                                <select [(ngModel)]='transaction.currencyAccountId'>
                                         <option *ngFor='let currencyAccount of currencyAccounts' [ngValue]='currencyAccount.id'>{{currencyAccount.header}}</option>
                                     </select>
-                                </td>
-                                <!-- <td class='action-column'>
+                            </td>
+                            <!-- <td class='action-column'>
                                     TODO
                                     <a (click)='toggleDetails(i)' 
                                     *ngIf='transaction.rawData.length > 0'>
                                     <span *ngIf='transaction.showDetails'>Hide</span><span *ngIf='!transaction.showDetails'>Show</span> Details
                                     </a>
                                 </td> -->
-                            </tr>
-                        </ng-template>
-                    </table>
+                        </tr>
+                    </ng-template>
+                </table>
 
 
-                    <form (ngSubmit)='submitData()'>
-                        <div class='form-group'>
-                            <div class='button-bar' >
-                                <button type='submit' class='btn btn-success' *ngIf='!transactionsHasErrors'>Next</button>
-                            </div>
+                <form (ngSubmit)='submitData()'>
+                    <div class='form-group'>
+                        <div class='button-bar'>
+                            <button type='submit' class='btn btn-success' *ngIf='!transactionsHasErrors'>Next</button>
                         </div>
-                    </form>
-                </div>
-                <div class='popup' *ngIf='shownRawData && shownRawData.length > 0'>
-                    <div class='popup-container'>
-                        <div class='popup-content text'>
-                            <span class='header'>Details</span>
-                            
-                            <table class="data-table">
-                                <tr>
-                                    <th>Key</th>
-                                    <th>Value</th>
-                                </tr>
-                                <tr *ngFor='let data of shownRawData'>
-                                    <td>{{data.key}}</td>
-                                    <td>{{data.value}}</td>
-                                </tr>
-                            </table>
-                            <div class='button-bar'>
-                                <input type='submit' value='Close' (click)='toggleDetails(lastIndexShownDetails)' />
-                            </div>
+                    </div>
+                </form>
+            </div>
+            <div class='popup' *ngIf='shownRawData && shownRawData.length > 0'>
+                <div class='popup-container'>
+                    <div class='popup-content text'>
+                        <span class='header'>Details</span>
+
+                        <table class="data-table">
+                            <tr>
+                                <th>Key</th>
+                                <th>Value</th>
+                            </tr>
+                            <tr *ngFor='let data of shownRawData'>
+                                <td>{{data.key}}</td>
+                                <td>{{data.value}}</td>
+                            </tr>
+                        </table>
+                        <div class='button-bar'>
+                            <input type='submit' value='Close' (click)='toggleDetails(lastIndexShownDetails)' />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-</section>
+</routing-section>
 
 <router-outlet></router-outlet>
