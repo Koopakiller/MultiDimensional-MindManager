@@ -26,7 +26,7 @@ export class RoutingSectionComponent implements OnInit {
 
   public ngOnInit(): void {
     this._id = this._service.getUniqueId();
-    this._service.addScrollPosition(new ScrollPosition(this._id, this.header, this.headerElement));
+    this._service.addScrollPositionAndRequestScroll(new ScrollPosition(this._id, this.header, this.headerElement));
   }
 
   public ngOnDestroy(): void {

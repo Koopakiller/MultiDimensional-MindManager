@@ -38,6 +38,9 @@ export class AppComponent implements OnInit {
                 this.isLoading = false;
             }
         });
+        this._routingSectionService.requestScroll.subscribe(pos => {
+            this.paneContainer.nativeElement.scrollTop = pos.position;
+        })
     }
 
     public isLoading: boolean = true;

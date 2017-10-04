@@ -26,10 +26,14 @@ export class RoutingSectionService {
     }
 
 
+    private _requestScrollSubject: ReplaySubject<ScrollPosition> = new ReplaySubject<ScrollPosition>(1);
+    public requestScroll: Observable<ScrollPosition> = this._requestScrollSubject.asObservable();
+
     private _scrollPositions: ScrollPosition[] = [];
 
-    public addScrollPosition(pos: ScrollPosition): void {
+    public addScrollPositionAndRequestScroll(pos: ScrollPosition): void {
         this._scrollPositions.push(pos);
+        this._requestScrollSubject.next(pos);
     }
 
     public removeScrollPosition(id: number) {
@@ -42,10 +46,10 @@ export class RoutingSectionService {
     }
 
     public getNextScrollPosition(pos: number, direction: VerticalDirection): number {
-        if(this._scrollPositions.length == 0){
+        if (this._scrollPositions.length == 0) {
             return null;
         }
-        
+
         let resultPosition: number = direction == VerticalDirection.Up ? -1 : Number.MAX_VALUE;
         let resultIndex: number = -1;
         for (let index = 0; index < this._scrollPositions.length; ++index) {
@@ -64,7 +68,7 @@ export class RoutingSectionService {
             }
         }
 
-        if(resultIndex == -1){
+        if (resultIndex == -1) {
             return null;
         }
 
