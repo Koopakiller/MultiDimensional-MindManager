@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, EventEmitter, Output, OnDestroy } from "@angular/core";
 import { FinancesService } from "../../Services/FinancesService";
-import { LocationService } from "../../../Shared/Services/LocationService";
+import { LocationService } from "../../../Common/Services/LocationService";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, UserGroupViewModel } from "../../Models/FinancesModels";
 import { Router, ActivatedRoute } from "@angular/router";
-import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
+import { GlobalLoadingIndicatorService } from "../../../Common/Services/GlobalLoadingIndicatorService";
 
 @Component({
     templateUrl: "Add.html"

@@ -1,6 +1,6 @@
 import { DBValueProvider } from "./DBValueProvider";
 import { TransactionViewModel } from "../Models/FinancesModels";
-import { KeyValuePair } from "../../Shared/KeyValuePair";
+import { KeyValuePair } from "../../Common/KeyValuePair";
 import { IDataParser } from "./Parser";
 import * as Papa from "papaparse";
 import * as moment from "moment";

@@ -6,9 +6,9 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { IndexComponent } from "./Components/Index";
 
-import { GlobalLoadingIndicatorService } from "../Shared/Services/GlobalLoadingIndicatorService";
-import { NavigationService } from "../Shared/Services/NavigationService";
-import { SharedModule } from "../Shared/shared.module";
+import { GlobalLoadingIndicatorService } from "../Common/Services/GlobalLoadingIndicatorService";
+import { NavigationService } from "../Common/Services/NavigationService";
+import { SharedModule } from "../Common/shared.module";
 
 const mediaRoutes: Routes = [
     {

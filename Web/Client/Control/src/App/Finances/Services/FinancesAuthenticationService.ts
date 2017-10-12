@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Http, RequestOptions, Headers } from "@angular/http";
 
-import { DataContainer } from "../../Shared/DataContainer";
+import { DataContainer } from "../../Common/DataContainer";
 import { Observable } from "rxjs/Observable";
 import { Observer } from "rxjs/Observer";
-import { CookieService } from "../../Shared/Services/CookieService";
+import { CookieService } from "../../Common/Services/CookieService";
 import { Environment } from "../../../Environments/Environment";
 
 
@@ -20,7 +20,7 @@ export class FinancesAuthenticationService {
     private static FinancesAuthCookieName = "FinancesAuthCookie";
 
     public requestToken(userName: string, password: string): Observable<undefined> {
-        let url = `${Environment.ApiUrl}Finances/v1/GetToken`;
+        let url = `${Environment.ApiUrl}Auth/GetToken`;
         let obj = {
             userName: userName,
             password: password,

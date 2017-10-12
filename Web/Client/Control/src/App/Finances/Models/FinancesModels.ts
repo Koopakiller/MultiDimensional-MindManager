@@ -1,4 +1,4 @@
-import { KeyValuePair } from "../../Shared/KeyValuePair";
+import { KeyValuePair } from "../../Common/KeyValuePair";
 
 export class PersonServerModel implements IViewModelConvert<PersonViewModel>{
 

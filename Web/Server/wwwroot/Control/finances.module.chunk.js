@@ -1715,7 +1715,7 @@ var FinancesAuthenticationService = FinancesAuthenticationService_1 = (function 
     }
     FinancesAuthenticationService.prototype.requestToken = function (userName, password) {
         var _this = this;
-        var url = __WEBPACK_IMPORTED_MODULE_5__Environments_Environment__["a" /* Environment */].ApiUrl + "Finances/v1/GetToken";
+        var url = __WEBPACK_IMPORTED_MODULE_5__Environments_Environment__["a" /* Environment */].ApiUrl + "Auth/GetToken";
         var obj = {
             userName: userName,
             password: password,

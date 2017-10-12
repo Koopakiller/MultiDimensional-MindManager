@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../../Services/FinancesService";
-import { LocationService } from "../../../Shared/Services/LocationService";
+import { LocationService } from "../../../Common/Services/LocationService";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel, UserGroupViewModel } from "../../Models/FinancesModels";
 import { Router } from "@angular/router";
-import { KeyValuePair } from "../../../Shared/KeyValuePair";
-import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
+import { KeyValuePair } from "../../../Common/KeyValuePair";
+import { GlobalLoadingIndicatorService } from "../../../Common/Services/GlobalLoadingIndicatorService";
 import { AddComponent as PersonAddComponent } from "../Persons/Add";
 
 

@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../../Services/FinancesService";
-import { LocationService } from "../../../Shared/Services/LocationService";
+import { LocationService } from "../../../Common/Services/LocationService";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../../Models/FinancesModels";
 import { Router } from "@angular/router";
-import { KeyValuePair } from "../../../Shared/KeyValuePair";
-import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
+import { KeyValuePair } from "../../../Common/KeyValuePair";
+import { GlobalLoadingIndicatorService } from "../../../Common/Services/GlobalLoadingIndicatorService";
 import { Observable } from "rxjs/Rx";
 import {
     PayPalAccountStatementImporter, FinanceAccountStatementImporter,
@@ -19,7 +19,7 @@ import { AddComponent as PersonAddComponent } from "../Persons/Add";
     selector: "finances-import",
     templateUrl: "Index.html",
     styleUrls: [
-        "../../../Shared/Styles/data-table.less"
+        "../../../Common/Styles/data-table.less"
     ]
 })
 export class IndexComponent implements OnInit {
@@ -35,7 +35,7 @@ export class IndexComponent implements OnInit {
             path: path,
             component: IndexComponent,
             styleUrls: [
-                "../../../Shared/Styles/data-table.less"
+                "../../../Common/Styles/data-table.less"
             ],
             children: [
                 PersonAddComponent.RoutingInformation("AddPerson")

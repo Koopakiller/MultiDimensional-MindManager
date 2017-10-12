@@ -23,10 +23,10 @@ import { IndexComponent } from "./Components/Index";
 import { IndexComponent as AuthenticationIndexComponent } from "./Components/Authentication/Index";
 
 import { FinancesService } from "./Services/FinancesService";
-import { LocationService } from "../Shared/Services/LocationService";
-import { GlobalLoadingIndicatorService } from "../Shared/Services/GlobalLoadingIndicatorService";
-import { NavigationService } from "../Shared/Services/NavigationService";
-import { SharedModule } from "../Shared/shared.module";
+import { LocationService } from "../Common/Services/LocationService";
+import { GlobalLoadingIndicatorService } from "../Common/Services/GlobalLoadingIndicatorService";
+import { NavigationService } from "../Common/Services/NavigationService";
+import { SharedModule } from "../Common/shared.module";
 import { FinancesAuthenticationService } from "./Services/FinancesAuthenticationService";
 import { ManageUsersComponent } from "./Components/UserGroups/ManageUsers";
 

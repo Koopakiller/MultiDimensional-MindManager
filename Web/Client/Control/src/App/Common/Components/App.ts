@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, HostListener, ElementRef, ViewChild } from "@angular/core";
-import { GlobalLoadingIndicatorService } from "../../Shared/Services/GlobalLoadingIndicatorService";
+import { GlobalLoadingIndicatorService } from "../../Common/Services/GlobalLoadingIndicatorService";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
-import { NavigationService } from "../../Shared/Services/NavigationService";
+import { NavigationService } from "../../Common/Services/NavigationService";
 import {
     Event as RouterEvent,
     NavigationStart,
@@ -11,9 +11,9 @@ import {
     NavigationError,
     Router
 } from "@angular/router";
-import { RoutingSectionService } from "../../Shared/Services/RoutingSectionService";
-import { Size } from "../../Shared/Models/Size";
-import { VerticalDirection } from "../../Shared/Models/VerticalDirection";
+import { RoutingSectionService } from "../../Common/Services/RoutingSectionService";
+import { Size } from "../../Common/Models/Size";
+import { VerticalDirection } from "../../Common/Models/VerticalDirection";
 
 @Component({
     selector: "app",

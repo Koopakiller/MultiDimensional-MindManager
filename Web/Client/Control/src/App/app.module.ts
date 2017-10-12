@@ -2,15 +2,15 @@ import { NgModule } from "@angular/core";
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
-import { AppComponent } from "./Scaffold/Components/App";
+import { AppComponent } from "./Common/Components/App";
 import { RouterModule, Routes } from "@angular/router";
-import { LoadingIndicatorComponent } from "./Scaffold/Components/LoadingIndicator";
-import { GlobalLoadingIndicatorService } from "./Shared/Services/GlobalLoadingIndicatorService";
-import { ErrorComponent } from "./Scaffold/Components/Error";
-import { NavigationService } from "./Shared/Services/NavigationService";
-import { DashboardComponent } from "./Scaffold/Components/Dashboard";
-import { SharedModule } from "./Shared/shared.module";
-import { RoutingSectionService } from "./Shared/Services/RoutingSectionService";
+import { LoadingIndicatorComponent } from "./Common/Components/LoadingIndicator";
+import { GlobalLoadingIndicatorService } from "./Common/Services/GlobalLoadingIndicatorService";
+import { ErrorComponent } from "./Common/Components/Error";
+import { NavigationService } from "./Common/Services/NavigationService";
+import { DashboardComponent } from "./Common/Components/Dashboard";
+import { SharedModule } from "./Common/shared.module";
+import { RoutingSectionService } from "./Common/Services/RoutingSectionService";
 
 const appRoutes: Routes = [
   { path: "Finances", loadChildren: "./Finances/finances.module#FinancesModule" },

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Http, Response, RequestOptions, Headers } from "@angular/http";
 import { PersonServerModel, UserServerModel, CurrencyAccountServerModel, TransactionServerModel, TransactionOverviewServerModel, UserGroupServerModel, PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel, TransactionOverviewViewModel, UserGroupViewModel } from "../Models/FinancesModels";
-import { DataContainer } from "../../Shared/DataContainer";
+import { DataContainer } from "../../Common/DataContainer";
 import { FinancesAuthenticationService } from "./FinancesAuthenticationService";
 import { Environment } from "../../../Environments/Environment";
 import { BehaviorSubject, ReplaySubject, Observable, Observer } from "rxjs/Rx";

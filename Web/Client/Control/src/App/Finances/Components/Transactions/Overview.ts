@@ -2,14 +2,14 @@ import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../../Services/FinancesService";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel, TransactionOverviewViewModel } from "../../Models/FinancesModels";
 import { Router, ActivatedRoute } from "@angular/router";
-import { KeyValuePair } from "../../../Shared/KeyValuePair";
-import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
+import { KeyValuePair } from "../../../Common/KeyValuePair";
+import { GlobalLoadingIndicatorService } from "../../../Common/Services/GlobalLoadingIndicatorService";
 import { ListComponent } from "./List";
 
 @Component({
     templateUrl: "Overview.html",
     styleUrls:[
-        "../../../Shared/Styles/data-table.less"
+        "../../../Common/Styles/data-table.less"
     ]
 })
 export class OverviewComponent implements OnInit {
