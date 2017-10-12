@@ -4,16 +4,16 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
-import { LocationService } from "../Shared/Services/LocationService";
-import { GlobalLoadingIndicatorService } from "../Shared/Services/GlobalLoadingIndicatorService";
-import { NavigationService } from "../Shared/Services/NavigationService";
-import { UtcPipe } from "../Shared/Pipes/UtcPipe";
+import { LocationService } from "../Common/Services/LocationService";
+import { GlobalLoadingIndicatorService } from "../Common/Services/GlobalLoadingIndicatorService";
+import { NavigationService } from "../Common/Services/NavigationService";
+import { UtcPipe } from "../Common/Pipes/UtcPipe";
 
 import { IndexComponent } from "./Components/Index";
 
 import { IndexComponent as StyleIndexComponent } from "./Components/Style/Index";
 
-import { SharedModule } from "../Shared/shared.module";
+import { SharedModule } from "../Common/shared.module";
 
 import { FormSectionComponent } from "./Components/Style/FormSection";
 import { TextSectionComponent } from "./Components/Style/TextSection";

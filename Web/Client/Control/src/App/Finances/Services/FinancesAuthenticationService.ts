@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Http, RequestOptions, Headers } from "@angular/http";
 
-import { DataContainer } from "../../Shared/DataContainer";
+import { DataContainer } from "../../Common/DataContainer";
 import { Observable } from "rxjs/Observable";
 import { Observer } from "rxjs/Observer";
-import { CookieService } from "../../Shared/Services/CookieService";
+import { CookieService } from "../../Common/Services/CookieService";
 import { Environment } from "../../../Environments/Environment";
 
 

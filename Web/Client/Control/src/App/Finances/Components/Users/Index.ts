@@ -2,13 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import * as _ from "lodash";
 import { FinancesService } from "../../Services/FinancesService";
 import { Router } from "@angular/router";
-import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
+import { GlobalLoadingIndicatorService } from "../../../Common/Services/GlobalLoadingIndicatorService";
 import { UserViewModel } from "../../Models/FinancesModels";
 
 @Component({
     templateUrl: "Index.html",
     styleUrls:[
-        "../../../Shared/Styles/data-table.less"
+        "../../../Common/Styles/data-table.less"
     ]
 })
 export class IndexComponent implements OnInit {

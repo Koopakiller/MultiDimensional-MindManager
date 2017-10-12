@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import * as _ from "lodash";
 import { FinancesService } from "../../Services/FinancesService";
 import { Router, ActivatedRoute } from "@angular/router";
-import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
+import { GlobalLoadingIndicatorService } from "../../../Common/Services/GlobalLoadingIndicatorService";
 import { UserViewModel, UserGroupViewModel } from "../../Models/FinancesModels";
 import { ManageUsersComponent } from "./ManageUsers";
 
@@ -10,7 +10,7 @@ import { ManageUsersComponent } from "./ManageUsers";
     selector: "finances-usergroups",
     templateUrl: "Index.html",
     styleUrls:[
-        "../../../Shared/Styles/data-table.less"
+        "../../../Common/Styles/data-table.less"
     ]
 })
 export class IndexComponent implements OnInit {

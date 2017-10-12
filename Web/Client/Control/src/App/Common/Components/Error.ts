@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, Input } from "@angular/core";
-import { GlobalLoadingIndicatorService } from "../../Shared/Services/GlobalLoadingIndicatorService";
+import { GlobalLoadingIndicatorService } from "../../Common/Services/GlobalLoadingIndicatorService";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs";
 import { ActivatedRoute } from "@angular/router";

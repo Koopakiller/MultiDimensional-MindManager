@@ -19,10 +19,10 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "App",
       "styles": [
-        "App/Shared/Styles/text.less",
-        "App/Shared/Styles/main.less",
-        "App/Shared/Styles/form.less",
-        "App/Shared/Styles/loading-indicator.less"
+        "App/Common/Styles/text.less",
+        "App/Common/Styles/main.less",
+        "App/Common/Styles/form.less",
+        "App/Common/Styles/loading-indicator.less"
       ],
       "scripts": [],
       "environmentSource": "Environments/Environment.ts",
