@@ -126,25 +126,26 @@ export class FinancesService {
 
     // Persons
 
-    private _persons: ReplaySubject<PersonViewModel[]> = null;
+    private _persons = {};
 
-    public updatePersons() {
+    public updatePersons(userGroupId: number) {
         this.getList<PersonServerModel, PersonViewModel>(`${this._apiUrl}/GetPersons`, () => new PersonServerModel())
             .subscribe(result => {
-                this._persons.next(result);
+                this._persons[userGroupId].next(result);
             },
             error => {
-                this._persons.error(error);
+                this._persons[userGroupId].error(error);
             });
     }
 
-    public getPersons(currencyAccountId?: number): Observable<PersonViewModel[]> {
-        //TODO: use currencyAccountId
-        if (!this._persons) {
-            this._persons = new ReplaySubject<PersonViewModel[]>(1);
-            this.updatePersons();
+    public getPersons(userGroupId?: number): Observable<PersonViewModel[]> {
+        let lst: ReplaySubject<PersonViewModel[]> = this._persons[userGroupId];
+        if (!lst) {
+            this._persons[userGroupId] = new ReplaySubject<PersonViewModel[]>(1);
+            lst = this._persons[userGroupId];
+            this.updatePersons(userGroupId);
         }
-        return this._persons.asObservable();
+        return lst.asObservable();
     }
 
     public addPerson(name: string, userGroupId: number): Observable<PersonViewModel> {
@@ -164,7 +165,7 @@ export class FinancesService {
                     observer.next(sm.toViewModel());
                     observer.complete();
 
-                    this.updatePersons();
+                    this.updatePersons(userGroupId);
                 },
                 error => {
                     observer.error(error);
