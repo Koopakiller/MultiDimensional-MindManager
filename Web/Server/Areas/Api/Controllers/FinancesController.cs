@@ -204,27 +204,5 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
                 return this.StatusCode(500);
             }
         }
-
-        [HttpPost("GetToken")]
-        [AllowAnonymous]
-        public IActionResult GetToken([FromBody]DataContainer<ApplicationUser> data)
-        {
-            try
-            {
-                var identity = this._claimsIdentityService.GetIdentity(data.Data.UserName, data.Data.Password);
-                if (identity == null)
-                {
-                    return this.BadRequest();
-                }
-
-                var token = this._authService.GenerateToken(data.Data.UserName);
-                return this.Json(DataContainer.Create(token));
-            }
-            catch (Exception ex)
-            {
-                DebugHelper.WriteException(ex);
-                return this.StatusCode(500);
-            }
-        }
     }
 }
