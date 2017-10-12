@@ -101,6 +101,30 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
             }
         }
 
+        [HttpPost("GetCurrencyAccountsForUserGroup")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public IActionResult GetCurrencyAccountsForUserGroup(int userGroupId)
+        {
+            try
+            {
+                var result = this._context.GetCurrencyAccountsForUserGroup(userGroupId).ToList().Select(ca =>
+                    new
+                    {
+                        ca.AccountId,
+                        ca.AccountName,
+                        ca.CurrencyAccountId,
+                        ca.CurrencyId,
+                        CurrencyNames = this._context.GetCurrencySymbolsForCurrency(ca.CurrencyId),
+                    });
+                return this.Json(DataContainer.Create(result));
+            }
+            catch (Exception ex)
+            {
+                DebugHelper.WriteException(ex);
+                return this.StatusCode(500);
+            }
+        }
+
         [HttpPost("AddTransactions")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult AddTransactions([FromBody]DataContainer<FinanceTransaction[]> data)
