@@ -3,7 +3,7 @@ webpackJsonp(["media.module"],{
 /***/ "../../../../../src/App/Media/Components/Index.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<section class='section'>\n   \n    <span class='section-header'>Media</span>\n\n    <div class='section-content'>\n\n        <p>This is the Media Applet.</p>\n\n    </div>\n    \n</section>\n\n<router-outlet></router-outlet>\n"
+module.exports = "<routing-section header=\"Media\">\n\n    <p>This is the Media Applet.</p>\n\n</routing-section>\n\n<router-outlet></router-outlet>"
 
 /***/ }),
 
