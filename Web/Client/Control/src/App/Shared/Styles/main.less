@@ -36,32 +36,12 @@ body {
         top: @header-height + @padding-tiny;
         bottom: 0;
 
-        .section {
-            margin-bottom: @padding-tiny;
-
-            &>.section-header {
-                display: block;
-                background-color: @color-accent-dark;
-                color: @color-light;
-                padding: @padding;
-                .font-header(24pt);
-            }
-            &>.section-content {
-                display: block;
-                background-color: @color-dark;
-                color: @color-light;
-                padding: @padding;
-            }
-
-            &.form {
-                h1 {
-                    .font-header(18pt);
-                    margin: 0;
-                    margin-bottom: @padding-small;
-                    &:not(:first-of-type) {
-                        margin-top: 1em;
-                    }
-                }
+        h1 {
+            .font-header(18pt);
+            margin: 0;
+            margin-bottom: @padding-small;
+            &:not(:first-of-type) {
+                margin-top: 1em;
             }
         }
 

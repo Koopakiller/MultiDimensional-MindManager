@@ -1,0 +1,27 @@
+@import "../../Shared/Styles/common.less";
+
+
+@header-height: 64px;
+
+.routing-section-scroll-buttons {
+    position: fixed;
+    right: inherit;
+    top: inherit;
+
+    margin-right: @padding;
+    margin-top: @padding;
+
+    a {
+        color: @color-light-1 !important;
+        cursor: pointer;
+        margin: 0;
+
+        &:hover {
+            color: @color-light-2 !important;
+        }
+
+        .icon {
+            font-size: 36pt !important;
+        }
+    }
+}

@@ -13,10 +13,14 @@ import {
 } from "../../Helper/Importer";
 import { GermanDataParser } from "../../Helper/Parser";
 import { DBValueProvider } from "../../Helper/DBValueProvider";
+import { AddComponent as PersonAddComponent } from "../Persons/Add";
 
 @Component({
     selector: "finances-import",
-    templateUrl: "Index.html"
+    templateUrl: "Index.html",
+    styleUrls: [
+        "../../../Shared/Styles/data-table.less"
+    ]
 })
 export class IndexComponent implements OnInit {
 
@@ -30,7 +34,11 @@ export class IndexComponent implements OnInit {
         return {
             path: path,
             component: IndexComponent,
+            styleUrls: [
+                "../../../Shared/Styles/data-table.less"
+            ],
             children: [
+                PersonAddComponent.RoutingInformation("AddPerson")
             ]
         };
     }
@@ -38,63 +46,71 @@ export class IndexComponent implements OnInit {
     ngOnInit(): void {
         this.initCurrentStep();
 
-        this._globalLoadingIndicatorService.addLoadingProcess();
+        this._financesService.getPersons().subscribe(list => {
+            this.persons = list;
 
-        Observable.zip(this._financesService.persons, this._financesService.users)
-            //.catch(error => alert(error))
-            .subscribe(([persons, users]) => {
-                this.persons = persons;
-                this.users = users;
-
-                this.possibleFileTypes = [
-                    {
-                        extension: "csv",
-                        provider: "Commerzbank",
-                        description: "Commerzbank Giro Account Statement CSV Export",
-                        mode: "implemented",
-                        factory: () => {
-                            let result = new CommerzbankGiroAccountStatementImporter();
-                            result.dataParser = new GermanDataParser();
-                            return result;
-                        }
-                    },
-                    {
-                        extension: "csv",
-                        provider: "Commerzbank",
-                        description: "Commerzbank Credit Card Statement CSV Export",
-                        mode: "implemented",
-                        factory: () => {
-                            let result = new CommerzbankCreditCardStatementImporter();
-                            result.dataParser = new GermanDataParser();
-                            return result;
-                        }
-                    },
-                    {
-                        extension: "csv",
-                        provider: "PayPal",
-                        description: "Paypal (German) \"Guthaben-relevante Zahlungen (CSV, Komma getrennt)\" Export",
-                        mode: "implemented",
-                        factory: () => {
-                            let result = new PayPalAccountStatementImporter();
-                            result.dataParser = new GermanDataParser();
-                            return result;
-                        }
-                    },
-                    {
-                        extension: "csv",
-                        provider: "Finances",
-                        description: "Finances Import Form CSV",
-                        mode: "implemented",
-                        factory: () => {
-                            let result = new FinancesCsvImporter();
-                            result.dataParser = new GermanDataParser();
-                            return result;
-                        }
+            if (this.transactions && this.transactions.length > 0) {
+                //update existing transactions in case a person was added
+                let dbvp = new DBValueProvider(this.persons, this.currencyAccounts);
+                for (let transaction of this.transactions) {
+                    if (!transaction.personId && transaction.suggestedPersonName) {
+                        // update only transactions without a person
+                        transaction.personId = dbvp.getPersonIdFromName(transaction.suggestedPersonName);
                     }
-                ];
+                }
+            }
+        }, error => alert(error));
 
-                this._globalLoadingIndicatorService.removeLoadingProcess();
-            });
+        this._financesService.getUsers().subscribe(list => {
+            this.users = list;
+        }, error => alert(error));
+
+        this.possibleFileTypes = [
+            {
+                extension: "csv",
+                provider: "Commerzbank",
+                description: "Commerzbank Giro Account Statement CSV Export",
+                mode: "implemented",
+                factory: () => {
+                    let result = new CommerzbankGiroAccountStatementImporter();
+                    result.dataParser = new GermanDataParser();
+                    return result;
+                }
+            },
+            {
+                extension: "csv",
+                provider: "Commerzbank",
+                description: "Commerzbank Credit Card Statement CSV Export",
+                mode: "implemented",
+                factory: () => {
+                    let result = new CommerzbankCreditCardStatementImporter();
+                    result.dataParser = new GermanDataParser();
+                    return result;
+                }
+            },
+            {
+                extension: "csv",
+                provider: "PayPal",
+                description: "Paypal (German) \"Guthaben-relevante Zahlungen (CSV, Komma getrennt)\" Export",
+                mode: "implemented",
+                factory: () => {
+                    let result = new PayPalAccountStatementImporter();
+                    result.dataParser = new GermanDataParser();
+                    return result;
+                }
+            },
+            {
+                extension: "csv",
+                provider: "Finances",
+                description: "Finances Import Form CSV",
+                mode: "implemented",
+                factory: () => {
+                    let result = new FinancesCsvImporter();
+                    result.dataParser = new GermanDataParser();
+                    return result;
+                }
+            }
+        ];
     }
 
     persons: PersonViewModel[];
@@ -195,24 +211,4 @@ export class IndexComponent implements OnInit {
     nextStep() {
         this.currentStep = this.steps[this.steps.indexOf(this.currentStep) + 1];
     }
-
-    // Add Person ####################################################################################
-    addPerson(name: string = ""): void {
-        this.showAddPersonPopup = true;
-        this.suggestedNewPersonName = name;
-    }
-    closeAddPersonPopup(pvm: PersonViewModel) {
-        this.showAddPersonPopup = false;
-        this.suggestedNewPersonName = "";
-        if (pvm) {
-            this.persons.push(pvm);
-            for (let transaction of this.transactions) {
-                if (transaction.suggestedPersonName === pvm.header && !transaction.personId) {
-                    transaction.personId = pvm.id
-                }
-            }
-        }
-    }
-    showAddPersonPopup: boolean = false;
-    suggestedNewPersonName: string = "";
 }

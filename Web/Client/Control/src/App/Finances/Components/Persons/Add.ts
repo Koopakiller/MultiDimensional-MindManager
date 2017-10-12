@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output, OnDestroy } from "@angu
 import { FinancesService } from "../../Services/FinancesService";
 import { LocationService } from "../../../Shared/Services/LocationService";
 import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, UserGroupViewModel } from "../../Models/FinancesModels";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
 
 @Component({
@@ -13,7 +13,8 @@ export class AddComponent implements OnInit, OnDestroy {
     constructor(
         private _financesService: FinancesService,
         private _router: Router,
-        private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
+        private _globalLoadingIndicatorService: GlobalLoadingIndicatorService,
+        private _activatedRoute: ActivatedRoute
     ) { }
 
     public static RoutingInformation(path: string = "Add") {
@@ -65,15 +66,12 @@ export class AddComponent implements OnInit, OnDestroy {
         );
     }
 
-    @Output()
-    close = new EventEmitter();
-
     submit(): void {
         this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.addPerson(this.personName, this.userGroup).subscribe(
             item => {
-                this.close.emit(item);
                 this._globalLoadingIndicatorService.removeLoadingProcess();
+                this._router.navigate(["../"], { relativeTo: this._activatedRoute });
             },
             error => {
                 alert(error);
@@ -82,6 +80,6 @@ export class AddComponent implements OnInit, OnDestroy {
     }
 
     cancel(): void {
-        this.close.emit();
+        this._router.navigate(["../"], { relativeTo: this._activatedRoute });
     }
 }

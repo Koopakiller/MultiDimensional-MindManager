@@ -21,7 +21,7 @@ export class ListComponent implements OnInit, OnDestroy {
         private _financesService: FinancesService,
         private _locationService: LocationService,
         private _router: Router,
-        private _activedRoute: ActivatedRoute,
+        private _activatedRoute: ActivatedRoute,
     ) { }
 
     public static RoutingInformation(path: string = "List") {
@@ -52,7 +52,7 @@ export class ListComponent implements OnInit, OnDestroy {
     public nextPage: number;
 
     public ngOnInit(): void {
-        this._parameterSubscription = this._activedRoute.params.subscribe(params => {
+        this._parameterSubscription = this._activatedRoute.params.subscribe(params => {
             this.currencyAccountId = params["caId"];
             this.currentPage = +params["page"];
             if (!this.currentPage) {
@@ -85,6 +85,6 @@ export class ListComponent implements OnInit, OnDestroy {
     }
 
     public navigateToPage(page: number) {
-        this._router.navigate(["List", this.currencyAccountId, page], { relativeTo: this._activedRoute.parent });
+        this._router.navigate(["List", this.currencyAccountId, page], { relativeTo: this._activatedRoute.parent });
     }
 }

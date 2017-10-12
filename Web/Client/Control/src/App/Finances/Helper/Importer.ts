@@ -92,6 +92,10 @@ export class CommerzbankGiroAccountStatementImporter extends FinanceAccountState
                 // Date format: dd.mm.yyyy
                 // Number format: xxx,xx
                 for (let row of result.data) {
+                    if(!row["Wertstellung"]){
+                        // skip listed but not booked transactions
+                        continue;
+                    }
                     var tvm = new TransactionViewModel();
                     let timeStamp = this.dataParser.parseTimeStamp(row["Wertstellung"], "DD.MM.YYYY");
                     tvm = this.assignTimeStamp(tvm, timeStamp, false);

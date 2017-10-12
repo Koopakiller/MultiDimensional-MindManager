@@ -32,13 +32,13 @@ export class AddComponent implements OnInit {
 
     ngOnInit(): void {
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.persons.subscribe(x => {
+        this._financesService.getPersons().subscribe(x => {
             this.persons = x;
             this.person = x.length > 0 ? x[0].id : null;
             this._globalLoadingIndicatorService.removeLoadingProcess();
         });
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.users.subscribe(x => {
+        this._financesService.getUsers().subscribe(x => {
             this.users = x;
             this.user = x.length > 0 ? x[0].id : null;
             this._globalLoadingIndicatorService.removeLoadingProcess();

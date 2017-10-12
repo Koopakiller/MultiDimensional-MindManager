@@ -1,12 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Http, Response, RequestOptions, Headers } from "@angular/http";
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
 import { PersonServerModel, UserServerModel, CurrencyAccountServerModel, TransactionServerModel, TransactionOverviewServerModel, UserGroupServerModel, PersonViewModel, UserViewModel, CurrencyAccountViewModel, TransactionViewModel, TransactionOverviewViewModel, UserGroupViewModel } from "../Models/FinancesModels";
-import { Observer } from "rxjs/Observer";
 import { DataContainer } from "../../Shared/DataContainer";
 import { FinancesAuthenticationService } from "./FinancesAuthenticationService";
 import { Environment } from "../../../Environments/Environment";
+import { BehaviorSubject, ReplaySubject, Observable, Observer } from "rxjs/Rx";
 
 @Injectable()
 export class FinancesService {
@@ -45,11 +43,7 @@ export class FinancesService {
         return this.postWithOptions(url).map(response => this.getListFromResponse(response, serverModelFactory));
     }
 
-    public get persons(): Observable<PersonViewModel[]> {
-        return this.getList<PersonServerModel, PersonViewModel>(`${this._apiUrl}/GetPersons`, () => new PersonServerModel());
-    }
-
-    public get users(): Observable<UserViewModel[]> {
+    public getUsers(): Observable<UserViewModel[]> {
         return this.getList<UserServerModel, UserViewModel>(`${this._apiUrl}/GetUsers`, () => new UserServerModel());
     }
 
@@ -126,6 +120,28 @@ export class FinancesService {
         });
     }
 
+    // Persons
+
+    private _persons: ReplaySubject<PersonViewModel[]> = null;
+
+    public updatePersons() {
+        this.getList<PersonServerModel, PersonViewModel>(`${this._apiUrl}/GetPersons`, () => new PersonServerModel())
+            .subscribe(result => {
+                this._persons.next(result);
+            },
+            error => {
+                this._persons.error(error);
+            });
+    }
+
+    public getPersons(): Observable<PersonViewModel[]> {
+        if (!this._persons) {
+            this._persons = new ReplaySubject<PersonViewModel[]>(1);
+            this.updatePersons();
+        }
+        return this._persons.asObservable();
+    }
+
     public addPerson(name: string, userGroupId: number): Observable<PersonViewModel> {
         let data = {
             data: {
@@ -142,6 +158,8 @@ export class FinancesService {
                     Object.assign(sm, smo);
                     observer.next(sm.toViewModel());
                     observer.complete();
+
+                    this.updatePersons();
                 },
                 error => {
                     observer.error(error);

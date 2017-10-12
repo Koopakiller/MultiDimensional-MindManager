@@ -10,15 +10,16 @@ import { ErrorComponent } from "./Scaffold/Components/Error";
 import { NavigationService } from "./Shared/Services/NavigationService";
 import { DashboardComponent } from "./Scaffold/Components/Dashboard";
 import { SharedModule } from "./Shared/shared.module";
+import { RoutingSectionService } from "./Shared/Services/RoutingSectionService";
 
 const appRoutes: Routes = [
-   { path: "Finances", loadChildren: "./Finances/finances.module#FinancesModule" },
-   { path: "Test", loadChildren: "./Test/test.module#TestModule" },
-   { path: "Media", loadChildren: "./Media/media.module#MediaModule" },
+  { path: "Finances", loadChildren: "./Finances/finances.module#FinancesModule" },
+  { path: "Test", loadChildren: "./Test/test.module#TestModule" },
+  { path: "Media", loadChildren: "./Media/media.module#MediaModule" },
 
   { path: "Dashboard", component: DashboardComponent },
   { path: "Error/:errorId", component: ErrorComponent },
-  { path: "", pathMatch: "full", redirectTo: "Dashboard"},
+  { path: "", pathMatch: "full", redirectTo: "Dashboard" },
   { path: "**", redirectTo: "/Error/http404" }
 ];
 
@@ -43,8 +44,9 @@ const appRoutes: Routes = [
   ],
   providers: [
     GlobalLoadingIndicatorService,
-    NavigationService
+    NavigationService,
+		RoutingSectionService
   ],
 })
-export class AppModule { 
+export class AppModule {
 }

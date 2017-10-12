@@ -28,6 +28,7 @@ import { GlobalLoadingIndicatorService } from "../Shared/Services/GlobalLoadingI
 import { NavigationService } from "../Shared/Services/NavigationService";
 import { SharedModule } from "../Shared/shared.module";
 import { FinancesAuthenticationService } from "./Services/FinancesAuthenticationService";
+import { ManageUsersComponent } from "./Components/UserGroups/ManageUsers";
 
 const financesRoutes: Routes = [
     IndexComponent.RoutingInformation()
@@ -54,7 +55,8 @@ const financesRoutes: Routes = [
         PersonsAddComponent,
         UserGroupsIndexComponent,
         UsersIndexComponent,
-        AuthenticationIndexComponent
+        AuthenticationIndexComponent,
+        ManageUsersComponent
     ],
     bootstrap: [
         IndexComponent

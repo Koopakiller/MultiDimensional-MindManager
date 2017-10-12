@@ -1,22 +1,14 @@
-<section class='section'>
+<routing-section header="Transactions">
+    <div class='tiles'>
+        <a routerLink='Add' class='tile'>
+            <i class='material-icons icon'>add</i>
+            <div class='header'>Add</div>
+        </a>
+        <a routerLink='Overview' class='tile'>
+            <i class='material-icons icon'>view_list</i>
+            <div class='header'>Overview</div>
+        </a>
+    </div>
+</routing-section>
 
-    <span class='section-header'>Transactions</span>
-
-    <div class='section-content'>
-
-            <div class='tiles'>
-                <a routerLink='Add' class='tile'>
-                    <i class='material-icons icon'>add</i>
-                    <div class='header'>Add</div>
-                </a>
-                <a routerLink='Overview' class='tile'>
-                    <i class='material-icons icon'>view_list</i>
-                    <div class='header'>Overview</div>
-                </a>
-            </div>
-
-        </div>
-
-    </section>
-
-    <router-outlet></router-outlet>
+<router-outlet></router-outlet>

@@ -1,37 +1,29 @@
-<section class='section'>
-
-    <span class='section-header'>Transactions List</span>
-
-    <div class='section-content'>
-
-        <div class="paging-links">
-            <a *ngIf="previousPage" (click)="navigateToPage(previousPage)">Previous</a>
-            <ng-container *ngFor="let i of pageLinks">
-                <a *ngIf="currentPage != i" (click)="navigateToPage(i)">{{i}}</a>
-                <span *ngIf="currentPage == i">{{i}}</span>
-            </ng-container>
-            <a *ngIf="nextPage" (click)="navigateToPage(nextPage)">Next</a>
-        </div>
-
-        <table class="data-table">
-            <tr>
-                <th>Id</th>
-                <th>Time Stamp</th>
-                <th>Note</th>
-                <th>Value</th>
-                <th>Person Id</th>
-            </tr>
-            <tr *ngFor='let transaction of displayList'>
-                <td>{{transaction.id}}</td>
-                <td>{{transaction.timeStampDate}} <span *ngIf='transaction.timeStampTime'>({{transaction.timeStampTime}})</span></td>
-                <td>{{transaction.note}}</td>
-                <td>{{transaction.value}}</td>
-                <td>{{transaction.personId}}</td>
-            </tr>
-        </table>
-
+<routing-section header="Transactions List">
+    <div class="paging-links">
+        <a *ngIf="previousPage" (click)="navigateToPage(previousPage)">Previous</a>
+        <ng-container *ngFor="let i of pageLinks">
+            <a *ngIf="currentPage != i" (click)="navigateToPage(i)">{{i}}</a>
+            <span *ngIf="currentPage == i">{{i}}</span>
+        </ng-container>
+        <a *ngIf="nextPage" (click)="navigateToPage(nextPage)">Next</a>
     </div>
 
-</section>
+    <table class="data-table">
+        <tr>
+            <th>Id</th>
+            <th>Time Stamp</th>
+            <th>Note</th>
+            <th>Value</th>
+            <th>Person Id</th>
+        </tr>
+        <tr *ngFor='let transaction of displayList'>
+            <td>{{transaction.id}}</td>
+            <td>{{transaction.timeStampDate}} <span *ngIf='transaction.timeStampTime'>({{transaction.timeStampTime}})</span></td>
+            <td>{{transaction.note}}</td>
+            <td>{{transaction.value}}</td>
+            <td>{{transaction.personId}}</td>
+        </tr>
+    </table>
+</routing-section>
 
 <router-outlet></router-outlet>

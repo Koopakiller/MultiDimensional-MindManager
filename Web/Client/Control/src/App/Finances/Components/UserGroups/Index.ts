@@ -1,20 +1,25 @@
 import { Component, OnInit } from "@angular/core";
 import * as _ from "lodash";
 import { FinancesService } from "../../Services/FinancesService";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
 import { UserViewModel, UserGroupViewModel } from "../../Models/FinancesModels";
+import { ManageUsersComponent } from "./ManageUsers";
 
 @Component({
     selector: "finances-usergroups",
-    templateUrl: "Index.html"
+    templateUrl: "Index.html",
+    styleUrls:[
+        "../../../Shared/Styles/data-table.less"
+    ]
 })
 export class IndexComponent implements OnInit {
 
     constructor(
         private _financesService: FinancesService,
         private _router: Router,
-        private _globalLoadingIndicatorService: GlobalLoadingIndicatorService
+        private _globalLoadingIndicatorService: GlobalLoadingIndicatorService,
+        private _activatedRoute: ActivatedRoute
     ) { }
 
     public static RoutingInformation(path: string = "UserGroups") {
@@ -22,6 +27,7 @@ export class IndexComponent implements OnInit {
             path: path,
             component: IndexComponent,
             children: [
+                ManageUsersComponent.RoutingInformation()
             ]
         };
     }
@@ -42,28 +48,7 @@ export class IndexComponent implements OnInit {
 
     public userGroups: UserGroupViewModel[];
 
-    public selectedUserGroup: UserGroupViewModel;
-
-    public toggleManageUsers(index?: number): void {
-        if (this.selectedUserGroup || !index) {
-            this.selectedUserGroup = null;
-        }
-        else {
-            this.selectedUserGroup = this.userGroups[index];
-            this._globalLoadingIndicatorService.addLoadingProcess();
-            this._financesService.getUsersFromUserGroup(this.selectedUserGroup.id).subscribe(
-                x => {
-                    this.usersInSelectedGroup = x;
-                    this._globalLoadingIndicatorService.removeLoadingProcess();
-                },
-                error => {
-                    alert(error);
-                    this.toggleManageUsers();
-                    this._globalLoadingIndicatorService.removeLoadingProcess();
-                }
-            );
-        }
+    public manageUsers(ugId: number){
+        this._router.navigate(["ManageUsers", ugId], { relativeTo: this._activatedRoute });
     }
-
-    public usersInSelectedGroup: UserViewModel[];
 }
