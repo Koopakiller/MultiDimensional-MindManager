@@ -63,6 +63,10 @@ export class FinancesService {
         return this.getList<CurrencyAccountServerModel, CurrencyAccountViewModel>(`${this._apiUrl}/GetCurrencyAccountsForUser?userId=${userId}`, () => new CurrencyAccountServerModel());
     }
 
+    public getCurrencyAccountsFromUserGroup(userGroupId: number): Observable<CurrencyAccountViewModel[]> {
+        return this.getList<CurrencyAccountServerModel, CurrencyAccountViewModel>(`${this._apiUrl}/GetCurrencyAccountsForUserGroup?userGroupId=${userGroupId}`, () => new CurrencyAccountServerModel());
+    }
+
     public getTransactions(currencyAccountId: number, skipCount: number, takeCount: number): Observable<TransactionViewModel[]> {
         let url = `${this._apiUrl}/GetTransactions?currencyAccountId=${currencyAccountId}&skipCount=${skipCount}&takeCount=${takeCount}`;
         return this.getList<TransactionServerModel, TransactionViewModel>(url, () => new TransactionServerModel());
@@ -134,7 +138,8 @@ export class FinancesService {
             });
     }
 
-    public getPersons(): Observable<PersonViewModel[]> {
+    public getPersons(currencyAccountId?: number): Observable<PersonViewModel[]> {
+        //TODO: use currencyAccountId
         if (!this._persons) {
             this._persons = new ReplaySubject<PersonViewModel[]>(1);
             this.updatePersons();

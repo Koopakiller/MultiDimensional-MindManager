@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FinancesService } from "../../Services/FinancesService";
 import { LocationService } from "../../../Shared/Services/LocationService";
-import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel } from "../../Models/FinancesModels";
+import { PersonViewModel, CurrencyAccountViewModel, UserViewModel, TransactionViewModel, UserGroupViewModel } from "../../Models/FinancesModels";
 import { Router } from "@angular/router";
 import { KeyValuePair } from "../../../Shared/KeyValuePair";
 import { GlobalLoadingIndicatorService } from "../../../Shared/Services/GlobalLoadingIndicatorService";
@@ -32,12 +32,6 @@ export class AddComponent implements OnInit {
 
     ngOnInit(): void {
         this._globalLoadingIndicatorService.addLoadingProcess();
-        this._financesService.getPersons().subscribe(x => {
-            this.persons = x;
-            this.person = x.length > 0 ? x[0].id : null;
-            this._globalLoadingIndicatorService.removeLoadingProcess();
-        });
-        this._globalLoadingIndicatorService.addLoadingProcess();
         this._financesService.getUsers().subscribe(x => {
             this.users = x;
             this.user = x.length > 0 ? x[0].id : null;
@@ -54,34 +48,62 @@ export class AddComponent implements OnInit {
         this.value = 0;
     }
 
-    persons: PersonViewModel[];
-    currencyAccounts: CurrencyAccountViewModel[];
     users: UserViewModel[];
+    userGroups: UserGroupViewModel[];
+    currencyAccounts: CurrencyAccountViewModel[];
+    persons: PersonViewModel[];
 
     coordinates: Coordinates;
 
     name: string;
     value: number;
-    person: number;
-    currencyAccount: number;
-    _user: number;
+
     timeStampDate: Date;
     timeStampTimeStr: string;
     includeTimeStampTime: boolean = false;
 
-    get user() {
+    _user: number;
+    public get user() {
         return this._user;
     }
-
-    set user(value: number) {
-        this._globalLoadingIndicatorService.addLoadingProcess();
+    public set user(value: number) {
         this._user = value;
-        this._financesService.getCurrencyAccounts(value).subscribe(x => {
-            this.currencyAccounts = x;
-            this.currencyAccount = x.length > 0 ? x[0].id : null;
-            this._globalLoadingIndicatorService.removeLoadingProcess();
-        });
+        if (value) {
+            this._globalLoadingIndicatorService.addLoadingProcess();
+            this._financesService.getUserGroups(value).subscribe(x => {
+                this.userGroups = x;
+                this.userGroup = x.length > 0 ? x[0].id : null;
+                this._globalLoadingIndicatorService.removeLoadingProcess();
+            });
+        }
     }
+
+    private _userGroup: number;
+    public get userGroup() {
+        return this._userGroup;
+    }
+    public set userGroup(value: number) {
+        this._userGroup = value;
+        if (value) {
+            this._globalLoadingIndicatorService.addLoadingProcess();
+            this._financesService.getCurrencyAccountsFromUserGroup(value).subscribe(x => {
+                this.currencyAccounts = x;
+                this.currencyAccount = x.length > 0 ? x[0].id : null;
+                this._globalLoadingIndicatorService.removeLoadingProcess();
+            });
+            this._globalLoadingIndicatorService.addLoadingProcess();
+            this._financesService.getPersons(value).subscribe(x => {
+                this.persons = x;
+                this.person = x.length > 0 ? x[0].id : null;
+                this._globalLoadingIndicatorService.removeLoadingProcess();
+            });
+        }
+    }
+
+    public currencyAccount: number;
+    
+    public person: number;
+
 
     public submit(): void {
         this._globalLoadingIndicatorService.addLoadingProcess();

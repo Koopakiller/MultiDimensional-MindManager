@@ -41,6 +41,14 @@
                 </div>
             </div>
             <div class='form-group'>
+                <label for='userGroup'>User Group:</label>
+                <div class='control-container'>
+                    <select [(ngModel)]='userGroup' name='userGroup'>
+                        <option *ngFor='let userGroup of userGroups' [ngValue]='userGroup.id'>{{userGroup.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class='form-group'>
                 <label for='currencyAccount'>Currency Account:</label>
                 <div class='control-container'>
                     <select [(ngModel)]='currencyAccount' name='currencyAccount'>
