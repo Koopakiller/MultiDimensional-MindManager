@@ -10,5 +10,6 @@ BEGIN
          , ca.CurrencyId AS CurrencyId
     FROM Accounts a
     INNER JOIN CurrencyAccounts ca ON ca.AccountId = a.Id
-    WHERE a.UserGroupId = @userId
+	INNER JOIN UserGroupUsers ugu ON ugu.UserGroupId = a.UserGroupId
+    WHERE ugu.UserId = @userId
 END
