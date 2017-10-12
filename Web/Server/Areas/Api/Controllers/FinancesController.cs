@@ -63,11 +63,11 @@ namespace Koopakiller.Apps.Picosmos.Real.Areas.Api.Controllers
 
         [HttpPost("GetPersons")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public IActionResult GetPersons()
+        public IActionResult GetPersons(int? userGroupId)
         {
             try
             {
-                var result = this._context.GetPersons();
+                var result = this._context.GetPersons(userGroupId);
                 return this.Json(DataContainer.Create(result));
             }
             catch (Exception ex)
