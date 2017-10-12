@@ -68,6 +68,7 @@ export class AddComponent implements OnInit {
     }
     public set user(value: number) {
         this._user = value;
+        this.userGroups = [];
         if (value) {
             this._globalLoadingIndicatorService.addLoadingProcess();
             this._financesService.getUserGroups(value).subscribe(x => {
@@ -84,6 +85,8 @@ export class AddComponent implements OnInit {
     }
     public set userGroup(value: number) {
         this._userGroup = value;
+        this.currencyAccounts = [];
+        this.persons = [];
         if (value) {
             this._globalLoadingIndicatorService.addLoadingProcess();
             this._financesService.getCurrencyAccountsFromUserGroup(value).subscribe(x => {
@@ -101,7 +104,7 @@ export class AddComponent implements OnInit {
     }
 
     public currencyAccount: number;
-    
+
     public person: number;
 
 

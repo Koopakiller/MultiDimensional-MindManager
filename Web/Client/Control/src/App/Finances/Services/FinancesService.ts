@@ -129,7 +129,7 @@ export class FinancesService {
     private _persons = {};
 
     public updatePersons(userGroupId: number) {
-        this.getList<PersonServerModel, PersonViewModel>(`${this._apiUrl}/GetPersons`, () => new PersonServerModel())
+        this.getList<PersonServerModel, PersonViewModel>(`${this._apiUrl}/GetPersons?userGroupId=${userGroupId}`, () => new PersonServerModel())
             .subscribe(result => {
                 this._persons[userGroupId].next(result);
             },
