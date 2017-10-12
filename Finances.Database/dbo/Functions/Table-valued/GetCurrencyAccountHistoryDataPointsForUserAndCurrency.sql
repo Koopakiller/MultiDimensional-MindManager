@@ -21,7 +21,7 @@ BEGIN
         INNER JOIN Currencies c ON c.Id = ca.CurrencyId
         INNER JOIN Accounts a ON a.Id = ca.AccountId
         WHERE c.Id = @currencyId 
-          AND a.UserId = @userId
+          AND a.UserGroupId = @userId
     ),
     TS_CTE AS
     (
@@ -47,7 +47,7 @@ BEGIN
     FROM TS_CTE_DISTINCT ts
     CROSS JOIN (SELECT * FROM CA_CTE) ca 
     INNER JOIN Accounts a ON a.Id = ca.AccountId
-    INNER JOIN Users u ON u.Id = a.UserId
+    INNER JOIN Users u ON u.Id = a.UserGroupId
 
     RETURN
 END

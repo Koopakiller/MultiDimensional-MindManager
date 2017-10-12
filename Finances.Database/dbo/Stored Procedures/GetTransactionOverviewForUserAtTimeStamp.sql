@@ -9,5 +9,5 @@ BEGIN
          , [dbo].[GetValueForDate](@timeStampDate, ca.Id) AS [Value]
     FROM CurrencyAccounts ca
     INNER JOIN Accounts a ON a.Id = ca.AccountId
-    WHERE a.UserId = @userId
+    WHERE a.UserGroupId = @userId
 END
