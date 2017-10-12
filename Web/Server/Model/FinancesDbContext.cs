@@ -36,6 +36,15 @@ namespace Koopakiller.Apps.Picosmos.Real.Model
             return this.Persons.FromSql("EXEC GetPersons");
         }
 
+        public IEnumerable<Person> GetPersons(int? userGroupId)
+        {
+            if (userGroupId == null)
+            {
+                return this.GetPersons();
+            }
+            return this.Persons.FromSql("EXEC GetPersons {0}", userGroupId);
+        }
+
         public IEnumerable<CurrencyAccount> GetCurrencyAccountsForUser(int userId)
         {
             return this.CurrencyAccounts.FromSql("EXEC GetCurrencyAccountsForUser {0}", userId);
