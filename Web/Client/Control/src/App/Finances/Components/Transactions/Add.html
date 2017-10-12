@@ -33,18 +33,18 @@
                 </div>
             </div>
             <div class='form-group'>
-                <label for='currencyAccount'>Currency Account:</label>
-                <div class='control-container'>
-                    <select [(ngModel)]='currencyAccount' name='currencyAccount'>
-                        <option *ngFor='let currencyAccount of currencyAccounts' [ngValue]='currencyAccount.id'>{{currencyAccount.header}}</option>
-                    </select>
-                </div>
-            </div>
-            <div class='form-group'>
                 <label for='user'>User:</label>
                 <div class='control-container'>
                     <select [(ngModel)]='user' name='user'>
                         <option *ngFor='let user of users' [ngValue]='user.id'>{{user.header}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label for='currencyAccount'>Currency Account:</label>
+                <div class='control-container'>
+                    <select [(ngModel)]='currencyAccount' name='currencyAccount'>
+                        <option *ngFor='let currencyAccount of currencyAccounts' [ngValue]='currencyAccount.id'>{{currencyAccount.header}}</option>
                     </select>
                 </div>
             </div>
