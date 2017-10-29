@@ -24,9 +24,6 @@ export class AppComponent implements OnInit {
     private camera: THREE.PerspectiveCamera;
     private scene: THREE.Scene;
     private renderer: THREE.WebGLRenderer;
-    private geometry: THREE.SphereGeometry;
-    private material: THREE.MeshNormalMaterial;
-    private mesh: THREE.Mesh;
     private light: THREE.HemisphereLight;
 
     private mc: MouseControl;
@@ -55,20 +52,56 @@ export class AppComponent implements OnInit {
 
         this.scene.add(this.light);
 
+        let geometry: THREE.Geometry;
+        let material: THREE.Material;
+        let mesh: THREE.Mesh;
+        
+        let zero = new THREE.Vector3(0, 0, 0);
 
+        // draw the speres for each enabled dimension
+        let dimPoints: THREE.Vector3[] = [];
         let dims = this._dataService.getEnabledDimensions();
         for (let point of dims) {
-            let geometry = new THREE.SphereGeometry(0.3, 32, 32)
-            let material = new THREE.MeshLambertMaterial({ color: point.color });
-            let mesh = new THREE.Mesh(geometry, material);
+            geometry = new THREE.SphereGeometry(0.1, 32, 32)
+            material = new THREE.MeshLambertMaterial({ color: point.color });
+            mesh = new THREE.Mesh(geometry, material);
             mesh.position.x = dims.length > 0 ? point.point[dims[0].dimension] : 0;
             mesh.position.y = dims.length > 1 ? point.point[dims[1].dimension] : 0;
             mesh.position.z = dims.length > 2 ? point.point[dims[2].dimension] : 0;
+            dimPoints.push(mesh.position);
             this.scene.add(mesh);
+        }
+
+        // draw lines between dimension spheres
+        for (let p1 of dimPoints) {
+            for (let p2 of dimPoints) {
+                if (p1 != p2) {
+                    let material2 = new THREE.LineBasicMaterial({ color: 0xffffff });
+                    geometry = new THREE.Geometry();
+                    geometry.vertices.push(p1);
+                    geometry.vertices.push(p2);
+                    var line = new THREE.Line(geometry, material2);
+                    this.scene.add(line);
+                }
+            }
+        }
+
+        // draw lines from zero to dimension spheres
+        for (let p of dimPoints) {
+            let material2 = new THREE.LineBasicMaterial({ color: this._dataService.data.common.orientationColor });
+            geometry = new THREE.Geometry();
+            geometry.vertices.push(new THREE.Vector3(p.x * -10, p.y * -10, p.z * -10));
+            geometry.vertices.push(new THREE.Vector3(p.x * 10, p.y * 10, p.z * 10));
+            var line = new THREE.Line(geometry, material2);
+            this.scene.add(line);
         }
 
 
         this.renderer.render(this.scene, this.camera);
+    }
+
+    private distance(p1: THREE.Vector3, p2: THREE.Vector3) {
+        return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2) + Math.pow(p1.z - p2.z, 2));
     }
 }
 
