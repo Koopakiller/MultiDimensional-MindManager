@@ -16,7 +16,6 @@ export class DataService {
             {
                 "name": "A",
                 "description": "Rationales Ich",
-                "point": [1, 0, 0, 0],
                 "color": 0xffff00,
                 "dimension": 0,
                 "isChecked": true
@@ -24,7 +23,6 @@ export class DataService {
             {
                 "name": "B",
                 "description": "Emotionales Ich",
-                "point": [0, 1, 0, 0],
                 "color": 0xff00ff,
                 "dimension": 1,
                 "isChecked": true
@@ -32,7 +30,6 @@ export class DataService {
             {
                 "name": "C",
                 "description": "Körperliches Ich",
-                "point": [0, 0, 1, 0],
                 "color": 0x00ff00,
                 "dimension": 2,
                 "isChecked": true
@@ -40,7 +37,6 @@ export class DataService {
             {
                 "name": "D",
                 "description": "Test",
-                "point": [0, 0, 0, 1],
                 "color": 0x808080,
                 "dimension": 3,
                 "isChecked": false
