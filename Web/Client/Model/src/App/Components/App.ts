@@ -127,8 +127,6 @@ export class AppComponent implements OnInit {
 
         let posLength = this.distance(pos, this.zero)
         let posLength2 = posLength - radiusSize;
-
-
         lineGeo.vertices.push(new THREE.Vector3(pos.x / posLength * posLength2, pos.y / posLength * posLength2, pos.z / posLength * posLength2));
         var line = new THREE.Line(lineGeo, lineMaterial);
         this.scene.add(line);

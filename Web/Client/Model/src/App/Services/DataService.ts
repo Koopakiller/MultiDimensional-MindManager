@@ -35,8 +35,8 @@ export class DataService {
                 "isChecked": true
             },
             {
-                "name": "D",
-                "description": "Test",
+                "name": "M",
+                "description": "'Sucht'",
                 "color": 0x808080,
                 "dimension": 3,
                 "isChecked": false
