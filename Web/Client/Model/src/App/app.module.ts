@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from "./Components/App";
+import { DataService } from "./Services/DataService";
 
 const appRoutes: Routes = [
   { path: "**", component: AppComponent }
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
     AppComponent
   ],
   providers: [
+    DataService
   ],
 })
 export class AppModule {

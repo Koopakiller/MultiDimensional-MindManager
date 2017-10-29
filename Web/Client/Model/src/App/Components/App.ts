@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, HostListener, ElementRef, ViewChild } from "@angular/core";
 import * as THREE from "three";
+import { DataService } from "../Services/DataService";
 
 
 @Component({
@@ -12,7 +13,8 @@ import * as THREE from "three";
 export class AppComponent implements OnInit {
 
     public constructor(
-        private canvas: ElementRef
+        private canvas: ElementRef,
+        private _dataService: DataService
     ) {
 
     }
@@ -36,8 +38,8 @@ export class AppComponent implements OnInit {
         this.camera.position.z = 5;
 
         this.scene = new THREE.Scene();
-
-        for (let point of this.data.dimensions) {
+        
+        for (let point of this._dataService.data.dimensions) {
             let geometry = new THREE.SphereGeometry(0.3, 32, 32)
             let material = new THREE.MeshLambertMaterial({ color: point.color });
             let mesh = new THREE.Mesh(geometry, material);
@@ -58,39 +60,6 @@ export class AppComponent implements OnInit {
 
         this.mc = new MouseControl(this.canvas.nativeElement, this.scene, this.renderer, this.camera);
     }
-
-
-    private data = {
-        "dimensions": [
-            {
-                "name": "A",
-                "description": "Rationales Ich",
-                "point": [0, -1, 0],
-                "color": 0xffff00
-            },
-            {
-                "name": "B",
-                "description": "Emotionales Ich",
-                "point": [0, 0, 0],
-                "color": 0xff00ff
-            },
-            {
-                "name": "C",
-                "description": "Körperliches Ich",
-                "point": [0, 0, 1],
-                "color": 0x00ff00
-            }
-        ],
-        "drugs": [
-            {
-                "name": "Ecstasy",
-                "polygons": [
-                    ["A", "", ""],
-                    ["", "B", ""]
-                ]
-            }
-        ]
-    };
 }
 
 export class MouseControl{
