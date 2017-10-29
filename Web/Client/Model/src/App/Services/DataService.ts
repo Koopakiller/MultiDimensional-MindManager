@@ -3,6 +3,10 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class DataService {
 
+    public constructor() {
+        this._enabledDimensions = this.data.dimensions.filter(x => x.isChecked).map(x => x.name);
+    }
+
     public data = {
         "dimensions": [
             {
@@ -10,28 +14,32 @@ export class DataService {
                 "description": "Rationales Ich",
                 "point": [0, -1, 0, 0],
                 "color": 0xffff00,
-                "dimension": 2
+                "dimension": 2,
+                "isChecked": true
             },
             {
                 "name": "B",
                 "description": "Emotionales Ich",
                 "point": [0, 0, 0, 0],
                 "color": 0xff00ff,
-                "dimension": 1
+                "dimension": 1,
+                "isChecked": true
             },
             {
                 "name": "C",
                 "description": "Körperliches Ich",
                 "point": [0, 0, 1, 0],
                 "color": 0x00ff00,
-                "dimension": 3
+                "dimension": 3,
+                "isChecked": true
             },
             {
                 "name": "D",
                 "description": "Test",
                 "point": [0, 0, 0, 1],
                 "color": 0x808080,
-                "dimension": 4
+                "dimension": 4,
+                "isChecked": false
             }
         ],
         "drugs": [
@@ -49,16 +57,14 @@ export class DataService {
     private _enabledDimensions: string[] = [];
 
     public toggleDimension(name: string) {
-        console.log(name);
-        console.log(this._enabledDimensions);
-        console.log(this._enabledDimensions.indexOf(name));
         if (this._enabledDimensions.indexOf(name) >= 0) {
             this._enabledDimensions.splice(this._enabledDimensions.indexOf(name), 1);
         }
         else {
-            this._enabledDimensions.push(name);
+            if (this._enabledDimensions.length <= 3) {
+                this._enabledDimensions.push(name);
+            }
         }
-        console.log(this._enabledDimensions);
     }
 
     public getAllDimensions() {
@@ -70,3 +76,4 @@ export class DataService {
     }
 
 }
+

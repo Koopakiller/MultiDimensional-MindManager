@@ -19,24 +19,16 @@ export class DimensionsComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.dimensions = this._dataService.data.dimensions.map(x => new DimensionModel(x.name));
+		this.dimensions = this._dataService.data.dimensions;
 	}
 
-	public dimensions: DimensionModel[];
+	public dimensions: any[];
 
 	public changed(name: string) {
 		this._dataService.toggleDimension(name);
-		this.disableUncheckedDimensions = this._dataService.getEnabledDimensions().length == 3;
 	}
 
-	public disableUncheckedDimensions: boolean = false;
-}
-
-class DimensionModel {
-	public constructor(
-		public name: string
-	) {
+	public get disableUncheckedDimensions(): boolean{
+		return this._dataService.getEnabledDimensions().length == 3;
 	}
-
-	public isChecked: boolean = false;
 }
