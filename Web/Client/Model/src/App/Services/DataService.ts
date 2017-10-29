@@ -13,15 +13,15 @@ export class DataService {
             {
                 "name": "A",
                 "description": "Rationales Ich",
-                "point": [0, -1, 0, 0],
+                "point": [1, 0, 0, 0],
                 "color": 0xffff00,
-                "dimension": 2,
+                "dimension": 0,
                 "isChecked": true
             },
             {
                 "name": "B",
                 "description": "Emotionales Ich",
-                "point": [0, 0, 0, 0],
+                "point": [0, 1, 0, 0],
                 "color": 0xff00ff,
                 "dimension": 1,
                 "isChecked": true
@@ -31,7 +31,7 @@ export class DataService {
                 "description": "Körperliches Ich",
                 "point": [0, 0, 1, 0],
                 "color": 0x00ff00,
-                "dimension": 3,
+                "dimension": 2,
                 "isChecked": true
             },
             {
@@ -39,7 +39,7 @@ export class DataService {
                 "description": "Test",
                 "point": [0, 0, 0, 1],
                 "color": 0x808080,
-                "dimension": 4,
+                "dimension": 3,
                 "isChecked": false
             }
         ],

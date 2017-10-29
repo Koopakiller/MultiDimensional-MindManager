@@ -49,20 +49,21 @@ export class AppComponent implements OnInit {
 
     private init() {
 
-        while(this.scene.children.length > 0){ 
-            this.scene.remove(this.scene.children[0]); 
+        while (this.scene.children.length > 0) {
+            this.scene.remove(this.scene.children[0]);
         }
 
         this.scene.add(this.light);
 
 
-        for (let point of this._dataService.getEnabledDimensions()) {
+        let dims = this._dataService.getEnabledDimensions();
+        for (let point of dims) {
             let geometry = new THREE.SphereGeometry(0.3, 32, 32)
             let material = new THREE.MeshLambertMaterial({ color: point.color });
             let mesh = new THREE.Mesh(geometry, material);
-            mesh.position.x = point.point[0];
-            mesh.position.y = point.point[1];
-            mesh.position.z = point.point[2];
+            mesh.position.x = dims.length > 0 ? point.point[dims[0].dimension] : 0;
+            mesh.position.y = dims.length > 1 ? point.point[dims[1].dimension] : 0;
+            mesh.position.z = dims.length > 2 ? point.point[dims[2].dimension] : 0;
             this.scene.add(mesh);
         }
 
