@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Observable, ReplaySubject } from "rxjs";
 
 @Injectable()
 export class DataService {
@@ -53,16 +54,21 @@ export class DataService {
         ]
     };
 
+    private _displayModelChangedSubject = new ReplaySubject(1)
+    public displayModelChanged: Observable<any> = this._displayModelChangedSubject.asObservable();
+
 
     private _enabledDimensions: string[] = [];
 
     public toggleDimension(name: string) {
         if (this._enabledDimensions.indexOf(name) >= 0) {
             this._enabledDimensions.splice(this._enabledDimensions.indexOf(name), 1);
+            this._displayModelChangedSubject.next(null);
         }
         else {
             if (this._enabledDimensions.length <= 3) {
                 this._enabledDimensions.push(name);
+                this._displayModelChangedSubject.next(null);
             }
         }
     }
