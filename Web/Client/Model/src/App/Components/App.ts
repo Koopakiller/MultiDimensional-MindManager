@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, HostListener, ElementRef, ViewChild } from "@angular/core";
 import * as THREE from "three";
 import { DataService } from "../Services/DataService";
-
+import { Subject } from "rxjs/Rx"
 
 @Component({
     selector: "app",
@@ -39,8 +39,26 @@ export class AppComponent implements OnInit {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.canvas.nativeElement.appendChild(this.renderer.domElement);
 
-        this.mc = new MouseControl(this.canvas.nativeElement, this.scene, this.renderer, this.camera);
+        this.mc = new MouseControl(this.canvas.nativeElement);
+        this.mc.rotateChanged.subscribe(([cx, cy, cz]) => {
+            this.scene.rotation.x += cx;
+            this.scene.rotation.y += cy;
+            this.scene.rotation.z += cz;
+            this.renderer.render(this.scene, this.camera);
 
+            // for(let el of this._textElements){
+            //     el.rotation.x -= cx;
+            //     el.rotation.y -= cy;
+            //     el.rotation.z -= cz;
+            // }
+        })
+        this.mc.zoomChanged.subscribe(cz => {
+            let z = this.camera.position.z + cz;
+            if (z < 0.5) { z = 0.5; }
+            if (z > 10) { z = 10 };
+            this.camera.position.z = z;
+            this.renderer.render(this.scene, this.camera);
+        })
 
         var loader = new THREE.FontLoader();
 
@@ -50,6 +68,8 @@ export class AppComponent implements OnInit {
         });
     }
 
+    private _textElements: THREE.Mesh[] = [];
+
     private _font: THREE.Font;
     private zero = new THREE.Vector3(0, 0, 0);
 
@@ -58,6 +78,7 @@ export class AppComponent implements OnInit {
         while (this.scene.children.length > 0) {
             this.scene.remove(this.scene.children[0]);
         }
+        this._textElements = [];
 
         this.scene.add(this.light);
 
@@ -98,6 +119,7 @@ export class AppComponent implements OnInit {
         text.position.y -= txtSize.y * scale / 2;
         text.position.z -= txtSize.z * scale / 2;
         this.scene.add(text);
+        this._textElements.push(text);
 
         let lineMaterial = new THREE.LineBasicMaterial({ color: color });
         let lineGeo = new THREE.Geometry();
@@ -105,7 +127,7 @@ export class AppComponent implements OnInit {
 
         let posLength = this.distance(pos, this.zero)
         let posLength2 = posLength - radiusSize;
-        
+
 
         lineGeo.vertices.push(new THREE.Vector3(pos.x / posLength * posLength2, pos.y / posLength * posLength2, pos.z / posLength * posLength2));
         var line = new THREE.Line(lineGeo, lineMaterial);
@@ -141,15 +163,18 @@ export class AppComponent implements OnInit {
 
 export class MouseControl {
     public constructor(
-        private _canvas: HTMLElement,
-        private _scene: THREE.Scene,
-        private _renderer: THREE.Renderer,
-        private _camera: THREE.Camera) {
+        private _canvas: HTMLElement) {
         this._canvas.addEventListener('mousemove', (e) => this.onMouseMove(e), false);
         this._canvas.addEventListener('mousedown', (e) => this.onMouseDown(e), false);
         this._canvas.addEventListener('mouseup', (e) => this.onMouseUp(e), false);
         this._canvas.addEventListener('wheel', (e) => this.onScroll(e), false);
     }
+
+    private rotateChangedSubject = new Subject<[number, number, number]>();
+    public rotateChanged = this.rotateChangedSubject.asObservable();
+
+    private zoomChangedSubject = new Subject<number>();
+    public zoomChanged = this.zoomChangedSubject.asObservable();
 
     private onMouseDown(evt: any) {
         evt.preventDefault();
@@ -168,17 +193,15 @@ export class MouseControl {
     private onScroll(evt: any) {
         evt.preventDefault();
 
-        let z = this._camera.position.z + evt.deltaY / 100;
-        if (z < 0.5) { z = 0.5; }
-        if (z > 10) { z = 10 };
-        this._camera.position.z = z;
-        this._renderer.render(this._scene, this._camera);
+        this.zoomChangedSubject.next(evt.deltaY / 100);
     }
 
     private rotateScene(deltaX: number, deltaY: number) {
-        this._scene.rotation.y += deltaX / 100;
-        this._scene.rotation.x += deltaY / 100;
-        this._renderer.render(this._scene, this._camera);
+        this.rotateChangedSubject.next([
+            deltaY / 100,
+            deltaX / 100,
+            0
+        ]);
     }
 
     private mouseDown = false;
