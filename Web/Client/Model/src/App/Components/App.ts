@@ -41,8 +41,17 @@ export class AppComponent implements OnInit {
 
         this.mc = new MouseControl(this.canvas.nativeElement, this.scene, this.renderer, this.camera);
 
-        this.init();
+
+        var loader = new THREE.FontLoader();
+
+        loader.load('Assets/Fonts/helvetiker_regular.typeface.json', font => {
+            this._font = font;
+            this.init();
+        });
     }
+
+    private _font: THREE.Font;
+    private zero = new THREE.Vector3(0, 0, 0);
 
     private init() {
 
@@ -56,28 +65,16 @@ export class AppComponent implements OnInit {
         let material: THREE.Material;
         let mesh: THREE.Mesh;
 
-        let zero = new THREE.Vector3(0, 0, 0);
+        //draw the zero-sphere
+        this.scene.add(this.createSphere(this.zero, 0.02, 0xffffff));
 
-        // draw the zero-sphere
-        this.scene.add(this.createSphere(zero, 0.02, 0xffffff));
-
-        // draw the speres for each enabled dimension
+        //draw the speres for each enabled dimension
         let dimPoints: THREE.Vector3[] = [];
         let dims = this._dataService.getEnabledDimensions();
         for (let index = 0; index < dims.length; ++index) {
-            let sphere = this.createSphere(new THREE.Vector3(index == 0 ? 1 : 0, index == 1 ? 1 : 0, index == 2 ? 1 : 0), 0.1, dims[index].color);
-            dimPoints.push(sphere.position);
-            this.scene.add(sphere);
-        }
-
-        // draw lines between dimension spheres
-        for (let p of dimPoints) {
-            let material2 = new THREE.LineBasicMaterial({ color: 0xffffff });
-            geometry = new THREE.Geometry();
-            geometry.vertices.push(zero);
-            geometry.vertices.push(p);
-            var line = new THREE.Line(geometry, material2);
-            this.scene.add(line);
+            let pos = new THREE.Vector3(index == 0 ? 1 : 0, index == 1 ? 1 : 0, index == 2 ? 1 : 0);
+            let sphere = this.drawDimensionSphere(pos, dims[index].name, dims[index].color);
+            dimPoints.push(pos);
         }
 
         this.renderer.render(this.scene, this.camera);
@@ -87,15 +84,58 @@ export class AppComponent implements OnInit {
         return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2) + Math.pow(p1.z - p2.z, 2));
     }
 
-    private createSphere(pos: THREE.Vector3, radius: number, color: number) {
+    private drawDimensionSphere(pos: THREE.Vector3, name: string, color: number) {
+        const radiusSize = 0.1;
+        let sphere = this.createSphere(pos, radiusSize, color, 0.6);
+        this.scene.add(sphere);
+        let text = this.createText(name, pos, 0xffffff, this._font);
+
+        var box = new THREE.Box3().setFromObject(text);
+        let txtSize = box.getSize();
+        let scale = Math.min(radiusSize / txtSize.x, radiusSize / txtSize.y, radiusSize / txtSize.z);
+        text.scale.set(scale, scale, scale);
+        text.position.x -= txtSize.x * scale / 2;
+        text.position.y -= txtSize.y * scale / 2;
+        text.position.z -= txtSize.z * scale / 2;
+        this.scene.add(text);
+
+        let lineMaterial = new THREE.LineBasicMaterial({ color: color });
+        let lineGeo = new THREE.Geometry();
+        lineGeo.vertices.push(this.zero);
+
+        let posLength = this.distance(pos, this.zero)
+        let posLength2 = posLength - radiusSize;
+        
+
+        lineGeo.vertices.push(new THREE.Vector3(pos.x / posLength * posLength2, pos.y / posLength * posLength2, pos.z / posLength * posLength2));
+        var line = new THREE.Line(lineGeo, lineMaterial);
+        this.scene.add(line);
+    }
+
+    private createSphere(pos: THREE.Vector3, radius: number, color: number, opacity?: number) {
         let geometry = new THREE.SphereGeometry(radius, 32, 32)
         let material = new THREE.MeshLambertMaterial({ color: color });
+        material.transparent = true;
+        material.opacity = opacity ? opacity : 1;
         let mesh = new THREE.Mesh(geometry, material);
         mesh.position.x = pos.x
         mesh.position.y = pos.y;
         mesh.position.z = pos.z;
-
         return mesh;
+    }
+
+    private createText(str: string, pos: THREE.Vector3, color: number, font: THREE.Font) {
+        let text = new THREE.TextGeometry(str, {
+            font: font,
+            size: 1,
+            height: 0.02
+        });
+        let material = new THREE.MeshLambertMaterial({ color: color });
+        let mesh = new THREE.Mesh(text, material);
+        mesh.position.x = pos.x
+        mesh.position.y = pos.y;
+        mesh.position.z = pos.z;
+        return mesh
     }
 }
 
