@@ -87,7 +87,7 @@ export class AppComponent implements OnInit {
         let mesh: THREE.Mesh;
 
         //draw the zero-sphere
-        this.scene.add(this.createSphere(this.zero, 0.02, 0xffffff));
+        this.scene.add(this.createSphere(this.zero, 0.02, this._dataService.data.common.orientationColor));
 
         //draw the speres for each enabled dimension
         let dimPoints: THREE.Vector3[] = [];
@@ -106,7 +106,7 @@ export class AppComponent implements OnInit {
     }
 
     private drawDimensionSphere(pos: THREE.Vector3, name: string, color: number) {
-        const radiusSize = 0.1;
+        const radiusSize = 0.05;
         let sphere = this.createSphere(pos, radiusSize, color, 0.6);
         this.scene.add(sphere);
         let text = this.createText(name, pos, 0xffffff, this._font);
