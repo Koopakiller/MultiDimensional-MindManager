@@ -9,7 +9,7 @@ export class DataService {
     }
 
     public data = {
-        "common":{
+        "common": {
             "orientationColor": 0x505050
         },
         "dimensions": [

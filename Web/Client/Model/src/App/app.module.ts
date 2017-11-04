@@ -6,6 +6,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from "./Components/App";
 import { DataService } from "./Services/DataService";
 import { DimensionsComponent } from "./Components/Dimensions";
+import { DynamicModelComponent } from "./Components/DynamicModel";
 
 const appRoutes: Routes = [
   { path: "**", component: AppComponent }
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
   ],
   declarations: [
     AppComponent,
-    DimensionsComponent
+    DimensionsComponent,
+    DynamicModelComponent
   ],
   bootstrap: [
     AppComponent
