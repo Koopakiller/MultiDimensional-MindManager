@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, HostListener, ElementRef, ViewChild } from "@angular/core";
 import * as THREE from "three";
-import { DataService } from "../Services/DataService";
+import { DataService, DynamicModelData } from "../Services/DataService";
 import { Subject } from "rxjs/Rx"
 
 @Component({
@@ -28,44 +28,54 @@ export class DynamicModelComponent implements OnInit {
 
     private mc: MouseControl;
 
+    private _data: DynamicModelData;
+
+    public path: string = "ABCM";
+
     ngOnInit(): void {
-        this.scene = new THREE.Scene();
 
-        this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
-        this.camera.position.z = 5;
-        this.light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+        this._dataService.getDynamicModelData(this.path).subscribe(data => {
+            this._data = data;
 
-        this.renderer = new THREE.WebGLRenderer({ antialias: true });
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.canvas.nativeElement.appendChild(this.renderer.domElement);
+            this.scene = new THREE.Scene();
 
-        this.mc = new MouseControl(this.canvas.nativeElement);
-        this.mc.rotateChanged.subscribe(([cx, cy, cz]) => {
-            this.scene.rotation.x += cx;
-            this.scene.rotation.y += cy;
-            this.scene.rotation.z += cz;
-            this.renderer.render(this.scene, this.camera);
+            this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
+            this.camera.position.z = 5;
+            this.light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
 
-            // for(let el of this._textElements){
-            //     el.rotation.x -= cx;
-            //     el.rotation.y -= cy;
-            //     el.rotation.z -= cz;
-            // }
-        })
-        this.mc.zoomChanged.subscribe(cz => {
-            let z = this.camera.position.z + cz;
-            if (z < 0.5) { z = 0.5; }
-            if (z > 10) { z = 10 };
-            this.camera.position.z = z;
-            this.renderer.render(this.scene, this.camera);
-        })
+            this.renderer = new THREE.WebGLRenderer({ antialias: true });
+            this.renderer.setSize(window.innerWidth, window.innerHeight);
+            this.canvas.nativeElement.appendChild(this.renderer.domElement);
 
-        var loader = new THREE.FontLoader();
+            this.mc = new MouseControl(this.canvas.nativeElement);
+            this.mc.rotateChanged.subscribe(([cx, cy, cz]) => {
+                this.scene.rotation.x += cx;
+                this.scene.rotation.y += cy;
+                this.scene.rotation.z += cz;
+                this.renderer.render(this.scene, this.camera);
 
-        loader.load('Assets/Fonts/helvetiker_regular.typeface.json', font => {
-            this._font = font;
-            this.init();
+                // for(let el of this._textElements){
+                //     el.rotation.x -= cx; 
+                //     el.rotation.y -= cy;
+                //     el.rotation.z -= cz;
+                // }
+            })
+            this.mc.zoomChanged.subscribe(cz => {
+                let z = this.camera.position.z + cz;
+                if (z < 0.5) { z = 0.5; }
+                if (z > 10) { z = 10 };
+                this.camera.position.z = z;
+                this.renderer.render(this.scene, this.camera);
+            })
+
+            var loader = new THREE.FontLoader();
+
+            loader.load('Assets/Fonts/helvetiker_regular.typeface.json', font => {
+                this._font = font;
+                this.init();
+            });
         });
+
     }
 
     private _textElements: THREE.Mesh[] = [];
@@ -87,18 +97,18 @@ export class DynamicModelComponent implements OnInit {
         let mesh: THREE.Mesh;
 
         //draw the zero-sphere
-        this.scene.add(this.createSphere(this.zero, 0.02, this._dataService.data.common.orientationColor));
+        this.scene.add(this.createSphere(this.zero, 0.02, this._data.common.orientationColor));
 
         //draw the speres for each enabled dimension
         let dimPoints: THREE.Vector3[] = [];
-        let dims = this._dataService.getEnabledDimensions();
-        for (let index = 0; index < dims.length; ++index) {
-            let pos = new THREE.Vector3(index == 0 ? 1 : 0, index == 1 ? 1 : 0, index == 2 ? 1 : 0);
-            let sphere = this.drawDimensionSphere(pos, dims[index].name, dims[index].color);
-            dimPoints.push(pos);
-        }
-
-        this.renderer.render(this.scene, this.camera);
+        this._dataService.getEnabledDimensions(this.path).subscribe(dims => {
+            for (let index = 0; index < dims.length; ++index) {
+                let pos = new THREE.Vector3(index == 0 ? 1 : 0, index == 1 ? 1 : 0, index == 2 ? 1 : 0);
+                let sphere = this.drawDimensionSphere(pos, dims[index].name, dims[index].color);
+                dimPoints.push(pos);
+            }
+            this.renderer.render(this.scene, this.camera);
+        });
     }
 
     private distance(p1: THREE.Vector3, p2: THREE.Vector3) {

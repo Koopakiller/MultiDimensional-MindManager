@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, HostListener, ElementRef, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit, HostListener, ElementRef, ViewChild, Input } from "@angular/core";
 import * as THREE from "three";
 import { DataService } from "../Services/DataService";
 
@@ -18,17 +18,24 @@ export class DimensionsComponent implements OnInit {
 
 	}
 
+	@Input()
+	public path: string;
+
 	ngOnInit(): void {
-		this.dimensions = this._dataService.data.dimensions;
+		this._dataService.getDynamicModelData(this.path).subscribe(x => this.dimensions = x.dimensions);
 	}
 
 	public dimensions: any[];
 
 	public changed(name: string) {
-		this._dataService.toggleDimension(name);
+		this._dataService.toggleDimension(name, this.path);
+		return this._dataService.getEnabledDimensions(this.path).subscribe(x => {
+			this._disableUncheckedDimensions = x.length == 3;
+		});
 	}
 
-	public get disableUncheckedDimensions(): boolean{
-		return this._dataService.getEnabledDimensions().length == 3;
+	private _disableUncheckedDimensions: boolean;
+	public get disableUncheckedDimensions(): boolean {
+		return this._disableUncheckedDimensions;
 	}
 }

@@ -1,84 +1,160 @@
 import { Injectable } from "@angular/core";
-import { Observable, ReplaySubject } from "rxjs";
+import { Observable, ReplaySubject, Observer } from "rxjs/Rx";
+import { RequestOptions, Http } from "@angular/http";
 
 @Injectable()
 export class DataService {
 
-    public constructor() {
-        this._enabledDimensions = this.data.dimensions.filter(x => x.isChecked).map(x => x.name);
+    public constructor(
+        private http: Http
+    ) {
     }
-
-    public data = {
-        "common": {
-            "orientationColor": 0x505050
-        },
-        "dimensions": [
-            {
-                "name": "A",
-                "description": "Rationales Ich",
-                "color": 0xffff00,
-                "dimension": 0,
-                "isChecked": true
-            },
-            {
-                "name": "B",
-                "description": "Emotionales Ich",
-                "color": 0xff00ff,
-                "dimension": 1,
-                "isChecked": true
-            },
-            {
-                "name": "C",
-                "description": "Körperliches Ich",
-                "color": 0x00ff00,
-                "dimension": 2,
-                "isChecked": true
-            },
-            {
-                "name": "M",
-                "description": "'Sucht'",
-                "color": 0x808080,
-                "dimension": 3,
-                "isChecked": false
-            }
-        ],
-        "drugs": [
-            {
-                "name": "Ecstasy",
-                "polygons": [
-                    ["A", "", ""],
-                    ["", "B", ""]
-                ]
-            }
-        ]
-    };
 
     private _displayModelChangedSubject = new ReplaySubject(1)
     public displayModelChanged: Observable<any> = this._displayModelChangedSubject.asObservable();
 
 
-    private _enabledDimensions: string[] = [];
+    private _enabledDimensions: { [id: string]: string[] } = {};
 
-    public toggleDimension(name: string) {
-        if (this._enabledDimensions.indexOf(name) >= 0) {
-            this._enabledDimensions.splice(this._enabledDimensions.indexOf(name), 1);
+    public toggleDimension(name: string, path: string) {
+        if (this._enabledDimensions[path].indexOf(name) >= 0) {
+            this._enabledDimensions[path].splice(this._enabledDimensions[path].indexOf(name), 1);
             this._displayModelChangedSubject.next(null);
         }
         else {
-            if (this._enabledDimensions.length <= 3) {
-                this._enabledDimensions.push(name);
+            if (this._enabledDimensions[path].length <= 3) {
+                this._enabledDimensions[path].push(name);
                 this._displayModelChangedSubject.next(null);
             }
         }
     }
 
-    public getAllDimensions() {
-        return this.data.dimensions;
+    public getAllDimensions(path: string): Observable<DynamicModelDimension[]> {
+        return Observable.create((observer: Observer<DynamicModelDimension[]>) => {
+            this.getData(path).subscribe(data => {
+                this._enabledDimensions[path] = data.dimensions.filter(x => x.isChecked).map(x => x.name);
+                observer.next(data.dimensions);
+                observer.complete();
+            });
+        });
     }
 
-    public getEnabledDimensions() {
-        return this.data.dimensions.filter(x => this._enabledDimensions.indexOf(x.name) >= 0);
+    public getEnabledDimensions(path: string): Observable<DynamicModelDimension[]> {
+        return Observable.create((observer: Observer<DynamicModelDimension[]>) => {
+            this.getAllDimensions(path).subscribe(_ => { //ensure this._enabledDimensions[path] exists
+                this.getData(path).subscribe(data => {
+                    observer.next(data.dimensions.filter(x => this._enabledDimensions[path].indexOf(x.name) >= 0));
+                    observer.complete();
+                });
+            });
+        });
     }
 
+    public getDynamicModelData(path: string): Observable<DynamicModelData> {
+        return Observable.create((observer: Observer<DynamicModelData>) => {
+            this.getData(path).subscribe(data => {
+                observer.next(data);
+                observer.complete();
+            });
+        });
+    }
+
+
+    private getWithOptions(url: string) {
+        let options = new RequestOptions();
+        return this.http.get(url);
+    }
+
+    private getData(path: string): Observable<DynamicModelData> {
+        // if (this.data[path]) {
+        //     return Observable.create((observer: Observer<DynamicModelData>) => {
+        //         observer.next(this.data[path]);
+        //         observer.complete();
+        //     });
+        // }
+        // else {
+        return Observable.create((observer: Observer<DynamicModelData>) => {
+            this.getAvailableModels().subscribe(l => {
+                let item = l.filter(x => x.path == path)[0];
+                if (!item) {
+                    observer.complete();
+                }
+                else {
+                    switch (item.type) {
+                        case ModelType.dynamic:
+
+                            this.getWithOptions("/Model/Data/" + path + "/index.json").subscribe(
+                                x => {
+                                    let res: DynamicModelData = x.json()
+                                    observer.next(res);
+                                    observer.complete();
+                                },
+                                error => {
+                                    observer.error(error);
+                                    observer.complete();
+                                }
+                            );
+                            break;
+
+                        default:
+
+                            observer.error("unknown model type");
+
+                            break;
+                    }
+                }
+            });
+        });
+        //}
+    }
+
+
+    private availableModels: ModelData[];
+
+    public getAvailableModels(): Observable<ModelData[]> {
+        if (this.availableModels) {
+            return Observable.create((observer: Observer<ModelData[]>) => {
+                observer.next(this.availableModels);
+                observer.complete();
+            });
+        }
+        else {
+            return Observable.create((observer: Observer<ModelData[]>) => {
+                this.getWithOptions("/Model/Data/index.json").subscribe(
+                    x => {
+                        let res: ModelData[] = x.json()
+                        observer.next(res);
+                        observer.complete();
+                    },
+                    error => {
+                        observer.error(error);
+                        observer.complete();
+                    }
+                );
+            });
+        }
+    }
 }
 
+export enum ModelType {
+    dynamic = "dynamic",
+    image = "image"
+}
+
+export class ModelData {
+    public type: ModelType;
+    public path: string;
+}
+
+export class DynamicModelData {
+    public common: { orientationColor: number };
+    public dimensions: DynamicModelDimension[];
+}
+
+export class DynamicModelDimension {
+    public name: string;
+    public description: string;
+    public color: number;
+    public dimension: number;
+    public isChecked: boolean;
+}
