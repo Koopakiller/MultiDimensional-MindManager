@@ -44,50 +44,49 @@ export class DynamicModelComponent implements OnInit, OnDestroy {
 
         this._parameterSubscription = this._activatedRoute.params.subscribe(params => {
             this.path = params['path'];
-        });
 
-        this._dataService.getDynamicModelData(this.path).subscribe(data => {
-            this._data = data;
+            this._dataService.getDynamicModelData(this.path).subscribe(data => {
+                this._data = data;
 
-            this.scene = new THREE.Scene();
+                this.scene = new THREE.Scene();
 
-            this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
-            this.camera.position.z = 5;
-            this.light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+                this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
+                this.camera.position.z = 5;
+                this.light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
 
-            this.renderer = new THREE.WebGLRenderer({ antialias: true });
-            this.renderer.setSize(window.innerWidth, window.innerHeight);
-            this.canvas.nativeElement.appendChild(this.renderer.domElement);
+                this.renderer = new THREE.WebGLRenderer({ antialias: true });
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                this.canvas.nativeElement.appendChild(this.renderer.domElement);
 
-            this.mc = new MouseControl(this.canvas.nativeElement);
-            this.mc.rotateChanged.subscribe(([cx, cy, cz]) => {
-                this.scene.rotation.x += cx;
-                this.scene.rotation.y += cy;
-                this.scene.rotation.z += cz;
-                this.renderer.render(this.scene, this.camera);
+                this.mc = new MouseControl(this.canvas.nativeElement);
+                this.mc.rotateChanged.subscribe(([cx, cy, cz]) => {
+                    this.scene.rotation.x += cx;
+                    this.scene.rotation.y += cy;
+                    this.scene.rotation.z += cz;
+                    this.renderer.render(this.scene, this.camera);
 
-                // for(let el of this._textElements){
-                //     el.rotation.x -= cx; 
-                //     el.rotation.y -= cy;
-                //     el.rotation.z -= cz;
-                // }
-            })
-            this.mc.zoomChanged.subscribe(cz => {
-                let z = this.camera.position.z + cz;
-                if (z < 0.5) { z = 0.5; }
-                if (z > 10) { z = 10 };
-                this.camera.position.z = z;
-                this.renderer.render(this.scene, this.camera);
-            })
+                    // for(let el of this._textElements){
+                    //     el.rotation.x -= cx; 
+                    //     el.rotation.y -= cy;
+                    //     el.rotation.z -= cz;
+                    // }
+                })
+                this.mc.zoomChanged.subscribe(cz => {
+                    let z = this.camera.position.z + cz;
+                    if (z < 0.5) { z = 0.5; }
+                    if (z > 10) { z = 10 };
+                    this.camera.position.z = z;
+                    this.renderer.render(this.scene, this.camera);
+                })
 
-            var loader = new THREE.FontLoader();
+                var loader = new THREE.FontLoader();
 
-            loader.load('Assets/Fonts/helvetiker_regular.typeface.json', font => {
-                this._font = font;
-                this.init();
+                loader.load('Assets/Fonts/helvetiker_regular.typeface.json', font => {
+                    this._font = font;
+                    this.init();
+                });
             });
         });
-
     }
 
     private _textElements: THREE.Mesh[] = [];
