@@ -2,19 +2,21 @@ import { Component, OnDestroy, OnInit, HostListener, ElementRef, ViewChild } fro
 import * as THREE from "three";
 import { DataService, DynamicModelData } from "../Services/DataService";
 import { Subject } from "rxjs/Rx"
+import { Subscription } from "rxjs/Subscription";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
-    selector: "DynamicModel",
     templateUrl: "DynamicModel.html",
     styleUrls: [
         "DynamicModel.less"
     ]
 })
-export class DynamicModelComponent implements OnInit {
+export class DynamicModelComponent implements OnInit, OnDestroy {
 
     public constructor(
         private canvas: ElementRef,
-        private _dataService: DataService
+        private _dataService: DataService,
+        private _activatedRoute: ActivatedRoute
     ) {
         this._dataService.displayModelChanged.subscribe(() => {
             this.init();
@@ -32,7 +34,17 @@ export class DynamicModelComponent implements OnInit {
 
     public path: string = "ABCM";
 
+    private _parameterSubscription: Subscription;
+
+    public ngOnDestroy() {
+        this._parameterSubscription.unsubscribe();
+    }
+
     ngOnInit(): void {
+
+        this._parameterSubscription = this._activatedRoute.params.subscribe(params => {
+            this.path = params['path'];
+        });
 
         this._dataService.getDynamicModelData(this.path).subscribe(data => {
             this._data = data;

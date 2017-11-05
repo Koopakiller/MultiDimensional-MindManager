@@ -7,9 +7,14 @@ import { AppComponent } from "./Components/App";
 import { DataService } from "./Services/DataService";
 import { DimensionsComponent } from "./Components/Dimensions";
 import { DynamicModelComponent } from "./Components/DynamicModel";
+import { IndexComponent } from "./Components/Index";
 
 const appRoutes: Routes = [
-  { path: "**", component: AppComponent }
+  { path: "", pathMatch: "full", redirectTo: "/Index" },
+  { path: "Index", component: IndexComponent },
+  //{ path: "Image/:path", component: ImageModelComponent},
+  { path: "Dynamic/:path", component: DynamicModelComponent },
+  { path: "**", redirectTo: "/Index" }
 ];
 
 @NgModule({
@@ -24,7 +29,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     DimensionsComponent,
-    DynamicModelComponent
+    DynamicModelComponent,
+    IndexComponent
   ],
   bootstrap: [
     AppComponent
