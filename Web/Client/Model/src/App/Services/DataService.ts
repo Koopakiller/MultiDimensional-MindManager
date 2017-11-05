@@ -59,6 +59,22 @@ export class DataService {
         });
     }
 
+    public getImageModelData(path: string): Observable<ImageModelData>{
+        return Observable.create((observer: Observer<ImageModelData>) => {
+            this.getWithOptions(`/Model/Data/${path}/index.json`).subscribe(
+                x => {
+                    let res: ImageModelData = x.json()
+                    observer.next(res);
+                    observer.complete();
+                },
+                error => {
+                    observer.error(error);
+                    observer.complete();
+                }
+            );
+        });
+    }
+
 
     private getWithOptions(url: string) {
         let options = new RequestOptions();
@@ -157,4 +173,8 @@ export class DynamicModelDimension {
     public color: number;
     public dimension: number;
     public isChecked: boolean;
+}
+
+export class ImageModelData{
+    public fileName: string;
 }

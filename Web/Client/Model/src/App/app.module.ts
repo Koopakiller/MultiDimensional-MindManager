@@ -8,11 +8,12 @@ import { DataService } from "./Services/DataService";
 import { DimensionsComponent } from "./Components/Dimensions";
 import { DynamicModelComponent } from "./Components/DynamicModel";
 import { IndexComponent } from "./Components/Index";
+import { ImageModelComponent } from "./Components/ImageModel";
 
 const appRoutes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "/Index" },
   { path: "Index", component: IndexComponent },
-  //{ path: "Image/:path", component: ImageModelComponent},
+  { path: "Image/:path", component: ImageModelComponent},
   { path: "Dynamic/:path", component: DynamicModelComponent },
   { path: "**", redirectTo: "/Index" }
 ];
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
     AppComponent,
     DimensionsComponent,
     DynamicModelComponent,
+    ImageModelComponent,
     IndexComponent
   ],
   bootstrap: [
