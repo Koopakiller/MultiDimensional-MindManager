@@ -1,0 +1,44 @@
+{
+    "common": {
+        "orientationColor": 5263440
+    },
+    "dimensions": [
+        {
+            "name": "A",
+            "description": "Rationales Ich",
+            "color": 16776960,
+            "dimension": 0,
+            "isChecked": true
+        },
+        {
+            "name": "B",
+            "description": "Emotionales Ich",
+            "color": 16711935,
+            "dimension": 1,
+            "isChecked": true
+        },
+        {
+            "name": "C",
+            "description": "Körperliches Ich",
+            "color": 65280,
+            "dimension": 2,
+            "isChecked": true
+        },
+        {
+            "name": "M",
+            "description": "'Sucht'",
+            "color": 8421504,
+            "dimension": 3,
+            "isChecked": false
+        }
+    ],
+    "drugs": [
+        {
+            "name": "Ecstasy",
+            "polygons": [
+                ["A", "", ""],
+                ["", "B", ""]
+            ]
+        }
+    ]
+}
