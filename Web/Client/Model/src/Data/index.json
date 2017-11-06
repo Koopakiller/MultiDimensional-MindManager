@@ -10,5 +10,9 @@
     {
         "type": "image",
         "path": "Wahrnehmung"
+    },
+    {
+        "type": "image",
+        "path": "Interaktionspartner"
     }
 ]
