@@ -1,26 +1,35 @@
 {
     "dimensions": {
-        "Auswirkung": [
-            "Stimulantia",
-            "Entheogene",
-            "Empathogene",
-            "Opioide",
-            "Dissoziativa",
-            "Delirantia"
-        ],
-        "Vorkommen": [
-            "Synthetische Herstellung",
-            "Natürliches Vorkommen",
-            "Pilze"
-        ],
-        "Chemische Einteilung": [
-            "Tryptamine",
-            "Amphetamine",
-            "Opiat",
-            "Tropan-Alkaloide",
-            "Benzodiazepine",
-            "Phenylethylamine"
-        ],
+        "Auswirkung": {
+            "kind": "set",
+            "items": [
+                "Stimulantia",
+                "Entheogene",
+                "Empathogene",
+                "Opioide",
+                "Dissoziativa",
+                "Delirantia"
+            ]
+        },
+        "Vorkommen": {
+            "kind": "set",
+            "items": [
+                "Synthetische Herstellung",
+                "Natürliches Vorkommen",
+                "Pilze"
+            ]
+        },
+        "Chemische Einteilung": {
+            "kind": "set",
+            "items": [
+                "Tryptamine",
+                "Amphetamine",
+                "Opiat",
+                "Tropan-Alkaloide",
+                "Benzodiazepine",
+                "Phenylethylamine"
+            ]
+        },
         "Schadenspotential nach Nutt, 2010": {
             "kind": "number"
         }
@@ -46,7 +55,10 @@
             "name": "Ecstasy",
             "dimensions": {
                 "Schadenspotential nach Nutt, 2010": 9
-            }
+            },
+            "contains": [
+                "MDMA"
+            ]
         },
         {
             "name": "MDE",
@@ -118,7 +130,10 @@
             "name": "Cannabis",
             "dimensions": {
                 "Schadenspotential nach Nutt, 2010": 20
-            }
+            },
+            "contains": [
+                "THC"
+            ]
         },
         {
             "name": "Meskalin",
@@ -665,6 +680,21 @@
                     "Natürliches Vorkommen"
                 ],
                 "Schadenspotential nach Nutt, 2010": 72
+            },
+            "contains": [
+                "Ethanol"
+            ]
+        },
+        {
+            "name": "Ethanol",
+            "dimensions": {
+                "Auswirkung": [
+                    "Dissoziativa",
+                    "Delirantia"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
             }
         },
         {
@@ -697,7 +727,10 @@
             "name": "Tabak",
             "dimensions": {
                 "Schadenspotential nach Nutt, 2010": 26
-            }
+            },
+            "contains": [
+                "Nikotin"
+            ]
         }
     ]
 }

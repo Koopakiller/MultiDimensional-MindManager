@@ -14,5 +14,17 @@
     {
         "type": "image",
         "path": "Interaktionspartner"
+    },
+    {
+        "type": "items",
+        "path": "Drugs"
+    },
+    {
+        "type": "image",
+        "path": "Vorgehen"
+    },
+    {
+        "type": "image",
+        "path": "Style"
     }
 ]
