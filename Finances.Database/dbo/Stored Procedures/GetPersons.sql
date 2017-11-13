@@ -8,4 +8,5 @@ BEGIN
          , p.[Name] as [Name]
     FROM Persons p
     WHERE @userGroupId IS NULL OR @userGroupId = p.UserGroupId
+	ORDER BY p.[Name]
 END
