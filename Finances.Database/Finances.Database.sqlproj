@@ -96,6 +96,7 @@
     <Build Include="dbo\Stored Procedures\AddUser.sql" />
     <Build Include="dbo\Stored Procedures\GetUsersFromUserGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetCurrencyAccountsForUserGroup.sql" />
+    <Build Include="dbo\Stored Procedures\GetAccountStatisticsSummaryForCurrencyAccount.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="publish.localdbv13.publish.xml" />
