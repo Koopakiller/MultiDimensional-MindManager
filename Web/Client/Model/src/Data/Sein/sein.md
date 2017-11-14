@@ -12,8 +12,14 @@ Beim bewusst werden des Körpers wird man sich u.U. auch bewusst was an einem se
 
 ## ...geistigen
 
-Man macht sich das eigene schaffen bewusst. Die eigenen Leistungen
+Man macht sich das eigene schaffen bewusst. Die eigenen Leistungen.
 
+Das was einen nicht materiall verkörpert tritt hervor.
+
+_Beispiel nach Sexualität:_
+
+ - _Heterosexuelle_ und _Homosexuelle_ werden sich eher auf ihr eigenes Geschlecht beziehen.
+ - _Bisexuelle_ (und ähnliche) eher auf die allen gemeinsamen Kriterien. _Alle sind Menschen_ könnte das Motto sein; das Geschlecht spielt je nach ausprägung keine nennenswerte Rolle.
 
 ## ...gesellschaftlichen
 
