@@ -1,21 +1,21 @@
-Was bedeutet es zu sein?
+# Was bedeutet es zu sein?
 
-sein - bewusst werden des eigenen...
+**sein - bewusst werden des eigenen...**
 
 
-# ...körperlichen
+## ...körperlichen
 
 Erinnert an Techniken wie _Bewusstes Gehen_. Man spürt wie alles zusammenhängt. Durch entstehende Überlastungen (Muskelkater o.ä.) kann man auch das Gefühl haben _am Leben_ zu sein, da der Körper eine Reaktion zeigt.
 
 Beim bewusst werden des Körpers wird man sich u.U. auch bewusst was an einem selbst besonders ist. Das betrifft auch die Geschlechtsorgane, vergleiche Kindliche Entwicklung und selbst Entdeckung.
 
 
-# ...geistigen
+## ...geistigen
 
 Man macht sich das eigene schaffen bewusst. Die eigenen Leistungen
 
 
-# ...gesellschaftlichen
+## ...gesellschaftlichen
 
 Wir alle sind eine Gemeinschaft, je nach Einstellung äußert es sich unterschiedlich:
 
