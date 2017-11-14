@@ -26,5 +26,5 @@ Wir alle sind eine Gemeinschaft, je nach Einstellung äußert es sich unterschie
  - **Égalité**  
    Wirklich alle sind gleich. Dadurch entstehen im größeren Kontext keine Unterstrukturen. Man fühlt sich als Teil der Gemeinschaft.
 
- - **Splittergruppen**
+ - **Splittergruppen**  
    Innerhalb kleiner Gruppen kann man sich nochmal deutlich eingegliederter sehen (bspws. im Freundeskreis); ändert aber die Grundeinstellung zu den anderen beiden Arten nicht.
