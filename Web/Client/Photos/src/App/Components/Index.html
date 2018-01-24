@@ -1,0 +1,4 @@
+﻿<div *ngFor='let model of models' [ngSwitch]='model.type'>
+    <a *ngSwitchCase='"dynamic"' [routerLink]='["/Dynamic", model.path]'>{{model.path}}</a>
+    <a *ngSwitchCase='"image"' [routerLink]='["/Image", model.path]'>{{model.path}}</a>
+</div>

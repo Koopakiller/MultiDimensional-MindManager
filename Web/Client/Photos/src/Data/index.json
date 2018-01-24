@@ -1,0 +1,30 @@
+[
+    {
+        "type": "dynamic",
+        "path": "ABCM"
+    },
+    {
+        "type": "image",
+        "path": "Relations"
+    },
+    {
+        "type": "image",
+        "path": "Wahrnehmung"
+    },
+    {
+        "type": "image",
+        "path": "Interaktionspartner"
+    },
+    {
+        "type": "items",
+        "path": "Drugs"
+    },
+    {
+        "type": "image",
+        "path": "Vorgehen"
+    },
+    {
+        "type": "image",
+        "path": "Style"
+    }
+]
