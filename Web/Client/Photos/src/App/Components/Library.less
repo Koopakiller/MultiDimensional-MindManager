@@ -1,0 +1,29 @@
+@import "../Styles/common.less";
+
+.image {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: calc(100%-126px);
+    img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+}
+
+.image-list {
+    padding: @padding-small;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 150px+2*@padding;
+    display: block;
+    overflow-x: scroll;
+    white-space: nowrap;
+
+    a {
+        margin: @padding-small;
+    }
+}

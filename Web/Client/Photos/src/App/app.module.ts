@@ -7,12 +7,11 @@ import { AppComponent } from "./Components/App";
 import { PhotoService } from "./Services/PhotoService";
 import { LibraryIndexComponent } from "./Components/LibraryIndex";
 import { LibraryComponent } from "./Components/Library";
-import { PhotoComponent } from "./Components/Photo";
 
 const appRoutes: Routes = [
   { path: "", component: LibraryIndexComponent },
+  { path: "Library/:library/Photo/:photo", component: LibraryComponent },
   { path: "Library/:library", component: LibraryComponent },
-  { path: "Library/:library/Photo/:photo", component: PhotoComponent },
   { path: "**", redirectTo: "/" }
 ];
 
@@ -28,7 +27,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LibraryIndexComponent,
-    PhotoComponent,
     LibraryComponent
   ],
   bootstrap: [

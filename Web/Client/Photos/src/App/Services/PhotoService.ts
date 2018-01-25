@@ -15,25 +15,48 @@ export class PhotoService {
         return this.http.get(url);
     }
 
-    public getLibraries() {
+    private _libraryCache: Library[];
+
+    public getLibraries(): Observable<Library[]> {
         return Observable.create((observer: Observer<Library[]>) => {
-            this.getWithOptions(`/Photos/Data/libraries.json`).subscribe(
-                x => {
-                    let res: { data: Library[] } = x.json()
-                    observer.next(res.data);
-                    observer.complete();
-                },
-                error => {
-                    observer.error(error);
-                    observer.complete();
-                }
-            );
+            if (this._libraryCache) {
+                observer.next(this._libraryCache);
+                observer.complete();
+            }
+            else {
+                this.getWithOptions(`/Photos/Data/libraries.json`).subscribe(
+                    x => {
+                        let res: { data: Library[] } = x.json()
+                        this._libraryCache = res.data;
+                        observer.next(this._libraryCache);
+                        observer.complete();
+                    },
+                    error => {
+                        observer.error(error);
+                        observer.complete();
+                    }
+                );
+            }
         });
     }
 
-    public getPhotos(library: string) {
+    public getLibraryInfo(libraryPath: string): Observable<Library> {
+        return Observable.create((observer: Observer<Library>) => {
+            this.getLibraries().subscribe(libs => {
+                for (let lib of libs) {
+                    if (lib.path === libraryPath) {
+                        observer.next(lib);
+                        observer.complete();
+                        break;
+                    }
+                }
+            });
+        });
+    }
+
+    public getPhotos(libraryPath: string): Observable<string[]> {
         return Observable.create((observer: Observer<string[]>) => {
-            this.getWithOptions(`/Photos/Data/${library}/files.txt`).subscribe(
+            this.getWithOptions(`/Photos/Data/${libraryPath}/files.txt`).subscribe(
                 x => {
                     let res = x.text().split("\n")
                     observer.next(res);
