@@ -33,9 +33,12 @@ export class LibraryComponent implements OnInit, OnDestroy {
         this._parameterSubscription = this._activatedRoute.params.subscribe(params => {
             let libraryPath = params['library'];
             this.selectedPhoto = params['photo'];
-            
+
             this._photoService.getPhotos(libraryPath).subscribe(list => {
                 this.photos = list;
+                if(!this.selectedPhoto && this.photos.length > 0){
+                    this.selectedPhoto = this.photos[0];
+                }
             });
 
             this._photoService.getLibraryInfo(libraryPath).subscribe(lib => {
