@@ -1,1 +1,5 @@
 Library: {{library}}
+
+<a *ngFor="let photo of photos" href="/Photos/Library/{{library}}/Photo/{{photo}}">
+    <img alt="Photo {{photo}}" src="/Photos/Data/{{library}}/Photos/{{photo}}" style="max-width: 128px;"/>
+</a>

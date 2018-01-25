@@ -20,6 +20,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
     }
 
     public library: string;
+    public photos: string[];
 
     private _parameterSubscription: Subscription;
 
@@ -30,6 +31,9 @@ export class LibraryComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this._parameterSubscription = this._activatedRoute.params.subscribe(params => {
             this.library = params['library'];
+            this._photoService.getPhotos(this.library).subscribe(list=>{
+                this.photos = list;
+            });
         });
 
     }

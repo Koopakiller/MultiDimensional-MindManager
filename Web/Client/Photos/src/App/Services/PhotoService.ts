@@ -31,4 +31,20 @@ export class PhotoService {
         });
     }
 
+    public getPhotos(library: string){
+        return Observable.create((observer: Observer<string[]>) => {
+            this.getWithOptions(`/Photos/Data/${library}/files.txt`).subscribe(
+                x => {
+                    let res = x.text().split("\n")
+                    observer.next(res);
+                    observer.complete();
+                },
+                error => {
+                    observer.error(error);
+                    observer.complete();
+                }
+            );
+        });
+    }
+
 }
