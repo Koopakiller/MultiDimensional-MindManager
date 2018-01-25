@@ -58,7 +58,7 @@ export class PhotoService {
         return Observable.create((observer: Observer<string[]>) => {
             this.getWithOptions(`/Photos/Data/${libraryPath}/files.txt`).subscribe(
                 x => {
-                    let res = x.text().split("\n")
+                    let res = x.text().trim().split("\n")
                     observer.next(res);
                     observer.complete();
                 },
