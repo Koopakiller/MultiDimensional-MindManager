@@ -15,11 +15,11 @@ export class PhotoService {
         return this.http.get(url);
     }
 
-    public getLibraries(){
-        return Observable.create((observer: Observer<string[]>) => {
+    public getLibraries() {
+        return Observable.create((observer: Observer<Library[]>) => {
             this.getWithOptions(`/Photos/Data/libraries.json`).subscribe(
                 x => {
-                    let res: {data: string[]} = x.json()
+                    let res: { data: Library[] } = x.json()
                     observer.next(res.data);
                     observer.complete();
                 },
@@ -31,7 +31,7 @@ export class PhotoService {
         });
     }
 
-    public getPhotos(library: string){
+    public getPhotos(library: string) {
         return Observable.create((observer: Observer<string[]>) => {
             this.getWithOptions(`/Photos/Data/${library}/files.txt`).subscribe(
                 x => {
@@ -47,4 +47,11 @@ export class PhotoService {
         });
     }
 
+}
+
+export class Library {
+    public name: string;
+    public path: string;
+    public thumbnail: string;
+    public description: string;
 }

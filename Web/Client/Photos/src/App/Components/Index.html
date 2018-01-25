@@ -1,4 +1,9 @@
-Index
-<div *ngFor="let library of libraries">
-    <a href="Library/{{library}}">{{library}}</a>
+<div class="container">
+    <a *ngFor="let library of libraries" href="Library/{{library.path}}">
+        <img src="/Photos/Data/{{library.path}}/x150/{{library.thumbnail}}" />
+        <div class="label">
+            <span class="name">{{library.name}}</span>
+            <span class="description">{{library.description}}</span>
+        </div>
+    </a>
 </div>

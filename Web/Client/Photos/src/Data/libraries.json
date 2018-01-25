@@ -1,6 +1,16 @@
 {
     "data": [
-        "Ruedersdorf",
-        "Sample"
+        {
+            "path": "Sample",
+            "name": "Sample",
+            "description": "Eine Beispiel-Bibliothek mit Bildern aus Rüdersdorf",
+            "thumbnail": "DSC_0020.jpg"
+        },
+        {
+            "path": "Ruedersdorf",
+            "name": "Lost Place",
+            "description": "Ehemaliges Glyphosatwerk Rüdersdorf",
+            "thumbnail": "DSC_0005.jpg"
+        }
     ]
 }

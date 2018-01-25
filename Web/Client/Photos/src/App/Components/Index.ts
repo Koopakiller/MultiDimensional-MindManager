@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, HostListener, ElementRef, ViewChild } from "@angular/core";
 import * as THREE from "three";
-import { PhotoService } from "../Services/PhotoService";
+import { PhotoService, Library } from "../Services/PhotoService";
 import { Subject } from "rxjs/Rx"
 import { Subscription } from "rxjs/Subscription";
 import { ActivatedRoute } from "@angular/router";
@@ -19,7 +19,7 @@ export class IndexComponent implements OnInit {
     ) {
     }
 
-    public libraries: string[]
+    public libraries: Library[]
 
     private path: string;
 
