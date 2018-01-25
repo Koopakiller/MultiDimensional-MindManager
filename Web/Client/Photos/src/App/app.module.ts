@@ -4,18 +4,16 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from "./Components/App";
-import { DataService } from "./Services/DataService";
-import { DimensionsComponent } from "./Components/Dimensions";
-import { DynamicModelComponent } from "./Components/DynamicModel";
+import { PhotoService } from "./Services/PhotoService";
 import { IndexComponent } from "./Components/Index";
-import { ImageModelComponent } from "./Components/ImageModel";
+import { LibraryComponent } from "./Components/Library";
+import { PhotoComponent } from "./Components/Photo";
 
 const appRoutes: Routes = [
-  { path: "", pathMatch: "full", redirectTo: "/Index" },
-  { path: "Index", component: IndexComponent },
-  { path: "Image/:path", component: ImageModelComponent},
-  { path: "Dynamic/:path", component: DynamicModelComponent },
-  { path: "**", redirectTo: "/Index" }
+  { path: "", component: IndexComponent },
+  { path: "Library/:library", component: LibraryComponent },
+  { path: "Library/:library/Photo/:photo", component: PhotoComponent },
+  { path: "**", redirectTo: "/" }
 ];
 
 @NgModule({
@@ -29,16 +27,15 @@ const appRoutes: Routes = [
   ],
   declarations: [
     AppComponent,
-    DimensionsComponent,
-    DynamicModelComponent,
-    ImageModelComponent,
-    IndexComponent
+    IndexComponent,
+    PhotoComponent,
+    LibraryComponent
   ],
   bootstrap: [
     AppComponent
   ],
   providers: [
-    DataService
+    PhotoService
   ],
 })
 export class AppModule {

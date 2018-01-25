@@ -1,25 +1,25 @@
 import { Component, OnDestroy, OnInit, HostListener, ElementRef, ViewChild } from "@angular/core";
 import * as THREE from "three";
-import { DataService, DynamicModelData } from "../Services/DataService";
+import { PhotoService } from "../Services/PhotoService";
 import { Subject } from "rxjs/Rx"
 import { Subscription } from "rxjs/Subscription";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
-    templateUrl: "ImageModel.html",
+    templateUrl: "Library.html",
     styleUrls: [
-        "ImageModel.less"
+        "Library.less"
     ]
 })
-export class ImageModelComponent implements OnInit, OnDestroy {
+export class LibraryComponent implements OnInit, OnDestroy {
 
     public constructor(
-        private _dataService: DataService,
+        private _photoService: PhotoService,
         private _activatedRoute: ActivatedRoute
     ) {
     }
 
-    private path: string;
+    public library: string;
 
     private _parameterSubscription: Subscription;
 
@@ -28,14 +28,8 @@ export class ImageModelComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-
         this._parameterSubscription = this._activatedRoute.params.subscribe(params => {
-            this.path = params['path'];
-
-            this._dataService.getImageModelData(this.path).subscribe(x => {
-                this.imagePath = "/Model/Data/" + this.path + "/" + x.fileName;
-                console.log(x);
-            });
+            this.library = params['library'];
         });
 
     }

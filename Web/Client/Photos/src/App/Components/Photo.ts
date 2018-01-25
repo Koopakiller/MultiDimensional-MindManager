@@ -6,12 +6,12 @@ import { Subscription } from "rxjs/Subscription";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
-    templateUrl: "Index.html",
+    templateUrl: "Photo.html",
     styleUrls: [
-        "Index.less"
+        "Photo.less"
     ]
 })
-export class IndexComponent implements OnInit {
+export class PhotoComponent implements OnInit, OnDestroy {
 
     public constructor(
         private _photoService: PhotoService,
@@ -19,13 +19,19 @@ export class IndexComponent implements OnInit {
     ) {
     }
 
-    public libraries: string[]
+    private library: string;
+    private photo: string;
 
-    private path: string;
+    private _parameterSubscription: Subscription;
+
+    public ngOnDestroy() {
+        this._parameterSubscription.unsubscribe();
+    }
 
     ngOnInit(): void {
-        this._photoService.getLibraries().subscribe(x => {
-            this.libraries = x;
+        this._parameterSubscription = this._activatedRoute.params.subscribe(params => {
+            this.library = params['library'];
+            this.photo = params['photo'];
         });
 
     }
