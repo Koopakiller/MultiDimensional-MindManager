@@ -1,13 +1,13 @@
-<div>Library {{library ? ": " + library.name : ""}}</div>
+<div>Library {{library ? ': ' + library.name : ''}}</div>
 
-<div class="image">
-    <div *ngIf="selectedPhoto && library">
-        <img src="/Photos/Data/{{library.path}}/1920x1920/{{selectedPhoto}}" alt="Photo {{selectedPhoto}}" />
+<div class='image'>
+    <div *ngIf='selectedPhoto && library'>
+        <img src='/Photos/Data/{{library.path}}/1920x1920/{{selectedPhoto}}' alt='Photo {{selectedPhoto}}' />
     </div>
 </div>
 
-<div class="image-list">
-    <div *ngIf="library">
-        <a *ngFor="let photo of photos" href="/Photos/Library/{{library.path}}/Photo/{{photo}}"><img alt="Photo {{photo}}" src="/Photos/Data/{{library.path}}/x150/{{photo}}" style="max-height: 150px;" /></a>
+<div class='image-list'>
+    <div *ngIf='library'>
+        <a *ngFor='let photo of photos' href='/Photos/Library/{{library.path}}/Photo/{{photo}}'><img alt='Photo {{photo}}' src='/Photos/Data/{{library.path}}/x150/{{photo}}' style='max-height: 150px;' /></a>
     </div>
 </div>
