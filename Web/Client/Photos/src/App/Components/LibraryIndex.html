@@ -1,5 +1,5 @@
 <div class='container'>
-    <a *ngFor='let library of libraries' href='Library/{{library.path}}'>
+    <a *ngFor='let library of libraries' [routerLink]='["Library", library.path]'>
         <img src='/Photos/Data/{{library.path}}/x150/{{library.thumbnail}}' />
         <div class='label'>
             <span class='name'>{{library.name}}</span>
