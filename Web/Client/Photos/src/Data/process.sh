@@ -3,7 +3,7 @@ input=$1
 target=$2
 
 # config
-sizes=(x150 x300 1280x1280^\> 1920x1920^\> 2560x2560^\> 3840x3840^\>)
+sizes=(x70 x150 1280x1280^\> 1920x1920^\> 2560x2560^\> 3840x3840^\>)
 
 echo "(re)create size-folders"
 for size in ${sizes[*]}
