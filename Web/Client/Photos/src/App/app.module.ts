@@ -5,12 +5,12 @@ import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from "./Components/App";
 import { PhotoService } from "./Services/PhotoService";
-import { IndexComponent } from "./Components/Index";
+import { LibraryIndexComponent } from "./Components/LibraryIndex";
 import { LibraryComponent } from "./Components/Library";
 import { PhotoComponent } from "./Components/Photo";
 
 const appRoutes: Routes = [
-  { path: "", component: IndexComponent },
+  { path: "", component: LibraryIndexComponent },
   { path: "Library/:library", component: LibraryComponent },
   { path: "Library/:library/Photo/:photo", component: PhotoComponent },
   { path: "**", redirectTo: "/" }
@@ -27,7 +27,7 @@ const appRoutes: Routes = [
   ],
   declarations: [
     AppComponent,
-    IndexComponent,
+    LibraryIndexComponent,
     PhotoComponent,
     LibraryComponent
   ],

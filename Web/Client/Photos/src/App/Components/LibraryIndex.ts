@@ -6,12 +6,12 @@ import { Subscription } from "rxjs/Subscription";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
-    templateUrl: "Index.html",
+    templateUrl: "LibraryIndex.html",
     styleUrls: [
-        "Index.less"
+        "LibraryIndex.less"
     ]
 })
-export class IndexComponent implements OnInit {
+export class LibraryIndexComponent implements OnInit {
 
     public constructor(
         private _photoService: PhotoService,
