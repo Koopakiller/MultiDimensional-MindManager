@@ -10,6 +10,6 @@ export class ScrollToDirective {
   }
 
   ngAfterViewInit() {
-    console.log("scroll", this._elementRef);
+    this._elementRef.nativeElement.scrollIntoView({block: "end", behavior: "smooth"});
   }
 }
