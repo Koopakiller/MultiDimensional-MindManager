@@ -1,11 +1,14 @@
-<div class="main-grid" *ngIf="library">
+<div class='main-grid' *ngIf='library'>
 
-    <div [ngStyle]=' { "background-image": "url(" + selectedPhotoPath + ")" } ' class="photo-background1 photo full"></div>
-    <div [ngStyle]=' { "background-image": "url(" + selectedPhotoPath + ")" } ' class="photo-background2 photo full"></div>
-    <div [ngStyle]=' { "background-image": "url(" + selectedPhotoPath + ")" } ' class="photo-foreground photo full"></div>
+    <div [ngStyle]=' { "background-image": "url(" + selectedPhotoPath + ")" } ' class='photo-background1 photo'></div>
+    <div [ngStyle]=' { "background-image": "url(" + selectedPhotoPath + ")" } ' class='photo-background2 photo'></div>
+    <div [ngStyle]=' { "background-image": "url(" + selectedPhotoPath + ")" } ' class='photo-foreground photo'></div>
 
-    <a *ngIf="previousPath" [routerLink]="[previousPath]" class="previous-photo navigation-button">&lt;</a>
-    <a *ngIf="nextPath" [routerLink]="[nextPath]" class="next-photo navigation-button">&gt;</a>
+    <a *ngIf='previousPath' [routerLink]='[previousPath]' class='previous-photo navigation-button'>&lt;</a>
+    <a *ngIf='nextPath' [routerLink]='[nextPath]' class='next-photo navigation-button'>&gt;</a>
+
+    <div class='photo-list' *ngIf='showPhotoList'>
+        <a *ngFor='let photo of photos' [routerLink]='["/Library", library.path, "Photo", photo]' class='{{ photo===selectedPhoto ? "selected" : "" }}'><img alt='Photo {{photo}}' src='/Photos/Data/{{library.path}}/x150/{{photo}}' style='max-height: 150px;' /></a></div>
 
 </div>
 

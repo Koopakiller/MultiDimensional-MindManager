@@ -27,6 +27,8 @@ export class LibraryComponent implements OnInit, OnDestroy {
     public previousPath: string;
     public nextPath: string;
 
+    public showPhotoList: boolean = true;
+
     private _parameterSubscription: Subscription;
 
     public ngOnDestroy() {
