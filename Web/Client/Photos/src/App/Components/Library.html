@@ -1,7 +1,6 @@
 <div class='main-grid' *ngIf='library'>
 
-    <div [ngStyle]=' { "background-image": "url(" + selectedPhotoPath + ")" } ' class='photo-background1 photo'></div>
-    <div [ngStyle]=' { "background-image": "url(" + selectedPhotoPath + ")" } ' class='photo-background2 photo'></div>
+    <div [ngStyle]=' { "background-image": "url(" + selectedPhotoPath + ")" } ' class='photo-background photo'></div>
     <div [ngStyle]=' { "background-image": "url(" + selectedPhotoPath + ")" } ' class='photo-foreground photo'></div>
 
     <a *ngIf='previousPath' [routerLink]='[previousPath]' class='previous-photo navigation-button'>&lt;</a>
