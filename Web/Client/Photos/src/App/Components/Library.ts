@@ -56,7 +56,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
 
     private setSelectedPhoto(photo) {
         this.selectedPhoto = photo;
-        this.selectedPhotoPath = `/Photos/Data/${this.library.path}/1920x1920/${this.selectedPhoto}`;
+        this.selectedPhotoPath = `/Photos/Data/${this.library.path}/1280x1280/${this.selectedPhoto}`;
 
         if (!this.photos) {
             return;
