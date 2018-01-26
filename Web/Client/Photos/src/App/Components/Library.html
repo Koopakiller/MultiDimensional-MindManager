@@ -18,9 +18,19 @@
         </ng-template>
     </div>
 
-    <div class='photo-list-button' (click)='showPhotoList=!showPhotoList'>
-        <span *ngIf='showPhotoList'>Bildband ausblenden</span>
-        <span *ngIf='!showPhotoList'>Bildband einblenden</span>
-    </div>
+    <a class='photo-list-button' (click)='showPhotoList=!showPhotoList'>
+        <span class='shadow'>
+            <span class='shadow'>
+                <span *ngIf='showPhotoList'>Bildband ausblenden</span>
+                <span *ngIf='!showPhotoList'>Bildband einblenden</span>
+            </span>
+        </span>
+    </a>
+
+    <a routerLink='/' class='back-to-libraries'>
+        <span class='shadow'>
+            <span class='shadow'>Zu den Bibliotheken</span>
+        </span>
+    </a>
 
 </div>
