@@ -9,18 +9,18 @@
 
     <div class='photo-list' *ngIf='showPhotoList'>
         <ng-template ngFor let-photo [ngForOf]="photos">
-                <a [routerLink]='["/Library", library.path, "Photo", photo]' *ngIf='photo === selectedPhoto' class='selected' scrollTo>
-                    <img alt='Photo {{photo}}' src='/Photos/Data/{{library.path}}/x150/{{photo}}' style='max-height: 150px;' />
-                </a>
-                <a [routerLink]='["/Library", library.path, "Photo", photo]' *ngIf='photo !== selectedPhoto'>
-                    <img alt='Photo {{photo}}' src='/Photos/Data/{{library.path}}/x150/{{photo}}' style='max-height: 150px;' />
-                </a>
+            <a [routerLink]='["/Library", library.path, "Photo", photo]' *ngIf='photo === selectedPhoto' class='selected' scrollTo>
+                <img alt='Photo {{photo}}' src='/Photos/Data/{{library.path}}/x150/{{photo}}' style='max-height: 150px;' />
+            </a>
+            <a [routerLink]='["/Library", library.path, "Photo", photo]' *ngIf='photo !== selectedPhoto'>
+                <img alt='Photo {{photo}}' src='/Photos/Data/{{library.path}}/x150/{{photo}}' style='max-height: 150px;' />
+            </a>
         </ng-template>
     </div>
 
     <div class='photo-list-button' (click)='showPhotoList=!showPhotoList'>
-            <span *ngIf='showPhotoList'>Bildband ausblenden</span>
-            <span *ngIf='!showPhotoList'>Bildband einblenden</span>
+        <span *ngIf='showPhotoList'>Bildband ausblenden</span>
+        <span *ngIf='!showPhotoList'>Bildband einblenden</span>
     </div>
 
 </div>
