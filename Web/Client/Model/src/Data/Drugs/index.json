@@ -1,0 +1,748 @@
+{
+    "dimensions": {
+        "Auswirkung": {
+            "kind": "set",
+            "items": [
+                "Stimulantia",
+                "Entheogene",
+                "Empathogene",
+                "Opioide",
+                "Dissoziativa",
+                "Delirantia"
+            ]
+        },
+        "Vorkommen": {
+            "kind": "set",
+            "items": [
+                "Synthetische Herstellung",
+                "Natürliches Vorkommen",
+                "Pilze"
+            ]
+        },
+        "Chemische Einteilung": {
+            "kind": "set",
+            "items": [
+                "Tryptamine",
+                "Amphetamine",
+                "Opiat",
+                "Tropan-Alkaloide",
+                "Benzodiazepine",
+                "Phenylethylamine"
+            ]
+        },
+        "Schadenspotential nach Nutt, 2010": {
+            "kind": "number"
+        }
+    },
+    "items": [
+        {
+            "name": "MDMA",
+            "dimensions": {
+                "Auswirkung": [
+                    "Stimulantia",
+                    "Empathogene"
+                ],
+                "Chemische Einteilung": [
+                    "Amphetamine",
+                    "Phenylethylamine"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "Ecstasy",
+            "dimensions": {
+                "Schadenspotential nach Nutt, 2010": 9
+            },
+            "contains": [
+                "MDMA"
+            ]
+        },
+        {
+            "name": "MDE",
+            "dimensions": {
+                "Auswirkung": [
+                    "Stimulantia",
+                    "Empathogene"
+                ],
+                "Chemische Einteilung": [
+                    "Amphetamine",
+                    "Phenylethylamine"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "MDA",
+            "dimensions": {
+                "Auswirkung": [
+                    "Stimulantia",
+                    "Empathogene"
+                ],
+                "Chemische Einteilung": [
+                    "Amphetamine",
+                    "Phenylethylamine"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "GBL",
+            "dimensions": {
+                "Auswirkung": [
+                    "Empathogene"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "GHB",
+            "dimensions": {
+                "Auswirkung": [
+                    "Empathogene"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ],
+                "Schadenspotential nach Nutt, 2010": 19
+            }
+        },
+        {
+            "name": "THC",
+            "dimensions": {
+                "Auswirkung": [
+                    "Entheogene"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Cannabis",
+            "dimensions": {
+                "Schadenspotential nach Nutt, 2010": 20
+            },
+            "contains": [
+                "THC"
+            ]
+        },
+        {
+            "name": "Meskalin",
+            "dimensions": {
+                "Auswirkung": [
+                    "Entheogene"
+                ],
+                "Chemische Einteilung": [
+                    "Phenylethylamine"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Nikotin",
+            "dimensions": {
+                "Auswirkung": [
+                    "Entheogene",
+                    "Stimulantia"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Hyoscyamin",
+            "dimensions": {
+                "Auswirkung": [
+                    "Entheogene",
+                    "Dissoziativa",
+                    "Delirantia"
+                ],
+                "Chemische Einteilung": [
+                    "Tropan-Alkaloide"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Scopolamin",
+            "dimensions": {
+                "Auswirkung": [
+                    "Entheogene",
+                    "Dissoziativa",
+                    "Delirantia"
+                ],
+                "Chemische Einteilung": [
+                    "Tropan-Alkaloide"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Muscimol",
+            "dimensions": {
+                "Auswirkung": [
+                    "Entheogene",
+                    "Dissoziativa",
+                    "Delirantia"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Salvinorin A",
+            "dimensions": {
+                "Auswirkung": [
+                    "Entheogene",
+                    "Opioide",
+                    "Dissoziativa"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "DMT",
+            "dimensions": {
+                "Auswirkung": [
+                    "Entheogene"
+                ],
+                "Chemische Einteilung": [
+                    "Tryptamine"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "LSA",
+            "dimensions": {
+                "Auswirkung": [
+                    "Entheogene"
+                ],
+                "Chemische Einteilung": [
+                    "Tryptamine"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Harmalin",
+            "dimensions": {
+                "Auswirkung": [
+                    "Entheogene"
+                ],
+                "Chemische Einteilung": [
+                    "Tryptamine"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Psilocybin",
+            "dimensions": {
+                "Auswirkung": [
+                    "Entheogene"
+                ],
+                "Vorkommen": [
+                    "Pilze",
+                    "Natürliches Vorkommen"
+                ],
+                "Chemische Einteilung": [
+                    "Tryptamine"
+                ],
+                "Schadenspotential nach Nutt, 2010": 6
+            }
+        },
+        {
+            "name": "LSD",
+            "dimensions": {
+                "Auswirkung": [],
+                "Vorkommen": [
+                    "Pilze",
+                    "Synthetische Herstellung"
+                ],
+                "Chemische Einteilung": [
+                    "Tryptamine"
+                ],
+                "Schadenspotential nach Nutt, 2010": 7
+            }
+        },
+        {
+            "name": "5-MeO-DiPT",
+            "dimensions": {
+                "Chemische Einteilung": [
+                    "Tryptamine"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "5-MeO-DMT",
+            "dimensions": {
+                "Chemische Einteilung": [
+                    "Tryptamine"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "2C-B",
+            "dimensions": {
+                "Chemische Einteilung": [
+                    "Amphetamine",
+                    "Phenylethylamine"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "2C-E",
+            "dimensions": {
+                "Chemische Einteilung": [
+                    "Amphetamine",
+                    "Phenylethylamine"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "DOM",
+            "dimensions": {
+                "Chemische Einteilung": [
+                    "Amphetamine",
+                    "Phenylethylamine"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "Speed",
+            "dimensions": {
+                "Auswirkung": [
+                    "Stimulantia"
+                ],
+                "Chemische Einteilung": [
+                    "Amphetamine",
+                    "Phenylethylamine"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "Methamphetamin",
+            "dimensions": {
+                "Auswirkung": [
+                    "Stimulantia"
+                ],
+                "Chemische Einteilung": [
+                    "Amphetamine",
+                    "Phenylethylamine"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ],
+                "Schadenspotential nach Nutt, 2010": 33
+            }
+        },
+        {
+            "name": "Amphetamin",
+            "dimensions": {
+                "Schadenspotential nach Nutt, 2010": 23
+            }
+        },
+        {
+            "name": "Morphin",
+            "dimensions": {
+                "Auswirkung": [
+                    "Opioide",
+                    "Dissoziativa"
+                ],
+                "Chemische Einteilung": [
+                    "Opiat"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Codein",
+            "dimensions": {
+                "Auswirkung": [
+                    "Opioide",
+                    "Dissoziativa"
+                ],
+                "Chemische Einteilung": [
+                    "Opiat"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Tilidin",
+            "dimensions": {
+                "Auswirkung": [
+                    "Opioide"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "Tramadol",
+            "dimensions": {
+                "Auswirkung": [
+                    "Opioide"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "PCP",
+            "dimensions": {
+                "Auswirkung": [
+                    "Opioide",
+                    "Dissoziativa"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "Heroin",
+            "dimensions": {
+                "Auswirkung": [
+                    "Opioide",
+                    "Dissoziativa"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ],
+                "Schadenspotential nach Nutt, 2010": 55
+            }
+        },
+        {
+            "name": "Oxycodon",
+            "dimensions": {
+                "Auswirkung": [
+                    "Opioide",
+                    "Dissoziativa"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "Methadon",
+            "dimensions": {
+                "Auswirkung": [
+                    "Opioide",
+                    "Dissoziativa"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ],
+                "Schadenspotential nach Nutt, 2010": 14
+            }
+        },
+        {
+            "name": "Mephedron",
+            "dimensions": {
+                "Schadenspotential nach Nutt, 2010": 13
+            }
+        },
+        {
+            "name": "Butan",
+            "dimensions": {
+                "Schadenspotential nach Nutt, 2010": 11
+            }
+        },
+        {
+            "name": "Khat",
+            "dimensions": {
+                "Schadenspotential nach Nutt, 2010": 9
+            }
+        },
+        {
+            "name": "Buprenorphin",
+            "dimensions": {
+                "Schadenspotential nach Nutt, 2010": 7
+            }
+        },
+        {
+            "name": "Anabolika",
+            "dimensions": {
+                "Schadenspotential nach Nutt, 2010": 10
+            }
+        },
+        {
+            "name": "Ephedrin",
+            "dimensions": {
+                "Auswirkung": [
+                    "Stimulantia"
+                ],
+                "Chemische Einteilung": [
+                    "Phenylethylamine"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Koffein",
+            "dimensions": {
+                "Auswirkung": [
+                    "Stimulantia"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Theobromin",
+            "dimensions": {
+                "Auswirkung": [
+                    "Stimulantia"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Kokain",
+            "dimensions": {
+                "Auswirkung": [
+                    "Stimulantia"
+                ],
+                "Chemische Einteilung": [
+                    "Tropan-Alkaloide"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ],
+                "Schadenspotential nach Nutt, 2010": 27
+            }
+        },
+        {
+            "name": "Benzodiazepine",
+            "dimensions": {
+                "Chemische Einteilung": [
+                    "Benzodiazepine"
+                ],
+                "Schadenspotential nach Nutt, 2010": 15
+            }
+        },
+        {
+            "name": "Diazepam",
+            "dimensions": {
+                "Chemische Einteilung": [
+                    "Benzodiazepine"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "Lorazepam",
+            "dimensions": {
+                "Chemische Einteilung": [
+                    "Benzodiazepine"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "Bromazepam",
+            "dimensions": {
+                "Chemische Einteilung": [
+                    "Benzodiazepine"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "Dextromethorphan",
+            "dimensions": {
+                "Auswirkung": [
+                    "Dissoziativa"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "Lachgas",
+            "dimensions": {
+                "Auswirkung": [
+                    "Dissoziativa"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "Ketamin",
+            "dimensions": {
+                "Auswirkung": [
+                    "Dissoziativa"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ],
+                "Schadenspotential nach Nutt, 2010": 15
+            }
+        },
+        {
+            "name": "DHM",
+            "dimensions": {
+                "Auswirkung": [
+                    "Dissoziativa",
+                    "Delirantia"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "DPH",
+            "dimensions": {
+                "Auswirkung": [
+                    "Dissoziativa",
+                    "Delirantia"
+                ],
+                "Vorkommen": [
+                    "Synthetische Herstellung"
+                ]
+            }
+        },
+        {
+            "name": "Alkohol",
+            "dimensions": {
+                "Auswirkung": [
+                    "Dissoziativa",
+                    "Delirantia"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ],
+                "Schadenspotential nach Nutt, 2010": 72
+            },
+            "contains": [
+                "Ethanol"
+            ]
+        },
+        {
+            "name": "Ethanol",
+            "dimensions": {
+                "Auswirkung": [
+                    "Dissoziativa",
+                    "Delirantia"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Myristicin",
+            "dimensions": {
+                "Auswirkung": [
+                    "Dissoziativa",
+                    "Delirantia"
+                ],
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Mitragynin",
+            "dimensions": {
+                "Vorkommen": [
+                    "Natürliches Vorkommen"
+                ]
+            }
+        },
+        {
+            "name": "Crack",
+            "dimensions": {
+                "Schadenspotential nach Nutt, 2010": 54
+            }
+        },
+        {
+            "name": "Tabak",
+            "dimensions": {
+                "Schadenspotential nach Nutt, 2010": 26
+            },
+            "contains": [
+                "Nikotin"
+            ]
+        }
+    ],
+    "relations":[
+        {
+            "from": "Psychedelika",
+            "label": "zeigt bei hohen Dosen Wirkungen von",
+            "to": "Dssoziativa"
+        },
+        {
+            "from": "Ethanol",
+            "label": "zeigt bei hohen Dosen Wirkungen von",
+            "to": "Delirantia"
+        }
+    ]
+}
