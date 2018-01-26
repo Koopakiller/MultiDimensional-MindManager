@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit, HostListener, ElementRef, ViewChild } from "@angular/core";
 import * as THREE from "three";
 import { PhotoService, Library } from "../Services/PhotoService";
-import { Subject } from "rxjs/Rx"
+import { Subject, Observable } from "rxjs/Rx"
 import { Subscription } from "rxjs/Subscription";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     templateUrl: "Library.html",
@@ -15,13 +15,17 @@ export class LibraryComponent implements OnInit, OnDestroy {
 
     public constructor(
         private _photoService: PhotoService,
-        private _activatedRoute: ActivatedRoute
+        private _activatedRoute: ActivatedRoute,
+        private _router: Router
     ) {
     }
 
     public library: Library;
     public photos: string[];
     public selectedPhoto: string;
+    public selectedPhotoPath: string;
+    public previousPath: string;
+    public nextPath: string;
 
     private _parameterSubscription: Subscription;
 
@@ -32,19 +36,41 @@ export class LibraryComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this._parameterSubscription = this._activatedRoute.params.subscribe(params => {
             let libraryPath = params['library'];
-            this.selectedPhoto = params['photo'];
-
-            this._photoService.getPhotos(libraryPath).subscribe(list => {
-                this.photos = list;
-                if(!this.selectedPhoto && this.photos.length > 0){
-                    this.selectedPhoto = this.photos[0];
-                }
-            });
-
-            this._photoService.getLibraryInfo(libraryPath).subscribe(lib => {
-                this.library = lib;
-            });
+            Observable.zip(
+                this._photoService.getPhotos(libraryPath),
+                this._photoService.getLibraryInfo(libraryPath))
+                .subscribe(([photos, info]) => {
+                    this.photos = photos;
+                    this.library = info;
+                    if (params['photo']) {
+                        this.setSelectedPhoto(params['photo']);
+                    } else {
+                        this.setSelectedPhoto(this.photos[0]);
+                    }
+                });
         });
 
+    }
+
+    private setSelectedPhoto(photo) {
+        this.selectedPhoto = photo;
+        this.selectedPhotoPath = `/Photos/Data/${this.library.path}/1920x1920/${this.selectedPhoto}`;
+
+        if (!this.photos) {
+            return;
+        }
+
+        let index = this.photos.indexOf(this.selectedPhoto);
+
+        if (index - 1 < 0) {
+            this.previousPath = null;
+        } else {
+            this.previousPath = `/Library/${this.library.path}/Photo/${this.photos[index - 1]}`;
+        }
+        if (index + 1 >= this.photos.length) {
+            this.nextPath = null;
+        } else {
+            this.nextPath = `/Library/${this.library.path}/Photo/${this.photos[index + 1]}`;
+        }
     }
 }
