@@ -7,6 +7,7 @@ import { AppComponent } from "./Components/App";
 import { PhotoService } from "./Services/PhotoService";
 import { LibraryIndexComponent } from "./Components/LibraryIndex";
 import { LibraryComponent } from "./Components/Library";
+import { ScrollToDirective } from "./Directives/ScrollTo";
 
 const appRoutes: Routes = [
   { path: "", component: LibraryIndexComponent },
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LibraryIndexComponent,
-    LibraryComponent
+    LibraryComponent,
+    ScrollToDirective
   ],
   bootstrap: [
     AppComponent
