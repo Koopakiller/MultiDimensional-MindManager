@@ -18,4 +18,9 @@
         </ng-template>
     </div>
 
+    <div class='photo-list-button' (click)='showPhotoList=!showPhotoList'>
+            <span *ngIf='showPhotoList'>Bildband ausblenden</span>
+            <span *ngIf='!showPhotoList'>Bildband einblenden</span>
+    </div>
+
 </div>
