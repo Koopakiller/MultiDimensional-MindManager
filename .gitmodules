@@ -1,0 +1,3 @@
+[submodule "Web/Client/Photos"]
+	path = Web/Client/Photos
+	url = https://github.com/Koopakiller/PhotoGallery
